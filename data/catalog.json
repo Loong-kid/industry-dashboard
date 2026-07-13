@@ -1,0 +1,38 @@
+{
+  "industries": [
+    {
+      "id": "shipbuilding",
+      "name": "조선",
+      "icon": "🚢",
+      "sections": [
+        {
+          "title": "신조선가",
+          "indicators": ["clarksons_nb_index", "newbuild_prices", "cnpi"]
+        },
+        {
+          "title": "중고선가",
+          "indicators": ["secondhand_index"]
+        }
+      ]
+    },
+    {
+      "id": "shipping",
+      "name": "해운",
+      "icon": "⚓",
+      "sections": [
+        {
+          "title": "컨테이너 운임",
+          "indicators": ["kcci", "scfi", "ccfi", "hrci"]
+        },
+        {
+          "title": "건화물(드라이벌크) 운임",
+          "indicators": ["kdci", "bdi"]
+        },
+        {
+          "title": "탱커 · LNG 운임",
+          "indicators": ["bdti", "bcti", "lng_freight"]
+        }
+      ]
+    }
+  ]
+}

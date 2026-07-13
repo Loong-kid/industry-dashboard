@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>산업 KPI 대시보드</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">📈</span>
+      <div>
+        <div class="brand-title">산업 KPI</div>
+        <div class="brand-sub">Industry Dashboard</div>
+      </div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot">
+      <div id="last-updated"></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="page-title"></h1>
+      <div class="range-picker" id="range-picker">
+        <button data-range="3m">3개월</button>
+        <button data-range="1y" class="active">1년</button>
+        <button data-range="3y">3년</button>
+        <button data-range="all">전체</button>
+      </div>
+    </header>
+    <div id="content"></div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
