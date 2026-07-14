@@ -15,11 +15,23 @@ industry-dashboard/
 │   └── shipping/         # 해운 지표 JSON
 ├── manual/               # 수기입력 CSV (유료 지표용) + manifest.json
 ├── scripts/
-│   ├── fetch_all.py      # 전체 수집 실행 (개별 실패 무시하고 진행)
-│   ├── import_manual.py  # manual/*.csv → data/*.json
-│   └── fetchers/         # 소스별 크롤러 (kobc, kcla, stockq)
+│   ├── fetch_all.py            # 전체 수집 실행 (개별 실패 무시하고 진행)
+│   ├── import_manual.py        # manual/*.csv → data/*.json
+│   ├── extract_shinyoung.py    # 신영증권 위클리 PDF → 선가/발주량/운임 (로컬 전용)
+│   └── fetchers/               # 소스별 크롤러 (kobc, kcla, stockq)
 └── .github/workflows/update-data.yml  # 매일 KST 07:30 자동 갱신
 ```
+
+## 주간 루틴 (신영 위클리 PDF)
+
+새 위클리 PDF를 `Desktop\증권사레포트\조선\`에 넣은 뒤:
+
+```bash
+python scripts/extract_shinyoung.py
+git add data && git commit -m "data: weekly shinyoung update" && git push
+```
+
+신조선가·중고선가·발주량·탱커/가스선 운임이 한 번에 갱신된다.
 
 ## 로컬 실행
 

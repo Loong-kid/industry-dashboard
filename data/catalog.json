@@ -10,8 +10,12 @@
           "indicators": ["clarksons_nb_index", "newbuild_prices", "cnpi"]
         },
         {
+          "title": "발주량",
+          "indicators": ["newbuild_orders"]
+        },
+        {
           "title": "중고선가",
-          "indicators": ["secondhand_index"]
+          "indicators": ["secondhand_index", "secondhand_prices"]
         }
       ]
     },
@@ -26,11 +30,15 @@
         },
         {
           "title": "건화물(드라이벌크) 운임",
-          "indicators": ["kdci", "bdi"]
+          "indicators": ["kdci", "bdi", "bulker_earnings"]
         },
         {
-          "title": "탱커 · LNG 운임",
-          "indicators": ["bdti", "bcti", "lng_freight"]
+          "title": "탱커 · 가스선 운임",
+          "indicators": ["bdti", "bcti", "tanker_earnings", "gas_earnings"]
+        },
+        {
+          "title": "종합",
+          "indicators": ["clarksea"]
         }
       ]
     }
