@@ -164,6 +164,9 @@ function renderCard(doc, indicatorId) {
   wrap.appendChild(canvas);
   card.appendChild(wrap);
 
+  const chipsDiv = document.createElement("div");
+  card.appendChild(chipsDiv);
+
   const foot = document.createElement("div");
   foot.className = "card-foot";
   foot.innerHTML = `
@@ -182,8 +185,33 @@ function renderCard(doc, indicatorId) {
     if (!open) tableDiv.innerHTML = buildTable(doc, filtered);
   });
 
-  drawChart(canvas, doc, filtered);
+  const chart = drawChart(canvas, doc, filtered);
+  buildChips(chipsDiv, chart);
   return card;
+}
+
+// 시리즈 토글 체크박스 칩 (Chart.js 기본 범례의 취소선 표기 대체)
+function buildChips(container, chart) {
+  const datasets = chart.data.datasets;
+  if (datasets.length < 2) return;
+  container.className = "chips";
+  datasets.forEach((ds, i) => {
+    const label = document.createElement("label");
+    label.className = "chip" + (ds.hidden ? " off" : "");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !ds.hidden;
+    const dot = document.createElement("span");
+    dot.className = "chip-dot";
+    dot.style.background = ds.borderColor;
+    label.append(cb, dot, document.createTextNode(ds.label));
+    cb.addEventListener("change", () => {
+      chart.setDatasetVisibility(i, cb.checked);
+      label.classList.toggle("off", !cb.checked);
+      chart.update();
+    });
+    container.appendChild(label);
+  });
 }
 
 function fmt(v) {
@@ -264,15 +292,8 @@ function drawChart(canvas, doc, filtered) {
       animation: false,
       interaction: { mode: "index", intersect: false },
       plugins: {
-        legend: {
-          display: names.length > 1,
-          position: "bottom",
-          labels: {
-            color: css("--ink-2"),
-            boxWidth: 8, boxHeight: 8, usePointStyle: true, pointStyle: "circle",
-            font: { size: 11 },
-          },
-        },
+        legend: { display: false }, // 범례는 체크박스 칩(buildChips)으로 대체
+
         tooltip: {
           backgroundColor: isDark() ? "#2c2c2a" : "#ffffff",
           titleColor: css("--ink"),
@@ -312,6 +333,7 @@ function drawChart(canvas, doc, filtered) {
     plugins: [crosshair],
   });
   state.charts.push(chart);
+  return chart;
 }
 
 boot();
