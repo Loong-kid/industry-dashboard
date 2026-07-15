@@ -129,7 +129,17 @@ body {
 .card-name { font-weight: 700; font-size: 14px; }
 .card-freq { font-size: 11px; color: var(--muted); white-space: nowrap; }
 
-.card-stat { display: flex; align-items: baseline; gap: 10px; }
+.card-stat { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.stat-series {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 8px;
+  align-self: center;
+}
 .stat-value { font-size: 26px; font-weight: 700; }
 .stat-unit { font-size: 12px; color: var(--muted); }
 .stat-delta { font-size: 13px; font-weight: 600; }

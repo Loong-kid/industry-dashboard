@@ -130,11 +130,8 @@ function renderCard(doc, indicatorId) {
     filtered = Object.fromEntries(seriesNames.map((s) => [s, doc.series[s]]));
   }
 
-  // 대표 시리즈(첫 default_series)의 최신값 + 직전 대비 변화
+  // 대표 시리즈: default_series의 첫 항목 (칩 토글 시 체크된 첫 시리즈로 갱신됨)
   const mainName = (doc.default_series && doc.default_series[0]) || seriesNames[0];
-  const main = doc.series[mainName] || [];
-  const last = main[main.length - 1];
-  const prev = main[main.length - 2];
 
   const head = document.createElement("div");
   head.className = "card-head";
@@ -143,20 +140,30 @@ function renderCard(doc, indicatorId) {
     <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}</div>`;
   card.appendChild(head);
 
-  if (last) {
+  // 헤드라인: 다중 시리즈 카드는 체크된 첫 시리즈를 따라감 (칩 토글 시 갱신)
+  const stat = document.createElement("div");
+  stat.className = "card-stat";
+  card.appendChild(stat);
+  const setStat = (seriesName) => {
+    const s = (seriesName && doc.series[seriesName]) || [];
+    const last = s[s.length - 1];
+    const prev = s[s.length - 2];
+    if (!last) {
+      stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
+      return;
+    }
     const delta = prev ? last[1] - prev[1] : null;
     const pct = prev && prev[1] !== 0 ? (delta / prev[1]) * 100 : null;
     const dir = delta > 0 ? "up" : delta < 0 ? "down" : "";
     const arrow = delta > 0 ? "▲" : delta < 0 ? "▼" : "";
-    const stat = document.createElement("div");
-    stat.className = "card-stat";
     stat.innerHTML = `
+      ${seriesNames.length > 1 ? `<span class="stat-series">${seriesName}</span>` : ""}
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))} (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)</span>` : ""}
       <span class="stat-date">${last[0]}</span>`;
-    card.appendChild(stat);
-  }
+  };
+  setStat(mainName);
 
   const wrap = document.createElement("div");
   wrap.className = "chart-wrap";
@@ -186,12 +193,24 @@ function renderCard(doc, indicatorId) {
   });
 
   const chart = drawChart(canvas, doc, filtered);
-  buildChips(chipsDiv, chart);
+  // 헤드라인은 방금 켠 시리즈를 따라가고, 헤드라인 시리즈를 끄면 남은 것 중 첫 번째로
+  let headline = mainName;
+  buildChips(chipsDiv, chart, (label, checked) => {
+    if (checked) {
+      headline = label;
+    } else if (label === headline) {
+      const first = chart.data.datasets.find((d, i) => chart.isDatasetVisible(i));
+      headline = first ? first.label : null;
+    } else {
+      return; // 헤드라인과 무관한 시리즈 해제는 그대로 둠
+    }
+    setStat(headline);
+  });
   return card;
 }
 
 // 시리즈 토글 체크박스 칩 (Chart.js 기본 범례의 취소선 표기 대체)
-function buildChips(container, chart) {
+function buildChips(container, chart, onToggle) {
   const datasets = chart.data.datasets;
   if (datasets.length < 2) return;
   container.className = "chips";
@@ -209,6 +228,7 @@ function buildChips(container, chart) {
       chart.setDatasetVisibility(i, cb.checked);
       label.classList.toggle("off", !cb.checked);
       chart.update();
+      if (onToggle) onToggle(ds.label, cb.checked);
     });
     container.appendChild(label);
   });
