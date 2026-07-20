@@ -33,6 +33,17 @@ git add data && git commit -m "data: weekly shinyoung update" && git push
 
 신조선가·중고선가·발주량·탱커/가스선 운임이 한 번에 갱신된다.
 
+## 주간 루틴 (국내 조선 4사 DART 수주)
+
+```bash
+cd "..\기업\한국" && python "단일판매공급계약 추출기.py" --watchlist   # 새 공시 수집
+cd industry-dashboard && python scripts/aggregate_korea_orders.py     # 척당단가 집계
+git add data && git commit -m "data: weekly DART orders update" && git push
+```
+
+HD현대중공업·삼성중공업·한화오션·대한조선의 개별 수주 공시를 척당 단가(원화·달러)로
+환산해 정렬·필터 가능한 표로 보여준다. 상세는 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) 참고.
+
 ## 로컬 실행
 
 ```bash

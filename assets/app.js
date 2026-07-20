@@ -72,6 +72,15 @@ async function renderIndustry() {
     h.textContent = section.title;
     content.appendChild(h);
 
+    if (section.type === "table") {
+      for (const indicatorId of section.indicators) {
+        const doc = await loadDoc(ind.id, indicatorId);
+        content.appendChild(renderOrderTable(doc));
+        if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
+      }
+      continue;
+    }
+
     const grid = document.createElement("div");
     grid.className = "grid";
     content.appendChild(grid);
@@ -354,6 +363,175 @@ function drawChart(canvas, doc, filtered) {
   });
   state.charts.push(chart);
   return chart;
+}
+
+// ── 수주 테이블 (DART 공시 기반, 시계열이 아니라 건별 표) ───────────────
+function renderOrderTable(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.orders || doc.orders.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "국내 조선 수주"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.</div>`;
+    return card;
+  }
+
+  const cutoff = rangeCutoff();
+  const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
+  const companies = doc.companies || [...new Set(allOrders.map((o) => o.corp_name))];
+  const categories = [...new Set(allOrders.map((o) => o.vessel_category))].sort();
+
+  const filt = {
+    companies: new Set(companies),
+    categories: new Set(categories),
+    search: "",
+    sortKey: "rcept_dt",
+    sortDir: -1,
+  };
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="card-name">${doc.name}</div>
+    <div class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></div>`;
+  card.appendChild(head);
+
+  const filterBar = document.createElement("div");
+  filterBar.className = "order-filters";
+  card.appendChild(filterBar);
+
+  const companyChips = document.createElement("div");
+  companyChips.className = "chips";
+  filterBar.appendChild(companyChips);
+
+  const categoryChips = document.createElement("div");
+  categoryChips.className = "chips";
+  filterBar.appendChild(categoryChips);
+
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "order-search";
+  searchWrap.innerHTML = `<input type="text" placeholder="선종·상대방·계약명 검색" />`;
+  filterBar.appendChild(searchWrap);
+
+  const countLine = document.createElement("div");
+  countLine.className = "order-count";
+  card.appendChild(countLine);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "order-table-wrap";
+  card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "rcept_dt", label: "공시일" },
+    { key: "corp_name", label: "회사" },
+    { key: "vessel_type", label: "선종" },
+    { key: "count", label: "척수", align: "right" },
+    { key: "amount_krw", label: "계약금액(억원)", align: "right" },
+    { key: "per_vessel_usd", label: "척당단가(M$)", align: "right" },
+    { key: "counterparty", label: "상대방" },
+    { key: "region", label: "지역" },
+    { key: "contract_end", label: "인도(종료)일" },
+    { key: "_link", label: "" },
+  ];
+
+  function buildChip(container, label, active, onToggle) {
+    const chipLabel = document.createElement("label");
+    chipLabel.className = "chip" + (active ? "" : " off");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = active;
+    chipLabel.append(cb, document.createTextNode(label));
+    cb.addEventListener("change", () => {
+      chipLabel.classList.toggle("off", !cb.checked);
+      onToggle(cb.checked);
+      renderRows();
+    });
+    container.appendChild(chipLabel);
+  }
+
+  companies.forEach((c) => buildChip(companyChips, c, true, (on) => (on ? filt.companies.add(c) : filt.companies.delete(c))));
+  categories.forEach((c) => buildChip(categoryChips, c, true, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
+
+  searchWrap.querySelector("input").addEventListener("input", (e) => {
+    filt.search = e.target.value.trim().toLowerCase();
+    renderRows();
+  });
+
+  function krwEok(v) {
+    return v == null ? "-" : Math.round(v / 1e8).toLocaleString("ko-KR");
+  }
+  function usdM(v) {
+    return v == null ? "-" : (v / 1e6).toLocaleString("ko-KR", { maximumFractionDigits: 1 });
+  }
+  function cellValue(o, key) {
+    switch (key) {
+      case "count": return o.count ? `${o.count}${o.unit}` : "-";
+      case "amount_krw": return krwEok(o.amount_krw);
+      case "per_vessel_usd": return usdM(o.per_vessel_usd);
+      case "_link": return `<a href="${o.viewer_url}" target="_blank" rel="noopener">원문</a>`;
+      default: return o[key] || "-";
+    }
+  }
+
+  function renderRows() {
+    const rows = allOrders.filter((o) => {
+      if (!filt.companies.has(o.corp_name)) return false;
+      if (!filt.categories.has(o.vessel_category)) return false;
+      if (filt.search) {
+        const hay = `${o.vessel_type} ${o.counterparty} ${o.contract_name}`.toLowerCase();
+        if (!hay.includes(filt.search)) return false;
+      }
+      return true;
+    });
+    rows.sort((a, b) => {
+      const av = a[filt.sortKey], bv = b[filt.sortKey];
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+    });
+
+    countLine.textContent = `${rows.length.toLocaleString("ko-KR")}건 표시 중 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)`;
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const htr = document.createElement("tr");
+    COLS.forEach((col) => {
+      const th = document.createElement("th");
+      th.textContent = col.label;
+      th.style.textAlign = col.align === "right" ? "right" : "left";
+      if (col.key !== "_link") {
+        th.classList.add("sortable");
+        if (filt.sortKey === col.key) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+        th.addEventListener("click", () => {
+          filt.sortDir = filt.sortKey === col.key ? -filt.sortDir : -1;
+          filt.sortKey = col.key;
+          renderRows();
+        });
+      }
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const o of rows) {
+      const tr = document.createElement("tr");
+      if (o.is_correction) tr.classList.add("is-correction");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.style.textAlign = col.align === "right" ? "right" : "left";
+        td.innerHTML = cellValue(o, col.key);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+
+    tableWrap.innerHTML = "";
+    tableWrap.appendChild(table);
+  }
+
+  renderRows();
+  return card;
 }
 
 boot();
