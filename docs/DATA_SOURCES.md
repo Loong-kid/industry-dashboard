@@ -50,6 +50,19 @@ cd industry-dashboard && python scripts/aggregate_korea_orders.py   # 집계 갱
 git add data && git commit -m "data: weekly DART orders update" && git push
 ```
 
+### 파생 지표 (집계 스크립트가 추가 생성, 2026-07-21)
+수주 테이블(`korea_orders.json`) 외에 `aggregate_korea_orders.py`가 시계열 JSON도 생성해
+기존 차트 인프라(카드/칩/기간필터)로 렌더한다:
+- `korea_price_{tanker,lng,gas,container}.json`: 선종 카테고리별 회사별 **척당 수주단가(M$)** 시계열.
+  검증: LNG 척당 250~254M$ ≈ 클락슨 LNG 신조선가 248.5M$ (방법론 교차검증됨).
+- `korea_revenue_progress.json` / `korea_revenue_delivery.json`: 회사별 분기 **예상 매출(억원)** 2종.
+  - **진행기준**: 계약금액을 건조기간(시작~종료)에 시간비례 분산. 조선사가 K-IFRS 1115상 실제로
+    매출(손익)을 인식하는 방식 = 영업이익 예측용. (실제 진행률은 투입원가 기준이라 시간정비례는
+    근사치. 개별 원가곡선이 공시에 없어 불가피.)
+  - **납기 일시인식**: 전액을 인도(계약 종료)일 분기에 계상. 대금이 잔금 위주(헤비테일)인 경우의
+    **현금 유입** 시점 근사 — 매출 인식과는 다름(현금≠손익). 개별 대금조건은 공시에 구조화 안 됨.
+  - ⚠️ **주의**: 둘 다 '공시된 대형 수주'만 반영 → 회사 총매출과 다름(공시 임계 미만 소형수주 누락).
+
 ### 파싱 함정 (재작업 시 필독)
 - **인코딩이 시대별로 다름**: DART document.xml의 meta 태그는 항상 `euc-kr`이라 표기하지만,
   2023년 이후 공시는 실제로 UTF-8 바이트고, **2021~2022년 초의 오래된 공시는 표기대로 진짜

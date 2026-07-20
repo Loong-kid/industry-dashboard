@@ -206,6 +206,162 @@ def run():
     for c, n in by_corp.items():
         print(f"  {c}: {n}건")
 
+    # 파생 지표(시계열)도 생성 → 기존 차트 인프라(카드/칩/기간필터)로 그대로 렌더됨
+    build_revenue_forecast(orders, mode="progress")   # 진행기준 = 손익 매출 인식
+    build_revenue_forecast(orders, mode="delivery")   # 납기 일시 = 헤비테일 현금 근사
+    build_price_series(orders)
+
+
+# ── 파생 1: 회사별 분기 예상매출 (진행기준 / 납기 두 방식) ─────────────
+def _quarter_start(d: date) -> date:
+    return date(d.year, ((d.month - 1) // 3) * 3 + 1, 1)
+
+
+def _next_quarter(d: date) -> date:
+    return date(d.year + 1, 1, 1) if d.month >= 10 else date(d.year, d.month + 3, 1)
+
+
+REVENUE_META = {
+    "progress": {
+        "id": "korea_revenue_progress",
+        "name": "예상 매출 — 진행기준 (손익 인식)",
+        "source": "DART 공시 수주액을 건조기간에 진행기준(시간비례) 분할",
+    },
+    "delivery": {
+        "id": "korea_revenue_delivery",
+        "name": "인도시점 인식 — 헤비테일 현금 유입 근사",
+        "source": "DART 공시 수주액을 인도(계약 종료)일 분기에 일시 인식",
+    },
+}
+
+
+def build_revenue_forecast(orders, mode="progress"):
+    """수주액을 분기별 흐름으로 변환. 두 방식:
+
+    - progress(진행기준): 계약 시작~종료 건조기간에 시간 비례로 분산. 조선사가 K-IFRS상
+      실제 매출(손익)을 인식하는 방식. 실제 진행률은 투입원가 기준이라 시간에 정비례하진
+      않지만 개별 원가곡선이 공시에 없어 시간비례를 근사치로 사용.
+    - delivery(납기): 계약금액 전액을 인도(계약 종료)일이 속한 분기에 일시 계상. 대금
+      지급이 잔금 위주(헤비테일)인 경우의 '현금 유입' 시점 근사. 실제 매출 인식과는 다름.
+
+    단위: 억원. 공시된 대형 수주만 반영하므로 회사 총매출과는 다르다.
+    """
+    from collections import defaultdict
+    acc = defaultdict(lambda: defaultdict(float))  # company -> quarter_iso -> 억원
+
+    def valid(s):
+        return bool(re.match(r"^\d{4}-\d{2}-\d{2}$", s or ""))
+
+    for o in orders:
+        amt_eok = o["amount_krw"] / 1e8
+        corp = o["corp_name"]
+        end = o["contract_end"]
+
+        if mode == "delivery":
+            # 인도(종료)일 분기에 전액. 종료일 없으면 수주일 폴백.
+            base = end if valid(end) else (o["deal_date"] if valid(o["deal_date"]) else o["rcept_dt"])
+            if valid(base):
+                acc[corp][_quarter_start(date.fromisoformat(base)).isoformat()] += amt_eok
+            continue
+
+        # progress
+        start = o["contract_start"] if valid(o["contract_start"]) else o["deal_date"]
+        if not valid(end):
+            base = o["deal_date"] if valid(o["deal_date"]) else o["rcept_dt"]
+            if valid(base):
+                acc[corp][_quarter_start(date.fromisoformat(base)).isoformat()] += amt_eok
+            continue
+        s_d = date.fromisoformat(start) if valid(start) else date.fromisoformat(end)
+        e_d = date.fromisoformat(end)
+        if e_d <= s_d:
+            acc[corp][_quarter_start(e_d).isoformat()] += amt_eok
+            continue
+        total_days = (e_d - s_d).days
+        q = _quarter_start(s_d)
+        while q < e_d:
+            q_next = _next_quarter(q)
+            overlap = (min(e_d, q_next) - max(s_d, q)).days
+            if overlap > 0:
+                acc[corp][q.isoformat()] += amt_eok * overlap / total_days
+            q = q_next
+
+    series = {}
+    for corp in TARGET_COMPANIES:
+        if corp in acc:
+            series[corp] = [[q, round(v, 1)] for q, v in sorted(acc[corp].items())]
+
+    meta = REVENUE_META[mode]
+    doc = {
+        "id": meta["id"],
+        "name": meta["name"],
+        "unit": "억원/분기",
+        "frequency": "분기",
+        "source": meta["source"],
+        "source_url": "https://dart.fss.or.kr",
+        "note": "공시된 대형 수주만 반영 — 회사 총매출과 다름.",
+        "default_series": TARGET_COMPANIES,
+        "series": series,
+        "updated": date.today().isoformat(),
+    }
+    path = DATA_DIR / "shipbuilding" / f"{meta['id']}.json"
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"저장: {path} ({sum(len(v) for v in series.values())} 분기포인트, {mode})")
+
+
+# ── 파생 2: 선종별 척당 단가 추이 (회사별 비교) ───────────────────────
+PRICE_CATEGORIES = ["탱커", "LNG선", "가스선", "컨테이너선", "벌크선"]
+
+
+def build_price_series(orders):
+    """선종 카테고리별로 회사별 척당 단가(백만달러) 시계열 생성.
+
+    카테고리마다 지표 파일 1개, 시리즈 = 회사. 수주 시점(deal_date)에 점을 찍어
+    '같은 선종을 회사별로 시점에 따라 척당 얼마에 수주했나'를 클락슨 신조선가와 대조 가능.
+    발주가 불규칙해 점이 드문드문 찍힘(차트가 마커로 표시).
+    """
+    from collections import defaultdict
+
+    def valid(s):
+        return bool(re.match(r"^\d{4}-\d{2}-\d{2}$", s or ""))
+
+    for cat in PRICE_CATEGORIES:
+        acc = defaultdict(list)  # company -> [(date, M$)]
+        for o in orders:
+            if o["vessel_category"] != cat or not o["per_vessel_usd"]:
+                continue
+            d = o["deal_date"] if valid(o["deal_date"]) else o["rcept_dt"]
+            if not valid(d):
+                continue
+            acc[o["corp_name"]].append([d, round(o["per_vessel_usd"] / 1e6, 1)])
+
+        series = {}
+        for corp in TARGET_COMPANIES:
+            if corp in acc:
+                # 같은 날짜 중복은 평균
+                by_date = defaultdict(list)
+                for dt_, v in acc[corp]:
+                    by_date[dt_].append(v)
+                series[corp] = [[d, round(sum(vs) / len(vs), 1)] for d, vs in sorted(by_date.items())]
+
+        if not series:
+            continue
+        cat_id = {"탱커": "tanker", "LNG선": "lng", "가스선": "gas",
+                  "컨테이너선": "container", "벌크선": "bulk"}[cat]
+        doc = {
+            "id": f"korea_price_{cat_id}",
+            "name": f"{cat} 척당 수주단가 (회사별)",
+            "unit": "M$",
+            "frequency": "수주 시점",
+            "source": "DART 공시 (계약금액÷척수, 공시환율 적용)",
+            "source_url": "https://dart.fss.or.kr",
+            "default_series": list(series.keys()),
+            "series": series,
+            "updated": date.today().isoformat(),
+        }
+        path = DATA_DIR / "shipbuilding" / f"korea_price_{cat_id}.json"
+        path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"저장: {path} ({cat}, {sum(len(v) for v in series.values())}점)")
+
 
 if __name__ == "__main__":
     run()
