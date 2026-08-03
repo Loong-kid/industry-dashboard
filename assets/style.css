@@ -337,6 +337,9 @@ body {
 .data-table th:first-child, .data-table td:first-child { text-align: left; }
 .data-table th { color: var(--muted); font-weight: 600; }
 
+/* 추정 사이즈(선종 클래스 표준값, '~' 접두): 공시 명시값과 구분되게 흐리게 */
+.size-inferred { color: var(--muted); }
+
 /* ── 모바일 ───────────────────────────────────────────────────── */
 @media (max-width: 720px) {
   .layout { flex-direction: column; }

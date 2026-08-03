@@ -62,6 +62,44 @@ def parse_vessel(name: str):
     return (vessel_type or name.strip()), count, unit
 
 
+# 계약명에 명시된 사이즈(정확값). '157,000 DWT', '91,000 cbm', '15,900 teu', '7,000 CEU'
+SIZE_RE = re.compile(r"([\d,]{3,})\s*(DWT|CBM|TEU|CEU)", re.I)
+
+# 선종 클래스 표준 사이즈(급). 클래스명이 곧 사이즈를 규정하는 선형만 보수적으로 매핑.
+# (구체적 키워드를 앞에 둬 먼저 매칭 — 초대형 LNG가 LPG보다, VLAC/VLEC가 VLGC보다 우선)
+STANDARD_SIZE = [
+    ("VLAC", "~88,000 CBM"),        # 초대형 암모니아
+    ("VLEC", "~98,000 CBM"),        # 초대형 에탄
+    ("VLGC", "~88,000 CBM"),        # 초대형 LPG
+    ("초대형 LPG", "~88,000 CBM"),
+    ("초대형LPG", "~88,000 CBM"),
+    ("초대형 LNG", "~174,000 CBM"),
+    ("초대형LNG", "~174,000 CBM"),
+    ("LNGC", "~174,000 CBM"),
+    ("LNG운반선", "~174,000 CBM"),
+    ("LNG 운반선", "~174,000 CBM"),
+    ("LNG선", "~174,000 CBM"),
+    ("FSRU", "~170,000 CBM"),
+    ("VLCC", "~300,000 DWT"),
+    ("초대형 원유", "~300,000 DWT"),
+    ("초대형원유", "~300,000 DWT"),
+    ("PCTC", "~7,000 CEU"),
+]
+
+
+def parse_size(name: str, vessel_type: str):
+    """(사이즈 문자열, 추정여부). 계약명 명시값 우선, 없으면 선종 클래스 표준값(추정)."""
+    m = SIZE_RE.search(name)
+    if m:
+        num = m.group(1).replace(",", "")
+        return f"{int(num):,} {m.group(2).upper()}", False
+    hay = f"{vessel_type} {name}"
+    for kw, size in STANDARD_SIZE:
+        if kw.lower() in hay.lower():
+            return size, True
+    return "", False
+
+
 def categorize(vessel_type: str) -> str:
     for keywords, cat in VESSEL_CATEGORY_RULES:
         if any(k.lower() in vessel_type.lower() for k in keywords):
@@ -135,6 +173,7 @@ def run():
         # 계약명이 들어있어 공용 추출기의 contract_name이 비어있다. 동적 컬럼에서 보완.
         name = r.get("contract_name", "") or r.get("판매ㆍ공급계약구분_세부내용", "") or "(계약명 미상)"
         vessel_type, count, unit = parse_vessel(name)
+        size_str, size_inferred = parse_size(name, vessel_type) if count else ("", False)
 
         fx_rate = extract_disclosed_fx(r.get("file_path", ""))
         fx_source = "공시" if fx_rate else None
@@ -161,6 +200,8 @@ def run():
             "contract_name": name,
             "vessel_type": vessel_type,
             "vessel_category": categorize(vessel_type) if count else "기타(비선박)",
+            "size": size_str,
+            "size_inferred": size_inferred,  # True=선종 클래스 표준값(추정), False=공시 명시값
             "count": count,
             "unit": unit,
             "amount_krw": amount_krw,

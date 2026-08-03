@@ -436,6 +436,7 @@ function renderOrderTable(doc) {
     { key: "rcept_dt", label: "공시일" },
     { key: "corp_name", label: "회사" },
     { key: "vessel_type", label: "선종" },
+    { key: "size", label: "사이즈", align: "right" },
     { key: "count", label: "척수", align: "right" },
     { key: "amount_krw", label: "계약금액(억원)", align: "right" },
     { key: "per_vessel_usd", label: "척당단가(M$)", align: "right" },
@@ -477,6 +478,12 @@ function renderOrderTable(doc) {
   function cellValue(o, key) {
     switch (key) {
       case "count": return o.count ? `${o.count}${o.unit}` : "-";
+      case "size":
+        if (!o.size) return "-";
+        // 추정값(선종 클래스 표준)은 muted, 공시 명시값은 일반 텍스트
+        return o.size_inferred
+          ? `<span class="size-inferred" title="선종 클래스 표준값(공시 미명시)">${o.size}</span>`
+          : o.size;
       case "amount_krw": return krwEok(o.amount_krw);
       case "per_vessel_usd": return usdM(o.per_vessel_usd);
       case "_link": return `<a href="${o.viewer_url}" target="_blank" rel="noopener">원문</a>`;
