@@ -3,28 +3,46 @@ name: update-data
 on:
   schedule:
     - cron: "30 22 * * *" # 매일 KST 07:30
-  workflow_dispatch:
+  workflow_dispatch: # 사이트의 '수주 갱신' 버튼이 이걸 호출
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-data # 버튼 연타/스케줄 겹침 시 직렬화(중간취소 안 함)
+  cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - run: pip install -r requirements.txt
 
-      - run: python scripts/fetch_all.py
+      # 해운/조선 시장지표 (KOBC/KCLA/StockQ). 실패해도 DART는 진행.
+      - name: 시장지표 수집
+        continue-on-error: true
+        run: python scripts/fetch_all.py
+
+      # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
+      - name: DART 수주 공시 수집
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/dart_extractor.py --watchlist data/_dart/watchlist.txt --no-docs
+
+      # 수주 집계 (테이블 + 선종별 척당단가 + 예상매출 진행/납기)
+      - name: 수주 집계
+        continue-on-error: true
+        run: python scripts/aggregate_korea_orders.py
 
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
           git add data/
-          git diff --cached --quiet || (git commit -m "chore: daily data update" && git push)
+          git diff --cached --quiet || (git commit -m "chore: data update (market + DART orders)" && git push)

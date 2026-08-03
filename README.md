@@ -33,16 +33,29 @@ git add data && git commit -m "data: weekly shinyoung update" && git push
 
 신조선가·중고선가·발주량·탱커/가스선 운임이 한 번에 갱신된다.
 
-## 주간 루틴 (국내 조선 4사 DART 수주)
-
-```bash
-cd "..\기업\한국" && python "단일판매공급계약 추출기.py" --watchlist   # 새 공시 수집
-cd industry-dashboard && python scripts/aggregate_korea_orders.py     # 척당단가 집계
-git add data && git commit -m "data: weekly DART orders update" && git push
-```
+## 국내 조선 4사 DART 수주 (자동 + 버튼)
 
 HD현대중공업·삼성중공업·한화오션·대한조선의 개별 수주 공시를 척당 단가(원화·달러)로
-환산해 정렬·필터 가능한 표로 보여준다. 상세는 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) 참고.
+환산해 표·선종별 척당단가·예상매출로 보여준다. 파이프라인이 **리포 안에 self-contained**로
+들어와 있어 **매일 자동 갱신**되고, 사이트의 **'수주 갱신' 버튼**으로 즉시 갱신도 가능하다.
+
+- 데이터 흐름: `dart_extractor.py`(DART→`data/_dart/계약DB.csv` 증분) → `aggregate_korea_orders.py`
+  (테이블 + 척당단가 + 예상매출 JSON) → 커밋. CI(`update-data.yml`)가 매일 + 버튼 클릭 시 실행.
+- **API 키**: OpenDART 키는 GitHub Secret `DART_API_KEY`로 주입(공개 리포라 하드코딩 안 함).
+- **'수주 갱신' 버튼**: 정적 사이트라 서버가 없어, 버튼이 GitHub Actions를 `workflow_dispatch`로
+  원격 실행한다. 첫 사용 시 ⚙에서 본인 GitHub Fine-grained PAT(이 리포 **Actions: R/W**)를
+  입력하면 브라우저 localStorage에만 저장됨(리포엔 안 올라감).
+
+로컬에서 직접 돌리려면 (선택):
+
+```bash
+export DART_API_KEY=<OpenDART 키>   # PowerShell: $env:DART_API_KEY="..."
+python scripts/dart_extractor.py --watchlist data/_dart/watchlist.txt --no-docs
+python scripts/aggregate_korea_orders.py
+git add data && git commit -m "data: DART orders update" && git push
+```
+
+상세·파싱 함정은 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) 참고.
 
 ## 로컬 실행
 

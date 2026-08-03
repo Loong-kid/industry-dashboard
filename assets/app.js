@@ -98,12 +98,24 @@ async function loadDoc(industryId, indicatorId) {
   if (state.docs.has(indicatorId)) return state.docs.get(indicatorId);
   let doc = null;
   try {
-    const res = await fetch(`data/${industryId}/${indicatorId}.json`);
+    const url = `data/${industryId}/${indicatorId}.json` + (state.bust ? `?t=${state.bust}` : "");
+    const res = await fetch(url);
     if (res.ok) doc = await res.json();
   } catch (e) { /* 파일 없음 → 빈 카드 */ }
   state.docs.set(indicatorId, doc);
   return doc;
 }
+
+// refresh.js가 갱신 완료 후 호출: 캐시 무효화 + 재렌더 (Pages CDN 우회용 캐시버스트)
+async function reloadData() {
+  state.bust = Date.now();
+  state.docs.clear();
+  try {
+    state.catalog = await (await fetch(`data/catalog.json?t=${state.bust}`)).json();
+  } catch (e) { /* 유지 */ }
+  await renderIndustry();
+}
+window.dashboard = { reloadData, state, GH_REPO: "Loong-kid/industry-dashboard" };
 
 // ── 기간 필터 ───────────────────────────────────────────────────
 function rangeCutoff() {

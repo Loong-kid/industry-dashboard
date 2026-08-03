@@ -27,8 +27,10 @@ import requests
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import DATA_DIR, norm_date, to_float
 
-DART_DB = Path(r"c:\Users\공도일\Desktop\코딩\기업\한국\_단일판매공급계약\계약DB.csv")
-FX_CACHE_PATH = Path(__file__).resolve().parent / "_fx_cache.json"
+# 리포 내부 DB(dart_extractor.py가 CI/로컬에서 갱신). 구 위치(기업\한국)에서 이관됨.
+DART_DB = Path(__file__).resolve().parent.parent / "data" / "_dart" / "계약DB.csv"
+# data/ 아래에 둬서 워크플로의 `git add data/`로 커밋됨 → CI가 환율을 매번 재조회하지 않음
+FX_CACHE_PATH = DART_DB.parent / "_fx_cache.json"
 TARGET_COMPANIES = ["HD현대중공업", "삼성중공업", "한화오션", "대한조선"]
 
 # 계약명 → (선종, 척수, 단위). '(157,000 DWT)' 같은 스펙 괄호는 건너뛰고 끝의 'N척/N기'만 인식.

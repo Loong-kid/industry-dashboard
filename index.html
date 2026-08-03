@@ -27,16 +27,52 @@
   <main class="main">
     <header class="topbar">
       <h1 id="page-title"></h1>
-      <div class="range-picker" id="range-picker">
-        <button data-range="3m">3개월</button>
-        <button data-range="1y" class="active">1년</button>
-        <button data-range="3y">3년</button>
-        <button data-range="all">전체</button>
+      <div class="topbar-right">
+        <div class="refresh-wrap">
+          <button id="refresh-btn" class="refresh-btn" title="DART 국내 조선 4사 수주 공시를 최신화 (GitHub Actions 실행)">
+            <span class="refresh-icon">🔄</span><span id="refresh-label">수주 갱신</span>
+          </button>
+          <button id="settings-btn" class="icon-btn" title="GitHub 토큰 설정">⚙</button>
+        </div>
+        <div class="range-picker" id="range-picker">
+          <button data-range="3m">3개월</button>
+          <button data-range="1y" class="active">1년</button>
+          <button data-range="3y">3년</button>
+          <button data-range="all">전체</button>
+        </div>
       </div>
     </header>
     <div id="content"></div>
   </main>
 </div>
+
+<!-- GitHub PAT 설정 모달 -->
+<div id="pat-modal" class="modal-backdrop" hidden>
+  <div class="modal">
+    <h2>수주 갱신 설정</h2>
+    <p class="modal-desc">
+      '수주 갱신'은 GitHub Actions를 원격 실행해 DART 최신 수주 공시를 수집합니다.
+      정적 사이트라 실행 권한이 필요해요. <b>본인 GitHub 토큰</b>을 한 번만 입력하면
+      이 브라우저에만 저장되고(리포에는 안 올라감), 이후 버튼만 누르면 됩니다.
+    </p>
+    <ol class="modal-steps">
+      <li><a id="pat-link" href="#" target="_blank" rel="noopener">여기서 Fine-grained 토큰 생성</a>
+        (Repository access: <code>industry-dashboard</code> 하나만, Permissions →
+        <b>Actions: Read and write</b>)</li>
+      <li>생성된 <code>github_pat_...</code> 를 아래에 붙여넣기</li>
+    </ol>
+    <input id="pat-input" type="password" placeholder="github_pat_... 또는 ghp_..." autocomplete="off" />
+    <div class="modal-actions">
+      <button id="pat-clear" class="btn-ghost">토큰 삭제</button>
+      <span class="modal-spacer"></span>
+      <button id="pat-cancel" class="btn-ghost">취소</button>
+      <button id="pat-save" class="btn-primary">저장</button>
+    </div>
+    <div id="pat-status" class="modal-status"></div>
+  </div>
+</div>
+
 <script src="assets/app.js"></script>
+<script src="assets/refresh.js"></script>
 </body>
 </html>
