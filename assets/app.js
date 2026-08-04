@@ -11,6 +11,7 @@ const state = {
   catalog: null,
   industry: null,
   range: "1y",
+  tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
   charts: [], // 렌더된 Chart 인스턴스 (재렌더 시 destroy)
   docs: new Map(), // indicator id → data json 캐시
 };
@@ -119,12 +120,31 @@ async function reloadData() {
 window.dashboard = { reloadData, state, GH_REPO: "Loong-kid/industry-dashboard" };
 
 // ── 기간 필터 ───────────────────────────────────────────────────
-function rangeCutoff() {
-  if (state.range === "all") return "0000-00-00";
-  const months = { "3m": 3, "1y": 12, "3y": 36 }[state.range];
+function cutoffFor(range) {
+  if (range === "all") return "0000-00-00";
+  const months = { "3m": 3, "1y": 12, "3y": 36 }[range];
   const d = new Date();
   d.setMonth(d.getMonth() - months);
   return d.toISOString().slice(0, 10);
+}
+function rangeCutoff() { return cutoffFor(state.range); } // 전역(차트용)
+
+// 테이블 우측 상단 미니 기간필터. 전역 range와 독립적으로 동작.
+const TABLE_RANGE_DEFAULT = "all";
+function buildTableRangePicker(current, onPick) {
+  const wrap = document.createElement("div");
+  wrap.className = "range-picker table-range";
+  [["3m", "3개월"], ["1y", "1년"], ["3y", "3년"], ["all", "전체"]].forEach(([r, label]) => {
+    const b = document.createElement("button");
+    b.textContent = label;
+    if (r === current) b.classList.add("active");
+    b.addEventListener("click", () => {
+      wrap.querySelectorAll("button").forEach((x) => x.classList.toggle("active", x === b));
+      onPick(r);
+    });
+    wrap.appendChild(b);
+  });
+  return wrap;
 }
 
 // ── 지표 카드 ───────────────────────────────────────────────────
@@ -389,23 +409,29 @@ function renderOrderTable(doc) {
     return card;
   }
 
-  const cutoff = rangeCutoff();
-  const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
-  const companies = doc.companies || [...new Set(allOrders.map((o) => o.corp_name))];
-  const categories = [...new Set(allOrders.map((o) => o.vessel_category))].sort();
+  // 칩 목록은 전체 데이터 기준(기간필터와 무관하게 안정적으로 유지)
+  const companies = doc.companies || [...new Set(doc.orders.map((o) => o.corp_name))];
+  const catFreq = {};
+  doc.orders.forEach((o) => { catFreq[o.vessel_category] = (catFreq[o.vessel_category] || 0) + 1; });
+  const categories = Object.keys(catFreq).sort((a, b) => catFreq[b] - catFreq[a]); // 빈도순 → 대표=최다
 
+  // 디폴트: 각 칩 그룹에서 대표(첫) 하나만 켜짐 (전부 켜고 끄는 방식이 불편하다는 피드백)
   const filt = {
-    companies: new Set(companies),
-    categories: new Set(categories),
+    companies: new Set(companies.slice(0, 1)),
+    categories: new Set(categories.slice(0, 1)),
     search: "",
     sortKey: "rcept_dt",
     sortDir: -1,
   };
+  if (state.tableRange[doc.id] == null) state.tableRange[doc.id] = TABLE_RANGE_DEFAULT;
 
   const head = document.createElement("div");
   head.className = "card-head";
-  head.innerHTML = `<div class="card-name">${doc.name}</div>
-    <div class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></div>`;
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; renderRows(); }));
   card.appendChild(head);
 
   const filterBar = document.createElement("div");
@@ -462,8 +488,8 @@ function renderOrderTable(doc) {
     container.appendChild(chipLabel);
   }
 
-  companies.forEach((c) => buildChip(companyChips, c, true, (on) => (on ? filt.companies.add(c) : filt.companies.delete(c))));
-  categories.forEach((c) => buildChip(categoryChips, c, true, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
+  companies.forEach((c, i) => buildChip(companyChips, c, i === 0, (on) => (on ? filt.companies.add(c) : filt.companies.delete(c))));
+  categories.forEach((c, i) => buildChip(categoryChips, c, i === 0, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
 
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
@@ -493,6 +519,8 @@ function renderOrderTable(doc) {
   }
 
   function renderRows() {
+    const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
+    const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
     const rows = allOrders.filter((o) => {
       if (!filt.companies.has(o.corp_name)) return false;
       if (!filt.categories.has(o.vessel_category)) return false;
@@ -569,23 +597,27 @@ function renderAsiasisTable(doc) {
   }
 
   const RENDER_CAP = 600; // DOM 부담 방지: 필터 후 상위 N건만 렌더
-  const cutoff = rangeCutoff();
-  const allOrders = doc.orders.filter((o) => o.report_date >= cutoff);
-  const nationalities = doc.nationalities || [...new Set(allOrders.map((o) => o.nationality))];
-  const categories = doc.categories || [...new Set(allOrders.map((o) => o.category))];
+  // 칩 목록은 전체 데이터 기준(빈도순, 기간필터와 무관하게 안정 유지)
+  const nationalities = doc.nationalities || [...new Set(doc.orders.map((o) => o.nationality))];
+  const categories = doc.categories || [...new Set(doc.orders.map((o) => o.category))];
 
+  // 디폴트: 각 칩 그룹에서 대표(첫=최다) 하나만 켜짐
   const filt = {
-    nationalities: new Set(nationalities),
-    categories: new Set(categories),
+    nationalities: new Set(nationalities.slice(0, 1)),
+    categories: new Set(categories.slice(0, 1)),
     search: "",
     sortKey: "report_date",
     sortDir: -1,
   };
+  if (state.tableRange[doc.id] == null) state.tableRange[doc.id] = TABLE_RANGE_DEFAULT;
 
   const head = document.createElement("div");
   head.className = "card-head";
-  head.innerHTML = `<div class="card-name">${doc.name}</div>
-    <div class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></div>`;
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; renderRows(); }));
   card.appendChild(head);
 
   if (doc.note) {
@@ -633,12 +665,12 @@ function renderAsiasisTable(doc) {
     { key: "_link", label: "" },
   ];
 
-  function buildChip(container, label, onToggle) {
+  function buildChip(container, label, active, onToggle) {
     const chipLabel = document.createElement("label");
-    chipLabel.className = "chip";
+    chipLabel.className = "chip" + (active ? "" : " off");
     const cb = document.createElement("input");
     cb.type = "checkbox";
-    cb.checked = true;
+    cb.checked = active;
     chipLabel.append(cb, document.createTextNode(label));
     cb.addEventListener("change", () => {
       chipLabel.classList.toggle("off", !cb.checked);
@@ -648,8 +680,8 @@ function renderAsiasisTable(doc) {
     container.appendChild(chipLabel);
   }
 
-  nationalities.forEach((n) => buildChip(natChips, n, (on) => (on ? filt.nationalities.add(n) : filt.nationalities.delete(n))));
-  categories.forEach((c) => buildChip(catChips, c, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
+  nationalities.forEach((n, i) => buildChip(natChips, n, i === 0, (on) => (on ? filt.nationalities.add(n) : filt.nationalities.delete(n))));
+  categories.forEach((c, i) => buildChip(catChips, c, i === 0, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
 
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
@@ -677,6 +709,8 @@ function renderAsiasisTable(doc) {
   }
 
   function renderRows() {
+    const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
+    const allOrders = doc.orders.filter((o) => o.report_date >= cutoff);
     const rows = allOrders.filter((o) => {
       if (!filt.nationalities.has(o.nationality)) return false;
       if (!filt.categories.has(o.category)) return false;
