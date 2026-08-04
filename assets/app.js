@@ -622,12 +622,12 @@ function renderAsiasisTable(doc) {
 
   const COLS = [
     { key: "report_date", label: "보고일" },
+    { key: "builder", label: "조선소" },
+    { key: "nationality", label: "국적" },
     { key: "vessel_type", label: "선종" },
     { key: "size", label: "사이즈" },
     { key: "count", label: "척수", align: "right" },
     { key: "price_m", label: "선가(M$)", align: "right" },
-    { key: "builder", label: "조선소" },
-    { key: "nationality", label: "국적" },
     { key: "buyer", label: "발주처" },
     { key: "delivery", label: "납기" },
     { key: "_link", label: "" },
