@@ -129,6 +129,14 @@ function cutoffFor(range) {
 }
 function rangeCutoff() { return cutoffFor(state.range); } // 전역(차트용)
 
+// 정렬 헤더 클릭 3단계 순환: (미정렬) → 내림차순 → 오름차순 → 미정렬(원래 순서)
+function cycleSortState(filt, key) {
+  if (filt.sortKey !== key) { filt.sortKey = key; filt.sortDir = -1; }
+  else if (filt.sortDir === -1) filt.sortDir = 1;
+  else if (filt.sortDir === 1) { filt.sortKey = null; filt.sortDir = 0; }
+  else filt.sortDir = -1;
+}
+
 // 테이블 우측 상단 미니 기간필터. 전역 range와 독립적으로 동작.
 const TABLE_RANGE_DEFAULT = "all";
 function buildTableRangePicker(current, onPick) {
@@ -530,12 +538,14 @@ function renderOrderTable(doc) {
       }
       return true;
     });
-    rows.sort((a, b) => {
-      const av = a[filt.sortKey], bv = b[filt.sortKey];
-      if (av == null) return 1;
-      if (bv == null) return -1;
-      return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
-    });
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
 
     countLine.textContent = `${rows.length.toLocaleString("ko-KR")}건 표시 중 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)`;
 
@@ -548,10 +558,9 @@ function renderOrderTable(doc) {
       th.style.textAlign = col.align === "right" ? "right" : "left";
       if (col.key !== "_link") {
         th.classList.add("sortable");
-        if (filt.sortKey === col.key) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+        if (filt.sortKey === col.key && filt.sortDir !== 0) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
         th.addEventListener("click", () => {
-          filt.sortDir = filt.sortKey === col.key ? -filt.sortDir : -1;
-          filt.sortKey = col.key;
+          cycleSortState(filt, col.key);
           renderRows();
         });
       }
@@ -654,16 +663,17 @@ function renderAsiasisTable(doc) {
 
   const COLS = [
     { key: "report_date", label: "보고일" },
-    { key: "builder", label: "조선소" },
+    { key: "builder", label: "조선소", filter: true },
     { key: "nationality", label: "국적" },
     { key: "vessel_type", label: "선종" },
     { key: "size", label: "사이즈" },
     { key: "count", label: "척수", align: "right" },
     { key: "price_m", label: "선가(M$)", align: "right" },
-    { key: "buyer", label: "발주처" },
+    { key: "buyer", label: "발주처", filter: true },
     { key: "delivery", label: "납기" },
     { key: "_link", label: "" },
   ];
+  filt.colFilters = {}; // 컬럼별 부분일치 필터 (조선소·발주처)
 
   function buildChip(container, label, active, onToggle) {
     const chipLabel = document.createElement("label");
@@ -708,24 +718,86 @@ function renderAsiasisTable(doc) {
     }
   }
 
+  // 테이블 골격(헤더행 + 컬럼필터 입력행)은 1회만 생성 → 필터 입력 중 포커스 유지.
+  // 이후 renderRows()는 tbody만 다시 그린다.
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const ths = {};
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.label;
+    th.style.textAlign = col.align === "right" ? "right" : "left";
+    if (col.key !== "_link") {
+      th.classList.add("sortable");
+      th.title = "클릭: 내림차순 → 오름차순 → 정렬 해제";
+      th.addEventListener("click", () => { cycleSortState(filt, col.key); renderRows(); });
+    }
+    ths[col.key] = th;
+    htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+
+  const ftr = document.createElement("tr");
+  ftr.className = "col-filter-row";
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    if (col.filter) {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.placeholder = `${col.label} 필터…`;
+      inp.addEventListener("input", () => {
+        filt.colFilters[col.key] = inp.value.trim().toLowerCase();
+        renderRows();
+      });
+      // 헤더 정렬 클릭이 입력칸까지 전파되지 않도록
+      th.addEventListener("click", (e) => e.stopPropagation());
+      th.appendChild(inp);
+    }
+    ftr.appendChild(th);
+  });
+  thead.appendChild(ftr);
+
+  const tbody = document.createElement("tbody");
+  table.append(thead, tbody);
+  tableWrap.appendChild(table);
+
+  function updateSortIndicators() {
+    COLS.forEach((col) => {
+      const th = ths[col.key];
+      if (!th) return;
+      th.classList.remove("sort-asc", "sort-desc");
+      if (filt.sortKey === col.key && filt.sortDir !== 0) {
+        th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+      }
+    });
+  }
+
   function renderRows() {
     const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
     const allOrders = doc.orders.filter((o) => o.report_date >= cutoff);
     const rows = allOrders.filter((o) => {
       if (!filt.nationalities.has(o.nationality)) return false;
       if (!filt.categories.has(o.category)) return false;
+      for (const key in filt.colFilters) {
+        const q = filt.colFilters[key];
+        if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
+      }
       if (filt.search) {
         const hay = `${o.vessel_type} ${o.vessel_type_raw} ${o.builder} ${o.buyer} ${o.title}`.toLowerCase();
         if (!hay.includes(filt.search)) return false;
       }
       return true;
     });
-    rows.sort((a, b) => {
-      const av = a[filt.sortKey], bv = b[filt.sortKey];
-      if (av == null) return 1;
-      if (bv == null) return -1;
-      return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
-    });
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
+    updateSortIndicators();
 
     const shown = rows.slice(0, RENDER_CAP);
     const capped = rows.length > RENDER_CAP;
@@ -733,28 +805,7 @@ function renderAsiasisTable(doc) {
       `${rows.length.toLocaleString("ko-KR")}건 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)` +
       (capped ? ` — 상위 ${RENDER_CAP}건만 표시, 필터·검색으로 좁히세요` : "");
 
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const htr = document.createElement("tr");
-    COLS.forEach((col) => {
-      const th = document.createElement("th");
-      th.textContent = col.label;
-      th.style.textAlign = col.align === "right" ? "right" : "left";
-      if (col.key !== "_link") {
-        th.classList.add("sortable");
-        if (filt.sortKey === col.key) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
-        th.addEventListener("click", () => {
-          filt.sortDir = filt.sortKey === col.key ? -filt.sortDir : -1;
-          filt.sortKey = col.key;
-          renderRows();
-        });
-      }
-      htr.appendChild(th);
-    });
-    thead.appendChild(htr);
-    table.appendChild(thead);
-
-    const tbody = document.createElement("tbody");
+    tbody.innerHTML = "";
     for (const o of shown) {
       const tr = document.createElement("tr");
       COLS.forEach((col) => {
@@ -765,10 +816,6 @@ function renderAsiasisTable(doc) {
       });
       tbody.appendChild(tr);
     }
-    table.appendChild(tbody);
-
-    tableWrap.innerHTML = "";
-    tableWrap.appendChild(table);
   }
 
   renderRows();

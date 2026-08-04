@@ -315,6 +315,24 @@ body {
 .order-table-wrap th.sortable:hover { color: var(--ink); }
 .order-table-wrap th.sort-asc::after { content: " \25B2"; font-size: 9px; }
 .order-table-wrap th.sort-desc::after { content: " \25BC"; font-size: 9px; }
+/* 컬럼 필터 입력행 (라벨행 아래 붙는 두 번째 sticky 헤더행) */
+.order-table-wrap .col-filter-row th {
+  position: sticky; top: 32px;
+  background: var(--surface);
+  padding: 0 10px 6px;
+  cursor: default;
+  border-bottom: 1px solid var(--baseline);
+}
+.order-table-wrap .col-filter-row input {
+  width: 100%; box-sizing: border-box;
+  font: inherit; font-size: 11px; font-weight: 400;
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--page);
+  color: var(--ink);
+}
+.order-table-wrap .col-filter-row input::placeholder { color: var(--muted); font-size: 10px; }
 .order-table-wrap td {
   padding: 6px 10px;
   border-bottom: 1px solid var(--grid);
