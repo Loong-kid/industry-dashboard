@@ -73,9 +73,10 @@ async function renderIndustry() {
     content.appendChild(h);
 
     if (section.type === "table") {
+      const renderer = section.table_kind === "asiasis" ? renderAsiasisTable : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
-        content.appendChild(renderOrderTable(doc));
+        content.appendChild(renderer(doc));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       continue;
@@ -535,6 +536,193 @@ function renderOrderTable(doc) {
     for (const o of rows) {
       const tr = document.createElement("tr");
       if (o.is_correction) tr.classList.add("is-correction");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.style.textAlign = col.align === "right" ? "right" : "left";
+        td.innerHTML = cellValue(o, col.key);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+
+    tableWrap.innerHTML = "";
+    tableWrap.appendChild(table);
+  }
+
+  renderRows();
+  return card;
+}
+
+// ── 글로벌 신조프로젝트 오더북 (asiasis) ─────────────────────────
+// 국내 4사 DART 테이블과 스키마가 달라(전세계·국적·발주처) 별도 렌더러.
+// CSS 클래스는 order-table-* 를 그대로 재사용한다.
+function renderAsiasisTable(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.orders || doc.orders.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "글로벌 신조프로젝트 오더북"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br>
+      <code>scripts/aggregate_asiasis_orders.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const RENDER_CAP = 600; // DOM 부담 방지: 필터 후 상위 N건만 렌더
+  const cutoff = rangeCutoff();
+  const allOrders = doc.orders.filter((o) => o.report_date >= cutoff);
+  const nationalities = doc.nationalities || [...new Set(allOrders.map((o) => o.nationality))];
+  const categories = doc.categories || [...new Set(allOrders.map((o) => o.category))];
+
+  const filt = {
+    nationalities: new Set(nationalities),
+    categories: new Set(categories),
+    search: "",
+    sortKey: "report_date",
+    sortDir: -1,
+  };
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="card-name">${doc.name}</div>
+    <div class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></div>`;
+  card.appendChild(head);
+
+  if (doc.note) {
+    const note = document.createElement("div");
+    note.className = "order-count";
+    note.textContent = doc.note;
+    card.appendChild(note);
+  }
+
+  const filterBar = document.createElement("div");
+  filterBar.className = "order-filters";
+  card.appendChild(filterBar);
+
+  const natChips = document.createElement("div");
+  natChips.className = "chips";
+  filterBar.appendChild(natChips);
+
+  const catChips = document.createElement("div");
+  catChips.className = "chips";
+  filterBar.appendChild(catChips);
+
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "order-search";
+  searchWrap.innerHTML = `<input type="text" placeholder="선종·조선소·발주처·제목 검색" />`;
+  filterBar.appendChild(searchWrap);
+
+  const countLine = document.createElement("div");
+  countLine.className = "order-count";
+  card.appendChild(countLine);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "order-table-wrap";
+  card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "report_date", label: "보고일" },
+    { key: "vessel_type", label: "선종" },
+    { key: "size", label: "사이즈" },
+    { key: "count", label: "척수", align: "right" },
+    { key: "price_m", label: "선가(M$)", align: "right" },
+    { key: "builder", label: "조선소" },
+    { key: "nationality", label: "국적" },
+    { key: "buyer", label: "발주처" },
+    { key: "delivery", label: "납기" },
+    { key: "_link", label: "" },
+  ];
+
+  function buildChip(container, label, onToggle) {
+    const chipLabel = document.createElement("label");
+    chipLabel.className = "chip";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = true;
+    chipLabel.append(cb, document.createTextNode(label));
+    cb.addEventListener("change", () => {
+      chipLabel.classList.toggle("off", !cb.checked);
+      onToggle(cb.checked);
+      renderRows();
+    });
+    container.appendChild(chipLabel);
+  }
+
+  nationalities.forEach((n) => buildChip(natChips, n, (on) => (on ? filt.nationalities.add(n) : filt.nationalities.delete(n))));
+  categories.forEach((c) => buildChip(catChips, c, (on) => (on ? filt.categories.add(c) : filt.categories.delete(c))));
+
+  searchWrap.querySelector("input").addEventListener("input", (e) => {
+    filt.search = e.target.value.trim().toLowerCase();
+    renderRows();
+  });
+
+  function priceCell(o) {
+    if (o.price_m == null) return "-";
+    const v = o.price_m.toLocaleString("ko-KR", { maximumFractionDigits: 1 });
+    const basis = o.price_basis === "총액" ? ` <span class="size-inferred">(총)</span>` : "";
+    return `<span title="${(o.price_raw || "").replace(/"/g, "&quot;")}">${v}${basis}</span>`;
+  }
+  function cellValue(o, key) {
+    switch (key) {
+      case "count": return o.count ? `${o.count}척` : "-";
+      case "price_m": return priceCell(o);
+      case "vessel_type":
+        if (!o.vessel_type) return "-";
+        return o.vessel_type_raw && o.vessel_type_raw !== o.vessel_type
+          ? `<span title="원문: ${o.vessel_type_raw.replace(/"/g, "&quot;")}">${o.vessel_type}</span>`
+          : o.vessel_type;
+      case "_link": return o.url ? `<a href="${o.url}" target="_blank" rel="noopener">원문</a>` : "";
+      default: return o[key] || "-";
+    }
+  }
+
+  function renderRows() {
+    const rows = allOrders.filter((o) => {
+      if (!filt.nationalities.has(o.nationality)) return false;
+      if (!filt.categories.has(o.category)) return false;
+      if (filt.search) {
+        const hay = `${o.vessel_type} ${o.vessel_type_raw} ${o.builder} ${o.buyer} ${o.title}`.toLowerCase();
+        if (!hay.includes(filt.search)) return false;
+      }
+      return true;
+    });
+    rows.sort((a, b) => {
+      const av = a[filt.sortKey], bv = b[filt.sortKey];
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+    });
+
+    const shown = rows.slice(0, RENDER_CAP);
+    const capped = rows.length > RENDER_CAP;
+    countLine.textContent =
+      `${rows.length.toLocaleString("ko-KR")}건 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)` +
+      (capped ? ` — 상위 ${RENDER_CAP}건만 표시, 필터·검색으로 좁히세요` : "");
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const htr = document.createElement("tr");
+    COLS.forEach((col) => {
+      const th = document.createElement("th");
+      th.textContent = col.label;
+      th.style.textAlign = col.align === "right" ? "right" : "left";
+      if (col.key !== "_link") {
+        th.classList.add("sortable");
+        if (filt.sortKey === col.key) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+        th.addEventListener("click", () => {
+          filt.sortDir = filt.sortKey === col.key ? -filt.sortDir : -1;
+          filt.sortKey = col.key;
+          renderRows();
+        });
+      }
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const o of shown) {
+      const tr = document.createElement("tr");
       COLS.forEach((col) => {
         const td = document.createElement("td");
         td.style.textAlign = col.align === "right" ? "right" : "left";
