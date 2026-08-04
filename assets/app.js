@@ -665,8 +665,8 @@ function renderAsiasisTable(doc) {
     { key: "report_date", label: "보고일" },
     { key: "builder", label: "조선소", filter: true },
     { key: "nationality", label: "국적" },
-    { key: "vessel_type", label: "선종" },
-    { key: "size", label: "사이즈" },
+    { key: "vessel_type", label: "선종", trunc: 170 },
+    { key: "size", label: "사이즈", trunc: 130 },
     { key: "count", label: "척수", align: "right" },
     { key: "price_m", label: "선가(M$)", align: "right" },
     { key: "buyer", label: "발주처", filter: true },
@@ -716,6 +716,16 @@ function renderAsiasisTable(doc) {
       case "_link": return o.url ? `<a href="${o.url}" target="_blank" rel="noopener">원문</a>` : "";
       default: return o[key] || "-";
     }
+  }
+  // 말줄임(trunc) 컬럼용 평문 값 + 호버 툴팁 전체값
+  function plainCell(o, key) {
+    if (key === "vessel_type") {
+      const v = o.vessel_type || "-";
+      const full = o.vessel_type_raw && o.vessel_type_raw !== o.vessel_type ? `${v} (원문: ${o.vessel_type_raw})` : v;
+      return { text: v, title: full };
+    }
+    const t = o[key] || "-";
+    return { text: t, title: t };
   }
 
   // 테이블 골격(헤더행 + 컬럼필터 입력행)은 1회만 생성 → 필터 입력 중 포커스 유지.
@@ -811,7 +821,18 @@ function renderAsiasisTable(doc) {
       COLS.forEach((col) => {
         const td = document.createElement("td");
         td.style.textAlign = col.align === "right" ? "right" : "left";
-        td.innerHTML = cellValue(o, col.key);
+        if (col.trunc) {
+          // 긴 값은 최대 너비로 자르고(말줄임표) 전체는 호버 툴팁으로
+          const { text, title } = plainCell(o, col.key);
+          const span = document.createElement("span");
+          span.className = "trunc";
+          span.style.maxWidth = col.trunc + "px";
+          span.textContent = text;
+          span.title = title;
+          td.appendChild(span);
+        } else {
+          td.innerHTML = cellValue(o, col.key);
+        }
         tr.appendChild(td);
       });
       tbody.appendChild(tr);

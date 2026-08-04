@@ -337,6 +337,14 @@ body {
   padding: 6px 10px;
   border-bottom: 1px solid var(--grid);
 }
+.order-table-wrap .trunc {
+  display: inline-block;
+  max-width: 160px; /* 실제 값은 인라인 style로 컬럼별 지정 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
 .order-table-wrap tbody tr:hover { background: var(--page); }
 .order-table-wrap tr.is-correction td:first-child { border-left: 2px solid var(--accent); }
 .order-table-wrap a { color: var(--accent); }
