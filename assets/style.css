@@ -345,6 +345,15 @@ body {
   white-space: nowrap;
   vertical-align: bottom;
 }
+/* 기관별 종목 증감 추이 — 스몰멀티플 그리드 */
+.mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.mini-hold { border: 1px solid var(--grid); border-radius: 10px; padding: 8px 10px; background: var(--surface); }
+.mini-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+.mini-name { font-weight: 700; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chart-wrap.mini { height: 130px; }
+.chg { font-size: 11px; font-weight: 600; margin-left: 2px; }
+.chg.up { color: var(--up); }
+.chg.down { color: var(--down); }
 .order-table-wrap .chg { font-size: 11px; font-weight: 600; margin-left: 2px; }
 .order-table-wrap .chg.up, .data-table td.up { color: var(--up); }
 .order-table-wrap .chg.down, .data-table td.down { color: var(--down); }

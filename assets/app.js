@@ -81,6 +81,7 @@ async function renderIndustry() {
       const renderer = section.table_kind === "asiasis" ? renderAsiasisTable
         : section.table_kind === "major_holdings" ? renderMajorHoldings
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
+        : section.table_kind === "inst_holdings" ? renderInstHoldings
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -1169,6 +1170,114 @@ function renderStockTrajectory(doc) {
     if (stocksMap[v]) show(v);
   });
   show(stockNames[0]); // 기본: 보고 건수 많은 종목
+  return card;
+}
+
+// ── 기관별 종목 증감 추이 (보고자 선택 → 메이저 종목 스몰멀티플) ──
+// holdings_traj를 보고자→종목으로 피벗. 상위 N개 미니차트 + 전체 표.
+function renderInstHoldings(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+  const stocksMap = (doc && doc.stocks) || {};
+  if (!Object.keys(stocksMap).length) {
+    card.innerHTML = `<div class="card-name">기관별 종목 증감 추이</div>
+      <div class="card-empty">지분율 상세가 아직 없습니다.</div>`;
+    return card;
+  }
+
+  // 피벗: 보고자 → {종목: [[날짜, 보유비율]]}
+  const byRep = new Map();
+  for (const [stock, obj] of Object.entries(stocksMap)) {
+    for (const [rep, pts] of Object.entries(obj.s)) {
+      if (!byRep.has(rep)) byRep.set(rep, {});
+      byRep.get(rep)[stock] = pts;
+    }
+  }
+  // 2종목 이상 보유한 보고자만(포트폴리오 홀더), 보유종목 많은 순
+  const reps = [...byRep.keys()]
+    .filter((r) => Object.keys(byRep.get(r)).length >= 2)
+    .sort((a, b) => Object.keys(byRep.get(b)).length - Object.keys(byRep.get(a)).length);
+  if (!reps.length) {
+    card.innerHTML = `<div class="card-name">기관별 종목 증감 추이</div>
+      <div class="card-empty">2종목 이상 보유한 보고자가 없습니다.</div>`;
+    return card;
+  }
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">기관별 종목 증감 추이</span>
+      <span class="card-freq">보고자 선택 → 메이저 보유종목(현재 지분율 상위) 추이 · 상승=매집</span>
+    </div>`;
+  card.appendChild(head);
+
+  const picker = document.createElement("div");
+  picker.className = "order-search";
+  picker.style.margin = "8px 0 12px";
+  const dlId = "rep-" + Math.random().toString(36).slice(2, 8);
+  picker.innerHTML = `<input list="${dlId}" placeholder="기관·보고자 입력·선택 (2종목 이상 보유)" />
+    <datalist id="${dlId}">${reps.map((r) => `<option value="${r}"></option>`).join("")}</datalist>`;
+  card.appendChild(picker);
+  const pickerInput = picker.querySelector("input");
+
+  const countLine = document.createElement("div");
+  countLine.className = "order-count";
+  card.appendChild(countLine);
+
+  const grid = document.createElement("div");
+  grid.className = "mini-grid";
+  card.appendChild(grid);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "data-table";
+  tableWrap.style.marginTop = "12px";
+  card.appendChild(tableWrap);
+
+  const TOPN = 9;
+  let charts = [];
+  function show(rep) {
+    pickerInput.value = rep;
+    const stocks = byRep.get(rep);
+    const items = Object.entries(stocks).map(([s, pts]) => ({
+      s, pts, first: pts[0][1], last: pts[pts.length - 1][1],
+      net: pts[pts.length - 1][1] - pts[0][1], lastDt: pts[pts.length - 1][0], n: pts.length,
+    })).sort((a, b) => b.last - a.last); // 메이저=현재 지분율 큰 순
+
+    countLine.textContent = `${items.length.toLocaleString("ko-KR")}개 종목 보유 · 상위 ${Math.min(TOPN, items.length)}개 차트`;
+
+    charts.forEach((c) => c.destroy());
+    charts = [];
+    grid.innerHTML = "";
+    for (const it of items.slice(0, TOPN)) {
+      const mc = document.createElement("div");
+      mc.className = "mini-hold";
+      const dir = it.net > 0 ? "up" : it.net < 0 ? "down" : "";
+      const arrow = it.net > 0 ? "▲" : it.net < 0 ? "▼" : "";
+      mc.innerHTML = `<div class="mini-head"><span class="mini-name">${it.s}</span>
+        <span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${arrow}${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span></div>`;
+      const w = document.createElement("div");
+      w.className = "chart-wrap mini";
+      const cv = document.createElement("canvas");
+      w.appendChild(cv);
+      mc.appendChild(w);
+      grid.appendChild(mc);
+      const pseudo = { name: it.s, unit: "%", default_series: [rep], series: { [rep]: it.pts } };
+      charts.push(drawChart(cv, pseudo, { [rep]: it.pts }));
+    }
+
+    tableWrap.innerHTML =
+      `<table><thead><tr><th>종목</th><th>최초</th><th>최신</th><th>순증감(%p)</th><th>보고</th><th>최근보고</th></tr></thead><tbody>` +
+      items.map((it) => `<tr><td>${it.s}</td><td>${it.first.toFixed(2)}%</td><td>${it.last.toFixed(2)}%</td>` +
+        `<td class="${it.net > 0 ? "up" : it.net < 0 ? "down" : ""}">${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</td>` +
+        `<td>${it.n}</td><td>${it.lastDt}</td></tr>`).join("") +
+      `</tbody></table>`;
+  }
+
+  pickerInput.addEventListener("change", (e) => {
+    const v = e.target.value.trim();
+    if (byRep.has(v)) show(v);
+  });
+  show(reps[0]); // 기본: 보유종목 최다 보고자
   return card;
 }
 
