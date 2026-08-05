@@ -127,8 +127,8 @@ def run():
         "frequency": "수시(공시 발생 시)",
         "source": "DART 주식등의 대량보유상황보고서",
         "source_url": "https://dart.fss.or.kr",
-        "note": "코스피·코스닥 5% 대량보유 공시. 보고자 중 '개인'은 기본 숨김(칩으로 토글). "
-                "5% 룰 특성상 5영업일 지연·5%↑ 변동만 포착.",
+        "note": "코스피·코스닥 5% 대량보유 공시. 기본: 개인·지분율 변동없음(담보/계약변경) 숨김(칩으로 토글). "
+                "지분율 = 직전→현재 보유비율. 5% 룰 특성상 5영업일 지연·5%↑ 변동만 포착.",
         "updated": orders[0]["rcept_dt"] if orders else date.today().isoformat(),
         "markets": markets,
         "reporter_types": reporter_types,

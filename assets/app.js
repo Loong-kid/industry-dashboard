@@ -60,6 +60,10 @@ async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}`;
+  // 기관수급 탭은 전역 기간필터(차트용)·수주갱신(조선 DART용)이 무의미 → 숨김
+  const showChrome = ind.id !== "institution";
+  document.querySelector(".refresh-wrap").style.display = showChrome ? "" : "none";
+  document.getElementById("range-picker").style.display = showChrome ? "" : "none";
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
 
@@ -863,10 +867,11 @@ function renderMajorHoldings(doc) {
   const markets = doc.markets || [...new Set(doc.orders.map((o) => o.market))];
   const types = doc.reporter_types || [...new Set(doc.orders.map((o) => o.reporter_type))];
 
-  // 기본: 시장 전부 ON, 유형은 '개인'만 OFF(나머지 ON)
+  // 기본: 시장 전부 ON, 유형은 '개인'만 OFF, 지분율 변동 없는 보고(담보·계약변경 등) 숨김
   const filt = {
     markets: new Set(markets),
     types: new Set(types.filter((t) => t !== "개인")),
+    movedOnly: true,
     colFilters: {},
     search: "",
     sortKey: "rcept_dt",
@@ -901,6 +906,10 @@ function renderMajorHoldings(doc) {
   const typeChips = document.createElement("div");
   typeChips.className = "chips";
   filterBar.appendChild(typeChips);
+
+  const optChips = document.createElement("div");
+  optChips.className = "chips";
+  filterBar.appendChild(optChips);
 
   const searchWrap = document.createElement("div");
   searchWrap.className = "order-search";
@@ -943,6 +952,7 @@ function renderMajorHoldings(doc) {
 
   markets.forEach((m) => buildChip(marketChips, m, true, (on) => (on ? filt.markets.add(m) : filt.markets.delete(m))));
   types.forEach((t) => buildChip(typeChips, t, t !== "개인", (on) => (on ? filt.types.add(t) : filt.types.delete(t))));
+  buildChip(optChips, "지분율 변동만", true, (on) => { filt.movedOnly = on; });
 
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
@@ -1032,6 +1042,7 @@ function renderMajorHoldings(doc) {
     const rows = allOrders.filter((o) => {
       if (!filt.markets.has(o.market)) return false;
       if (!filt.types.has(o.reporter_type)) return false;
+      if (filt.movedOnly && !(o.chg != null && o.chg !== 0)) return false; // 변동0·불명 제외
       for (const key in filt.colFilters) {
         const q = filt.colFilters[key];
         if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
