@@ -351,6 +351,20 @@ body {
 .mini-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 4px; }
 .mini-name { font-weight: 700; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .chart-wrap.mini { height: 130px; }
+/* 종목 멀티셀렉트(검색+드롭다운) */
+.ms { position: relative; margin: 8px 0 12px; max-width: 680px; }
+.ms-box { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: 5px 8px; background: var(--surface); cursor: text; }
+.ms-chips { display: contents; }
+.ms-chip { display: inline-flex; align-items: center; gap: 2px; background: var(--page); border: 1px solid var(--border); border-radius: 6px; padding: 2px 4px 2px 7px; font-size: 12px; white-space: nowrap; }
+.ms-chip b { cursor: pointer; color: var(--muted); padding: 0 3px; font-weight: 700; }
+.ms-chip b:hover { color: var(--down); }
+.ms-input { flex: 1; min-width: 130px; border: none; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 12.5px; padding: 2px; }
+.ms-drop { position: absolute; z-index: 30; left: 0; right: 0; top: 100%; margin-top: 4px; max-height: 300px; overflow-y: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.14); }
+.ms-count { padding: 6px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--grid); position: sticky; top: 0; background: var(--surface); }
+.ms-opt { display: flex; justify-content: space-between; gap: 12px; padding: 6px 10px; cursor: pointer; font-size: 12.5px; }
+.ms-opt:hover { background: var(--page); }
+.ms-opt.on { color: var(--accent); font-weight: 600; }
+.data-table tr[data-s] { cursor: pointer; }
 .chg { font-size: 11px; font-weight: 600; margin-left: 2px; }
 .chg.up { color: var(--up); }
 .chg.down { color: var(--down); }

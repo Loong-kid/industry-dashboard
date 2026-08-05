@@ -1207,7 +1207,7 @@ function renderInstHoldings(doc) {
   head.className = "card-head";
   head.innerHTML = `<div class="order-head-left">
       <span class="card-name">기관별 종목 증감 추이</span>
-      <span class="card-freq">보고자 선택 → 메이저 보유종목(현재 지분율 상위) 추이 · 상승=매집</span>
+      <span class="card-freq">기관 선택 → 검색박스에서 볼 종목 고르기(최대 12) · 상승=매집</span>
     </div>`;
   card.appendChild(head);
 
@@ -1219,6 +1219,9 @@ function renderInstHoldings(doc) {
     <datalist id="${dlId}">${reps.map((r) => `<option value="${r}"></option>`).join("")}</datalist>`;
   card.appendChild(picker);
   const pickerInput = picker.querySelector("input");
+
+  const selWrap = document.createElement("div"); // 종목 멀티셀렉트가 들어갈 자리
+  card.appendChild(selWrap);
 
   const countLine = document.createElement("div");
   countLine.className = "order-count";
@@ -1233,8 +1236,10 @@ function renderInstHoldings(doc) {
   tableWrap.style.marginTop = "12px";
   card.appendChild(tableWrap);
 
-  const TOPN = 9;
+  const CAP = 12;       // 차트로 볼 수 있는 최대 종목 수
+  const DEFAULT_N = 9;  // 기본 선택(현재 지분율 상위)
   let charts = [];
+
   function show(rep) {
     pickerInput.value = rep;
     const stocks = byRep.get(rep);
@@ -1242,35 +1247,96 @@ function renderInstHoldings(doc) {
       s, pts, first: pts[0][1], last: pts[pts.length - 1][1],
       net: pts[pts.length - 1][1] - pts[0][1], lastDt: pts[pts.length - 1][0], n: pts.length,
     })).sort((a, b) => b.last - a.last); // 메이저=현재 지분율 큰 순
+    const itemMap = new Map(items.map((it) => [it.s, it]));
+    let selected = items.slice(0, Math.min(DEFAULT_N, items.length)).map((it) => it.s);
 
-    countLine.textContent = `${items.length.toLocaleString("ko-KR")}개 종목 보유 · 상위 ${Math.min(TOPN, items.length)}개 차트`;
+    // ── 종목 멀티셀렉트 (검색박스 + 드롭다운, 최대 CAP개) ──
+    selWrap.innerHTML = "";
+    const ms = document.createElement("div"); ms.className = "ms";
+    const box = document.createElement("div"); box.className = "ms-box";
+    const chipsSpan = document.createElement("span"); chipsSpan.className = "ms-chips";
+    const input = document.createElement("input"); input.className = "ms-input";
+    input.placeholder = "종목 검색·추가";
+    box.append(chipsSpan, input);
+    const drop = document.createElement("div"); drop.className = "ms-drop"; drop.hidden = true;
+    ms.append(box, drop);
+    selWrap.appendChild(ms);
 
-    charts.forEach((c) => c.destroy());
-    charts = [];
-    grid.innerHTML = "";
-    for (const it of items.slice(0, TOPN)) {
-      const mc = document.createElement("div");
-      mc.className = "mini-hold";
-      const dir = it.net > 0 ? "up" : it.net < 0 ? "down" : "";
-      const arrow = it.net > 0 ? "▲" : it.net < 0 ? "▼" : "";
-      mc.innerHTML = `<div class="mini-head"><span class="mini-name">${it.s}</span>
-        <span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${arrow}${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span></div>`;
-      const w = document.createElement("div");
-      w.className = "chart-wrap mini";
-      const cv = document.createElement("canvas");
-      w.appendChild(cv);
-      mc.appendChild(w);
-      grid.appendChild(mc);
-      const pseudo = { name: it.s, unit: "%", default_series: [rep], series: { [rep]: it.pts } };
-      charts.push(drawChart(cv, pseudo, { [rep]: it.pts }));
+    function renderChips() {
+      chipsSpan.innerHTML = "";
+      selected.forEach((s) => {
+        const chip = document.createElement("span");
+        chip.className = "ms-chip";
+        chip.append(document.createTextNode(s + " "));
+        const x = document.createElement("b"); x.textContent = "×";
+        x.addEventListener("mousedown", (e) => { e.preventDefault(); selected = selected.filter((v) => v !== s); refresh(); });
+        chip.appendChild(x);
+        chipsSpan.appendChild(chip);
+      });
+    }
+    function renderDrop() {
+      const q = input.value.trim().toLowerCase();
+      const opts = items.filter((it) => !q || it.s.toLowerCase().includes(q)).slice(0, 300);
+      drop.innerHTML = "";
+      const cnt = document.createElement("div"); cnt.className = "ms-count";
+      cnt.textContent = `선택 ${selected.length}/${CAP} · 클릭해 추가/제거`;
+      drop.appendChild(cnt);
+      opts.forEach((it) => {
+        const on = selected.includes(it.s);
+        const o = document.createElement("div"); o.className = "ms-opt" + (on ? " on" : "");
+        const dir = it.net > 0 ? "up" : it.net < 0 ? "down" : "";
+        o.innerHTML = `<span>${it.s}</span><span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span>`;
+        o.addEventListener("mousedown", (e) => {
+          e.preventDefault();
+          if (on) selected = selected.filter((v) => v !== it.s);
+          else if (selected.length < CAP) selected.push(it.s);
+          refresh(); input.focus();
+        });
+        drop.appendChild(o);
+      });
+    }
+    function refresh() { renderChips(); renderDrop(); renderCharts(); }
+
+    box.addEventListener("click", () => input.focus());
+    input.addEventListener("focus", () => { drop.hidden = false; renderDrop(); });
+    input.addEventListener("input", renderDrop);
+    ms.addEventListener("focusout", (e) => { if (!ms.contains(e.relatedTarget)) drop.hidden = true; });
+
+    function renderCharts() {
+      charts.forEach((c) => c.destroy());
+      charts = [];
+      grid.innerHTML = "";
+      const sel = selected.map((s) => itemMap.get(s)).filter(Boolean).sort((a, b) => b.last - a.last);
+      countLine.textContent = `${items.length.toLocaleString("ko-KR")}개 종목 보유 · ${sel.length}개 차트 표시 (최대 ${CAP})`;
+      for (const it of sel) {
+        const mc = document.createElement("div"); mc.className = "mini-hold";
+        const dir = it.net > 0 ? "up" : it.net < 0 ? "down" : "";
+        const arrow = it.net > 0 ? "▲" : it.net < 0 ? "▼" : "";
+        mc.innerHTML = `<div class="mini-head"><span class="mini-name">${it.s}</span>
+          <span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${arrow}${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span></div>`;
+        const w = document.createElement("div"); w.className = "chart-wrap mini";
+        const cv = document.createElement("canvas"); w.appendChild(cv); mc.appendChild(w);
+        grid.appendChild(mc);
+        charts.push(drawChart(cv, { name: it.s, unit: "%", default_series: [rep], series: { [rep]: it.pts } }, { [rep]: it.pts }));
+      }
     }
 
+    // 전체 보유종목 표 — 행 클릭으로도 차트 토글
     tableWrap.innerHTML =
       `<table><thead><tr><th>종목</th><th>최초</th><th>최신</th><th>순증감(%p)</th><th>보고</th><th>최근보고</th></tr></thead><tbody>` +
-      items.map((it) => `<tr><td>${it.s}</td><td>${it.first.toFixed(2)}%</td><td>${it.last.toFixed(2)}%</td>` +
+      items.map((it) => `<tr data-s="${it.s}"><td>${it.s}</td><td>${it.first.toFixed(2)}%</td><td>${it.last.toFixed(2)}%</td>` +
         `<td class="${it.net > 0 ? "up" : it.net < 0 ? "down" : ""}">${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</td>` +
         `<td>${it.n}</td><td>${it.lastDt}</td></tr>`).join("") +
       `</tbody></table>`;
+    tableWrap.querySelectorAll("tr[data-s]").forEach((tr) => tr.addEventListener("click", () => {
+      const s = tr.getAttribute("data-s");
+      if (selected.includes(s)) selected = selected.filter((v) => v !== s);
+      else if (selected.length < CAP) selected.push(s);
+      refresh();
+    }));
+
+    renderChips();
+    renderCharts();
   }
 
   pickerInput.addEventListener("change", (e) => {
