@@ -74,7 +74,9 @@ async function renderIndustry() {
     content.appendChild(h);
 
     if (section.type === "table") {
-      const renderer = section.table_kind === "asiasis" ? renderAsiasisTable : renderOrderTable;
+      const renderer = section.table_kind === "asiasis" ? renderAsiasisTable
+        : section.table_kind === "major_holdings" ? renderMajorHoldings
+        : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
         content.appendChild(renderer(doc));
@@ -833,6 +835,224 @@ function renderAsiasisTable(doc) {
         } else {
           td.innerHTML = cellValue(o, col.key);
         }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+  }
+
+  renderRows();
+  return card;
+}
+
+// ── 기관 수급: 대량보유 공시 (major_holdings) ────────────────────
+// 시장·보고자유형 칩 + 종목·보고자 컬럼필터. 기본은 '개인' 숨김.
+function renderMajorHoldings(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.orders || doc.orders.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "대량보유 공시"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br>
+      <code>fetch_major_holdings.py</code> → <code>aggregate_major_holdings.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const RENDER_CAP = 600;
+  const markets = doc.markets || [...new Set(doc.orders.map((o) => o.market))];
+  const types = doc.reporter_types || [...new Set(doc.orders.map((o) => o.reporter_type))];
+
+  // 기본: 시장 전부 ON, 유형은 '개인'만 OFF(나머지 ON)
+  const filt = {
+    markets: new Set(markets),
+    types: new Set(types.filter((t) => t !== "개인")),
+    colFilters: {},
+    search: "",
+    sortKey: "rcept_dt",
+    sortDir: -1,
+  };
+  if (state.tableRange[doc.id] == null) state.tableRange[doc.id] = TABLE_RANGE_DEFAULT;
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; renderRows(); }));
+  card.appendChild(head);
+
+  if (doc.note) {
+    const note = document.createElement("div");
+    note.className = "order-count";
+    note.textContent = doc.note;
+    card.appendChild(note);
+  }
+
+  const filterBar = document.createElement("div");
+  filterBar.className = "order-filters";
+  card.appendChild(filterBar);
+
+  const marketChips = document.createElement("div");
+  marketChips.className = "chips";
+  filterBar.appendChild(marketChips);
+
+  const typeChips = document.createElement("div");
+  typeChips.className = "chips";
+  filterBar.appendChild(typeChips);
+
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "order-search";
+  searchWrap.innerHTML = `<input type="text" placeholder="종목·보고자 검색" />`;
+  filterBar.appendChild(searchWrap);
+
+  const countLine = document.createElement("div");
+  countLine.className = "order-count";
+  card.appendChild(countLine);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "order-table-wrap";
+  card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "rcept_dt", label: "공시일" },
+    { key: "corp_name", label: "종목", filter: true },
+    { key: "market", label: "시장" },
+    { key: "reporter", label: "보고자", filter: true },
+    { key: "reporter_type", label: "유형" },
+    { key: "report_short", label: "공시" },
+    { key: "_link", label: "" },
+  ];
+
+  function buildChip(container, label, active, onToggle) {
+    const chipLabel = document.createElement("label");
+    chipLabel.className = "chip" + (active ? "" : " off");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = active;
+    chipLabel.append(cb, document.createTextNode(label));
+    cb.addEventListener("change", () => {
+      chipLabel.classList.toggle("off", !cb.checked);
+      onToggle(cb.checked);
+      renderRows();
+    });
+    container.appendChild(chipLabel);
+  }
+
+  markets.forEach((m) => buildChip(marketChips, m, true, (on) => (on ? filt.markets.add(m) : filt.markets.delete(m))));
+  types.forEach((t) => buildChip(typeChips, t, t !== "개인", (on) => (on ? filt.types.add(t) : filt.types.delete(t))));
+
+  searchWrap.querySelector("input").addEventListener("input", (e) => {
+    filt.search = e.target.value.trim().toLowerCase();
+    renderRows();
+  });
+
+  function cellValue(o, key) {
+    switch (key) {
+      case "corp_name":
+        return o.stock_code ? `<span title="${o.stock_code}">${o.corp_name}</span>` : (o.corp_name || "-");
+      case "reporter_type":
+        return o.reporter_type === "개인" ? `<span class="size-inferred">개인</span>` : o.reporter_type;
+      case "report_short":
+        return o.is_correction ? `<span class="size-inferred">${o.report_short}</span>` : o.report_short;
+      case "_link":
+        return o.rcept_no
+          ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.rcept_no}" target="_blank" rel="noopener">원문</a>`
+          : "";
+      default: return o[key] || "-";
+    }
+  }
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const ths = {};
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.label;
+    if (col.key !== "_link") {
+      th.classList.add("sortable");
+      th.title = "클릭: 내림차순 → 오름차순 → 정렬 해제";
+      th.addEventListener("click", () => { cycleSortState(filt, col.key); renderRows(); });
+    }
+    ths[col.key] = th;
+    htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+
+  const ftr = document.createElement("tr");
+  ftr.className = "col-filter-row";
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    if (col.filter) {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.placeholder = `${col.label} 필터…`;
+      inp.addEventListener("input", () => {
+        filt.colFilters[col.key] = inp.value.trim().toLowerCase();
+        renderRows();
+      });
+      th.addEventListener("click", (e) => e.stopPropagation());
+      th.appendChild(inp);
+    }
+    ftr.appendChild(th);
+  });
+  thead.appendChild(ftr);
+
+  const tbody = document.createElement("tbody");
+  table.append(thead, tbody);
+  tableWrap.appendChild(table);
+
+  function updateSortIndicators() {
+    COLS.forEach((col) => {
+      const th = ths[col.key];
+      if (!th) return;
+      th.classList.remove("sort-asc", "sort-desc");
+      if (filt.sortKey === col.key && filt.sortDir !== 0) {
+        th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+      }
+    });
+  }
+
+  function renderRows() {
+    const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
+    const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
+    const rows = allOrders.filter((o) => {
+      if (!filt.markets.has(o.market)) return false;
+      if (!filt.types.has(o.reporter_type)) return false;
+      for (const key in filt.colFilters) {
+        const q = filt.colFilters[key];
+        if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
+      }
+      if (filt.search) {
+        const hay = `${o.corp_name} ${o.reporter}`.toLowerCase();
+        if (!hay.includes(filt.search)) return false;
+      }
+      return true;
+    });
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
+    updateSortIndicators();
+
+    const shown = rows.slice(0, RENDER_CAP);
+    const capped = rows.length > RENDER_CAP;
+    countLine.textContent =
+      `${rows.length.toLocaleString("ko-KR")}건 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)` +
+      (capped ? ` — 상위 ${RENDER_CAP}건만 표시, 필터·검색으로 좁히세요` : "");
+
+    tbody.innerHTML = "";
+    for (const o of shown) {
+      const tr = document.createElement("tr");
+      if (o.is_correction) tr.classList.add("is-correction");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.innerHTML = cellValue(o, col.key);
         tr.appendChild(td);
       });
       tbody.appendChild(tr);

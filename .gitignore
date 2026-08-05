@@ -5,3 +5,7 @@ venv/
 .DS_Store
 # 로컬에서 원문 보관 시 생성(--no-docs면 안 만들어짐). 리포엔 올리지 않음.
 data/_dart/원문/
+# DART 전체 기업명 캐시(2.6MB, 개인/법인 판별용). fetch_major_holdings.py가 재생성.
+data/_dart/_corp_names.json
+# 개인/법인 판별 튜닝용 임시 덤프
+_dbg_flr*.txt
