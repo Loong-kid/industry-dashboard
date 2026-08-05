@@ -45,6 +45,11 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/fetch_major_holdings.py
+      - name: 대량보유 상세(지분율) 수집
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/fetch_holding_details.py
       - name: 대량보유 집계
         continue-on-error: true
         run: python scripts/aggregate_major_holdings.py

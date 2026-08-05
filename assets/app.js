@@ -76,6 +76,7 @@ async function renderIndustry() {
     if (section.type === "table") {
       const renderer = section.table_kind === "asiasis" ? renderAsiasisTable
         : section.table_kind === "major_holdings" ? renderMajorHoldings
+        : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -920,6 +921,7 @@ function renderMajorHoldings(doc) {
     { key: "market", label: "시장" },
     { key: "reporter", label: "보고자", filter: true },
     { key: "reporter_type", label: "유형" },
+    { key: "stkrt", label: "지분율(직전→현재)", align: "right" },
     { key: "report_short", label: "공시" },
     { key: "_link", label: "" },
   ];
@@ -953,6 +955,16 @@ function renderMajorHoldings(doc) {
         return o.stock_code ? `<span title="${o.stock_code}">${o.corp_name}</span>` : (o.corp_name || "-");
       case "reporter_type":
         return o.reporter_type === "개인" ? `<span class="size-inferred">개인</span>` : o.reporter_type;
+      case "stkrt": {
+        if (o.stkrt == null) return "-";
+        const now = o.stkrt.toFixed(2);
+        if (o.chg == null) return `${now}%`;
+        const prev = (o.stkrt - o.chg).toFixed(2);
+        const dir = o.chg > 0 ? "up" : o.chg < 0 ? "down" : "";
+        const arrow = o.chg > 0 ? "▲" : o.chg < 0 ? "▼" : "";
+        const sign = o.chg > 0 ? "+" : "";
+        return `${prev}→${now}% <span class="chg ${dir}">${arrow}${sign}${o.chg.toFixed(2)}</span>`;
+      }
       case "report_short":
         return o.is_correction ? `<span class="size-inferred">${o.report_short}</span>` : o.report_short;
       case "_link":
@@ -1060,6 +1072,96 @@ function renderMajorHoldings(doc) {
   }
 
   renderRows();
+  return card;
+}
+
+// ── 종목별 지분 추이 (보고자별 보유비율 차트) ────────────────────
+// 어느 기관이 어디서부터 매집/매도했는지: x=보고일, y=보유비율%, 시리즈=보고자.
+function renderStockTrajectory(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  const withRt = (doc && doc.orders || []).filter((o) => o.stkrt != null);
+  if (!withRt.length) {
+    card.innerHTML = `<div class="card-name">종목별 지분 추이</div>
+      <div class="card-empty">지분율 상세가 아직 없습니다.<br>
+      <code>fetch_holding_details.py</code> → <code>aggregate_major_holdings.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const byStock = new Map(); // corp_name → [orders]
+  for (const o of withRt) {
+    if (!byStock.has(o.corp_name)) byStock.set(o.corp_name, []);
+    byStock.get(o.corp_name).push(o);
+  }
+  const stockNames = [...byStock.keys()].sort((a, b) => byStock.get(b).length - byStock.get(a).length);
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">종목별 지분 추이 (보고자별 보유비율)</span>
+      <span class="card-freq">대량보유 보고 기준 · 상승=매집, 하락=매도</span>
+    </div>`;
+  card.appendChild(head);
+
+  const picker = document.createElement("div");
+  picker.className = "order-search";
+  picker.style.margin = "8px 0 12px";
+  const dlId = "stk-" + Math.random().toString(36).slice(2, 8);
+  picker.innerHTML = `<input list="${dlId}" placeholder="종목명 입력·선택 (지분율 데이터 있는 종목)" />
+    <datalist id="${dlId}">${stockNames.map((n) => `<option value="${n}"></option>`).join("")}</datalist>`;
+  card.appendChild(picker);
+
+  const chartWrap = document.createElement("div");
+  chartWrap.className = "chart-wrap";
+  const canvas = document.createElement("canvas");
+  chartWrap.appendChild(canvas);
+  card.appendChild(chartWrap);
+
+  const chipsDiv = document.createElement("div");
+  card.appendChild(chipsDiv);
+
+  const summary = document.createElement("div");
+  summary.className = "data-table";
+  summary.style.marginTop = "10px";
+  card.appendChild(summary);
+
+  const pickerInput = picker.querySelector("input");
+  let chart = null;
+  function show(stock) {
+    const rows = byStock.get(stock);
+    if (!rows) return;
+    pickerInput.value = stock; // 현재 보고 있는 종목 표시
+    const series = {};
+    for (const o of rows) (series[o.reporter] = series[o.reporter] || []).push([o.rcept_dt, o.stkrt]);
+    for (const k in series) series[k].sort((a, b) => (a[0] < b[0] ? -1 : 1));
+    const reporters = Object.keys(series);
+
+    const pseudo = { name: stock, unit: "%", default_series: reporters, series };
+    if (chart) chart.destroy();
+    chart = drawChart(canvas, pseudo, series);
+    chipsDiv.innerHTML = "";
+    buildChips(chipsDiv, chart);
+
+    const sum = reporters.map((r) => {
+      const pts = series[r];
+      const first = pts[0][1], last = pts[pts.length - 1][1];
+      return { r, first, last, net: last - first, n: pts.length, lastDt: pts[pts.length - 1][0] };
+    }).sort((a, b) => b.last - a.last);
+    summary.style.display = "block";
+    summary.innerHTML =
+      `<table><thead><tr><th>보고자</th><th>최초</th><th>최신</th><th>순증감(%p)</th><th>보고</th><th>최근보고</th></tr></thead><tbody>` +
+      sum.map((s) => `<tr><td>${s.r}</td><td>${s.first.toFixed(2)}%</td><td>${s.last.toFixed(2)}%</td>` +
+        `<td class="${s.net > 0 ? "up" : s.net < 0 ? "down" : ""}">${s.net > 0 ? "+" : ""}${s.net.toFixed(2)}</td>` +
+        `<td>${s.n}</td><td>${s.lastDt}</td></tr>`).join("") +
+      `</tbody></table>`;
+  }
+
+  pickerInput.addEventListener("change", (e) => {
+    const v = e.target.value.trim();
+    if (byStock.has(v)) show(v);
+  });
+  show(stockNames[0]); // 기본: 보고 건수 많은 종목
   return card;
 }
 

@@ -345,6 +345,10 @@ body {
   white-space: nowrap;
   vertical-align: bottom;
 }
+.order-table-wrap .chg { font-size: 11px; font-weight: 600; margin-left: 2px; }
+.order-table-wrap .chg.up, .data-table td.up { color: var(--up); }
+.order-table-wrap .chg.down, .data-table td.down { color: var(--down); }
+.data-table td.up, .data-table td.down { font-weight: 600; }
 .order-table-wrap tbody tr:hover { background: var(--page); }
 .order-table-wrap tr.is-correction td:first-child { border-left: 2px solid var(--accent); }
 .order-table-wrap a { color: var(--accent); }

@@ -19,9 +19,27 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "_dart" / "대량보유DB.csv"
+DETAIL_PATH = ROOT / "data" / "_dart" / "대량보유상세DB.csv"
 CORP_NAMES_PATH = ROOT / "data" / "_dart" / "_corp_names.json"
 OUT = ROOT / "data" / "institution" / "major_holdings.json"
 VIEWER_URL = "https://dart.fss.or.kr/dsaf001/main.do?rcpNo={no}"
+
+
+def to_float(s):
+    try:
+        return float(str(s).replace(",", "").strip())
+    except (ValueError, TypeError):
+        return None
+
+
+def load_details() -> dict:
+    """rcept_no -> {stkrt, chg}. majorstock 상세(보유비율·직전대비 증감)."""
+    d = {}
+    if DETAIL_PATH.exists():
+        with DETAIL_PATH.open(encoding="utf-8-sig", newline="") as f:
+            for r in csv.DictReader(f):
+                d[r["rcept_no"]] = {"stkrt": to_float(r.get("stkrt")), "chg": to_float(r.get("stkrt_irds"))}
+    return d
 
 CORP_KW = [
     "자산운용", "투자자문", "일임", "인베스트", "캐피탈", "캐피털", "파트너스", "홀딩", "그룹",
@@ -66,6 +84,7 @@ def run():
     if not corp_names:
         print("  경고: _corp_names.json 없음 → 기업명 대조 없이 키워드/인명 규칙만 적용")
 
+    details = load_details()
     rows = list(csv.DictReader(DB_PATH.open(encoding="utf-8-sig")))
     orders = []
     for r in rows:
@@ -77,7 +96,9 @@ def run():
             else:
                 continue
         short, is_corr = report_label(r["report_nm"])
-        orders.append({
+        det = details.get(r["rcept_no"], {})
+        stkrt, chg = det.get("stkrt"), det.get("chg")
+        o = {
             "rcept_dt": rd,
             "corp_name": r["corp_name"],
             "stock_code": r["stock_code"],
@@ -87,7 +108,11 @@ def run():
             "report_short": short,
             "is_correction": is_corr,
             "rcept_no": r["rcept_no"],  # 원문 URL은 렌더러에서 조립(용량 절감)
-        })
+        }
+        if stkrt is not None:
+            o["stkrt"] = stkrt            # 보고 후 보유비율(%)
+            o["chg"] = chg                # 직전대비 증감(%p)
+        orders.append(o)
 
     orders.sort(key=lambda o: o["rcept_dt"], reverse=True)
 
