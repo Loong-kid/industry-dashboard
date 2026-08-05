@@ -1092,26 +1092,24 @@ function renderStockTrajectory(doc) {
   const card = document.createElement("div");
   card.className = "card order-table-card";
 
-  const withRt = (doc && doc.orders || []).filter((o) => o.stkrt != null);
-  if (!withRt.length) {
+  const stocksMap = (doc && doc.stocks) || {};
+  const stockNames = Object.keys(stocksMap);
+  if (!stockNames.length) {
     card.innerHTML = `<div class="card-name">종목별 지분 추이</div>
       <div class="card-empty">지분율 상세가 아직 없습니다.<br>
       <code>fetch_holding_details.py</code> → <code>aggregate_major_holdings.py</code> 실행 후 표시됩니다.</div>`;
     return card;
   }
-
-  const byStock = new Map(); // corp_name → [orders]
-  for (const o of withRt) {
-    if (!byStock.has(o.corp_name)) byStock.set(o.corp_name, []);
-    byStock.get(o.corp_name).push(o);
-  }
-  const stockNames = [...byStock.keys()].sort((a, b) => byStock.get(b).length - byStock.get(a).length);
+  // 기본 선택용: 보고자 많은(멀티라인) 종목 우선, 동수면 포인트 많은 순
+  const repCount = (n) => Object.keys(stocksMap[n].s).length;
+  const ptCount = (n) => Object.values(stocksMap[n].s).reduce((a, p) => a + p.length, 0);
+  stockNames.sort((a, b) => repCount(b) - repCount(a) || ptCount(b) - ptCount(a));
 
   const head = document.createElement("div");
   head.className = "card-head";
   head.innerHTML = `<div class="order-head-left">
       <span class="card-name">종목별 지분 추이 (보고자별 보유비율)</span>
-      <span class="card-freq">대량보유 보고 기준 · 상승=매집, 하락=매도</span>
+      <span class="card-freq">대량보유 보고 기준(최근 ~2년) · 상승=매집, 하락=매도</span>
     </div>`;
   card.appendChild(head);
 
@@ -1140,12 +1138,10 @@ function renderStockTrajectory(doc) {
   const pickerInput = picker.querySelector("input");
   let chart = null;
   function show(stock) {
-    const rows = byStock.get(stock);
-    if (!rows) return;
+    const entry = stocksMap[stock];
+    if (!entry) return;
     pickerInput.value = stock; // 현재 보고 있는 종목 표시
-    const series = {};
-    for (const o of rows) (series[o.reporter] = series[o.reporter] || []).push([o.rcept_dt, o.stkrt]);
-    for (const k in series) series[k].sort((a, b) => (a[0] < b[0] ? -1 : 1));
+    const series = entry.s; // {보고자: [[date, stkrt], ...]} (aggregate에서 정렬·압축됨)
     const reporters = Object.keys(series);
 
     const pseudo = { name: stock, unit: "%", default_series: reporters, series };
@@ -1170,7 +1166,7 @@ function renderStockTrajectory(doc) {
 
   pickerInput.addEventListener("change", (e) => {
     const v = e.target.value.trim();
-    if (byStock.has(v)) show(v);
+    if (stocksMap[v]) show(v);
   });
   show(stockNames[0]); // 기본: 보고 건수 많은 종목
   return card;

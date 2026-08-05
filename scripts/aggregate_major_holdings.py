@@ -22,6 +22,7 @@ DB_PATH = ROOT / "data" / "_dart" / "대량보유DB.csv"
 DETAIL_PATH = ROOT / "data" / "_dart" / "대량보유상세DB.csv"
 CORP_NAMES_PATH = ROOT / "data" / "_dart" / "_corp_names.json"
 OUT = ROOT / "data" / "institution" / "major_holdings.json"
+TRAJ_OUT = ROOT / "data" / "institution" / "holdings_traj.json"
 VIEWER_URL = "https://dart.fss.or.kr/dsaf001/main.do?rcpNo={no}"
 
 
@@ -68,6 +69,31 @@ def classify(flr_nm: str, corp_names: set) -> str:
     if re.fullmatch(r"[가-힣]{2,4}", b) and b[0] in SURNAMES:
         return "개인"
     return "법인·기관"  # 애매하면 법인(누락 방지)
+
+
+def build_trajectory():
+    """상세DB(majorstock, ~최근 2년) → 종목별·보고자별 보유비율 시계열.
+    연속 동일값(담보/계약변경으로 지분율 그대로)은 접어 스텝만 남긴다(용량↓, 궤적 유지)."""
+    if not DETAIL_PATH.exists():
+        return {}
+    stocks = {}  # 종목명 → 보고자 → [(date, stkrt)]
+    for r in csv.DictReader(DETAIL_PATH.open(encoding="utf-8-sig")):
+        rt = to_float(r.get("stkrt"))
+        if rt is None:
+            continue
+        stocks.setdefault(r["corp_name"], {}).setdefault(r["repror"], []).append((r["rcept_dt"], rt))
+    out = {}
+    for name, reps in stocks.items():
+        s = {}
+        for rep, pts in reps.items():
+            pts.sort(key=lambda p: p[0])
+            comp = []
+            for i, (d, v) in enumerate(pts):
+                if not comp or comp[-1][1] != v or i == len(pts) - 1:
+                    comp.append([d, v])
+            s[rep] = comp
+        out[name] = {"s": s}
+    return out
 
 
 def report_label(report_nm: str):
@@ -137,6 +163,13 @@ def run():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     # 12k행 규모라 compact(무들여쓰기)로 저장해 용량 최소화
     OUT.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    # 종목별 지분 추이(상세DB 전체 ~2년, 테이블 1년과 별개)
+    traj = build_trajectory()
+    traj_doc = {"id": "holdings_traj", "name": "종목별 지분 추이",
+                "updated": doc["updated"], "stocks": traj}
+    TRAJ_OUT.write_text(json.dumps(traj_doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"  추이: {len(traj):,}종목 → {TRAJ_OUT.relative_to(ROOT)} ({TRAJ_OUT.stat().st_size//1024}KB)")
     tcnt = Counter(o["reporter_type"] for o in orders)
     print(f"완료: {len(orders):,}건 → {OUT.relative_to(ROOT)}")
     print(f"  시장 {dict(mkt_freq)}, 유형 {dict(tcnt)}")
