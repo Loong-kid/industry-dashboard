@@ -1207,7 +1207,7 @@ function renderInstHoldings(doc) {
   head.className = "card-head";
   head.innerHTML = `<div class="order-head-left">
       <span class="card-name">기관별 종목 증감 추이</span>
-      <span class="card-freq">기관 선택 → 검색박스에서 볼 종목 고르기(최대 12) · 상승=매집</span>
+      <span class="card-freq">기관 선택 → 검색박스에서 볼 종목 고르기(최대 30) · 상승=매집</span>
     </div>`;
   card.appendChild(head);
 
@@ -1236,7 +1236,7 @@ function renderInstHoldings(doc) {
   tableWrap.style.marginTop = "12px";
   card.appendChild(tableWrap);
 
-  const CAP = 12;       // 차트로 볼 수 있는 최대 종목 수
+  const CAP = 30;       // 차트로 볼 수 있는 최대 종목 수
   const DEFAULT_N = 9;  // 기본 선택(현재 지분율 상위)
   let charts = [];
 
