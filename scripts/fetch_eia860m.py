@@ -291,7 +291,10 @@ def merge_dim(old: pd.DataFrame | None, new: pd.DataFrame) -> pd.DataFrame:
 
 def latest_published(max_lookback: int = 8) -> tuple[int, int] | None:
     """오늘 기준 역순으로 훑어 실제 존재하는 최신 발행월을 찾는다.
-    EIA는 데이터월 기준 약 2개월 지연으로 낸다."""
+    EIA는 데이터월 기준 약 2개월 지연으로 낸다.
+
+    존재하지 않는 달도 **200 + 67KB stub**이 오므로(함정 1) Content-Length로 걸러야 한다.
+    최신월은 `xls/`에 있으니 그쪽을 먼저 본다."""
     t = date.today()
     y, m = t.year, t.month
     for _ in range(max_lookback):
@@ -299,7 +302,7 @@ def latest_published(max_lookback: int = 8) -> tuple[int, int] | None:
         for sub in ("xls", "archive/xls"):
             req = urllib.request.Request(f"{BASE}/{sub}/{name}", method="HEAD", headers=UA)
             try:
-                with urllib.request.urlopen(req, timeout=30) as r:
+                with urllib.request.urlopen(req, timeout=20) as r:
                     if r.status == 200 and int(r.headers.get("Content-Length") or 0) > STUB_MAX_BYTES:
                         return y, m
             except Exception:
@@ -319,14 +322,18 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=4)
     args = ap.parse_args()
 
+    vint = _load("vintages")
+    have = set(vint["vintage"].unique()) if vint is not None else set()
+
     latest = latest_published()
     if latest is None:
+        # EIA가 일시적으로 안 뜨는 경우. 이미 쌓아둔 게 있으면 조용히 끝낸다(CI 매일 재시도).
+        if have:
+            print("!! EIA 응답 없음. 기존 빈티지 유지하고 종료.", file=sys.stderr)
+            return 0
         print("!! 최신 발행월을 찾지 못함", file=sys.stderr)
         return 1
     print(f"최신 발행월: {latest[0]}-{latest[1]:02d}")
-
-    vint = _load("vintages")
-    have = set(vint["vintage"].unique()) if vint is not None else set()
 
     if args.backfill:
         start = BACKFILL_START
