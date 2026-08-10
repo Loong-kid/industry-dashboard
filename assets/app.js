@@ -38,9 +38,18 @@ async function boot() {
 
 function route() {
   const id = location.hash.replace("#/", "") || state.catalog.industries[0].id;
+  const prev = state.industry;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
   document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
+  // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
+  // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
+  if (state.industry !== prev && state.industry.default_range) setRange(state.industry.default_range);
   renderIndustry();
+}
+
+function setRange(range) {
+  state.range = range;
+  document.querySelectorAll("#range-picker button").forEach((b) => b.classList.toggle("active", b.dataset.range === range));
 }
 
 function renderNav() {
@@ -60,10 +69,9 @@ async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}`;
-  // 기관수급 탭은 전역 기간필터(차트용)·수주갱신(조선 DART용)이 무의미 → 숨김
-  const showChrome = ind.id !== "institution";
-  document.querySelector(".refresh-wrap").style.display = showChrome ? "" : "none";
-  document.getElementById("range-picker").style.display = showChrome ? "" : "none";
+  // '수주 갱신'은 조선 DART 전용이라 다른 탭에선 무의미. 기관수급 탭은 차트가 없어 기간필터도 뺀다.
+  document.querySelector(".refresh-wrap").style.display = ind.id === "shipbuilding" ? "" : "none";
+  document.getElementById("range-picker").style.display = ind.id === "institution" ? "none" : "";
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
 
@@ -82,6 +90,7 @@ async function renderIndustry() {
         : section.table_kind === "major_holdings" ? renderMajorHoldings
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : section.table_kind === "inst_holdings" ? renderInstHoldings
+        : section.table_kind === "power_pipeline" ? renderPowerPipeline
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -1344,6 +1353,217 @@ function renderInstHoldings(doc) {
     if (byRep.has(v)) show(v);
   });
   show(reps[0]); // 기본: 보유종목 최다 보고자
+  return card;
+}
+
+// ── 전력: 발전 프로젝트 파이프라인 (EIA-860M) ────────────────────
+// 기술 칩은 전부 켜고(전 발전원을 필터로 보는 게 목적), 상태 칩은 '착공 이상'만 켠 채로 시작한다.
+// 인허가 전 단계(①②③)까지 켜면 서류상 물량이 대부분이라 실제 진행 물량이 묻힌다.
+function renderPowerPipeline(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.rows || doc.rows.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "발전 프로젝트 파이프라인"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br>
+      <code>scripts/fetch_eia860m.py --backfill</code> → <code>scripts/aggregate_eia860m.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const RENDER_CAP = 600;
+  const techs = doc.techs || [...new Set(doc.rows.map((r) => r.tech))];
+  const statuses = doc.statuses || [...new Set(doc.rows.map((r) => r.status_label))];
+  const BUILDING = new Set(doc.rows.filter((r) => ["U", "V", "TS"].includes(r.status)).map((r) => r.status_label));
+
+  const filt = {
+    techs: new Set(techs),
+    statuses: new Set(statuses.filter((s) => BUILDING.has(s))),
+    search: "",
+    sortKey: "mw",
+    sortDir: -1,
+    colFilters: {},
+  };
+  if (filt.statuses.size === 0) statuses.forEach((s) => filt.statuses.add(s));
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  card.appendChild(head);
+
+  if (doc.note) {
+    const note = document.createElement("div");
+    note.className = "order-count";
+    note.textContent = doc.note;
+    card.appendChild(note);
+  }
+
+  const filterBar = document.createElement("div");
+  filterBar.className = "order-filters";
+  card.appendChild(filterBar);
+  const techChips = document.createElement("div");
+  techChips.className = "chips";
+  const statusChips = document.createElement("div");
+  statusChips.className = "chips";
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "order-search";
+  searchWrap.innerHTML = `<input type="text" placeholder="사업자·발전소 검색" />`;
+  filterBar.append(techChips, statusChips, searchWrap);
+
+  const countLine = document.createElement("div");
+  countLine.className = "order-count";
+  card.appendChild(countLine);
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "order-table-wrap";
+  card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "entity", label: "사업자", filter: true, trunc: 190 },
+    { key: "plant", label: "발전소", trunc: 160 },
+    { key: "state", label: "주", filter: true },
+    { key: "ba", label: "계통(BA)", filter: true },
+    { key: "tech", label: "발전원" },
+    { key: "mw", label: "용량(MW)", align: "right" },
+    { key: "status_label", label: "상태" },
+    { key: "cod", label: "준공예정" },
+    { key: "slip", label: "지연(개월)", align: "right" },
+    { key: "since", label: "최초등재" },
+  ];
+
+  function chip(container, label, active, onToggle) {
+    const l = document.createElement("label");
+    l.className = "chip" + (active ? "" : " off");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = active;
+    l.append(cb, document.createTextNode(label));
+    cb.addEventListener("change", () => {
+      l.classList.toggle("off", !cb.checked);
+      onToggle(cb.checked);
+      renderRows();
+    });
+    container.appendChild(l);
+  }
+  techs.forEach((t) => chip(techChips, t, true, (on) => (on ? filt.techs.add(t) : filt.techs.delete(t))));
+  statuses.forEach((s) => chip(statusChips, s, filt.statuses.has(s), (on) => (on ? filt.statuses.add(s) : filt.statuses.delete(s))));
+
+  searchWrap.querySelector("input").addEventListener("input", (e) => {
+    filt.search = e.target.value.trim().toLowerCase();
+    renderRows();
+  });
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const ths = {};
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.label;
+    th.style.textAlign = col.align === "right" ? "right" : "left";
+    th.classList.add("sortable");
+    th.title = "클릭: 내림차순 → 오름차순 → 정렬 해제";
+    th.addEventListener("click", () => { cycleSortState(filt, col.key); renderRows(); });
+    ths[col.key] = th;
+    htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+
+  const ftr = document.createElement("tr");
+  ftr.className = "col-filter-row";
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    if (col.filter) {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.placeholder = `${col.label} 필터…`;
+      inp.addEventListener("input", () => {
+        filt.colFilters[col.key] = inp.value.trim().toLowerCase();
+        renderRows();
+      });
+      th.addEventListener("click", (e) => e.stopPropagation());
+      th.appendChild(inp);
+    }
+    ftr.appendChild(th);
+  });
+  thead.appendChild(ftr);
+
+  const tbody = document.createElement("tbody");
+  table.append(thead, tbody);
+  tableWrap.appendChild(table);
+
+  function cellHtml(r, key) {
+    if (key === "mw") return r.mw == null ? "-" : fmt(r.mw);
+    if (key === "slip") {
+      if (r.slip == null) return "-";
+      if (r.slip === 0) return `<span class="size-inferred">0</span>`;
+      // 밀림(+)은 빨강, 앞당김(-)은 초록. 기존 지분율 증감과 같은 색 규약.
+      const cls = r.slip > 0 ? "chg down" : "chg up";
+      return `<span class="${cls}" title="최초 등재 시 준공예정: ${r.first_cod || "-"}">${r.slip > 0 ? "+" : ""}${r.slip}</span>`;
+    }
+    return r[key] || "-";
+  }
+
+  function updateSortIndicators() {
+    COLS.forEach((col) => {
+      const th = ths[col.key];
+      th.classList.remove("sort-asc", "sort-desc");
+      if (filt.sortKey === col.key && filt.sortDir !== 0) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+    });
+  }
+
+  function renderRows() {
+    const rows = doc.rows.filter((r) => {
+      if (!filt.techs.has(r.tech)) return false;
+      if (!filt.statuses.has(r.status_label)) return false;
+      for (const key in filt.colFilters) {
+        const q = filt.colFilters[key];
+        if (q && !String(r[key] || "").toLowerCase().includes(q)) return false;
+      }
+      if (filt.search && !`${r.entity} ${r.plant}`.toLowerCase().includes(filt.search)) return false;
+      return true;
+    });
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
+    updateSortIndicators();
+
+    const gw = rows.reduce((s, r) => s + (r.mw || 0), 0) / 1000;
+    const capped = rows.length > RENDER_CAP;
+    countLine.textContent =
+      `${rows.length.toLocaleString("ko-KR")}건 · ${gw.toLocaleString("ko-KR", { maximumFractionDigits: 1 })} GW` +
+      (capped ? ` — 용량 상위 ${RENDER_CAP}건만 표시, 필터로 좁히세요` : "");
+
+    tbody.innerHTML = "";
+    for (const r of rows.slice(0, RENDER_CAP)) {
+      const tr = document.createElement("tr");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.style.textAlign = col.align === "right" ? "right" : "left";
+        if (col.trunc) {
+          const span = document.createElement("span");
+          span.className = "trunc";
+          span.style.maxWidth = col.trunc + "px";
+          span.textContent = r[col.key] || "-";
+          span.title = r[col.key] || "";
+          td.appendChild(span);
+        } else {
+          td.innerHTML = cellHtml(r, col.key);
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+  }
+
+  renderRows();
   return card;
 }
 

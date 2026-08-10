@@ -118,6 +118,60 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 | FBX (Freightos 글로벌 컨테이너) | 🔍 | freightos.com/fbx | 확장 후보 |
 | 공공데이터포털 KCCI/KDCI 파일 | 🔍 | [data.go.kr KCCI](https://www.data.go.kr/data/15131881/fileData.do) | KOBC 직접 수집이 더 나아서 미사용 (백업 경로) |
 
+## 전력 — EIA-860M (미국 발전설비 월간 인벤토리, 2026-08-10 구축) ✅
+
+원본: <https://www.eia.gov/electricity/data/eia860m/> — 미국 내 **1MW 이상 전 발전기**의
+월간 전수조사 명부. 매월 xlsx 1개로 발행되며 시트는
+`Operating` / `Planned` / `Retired` / `Canceled or Postponed` (+ `*_PR` 푸에르토리코).
+
+이 소스의 값어치는 "현재 설비용량"이 아니라 **파이프라인의 상태 사다리와 그 월별 변화**에 있다.
+`Planned` 시트의 Status 코드가 건설 진행 단계를 나타내는 사다리라서,
+발행월(빈티지)을 쌓아두고 비교하면 EIA가 보고서로 내지 않는 것들이 계산된다.
+
+| Status | 의미 | 2026-06 기준 |
+|---|---|---|
+| P | 계획, 인허가 전 | 99.1 GW |
+| L | 인허가 심사중 | 65.2 GW |
+| T | 인허가 완료, 착공 전 | 27.0 GW |
+| U | 건설중 (≤50%) | 55.8 GW |
+| V | 건설중 (>50%) | 26.3 GW |
+| TS | 건설완료, 상업운전 전 | 12.2 GW |
+
+**U+V+TS(94 GW)가 실제 착공 물량이고 P+L+T(191 GW)는 아직 서류 단계**라는 구분이 핵심.
+
+### 파이프라인
+- `scripts/fetch_eia860m.py` — 월별 xlsx 수집 → `data/_eia/` 에 파싱 결과 저장.
+  - `--backfill` : 2021-01부터 전부 (로컬 1회, 약 700MB 다운로드)
+  - 인자 없음 : CI 기본. **신규 발행월이 있을 때만** xlsx 1개 받아 증분 append.
+  - 산출: `vintages.csv.gz`(발행월별 Planned 전 행), `dim.csv.gz`(발전기 차원표),
+    `operating/retired/canceled.csv.gz`(최신 발행월 스냅샷)
+  - 원본 xlsx는 `data/_eia/raw/`에 캐시하고 **gitignore**. 기본적으로 파싱 후 삭제(`--keep-raw`로 유지).
+- `scripts/aggregate_eia860m.py` — 키 불필요, 순수 변환. `data/power/*.json` 생성.
+
+### 파싱 함정 (재작업 시 필독)
+- **최신월은 `xls/`, 과거월은 `archive/xls/`에 있다.** 반대쪽 경로는 404가 아니라
+  **HTTP 200 + 67,094바이트 stub**을 돌려준다. 상태코드로 판단하면 그대로 속는다
+  → 두 경로 다 시도하고 크기·시트 구성으로 검증.
+- **컬럼 순서가 시대별로 다르다.** 2021년판은 `Sector`가 5번째, 2023년판 이후는
+  `Google Map`이 5번째. 이름은 같으므로 **반드시 헤더명으로 읽을 것**(위치 인덱싱 금지).
+- 헤더는 3행(위 2행은 제목·공백). 빈 셀은 NaN이 아니라 **공백 문자 한 칸(`' '`)**.
+  게다가 pandas를 한 번 거치면 그게 float NaN이 되어 `int(nan)`에서 터진다(둘 다 방어 필요).
+- `Nameplate Energy Capacity (MWh)`·`DC Net Capacity (MW)`는 **2022년 이후 판에만** 있다.
+- **`Planned` 시트에는 MWh·DC 컬럼이 아예 없다.** 배터리 지속시간은 준공 후에만 알 수 있어
+  계획 단계 물량의 에너지용량(GWh)은 직접 읽을 수 없다.
+- `DC Net Capacity`는 최근 빈티지일수록 미기입이 많다(2025년분 DC/AC가 1.02로 깨짐).
+  최근 연도 모듈 수요 추정에 쓰면 안 된다 → 지표화하지 않음.
+- 푸에르토리코는 별도 시트(`*_PR`). 본토와 섞지 않는다(수집도 안 함).
+
+### 데이터 자체의 한계
+- **1MW 미만은 아예 없다.** 주택용·소규모 상업용 태양광은 안 잡힌다. 유틸리티 규모 시장만 본다.
+- 계획 용량은 EIA가 "best estimates of current generating capacity, but **not capacity
+  commitments**"라고 명시한다. 확정 물량이 아니다.
+- EIA API v2에 `electricity/operating-generator-capacity` 라우트가 있으나(facet: 상태·기술·BA),
+  과거 발행월 **빈티지**를 주는지는 미확인. 지연 추적이 목적이라 엑셀 아카이브 방식으로 구축함.
+
+---
+
 ## 구현 메모 (페처 수정 시)
 
 - **KOBC 엑셀**: GET으로 grid 페이지 방문해 `JSESSIONID` 획득 후 POST 해야 함.

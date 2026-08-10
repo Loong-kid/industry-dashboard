@@ -62,6 +62,36 @@
       ]
     },
     {
+      "id": "power",
+      "name": "전력",
+      "icon": "⚡",
+      "default_range": "all",
+      "sections": [
+        {
+          "title": "파이프라인 현황 (미국 유틸리티 규모 전 발전원)",
+          "indicators": ["pipeline_status", "pipeline_construction", "pipeline_total", "cod_outlook"]
+        },
+        {
+          "title": "실제 준공 · 은퇴",
+          "indicators": ["additions_ttm", "retirements_ttm", "retire_outlook"]
+        },
+        {
+          "title": "진행 리스크 (발행월 간 변화 추적)",
+          "indicators": ["cod_slip", "cod_slip_months", "pipeline_entries", "pipeline_dropped"]
+        },
+        {
+          "title": "ESS",
+          "indicators": ["battery_duration"]
+        },
+        {
+          "title": "발전 프로젝트 파이프라인",
+          "type": "table",
+          "table_kind": "power_pipeline",
+          "indicators": ["pipeline_table"]
+        }
+      ]
+    },
+    {
       "id": "institution",
       "name": "기관 수급",
       "icon": "🏦",

@@ -12,7 +12,9 @@ industry-dashboard/
 ├── data/
 │   ├── catalog.json      # 산업 → 섹션 → 지표 구성 정의
 │   ├── shipbuilding/     # 조선 지표 JSON
-│   └── shipping/         # 해운 지표 JSON
+│   ├── shipping/         # 해운 지표 JSON
+│   ├── power/            # 전력 지표 JSON (EIA-860M)
+│   └── _eia/             # EIA-860M 빈티지 저장소 (raw/ 는 gitignore)
 ├── manual/               # 수기입력 CSV (유료 지표용) + manifest.json
 ├── scripts/
 │   ├── fetch_all.py            # 전체 수집 실행 (개별 실패 무시하고 진행)
@@ -56,6 +58,27 @@ git add data && git commit -m "data: DART orders update" && git push
 ```
 
 상세·파싱 함정은 [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) 참고.
+
+## ⚡ 전력 — EIA-860M 발전설비 파이프라인
+
+미국 내 **1MW 이상 전 발전기**의 월간 전수조사(EIA Form 860M)로, 태양광·ESS·가스터빈 등
+발전원별 건설 파이프라인과 실제 준공·은퇴를 추적한다.
+
+핵심은 **발행월(빈티지)을 쌓아 월간 diff를 내는 것**이다. EIA는 매달 스냅샷만 발행하므로,
+과거 발행분을 보관해야만 준공 지연·신규 진입·취소 같은 변화를 볼 수 있다.
+
+- `data/_eia/vintages.csv.gz` — 발행월별 Planned 시트 전 행(2021-01~). **이게 핵심 자산**
+- 상태 사다리 `P → L → T → U → V → TS`: **U/V/TS만이 실제 착공 물량**이고
+  P/L/T는 아직 서류 단계다. 대시보드 테이블은 착공 이상만 켠 채로 시작한다.
+
+최초 구축은 로컬에서 1회 (약 700MB 다운로드, 원본 xlsx는 gitignore):
+
+```bash
+python scripts/fetch_eia860m.py --backfill
+python scripts/aggregate_eia860m.py
+```
+
+이후에는 CI가 매일 돌면서 **새 발행월이 있을 때만** xlsx 1개를 받아 증분 갱신한다.
 
 ## 로컬 실행
 
