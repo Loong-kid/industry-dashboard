@@ -7,6 +7,17 @@
 
 const REPO = (window.dashboard && window.dashboard.GH_REPO) || "Loong-kid/industry-dashboard";
 const WORKFLOW = "update-data.yml";
+
+// 같은 workflow가 전부 갱신하지만, 라벨/신선도 확인 대상은 현재 탭에 맞춘다.
+const REFRESH_TARGETS = {
+  shipbuilding: { file: "data/shipbuilding/korea_orders.json", label: "수주 갱신" },
+  institution: { file: "data/institution/major_holdings.json", label: "수급 갱신" },
+};
+const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
+function currentTarget() {
+  const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
+  return REFRESH_TARGETS[id] || DEFAULT_TARGET;
+}
 const PAT_KEY = "gh_pat";
 const API = "https://api.github.com";
 
@@ -73,11 +84,11 @@ async function waitForRun(run) {
   return null;
 }
 
-// 커밋 후 Pages 재배포까지 시간이 걸리므로, orders JSON의 updated가 바뀔 때까지 확인
-async function waitForFreshData(prevUpdated) {
+// 커밋 후 Pages 재배포까지 시간이 걸리므로, 대상 JSON의 updated가 바뀔 때까지 확인
+async function waitForFreshData(prevUpdated, file) {
   for (let i = 0; i < 24; i++) { // 최대 ~2분
     try {
-      const res = await fetch(`data/shipbuilding/korea_orders.json?t=${Date.now()}`);
+      const res = await fetch(`${file}?t=${Date.now()}`);
       if (res.ok) {
         const j = await res.json();
         if (j.updated && j.updated !== prevUpdated) return true;
@@ -88,9 +99,9 @@ async function waitForFreshData(prevUpdated) {
   return false; // 타임아웃이어도 갱신 자체는 됐을 수 있음
 }
 
-async function currentUpdated() {
+async function currentUpdated(file) {
   try {
-    const res = await fetch(`data/shipbuilding/korea_orders.json?t=${Date.now()}`);
+    const res = await fetch(`${file}?t=${Date.now()}`);
     if (res.ok) return (await res.json()).updated || "";
   } catch (e) { /* noop */ }
   return "";
@@ -101,10 +112,11 @@ async function onRefresh() {
   if (busy) return;
   if (!getPat()) { openModal(); return; }
   busy = true;
+  const target = currentTarget(); // 클릭 시점의 탭 기준으로 고정
   const started = Date.now();
   try {
     setBtn("is-loading", "실행 요청…");
-    const prevUpdated = await currentUpdated();
+    const prevUpdated = await currentUpdated(target.file);
     await dispatchWorkflow();
 
     setBtn("is-loading", "실행 대기…");
@@ -121,11 +133,11 @@ async function onRefresh() {
     }
 
     setBtn("is-loading", "반영 대기…");
-    await waitForFreshData(prevUpdated);
+    await waitForFreshData(prevUpdated, target.file);
     await window.dashboard.reloadData();
     setBtn("is-ok", "갱신 완료 ✓");
     await sleep(3000);
-    setBtn(null, "수주 갱신");
+    setBtn(null, target.label);
   } catch (e) {
     if (e.message === "AUTH") {
       setBtn("is-err", "토큰 오류");
@@ -137,7 +149,7 @@ async function onRefresh() {
       $("refresh-btn").title = e.message + (url ? ` — ${url}` : "");
     }
     await sleep(4000);
-    setBtn(null, "수주 갱신");
+    setBtn(null, target.label);
   } finally {
     busy = false;
   }
@@ -155,8 +167,18 @@ function openModal(msg) {
 }
 function closeModal() { $("pat-modal").hidden = true; }
 
+// 탭에 맞는 버튼 라벨 (app.js renderIndustry / 해시 변경 시 호출)
+function setRefreshLabel() {
+  if (busy) return;
+  const label = $("refresh-label");
+  if (label) label.textContent = currentTarget().label;
+}
+window.setRefreshLabel = setRefreshLabel;
+
 function initRefresh() {
   $("refresh-btn").addEventListener("click", onRefresh);
+  window.addEventListener("hashchange", setRefreshLabel);
+  setRefreshLabel();
   $("settings-btn").addEventListener("click", () => openModal());
   $("pat-cancel").addEventListener("click", closeModal);
   $("pat-modal").addEventListener("click", (e) => { if (e.target.id === "pat-modal") closeModal(); });

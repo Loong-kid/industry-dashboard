@@ -69,9 +69,11 @@ async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}`;
-  // '수주 갱신'은 조선 DART 전용이라 다른 탭에선 무의미. 기관수급 탭은 차트가 없어 기간필터도 뺀다.
-  document.querySelector(".refresh-wrap").style.display = ind.id === "shipbuilding" ? "" : "none";
+  // 갱신 버튼: 조선(수주)·기관수급(대량보유) 탭에 노출 — 둘 다 같은 update-data.yml이 갱신.
+  // 라벨은 refresh.js가 탭별로 설정. 기관수급 탭은 차트가 없어 전역 기간필터는 뺀다.
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution") ? "" : "none";
   document.getElementById("range-picker").style.display = ind.id === "institution" ? "none" : "";
+  if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
 
