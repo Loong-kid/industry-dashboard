@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """FRED 매크로 지표 → data/macro/*.json (일반 시계열 카드).
 
-수집: FRED JSON API(api.stlouisfed.org) 우선 — 빠르고 안정적. 키는 env FRED_API_KEY.
-키가 없으면 keyless fredgraph.csv 로 폴백(=CI는 Secret 없이도 동작).
+수집: FRED JSON API(api.stlouisfed.org). 키는 env FRED_API_KEY(로컬)/GitHub Secret(CI).
 units=pc1 로 전년동기비 서버계산. 관련 시리즈를 한 카드(다중)로 묶어 기존 카드/차트 재사용.
 
-    FRED_API_KEY=... python scripts/fetch_fred.py   # API(권장)
-    python scripts/fetch_fred.py                     # CSV 폴백
+    FRED_API_KEY=... python scripts/fetch_fred.py
 """
 import json
 import os
@@ -19,9 +17,8 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "data" / "macro"
 API_URL = "https://api.stlouisfed.org/fred/series/observations"
-CSV_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv"
 API_KEY = os.environ.get("FRED_API_KEY", "").strip()
-START = os.environ.get("FRED_START", "2010-01-01")  # CI는 전체 이력
+START = os.environ.get("FRED_START", "2010-01-01")  # 전체 이력
 
 # 카드별: id, 이름, 단위, 빈도, [(시리즈명, FRED_id, 변환)], 기본표시 시리즈
 # 변환: "pc1"=전년동기비%, "lin"=원값
@@ -60,59 +57,33 @@ CARDS = [
 ]
 
 
-def _fetch_api(session, fred_id, transform):
-    r = session.get(API_URL, params={
-        "series_id": fred_id, "api_key": API_KEY, "file_type": "json",
-        "observation_start": START, "units": transform or "lin",
-    }, timeout=(5, 30))
-    r.raise_for_status()
-    pts = []
-    for o in r.json().get("observations", []):
-        v = (o.get("value") or "").strip()
-        if v and v != ".":
-            try:
-                pts.append([o["date"], round(float(v), 3)])
-            except ValueError:
-                pass
-    return pts
-
-
-def _fetch_csv(session, fred_id, transform):
-    q = f"?id={fred_id}&cosd={START}"
-    if transform and transform != "lin":
-        q += f"&transformation={transform}"
-    r = session.get(CSV_URL + q, timeout=(8, 60))
-    r.raise_for_status()
-    pts = []
-    for line in r.text.splitlines()[1:]:
-        d, _, v = line.partition(",")
-        v = v.strip()
-        if d and v and v != ".":
-            try:
-                pts.append([d, round(float(v), 3)])
-            except ValueError:
-                pass
-    return pts
-
-
 def fetch_series(session, fred_id, transform):
     last_err = None
     for _ in range(5):
         try:
-            return _fetch_api(session, fred_id, transform) if API_KEY else _fetch_csv(session, fred_id, transform)
+            r = session.get(API_URL, params={
+                "series_id": fred_id, "api_key": API_KEY, "file_type": "json",
+                "observation_start": START, "units": transform or "lin",
+            }, timeout=(5, 30))
+            r.raise_for_status()
+            pts = []
+            for o in r.json().get("observations", []):
+                v = (o.get("value") or "").strip()
+                if v and v != ".":
+                    try:
+                        pts.append([o["date"], round(float(v), 3)])
+                    except ValueError:
+                        pass
+            return pts
         except Exception as e:  # noqa
             last_err = e
             time.sleep(1.2)
-    # API가 계속 실패하면 CSV로 마지막 시도
-    if API_KEY:
-        try:
-            return _fetch_csv(session, fred_id, transform)
-        except Exception as e:  # noqa
-            last_err = e
     raise RuntimeError(f"{fred_id} 실패: {last_err}")
 
 
 def run():
+    if not API_KEY:
+        raise SystemExit("FRED_API_KEY 미설정: env(로컬) 또는 GitHub Secret(CI)로 주입하세요.")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     session = requests.Session()
     session.headers["User-Agent"] = "Mozilla/5.0"
