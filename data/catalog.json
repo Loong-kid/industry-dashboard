@@ -115,6 +115,22 @@
           "indicators": ["holdings_traj"]
         }
       ]
+    },
+    {
+      "id": "macro",
+      "name": "매크로",
+      "icon": "📊",
+      "default_range": "3y",
+      "sections": [
+        {
+          "title": "인플레이션",
+          "indicators": ["inflation_yoy", "inflation_exp"]
+        },
+        {
+          "title": "금리 · 커브",
+          "indicators": ["rates_curve"]
+        }
+      ]
     }
   ]
 }

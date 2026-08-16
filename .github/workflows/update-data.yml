@@ -27,6 +27,14 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_all.py
 
+      # 매크로 지표 (FRED — CPI/PCE/PPI 전년비, 기대인플레이션, 금리).
+      # 키 있으면 API(빠름), 없으면 keyless CSV 폴백 → Secret 없이도 동작.
+      - name: FRED 매크로 수집
+        continue-on-error: true
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python scripts/fetch_fred.py
+
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true
