@@ -103,12 +103,6 @@
           "indicators": ["major_holdings"]
         },
         {
-          "title": "대주주 증여 공시",
-          "type": "table",
-          "table_kind": "gifts",
-          "indicators": ["gifts"]
-        },
-        {
           "title": "종목별 지분 추이",
           "type": "table",
           "table_kind": "stock_trajectory",
@@ -119,6 +113,19 @@
           "type": "table",
           "table_kind": "inst_holdings",
           "indicators": ["holdings_traj"]
+        }
+      ]
+    },
+    {
+      "id": "gifts",
+      "name": "증여",
+      "icon": "🎁",
+      "sections": [
+        {
+          "title": "대주주 증여 공시",
+          "type": "table",
+          "table_kind": "gifts",
+          "indicators": ["gifts"]
         }
       ]
     },

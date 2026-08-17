@@ -112,14 +112,19 @@ function renderNav() {
 }
 
 // ── 산업 페이지 렌더 ─────────────────────────────────────────────
+// 렌더 세대: 무거운 탭 로딩(await) 중 다른 탭을 클릭하면, 이전 렌더의 await가
+// 뒤늦게 끝나며 새 탭 화면에 옛 카드를 붙이는 경쟁이 있었다. mySeq로 stale 렌더를 중단.
+let renderSeq = 0;
 async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
+  const mySeq = ++renderSeq;
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}`;
-  // 갱신 버튼: 조선(수주)·기관수급(대량보유) 탭에 노출 — 둘 다 같은 update-data.yml이 갱신.
-  // 라벨은 refresh.js가 탭별로 설정. 기관수급 탭은 차트가 없어 전역 기간필터는 뺀다.
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution") ? "" : "none";
-  document.getElementById("range-picker").style.display = ind.id === "institution" ? "none" : "";
+  // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
+  // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
+  const tableTab = ind.id === "institution" || ind.id === "gifts";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -152,6 +157,7 @@ async function renderIndustry() {
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
+        if (mySeq !== renderSeq) return; // 새 탭 렌더가 시작됨 → stale 렌더 중단
         const err = state.docErrors.get(indicatorId);
         content.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderer(doc));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
@@ -166,6 +172,7 @@ async function renderIndustry() {
 
     for (const indicatorId of section.indicators) {
       const doc = await loadDoc(ind.id, indicatorId);
+      if (mySeq !== renderSeq) return; // 새 탭 렌더가 시작됨 → stale 렌더 중단
       const err = state.docErrors.get(indicatorId);
       grid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;

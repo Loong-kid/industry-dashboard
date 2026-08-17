@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "_dart" / "증여DB.csv"
-OUT = ROOT / "data" / "institution" / "gifts.json"
+OUT = ROOT / "data" / "gifts" / "gifts.json"  # 전용 탭(industry id=gifts)
 
 
 def to_int(s):
