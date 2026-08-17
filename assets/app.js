@@ -14,7 +14,29 @@ const state = {
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
   charts: [], // 렌더된 Chart 인스턴스 (재렌더 시 destroy)
   docs: new Map(), // indicator id → data json 캐시
+  docErrors: new Map(), // indicator id → 불러오기 실패 사유. 404(아직 수집 전)는 여기 안 담김
 };
+
+// ── 수집 상태(stale) 판정 ────────────────────────────────────────
+// doc.fetched = 수집 스크립트가 실제로 돌아간 날(어느 스크립트든 항상 '오늘'로 기록).
+// doc.updated는 스크립트에 따라 데이터 날짜(공시 접수일 등)를 담기도 해서 stale 판정에 쓰면 오탐이 난다.
+// 워크플로는 매일 KST 07:30 1회 실행 — 실행 실패·주말 슬랙을 감안해 3일부터 지연으로 본다.
+const STALE_DAYS = 3;
+
+function daysSince(isoDate) {
+  if (!isoDate) return null;
+  const t = Date.parse(`${isoDate}T00:00:00`);
+  if (Number.isNaN(t)) return null;
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  return Math.round((midnight - t) / 86400000);
+}
+
+// fetched가 없는 문서(다음 수집 전까지 남아있는 기존 파일)는 판정 보류 — 오탐보다 침묵이 낫다.
+function staleDays(doc) {
+  const d = daysSince(doc && doc.fetched);
+  return d != null && d >= STALE_DAYS ? d : null;
+}
 
 const darkMq = window.matchMedia("(prefers-color-scheme: dark)");
 const isDark = () => darkMq.matches;
@@ -22,7 +44,15 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 
 // ── 부트스트랩 ──────────────────────────────────────────────────
 async function boot() {
-  state.catalog = await (await fetch("data/catalog.json")).json();
+  try {
+    const res = await fetch("data/catalog.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    state.catalog = await res.json();
+  } catch (e) {
+    // catalog을 못 읽으면 렌더할 게 아무것도 없다 — 백지 대신 사유를 남긴다
+    showBootError(e);
+    return;
+  }
   renderNav();
   document.querySelectorAll("#range-picker button").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -34,6 +64,23 @@ async function boot() {
   darkMq.addEventListener("change", renderIndustry);
   window.addEventListener("hashchange", route);
   route();
+}
+
+function showBootError(e) {
+  document.getElementById("page-title").textContent = "오류";
+  const box = document.createElement("div");
+  box.className = "card-empty is-error";
+  box.textContent = "대시보드를 불러오지 못했습니다.";
+  const why = document.createElement("span");
+  why.className = "err-detail";
+  why.textContent = `data/catalog.json — ${(e && e.message) || e}`;
+  const hint = document.createElement("span");
+  hint.className = "err-detail";
+  hint.textContent = "새로고침해도 같으면 수집 워크플로(update-data.yml)가 실패했을 수 있습니다.";
+  box.append(why, hint);
+  const content = document.getElementById("content");
+  content.innerHTML = "";
+  content.appendChild(box);
 }
 
 function route() {
@@ -80,7 +127,15 @@ async function renderIndustry() {
   const content = document.getElementById("content");
   content.innerHTML = "";
 
+  // 빈 대시보드와 '아직 불러오는 중'을 구분한다. 카드는 아래 루프에서 하나씩 채워지고,
+  // 이 줄은 전부 끝난 뒤 제거된다.
+  const loading = document.createElement("div");
+  loading.className = "page-loading";
+  loading.textContent = "데이터 불러오는 중…";
+  content.appendChild(loading);
+
   let latestUpdate = "";
+  const collected = []; // 수집 상태 판정용 { name, fetched }
   for (const section of ind.sections) {
     const h = document.createElement("div");
     h.className = "section-title";
@@ -93,11 +148,14 @@ async function renderIndustry() {
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : section.table_kind === "inst_holdings" ? renderInstHoldings
         : section.table_kind === "power_pipeline" ? renderPowerPipeline
+        : section.table_kind === "gifts" ? renderGifts
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
-        content.appendChild(renderer(doc));
+        const err = state.docErrors.get(indicatorId);
+        content.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderer(doc));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
+        if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched });
       }
       continue;
     }
@@ -108,21 +166,83 @@ async function renderIndustry() {
 
     for (const indicatorId of section.indicators) {
       const doc = await loadDoc(ind.id, indicatorId);
-      grid.appendChild(renderCard(doc, indicatorId));
+      const err = state.docErrors.get(indicatorId);
+      grid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
+      if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched });
     }
   }
-  document.getElementById("last-updated").textContent = latestUpdate ? `데이터 갱신: ${latestUpdate}` : "";
+  loading.remove();
+  renderFootStatus(latestUpdate, collected);
+}
+
+// 불러오기 실패 카드 — '아직 데이터가 없습니다'(정상)와 반드시 구분되어야 한다.
+// 이게 없으면 파이프라인이 깨진 건지 원래 없는 지표인지 화면상 알 수 없다.
+function errorCard(industryId, indicatorId, msg) {
+  const card = document.createElement("div");
+  card.className = "card";
+  const head = document.createElement("div");
+  head.className = "card-head";
+  const name = document.createElement("div");
+  name.className = "card-name";
+  name.textContent = indicatorId;
+  head.appendChild(name);
+  const box = document.createElement("div");
+  box.className = "card-empty is-error";
+  box.textContent = "불러오기 실패";
+  const why = document.createElement("span");
+  why.className = "err-detail";
+  why.textContent = `data/${industryId}/${indicatorId}.json — ${msg}`;
+  box.appendChild(why);
+  card.append(head, box);
+  return card;
+}
+
+// 사이드바 하단: 데이터 날짜 + 수집이 실제로 돌고 있는지
+function renderFootStatus(latestUpdate, collected) {
+  const foot = document.getElementById("last-updated");
+  foot.textContent = "";
+
+  const dataLine = document.createElement("div");
+  dataLine.textContent = latestUpdate ? `데이터 갱신: ${latestUpdate}` : "";
+  foot.appendChild(dataLine);
+
+  const withFetch = collected.filter((c) => c.fetched);
+  const fetchLine = document.createElement("div");
+  if (!withFetch.length) {
+    // 기존 데이터 파일에는 fetched가 없다 — 다음 수집부터 채워진다
+    fetchLine.textContent = "수집 시각: 기록 없음";
+  } else {
+    const stale = withFetch
+      .map((c) => ({ name: c.name, fetched: c.fetched, age: daysSince(c.fetched) }))
+      .filter((c) => c.age != null && c.age >= STALE_DAYS)
+      .sort((a, b) => b.age - a.age);
+    if (stale.length) {
+      fetchLine.className = "foot-warn";
+      fetchLine.textContent = `⚠ 수집 지연 ${stale.length}개 (최장 ${stale[0].age}일)`;
+      fetchLine.title = stale.map((c) => `${c.name}: ${c.fetched} (${c.age}일 전)`).join("\n");
+    } else {
+      const newest = withFetch.map((c) => c.fetched).sort().pop();
+      fetchLine.textContent = `수집 정상 · 최종 ${newest}`;
+    }
+  }
+  foot.appendChild(fetchLine);
 }
 
 async function loadDoc(industryId, indicatorId) {
   if (state.docs.has(indicatorId)) return state.docs.get(indicatorId);
   let doc = null;
+  state.docErrors.delete(indicatorId);
   try {
     const url = `data/${industryId}/${indicatorId}.json` + (state.bust ? `?t=${state.bust}` : "");
     const res = await fetch(url);
     if (res.ok) doc = await res.json();
-  } catch (e) { /* 파일 없음 → 빈 카드 */ }
+    else if (res.status !== 404) state.docErrors.set(indicatorId, `HTTP ${res.status}`);
+    // 404는 아직 수집 전인 지표 — 정상적인 빈 카드로 둔다
+  } catch (e) {
+    // 네트워크 오류 또는 JSON 파싱 실패(= 파일이 깨짐). 빈 카드로 삼키면 안 되는 경우다.
+    state.docErrors.set(indicatorId, (e && e.message) || "네트워크 오류");
+  }
   state.docs.set(indicatorId, doc);
   return doc;
 }
@@ -131,6 +251,7 @@ async function loadDoc(industryId, indicatorId) {
 async function reloadData() {
   state.bust = Date.now();
   state.docs.clear();
+  state.docErrors.clear();
   try {
     state.catalog = await (await fetch(`data/catalog.json?t=${state.bust}`)).json();
   } catch (e) { /* 유지 */ }
@@ -204,9 +325,13 @@ function renderCard(doc, indicatorId) {
 
   const head = document.createElement("div");
   head.className = "card-head";
+  // 수집이 멈춘 지표를 카드 단위로 지목 — 사이드바 요약만으로는 어느 건지 알 수 없다
+  const sd = staleDays(doc);
   head.innerHTML = `
     <div class="card-name">${doc.name}</div>
-    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}</div>`;
+    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${
+      sd ? `<span class="stale-badge" title="마지막 수집: ${doc.fetched}">수집 ${sd}일 전</span>` : ""
+    }</div>`;
   card.appendChild(head);
 
   // 헤드라인: 다중 시리즈 카드는 체크된 첫 시리즈를 따라감 (칩 토글 시 갱신)
@@ -1559,6 +1684,193 @@ function renderPowerPipeline(doc) {
         } else {
           td.innerHTML = cellHtml(r, col.key);
         }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+  }
+
+  renderRows();
+  return card;
+}
+
+// ── 대주주 증여 공시 (gifts) ─────────────────────────────────────
+// 임원·주요주주 소유보고 중 증여/수증. 기본: 소액임원(비주요주주) 숨김.
+function renderGifts(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+  if (!doc || !doc.orders || !doc.orders.length) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "대주주 증여 공시"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br><code>fetch_gifts.py</code> → <code>aggregate_gifts.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const RENDER_CAP = 600;
+  const markets = doc.markets || [...new Set(doc.orders.map((o) => o.market))];
+  const holders = doc.holder_types || [...new Set(doc.orders.map((o) => o.holder_type))];
+  const directions = doc.directions || [...new Set(doc.orders.map((o) => o.direction))];
+
+  const filt = {
+    markets: new Set(markets),
+    holders: new Set(holders.filter((h) => h !== "소액임원")), // 기본 소액임원 숨김
+    directions: new Set(directions),
+    colFilters: {},
+    search: "",
+    sortKey: "rcept_dt",
+    sortDir: -1,
+  };
+  if (state.tableRange[doc.id] == null) state.tableRange[doc.id] = TABLE_RANGE_DEFAULT;
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; renderRows(); }));
+  card.appendChild(head);
+
+  if (doc.note) {
+    const note = document.createElement("div");
+    note.className = "order-count";
+    note.textContent = doc.note;
+    card.appendChild(note);
+  }
+
+  const filterBar = document.createElement("div");
+  filterBar.className = "order-filters";
+  card.appendChild(filterBar);
+  const marketChips = document.createElement("div"); marketChips.className = "chips"; filterBar.appendChild(marketChips);
+  const holderChips = document.createElement("div"); holderChips.className = "chips"; filterBar.appendChild(holderChips);
+  const dirChips = document.createElement("div"); dirChips.className = "chips"; filterBar.appendChild(dirChips);
+  const searchWrap = document.createElement("div"); searchWrap.className = "order-search";
+  searchWrap.innerHTML = `<input type="text" placeholder="종목·보고자·상대방 검색" />`;
+  filterBar.appendChild(searchWrap);
+
+  const countLine = document.createElement("div"); countLine.className = "order-count"; card.appendChild(countLine);
+  const tableWrap = document.createElement("div"); tableWrap.className = "order-table-wrap"; card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "rcept_dt", label: "공시일" },
+    { key: "corp_name", label: "종목", filter: true },
+    { key: "market", label: "시장" },
+    { key: "reporter", label: "보고자", filter: true },
+    { key: "position", label: "직위" },
+    { key: "holder_type", label: "유형" },
+    { key: "direction", label: "방향" },
+    { key: "gift_rate", label: "규모(주식·%)", align: "right" },
+    { key: "counterparty", label: "상대방", filter: true },
+    { key: "_link", label: "" },
+  ];
+
+  function buildChip(container, label, active, onToggle) {
+    const cl = document.createElement("label");
+    cl.className = "chip" + (active ? "" : " off");
+    const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = active;
+    cl.append(cb, document.createTextNode(label));
+    cb.addEventListener("change", () => { cl.classList.toggle("off", !cb.checked); onToggle(cb.checked); renderRows(); });
+    container.appendChild(cl);
+  }
+  markets.forEach((m) => buildChip(marketChips, m, true, (on) => (on ? filt.markets.add(m) : filt.markets.delete(m))));
+  holders.forEach((h) => buildChip(holderChips, h, h !== "소액임원", (on) => (on ? filt.holders.add(h) : filt.holders.delete(h))));
+  directions.forEach((d) => buildChip(dirChips, d, true, (on) => (on ? filt.directions.add(d) : filt.directions.delete(d))));
+  searchWrap.querySelector("input").addEventListener("input", (e) => { filt.search = e.target.value.trim().toLowerCase(); renderRows(); });
+
+  function cellValue(o, key) {
+    switch (key) {
+      case "corp_name": return o.stock_code ? `<span title="${o.stock_code}">${o.corp_name}</span>` : (o.corp_name || "-");
+      case "holder_type": return o.holder_type === "소액임원" ? `<span class="size-inferred">소액임원</span>` : o.holder_type;
+      case "direction": {
+        const cls = o.direction && o.direction.indexOf("증여") === 0 ? "down" : "up"; // 증여(줌)=빨강, 수증(받음)=초록
+        return `<span class="chg ${cls}">${o.direction}</span>`;
+      }
+      case "gift_rate": {
+        const sh = o.gift_shares != null ? o.gift_shares.toLocaleString("ko-KR") + "주" : "-";
+        const rt = o.gift_rate != null ? ` (${o.gift_rate}%)` : "";
+        return `${sh}${rt}`;
+      }
+      case "_link":
+        return o.rcept_no ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.rcept_no}" target="_blank" rel="noopener">원문</a>` : "";
+      default: return o[key] || "-";
+    }
+  }
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const ths = {};
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.label;
+    th.style.textAlign = col.align === "right" ? "right" : "left";
+    if (col.key !== "_link") {
+      th.classList.add("sortable");
+      th.addEventListener("click", () => { cycleSortState(filt, col.key); renderRows(); });
+    }
+    ths[col.key] = th; htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+  const ftr = document.createElement("tr"); ftr.className = "col-filter-row";
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    if (col.filter) {
+      const inp = document.createElement("input"); inp.type = "text"; inp.placeholder = `${col.label} 필터…`;
+      inp.addEventListener("input", () => { filt.colFilters[col.key] = inp.value.trim().toLowerCase(); renderRows(); });
+      th.addEventListener("click", (e) => e.stopPropagation());
+      th.appendChild(inp);
+    }
+    ftr.appendChild(th);
+  });
+  thead.appendChild(ftr);
+  const tbody = document.createElement("tbody");
+  table.append(thead, tbody);
+  tableWrap.appendChild(table);
+
+  function updateSortIndicators() {
+    COLS.forEach((col) => {
+      const th = ths[col.key]; if (!th) return;
+      th.classList.remove("sort-asc", "sort-desc");
+      if (filt.sortKey === col.key && filt.sortDir !== 0) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+    });
+  }
+
+  function renderRows() {
+    const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
+    const all = doc.orders.filter((o) => o.rcept_dt >= cutoff);
+    const rows = all.filter((o) => {
+      if (!filt.markets.has(o.market)) return false;
+      if (!filt.holders.has(o.holder_type)) return false;
+      if (!filt.directions.has(o.direction)) return false;
+      for (const key in filt.colFilters) {
+        const q = filt.colFilters[key];
+        if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
+      }
+      if (filt.search) {
+        const hay = `${o.corp_name} ${o.reporter} ${o.counterparty}`.toLowerCase();
+        if (!hay.includes(filt.search)) return false;
+      }
+      return true;
+    });
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
+    updateSortIndicators();
+    const shown = rows.slice(0, RENDER_CAP);
+    const capped = rows.length > RENDER_CAP;
+    countLine.textContent = `${rows.length.toLocaleString("ko-KR")}건 (전체 ${all.length.toLocaleString("ko-KR")}건)` +
+      (capped ? ` — 상위 ${RENDER_CAP}건만 표시, 필터·검색으로 좁히세요` : "");
+    tbody.innerHTML = "";
+    for (const o of shown) {
+      const tr = document.createElement("tr");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.style.textAlign = col.align === "right" ? "right" : "left";
+        td.innerHTML = cellValue(o, col.key);
         tr.appendChild(td);
       });
       tbody.appendChild(tr);

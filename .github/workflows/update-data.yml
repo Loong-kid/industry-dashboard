@@ -74,6 +74,16 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_major_holdings.py
 
+      # 대주주 증여: 임원·주요주주 소유보고 원문에서 증여/수증 추출 + 집계
+      - name: 증여 공시 수집
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/fetch_gifts.py
+      - name: 증여 집계
+        continue-on-error: true
+        run: python scripts/aggregate_gifts.py
+
       # 전력: EIA-860M. 발행월(월 1회)이 새로 뜬 경우에만 xlsx 1개를 받아 빈티지에 덧붙인다.
       # 최초 빈티지 구축은 로컬 `--backfill`로 이미 끝나 있어야 한다(66개월·700MB라 CI에서 안 돌린다).
       - name: EIA-860M 발전 설비 수집
