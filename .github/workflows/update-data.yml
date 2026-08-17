@@ -42,6 +42,11 @@ jobs:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: python scripts/fetch_global_bonds.py
 
+      # 원자재 금·은·구리 (Yahoo Finance 선물, 키 없음). 리튬은 best-effort.
+      - name: 원자재 수집
+        continue-on-error: true
+        run: python scripts/fetch_commodities.py
+
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true
