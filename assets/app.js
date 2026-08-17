@@ -1765,7 +1765,8 @@ function renderGifts(doc) {
     { key: "position", label: "직위" },
     { key: "holder_type", label: "유형" },
     { key: "direction", label: "방향" },
-    { key: "gift_rate", label: "규모(주식·%)", align: "right" },
+    { key: "gift_shares", label: "규모(주식)", align: "right" },
+    { key: "before_rate", label: "지분율(전→후)", align: "right" },
     { key: "counterparty", label: "상대방", filter: true },
     { key: "_link", label: "" },
   ];
@@ -1791,10 +1792,12 @@ function renderGifts(doc) {
         const cls = o.direction && o.direction.indexOf("증여") === 0 ? "down" : "up"; // 증여(줌)=빨강, 수증(받음)=초록
         return `<span class="chg ${cls}">${o.direction}</span>`;
       }
-      case "gift_rate": {
-        const sh = o.gift_shares != null ? o.gift_shares.toLocaleString("ko-KR") + "주" : "-";
-        const rt = o.gift_rate != null ? ` (${o.gift_rate}%)` : "";
-        return `${sh}${rt}`;
+      case "gift_shares":
+        return o.gift_shares != null ? o.gift_shares.toLocaleString("ko-KR") + "주" : "-";
+      case "before_rate": {
+        if (o.before_rate == null || o.after_rate == null) return o.gift_rate != null ? `(${o.gift_rate}%)` : "-";
+        const cls = o.after_rate < o.before_rate ? "down" : "up"; // 줄면 빨강, 늘면 초록
+        return `${o.before_rate}% <span class="chg ${cls}">→ ${o.after_rate}%</span>`;
       }
       case "_link":
         return o.rcept_no ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.rcept_no}" target="_blank" rel="noopener">원문</a>` : "";
