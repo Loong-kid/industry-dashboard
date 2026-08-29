@@ -153,6 +153,7 @@ async function renderIndustry() {
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : section.table_kind === "inst_holdings" ? renderInstHoldings
         : section.table_kind === "power_pipeline" ? renderPowerPipeline
+        : section.table_kind === "power_fleet" ? renderPowerFleet
         : section.table_kind === "gifts" ? renderGifts
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
@@ -1885,6 +1886,131 @@ function renderGifts(doc) {
       });
       tbody.appendChild(tr);
     }
+  }
+
+  renderRows();
+  return card;
+}
+
+// ── 전력: 현재 가동중 발전설비 구성 (EIA-860M Operating 스냅샷) ──
+// 파이프라인(미래)이 아니라 지금 돌고 있는 설비의 스톡. 칩·검색 없이 정렬만 되는 요약표.
+function renderPowerFleet(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.rows || doc.rows.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "현재 가동중 발전설비 구성"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br>
+      <code>scripts/aggregate_eia860m.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const filt = { sortKey: "gw", sortDir: -1 };
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  card.appendChild(head);
+
+  if (doc.note) {
+    const note = document.createElement("div");
+    note.className = "order-count";
+    note.textContent = doc.note;
+    card.appendChild(note);
+  }
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "order-table-wrap";
+  card.appendChild(tableWrap);
+
+  const COLS = [
+    { key: "tech", label: "발전원" },
+    { key: "gw", label: "용량(GW)", align: "right" },
+    { key: "share", label: "비중", align: "right" },
+    { key: "summer_gw", label: "여름피크(GW)", align: "right" },
+    { key: "n", label: "기수", align: "right" },
+    { key: "avg_year", label: "평균 준공", align: "right" },
+    { key: "recent_share", label: "2020년 이후", align: "right" },
+  ];
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const ths = {};
+  COLS.forEach((col) => {
+    const th = document.createElement("th");
+    th.textContent = col.label;
+    th.style.textAlign = col.align === "right" ? "right" : "left";
+    th.classList.add("sortable");
+    th.title = "클릭: 내림차순 → 오름차순 → 정렬 해제";
+    th.addEventListener("click", () => { cycleSortState(filt, col.key); renderRows(); });
+    ths[col.key] = th;
+    htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+  const tbody = document.createElement("tbody");
+  const tfoot = document.createElement("tfoot");
+  table.append(thead, tbody, tfoot);
+  tableWrap.appendChild(table);
+
+  // 비중은 막대를 겹쳐 한눈에 크기 비교가 되게 한다(전체 대비 %).
+  function cellHtml(r, key) {
+    if (key === "gw") return r.gw == null ? "-" : fmt(r.gw);
+    if (key === "summer_gw") return r.summer_gw == null ? "-" : fmt(r.summer_gw);
+    if (key === "n") return r.n.toLocaleString("ko-KR");
+    if (key === "avg_year") return r.avg_year == null ? "-" : `${r.avg_year}년`;
+    if (key === "recent_share") {
+      if (r.recent_share == null) return "-";
+      const cls = r.recent_share >= 50 ? "chg up" : "";
+      return `<span class="${cls}">${r.recent_share.toFixed(1)}%</span>`;
+    }
+    if (key === "share") {
+      // 스타일을 인라인으로 두는 이유: 이 막대 하나 때문에 style.css를 건드리지 않으려고.
+      const w = Math.max(1, Math.round(r.share * 3));
+      const bar = `display:inline-block;width:${w}px;height:8px;background:var(--accent);`
+        + `opacity:.35;border-radius:2px;margin-right:5px;vertical-align:middle`;
+      return `<span style="${bar}"></span><span>${r.share.toFixed(1)}%</span>`;
+    }
+    return r[key] || "-";
+  }
+
+  function updateSortIndicators() {
+    COLS.forEach((col) => {
+      const th = ths[col.key];
+      th.classList.remove("sort-asc", "sort-desc");
+      if (filt.sortKey === col.key && filt.sortDir !== 0) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+    });
+  }
+
+  function renderRows() {
+    const rows = doc.rows.slice();
+    if (filt.sortKey) {
+      rows.sort((a, b) => {
+        const av = a[filt.sortKey], bv = b[filt.sortKey];
+        if (av == null) return 1;
+        if (bv == null) return -1;
+        return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+      });
+    }
+    updateSortIndicators();
+
+    tbody.innerHTML = "";
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+      COLS.forEach((col) => {
+        const td = document.createElement("td");
+        td.style.textAlign = col.align === "right" ? "right" : "left";
+        td.innerHTML = cellHtml(r, col.key);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    tfoot.innerHTML = `<tr><td><b>합계</b></td><td style="text-align:right"><b>${fmt(doc.total_gw)}</b></td>`
+      + `<td style="text-align:right">100%</td><td></td>`
+      + `<td style="text-align:right">${doc.total_n.toLocaleString("ko-KR")}</td><td></td><td></td></tr>`;
   }
 
   renderRows();

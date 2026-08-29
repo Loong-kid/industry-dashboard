@@ -7,34 +7,55 @@
       "sections": [
         {
           "title": "신조선가",
-          "indicators": ["clarksons_nb_index", "newbuild_prices", "cnpi"]
+          "indicators": [
+            "clarksons_nb_index",
+            "newbuild_prices",
+            "cnpi"
+          ]
         },
         {
           "title": "발주량",
-          "indicators": ["newbuild_orders"]
+          "indicators": [
+            "newbuild_orders"
+          ]
         },
         {
           "title": "중고선가",
-          "indicators": ["secondhand_index", "secondhand_prices"]
+          "indicators": [
+            "secondhand_index",
+            "secondhand_prices"
+          ]
         },
         {
           "title": "선종별 척당 수주단가 (국내 4사)",
-          "indicators": ["korea_price_tanker", "korea_price_lng", "korea_price_gas", "korea_price_container"]
+          "indicators": [
+            "korea_price_tanker",
+            "korea_price_lng",
+            "korea_price_gas",
+            "korea_price_container"
+          ]
         },
         {
           "title": "예상 매출 (공시 수주 기준)",
-          "indicators": ["korea_revenue_progress", "korea_revenue_delivery"]
+          "indicators": [
+            "korea_revenue_progress",
+            "korea_revenue_delivery"
+          ]
         },
         {
           "title": "국내 조선 수주 내역",
           "type": "table",
-          "indicators": ["korea_orders"]
+          "indicators": [
+            "korea_orders"
+          ]
         },
         {
           "title": "글로벌 신조프로젝트 오더북",
           "type": "table",
           "table_kind": "asiasis",
-          "indicators": ["asiasis_orders"]
+          "indicators": [
+            "asiasis_orders"
+          ]
         }
       ]
     },
@@ -45,19 +66,35 @@
       "sections": [
         {
           "title": "컨테이너 운임",
-          "indicators": ["kcci", "scfi", "ccfi", "hrci"]
+          "indicators": [
+            "kcci",
+            "scfi",
+            "ccfi",
+            "hrci"
+          ]
         },
         {
           "title": "건화물(드라이벌크) 운임",
-          "indicators": ["kdci", "bdi", "bulker_earnings"]
+          "indicators": [
+            "kdci",
+            "bdi",
+            "bulker_earnings"
+          ]
         },
         {
           "title": "탱커 · 가스선 운임",
-          "indicators": ["bdti", "bcti", "tanker_earnings", "gas_earnings"]
+          "indicators": [
+            "bdti",
+            "bcti",
+            "tanker_earnings",
+            "gas_earnings"
+          ]
         },
         {
           "title": "종합",
-          "indicators": ["clarksea"]
+          "indicators": [
+            "clarksea"
+          ]
         }
       ]
     },
@@ -69,25 +106,58 @@
       "sections": [
         {
           "title": "파이프라인 현황 (미국 유틸리티 규모 전 발전원)",
-          "indicators": ["pipeline_status", "pipeline_construction", "pipeline_total", "cod_outlook"]
+          "indicators": [
+            "pipeline_status",
+            "pipeline_construction",
+            "pipeline_total",
+            "cod_outlook"
+          ]
         },
         {
-          "title": "실제 준공 · 은퇴",
-          "indicators": ["additions_ttm", "retirements_ttm", "retire_outlook"]
+          "title": "실제 준공 · 은퇴 (TTM · 누적)",
+          "indicators": [
+            "additions_ttm",
+            "additions_cumulative",
+            "retirements_ttm",
+            "retire_outlook"
+          ]
+        },
+        {
+          "title": "현재 설비 구성 (가동중 전 발전기)",
+          "indicators": [
+            "fleet_by_tech"
+          ]
+        },
+        {
+          "title": "발전원별 설비 규모",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "fleet_table"
+          ]
         },
         {
           "title": "진행 리스크 (발행월 간 변화 추적)",
-          "indicators": ["cod_slip", "cod_slip_months", "pipeline_entries", "pipeline_dropped"]
+          "indicators": [
+            "cod_slip",
+            "cod_slip_months",
+            "pipeline_entries",
+            "pipeline_dropped"
+          ]
         },
         {
           "title": "ESS",
-          "indicators": ["battery_duration"]
+          "indicators": [
+            "battery_duration"
+          ]
         },
         {
           "title": "발전 프로젝트 파이프라인",
           "type": "table",
           "table_kind": "power_pipeline",
-          "indicators": ["pipeline_table"]
+          "indicators": [
+            "pipeline_table"
+          ]
         }
       ]
     },
@@ -100,19 +170,25 @@
           "title": "대량보유 공시 (5%룰)",
           "type": "table",
           "table_kind": "major_holdings",
-          "indicators": ["major_holdings"]
+          "indicators": [
+            "major_holdings"
+          ]
         },
         {
           "title": "종목별 지분 추이",
           "type": "table",
           "table_kind": "stock_trajectory",
-          "indicators": ["holdings_traj"]
+          "indicators": [
+            "holdings_traj"
+          ]
         },
         {
           "title": "기관별 종목 증감 추이",
           "type": "table",
           "table_kind": "inst_holdings",
-          "indicators": ["holdings_traj"]
+          "indicators": [
+            "holdings_traj"
+          ]
         }
       ]
     },
@@ -125,7 +201,9 @@
           "title": "대주주 증여 공시",
           "type": "table",
           "table_kind": "gifts",
-          "indicators": ["gifts"]
+          "indicators": [
+            "gifts"
+          ]
         }
       ]
     },
@@ -137,15 +215,23 @@
       "sections": [
         {
           "title": "인플레이션",
-          "indicators": ["inflation_yoy", "inflation_exp"]
+          "indicators": [
+            "inflation_yoy",
+            "inflation_exp"
+          ]
         },
         {
           "title": "금리 · 커브",
-          "indicators": ["rates_curve"]
+          "indicators": [
+            "rates_curve"
+          ]
         },
         {
           "title": "글로벌 국채 (미·한·일)",
-          "indicators": ["bond_10y", "bond_30y"]
+          "indicators": [
+            "bond_10y",
+            "bond_30y"
+          ]
         }
       ]
     },
@@ -157,11 +243,17 @@
       "sections": [
         {
           "title": "금속",
-          "indicators": ["comm_gold", "comm_silver", "comm_copper"]
+          "indicators": [
+            "comm_gold",
+            "comm_silver",
+            "comm_copper"
+          ]
         },
         {
           "title": "배터리 금속",
-          "indicators": ["comm_lithium"]
+          "indicators": [
+            "comm_lithium"
+          ]
         }
       ]
     }

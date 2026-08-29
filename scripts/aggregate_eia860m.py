@@ -118,6 +118,7 @@ def _load(name: str) -> pd.DataFrame:
 def save(doc: dict) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     doc["updated"] = date.today().isoformat()
+    doc["fetched"] = date.today().isoformat()  # 수집 실행일 (대시보드 stale 판정용)
     doc.setdefault("source", SOURCE)
     doc.setdefault("source_url", SOURCE_URL)
     path = OUT_DIR / f"{doc['id']}.json"
@@ -344,6 +345,114 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
         desc="MWh ÷ MW. 셀 수요는 MW가 아니라 MWh를 따라간다."))
 
 
+# ── 누적 준공 · 순설비 추이 ──────────────────────────────────────
+def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
+    """TTM(12개월 롤링)과 짝을 이루는 누적 계열 두 종류.
+
+    - additions_cumulative: 2015년 이후 준공분을 계속 더해간 것(플로우 누적).
+    - fleet_by_tech: 가동개시 − 은퇴로 복원한 실제 설비 규모(스톡).
+      **Retired 시트가 2002년부터 시작**하므로 2002년 이후 구간은 정확하다
+      (어느 시점 t≥2002에 돌던 발전기는 '지금도 가동중'이거나 't 이후 은퇴'라
+      반드시 둘 중 하나에 잡힌다). 그 이전은 누락분이 있어 출력하지 않는다.
+    """
+    today = date.today().strftime("%Y-%m")
+
+    def monthly(df, ymcol, since=None, until=today):
+        """{기술: {YYYY-MM: MW}} — 해당 월에 발생한 용량."""
+        d = defaultdict(lambda: defaultdict(float))
+        sub = df[df[ymcol].astype(str).str.len().eq(7) & ~df[ymcol].astype(str).str.endswith("-00")]
+        sub = sub[sub[ymcol] <= until]
+        if since:
+            sub = sub[sub[ymcol] >= since]
+        for (ym, g), mw in sub.groupby([ymcol, sub["tech"].map(tech_group)])["mw"].sum().items():
+            d[g][str(ym)] += nz(mw)
+        return d
+
+    def month_range(lo, hi):
+        y, m = int(lo[:4]), int(lo[5:7])
+        ey, em = int(hi[:4]), int(hi[5:7])
+        while (y, m) <= (ey, em):
+            yield f"{y:04d}-{m:02d}"
+            m += 1
+            if m > 12:
+                y, m = y + 1, 1
+
+    def cumulate(d, start=None):
+        """누적은 **매월 값을 채워야** 한다. 변동이 있던 달만 찍으면 계열이 중간에 끊겨,
+        '그 뒤로 데이터가 없다'처럼 보인다(석탄은 은퇴가 멈추면 선이 거기서 끝나버린다)."""
+        end = max((x for pts in d.values() for x in pts), default=None)
+        out = defaultdict(lambda: defaultdict(float))
+        for g, pts in d.items():
+            if not pts:
+                continue
+            lo = start or min(pts)
+            run = sum(v for x, v in pts.items() if x < lo)  # 시작월 이전 잔액을 초기값으로
+            for x in month_range(lo, end):
+                run += pts.get(x, 0.0)
+                out[g][x + "-01"] = run / 1000.0
+        return out
+
+    # 1) 2015년 이후 누적 준공 (TTM 차트와 같은 원천·같은 시작점)
+    save(series_doc(
+        "additions_cumulative", "누적 준공 용량 (2015년 이후 합산)", "GW", "monthly",
+        cumulate(monthly(op, "op_ym", since="2015-01")), default=TECH_DEFAULT,
+        note="이미 은퇴한 설비는 빠져 있다. 다만 2015년 이후 준공분의 은퇴는 아직 드물어 영향은 작다.",
+        desc="12개월 롤링(TTM)이 '요즘 속도'라면, 이건 '그동안 깔린 총량'이다."))
+
+    # 2) 순설비 추이 = 가동개시 누적 − 은퇴 누적
+    ins = monthly(pd.concat([op, rt], ignore_index=True), "op_ym")
+    outs = monthly(rt, "ret_ym")
+    net = defaultdict(lambda: defaultdict(float))
+    for g in set(ins) | set(outs):
+        for x, mw in ins.get(g, {}).items():
+            net[g][x] += mw
+        for x, mw in outs.get(g, {}).items():
+            net[g][x] -= mw
+    save(series_doc(
+        "fleet_by_tech", "가동중 설비 규모 추이 (준공 − 은퇴)", "GW", "monthly",
+        cumulate(net, start="2002-01"),
+        default=["가스 복합", "석탄", "육상풍력", "태양광", "원자력"],
+        note="Retired 시트가 2002년부터라 2002년 이후만 표시한다. 그 구간은 준공·은퇴가 모두 잡혀 정확하다.",
+        desc="각 시점에 실제로 돌고 있던 설비 용량. 마지막 값이 곧 현재 설비 규모다."))
+
+
+# ── 현재 설비 구성표 ─────────────────────────────────────────────
+def build_fleet_table(op: pd.DataFrame):
+    """지금 미국에서 돌고 있는 발전설비를 발전원별로 정리한 스냅샷."""
+    op = op.copy()
+    op["g"] = op["tech"].map(tech_group)
+    op["oy"] = op["op_ym"].astype(str).str[:4]
+    total_mw = op["mw"].sum()
+    valid = op[op["oy"].str.isdigit()]
+
+    rows = []
+    for g, sub in op.groupby("g"):
+        v = valid[valid["g"] == g]
+        vmw = v["mw"].sum()
+        recent = v[v["oy"].astype(int) >= 2020]["mw"].sum()
+        rows.append({
+            "tech": g,
+            "n": int(len(sub)),
+            "gw": round(nz(sub["mw"].sum()) / 1000, 1),
+            "summer_gw": round(nz(sub["mw_summer"].sum()) / 1000, 1),
+            "share": round(nz(sub["mw"].sum()) / total_mw * 100, 1),
+            "avg_year": round((v["oy"].astype(int) * v["mw"]).sum() / vmw, 1) if vmw else None,
+            "recent_share": round(recent / vmw * 100, 1) if vmw else None,
+        })
+    rows.sort(key=lambda r: -r["gw"])
+
+    latest_op = max((x for x in op["op_ym"].astype(str) if len(x) == 7), default="")
+    save({
+        "id": "fleet_table",
+        "name": "현재 가동중 발전설비 구성",
+        "note": f"총 {total_mw/1000:,.1f} GW · {len(op):,}기 (1MW 이상 유틸리티 규모만). "
+                f"'평균 준공'은 용량 가중 평균 연도. 최신 준공 반영: {latest_op}.",
+        "total_gw": round(total_mw / 1000, 1),
+        "total_n": int(len(op)),
+        "rows": rows,
+    })
+
+
 # ── 프로젝트 테이블 ──────────────────────────────────────────────
 def build_table(v: pd.DataFrame, dim: pd.DataFrame, first_cod: dict, first_seen: dict):
     latest = v["vintage"].max()
@@ -404,6 +513,8 @@ def main() -> int:
     v = build_pipeline_series(v)
     first_cod, first_seen = build_flow_series(v, op)
     build_snapshot_series(op, rt, v)
+    build_cumulative_series(op, rt)
+    build_fleet_table(op)
     build_table(v, dim, first_cod, first_seen)
     print("완료.")
     return 0
