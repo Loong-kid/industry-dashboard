@@ -76,6 +76,14 @@ STATUS_LABEL = {
 STATUS_ORDER = ["TS", "V", "U", "T", "L", "P"]
 UNDER_CONSTRUCTION = {"U", "V", "TS"}
 
+# 준공·은퇴 시계열의 시작월.
+#  - 은퇴: Retired 시트가 2002년부터라 **하드 한계**. 그 이전은 데이터 자체가 없다.
+#  - 준공: Operating 시트는 1900년까지 있지만, 이미 은퇴한 설비가 빠져 과거로 갈수록
+#    과소집계된다(가동중만 세면 1970년대는 28%, 2000년대는 3%, 2010년대는 1% 누락).
+#    Retired를 합치면 2000년 이후는 사실상 전수라 여기를 시작점으로 잡는다.
+ADD_SINCE = "2000-01"
+RET_SINCE = "2002-01"
+
 
 def tech_group(t: str) -> str:
     return TECH_GROUP.get(str(t).strip(), "기타")
@@ -89,6 +97,17 @@ def ym_to_idx(ym: str):
     if not (y.isdigit() and m.isdigit()) or m == "00":
         return None
     return int(y) * 12 + int(m)
+
+
+def iter_months(lo: str, hi: str):
+    """'2000-01'~'2026-07'을 한 달씩. 빠진 달을 0으로 메워야 하는 계산에 쓴다."""
+    y, m = int(lo[:4]), int(lo[5:7])
+    ey, em = int(hi[:4]), int(hi[5:7])
+    while (y, m) <= (ey, em):
+        yield f"{y:04d}-{m:02d}"
+        m += 1
+        if m > 12:
+            y, m = y + 1, 1
 
 
 def nz(v, default=0):
@@ -276,26 +295,40 @@ def build_flow_series(v: pd.DataFrame, op: pd.DataFrame):
 def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
     today = date.today().strftime("%Y-%m")
 
-    def ttm_by_month(df, ycol, since="2015-01"):
-        df = df[df[ycol].notna() & (df[ycol] >= since) & (df[ycol] <= today)]
-        d = defaultdict(lambda: defaultdict(float))
-        for (ym, g), mw in df.groupby([ycol, df["tech"].map(tech_group)])["mw"].sum().items():
-            if len(str(ym)) == 7 and str(ym)[5:] != "00":
-                d[g][str(ym) + "-01"] = mw / 1000.0
+    def ttm_by_month(df, ycol, since):
+        """진짜 12개월 이동합.
+
+        예전 구현은 **값이 있는 달만 골라 12개를 더했다.** 태양광처럼 매달 준공이 있으면
+        우연히 맞지만, 원자력·해상풍력처럼 드문 계열에서는 수십 년치가 한 창에 합쳐진다.
+        빠진 달을 0으로 메운 뒤 굴려야 한다.
+        또 창을 `since`보다 앞에서부터 굴려야 첫 표시점이 온전한 12개월 합이 된다."""
+        ym = df[ycol].astype(str)
+        sub = df[ym.str.len().eq(7) & ~ym.str.endswith("-00") & (ym <= today)]
+        raw = defaultdict(lambda: defaultdict(float))
+        for (x, g), mw in sub.groupby([ycol, sub["tech"].map(tech_group)])["mw"].sum().items():
+            raw[g][str(x)] += nz(mw) / 1000.0
+        hi = max((x for pts in raw.values() for x in pts), default=None)
         out = defaultdict(lambda: defaultdict(float))
-        for g, pts in d.items():
-            xs = sorted(pts)
-            for i, x in enumerate(xs):
-                out[g][x] = sum(pts[y] for y in xs[max(0, i - 11):i + 1])
+        for g, pts in raw.items():
+            win = []
+            for x in iter_months(min(min(pts), since), hi):
+                win.append(pts.get(x, 0.0))
+                if len(win) > 12:
+                    win.pop(0)
+                if x >= since:
+                    out[g][x + "-01"] = sum(win)
         return out
 
     save(series_doc(
         "additions_ttm", "실제 준공 용량 (12개월 누적)", "GW", "monthly",
-        ttm_by_month(op, "op_ym"), default=TECH_DEFAULT,
-        desc="가동중 발전기의 상업운전 개시월 기준 집계. 계획이 아니라 실제로 들어온 물량."))
+        ttm_by_month(pd.concat([op, rt], ignore_index=True), "op_ym", ADD_SINCE),
+        default=TECH_DEFAULT,
+        note="이미 은퇴한 설비까지 합산한다(Retired 시트가 2002년부터라 그 이전 은퇴분은 빠짐). "
+             f"{ADD_SINCE[:4]}년 이후 구간은 누락이 3% 미만이다.",
+        desc="상업운전 개시월 기준 실제 준공량. 계획이 아니라 실제로 들어온 물량이다."))
     save(series_doc(
         "retirements_ttm", "은퇴 용량 (12개월 누적)", "GW", "monthly",
-        ttm_by_month(rt, "ret_ym"), default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
+        ttm_by_month(rt, "ret_ym", RET_SINCE), default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
         desc="Retired 시트의 은퇴월 기준. 대체 발전원 수요의 근거."))
 
     # 준공 예정 연도별 전망 (현재 빈티지 기준)
@@ -326,34 +359,42 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
         default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
         desc="가동중 발전기가 신고한 은퇴 예정일. 규제·경제성 변화로 자주 바뀐다."))
 
-    latest_op = max((x for x in op["op_ym"].astype(str) if len(x) == 7), default="")
-    # 배터리: 지속시간(h)과 에너지용량(GWh)은 **단위가 달라 카드를 나눈다**.
-    # 한 카드에 담으면 헤드라인 단위가 'h / GWh'라는 말이 안 되는 표기가 되고,
-    # 2.6과 46.7이 같은 축을 써서 지속시간 선이 바닥에 눌린다.
+    # 배터리는 **월 단위**로 뽑는다. 연 단위로 묶으면 진행중인 마지막 해가 반토막처럼
+    # 보인다(2025년 46.7 GWh → 2026년 24.9 GWh는 7개월치일 뿐이었다).
+    # 원본 op_ym이 월 단위라 연 집계는 순전히 우리 선택이었고, 그럴 이유가 없다.
     b = op[(op["tech"] == "Batteries") & op["mwh"].notna() & (op["mw"] > 0)].copy()
-    b["y"] = b["op_ym"].astype(str).str[:4]
-    dur, cap = {}, {}
-    for y, sub in b[b["y"].str.isdigit()].groupby("y"):
-        if not (2010 <= int(y) <= 2030):
-            continue
-        mw, mwh = sub["mw"].sum(), sub["mwh"].sum()
-        if mw > 0:
-            dur[f"{y}-01-01"] = mwh / mw
-            cap[f"{y}-01-01"] = mwh / 1000.0
-    cum, run = {}, 0.0
-    for x in sorted(cap):
-        run += cap[x]
-        cum[x] = run
+    bym = b["op_ym"].astype(str)
+    b = b[bym.str.len().eq(7) & ~bym.str.endswith("-00") & (bym <= today)]
+    mo_mwh, mo_mw = defaultdict(float), defaultdict(float)
+    for x, sub in b.groupby(b["op_ym"].astype(str)):
+        mo_mwh[x] += nz(sub["mwh"].sum())
+        mo_mw[x] += nz(sub["mw"].sum())
+
+    ttm_gwh, cum_gwh, dur = {}, {}, {}
+    we, wp, run = [], [], 0.0
+    for x in iter_months(min(mo_mwh), max(mo_mwh)):
+        e, w = mo_mwh.get(x, 0.0), mo_mw.get(x, 0.0)
+        we.append(e)
+        wp.append(w)
+        if len(we) > 12:
+            we.pop(0)
+            wp.pop(0)
+        run += e
+        k = x + "-01"
+        ttm_gwh[k] = sum(we) / 1000.0
+        cum_gwh[k] = run / 1000.0
+        if sum(wp) > 0:
+            dur[k] = sum(we) / sum(wp)
     save(series_doc(
-        "battery_duration", "배터리 ESS 평균 지속시간", "시간", "yearly",
-        {"준공 연도별 평균 지속시간": dur},
-        desc="MWh ÷ MW. 그 해 준공된 배터리의 용량가중 평균이다. "
+        "battery_duration", "배터리 ESS 평균 지속시간 (12개월 이동)", "시간", "monthly",
+        {"준공 배터리 평균 지속시간": dur},
+        desc="MWh ÷ MW를 최근 12개월 준공분에 대해 용량가중으로 낸 값. "
              "셀 수요는 출력(MW)이 아니라 여기에 지속시간을 곱한 만큼 늘어난다."))
     save(series_doc(
-        "battery_energy", "배터리 ESS 에너지용량 (GWh)", "GWh", "yearly",
-        {"연간 준공": cap, "누적": cum}, default=["연간 준공", "누적"],
-        note=f"마지막 연도({b['y'].max()})는 {latest_op}까지만 반영된 진행중 값이라 낮게 보인다. "
-             "가동중 배터리의 99.6%(용량 기준)에 MWh가 기입돼 있어 사실상 전수다. "
+        "battery_energy", "배터리 ESS 에너지용량 (GWh)", "GWh", "monthly",
+        {"12개월 누적 준공": ttm_gwh, "누적": cum_gwh},
+        default=["12개월 누적 준공", "누적"],
+        note="가동중 배터리의 99.6%(용량 기준)에 MWh가 기입돼 있어 사실상 전수다. "
              "다만 Planned 시트에는 MWh 컬럼이 아예 없어 계획 물량의 GWh는 알 수 없다.",
         desc="GW(출력)가 아니라 GWh(저장량). 셀·리튬 수요에 직접 연결되는 건 이쪽이다."))
 
@@ -381,15 +422,6 @@ def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
             d[g][str(ym)] += nz(mw)
         return d
 
-    def month_range(lo, hi):
-        y, m = int(lo[:4]), int(lo[5:7])
-        ey, em = int(hi[:4]), int(hi[5:7])
-        while (y, m) <= (ey, em):
-            yield f"{y:04d}-{m:02d}"
-            m += 1
-            if m > 12:
-                y, m = y + 1, 1
-
     def cumulate(d, start=None):
         """누적은 **매월 값을 채워야** 한다. 변동이 있던 달만 찍으면 계열이 중간에 끊겨,
         '그 뒤로 데이터가 없다'처럼 보인다(석탄은 은퇴가 멈추면 선이 거기서 끝나버린다)."""
@@ -400,21 +432,23 @@ def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
                 continue
             lo = start or min(pts)
             run = sum(v for x, v in pts.items() if x < lo)  # 시작월 이전 잔액을 초기값으로
-            for x in month_range(lo, end):
+            for x in iter_months(lo, end):
                 run += pts.get(x, 0.0)
                 out[g][x + "-01"] = run / 1000.0
         return out
 
     # 1) 2015년 이후 누적 준공 (TTM 차트와 같은 원천·같은 시작점)
     save(series_doc(
-        "additions_cumulative", "누적 준공 용량 (2015년 이후 합산)", "GW", "monthly",
-        cumulate(monthly(op, "op_ym", since="2015-01")), default=TECH_DEFAULT,
-        note="이미 은퇴한 설비는 빠져 있다. 다만 2015년 이후 준공분의 은퇴는 아직 드물어 영향은 작다.",
+        "additions_cumulative", f"누적 준공 용량 ({ADD_SINCE[:4]}년 이후 합산)", "GW", "monthly",
+        cumulate(monthly(pd.concat([op, rt], ignore_index=True), "op_ym", since=ADD_SINCE)),
+        default=TECH_DEFAULT,
+        note="이미 은퇴한 설비까지 합산한다(Retired 시트가 2002년부터라 그 이전 은퇴분은 빠짐). "
+             f"{ADD_SINCE[:4]}년 이후 구간은 누락이 3% 미만이다.",
         desc="12개월 롤링(TTM)이 '요즘 속도'라면, 이건 '그동안 깔린 총량'이다."))
 
     save(series_doc(
-        "retirements_cumulative", "누적 은퇴 용량 (2015년 이후 합산)", "GW", "monthly",
-        cumulate(monthly(rt, "ret_ym", since="2015-01")),
+        "retirements_cumulative", f"누적 은퇴 용량 ({RET_SINCE[:4]}년 이후 합산)", "GW", "monthly",
+        cumulate(monthly(rt, "ret_ym", since=RET_SINCE)),
         default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
         desc="은퇴도 TTM은 '요즘 속도'만 보여준다. 그동안 사라진 총량은 이쪽이다."))
 
