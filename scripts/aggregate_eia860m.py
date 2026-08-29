@@ -388,8 +388,11 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
     save(series_doc(
         "battery_duration", "배터리 ESS 평균 지속시간 (12개월 이동)", "시간", "monthly",
         {"준공 배터리 평균 지속시간": dur},
-        desc="MWh ÷ MW를 최근 12개월 준공분에 대해 용량가중으로 낸 값. "
-             "셀 수요는 출력(MW)이 아니라 여기에 지속시간을 곱한 만큼 늘어난다."))
+        note="평균값이라 실제 분포를 가린다. 가동중 물량은 1시간급(MW의 26%)과 "
+             "4시간급(46%)으로 양분돼 있고, 정작 평균에 해당하는 2~3시간급은 얼마 없다.",
+        desc="배터리가 정격 출력으로 몇 시간 버티는지(MWh ÷ MW). 100MW·2.7시간이면 270MWh를 담는다. "
+             "최근 12개월 준공분의 용량가중 평균이다. "
+             "셀·리튬 수요는 출력(MW)이 아니라 여기에 지속시간을 곱한 MWh를 따라간다."))
     save(series_doc(
         "battery_energy", "배터리 ESS 에너지용량 (GWh)", "GWh", "monthly",
         {"12개월 누적 준공": ttm_gwh, "누적": cum_gwh},
