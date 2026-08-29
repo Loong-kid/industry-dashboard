@@ -326,23 +326,36 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
         default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
         desc="가동중 발전기가 신고한 은퇴 예정일. 규제·경제성 변화로 자주 바뀐다."))
 
-    # 배터리 지속시간 (MWh/MW) — Operating에만 MWh가 있다
+    latest_op = max((x for x in op["op_ym"].astype(str) if len(x) == 7), default="")
+    # 배터리: 지속시간(h)과 에너지용량(GWh)은 **단위가 달라 카드를 나눈다**.
+    # 한 카드에 담으면 헤드라인 단위가 'h / GWh'라는 말이 안 되는 표기가 되고,
+    # 2.6과 46.7이 같은 축을 써서 지속시간 선이 바닥에 눌린다.
     b = op[(op["tech"] == "Batteries") & op["mwh"].notna() & (op["mw"] > 0)].copy()
     b["y"] = b["op_ym"].astype(str).str[:4]
     dur, cap = {}, {}
     for y, sub in b[b["y"].str.isdigit()].groupby("y"):
-        if not (2015 <= int(y) <= 2030):
+        if not (2010 <= int(y) <= 2030):
             continue
         mw, mwh = sub["mw"].sum(), sub["mwh"].sum()
         if mw > 0:
             dur[f"{y}-01-01"] = mwh / mw
             cap[f"{y}-01-01"] = mwh / 1000.0
+    cum, run = {}, 0.0
+    for x in sorted(cap):
+        run += cap[x]
+        cum[x] = run
     save(series_doc(
-        "battery_duration", "배터리 ESS 지속시간 · 준공 에너지용량", "h / GWh", "yearly",
-        {"평균 지속시간 (h)": dur, "준공 에너지용량 (GWh)": cap},
-        default=["평균 지속시간 (h)"],
-        note="Planned 시트에는 MWh 컬럼이 없다. 계획 단계 물량의 에너지용량은 알 수 없어 준공분만 집계한다.",
-        desc="MWh ÷ MW. 셀 수요는 MW가 아니라 MWh를 따라간다."))
+        "battery_duration", "배터리 ESS 평균 지속시간", "시간", "yearly",
+        {"준공 연도별 평균 지속시간": dur},
+        desc="MWh ÷ MW. 그 해 준공된 배터리의 용량가중 평균이다. "
+             "셀 수요는 출력(MW)이 아니라 여기에 지속시간을 곱한 만큼 늘어난다."))
+    save(series_doc(
+        "battery_energy", "배터리 ESS 에너지용량 (GWh)", "GWh", "yearly",
+        {"연간 준공": cap, "누적": cum}, default=["연간 준공", "누적"],
+        note=f"마지막 연도({b['y'].max()})는 {latest_op}까지만 반영된 진행중 값이라 낮게 보인다. "
+             "가동중 배터리의 99.6%(용량 기준)에 MWh가 기입돼 있어 사실상 전수다. "
+             "다만 Planned 시트에는 MWh 컬럼이 아예 없어 계획 물량의 GWh는 알 수 없다.",
+        desc="GW(출력)가 아니라 GWh(저장량). 셀·리튬 수요에 직접 연결되는 건 이쪽이다."))
 
 
 # ── 누적 준공 · 순설비 추이 ──────────────────────────────────────
@@ -398,6 +411,12 @@ def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
         cumulate(monthly(op, "op_ym", since="2015-01")), default=TECH_DEFAULT,
         note="이미 은퇴한 설비는 빠져 있다. 다만 2015년 이후 준공분의 은퇴는 아직 드물어 영향은 작다.",
         desc="12개월 롤링(TTM)이 '요즘 속도'라면, 이건 '그동안 깔린 총량'이다."))
+
+    save(series_doc(
+        "retirements_cumulative", "누적 은퇴 용량 (2015년 이후 합산)", "GW", "monthly",
+        cumulate(monthly(rt, "ret_ym", since="2015-01")),
+        default=["석탄", "가스 복합", "가스 단순", "원자력", "석유"],
+        desc="은퇴도 TTM은 '요즘 속도'만 보여준다. 그동안 사라진 총량은 이쪽이다."))
 
     # 2) 순설비 추이 = 가동개시 누적 − 은퇴 누적
     ins = monthly(pd.concat([op, rt], ignore_index=True), "op_ym")
