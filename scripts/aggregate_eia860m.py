@@ -511,9 +511,15 @@ def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
             net[g][x] += mw
         for x, mw in outs.get(g, {}).items():
             net[g][x] -= mw
+    fleet = cumulate(net, start="2002-01")
+    # 합계 계열. 기본 표시에서는 빼둔다 — 1,400GW짜리 선이 켜져 있으면 나머지가 눌린다.
+    tot = defaultdict(float)
+    for pts in fleet.values():
+        for x, gw in pts.items():
+            tot[x] += gw
+    fleet["전체 합계"] = tot
     save(series_doc(
-        "fleet_by_tech", "가동중 설비 규모 추이 (준공 − 은퇴)", "GW", "monthly",
-        cumulate(net, start="2002-01"),
+        "fleet_by_tech", "가동중 설비 규모 추이 (준공 − 은퇴)", "GW", "monthly", fleet,
         default=["가스 복합", "석탄", "육상풍력", "태양광", "원자력"],
         note="Retired 시트가 2002년부터라 2002년 이후만 표시한다. 그 구간은 준공·은퇴가 모두 잡혀 정확하다.",
         desc="각 시점에 실제로 돌고 있던 설비 용량. 마지막 값이 곧 현재 설비 규모다."))
@@ -552,6 +558,103 @@ def build_fleet_table(op: pd.DataFrame):
                 f"'평균 준공'은 용량 가중 평균 연도. 최신 준공 반영: {latest_op}.",
         "total_gw": round(total_mw / 1000, 1),
         "total_n": int(len(op)),
+        "rows": rows,
+    })
+
+
+# ── 전력구역(Balancing Authority) ────────────────────────────────
+# BA = 계통 수급을 실시간으로 맞추는 운영 주체. 시장 단위라 투자 관점의 기본 구획이다.
+# 코드만 보면 뭔지 모르니 주요 BA는 한글 이름을 붙인다(65개 중 상위 10개가 설비의 77%).
+BA_NAME = {
+    "PJM": "PJM (동부 13개주)", "MISO": "MISO (중서부)", "ERCO": "ERCOT (텍사스)",
+    "SWPP": "SPP (중부 평원)", "CISO": "CAISO (캘리포니아)", "SOCO": "Southern (조지아·앨라배마)",
+    "NYIS": "NYISO (뉴욕)", "TVA": "TVA (테네시)", "FPL": "Florida P&L (플로리다)",
+    "ISNE": "ISO-NE (뉴잉글랜드)", "DUK": "Duke (캐롤라이나)", "BPAT": "Bonneville (북서부)",
+    "AZPS": "Arizona PS (애리조나)", "PACE": "PacifiCorp East (유타·와이오밍)",
+    "PACW": "PacifiCorp West (오리건)", "NEVP": "NV Energy (네바다)",
+    "PSCO": "Xcel (콜로라도)", "LDWP": "LA DWP (로스앤젤레스)",
+    "SRP": "Salt River (애리조나)", "IPCO": "Idaho Power (아이다호)",
+    "SCEG": "Dominion SC (사우스캐롤라이나)", "AECI": "Associated Electric (미주리)",
+}
+BA_TOP_N = 10  # 나머지는 '기타'로 묶는다
+
+
+def ba_label(code: str) -> str:
+    c = str(code).strip()
+    return BA_NAME.get(c, c or "미상")
+
+
+def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
+    """전력구역별 파이프라인 추이 + 현황표.
+
+    가동중 설비 대비 파이프라인 비율이 핵심이다. 절대 규모가 커도 파이프라인이
+    얇으면 그 구역은 공급이 못 따라간다는 뜻이고, 그게 용량가격으로 나타난다.
+    """
+    bamap = dim.drop_duplicates(subset=["plant_id", "gen_id"], keep="last") \
+               .set_index(["plant_id", "gen_id"])["ba"].to_dict()
+    v = v.copy()
+    v["ba"] = [str(nz(bamap.get((p, g)), "")).strip()
+               for p, g in zip(v["plant_id"], v["gen_id"])]
+
+    latest = v["vintage"].max()
+    cur = v[v["vintage"] == latest]
+    order = (cur.groupby("ba")["mw"].sum().sort_values(ascending=False).index.tolist())
+    top = [b for b in order if b][:BA_TOP_N]
+
+    def bucket(b):
+        return ba_label(b) if b in top else "기타"
+
+    # 파이프라인 추이 (전체 단계)
+    d = defaultdict(lambda: defaultdict(float))
+    for (x, b), mw in v.groupby([v["vintage"] + "-01", v["ba"].map(bucket)])["mw"].sum().items():
+        d[b][x] = nz(mw) / 1000.0
+    save(series_doc(
+        "pipeline_by_ba", "전력구역별 파이프라인", "GW", "monthly", d,
+        default=[ba_label(b) for b in top[:5]],
+        note=f"상위 {BA_TOP_N}개 구역 외에는 '기타'로 묶었다. 전체 65개 구역 중 상위 10개가 가동중 설비의 77%.",
+        desc="BA(Balancing Authority)는 계통 수급을 실시간으로 맞추는 운영 주체이자 시장 단위다. "
+             "같은 물량이라도 어느 구역에 들어오느냐에 따라 가격 영향이 전혀 다르다."))
+
+    # 현황표: 가동중 / 파이프라인 / 착공 / 증설 비율
+    opb = op.copy()
+    opb["ba"] = opb["ba"].astype(str).str.strip()
+    live = opb.groupby("ba")["mw"].sum() / 1000
+    n_live = opb.groupby("ba")["mw"].size()
+    pipe = cur.groupby("ba")["mw"].sum() / 1000
+    uc = cur[cur["status"].isin(UNDER_CONSTRUCTION)].groupby("ba")["mw"].sum() / 1000
+
+    rows = []
+    for b in sorted(set(live.index) | set(pipe.index)):
+        if not b:
+            continue
+        lv, pp = float(live.get(b, 0)), float(pipe.get(b, 0))
+        if lv < 1 and pp < 1:  # 1GW 미만 소규모 구역은 표에서 생략
+            continue
+        rows.append({
+            "ba": ba_label(b),
+            "code": b,
+            "live_gw": round(lv, 1),
+            "n": int(n_live.get(b, 0)),
+            "pipe_gw": round(pp, 1),
+            "uc_gw": round(float(uc.get(b, 0)), 1),
+            "ratio": round(pp / lv * 100, 1) if lv > 0 else None,
+            "uc_ratio": round(float(uc.get(b, 0)) / lv * 100, 1) if lv > 0 else None,
+        })
+    rows.sort(key=lambda r: -r["live_gw"])
+    save({
+        "id": "ba_table",
+        "name": f"전력구역별 설비 · 파이프라인 ({latest} 발행분)",
+        "note": "'증설 비율'은 파이프라인 ÷ 가동중. 절대 규모가 커도 이 비율이 낮으면 "
+                "공급이 수요를 못 따라간다는 뜻이다. 1GW 미만 구역은 생략.",
+        "cols": [
+            {"key": "ba", "label": "전력구역"},
+            {"key": "live_gw", "label": "가동중(GW)", "align": "right", "fmt": "num"},
+            {"key": "pipe_gw", "label": "파이프라인(GW)", "align": "right", "fmt": "num"},
+            {"key": "uc_gw", "label": "착공(GW)", "align": "right", "fmt": "num"},
+            {"key": "ratio", "label": "증설 비율", "align": "right", "fmt": "pct"},
+            {"key": "uc_ratio", "label": "착공 비율", "align": "right", "fmt": "pct"},
+            {"key": "n", "label": "기수", "align": "right", "fmt": "int"},
+        ],
         "rows": rows,
     })
 
@@ -618,6 +721,7 @@ def main() -> int:
     build_snapshot_series(op, rt, v)
     build_cumulative_series(op, rt)
     build_fleet_table(op)
+    build_ba_series(v, dim, op)
     build_table(v, dim, first_cod, first_seen)
     print("완료.")
     return 0

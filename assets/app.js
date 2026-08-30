@@ -1921,7 +1921,7 @@ function renderPowerFleet(doc) {
     return card;
   }
 
-  const filt = { sortKey: "gw", sortDir: -1 };
+  const filt = { sortKey: null, sortDir: -1 };
 
   const head = document.createElement("div");
   head.className = "card-head";
@@ -1942,7 +1942,8 @@ function renderPowerFleet(doc) {
   tableWrap.className = "order-table-wrap";
   card.appendChild(tableWrap);
 
-  const COLS = [
+  // 지표 JSON이 cols를 주면 그걸 쓴다(전력구역표 등). 없으면 설비 구성표 기본 컬럼.
+  const COLS = doc.cols || [
     { key: "tech", label: "발전원" },
     { key: "gw", label: "용량(GW)", align: "right" },
     { key: "share", label: "비중", align: "right" },
@@ -1951,6 +1952,9 @@ function renderPowerFleet(doc) {
     { key: "avg_year", label: "평균 준공", align: "right" },
     { key: "recent_share", label: "2020년 이후", align: "right" },
   ];
+  const sortDefault = COLS.find((c) => c.align === "right");
+
+  filt.sortKey = sortDefault ? sortDefault.key : null;
 
   const table = document.createElement("table");
   const thead = document.createElement("thead");
@@ -1974,6 +1978,14 @@ function renderPowerFleet(doc) {
 
   // 비중은 막대를 겹쳐 한눈에 크기 비교가 되게 한다(전체 대비 %).
   function cellHtml(r, key) {
+    const col = COLS.find((c) => c.key === key);
+    if (col && col.fmt) {
+      const v = r[key];
+      if (v == null) return "-";
+      if (col.fmt === "int") return Number(v).toLocaleString("ko-KR");
+      if (col.fmt === "pct") return `${Number(v).toFixed(1)}%`;
+      return fmt(v);
+    }
     if (key === "gw") return r.gw == null ? "-" : fmt(r.gw);
     if (key === "summer_gw") return r.summer_gw == null ? "-" : fmt(r.summer_gw);
     if (key === "n") return r.n.toLocaleString("ko-KR");
@@ -2024,7 +2036,8 @@ function renderPowerFleet(doc) {
       });
       tbody.appendChild(tr);
     }
-    tfoot.innerHTML = `<tr><td><b>합계</b></td><td style="text-align:right"><b>${fmt(doc.total_gw)}</b></td>`
+    tfoot.innerHTML = doc.total_gw == null ? "" :
+      `<tr><td><b>합계</b></td><td style="text-align:right"><b>${fmt(doc.total_gw)}</b></td>`
       + `<td style="text-align:right">100%</td><td></td>`
       + `<td style="text-align:right">${doc.total_n.toLocaleString("ko-KR")}</td><td></td><td></td></tr>`;
   }
