@@ -401,6 +401,53 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
              "다만 Planned 시트에는 MWh 컬럼이 아예 없어 계획 물량의 GWh는 알 수 없다.",
         desc="GW(출력)가 아니라 GWh(저장량). 셀·리튬 수요에 직접 연결되는 건 이쪽이다."))
 
+    # 지속시간 구성비 — 평균 하나로는 시장을 못 읽는다. 실제 분포가 양봉이라
+    # (1시간급과 4시간급으로 갈림) 평균값 근처 제품은 거의 없다.
+    # 기당 MW·MWh가 나란히 공시되므로 발전기 단위로 지속시간을 내고 구간에 담는다.
+    DUR_BUCKETS = [(0.75, "1시간 미만"), (1.75, "1시간급"), (2.75, "2시간급"),
+                   (3.75, "3시간급"), (5.0, "4시간급"), (float("inf"), "5시간 이상")]
+
+    def dur_bucket(d):
+        for hi, nm in DUR_BUCKETS:
+            if d < hi:
+                return nm
+        return DUR_BUCKETS[-1][1]
+
+    b["bk"] = (b["mwh"] / b["mw"]).map(dur_bucket)
+    mo_bk = {nm: defaultdict(float) for _, nm in DUR_BUCKETS}
+    for (x, bk), w in b.groupby([b["op_ym"].astype(str), "bk"])["mw"].sum().items():
+        mo_bk[bk][str(x)] += nz(w)
+
+    mix = {nm: {} for _, nm in DUR_BUCKETS}
+    share = {nm: {} for _, nm in DUR_BUCKETS}
+    wins = {nm: [] for _, nm in DUR_BUCKETS}
+    for x in iter_months(min(mo_mwh), max(mo_mwh)):
+        for nm in wins:
+            wins[nm].append(mo_bk[nm].get(x, 0.0))
+            if len(wins[nm]) > 12:
+                wins[nm].pop(0)
+        k = x + "-01"
+        tot = sum(sum(w) for w in wins.values())
+        for nm in wins:
+            mix[nm][k] = sum(wins[nm]) / 1000.0
+            # 비중은 물량이 너무 적으면 한 프로젝트로 100%가 튄다 → 200MW 미만 구간은 생략
+            if tot >= 200:
+                share[nm][k] = sum(wins[nm]) / tot * 100
+    save(series_doc(
+        "battery_duration_mix", "지속시간대별 준공 물량 (12개월 누적)", "GW", "monthly", mix,
+        default=["1시간급", "2시간급", "4시간급"],
+        desc="같은 GW라도 4시간급은 1시간급보다 셀이 4배 든다. 물량이 어느 구간에 쌓이는지가 "
+             "셀·리튬 수요를 좌우한다."))
+    save(series_doc(
+        "battery_duration_share", "지속시간대별 비중 (12개월 누적 MW 기준)", "%", "monthly", share,
+        default=["1시간급", "2시간급", "4시간급"],
+        note="합이 100%다. 물량이 적던 초기 구간(12개월 누적 200MW 미만)은 한 프로젝트로 "
+             "비중이 튀어서 생략했다.",
+        desc="'ESS가 4시간으로 길어진다'는 통설을 직접 검증하는 지표. 실제로는 반대다 — "
+             "4시간급 비중은 2021년 중반 70%까지 갔다가 40% 초반으로 내려왔고, "
+             "그 자리를 2시간급이 메우고 있다."))
+
+
 
 # ── 누적 준공 · 순설비 추이 ──────────────────────────────────────
 def build_cumulative_series(op: pd.DataFrame, rt: pd.DataFrame):
