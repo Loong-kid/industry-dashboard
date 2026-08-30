@@ -419,17 +419,21 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
         mo_bk[bk][str(x)] += nz(w)
 
     mix = {nm: {} for _, nm in DUR_BUCKETS}
+    mix_cum = {nm: {} for _, nm in DUR_BUCKETS}
     share = {nm: {} for _, nm in DUR_BUCKETS}
     wins = {nm: [] for _, nm in DUR_BUCKETS}
+    runs = {nm: 0.0 for _, nm in DUR_BUCKETS}
     for x in iter_months(min(mo_mwh), max(mo_mwh)):
         for nm in wins:
             wins[nm].append(mo_bk[nm].get(x, 0.0))
             if len(wins[nm]) > 12:
                 wins[nm].pop(0)
+            runs[nm] += mo_bk[nm].get(x, 0.0)
         k = x + "-01"
         tot = sum(sum(w) for w in wins.values())
         for nm in wins:
             mix[nm][k] = sum(wins[nm]) / 1000.0
+            mix_cum[nm][k] = runs[nm] / 1000.0
             # 비중은 물량이 너무 적으면 한 프로젝트로 100%가 튄다 → 200MW 미만 구간은 생략
             if tot >= 200:
                 share[nm][k] = sum(wins[nm]) / tot * 100
@@ -438,6 +442,11 @@ def build_snapshot_series(op: pd.DataFrame, rt: pd.DataFrame, v: pd.DataFrame):
         default=["1시간급", "2시간급", "4시간급"],
         desc="같은 GW라도 4시간급은 1시간급보다 셀이 4배 든다. 물량이 어느 구간에 쌓이는지가 "
              "셀·리튬 수요를 좌우한다."))
+    save(series_doc(
+        "battery_duration_mix_cum", "지속시간대별 누적 준공 물량", "GW", "monthly", mix_cum,
+        default=["1시간급", "2시간급", "4시간급"],
+        desc="12개월 누적이 '요즘 어느 구간을 짓느냐'라면, 이건 '그동안 쌓인 구간별 총량'이다. "
+             "마지막 값의 합이 곧 현재 가동중 배터리 53GW다."))
     save(series_doc(
         "battery_duration_share", "지속시간대별 비중 (12개월 누적 MW 기준)", "%", "monthly", share,
         default=["1시간급", "2시간급", "4시간급"],
@@ -659,6 +668,101 @@ def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
     })
 
 
+BA_DETAIL_N = 20  # 상세를 제공할 구역 수 (가동중 용량 상위)
+
+
+def build_ba_detail(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame, rt: pd.DataFrame):
+    """구역 하나를 골라 그 안의 발전원 구성을 보는 뷰.
+
+    파일 하나에 전 구역을 담으므로 해상도를 아낀다 — 파이프라인은 발행월 단위(67개월)로
+    두고, 느리게 움직이는 설비·누적 계열은 **연 단위**로 낮춘다. 월 단위로 다 담으면
+    3MB가 넘어가는데 그만큼의 정보가 더 있지도 않다.
+    """
+    bamap = dim.drop_duplicates(subset=["plant_id", "gen_id"], keep="last") \
+               .set_index(["plant_id", "gen_id"])["ba"].to_dict()
+    v = v.copy()
+    v["ba"] = [str(nz(bamap.get((p, g)), "")).strip() for p, g in zip(v["plant_id"], v["gen_id"])]
+    for df in (op, rt):
+        df["ba"] = df["ba"].astype(str).str.strip()
+
+    live = op.groupby("ba")["mw"].sum().sort_values(ascending=False)
+    tops = [b for b in live.index if b and b != "nan"][:BA_DETAIL_N]
+    built = pd.concat([op, rt], ignore_index=True)
+    today = date.today().strftime("%Y-%m")
+
+    def yearly_cum(df, ymcol, since, sign=1, base=None):
+        """연말 기준 누적. base가 있으면 거기서 이어 더한다(설비 규모용)."""
+        ym = df[ymcol].astype(str)
+        sub = df[ym.str.len().eq(7) & ~ym.str.endswith("-00") & (ym <= today)]
+        per = defaultdict(lambda: defaultdict(float))
+        for (x, g), mw in sub.groupby([ymcol, sub["tech"].map(tech_group)])["mw"].sum().items():
+            if str(x) >= since:
+                per[g][str(x)[:4]] += nz(mw) * sign / 1000.0
+        out = {}
+        y0, y1 = int(since[:4]), int(today[:4])
+        # base에만 있는 기술(2002년 이전에만 지어진 것 — 예: PJM 원자력)을 빠뜨리면
+        # 그 잔액이 통째로 사라진다. 반드시 합집합으로 돌 것.
+        for g in set(per) | set(base or {}):
+            pts = per.get(g, {})
+            run = float(base.get(g, 0.0)) if base else 0.0
+            ser = []
+            for y in range(y0, y1 + 1):
+                run += pts.get(str(y), 0.0)
+                ser.append([f"{y}-01-01", round(run, 2)])
+            out[g] = ser
+        return out
+
+    data, bas = {}, []
+    for b in tops:
+        vb, ob, rb, bb = (v[v["ba"] == b], op[op["ba"] == b],
+                          rt[rt["ba"] == b], built[built["ba"] == b])
+
+        # 파이프라인 (발행월 단위)
+        pipe = defaultdict(list)
+        tmp = defaultdict(lambda: defaultdict(float))
+        for (x, g), mw in vb.groupby([vb["vintage"] + "-01", vb["tech"].map(tech_group)])["mw"].sum().items():
+            tmp[g][x] = nz(mw) / 1000.0
+        for g, pts in tmp.items():
+            pipe[g] = [[x, round(val, 2)] for x, val in sorted(pts.items())]
+
+        # 설비 규모 = 2002년 이전 잔액 + 이후 (준공 − 은퇴)
+        pre = defaultdict(float)
+        pym = bb["op_ym"].astype(str)
+        for g, mw in bb[pym.str.len().eq(7) & (pym < "2002-01")].groupby(
+                bb["tech"].map(tech_group))["mw"].sum().items():
+            pre[g] += nz(mw) / 1000.0
+        fleet = yearly_cum(bb, "op_ym", "2002-01", base=pre)
+        for g, ser in yearly_cum(rb, "ret_ym", "2002-01", sign=-1).items():
+            if g in fleet:
+                fleet[g] = [[x, round(a[1] + c[1], 2)] for x, a, c in
+                            zip([p[0] for p in fleet[g]], fleet[g], ser)]
+
+        entry = {
+            "pipe": {g: s for g, s in pipe.items() if any(p[1] for p in s)},
+            "fleet": {g: s for g, s in fleet.items() if any(p[1] for p in s)},
+            "add": yearly_cum(bb, "op_ym", ADD_SINCE),
+            "ret": yearly_cum(rb, "ret_ym", RET_SINCE),
+        }
+        entry = {k: {g: s for g, s in vv.items() if any(p[1] for p in s)} for k, vv in entry.items()}
+        data[b] = entry
+        bas.append({"code": b, "label": ba_label(b), "live_gw": round(float(live[b]) / 1000, 1)})
+
+    save({
+        "id": "ba_detail",
+        "name": "전력구역별 발전원 구성",
+        "note": f"가동중 용량 상위 {BA_DETAIL_N}개 구역. 파이프라인은 발행월 단위, "
+                "나머지는 연 단위(연말 기준 누적)로 낮춰 담았다.",
+        "metrics": [
+            {"key": "pipe", "label": "파이프라인 (계획+착공)", "unit": "GW"},
+            {"key": "fleet", "label": "가동중 설비 규모", "unit": "GW"},
+            {"key": "add", "label": f"누적 준공 ({ADD_SINCE[:4]}년~)", "unit": "GW"},
+            {"key": "ret", "label": f"누적 은퇴 ({RET_SINCE[:4]}년~)", "unit": "GW"},
+        ],
+        "bas": bas,
+        "data": data,
+    })
+
+
 # ── 프로젝트 테이블 ──────────────────────────────────────────────
 def build_table(v: pd.DataFrame, dim: pd.DataFrame, first_cod: dict, first_seen: dict):
     latest = v["vintage"].max()
@@ -722,6 +826,7 @@ def main() -> int:
     build_cumulative_series(op, rt)
     build_fleet_table(op)
     build_ba_series(v, dim, op)
+    build_ba_detail(v, dim, op, rt)
     build_table(v, dim, first_cod, first_seen)
     print("완료.")
     return 0

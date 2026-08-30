@@ -154,6 +154,7 @@ async function renderIndustry() {
         : section.table_kind === "inst_holdings" ? renderInstHoldings
         : section.table_kind === "power_pipeline" ? renderPowerPipeline
         : section.table_kind === "power_fleet" ? renderPowerFleet
+        : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
@@ -2043,6 +2044,106 @@ function renderPowerFleet(doc) {
   }
 
   renderRows();
+  return card;
+}
+
+// ── 전력: 구역 하나를 골라 그 안의 발전원 구성 보기 ──────────────
+// 구역 선택 하나로 파이프라인·가동중·누적준공·누적은퇴 4개 차트를 동시에 갈아끼운다.
+// (기관수급 탭의 종목 선택 뷰와 같은 패턴 — drawChart/buildChips 재사용)
+function renderBADetail(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card";
+
+  if (!doc || !doc.bas || doc.bas.length === 0) {
+    card.innerHTML = `<div class="card-name">${doc?.name || "전력구역별 발전원 구성"}</div>
+      <div class="card-empty">아직 데이터가 없습니다.<br>
+      <code>scripts/aggregate_eia860m.py</code> 실행 후 표시됩니다.</div>`;
+    return card;
+  }
+
+  const head = document.createElement("div");
+  head.className = "card-head";
+  head.innerHTML = `<div class="order-head-left">
+      <span class="card-name">${doc.name}</span>
+      <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
+    </div>`;
+  card.appendChild(head);
+
+  const picker = document.createElement("div");
+  picker.className = "order-filters";
+  const sel = document.createElement("select");
+  sel.style.cssText = "padding:5px 8px;font-size:13px;border-radius:6px;"
+    + "border:1px solid var(--baseline);background:var(--card);color:var(--ink);min-width:260px";
+  doc.bas.forEach((b) => {
+    const o = document.createElement("option");
+    o.value = b.code;
+    o.textContent = `${b.label} — ${b.live_gw.toLocaleString("ko-KR")} GW`;
+    sel.appendChild(o);
+  });
+  picker.appendChild(sel);
+  card.appendChild(picker);
+
+  if (doc.note) {
+    const n = document.createElement("div");
+    n.className = "order-count";
+    n.textContent = doc.note;
+    card.appendChild(n);
+  }
+
+  // 4개 차트 그리드
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  grid.style.marginTop = "4px";
+  card.appendChild(grid);
+
+  const panes = doc.metrics.map((m) => {
+    const box = document.createElement("div");
+    box.className = "card";
+    const title = document.createElement("div");
+    title.className = "card-name";
+    title.textContent = m.label;
+    const stat = document.createElement("div");
+    stat.className = "card-stat";
+    const wrap = document.createElement("div");
+    wrap.className = "chart-wrap";
+    const canvas = document.createElement("canvas");
+    wrap.appendChild(canvas);
+    const chips = document.createElement("div");
+    box.append(title, stat, wrap, chips);
+    grid.appendChild(box);
+    return { m, canvas, chips, stat, chart: null };
+  });
+
+  function show(code) {
+    const entry = doc.data[code];
+    if (!entry) return;
+    panes.forEach((p) => {
+      const series = entry[p.m.key] || {};
+      const names = Object.keys(series);
+      if (p.chart) p.chart.destroy();
+      p.chips.innerHTML = "";
+      if (names.length === 0) {
+        p.stat.innerHTML = `<span class="stat-unit">해당 없음</span>`;
+        return;
+      }
+      // 최신값 큰 순으로 정렬하고 상위 6개만 기본 표시(칩으로 나머지 토글)
+      const ranked = names.slice().sort((a, b) =>
+        series[b][series[b].length - 1][1] - series[a][series[a].length - 1][1]);
+      const total = ranked.reduce((s, n) => s + series[n][series[n].length - 1][1], 0);
+      p.stat.innerHTML = `<span class="stat-value">${fmt(total)}</span>`
+        + `<span class="stat-unit">${p.m.unit} 합계</span>`;
+      const pseudo = {
+        name: p.m.label, unit: p.m.unit,
+        default_series: ranked.slice(0, 6),
+        series: Object.fromEntries(ranked.map((n) => [n, series[n]])),
+      };
+      p.chart = drawChart(p.canvas, pseudo, pseudo.series);
+      buildChips(p.chips, p.chart);
+    });
+  }
+
+  sel.addEventListener("change", () => show(sel.value));
+  show(doc.bas[0].code);
   return card;
 }
 

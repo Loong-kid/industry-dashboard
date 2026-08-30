@@ -144,6 +144,7 @@
             "battery_energy",
             "battery_duration",
             "battery_duration_mix",
+            "battery_duration_mix_cum",
             "battery_duration_share"
           ]
         },
@@ -159,6 +160,14 @@
           "table_kind": "power_fleet",
           "indicators": [
             "ba_table"
+          ]
+        },
+        {
+          "title": "구역별 발전원 구성 (구역 선택)",
+          "type": "table",
+          "table_kind": "ba_detail",
+          "indicators": [
+            "ba_detail"
           ]
         },
         {
