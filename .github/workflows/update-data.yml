@@ -93,6 +93,15 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_eia860m.py
 
+      # 전력 수요: EIA-930. API 키 불필요(공개 벌크 CSV).
+      # 과거 반기 파일은 고정이라 CI는 **현재 반기 파일만** 다시 받는다(약 48MB).
+      - name: EIA-930 전력 수요 수집
+        continue-on-error: true
+        run: python scripts/fetch_eia930.py
+      - name: EIA-930 집계
+        continue-on-error: true
+        run: python scripts/aggregate_eia930.py
+
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"

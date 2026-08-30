@@ -593,6 +593,42 @@ def ba_label(code: str) -> str:
     return BA_NAME.get(c, c or "미상")
 
 
+def load_demand_930():
+    """EIA-930 월별 저장소에서 구역별 수요(TTM TWh)와 증가율(YoY %)을 뽑는다.
+    930이 아직 없으면 None — 860M만으로도 대시보드는 그대로 돌아가야 한다."""
+    p = ROOT / "data" / "_eia930" / "monthly.csv.gz"
+    if not p.exists():
+        return None
+    df = pd.read_csv(p, dtype={"ba": str, "month": str})
+    df = df[df["hours"] >= 600]          # 부분월 제외
+    if df.empty:
+        return None
+    out = {}
+    for b, sub in df.groupby("ba"):
+        s = sub.set_index("month")["demand_mwh"].to_dict()
+        months = sorted(s)
+        if len(months) < 24:
+            continue
+        last = months[-1]
+
+        def ttm_at(end):
+            i = months.index(end)
+            win = months[max(0, i - 11):i + 1]
+            return sum(s[m] for m in win) / 1e6 if len(win) == 12 else None
+
+        cur = ttm_at(last)
+        prev_key = f"{int(last[:4])-1}{last[4:]}"
+        prev = ttm_at(prev_key) if prev_key in months else None
+        if cur is None:
+            continue
+        out[b] = {
+            "demand_twh": round(cur, 1),
+            "demand_yoy": round((cur / prev - 1) * 100, 1) if prev else None,
+            "asof": last,
+        }
+    return out or None
+
+
 def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
     """전력구역별 파이프라인 추이 + 현황표.
 
@@ -632,6 +668,7 @@ def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
     pipe = cur.groupby("ba")["mw"].sum() / 1000
     uc = cur[cur["status"].isin(UNDER_CONSTRUCTION)].groupby("ba")["mw"].sum() / 1000
 
+    demand = load_demand_930()
     rows = []
     for b in sorted(set(live.index) | set(pipe.index)):
         if not b:
@@ -639,7 +676,7 @@ def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
         lv, pp = float(live.get(b, 0)), float(pipe.get(b, 0))
         if lv < 1 and pp < 1:  # 1GW 미만 소규모 구역은 표에서 생략
             continue
-        rows.append({
+        row = {
             "ba": ba_label(b),
             "code": b,
             "live_gw": round(lv, 1),
@@ -648,19 +685,26 @@ def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
             "uc_gw": round(float(uc.get(b, 0)), 1),
             "ratio": round(pp / lv * 100, 1) if lv > 0 else None,
             "uc_ratio": round(float(uc.get(b, 0)) / lv * 100, 1) if lv > 0 else None,
-        })
+        }
+        if demand and b in demand:
+            row["demand_twh"] = demand[b]["demand_twh"]
+            row["demand_yoy"] = demand[b]["demand_yoy"]
+        rows.append(row)
     rows.sort(key=lambda r: -r["live_gw"])
     save({
         "id": "ba_table",
         "name": f"전력구역별 설비 · 파이프라인 ({latest} 발행분)",
-        "note": "'증설 비율'은 파이프라인 ÷ 가동중. 절대 규모가 커도 이 비율이 낮으면 "
-                "공급이 수요를 못 따라간다는 뜻이다. 1GW 미만 구역은 생략.",
+        "note": "'증설 비율'은 파이프라인 ÷ 가동중. 수요(EIA-930, 12개월 누적)와 그 증가율을 "
+                "나란히 놓고 본다 — 수요는 느는데 증설 비율이 낮은 구역이 곧 가격이 튀는 구역이다. "
+                "1GW 미만 구역은 생략.",
         "cols": [
             {"key": "ba", "label": "전력구역"},
             {"key": "live_gw", "label": "가동중(GW)", "align": "right", "fmt": "num"},
             {"key": "pipe_gw", "label": "파이프라인(GW)", "align": "right", "fmt": "num"},
             {"key": "uc_gw", "label": "착공(GW)", "align": "right", "fmt": "num"},
             {"key": "ratio", "label": "증설 비율", "align": "right", "fmt": "pct"},
+            {"key": "demand_twh", "label": "수요(TWh)", "align": "right", "fmt": "num"},
+            {"key": "demand_yoy", "label": "수요 증가율", "align": "right", "fmt": "pct"},
             {"key": "uc_ratio", "label": "착공 비율", "align": "right", "fmt": "pct"},
             {"key": "n", "label": "기수", "align": "right", "fmt": "int"},
         ],
@@ -669,6 +713,48 @@ def build_ba_series(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame):
 
 
 BA_DETAIL_N = 20  # 상세를 제공할 구역 수 (가동중 용량 상위)
+
+
+def load_930_series():
+    """구역별 (수요 TTM, 발전원별 TTM)을 돌려준다. 930이 없으면 None."""
+    p = ROOT / "data" / "_eia930" / "monthly.csv.gz"
+    if not p.exists():
+        return None
+    df = pd.read_csv(p, dtype={"ba": str, "month": str})
+    df = df[df["hours"] >= 600]
+    if df.empty:
+        return None
+    gencols = [c for c in df.columns if c.startswith("gen::")]
+
+    def ttm(seq):
+        """12개월이 다 찬 구간만. 결측을 0으로 메우면 신설 구역이 낮게 나온다."""
+        out, win, keys = {}, [], sorted(seq)
+        if not keys:
+            return out
+        for x in iter_months(keys[0], keys[-1]):
+            win.append(seq.get(x))
+            if len(win) > 12:
+                win.pop(0)
+            # pandas 결측은 None이 아니라 float NaN이라 is-not-None을 통과한다(v == v로 걸러야 함)
+            if len(win) == 12 and all(v is not None and v == v for v in win):
+                out[x + "-01"] = sum(win) / 1e6
+        return out
+
+    res = {}
+    for b, sub in df.groupby("ba"):
+        d = ttm(sub.set_index("month")["demand_mwh"].to_dict())
+        if not d:
+            continue
+        gen = {}
+        for c in gencols:
+            g = ttm(sub.set_index("month")[c].to_dict())
+            if g and any(v > 0.05 for v in g.values()):
+                gen[c.split("::", 1)[1]] = g
+        res[b] = {
+            "dem": {"수요": [[x, round(v, 1)] for x, v in sorted(d.items())]},
+            "gen": {k: [[x, round(v, 1)] for x, v in sorted(vv.items())] for k, vv in gen.items()},
+        }
+    return res or None
 
 
 def build_ba_detail(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame, rt: pd.DataFrame):
@@ -712,6 +798,7 @@ def build_ba_detail(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame, rt: pd
             out[g] = ser
         return out
 
+    dem930 = load_930_series()
     data, bas = {}, []
     for b in tops:
         vb, ob, rb, bb = (v[v["ba"] == b], op[op["ba"] == b],
@@ -744,19 +831,24 @@ def build_ba_detail(v: pd.DataFrame, dim: pd.DataFrame, op: pd.DataFrame, rt: pd
             "ret": yearly_cum(rb, "ret_ym", RET_SINCE),
         }
         entry = {k: {g: s for g, s in vv.items() if any(p[1] for p in s)} for k, vv in entry.items()}
+        if dem930 and b in dem930:      # 수요·실제 발전량 (EIA-930)
+            entry["dem"] = dem930[b]["dem"]
+            entry["gen"] = dem930[b]["gen"]
         data[b] = entry
         bas.append({"code": b, "label": ba_label(b), "live_gw": round(float(live[b]) / 1000, 1)})
 
     save({
         "id": "ba_detail",
         "name": "전력구역별 발전원 구성",
-        "note": f"가동중 용량 상위 {BA_DETAIL_N}개 구역. 파이프라인은 발행월 단위, "
-                "나머지는 연 단위(연말 기준 누적)로 낮춰 담았다.",
+        "note": f"가동중 용량 상위 {BA_DETAIL_N}개 구역. 설비는 GW(용량), 수요·발전량은 "
+                "TWh(전력량)라 축이 다르다. 파이프라인은 발행월 단위, 설비·누적은 연 단위.",
         "metrics": [
             {"key": "pipe", "label": "파이프라인 (계획+착공)", "unit": "GW"},
             {"key": "fleet", "label": "가동중 설비 규모", "unit": "GW"},
             {"key": "add", "label": f"누적 준공 ({ADD_SINCE[:4]}년~)", "unit": "GW"},
             {"key": "ret", "label": f"누적 은퇴 ({RET_SINCE[:4]}년~)", "unit": "GW"},
+            {"key": "dem", "label": "전력 수요 (12개월 누적)", "unit": "TWh"},
+            {"key": "gen", "label": "실제 발전량 (12개월 누적)", "unit": "TWh"},
         ],
         "bas": bas,
         "data": data,
