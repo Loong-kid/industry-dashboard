@@ -20,6 +20,9 @@
 | 파일 | 어디서 보고 적나 |
 |---|---|
 | `cnpi.csv` | https://cnpi.org.cn/english/ (매월 30일 발표, 월 1회) |
+| `snstech.csv` | 에스앤에스텍 분기보고서(DART) 매출 구성 - 매출/내수/수출, ₩백만. 분기말 날짜로 한 줄씩 |
+
+> `snstech.csv`는 `manifest.json`을 거치지 않는다. `scripts/aggregate_snstech.py`가 CSV를 직접 읽어 관세청 전국 수출액과 비교 카드를 만든다.
 
 새 지표를 추가하려면: CSV 파일 생성 → `manifest.json`에 항목 추가 →
 `data/catalog.json`의 해당 산업 섹션에 id 추가.

@@ -338,7 +338,7 @@ function renderCard(doc, indicatorId) {
   const sd = staleDays(doc);
   head.innerHTML = `
     <div class="card-name">${doc.name}</div>
-    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${
+    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${
       sd ? `<span class="stale-badge" title="마지막 수집: ${doc.fetched}">수집 ${sd}일 전</span>` : ""
     }</div>`;
   card.appendChild(head);

@@ -54,6 +54,11 @@ jobs:
           CUSTOMS_API_KEY: ${{ secrets.CUSTOMS_API_KEY }}
         run: python scripts/fetch_customs.py
 
+      # 에스앤에스텍 분기 실적(수기입력 CSV) x 전국 블랭크마스크 수출 비교. 키 불필요.
+      - name: 에스앤에스텍 비교 집계
+        continue-on-error: true
+        run: python scripts/aggregate_snstech.py
+
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true
