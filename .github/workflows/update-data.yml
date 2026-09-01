@@ -47,6 +47,13 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_commodities.py
 
+      # 반도체 소부장 무역 (관세청 품목별 국가별 수출입실적). 매월 15일경 전월분 확정.
+      - name: 관세청 무역통계 수집
+        continue-on-error: true
+        env:
+          CUSTOMS_API_KEY: ${{ secrets.CUSTOMS_API_KEY }}
+        run: python scripts/fetch_customs.py
+
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true

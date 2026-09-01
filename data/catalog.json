@@ -292,6 +292,42 @@
           ]
         }
       ]
+    },
+    {
+      "id": "semicon",
+      "name": "반도체 소부장",
+      "icon": "🔬",
+      "default_range": "3y",
+      "sections": [
+        {
+          "title": "종합",
+          "indicators": [
+            "semicon_import_ttm",
+            "semicon_unit_price"
+          ]
+        },
+        {
+          "title": "블랭크마스크 · 반도체용 (HS 3701991000)",
+          "indicators": [
+            "blank_semi_trade",
+            "blank_semi_origin"
+          ]
+        },
+        {
+          "title": "블랭크마스크 · 디스플레이용 (HS 3701304000)",
+          "indicators": [
+            "blank_disp_trade",
+            "blank_disp_origin"
+          ]
+        },
+        {
+          "title": "정전척 ESC (HS 8486902030)",
+          "indicators": [
+            "esc_trade",
+            "esc_origin"
+          ]
+        }
+      ]
     }
   ]
 }

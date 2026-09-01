@@ -13,6 +13,7 @@ const REFRESH_TARGETS = {
   shipbuilding: { file: "data/shipbuilding/korea_orders.json", label: "수주 갱신" },
   institution: { file: "data/institution/major_holdings.json", label: "수급 갱신" },
   gifts: { file: "data/gifts/gifts.json", label: "증여 갱신" },
+  semicon: { file: "data/semicon/semicon_import_ttm.json", label: "무역통계 갱신" },
 };
 const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
 function currentTarget() {
