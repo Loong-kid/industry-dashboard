@@ -300,31 +300,43 @@
       "default_range": "3y",
       "sections": [
         {
-          "title": "종합",
+          "title": "블랭크마스크 종합",
           "indicators": [
-            "semicon_import_ttm",
-            "semicon_unit_price"
+            "blank_export_compare",
+            "blank_import_compare"
           ]
         },
         {
           "title": "블랭크마스크 · 반도체용 (HS 3701991000)",
           "indicators": [
-            "blank_semi_trade",
-            "blank_semi_origin"
+            "blank_semi_amount",
+            "blank_semi_weight",
+            "blank_semi_price",
+            "blank_semi_exp_country",
+            "blank_semi_exp_price",
+            "blank_semi_imp_country"
           ]
         },
         {
-          "title": "블랭크마스크 · 디스플레이용 (HS 3701304000)",
+          "title": "블랭크마스크 · 디스플레이용 (HS 3701304000 · ~2021 3701309930)",
           "indicators": [
-            "blank_disp_trade",
-            "blank_disp_origin"
+            "blank_disp_amount",
+            "blank_disp_weight",
+            "blank_disp_price",
+            "blank_disp_exp_country",
+            "blank_disp_exp_price",
+            "blank_disp_imp_country"
           ]
         },
         {
           "title": "정전척 ESC (HS 8486902030)",
           "indicators": [
-            "esc_trade",
-            "esc_origin"
+            "esc_amount",
+            "esc_weight",
+            "esc_price",
+            "esc_exp_country",
+            "esc_exp_price",
+            "esc_imp_country"
           ]
         }
       ]
