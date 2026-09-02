@@ -29,6 +29,7 @@ SEMI_DIR = ROOT / "data" / "semicon"
 CSV_PATH = ROOT / "manual" / "snstech.csv"
 YH = "https://query1.finance.yahoo.com/v8/finance/chart/KRW=X"
 NATIONAL = ["blank_semi_amount", "blank_disp_amount"]  # 반도체용 + 디스플레이용
+DAEGU = "daegu_blank_export"  # 대구 시도별(HS6) — 에스앤에스텍 소재지
 SOURCE = "관세청 수출입무역통계 · DART 공시(수기입력) · Yahoo Finance"
 SOURCE_URL = "https://www.data.go.kr/data/15100475/openapi.do"
 
@@ -66,6 +67,16 @@ def load_national():
         for m, v in doc["series"]["수출액"]:
             monthly[m] = monthly.get(m, 0.0) + v
     return monthly
+
+
+def load_daegu():
+    """{월: 수출액 백만$} — 대구 시도별 HS6 합계. 없으면 빈 dict."""
+    p = SEMI_DIR / f"{DAEGU}.json"
+    if not p.exists():
+        print(f"  {p.name} 없음 — 대구 계열 생략")
+        return {}
+    doc = json.loads(p.read_text(encoding="utf-8"))
+    return {m: v for m, v in doc["series"]["합계"]}
 
 
 def fetch_fx(session):
@@ -126,7 +137,9 @@ def run():
     sns = load_snstech()
     session = requests.Session()
     session.headers["User-Agent"] = "Mozilla/5.0"
-    nat = national_quarterly(load_national(), fetch_fx(session))
+    fx = fetch_fx(session)
+    nat = national_quarterly(load_national(), fx)
+    dae = national_quarterly(load_daegu(), fx)
 
     # 1) 에스앤에스텍 실적
     series = {}
@@ -147,31 +160,47 @@ def run():
         return
     a = [sns[d]["수출"] for d in common]
     b = [nat[d] for d in common]
-    save("snstech_vs_national", "에스앤에스텍 수출 vs 전국 블랭크마스크 수출", "₩백만", {
+    dcom = [d for d in common if d in dae]
+    corr_dae = pearson([sns[d]["수출"] for d in dcom], [dae[d] for d in dcom]) if dcom else None
+
+    series = {
         "에스앤에스텍 수출": [[d, sns[d]["수출"]] for d in common],
         "전국 블랭크마스크 수출": [[d, nat[d]] for d in common],
-        "차이(전국-회사)": [[d, round(nat[d] - sns[d]["수출"], 1)] for d in common],
-    }, ["에스앤에스텍 수출", "전국 블랭크마스크 수출"], common[-1],
-        f"전국 = 반도체용(HS 3701991000) + 디스플레이용(3701304000) 수출액을 월평균 원달러로 "
-        f"환산해 합산. 상관계수 r={pearson(a, b)} (n={len(common)}분기). "
-        f"3개월이 다 채워진 분기만 표시")
+    }
+    default = ["에스앤에스텍 수출", "전국 블랭크마스크 수출"]
+    if dcom:
+        series["대구 블랭크마스크 수출"] = [[d, dae[d]] for d in dcom]
+        series["차이(대구-회사)"] = [[d, round(dae[d] - sns[d]["수출"], 1)] for d in dcom]
+        default = ["에스앤에스텍 수출", "대구 블랭크마스크 수출"]
+    series["차이(전국-회사)"] = [[d, round(nat[d] - sns[d]["수출"], 1)] for d in common]
+    save("snstech_vs_national", "에스앤에스텍 수출 vs 블랭크마스크 수출 (전국·대구)", "₩백만",
+         series, default, common[-1],
+         f"전국 = 반도체용(HS 3701991000) + 디스플레이용(3701304000). 대구 = 시도별 API의 "
+         f"HS 6단위(370199+370130) — 에스앤에스텍이 대구 유일 제조사라 회사에 더 가깝다. "
+         f"월평균 원달러로 환산. 상관계수 전국 r={pearson(a, b)} / 대구 r={corr_dae} "
+         f"(n={len(common)}분기). 3개월이 다 채워진 분기만 표시")
 
-    # 3) 전국 대비 비중
+    # 3) 비중
     rev = [d for d in common if "매출" in sns[d]]
     corr_rev = pearson([sns[d]["매출"] for d in rev], [nat[d] for d in rev]) if rev else None
-    save("snstech_share", "에스앤에스텍 수출의 전국 대비 비중", "%", {
-        "전국 대비 비중": [[d, round(sns[d]["수출"] / nat[d] * 100, 1)] for d in common],
-    }, ["전국 대비 비중"], common[-1],
-        f"에스앤에스텍 수출 ÷ 전국 블랭크마스크 수출. 100%를 넘거나 크게 밑돌면 "
-        f"코드 커버리지·환율·계상 시점 차이를 의심한다. "
-        f"참고: 전국 수출액과 회사 '매출' 상관계수 r={corr_rev}")
+    share = {"전국 대비 비중": [[d, round(sns[d]["수출"] / nat[d] * 100, 1)] for d in common]}
+    if dcom:
+        share["대구 대비 비중"] = [[d, round(sns[d]["수출"] / dae[d] * 100, 1)] for d in dcom]
+    save("snstech_share", "에스앤에스텍 수출 비중 (전국·대구 대비)", "%", share,
+         list(share), common[-1],
+         f"회사 공시 수출 ÷ 관세청 수출. 대구 대비가 100%를 크게 밑돌면 간접수출(상사 경유)이나 "
+         f"회계 인식 시점 차이를 의심한다. 참고: 전국 수출액과 회사 '매출' 상관계수 r={corr_rev}")
 
     # 콘솔이 cp949일 수 있어 진단 출력에는 ASCII 기호만 쓴다.
-    print(f"\n  correlation: 수출 {pearson(a, b)} / 매출 {corr_rev} "
-          f"(n={len(common)}분기, {common[0]}~{common[-1]})")
+    print(f"  correlation: 전국-수출 {pearson(a, b)} / 대구-수출 {corr_dae} "
+          f"/ 전국-매출 {corr_rev} (n={len(common)}분기, {common[0]}~{common[-1]})")
     gap = [nat[d] - sns[d]["수출"] for d in common]
     print(f"  gap(전국-회사): 평균 {statistics.mean(gap):,.0f} / 최근 {gap[-1]:,.0f} (백만원)")
-
+    if dcom:
+        g2 = [dae[d] - sns[d]["수출"] for d in dcom]
+        sh = [sns[d]["수출"] / dae[d] * 100 for d in dcom]
+        print(f"  gap(대구-회사): 평균 {statistics.mean(g2):,.0f} / 최근 {g2[-1]:,.0f} (백만원)")
+        print(f"  대구 대비 비중: 평균 {statistics.mean(sh):.1f}% / 최근 {sh[-1]:.1f}%")
 
 if __name__ == "__main__":
     run()

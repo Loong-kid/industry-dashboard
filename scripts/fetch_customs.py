@@ -56,6 +56,23 @@ ITEMS = [
      "note": "HS 8486902030 · 2022년 관세율표 개정으로 신설(이전 자료 없음)"},
 ]
 
+# 시도별 품목별은 **다른 엔드포인트**(sidoitemtrade)이고 제약이 많다. 실측 확인:
+#   - `sidoCd` 필수(대구=27). 없으면 resultCode 99 "필수 요청변수 누락"
+#   - HS는 **6단위까지만**. 10단위를 넣어도 6단위로 뭉쳐서 반환한다
+#   - 기간을 어떻게 주든 priodTitle이 연 단위 → **월별이 필요하면 월 1회씩 호출**
+#   - 금액 단위가 **천달러**(nitemtrade는 1달러 단위)
+# 에스앤에스텍이 대구 소재 유일 블랭크마스크 제조사라, 대구 6단위 집계가 전국보다
+# 훨씬 타이트한 회사 대리지표가 된다.
+REGION_URL = "https://apis.data.go.kr/1220000/sidoitemtrade/getSidoitemtradeList"
+REGION_START = 2021
+REGIONS = [{
+    "key": "daegu_blank", "sido": "27", "name": "대구 블랭크마스크",
+    "codes": [("370199", "반도체용 계열"), ("370130", "디스플레이용 계열")],
+    "note": "HS 6단위 집계(시도별 품목별 API의 최대 깊이). 370199에는 3701991000(반도체용 "
+            "블랭크마스크) 외 인쇄제판용 등이, 370130에는 3701304000(디스플레이용) 외 "
+            "인쇄제판·PCB용이 섞이지만 대구에서는 비중이 미미하다",
+}]
+
 TOP_N = 6        # 국가별 금액 카드에 표시할 상위 국가 수
 TOP_N_PRICE = 4     # 국가별 단가 카드에 넣을 최대 국가 수
 MIN_WGT_SHARE = 0.03  # 단가 카드 국가 선정: 최근 12개월 중량 비중 하한
@@ -104,6 +121,49 @@ def collect(session, item):
             rows.extend(fetch_year(session, hs, y))
             time.sleep(0.15)
     return rows
+
+
+def fetch_region_month(session, sido, hs, ym):
+    """시도×HS6 한 달치 (수출 천$, 수입 천$). 값이 없으면 (0, 0)."""
+    last_err = None
+    for _ in range(4):
+        try:
+            r = session.get(REGION_URL, params={
+                "serviceKey": API_KEY, "strtYymm": ym, "endYymm": ym,
+                "sidoCd": sido, "hsSgn": hs}, timeout=(5, 45))
+            r.raise_for_status()
+            root = ET.fromstring(r.text)
+            if root.findtext(".//resultCode") != "00":
+                raise RuntimeError(root.findtext(".//resultMsg"))
+            for it in root.findall(".//item"):
+                if not it.findtext("hsSgn"):
+                    continue  # 총계 행(hsSgn 없음)
+                num = lambda t: int((it.findtext(t) or "0").replace(",", "").strip() or 0)
+                return num("expUsdAmt"), num("impUsdAmt")
+            return 0, 0
+        except Exception as e:  # noqa
+            last_err = e
+            time.sleep(1.2)
+    raise RuntimeError(f"{sido}/{hs}/{ym} 실패: {last_err}")
+
+
+def collect_region(session, reg):
+    """{HS6: {월: [수출 백만$, 수입 백만$]}} — 월 1회씩 호출해 월별로 만든다."""
+    this = date.today()
+    out = {}
+    for hs, _label in reg["codes"]:
+        months = {}
+        for y in range(REGION_START, this.year + 1):
+            for m in range(1, 13):
+                if y == this.year and m > this.month:
+                    break
+                ym = f"{y}{m:02d}"
+                e, i = fetch_region_month(session, reg["sido"], hs, ym)
+                if e or i:
+                    months[f"{y}-{m:02d}-01"] = [e / 1000.0, i / 1000.0]  # 천$ → 백만$
+                time.sleep(0.05)
+        out[hs] = months
+    return out
 
 
 def doc(ind_id, name, unit, series, default, updated, note=None):
@@ -240,6 +300,22 @@ def run():
         write("blank_import_compare", doc(
             "blank_import_compare", "블랭크마스크 수입액 (용도별)", "백만$",
             compare_imp, list(compare_imp), last_all))
+
+    # 시도별(대구) — 회사 대리지표용
+    for reg in REGIONS:
+        data = collect_region(session, reg)
+        months = sorted({m for mm in data.values() for m in mm})
+        if not months:
+            print(f"  {reg['key']}: 데이터 없음 — 건너뜀")
+            continue
+        series = {}
+        for hs, label in reg["codes"]:
+            series[label] = [[m, round(data[hs][m][0], 3)] for m in months if m in data[hs]]
+        series["합계"] = [[m, round(sum(data[hs].get(m, [0, 0])[0]
+                                      for hs, _ in reg["codes"]), 3)] for m in months]
+        write(f"{reg['key']}_export", doc(
+            f"{reg['key']}_export", f"{reg['name']} 수출액 (시도별)", "백만$",
+            series, ["합계"], months[-1], reg["note"]))
 
 
 if __name__ == "__main__":
