@@ -46,6 +46,10 @@ jobs:
       - name: 원자재 수집
         continue-on-error: true
         run: python scripts/fetch_commodities.py
+      # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
+      - name: 운임 선물 ETF 수집
+        continue-on-error: true
+        run: python scripts/fetch_freight_etf.py
 
       # 반도체 소부장 무역 (관세청 품목별 국가별 수출입실적). 매월 15일경 전월분 확정.
       - name: 관세청 무역통계 수집
