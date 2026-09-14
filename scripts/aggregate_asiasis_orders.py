@@ -100,6 +100,7 @@ def run(src: Path):
         "source_url": "http://asiasis.com/wi_bbs/wi_kr_list.php?bbs_arr=1",
         "note": "전세계 신조 발주 프로젝트. 국내 4사 DART 수주와 별개 소스로, 교차검증·디커플링 확인용.",
         "updated": orders[0]["report_date"] if orders else date.today().isoformat(),
+        "fetched": date.today().isoformat(),  # 수집 실행일 (updated는 최근 보고일이라 stale 판정 불가)
         "nationalities": nationalities,
         "categories": categories,
         "orders": orders,

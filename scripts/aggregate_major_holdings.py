@@ -156,6 +156,7 @@ def run():
         "note": "코스피·코스닥 5% 대량보유 공시. 기본: 개인·지분율 변동없음(담보/계약변경) 숨김(칩으로 토글). "
                 "지분율 = 직전→현재 보유비율. 5% 룰 특성상 5영업일 지연·5%↑ 변동만 포착.",
         "updated": orders[0]["rcept_dt"] if orders else date.today().isoformat(),
+        "fetched": date.today().isoformat(),  # 수집 실행일 (updated는 최근 공시 접수일이라 stale 판정 불가)
         "markets": markets,
         "reporter_types": reporter_types,
         "orders": orders,
@@ -167,7 +168,7 @@ def run():
     # 종목별 지분 추이(상세DB 전체 ~2년, 테이블 1년과 별개)
     traj = build_trajectory()
     traj_doc = {"id": "holdings_traj", "name": "종목별 지분 추이",
-                "updated": doc["updated"], "stocks": traj}
+                "updated": doc["updated"], "fetched": doc["fetched"], "stocks": traj}
     TRAJ_OUT.write_text(json.dumps(traj_doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  추이: {len(traj):,}종목 → {TRAJ_OUT.relative_to(ROOT)} ({TRAJ_OUT.stat().st_size//1024}KB)")
     tcnt = Counter(o["reporter_type"] for o in orders)

@@ -239,6 +239,7 @@ def run():
     out_path = DATA_DIR / "shipbuilding" / "korea_orders.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out["updated"] = date.today().isoformat()
+    out["fetched"] = date.today().isoformat()  # 수집 실행일 (대시보드 stale 판정용)
     out_path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 
     print(f"저장: {out_path} ({len(orders)}건)")
@@ -345,6 +346,7 @@ def build_revenue_forecast(orders, mode="progress"):
         "default_series": TARGET_COMPANIES,
         "series": series,
         "updated": date.today().isoformat(),
+        "fetched": date.today().isoformat(),  # 수집 실행일 (대시보드 stale 판정용)
     }
     path = DATA_DIR / "shipbuilding" / f"{meta['id']}.json"
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -400,6 +402,7 @@ def build_price_series(orders):
             "default_series": list(series.keys()),
             "series": series,
             "updated": date.today().isoformat(),
+            "fetched": date.today().isoformat(),  # 수집 실행일 (대시보드 stale 판정용)
         }
         path = DATA_DIR / "shipbuilding" / f"korea_price_{cat_id}.json"
         path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")

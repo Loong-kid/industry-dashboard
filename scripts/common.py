@@ -36,6 +36,10 @@ def save_indicator(industry: str, doc: dict) -> None:
     path = DATA_DIR / industry / f"{doc['id']}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     doc["updated"] = date.today().isoformat()
+    # fetched: 수집이 실제로 돌아간 날. updated와 달리 어떤 스크립트에서도 항상 '오늘'이라,
+    # 대시보드가 "이 지표 수집이 멈췄나"를 판정하는 유일한 신호다. (updated는 스크립트별로
+    # 데이터 날짜를 담기도 해서 stale 판정에 쓸 수 없다.)
+    doc["fetched"] = date.today().isoformat()
     for name, points in doc.get("series", {}).items():
         doc["series"][name] = sorted(points, key=lambda p: p[0])
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
