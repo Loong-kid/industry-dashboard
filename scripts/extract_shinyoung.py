@@ -309,6 +309,9 @@ def run():
             "name": name, "unit": unit, "frequency": "weekly",
             "source": "신영증권 조선/운송 위클리 (원자료: 클락슨)",
             "source_url": "", "default_series": default,
+            # CI가 아니라 사용자가 주간 PDF를 저장한 뒤 로컬에서 돌리는 지표다.
+            # 매일 갱신되는 지표와 같은 3일 기준을 쓰면 매주 중반부터 전부 '수집 지연'으로 뜬다.
+            "stale_days": 10,
         })
         d.pop("manual", None)
         out[ind_id] = d

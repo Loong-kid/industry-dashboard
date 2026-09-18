@@ -33,9 +33,12 @@ function daysSince(isoDate) {
 }
 
 // fetched가 없는 문서(다음 수집 전까지 남아있는 기존 파일)는 판정 보류 — 오탐보다 침묵이 낫다.
+// doc.stale_days = 그 지표만의 기준(주간 PDF 추출물 등 매일 돌지 않는 소스). 수기입력은 판정 제외.
 function staleDays(doc) {
-  const d = daysSince(doc && doc.fetched);
-  return d != null && d >= STALE_DAYS ? d : null;
+  if (!doc || doc.manual) return null;
+  const d = daysSince(doc.fetched);
+  const limit = doc.stale_days || STALE_DAYS;
+  return d != null && d >= limit ? d : null;
 }
 
 const darkMq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -163,7 +166,7 @@ async function renderIndustry() {
         const err = state.docErrors.get(indicatorId);
         content.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderer(doc));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
-        if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched });
+        if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
       }
       continue;
     }
@@ -178,11 +181,11 @@ async function renderIndustry() {
       const err = state.docErrors.get(indicatorId);
       grid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
-      if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched });
+      if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
     }
   }
   loading.remove();
-  renderFootStatus(latestUpdate, collected);
+  renderFootStatus(latestUpdate, collected, ind);
 }
 
 // 불러오기 실패 카드 — '아직 데이터가 없습니다'(정상)와 반드시 구분되어야 한다.
@@ -207,8 +210,8 @@ function errorCard(industryId, indicatorId, msg) {
   return card;
 }
 
-// 사이드바 하단: 데이터 날짜 + 수집이 실제로 돌고 있는지
-function renderFootStatus(latestUpdate, collected) {
+// 사이드바 하단: 데이터 날짜 + 수집이 실제로 돌고 있는지 + 이 탭의 갱신 주기
+function renderFootStatus(latestUpdate, collected, ind) {
   const foot = document.getElementById("last-updated");
   foot.textContent = "";
 
@@ -223,8 +226,8 @@ function renderFootStatus(latestUpdate, collected) {
     fetchLine.textContent = "수집 시각: 기록 없음";
   } else {
     const stale = withFetch
-      .map((c) => ({ name: c.name, fetched: c.fetched, age: daysSince(c.fetched) }))
-      .filter((c) => c.age != null && c.age >= STALE_DAYS)
+      .map((c) => ({ name: c.name, fetched: c.fetched, age: c.stale }))
+      .filter((c) => c.age != null)
       .sort((a, b) => b.age - a.age);
     if (stale.length) {
       fetchLine.className = "foot-warn";
@@ -236,6 +239,21 @@ function renderFootStatus(latestUpdate, collected) {
     }
   }
   foot.appendChild(fetchLine);
+
+  // 갱신 주기 안내: 워크플로는 매일 돌지만 소스마다 '새 값이 생기는 주기'가 다르다.
+  // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
+  // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
+  const cad = document.createElement("details");
+  cad.className = "foot-cadence";
+  const sum = document.createElement("summary");
+  sum.textContent = "갱신 주기";
+  cad.appendChild(sum);
+  const body = document.createElement("div");
+  body.innerHTML =
+    `<div>자동 수집: <b>매일 07:30</b>(KST) · GitHub Actions</div>` +
+    (ind && ind.cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(ind.cadence)}</div>` : "");
+  cad.appendChild(body);
+  foot.appendChild(cad);
 }
 
 async function loadDoc(industryId, indicatorId) {

@@ -4,6 +4,7 @@
       "id": "shipbuilding",
       "name": "조선",
       "icon": "🚢",
+      "cadence": "클락슨 신조선가·중고선가·발주량은 신영 위클리 PDF에서 수동 추출(주 1회, PDF 저장 후 실행). DART 4사 수주는 매일 자동, asiasis 오더북은 수동.",
       "sections": [
         {
           "title": "신조선가",
@@ -63,6 +64,7 @@
       "id": "shipping",
       "name": "해운",
       "icon": "⚓",
+      "cadence": "KOBC·KCLA·StockQ 운임지수와 운임 선물 ETF는 매일 자동(원자료는 일간~주간). 클락슨 선형별 운임·ClarkSea는 신영 위클리 PDF 수동 추출(주 1회).",
       "sections": [
         {
           "title": "컨테이너 운임",
@@ -110,6 +112,7 @@
       "name": "전력",
       "icon": "⚡",
       "default_range": "all",
+      "cadence": "EIA-860M 발전설비는 월 1회 공개이고 약 2개월 지연된다(예: 9월 중순에 7월분이 최신). EIA-930 수요·발전은 매일 자동.",
       "sections": [
         {
           "title": "파이프라인 현황 (미국 유틸리티 규모 전 발전원)",
@@ -208,6 +211,7 @@
       "id": "institution",
       "name": "기관 수급",
       "icon": "🏦",
+      "cadence": "DART 공시라 매일 자동. 다만 5% 대량보유는 제도상 변동 후 5영업일 내 보고라 실제 매매보다 늦게 잡힌다. 지분율 상세는 최근 약 2년치만 제공된다.",
       "sections": [
         {
           "title": "대량보유 공시 (5%룰)",
@@ -239,6 +243,7 @@
       "id": "gifts",
       "name": "증여",
       "icon": "🎁",
+      "cadence": "DART 임원·주요주주 소유보고 원문을 매일 자동 수집. 보고 기한이 있어 증여일보다 공시가 며칠 늦다.",
       "sections": [
         {
           "title": "대주주 증여 공시",
@@ -255,6 +260,7 @@
       "name": "매크로",
       "icon": "📊",
       "default_range": "3y",
+      "cadence": "FRED·ECOS·일본 재무성에서 매일 자동. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연.",
       "sections": [
         {
           "title": "인플레이션",
@@ -283,6 +289,7 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
+      "cadence": "금·은·구리는 Yahoo 일봉으로 매일 자동. 탄산리튬은 수기입력(manual/lithium.csv)이라 값을 넣어야 갱신된다.",
       "sections": [
         {
           "title": "금속",
@@ -305,6 +312,7 @@
       "name": "반도체 소부장",
       "icon": "🔬",
       "default_range": "3y",
+      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력.",
       "sections": [
         {
           "title": "에스앤에스텍 실적 vs 전국 수출",

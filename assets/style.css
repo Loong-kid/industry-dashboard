@@ -297,6 +297,15 @@ body {
 }
 .sidebar-foot .foot-warn { color: var(--warn); font-weight: 600; }
 
+/* 갱신 주기 안내 — 평소엔 접어두고(한 줄), 펼치면 이 탭 소스의 주기를 보여준다 */
+.foot-cadence { margin-top: 6px; }
+.foot-cadence > summary { cursor: pointer; list-style: none; opacity: 0.85; }
+.foot-cadence > summary::-webkit-details-marker { display: none; }
+.foot-cadence > summary::before { content: "▸ "; }
+.foot-cadence[open] > summary::before { content: "▾ "; }
+.foot-cadence > div { margin-top: 4px; line-height: 1.5; }
+.foot-cadence .cad-tab { margin-top: 3px; padding-top: 3px; border-top: 1px solid var(--border); }
+
 /* ── 시리즈 토글 칩 ────────────────────────────────────────────── */
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
 .chip {
