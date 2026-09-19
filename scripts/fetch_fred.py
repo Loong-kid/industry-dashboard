@@ -35,13 +35,43 @@ CARDS = [
         "default": ["CPI", "근원 PCE"],
     },
     {
+        # 일간 BEI 카드. TIPS 시장이 2003년에 생겨 그 이전은 존재하지 않는다(START 2010이 아니라 시리즈 시작).
         "id": "inflation_exp", "name": "기대 인플레이션 (시장·BEI)", "unit": "%", "freq": "daily",
+        "start": "1900-01-01",
         "series": [
             ("5년 BEI", "T5YIE", "lin"),
             ("10년 BEI", "T10YIE", "lin"),
             ("5년후 5년", "T5YIFR", "lin"),
         ],
         "default": ["5년 BEI", "10년 BEI"],
+        "description": (
+            "BEI(손익분기 인플레이션) = 같은 만기의 일반 국채 금리 − 물가연동채(TIPS) 금리. 시장이 값을 매긴 "
+            "기대 인플레이션이다. '5년후 5년'은 향후 5년이 아니라 5년 뒤부터 5년간의 기대치로, 단기 유가 충격을 "
+            "걷어낸 장기 기대를 본다. TIPS 시장이 생긴 2003년부터만 존재한다 — 그 이전은 아래 장기 카드 참고."
+        ),
+    },
+    {
+        # 1978년까지 올라가는 장기 카드. 일간 BEI와 한 카드에 섞으면 x축이 칸 번호 기준이라
+        # 월간만 있는 25년 구간이 화면 5%로 눌려 왜곡된다 → 월간끼리 묶어 간격을 고르게 유지한다.
+        "id": "inflation_exp_long", "name": "기대 인플레이션 (장기 · 월간)", "unit": "%", "freq": "monthly",
+        "start": "1900-01-01", "monthly": True,
+        "series": [
+            ("미시간대 1년(설문)", "MICH", "lin"),
+            ("클리블랜드 1년(모형)", "EXPINF1YR", "lin"),
+            ("클리블랜드 10년(모형)", "EXPINF10YR", "lin"),
+            ("5년 BEI(월평균)", "T5YIE", "lin"),
+            ("10년 BEI(월평균)", "T10YIE", "lin"),
+        ],
+        "default": ["미시간대 1년(설문)", "클리블랜드 10년(모형)"],
+        "description": (
+            "BEI 이전 시대까지 보기 위한 월간 카드. 미시간대는 가계 설문(1978~), 클리블랜드 연은은 국채·스왑·"
+            "설문을 결합한 모형 추정치(1982~)이며, BEI는 같은 축에 놓으려고 월평균으로 환산했다(2003~). "
+            "70~80년대 고인플레와 그 이후 기대가 가라앉는 과정을 한 화면에서 볼 수 있다."
+        ),
+        "note": (
+            "설문 기대는 시장·모형 기대보다 꾸준히 높게 나온다(가계가 체감물가를 반영) — 수준 자체보다 방향과 "
+            "변화폭을 비교하는 게 낫다. 일간 움직임은 위 BEI 카드에서 본다. 기간 버튼 '전체' 기준."
+        ),
     },
     {
         "id": "rates_curve", "name": "미 국채 금리 · 커브", "unit": "%", "freq": "daily",
@@ -57,14 +87,18 @@ CARDS = [
 ]
 
 
-def fetch_series(session, fred_id, transform):
+def fetch_series(session, fred_id, transform, start=None, monthly=False):
     last_err = None
     for _ in range(5):
         try:
-            r = session.get(API_URL, params={
+            params = {
                 "series_id": fred_id, "api_key": API_KEY, "file_type": "json",
-                "observation_start": START, "units": transform or "lin",
-            }, timeout=(5, 30))
+                "observation_start": start or START, "units": transform or "lin",
+            }
+            if monthly:
+                # 일간 시리즈를 월평균으로 서버에서 집계(월간 시리즈엔 영향 없음)
+                params.update({"frequency": "m", "aggregation_method": "avg"})
+            r = session.get(API_URL, params=params, timeout=(5, 30))
             r.raise_for_status()
             pts = []
             for o in r.json().get("observations", []):
@@ -93,7 +127,7 @@ def run():
         series = {}
         last_dt = ""
         for name, fid, tr in card["series"]:
-            pts = fetch_series(session, fid, tr)
+            pts = fetch_series(session, fid, tr, card.get("start"), card.get("monthly", False))
             series[name] = pts
             if pts:
                 last_dt = max(last_dt, pts[-1][0])
@@ -110,6 +144,9 @@ def run():
             "default_series": card["default"],
             "series": series,
         }
+        for k in ("description", "note"):
+            if card.get(k):
+                doc[k] = card[k]
         out = OUT_DIR / f"{card['id']}.json"
         # 일간 시계열이 커서 compact(무들여쓰기)로 저장
         out.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
