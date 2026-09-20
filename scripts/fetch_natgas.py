@@ -27,6 +27,53 @@ FRED_START = "1900-01-01"  # 시리즈 시작부터(카드별 START 기본값 20
 # TTF는 EUR/MWh로 호가된다 → $/MMBtu = (EUR/MWh ÷ 3.412) × EURUSD
 MWH_PER_MMBTU = 3.412
 
+# 선물 월물 코드(1~12월). Yahoo 티커는 NG{코드}{연2자리}.NYM 꼴이다(NGX26.NYM = 26년 11월물).
+MONTH_CODES = "FGHJKMNQUVXZ"
+HIST_CONTRACTS = 8  # 월물 추이 카드에 담을 월물 수(전부 담으면 1.2MB — 앞쪽만으로 충분)
+
+# LNG 운임 평가치(Baltic·Spark)가 유료라, 시장이 매긴 대체 지표로 선사·수출업체 주가를 쓴다.
+LNG_EQUITIES = [
+    ("Flex LNG", "FLNG"),
+    ("Golar LNG", "GLNG"),
+    ("Capital Clean Energy", "CCEC"),
+    ("Dynagas LNG", "DLNG"),
+    ("Cheniere(수출터미널)", "LNG"),
+]
+
+
+def try_yahoo(session, ticker):
+    """월물은 상장 범위 밖이면 404다(TTF는 먼 달이 비는 경우가 잦다). 없는 계약은 조용히 건너뛴다."""
+    try:
+        return fetch_yahoo(session, ticker)
+    except Exception:  # noqa
+        print(f"    (없음: {ticker})")
+        return []
+
+
+def next_contracts(n):
+    """다음 달부터 n개월치 (라벨, 만기월 1일, 티커코드) 목록. 당월물은 만기가 코앞이라 건너뛴다."""
+    today = dt.date.today()
+    y, m = today.year, today.month
+    out = []
+    for _ in range(n):
+        m += 1
+        if m > 12:
+            m, y = 1, y + 1
+        out.append((f"{y % 100:02d}년 {m}월물", f"{y}-{m:02d}-01", f"{MONTH_CODES[m - 1]}{y % 100:02d}"))
+    return out
+
+
+def rebase(series_map, base=100.0):
+    """여러 종목을 한 차트에서 비교하려고 첫 값을 100으로 맞춘다(주가 자릿수가 3.7~268로 제각각)."""
+    out = {}
+    for name, pts in series_map.items():
+        if not pts:
+            continue
+        first = pts[0][1]
+        if first:
+            out[name] = [[d, round(v / first * base, 2)] for d, v in pts]
+    return out
+
 
 def to_map(points):
     return {d: v for d, v in points}
@@ -57,8 +104,8 @@ def monthly_avg(points):
     return [[m, round(sum(vs) / len(vs), 3)] for m, vs in sorted(acc.items())]
 
 
-def save(cid, name, unit, freq, series, source, default=None, description=None, note=None):
-    last = max((p[-1][0] for p in series.values() if p), default="")
+def save(cid, name, unit, freq, series, source, default=None, description=None, note=None, updated=None):
+    last = updated or max((p[-1][0] for p in series.values() if p), default="")
     doc = {
         "id": cid, "name": name, "unit": unit, "frequency": freq,
         "source": source, "source_url": "",
@@ -98,15 +145,19 @@ def run():
          ),
          note="헨리허브 현물(FRED)은 하루 이틀 늦게 올라온다 — 최신 움직임은 프론트 선물이 빠르다.")
 
-    save("ng_spread", "지역 간 가격차 (아시아·유럽 − 미국)", "$/MMBtu", "daily",
-         {"JKM − 헨리허브": spread(jkm, hh_front), "TTF − 헨리허브": spread(ttf, hh_front)},
+    save("ng_spread", "지역 간 가격차 · 아시아-유럽 차익", "$/MMBtu", "daily",
+         {"JKM − 헨리허브": spread(jkm, hh_front), "TTF − 헨리허브": spread(ttf, hh_front),
+          "JKM − TTF (아시아 프리미엄)": spread(jkm, ttf)},
          "Yahoo Finance (계산)",
+         default=["JKM − 헨리허브", "JKM − TTF (아시아 프리미엄)"],
          description=(
-             "아시아·유럽 가격에서 미국 가격을 뺀 차이. 미국에서 가스를 사서 액화·수송해 파는 LNG 차익의 "
-             "크기를 가늠하는 값이라, 이 차이가 벌어질수록 LNG 수출·운반선 수요 이야기가 강해진다. "
-             "조선 탭의 LNG선 수주·신조선가와 같이 보면 맥락이 잡힌다."
+             "아시아·유럽 가격에서 미국 가격을 뺀 차이는 미국에서 가스를 사 액화·수송해 파는 LNG 차익의 "
+             "크기를 가늠한다. 'JKM − TTF'는 그 화물이 아시아로 갈지 유럽으로 갈지를 가르는 값이다 — "
+             "아시아가 충분히 비싸야 파나마·희망봉을 돌아 더 멀리 간다. 이 값이 벌어지면 같은 화물이 더 "
+             "먼 거리를 움직여(tonne-mile 증가) 선복이 조이고, 좁혀지면 유럽에서 짧게 소화된다."
          ),
-         note="액화·수송·재기화 비용을 빼지 않은 단순 차이다. 실제 차익은 이보다 작다.")
+         note=("액화·수송·재기화 비용을 빼지 않은 단순 차이라 실제 차익은 이보다 작다. "
+               "아시아행 판단의 통념적 기준선은 운임·경로에 따라 대략 $1~2/MMBtu다."))
 
     # ── 월간 장기 ───────────────────────────────────────────────
     eu_m = fetch_fred_series(session, "PNGASEUUSDM", "lin", FRED_START)
@@ -126,6 +177,66 @@ def run():
     urea_nola = fetch_yahoo(session, "UFV=F")
     urea_brz = fetch_yahoo(session, "UFB=F")
     uan = fetch_yahoo(session, "UME=F")
+    # ── 선물 커브 · 월물 추이 ───────────────────────────────────
+    # Yahoo에 월물 개별 계약(NGX26.NYM 등)이 2021년부터 붙어 있다 → 스냅샷 누적 없이 과거까지 그린다.
+    months = next_contracts(18)
+    fx_last = fetch_yahoo(session, "EURUSD=X")[-1][1]
+    hh_curve, ttf_curve, hh_hist, ttf_hist = [], [], {}, {}
+    for label, expiry, code in months:
+        hh = try_yahoo(session, f"NG{code}.NYM")
+        if hh:
+            hh_curve.append([expiry, hh[-1][1]])
+            if len(hh_hist) < HIST_CONTRACTS:
+                hh_hist[f"HH {label}"] = hh
+        tt = try_yahoo(session, f"TTF{code}.NYM")
+        if tt:  # EUR/MWh → $/MMBtu (커브는 최신 환율 하나로 통일)
+            ttf_curve.append([expiry, round(tt[-1][1] / MWH_PER_MMBTU * fx_last, 3)])
+            if len(ttf_hist) < HIST_CONTRACTS:
+                ttf_hist[f"TTF {label}"] = [[d, round(v / MWH_PER_MMBTU * fx_last, 3)] for d, v in tt]
+
+    save("ng_curve", "선물 커브 (만기월별 현재가)", "$/MMBtu", "daily",
+         {"헨리허브": hh_curve, "TTF 유럽": ttf_curve},
+         "Yahoo Finance (NYMEX·ICE 월물)",
+         updated=dt.date.today().isoformat(),
+         # 유럽은 $26, 미국은 $3 수준이라 같이 켜면 HH 커브 모양이 바닥에 눌려 안 보인다.
+         # Chart.js는 꺼진 시리즈를 눈금 계산에서 빼므로 기본은 HH만 켜고 TTF는 칩으로 켜게 둔다.
+         default=["헨리허브"],
+         description=(
+             "가로축이 거래일이 아니라 계약의 만기월인 카드. 지금 시장이 앞으로 열두 달 넘게 각 달의 가스값을 "
+             "얼마로 보는지 보여준다. 겨울 월물이 솟고 봄 월물이 꺼지는 계절 모양이 기본이며, 앞쪽이 뒤쪽보다 "
+             "비싸지면(백워데이션) 당장 물량이 빡빡하다는 신호다. TTF는 최신 환율로 $/MMBtu 환산했다."
+         ),
+         note=("선을 그은 날짜는 '그 계약의 만기월'이라 미래로 뻗는다 — 기간 버튼과 무관하게 본다. "
+               "위 헤드라인 숫자는 가장 먼 월물 값이고, 옆의 증감은 '직전 만기월 대비'라 시간 변화가 아니다. "
+               "TTF는 Yahoo에 일부 월물만 있어 빈 달은 선이 건너뛴다(유럽 칩을 켜면 보인다)."))
+
+    save("ng_months", "월물별 가격 추이", "$/MMBtu", "daily",
+         {**hh_hist, **ttf_hist},
+         "Yahoo Finance (NYMEX·ICE 월물)",
+         default=[k for k in hh_hist][:2],
+         description=(
+             "같은 만기 계약 하나하나가 시간이 지나며 어떻게 가격이 매겨졌는지 본다. 커브가 '오늘의 사진'이라면 "
+             "이쪽은 '한 달치 계약의 일대기'다. 겨울 계약이 여름 동안 얼마나 올랐는지 같은 걸 추적할 때 쓴다."
+         ),
+         note="칩으로 원하는 월물만 켜서 본다. TTF 월물은 최신 환율 하나로 환산해 과거 구간의 환율 변동은 반영되지 않는다.")
+
+    # ── LNG 해운 (운임 평가치 대체: 시장이 매긴 가치) ───────────
+    eq = {}
+    for name, tkr in LNG_EQUITIES:
+        pts = fetch_yahoo(session, tkr)
+        if pts:
+            eq[name] = pts
+    save("lng_equities", "LNG 해운 · 수출 주가 (기준 100)", "지수", "daily", rebase(eq),
+         "Yahoo Finance (FLNG/GLNG/CCEC/DLNG/LNG)",
+         default=["Flex LNG", "Golar LNG"],
+         description=(
+             "LNG 운임에는 탱커의 BWET 같은 ETF가 없다. Baltic·Spark의 LNG 운임 평가치가 유료라, 그 대신 "
+             "LNG 선사와 수출업체 주가를 같은 출발점(100)으로 맞춰 본다. 운임 자체는 아니지만 시장이 매긴 "
+             "LNG 해운의 값이라, 용선료가 오르기 전에 먼저 움직이는 경우가 많다. 실제 용선료는 해운 탭 "
+             "'가스선 운임'의 LNG 174k(클락슨, 주간)를 본다."
+         ),
+         note="주가라 금리·증자·계약 등 운임과 무관한 요인도 섞인다. Cheniere는 선사가 아니라 미국 수출 터미널 사업자다.")
+
     save("fertilizer", "질소비료 (요소 · UAN)", "$/톤", "daily",
          {"요소 NOLA": urea_nola, "요소 브라질(CFR)": urea_brz, "UAN": uan},
          "Yahoo Finance (UFV=F/UFB=F/UME=F)",
