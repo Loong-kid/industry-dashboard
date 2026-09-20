@@ -181,20 +181,33 @@ def run():
     # Yahoo에 월물 개별 계약(NGX26.NYM 등)이 2021년부터 붙어 있다 → 스냅샷 누적 없이 과거까지 그린다.
     months = next_contracts(18)
     fx_last = fetch_yahoo(session, "EURUSD=X")[-1][1]
-    hh_curve, ttf_curve, hh_hist, ttf_hist = [], [], {}, {}
+    raw = {}  # code → (라벨, 만기월, HH 시계열, TTF 시계열)
     for label, expiry, code in months:
-        hh = try_yahoo(session, f"NG{code}.NYM")
+        raw[code] = (label, expiry, try_yahoo(session, f"NG{code}.NYM"), try_yahoo(session, f"TTF{code}.NYM"))
+
+    # 커브는 '같은 날 찍은 사진'이어야 한다. 먼 월물은 거래가 뜸해 마지막 값이 며칠 묵을 수 있는데,
+    # 그걸 그대로 쓰면 다른 날짜의 값이 한 선에 섞여 커브 모양이 거짓이 된다 → 최신일 값만 싣는다.
+    asof = max((pts[-1][0] for _, _, hh, tt in raw.values() for pts in (hh, tt) if pts), default="")
+    hh_curve, ttf_curve, hh_hist, ttf_hist, skipped = [], [], {}, {}, []
+    for label, expiry, hh, tt in raw.values():
         if hh:
-            hh_curve.append([expiry, hh[-1][1]])
+            if hh[-1][0] == asof:
+                hh_curve.append([expiry, hh[-1][1]])
+            else:
+                skipped.append(f"HH {label}({hh[-1][0]})")
             if len(hh_hist) < HIST_CONTRACTS:
                 hh_hist[f"HH {label}"] = hh
-        tt = try_yahoo(session, f"TTF{code}.NYM")
         if tt:  # EUR/MWh → $/MMBtu (커브는 최신 환율 하나로 통일)
-            ttf_curve.append([expiry, round(tt[-1][1] / MWH_PER_MMBTU * fx_last, 3)])
+            if tt[-1][0] == asof:
+                ttf_curve.append([expiry, round(tt[-1][1] / MWH_PER_MMBTU * fx_last, 3)])
+            else:
+                skipped.append(f"TTF {label}({tt[-1][0]})")
             if len(ttf_hist) < HIST_CONTRACTS:
                 ttf_hist[f"TTF {label}"] = [[d, round(v / MWH_PER_MMBTU * fx_last, 3)] for d, v in tt]
+    if skipped:
+        print(f"    커브 제외(기준일 {asof} 값 없음): {', '.join(skipped)}")
 
-    save("ng_curve", "선물 커브 (만기월별 현재가)", "$/MMBtu", "daily",
+    save("ng_curve", f"선물 커브 ({asof} 종가 기준)", "$/MMBtu", "daily",
          {"헨리허브": hh_curve, "TTF 유럽": ttf_curve},
          "Yahoo Finance (NYMEX·ICE 월물)",
          updated=dt.date.today().isoformat(),
@@ -204,7 +217,9 @@ def run():
          description=(
              "가로축이 거래일이 아니라 계약의 만기월인 카드. 지금 시장이 앞으로 열두 달 넘게 각 달의 가스값을 "
              "얼마로 보는지 보여준다. 겨울 월물이 솟고 봄 월물이 꺼지는 계절 모양이 기본이며, 앞쪽이 뒤쪽보다 "
-             "비싸지면(백워데이션) 당장 물량이 빡빡하다는 신호다. TTF는 최신 환율로 $/MMBtu 환산했다."
+             "비싸지면(백워데이션) 당장 물량이 빡빡하다는 신호다. TTF는 최신 환율로 $/MMBtu 환산했다. "
+             f"점 하나하나가 서로 다른 계약이다 — 예컨대 2027-01 점은 '27년 1월물'(NGF27) 한 종목의 "
+             f"{asof} 종가이며, 18개 계약의 같은 날 종가를 만기 순서로 이은 것이 이 선이다."
          ),
          note=("선을 그은 날짜는 '그 계약의 만기월'이라 미래로 뻗는다 — 기간 버튼과 무관하게 본다. "
                "위 헤드라인 숫자는 가장 먼 월물 값이고, 옆의 증감은 '직전 만기월 대비'라 시간 변화가 아니다. "
