@@ -53,6 +53,11 @@ jobs:
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python scripts/fetch_natgas.py
+      # 미국 LNG 액화 프로젝트 (EIA 워크북 xlsx, 키 없음). 발표분 빈티지 보관 포함.
+      - name: LNG 프로젝트 수집
+        continue-on-error: true
+        run: python scripts/fetch_lng_projects.py
+
       # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
       - name: 운임 선물 ETF 수집
         continue-on-error: true

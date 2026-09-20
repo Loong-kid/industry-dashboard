@@ -357,6 +357,30 @@
       ]
     },
     {
+      "id": "lng",
+      "name": "LNG 프로젝트",
+      "icon": "🏭",
+      "default_range": "all",
+      "cadence": "EIA 액화용량 워크북(미국, train 단위)을 매일 내려받아 갱신 여부를 확인한다. 다만 원본이 분기 갱신을 표방하고도 2025-06-30 이후 새 발표가 없다. 발표분은 빈티지로 보관해, 새 발표가 나오면 가동 예정연도가 얼마나 밀렸는지 비교한다. 전 세계 프로젝트(GEM 트래커)는 수동 다운로드라 아직 미연결.",
+      "sections": [
+        {
+          "title": "액화용량 (미국)",
+          "indicators": [
+            "lng_capacity_timeline",
+            "lng_capacity_cumulative"
+          ]
+        },
+        {
+          "title": "프로젝트 목록",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "lng_projects"
+          ]
+        }
+      ]
+    },
+    {
       "id": "semicon",
       "name": "반도체 소부장",
       "icon": "🔬",
