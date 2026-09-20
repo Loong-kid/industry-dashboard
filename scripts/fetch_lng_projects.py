@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""미국 LNG 액화 프로젝트 → data/lng/*.json (표 + 용량 시계열).
+"""미국 LNG 액화 프로젝트 → data/natgas/lng_*.json (표 + 용량 시계열, 천연가스 탭).
 
 원본: EIA 'U.S. Liquefaction Capacity' 워크북(xlsx, 키 없음).
   https://www.eia.gov/naturalgas/importsexports/liquefactioncapacity/U.S.liquefactioncapacity.xlsx
@@ -23,7 +23,7 @@ import openpyxl
 import requests
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT_DIR = ROOT / "data" / "lng"          # 탭 id=lng
+OUT_DIR = ROOT / "data" / "natgas"       # 천연가스 탭에 함께 둔다(별도 탭 없음)
 VINTAGE_DIR = ROOT / "data" / "_lng"     # 발표분 보관(지연 추적용)
 SRC = "https://www.eia.gov/naturalgas/importsexports/liquefactioncapacity/U.S.liquefactioncapacity.xlsx"
 
@@ -134,7 +134,7 @@ def build_timeline(built, approved, release):
     series = {k: [[f"{y}-01-01", v] for y, v in sorted(d.items())] for k, d in cats.items() if d}
     doc = {
         "id": "lng_capacity_timeline", "name": "미국 LNG 액화용량 — 연도별 신규",
-        "unit": "MTPA", "frequency": "quarterly",
+        "unit": "MTPA", "frequency": "yearly", "full_range": True,
         "source": f"EIA U.S. Liquefaction Capacity ({release} 발표)",
         "source_url": SRC, "updated": release,
         "default_series": [k for k in series],
@@ -161,7 +161,7 @@ def build_timeline(built, approved, release):
         fut.append([f"{y}-01-01", ftotal])
     save("lng_capacity_cumulative", {
         "id": "lng_capacity_cumulative", "name": "미국 LNG 액화용량 — 누적",
-        "unit": "MTPA", "frequency": "quarterly",
+        "unit": "MTPA", "frequency": "yearly", "full_range": True,
         "source": f"EIA U.S. Liquefaction Capacity ({release} 발표)",
         "source_url": SRC, "updated": release,
         "default_series": ["가동중 누적", "건설중 포함 전망"],

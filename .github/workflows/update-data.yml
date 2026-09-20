@@ -58,6 +58,11 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_lng_projects.py
 
+      # FLNG 선단(수기 CSV) — 무료 정형 소스가 없어 manual/flng_fleet.csv를 변환만 한다.
+      - name: FLNG 선단 집계
+        continue-on-error: true
+        run: python scripts/aggregate_flng.py
+
       # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
       - name: 운임 선물 ETF 수집
         continue-on-error: true

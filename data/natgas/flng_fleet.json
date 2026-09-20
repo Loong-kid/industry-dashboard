@@ -1,0 +1,163 @@
+{
+ "id": "flng_fleet",
+ "name": "전세계 FLNG 선단",
+ "source": "수기입력 (참고: EA Global LNG Capacity Tracker 도표 · 용량·연도는 공개 보도 대조)",
+ "source_url": "",
+ "updated": "2026-09-21",
+ "fetched": "2026-09-21",
+ "manual": true,
+ "note": "가동중 9기 19.0 MTPA · 건조중 1기 3.5 MTPA. 사업모델이 '자가 액화용'이면 가스전 보유사가 자기 가스를 액화하는 것이고, '액화 서비스'면 선주가 배만 빌려주고 수수료를 받는 구조다(Golar가 이 방식). 수기 관리 파일이라 새 호선·용선 변경은 manual/flng_fleet.csv에 직접 추가한다.",
+ "cols": [
+  {
+   "key": "vessel",
+   "label": "선박"
+  },
+  {
+   "key": "operator",
+   "label": "운영사"
+  },
+  {
+   "key": "country",
+   "label": "위치"
+  },
+  {
+   "key": "mtpa",
+   "label": "용량(MTPA)",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "model",
+   "label": "사업모델"
+  },
+  {
+   "key": "status",
+   "label": "상태"
+  },
+  {
+   "key": "start_year",
+   "label": "가동(예정)",
+   "align": "right"
+  },
+  {
+   "key": "field",
+   "label": "가스전"
+  },
+  {
+   "key": "note",
+   "label": "비고"
+  }
+ ],
+ "rows": [
+  {
+   "vessel": "Coral Sul FLNG",
+   "operator": "Eni",
+   "country": "모잠비크",
+   "field": "Area 4 (Rovuma)",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2022,
+   "mtpa": 3.4,
+   "note": "첫 화물 2022-11"
+  },
+  {
+   "vessel": "Hilli Episeyo",
+   "operator": "Golar",
+   "country": "카메룬",
+   "field": "Kribi",
+   "model": "액화 서비스",
+   "status": "가동중",
+   "start_year": 2018,
+   "mtpa": 2.4,
+   "note": "현 용선 2026 종료 · 이후 아르헨티나 20년 용선 계약"
+  },
+  {
+   "vessel": "Gimi",
+   "operator": "Golar",
+   "country": "모리타니·세네갈",
+   "field": "GTA (Greater Tortue Ahmeyim)",
+   "model": "액화 서비스",
+   "status": "가동중",
+   "start_year": 2025,
+   "mtpa": 2.5,
+   "note": "설계용량 기준 램프업 중"
+  },
+  {
+   "vessel": "Tango FLNG",
+   "operator": "Eni",
+   "country": "콩고",
+   "field": "Marine XII",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2023,
+   "mtpa": 0.6,
+   "note": "Congo LNG 1단계"
+  },
+  {
+   "vessel": "Nguya FLNG",
+   "operator": "Eni",
+   "country": "콩고",
+   "field": "Marine XII",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2026,
+   "mtpa": 2.4,
+   "note": "Congo LNG 2단계 · Tango 합산 3.0"
+  },
+  {
+   "vessel": "Fast LNG Altamira",
+   "operator": "New Fortress Energy",
+   "country": "멕시코",
+   "field": "Altamira",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2024,
+   "mtpa": 1.4,
+   "note": "설계 1.4 · 실적 1.67까지 기록"
+  },
+  {
+   "vessel": "PFLNG Satu",
+   "operator": "Petronas",
+   "country": "말레이시아",
+   "field": "Kanowit → Kebabangan",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2017,
+   "mtpa": 1.2,
+   "note": "세계 첫 FLNG · 가스전 이동 배치"
+  },
+  {
+   "vessel": "PFLNG Dua",
+   "operator": "Petronas",
+   "country": "말레이시아",
+   "field": "Rotan (Sabah)",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2021,
+   "mtpa": 1.5,
+   "note": "심해 FLNG"
+  },
+  {
+   "vessel": "Prelude FLNG",
+   "operator": "Shell JV",
+   "country": "호주",
+   "field": "Browse",
+   "model": "자가 액화용",
+   "status": "가동중",
+   "start_year": 2019,
+   "mtpa": 3.6,
+   "note": "LNG 3.6 외 LPG 0.4 · 콘덴세이트 1.3"
+  },
+  {
+   "vessel": "Fuji LNG (MKII)",
+   "operator": "Golar",
+   "country": "아르헨티나",
+   "field": "Río Negro",
+   "model": "액화 서비스",
+   "status": "건조중",
+   "start_year": 2028,
+   "mtpa": 3.5,
+   "note": "CIMC Raffles 인도 2027 4Q 예정 · 2028 상반기 가동 목표"
+  }
+ ]
+}

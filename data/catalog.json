@@ -320,7 +320,7 @@
       "name": "천연가스",
       "icon": "⛽",
       "default_range": "3y",
-      "cadence": "헨리허브 현물은 FRED(하루 이틀 지연), 프론트·월물 선물·LNG 주가·비료는 Yahoo 일봉으로 매일 자동. 유럽·아시아 장기(IMF 월간)는 월 1회이며 두 달가량 늦게 확정된다. LNG 실제 용선료(클락슨 LNG 174k)는 해운 탭에 주간으로 있다.",
+      "cadence": "천연가스 가격·선물·LNG 주가·비료는 Yahoo/FRED로 매일 자동. 유럽·아시아 장기(IMF)는 월 1회. 미국 LNG 프로젝트는 EIA 워크북을 매일 확인하지만 원본이 2025-06-30 이후 멈춰 있다(발표분은 빈티지 보관). FLNG 선단은 무료 정형 소스가 없어 manual/flng_fleet.csv 수기 관리다. 전 세계 프로젝트(GEM)는 미연결.",
       "sections": [
         {
           "title": "가격",
@@ -343,6 +343,35 @@
           ]
         },
         {
+          "title": "LNG 공급 — 미국 액화용량",
+          "indicators": [
+            "lng_capacity_timeline",
+            "lng_capacity_cumulative"
+          ]
+        },
+        {
+          "title": "LNG 공급 — 미국 프로젝트 목록",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "lng_projects"
+          ]
+        },
+        {
+          "title": "LNG 공급 — FLNG 선단",
+          "indicators": [
+            "flng_capacity"
+          ]
+        },
+        {
+          "title": "FLNG 선단 목록",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "flng_fleet"
+          ]
+        },
+        {
           "title": "LNG 해운 (운임 평가치 대체)",
           "indicators": [
             "lng_equities"
@@ -352,30 +381,6 @@
           "title": "전방 수요 (가스가 원료)",
           "indicators": [
             "fertilizer"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "lng",
-      "name": "LNG 프로젝트",
-      "icon": "🏭",
-      "default_range": "all",
-      "cadence": "EIA 액화용량 워크북(미국, train 단위)을 매일 내려받아 갱신 여부를 확인한다. 다만 원본이 분기 갱신을 표방하고도 2025-06-30 이후 새 발표가 없다. 발표분은 빈티지로 보관해, 새 발표가 나오면 가동 예정연도가 얼마나 밀렸는지 비교한다. 전 세계 프로젝트(GEM 트래커)는 수동 다운로드라 아직 미연결.",
-      "sections": [
-        {
-          "title": "액화용량 (미국)",
-          "indicators": [
-            "lng_capacity_timeline",
-            "lng_capacity_cumulative"
-          ]
-        },
-        {
-          "title": "프로젝트 목록",
-          "type": "table",
-          "table_kind": "power_fleet",
-          "indicators": [
-            "lng_projects"
           ]
         }
       ]

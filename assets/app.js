@@ -336,7 +336,9 @@ function renderCard(doc, indicatorId) {
     return card;
   }
 
-  const cutoff = rangeCutoff();
+  // full_range: 전역 기간 버튼을 무시하고 전체를 그린다. 연 단위로 듬성듬성한 지표(LNG 프로젝트
+  // 준공연도 등)는 '3년'을 걸면 과거 실적 시리즈가 통째로 비어 사라진다 — 그 카드의 요점이 긴 궤적인데.
+  const cutoff = doc.full_range ? "0000-00-00" : rangeCutoff();
   const seriesNames = Object.keys(doc.series);
   let filtered = {};
   for (const s of seriesNames) {
@@ -356,7 +358,7 @@ function renderCard(doc, indicatorId) {
   const sd = staleDays(doc);
   head.innerHTML = `
     <div class="card-name">${doc.name}</div>
-    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${
+    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기", yearly: "연간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${doc.full_range ? " · 전체기간" : ""}${
       sd ? `<span class="stale-badge" title="마지막 수집: ${doc.fetched}">수집 ${sd}일 전</span>` : ""
     }</div>`;
   card.appendChild(head);
