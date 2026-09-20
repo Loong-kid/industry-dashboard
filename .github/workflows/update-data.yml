@@ -46,6 +46,13 @@ jobs:
       - name: 원자재 수집
         continue-on-error: true
         run: python scripts/fetch_commodities.py
+
+      # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
+      - name: 천연가스 수집
+        continue-on-error: true
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python scripts/fetch_natgas.py
       # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
       - name: 운임 선물 ETF 수집
         continue-on-error: true
