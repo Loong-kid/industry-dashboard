@@ -63,6 +63,11 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_flng.py
 
+      # 해운 탭 가스선 운임에서 LNG 계열만 천연가스 탭으로 복제(네트워크 없음, 변환만)
+      - name: LNG 운임 복제
+        continue-on-error: true
+        run: python scripts/derive_lng_freight.py
+
       # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
       - name: 운임 선물 ETF 수집
         continue-on-error: true

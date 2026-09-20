@@ -29,6 +29,9 @@ SRC = "https://www.eia.gov/naturalgas/importsexports/liquefactioncapacity/U.S.li
 
 # EIA 상태 문자열 → 화면 표기. 워크북이 각주 문자를 붙여 쓰는 경우가 있어(예: 'Under constructionH')
 # 앞부분만 보고 맞춘다.
+# Brownfield = 이미 터미널이 있는 부지에 증설, Greenfield = 맨땅에 새로 짓기(공기·비용이 다르다)
+SITE_KO = {"brownfield": "기존부지 증설", "greenfield": "신규부지"}
+
 STATUS_MAP = [
     ("commercial operation", "가동"),
     ("commissioning", "시운전"),
@@ -87,6 +90,9 @@ def parse_built(ws):
             "project": str(r[0]).strip(), "train": str(r[1] or "").strip(),
             "mtpa": num(r[3]), "status": status, "year": year_of(r[7]),
             "state": str(r[9] or "").strip() if len(r) > 9 else "",
+            # 운영사는 21번째 열(오른쪽 끝)에 있다 — DOE/FERC 허가 컬럼들 뒤라 눈에 잘 안 띈다.
+            "operator": str(r[20] or "").strip() if len(r) > 20 else "",
+            "site": SITE_KO.get(str(r[19] or "").strip().lower(), "") if len(r) > 19 else "",
             "phase": "FID 완료",
         })
     return rows
@@ -179,9 +185,9 @@ def build_table(built, approved, release, pending):
     rows = []
     for r in built + approved:
         rows.append({
-            "project": r["project"], "train": r["train"], "mtpa": r["mtpa"],
-            "status": r["status"], "year": r["year"], "state": r["state"],
-            "detail": r.get("feed", ""),
+            "project": r["project"], "operator": r.get("operator", ""), "train": r["train"],
+            "mtpa": r["mtpa"], "status": r["status"], "year": r["year"], "state": r["state"],
+            "site": r.get("site", ""), "detail": r.get("feed", ""),
         })
     save("lng_projects", {
         "id": "lng_projects", "name": f"미국 LNG 프로젝트 ({release} 발표 기준)",
@@ -191,11 +197,13 @@ def build_table(built, approved, release, pending):
                  f"FID 전 물량은 착공 전이라 상당수가 지연되거나 취소된다."),
         "cols": [
             {"key": "project", "label": "프로젝트"},
+            {"key": "operator", "label": "운영사"},
             {"key": "train", "label": "트레인"},
             {"key": "mtpa", "label": "용량(MTPA)", "align": "right", "fmt": "num"},
             {"key": "status", "label": "상태"},
             {"key": "year", "label": "가동(예정)", "align": "right"},
             {"key": "state", "label": "주"},
+            {"key": "site", "label": "부지"},
             {"key": "detail", "label": "진행 단계"},
         ],
         "rows": rows,
@@ -208,7 +216,7 @@ def save_vintage(built, approved, release):
     VINTAGE_DIR.mkdir(parents=True, exist_ok=True)
     path = VINTAGE_DIR / f"eia_{release}.csv"
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["project", "train", "mtpa", "status", "year", "state", "phase"])
+        w = csv.DictWriter(f, fieldnames=["project", "operator", "train", "mtpa", "status", "year", "state", "phase"])
         w.writeheader()
         for r in built + approved:
             w.writerow({k: r.get(k, "") for k in w.fieldnames})
@@ -241,6 +249,7 @@ def build_slip(vintages, release):
                  f"가동 예정연도가 바뀐 트레인 {len(rows)}건. 양수면 지연이다."),
         "cols": [
             {"key": "project", "label": "프로젝트"},
+            {"key": "operator", "label": "운영사"},
             {"key": "train", "label": "트레인"},
             {"key": "mtpa", "label": "용량(MTPA)", "align": "right", "fmt": "num"},
             {"key": "was", "label": "이전 발표", "align": "right"},
