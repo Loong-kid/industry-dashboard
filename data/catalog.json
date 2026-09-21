@@ -290,7 +290,7 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
-      "cadence": "금·은·구리는 Yahoo 일봉으로 매일 자동. 탄산리튬은 수기입력(manual/lithium.csv)이라 값을 넣어야 갱신된다.",
+      "cadence": "금·은·구리·팔라듐과 구리 월물은 Yahoo 일봉으로 매일 자동. 금/은 비율은 계산값. 탄산리튬은 수기입력(manual/lithium.csv). 거래소 구리 재고(LME·COMEX·SHFE)는 로그인·구독·약관 제한으로 수집 불가 — 기간구조로 대신 본다.",
       "sections": [
         {
           "title": "금속",
@@ -299,6 +299,13 @@
             "comm_silver",
             "comm_copper",
             "comm_palladium"
+          ]
+        },
+        {
+          "title": "구리 기간구조 (재고 대체신호)",
+          "indicators": [
+            "comm_copper_curve",
+            "comm_copper_spread"
           ]
         },
         {
