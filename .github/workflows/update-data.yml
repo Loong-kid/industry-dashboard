@@ -90,12 +90,6 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_snstech.py
 
-      # 글로벌 신조 오더북(asiasis) 증분 — 공개 JSON의 bbs_no로 기존 글을 판별해 새 글만 덧붙인다.
-      # 원본 크롤 캐시는 리포에 두지 않는다(로컬 ../asiasis-orderbook 전용).
-      - name: 글로벌 신조 오더북 갱신
-        continue-on-error: true
-        run: python scripts/update_asiasis.py
-
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true
