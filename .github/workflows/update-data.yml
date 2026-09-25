@@ -73,6 +73,11 @@ jobs:
         continue-on-error: true
         run: python scripts/derive_lng_freight.py
 
+      # 글로벌 오더북 → 선종별 발주·인도 카드(변환만). 오더북 JSON은 로컬 수동 갱신이라 값은 그때 바뀐다.
+      - name: 오더북 발주·인도 통계
+        continue-on-error: true
+        run: python scripts/derive_orderbook_stats.py
+
       # 운임 선물 ETF BWET·BDRY (Yahoo Finance, 키 없음)
       - name: 운임 선물 ETF 수집
         continue-on-error: true

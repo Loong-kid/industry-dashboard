@@ -122,3 +122,6 @@ if __name__ == "__main__":
     if not args.src.exists():
         raise SystemExit(f"소스 없음: {args.src}\n  먼저 asiasis-orderbook/normalize.py 실행 필요")
     run(args.src)
+    # 오더북이 바뀌면 선종별 발주·인도 카드도 같이 다시 만든다(네트워크 없음)
+    import derive_orderbook_stats
+    derive_orderbook_stats.run()
