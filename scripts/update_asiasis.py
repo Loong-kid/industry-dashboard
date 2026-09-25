@@ -64,6 +64,11 @@ def parse_list(pg):
             "builder": cells[2] if len(cells) > 2 else "",
             "date": next((c for c in cells if re.match(r"20\d{2}-\d{2}-\d{2}$", c)), ""),
         })
+    if html and not items:
+        # 받긴 받았는데 목록 구조가 없다 = 차단/안내 페이지나 다른 판이 온 것. 무엇이 왔는지 남긴다.
+        title = re.search(r"<title>(.*?)</title>", html, re.S | re.I)
+        body = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))[:200]
+        print(f"    목록 구조 없음: {len(html)}B · title={title.group(1).strip()[:60] if title else '-'} · 본문={body!r}")
     return items
 
 
