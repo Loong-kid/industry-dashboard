@@ -34,15 +34,19 @@ MAX_PAGES = 30  # 증분은 보통 1~5페이지에서 끝난다. 오래 방치�
 
 
 def get(url, tries=3):
+    last = ""
     for i in range(tries):
         try:
             r = requests.get(url, headers=HDRS, timeout=25, allow_redirects=True)
             r.encoding = "utf-8"
             if r.status_code == 200 and len(r.text) > 500:
                 return r.text
-        except requests.RequestException:
-            pass
+            last = f"HTTP {r.status_code}, {len(r.text)}B"
+        except requests.RequestException as e:
+            last = f"{type(e).__name__}: {str(e)[:120]}"
         time.sleep(1.5 * (i + 1))
+    # 해외(CI) 서버에서 막히는지, 느린지 구분하려고 마지막 실패 사유를 남긴다
+    print(f"    요청 실패 ({last}) ← {url}")
     return ""
 
 
