@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """asiasis 신조프로젝트 오더북(정규화 Excel) → data/shipbuilding/asiasis_orders.json.
 
-로컬 전용(CI 아님) — extract_shinyoung.py 와 같은 성격. 원본 데이터셋(일간조선해양
-크롤)은 별도 비공개 폴더(../asiasis-orderbook)에 있고, 여기서는 그 정규화 산출물을
-대시보드가 읽는 테이블 JSON으로 변환만 한다.
+로컬 전용 **전체 재생성** 경로. 원본 데이터셋(일간조선해양 크롤)은 별도 비공개 폴더
+(../asiasis-orderbook)에 있고, 여기서는 그 정규화 산출물을 테이블 JSON으로 변환만 한다.
+매일의 **증분**은 CI의 scripts/update_asiasis.py가 맡는다(정규화 규칙을 복제해 둠 — 규칙을
+고치면 normalize.py와 update_asiasis.py를 함께 고칠 것).
 
 기본 소스: ../asiasis-orderbook/신조프로젝트_정규화.xlsx (normalize.py 산출물)
     python scripts/aggregate_asiasis_orders.py
