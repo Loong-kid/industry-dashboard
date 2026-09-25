@@ -78,6 +78,22 @@ def spread(count, span):
     return out
 
 
+def month_range(first, last):
+    y, m = int(first[:4]), int(first[5:7])
+    ly, lm = int(last[:4]), int(last[5:7])
+    while (y, m) <= (ly, lm):
+        yield f"{y}-{m:02d}"
+        m += 1
+        if m > 12:
+            y, m = y + 1, 1
+
+
+def to_monthly_series(table, cats, last_month):
+    first = min(k for c in cats for k in table[c])
+    months = list(month_range(first, last_month))
+    return {c: [[f"{ym}-01", table[c].get(ym, 0)] for ym in months] for c in cats if table[c]}
+
+
 def to_series(table, cats):
     return {c: [[f"{y}-01-01", round(v, 1)] for y, v in sorted(table[c].items())] for c in cats if table[c]}
 
@@ -88,7 +104,8 @@ def run():
     today = dt.date.today()
     fetched = today.isoformat()
 
-    ordered = defaultdict(lambda: defaultdict(float))
+    ordered = defaultdict(lambda: defaultdict(float))            # 연도별(LNG 발주 vs 인도 카드용)
+    ordered_m = defaultdict(lambda: defaultdict(float))          # 월별(선종별 발주 카드용)
     delivered = defaultdict(lambda: defaultdict(float))
     no_count = no_deliv = 0
     for o in orders:
@@ -97,6 +114,7 @@ def run():
             no_count += 1
             continue
         ordered[cat][int(o["report_date"][:4])] += n
+        ordered_m[cat][o["report_date"][:7]] += n
         span = delivery_span(o.get("delivery"))
         if not span:
             no_deliv += n
@@ -117,12 +135,28 @@ def run():
         **common, "id": "orderbook_orders_by_type", "name": "선종별 발주 척수 (연도별)",
         "description": (
             "아래 오더북 표에 쌓인 전세계 신조 발주 보도를 선종·연도별로 척수 합계한 것. 어느 선종이 어느 해에 "
-            "몰려 발주됐는지를 본다. 발주 붐은 보통 2~4년 뒤 인도 붐이 되어 운임을 누른다 — 옆 인도 카드와 "
-            "같이 본다. 칩으로 선종을 켜고 끈다."
+            "몰려 발주됐는지 큰 사이클을 본다. 발주 붐은 보통 2~4년 뒤 인도 붐이 되어 운임을 누른다 — 옆 인도 "
+            "카드와 같이 보고, 시기를 더 잘게 보려면 아래 월별 카드를 본다."
         ),
         "note": (f"언론 보도 기준 집계라 전수(클락슨 오더북)가 아니다. 총 {total_ships:,.0f}척, "
                  f"척수 미기재 {no_count}건 제외. {ytd}."),
         "series": to_series(ordered, cats),
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    (OUT_SHIP / "orderbook_orders_monthly.json").write_text(json.dumps({
+        **common, "id": "orderbook_orders_monthly", "name": "선종별 발주 척수 (월별)",
+        # 월별은 전역 기간 버튼(1년·3년)이 의미가 있어 전체기간 고정을 푼다
+        "frequency": "monthly", "full_range": False,
+        "description": (
+            "아래 오더북 표에 쌓인 전세계 신조 발주 보도를 선종·월별로 척수 합계한 것. 어느 선종이 어느 시기에 "
+            "몰려 발주됐는지를 본다. 발주 붐은 보통 2~4년 뒤 인도 붐이 되어 운임을 누른다 — 옆 인도 카드와 "
+            "같이 본다. 칩으로 선종을 켜고 끄고, 기간 버튼으로 최근만 확대한다."
+        ),
+        "note": (f"언론 보도일 기준 집계라 전수(클락슨 오더북)가 아니고, 계약일과 보도일이 며칠~몇 주 어긋날 수 있다. "
+                 f"총 {total_ships:,.0f}척, 척수 미기재 {no_count}건 제외. 발주가 없던 달은 0으로 채웠다. "
+                 f"마지막 달({today.strftime('%Y-%m')})은 진행 중인 부분 월이라 위 숫자가 작게 나온다. "
+                 f"대형 일괄 발주 한 건이 그달을 크게 튀게 하므로 월 단위 요동보다 몇 달 묶음의 흐름을 본다."),
+        "series": to_monthly_series(ordered_m, cats, today.strftime("%Y-%m")),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
     (OUT_SHIP / "orderbook_deliveries_by_type.json").write_text(json.dumps({
