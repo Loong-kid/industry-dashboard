@@ -120,7 +120,7 @@
       "name": "전력",
       "icon": "⚡",
       "default_range": "all",
-      "cadence": "EIA-860M 발전설비는 월 1회 공개이고 약 2개월 지연된다(예: 9월 중순에 7월분이 최신). EIA-930 수요·발전은 매일 자동.",
+      "cadence": "EIA-860M 발전설비는 월 1회 공개이고 약 2개월 지연된다(예: 9월 중순에 7월분이 최신). EIA-930 수요·발전은 매일 자동. 전세계 가스발전 파이프라인은 GEM 발전소 트래커(폼 수동 다운로드, manual/gem/gogpt.xlsx).",
       "sections": [
         {
           "title": "파이프라인 현황 (미국 유틸리티 규모 전 발전원)",
@@ -211,6 +211,29 @@
           "table_kind": "power_pipeline",
           "indicators": [
             "pipeline_table"
+          ]
+        },
+        {
+          "title": "전세계 가스발전 파이프라인 (GEM)",
+          "indicators": [
+            "gas_power_additions",
+            "gas_turbine_makers_by_year"
+          ]
+        },
+        {
+          "title": "가스터빈 제조사별 (건설중+착공전)",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "gas_turbine_makers"
+          ]
+        },
+        {
+          "title": "가스발전 파이프라인 — 국가별",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "gas_power_by_country"
           ]
         }
       ]

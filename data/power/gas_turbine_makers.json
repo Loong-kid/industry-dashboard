@@ -1,0 +1,182 @@
+{
+ "id": "gas_turbine_makers",
+ "name": "가스발전 파이프라인 — 터빈 제조사별",
+ "source": "Global Energy Monitor, Global Oil and Gas Plant Tracker, 2026-08",
+ "source_url": "https://globalenergymonitor.org/",
+ "updated": "2026-08-01",
+ "note": "단위 GW, 건설중+착공전 기준(발표는 따로). 확정에 가까운 749GW 중 제조사를 알 수 있는 건 372GW(50%)이고, 점유율은 그 안에서의 비중이다. 제조사 칸이 비고 모델명만 있는 23GW는 모델 계열(7HA·9F→GE, SGT→지멘스, M501J→미쓰비시)로 추정했다. 중국 업체는 해외 라이선스 모델(예: 동방전기 M701J)이 많다. 가스엔진·소형은 왕복동 엔진과 소형 터빈을 묶은 것이다.",
+ "cols": [
+  {
+   "key": "maker",
+   "label": "제조사"
+  },
+  {
+   "key": "cons",
+   "label": "건설중",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "pre",
+   "label": "착공전",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "firm",
+   "label": "합계",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "share",
+   "label": "점유율(%)",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "ann",
+   "label": "발표(별도)",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "units",
+   "label": "유닛 수",
+   "align": "right",
+   "fmt": "int"
+  },
+  {
+   "key": "countries",
+   "label": "주요 국가(GW)"
+  },
+  {
+   "key": "models",
+   "label": "주력 모델"
+  }
+ ],
+ "rows": [
+  {
+   "maker": "GE Vernova",
+   "cons": 63.5,
+   "pre": 82.5,
+   "firm": 146.0,
+   "share": 39.2,
+   "ann": 11.6,
+   "units": 291,
+   "countries": "United States 60.7, China 23.6, Vietnam 11.0",
+   "models": "9F, LM6000, 7HA.02"
+  },
+  {
+   "maker": "Siemens Energy",
+   "cons": 42.5,
+   "pre": 45.1,
+   "firm": 87.7,
+   "share": 23.5,
+   "ann": 4.4,
+   "units": 203,
+   "countries": "United States 33.1, Saudi Arabia 6.6, Iraq 4.5",
+   "models": "SGT-800, SGT5-4000F, SGT5-2000E"
+  },
+  {
+   "maker": "Mitsubishi Power",
+   "cons": 27.9,
+   "pre": 20.5,
+   "firm": 48.4,
+   "share": 13.0,
+   "ann": 2.5,
+   "units": 72,
+   "countries": "United States 19.2, China 4.2, Saudi Arabia 4.1",
+   "models": "M501JAC, M701JAC, M701F"
+  },
+  {
+   "maker": "가스엔진·소형(기타)",
+   "cons": 4.7,
+   "pre": 25.4,
+   "firm": 30.2,
+   "share": 8.1,
+   "ann": 2.9,
+   "units": 82,
+   "countries": "United States 24.1, Canada 1.4, South Korea 1.1",
+   "models": "J624, G3520K, 18V50SG"
+  },
+  {
+   "maker": "기타",
+   "cons": 6.0,
+   "pre": 12.1,
+   "firm": 18.2,
+   "share": 4.9,
+   "ann": 1.0,
+   "units": 65,
+   "countries": "Russia 7.3, United States 7.0, Iran 1.7",
+   "models": "GTE-170, PE6000, GTD-110M"
+  },
+  {
+   "maker": "Dongfang Electric(中)",
+   "cons": 6.1,
+   "pre": 4.4,
+   "firm": 10.4,
+   "share": 2.8,
+   "ann": 0.8,
+   "units": 21,
+   "countries": "China 10.4",
+   "models": "M701J, M701F4, H-100"
+  },
+  {
+   "maker": "Doosan Enerbility",
+   "cons": 8.2,
+   "pre": 2.1,
+   "firm": 10.2,
+   "share": 2.7,
+   "ann": 0.0,
+   "units": 10,
+   "countries": "Saudi Arabia 6.5, South Korea 2.2, United States 1.0",
+   "models": "H-class, F-class, 7H-class"
+  },
+  {
+   "maker": "Shanghai Electric(中)",
+   "cons": 6.1,
+   "pre": 2.2,
+   "firm": 8.3,
+   "share": 2.2,
+   "ann": 0.0,
+   "units": 28,
+   "countries": "China 7.6, Iraq 0.7",
+   "models": "AE94.3A, AE64.3A, 6F"
+  },
+  {
+   "maker": "Ansaldo Energia",
+   "cons": 5.2,
+   "pre": 2.5,
+   "firm": 7.7,
+   "share": 2.1,
+   "ann": 0.3,
+   "units": 14,
+   "countries": "Germany 1.6, Hungary 1.5, Iran 1.1",
+   "models": "GT26, AE94.3A, AE94.2"
+  },
+  {
+   "maker": "Baker Hughes",
+   "cons": 1.7,
+   "pre": 2.7,
+   "firm": 4.5,
+   "share": 1.2,
+   "ann": 0.0,
+   "units": 11,
+   "countries": "United States 4.5",
+   "models": "LM9000, NovaLT™, LM6000PF+"
+  },
+  {
+   "maker": "Harbin Electric(中)",
+   "cons": 0.5,
+   "pre": 0.4,
+   "firm": 0.9,
+   "share": 0.2,
+   "ann": 0.0,
+   "units": 2,
+   "countries": "Russia 0.5, China 0.4",
+   "models": "HGT260"
+  }
+ ],
+ "fetched": "2026-09-26"
+}

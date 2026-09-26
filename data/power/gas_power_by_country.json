@@ -1,0 +1,791 @@
+{
+ "id": "gas_power_by_country",
+ "name": "가스발전 파이프라인 — 국가별 (82개국)",
+ "source": "Global Energy Monitor, Global Oil and Gas Plant Tracker, 2026-08",
+ "source_url": "https://globalenergymonitor.org/",
+ "updated": "2026-08-01",
+ "note": "단위 GW. '파이프라인'은 건설중+착공전+발표 합계, '가동 대비'는 파이프라인 ÷ 현재 가동 용량으로 그 나라 가스발전이 얼마나 더 불어날 수 있는지를 본다. 파이프라인 0.5GW 미만 국가는 뺐다.",
+ "cols": [
+  {
+   "key": "country",
+   "label": "국가"
+  },
+  {
+   "key": "cons",
+   "label": "건설중",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "pre",
+   "label": "착공전",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "ann",
+   "label": "발표",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "pipe",
+   "label": "파이프라인 합계",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "op",
+   "label": "현재 가동",
+   "align": "right",
+   "fmt": "num"
+  },
+  {
+   "key": "ratio",
+   "label": "가동 대비(%)",
+   "align": "right",
+   "fmt": "int"
+  }
+ ],
+ "rows": [
+  {
+   "country": "United States",
+   "cons": 49.8,
+   "pre": 216.9,
+   "ann": 102.7,
+   "pipe": 369.4,
+   "op": 554.8,
+   "ratio": 67
+  },
+  {
+   "country": "China",
+   "cons": 22.5,
+   "pre": 65.1,
+   "ann": 42.4,
+   "pipe": 130.0,
+   "op": 169.0,
+   "ratio": 77
+  },
+  {
+   "country": "Vietnam",
+   "cons": 11.2,
+   "pre": 23.3,
+   "ann": 19.8,
+   "pipe": 54.3,
+   "op": 9.1,
+   "ratio": 596
+  },
+  {
+   "country": "Brazil",
+   "cons": 5.8,
+   "pre": 13.0,
+   "ann": 20.9,
+   "pipe": 39.7,
+   "op": 17.7,
+   "ratio": 224
+  },
+  {
+   "country": "Saudi Arabia",
+   "cons": 27.7,
+   "pre": 6.0,
+   "ann": 0.0,
+   "pipe": 33.7,
+   "op": 73.0,
+   "ratio": 46
+  },
+  {
+   "country": "Taiwan",
+   "cons": 9.3,
+   "pre": 14.2,
+   "ann": 4.2,
+   "pipe": 27.7,
+   "op": 22.5,
+   "ratio": 123
+  },
+  {
+   "country": "Iraq",
+   "cons": 12.3,
+   "pre": 10.4,
+   "ann": 0.5,
+   "pipe": 23.2,
+   "op": 37.2,
+   "ratio": 62
+  },
+  {
+   "country": "Russia",
+   "cons": 7.6,
+   "pre": 10.2,
+   "ann": 2.6,
+   "pipe": 20.4,
+   "op": 115.2,
+   "ratio": 18
+  },
+  {
+   "country": "South Korea",
+   "cons": 5.1,
+   "pre": 3.4,
+   "ann": 11.7,
+   "pipe": 20.2,
+   "op": 51.6,
+   "ratio": 39
+  },
+  {
+   "country": "Kuwait",
+   "cons": 3.9,
+   "pre": 8.4,
+   "ann": 5.4,
+   "pipe": 17.6,
+   "op": 19.5,
+   "ratio": 90
+  },
+  {
+   "country": "Germany",
+   "cons": 1.7,
+   "pre": 7.5,
+   "ann": 8.3,
+   "pipe": 17.5,
+   "op": 32.9,
+   "ratio": 53
+  },
+  {
+   "country": "Japan",
+   "cons": 1.2,
+   "pre": 6.6,
+   "ann": 9.6,
+   "pipe": 17.3,
+   "op": 85.0,
+   "ratio": 20
+  },
+  {
+   "country": "Canada",
+   "cons": 1.1,
+   "pre": 7.1,
+   "ann": 8.9,
+   "pipe": 17.0,
+   "op": 27.1,
+   "ratio": 63
+  },
+  {
+   "country": "United Kingdom",
+   "cons": 1.9,
+   "pre": 9.7,
+   "ann": 5.1,
+   "pipe": 16.7,
+   "op": 36.4,
+   "ratio": 46
+  },
+  {
+   "country": "Indonesia",
+   "cons": 0.9,
+   "pre": 1.1,
+   "ann": 14.0,
+   "pipe": 16.0,
+   "op": 24.9,
+   "ratio": 64
+  },
+  {
+   "country": "Iran",
+   "cons": 10.6,
+   "pre": 4.0,
+   "ann": 1.0,
+   "pipe": 15.6,
+   "op": 77.4,
+   "ratio": 20
+  },
+  {
+   "country": "Bangladesh",
+   "cons": 2.2,
+   "pre": 1.2,
+   "ann": 11.4,
+   "pipe": 14.8,
+   "op": 13.2,
+   "ratio": 113
+  },
+  {
+   "country": "Nigeria",
+   "cons": 1.3,
+   "pre": 1.4,
+   "ann": 12.0,
+   "pipe": 14.7,
+   "op": 11.0,
+   "ratio": 133
+  },
+  {
+   "country": "Philippines",
+   "cons": 0.0,
+   "pre": 2.4,
+   "ann": 11.4,
+   "pipe": 13.8,
+   "op": 4.6,
+   "ratio": 299
+  },
+  {
+   "country": "Israel",
+   "cons": 8.6,
+   "pre": 3.2,
+   "ann": 0.0,
+   "pipe": 11.8,
+   "op": 14.0,
+   "ratio": 85
+  },
+  {
+   "country": "Poland",
+   "cons": 5.0,
+   "pre": 4.1,
+   "ann": 2.5,
+   "pipe": 11.6,
+   "op": 5.0,
+   "ratio": 230
+  },
+  {
+   "country": "Mexico",
+   "cons": 4.7,
+   "pre": 3.4,
+   "ann": 2.9,
+   "pipe": 11.0,
+   "op": 50.4,
+   "ratio": 22
+  },
+  {
+   "country": "Malaysia",
+   "cons": 5.3,
+   "pre": 4.1,
+   "ann": 1.4,
+   "pipe": 10.8,
+   "op": 18.0,
+   "ratio": 60
+  },
+  {
+   "country": "South Africa",
+   "cons": 0.0,
+   "pre": 10.1,
+   "ann": 0.0,
+   "pipe": 10.1,
+   "op": 1.3,
+   "ratio": 782
+  },
+  {
+   "country": "Kazakhstan",
+   "cons": 3.1,
+   "pre": 4.8,
+   "ann": 1.8,
+   "pipe": 9.8,
+   "op": 5.2,
+   "ratio": 189
+  },
+  {
+   "country": "Syria",
+   "cons": 4.7,
+   "pre": 2.5,
+   "ann": 2.5,
+   "pipe": 9.7,
+   "op": 6.7,
+   "ratio": 145
+  },
+  {
+   "country": "United Arab Emirates",
+   "cons": 2.0,
+   "pre": 7.3,
+   "ann": 0.0,
+   "pipe": 9.3,
+   "op": 45.1,
+   "ratio": 21
+  },
+  {
+   "country": "Libya",
+   "cons": 5.3,
+   "pre": 2.2,
+   "ann": 0.0,
+   "pipe": 7.5,
+   "op": 12.4,
+   "ratio": 60
+  },
+  {
+   "country": "Australia",
+   "cons": 0.8,
+   "pre": 1.2,
+   "ann": 5.4,
+   "pipe": 7.4,
+   "op": 16.7,
+   "ratio": 45
+  },
+  {
+   "country": "Morocco",
+   "cons": 1.0,
+   "pre": 0.0,
+   "ann": 5.8,
+   "pipe": 6.8,
+   "op": 0.9,
+   "ratio": 785
+  },
+  {
+   "country": "Ireland",
+   "cons": 1.2,
+   "pre": 3.7,
+   "ann": 1.2,
+   "pipe": 6.0,
+   "op": 5.1,
+   "ratio": 118
+  },
+  {
+   "country": "Thailand",
+   "cons": 0.1,
+   "pre": 0.5,
+   "ann": 4.8,
+   "pipe": 5.5,
+   "op": 34.4,
+   "ratio": 16
+  },
+  {
+   "country": "Uzbekistan",
+   "cons": 4.4,
+   "pre": 0.2,
+   "ann": 0.8,
+   "pipe": 5.5,
+   "op": 15.6,
+   "ratio": 35
+  },
+  {
+   "country": "Italy",
+   "cons": 1.8,
+   "pre": 3.3,
+   "ann": 0.4,
+   "pipe": 5.4,
+   "op": 47.8,
+   "ratio": 11
+  },
+  {
+   "country": "Romania",
+   "cons": 2.6,
+   "pre": 1.8,
+   "ann": 0.5,
+   "pipe": 5.0,
+   "op": 3.2,
+   "ratio": 154
+  },
+  {
+   "country": "Greece",
+   "cons": 0.9,
+   "pre": 2.7,
+   "ann": 0.6,
+   "pipe": 4.2,
+   "op": 7.3,
+   "ratio": 58
+  },
+  {
+   "country": "Algeria",
+   "cons": 4.1,
+   "pre": 0.0,
+   "ann": 0.0,
+   "pipe": 4.1,
+   "op": 26.5,
+   "ratio": 15
+  },
+  {
+   "country": "Afghanistan",
+   "cons": 0.1,
+   "pre": 3.7,
+   "ann": 0.2,
+   "pipe": 4.0,
+   "op": 0.1,
+   "ratio": 3771
+  },
+  {
+   "country": "Colombia",
+   "cons": 0.0,
+   "pre": 0.3,
+   "ann": 3.0,
+   "pipe": 3.2,
+   "op": 4.4,
+   "ratio": 74
+  },
+  {
+   "country": "Czech Republic",
+   "cons": 0.1,
+   "pre": 1.2,
+   "ann": 1.9,
+   "pipe": 3.2,
+   "op": 1.8,
+   "ratio": 178
+  },
+  {
+   "country": "Mozambique",
+   "cons": 0.8,
+   "pre": 2.0,
+   "ann": 0.3,
+   "pipe": 3.1,
+   "op": 0.7,
+   "ratio": 471
+  },
+  {
+   "country": "Ukraine",
+   "cons": 0.0,
+   "pre": 2.3,
+   "ann": 0.8,
+   "pipe": 3.1,
+   "op": 3.3,
+   "ratio": 92
+  },
+  {
+   "country": "Bahrain",
+   "cons": 1.8,
+   "pre": 1.2,
+   "ann": 0.0,
+   "pipe": 3.0,
+   "op": 9.3,
+   "ratio": 32
+  },
+  {
+   "country": "Qatar",
+   "cons": 2.9,
+   "pre": 0.0,
+   "ann": 0.0,
+   "pipe": 2.9,
+   "op": 12.6,
+   "ratio": 23
+  },
+  {
+   "country": "Egypt",
+   "cons": 2.5,
+   "pre": 0.0,
+   "ann": 0.1,
+   "pipe": 2.7,
+   "op": 53.4,
+   "ratio": 5
+  },
+  {
+   "country": "Oman",
+   "cons": 2.6,
+   "pre": 0.0,
+   "ann": 0.0,
+   "pipe": 2.6,
+   "op": 13.5,
+   "ratio": 19
+  },
+  {
+   "country": "Myanmar",
+   "cons": 1.5,
+   "pre": 0.8,
+   "ann": 0.0,
+   "pipe": 2.3,
+   "op": 3.1,
+   "ratio": 75
+  },
+  {
+   "country": "Turkmenistan",
+   "cons": 1.6,
+   "pre": 0.5,
+   "ann": 0.0,
+   "pipe": 2.1,
+   "op": 7.1,
+   "ratio": 29
+  },
+  {
+   "country": "Angola",
+   "cons": 0.0,
+   "pre": 1.8,
+   "ann": 0.1,
+   "pipe": 1.9,
+   "op": 0.7,
+   "ratio": 271
+  },
+  {
+   "country": "Singapore",
+   "cons": 1.2,
+   "pre": 0.7,
+   "ann": 0.0,
+   "pipe": 1.9,
+   "op": 14.7,
+   "ratio": 13
+  },
+  {
+   "country": "Belgium",
+   "cons": 0.9,
+   "pre": 0.9,
+   "ann": 0.0,
+   "pipe": 1.8,
+   "op": 6.0,
+   "ratio": 29
+  },
+  {
+   "country": "Guinea",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 1.8,
+   "pipe": 1.8,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "Kyrgyzstan",
+   "cons": 0.4,
+   "pre": 0.8,
+   "ann": 0.5,
+   "pipe": 1.6,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "Dominican Republic",
+   "cons": 1.3,
+   "pre": 0.0,
+   "ann": 0.1,
+   "pipe": 1.5,
+   "op": 2.8,
+   "ratio": 51
+  },
+  {
+   "country": "Hungary",
+   "cons": 1.5,
+   "pre": 0.0,
+   "ann": 0.0,
+   "pipe": 1.5,
+   "op": 2.9,
+   "ratio": 54
+  },
+  {
+   "country": "Tunisia",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 1.4,
+   "pipe": 1.4,
+   "op": 5.5,
+   "ratio": 26
+  },
+  {
+   "country": "Jordan",
+   "cons": 0.0,
+   "pre": 1.3,
+   "ann": 0.0,
+   "pipe": 1.3,
+   "op": 4.0,
+   "ratio": 32
+  },
+  {
+   "country": "Puerto Rico",
+   "cons": 0.1,
+   "pre": 0.6,
+   "ann": 0.6,
+   "pipe": 1.3,
+   "op": 2.0,
+   "ratio": 64
+  },
+  {
+   "country": "Sudan",
+   "cons": 0.2,
+   "pre": 0.0,
+   "ann": 1.0,
+   "pipe": 1.2,
+   "op": 0.5,
+   "ratio": 223
+  },
+  {
+   "country": "Palestine",
+   "cons": 0.5,
+   "pre": 0.2,
+   "ann": 0.5,
+   "pipe": 1.1,
+   "op": 0.1,
+   "ratio": 800
+  },
+  {
+   "country": "India",
+   "cons": 0.0,
+   "pre": 0.1,
+   "ann": 0.9,
+   "pipe": 1.0,
+   "op": 27.4,
+   "ratio": 4
+  },
+  {
+   "country": "Cambodia",
+   "cons": 0.9,
+   "pre": 0.0,
+   "ann": 0.0,
+   "pipe": 0.9,
+   "op": 0.8,
+   "ratio": 112
+  },
+  {
+   "country": "Guyana",
+   "cons": 0.3,
+   "pre": 0.3,
+   "ann": 0.3,
+   "pipe": 0.9,
+   "op": 0.1,
+   "ratio": 1250
+  },
+  {
+   "country": "Cameroon",
+   "cons": 0.0,
+   "pre": 0.3,
+   "ann": 0.5,
+   "pipe": 0.8,
+   "op": 0.2,
+   "ratio": 394
+  },
+  {
+   "country": "Lebanon",
+   "cons": 0.0,
+   "pre": 0.8,
+   "ann": 0.0,
+   "pipe": 0.8,
+   "op": 1.2,
+   "ratio": 69
+  },
+  {
+   "country": "Montenegro",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.8,
+   "pipe": 0.8,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "North Macedonia",
+   "cons": 0.0,
+   "pre": 0.8,
+   "ann": 0.0,
+   "pipe": 0.8,
+   "op": 0.2,
+   "ratio": 366
+  },
+  {
+   "country": "Serbia",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.8,
+   "pipe": 0.8,
+   "op": 0.6,
+   "ratio": 143
+  },
+  {
+   "country": "Tanzania",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.8,
+   "pipe": 0.8,
+   "op": 0.2,
+   "ratio": 345
+  },
+  {
+   "country": "Zimbabwe",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.8,
+   "pipe": 0.8,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "Chile",
+   "cons": 0.4,
+   "pre": 0.0,
+   "ann": 0.4,
+   "pipe": 0.7,
+   "op": 5.2,
+   "ratio": 14
+  },
+  {
+   "country": "Sri Lanka",
+   "cons": 0.0,
+   "pre": 0.7,
+   "ann": 0.0,
+   "pipe": 0.7,
+   "op": 0.8,
+   "ratio": 84
+  },
+  {
+   "country": "Ecuador",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.6,
+   "pipe": 0.6,
+   "op": 0.2,
+   "ratio": 235
+  },
+  {
+   "country": "Ghana",
+   "cons": 0.0,
+   "pre": 0.3,
+   "ann": 0.3,
+   "pipe": 0.6,
+   "op": 4.0,
+   "ratio": 15
+  },
+  {
+   "country": "Mauritania",
+   "cons": 0.1,
+   "pre": 0.1,
+   "ann": 0.4,
+   "pipe": 0.6,
+   "op": 0.2,
+   "ratio": 347
+  },
+  {
+   "country": "Netherlands",
+   "cons": 0.0,
+   "pre": 0.6,
+   "ann": 0.0,
+   "pipe": 0.6,
+   "op": 14.7,
+   "ratio": 4
+  },
+  {
+   "country": "Albania",
+   "cons": 0.0,
+   "pre": 0.5,
+   "ann": 0.0,
+   "pipe": 0.5,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "Azerbaijan",
+   "cons": 0.0,
+   "pre": 0.5,
+   "ann": 0.0,
+   "pipe": 0.5,
+   "op": 7.1,
+   "ratio": 7
+  },
+  {
+   "country": "Brunei",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.5,
+   "pipe": 0.5,
+   "op": 0.6,
+   "ratio": 85
+  },
+  {
+   "country": "Cyprus",
+   "cons": 0.4,
+   "pre": 0.1,
+   "ann": 0.0,
+   "pipe": 0.5,
+   "op": 0.1,
+   "ratio": 438
+  },
+  {
+   "country": "Kosovo",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.5,
+   "pipe": 0.5,
+   "op": 0.0,
+   "ratio": null
+  },
+  {
+   "country": "Republic of the Congo",
+   "cons": 0.0,
+   "pre": 0.0,
+   "ann": 0.5,
+   "pipe": 0.5,
+   "op": 0.5,
+   "ratio": 97
+  }
+ ],
+ "fetched": "2026-09-26"
+}

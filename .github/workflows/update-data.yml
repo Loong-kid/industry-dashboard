@@ -67,6 +67,9 @@ jobs:
       - name: GEM LNG 집계
         continue-on-error: true
         run: python scripts/aggregate_gem_lng.py
+      - name: GEM 가스발전 집계
+        continue-on-error: true
+        run: python scripts/aggregate_gem_gas_power.py
 
       # 해운 탭 가스선 운임에서 LNG 계열만 천연가스 탭으로 복제(네트워크 없음, 변환만)
       - name: LNG 운임 복제
