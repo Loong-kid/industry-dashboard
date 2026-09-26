@@ -3,7 +3,6 @@
 
 만드는 것:
 - 조선 탭: 선종별 연도별 **발주** 척수 / 선종별 연도별 **인도(예정)** 척수
-- 천연가스 탭: LNG선만 떼어 발주 vs 인도 한 카드 — LNG 운임과 나란히 보려고
 
 인도 시점은 납기 텍스트('2025~2026년', '2028년 8월-2030년 10월', 'Q2 2016', '2027년까지')에서
 뽑는다. **구간이면 그 척수를 구간 안에 고르게 나눠 담는다** — 6척을 '2028년 8월~2030년 10월'에
@@ -22,7 +21,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "data" / "shipbuilding" / "asiasis_orders.json"
 OUT_SHIP = ROOT / "data" / "shipbuilding"
-OUT_GAS = ROOT / "data" / "natgas"
 
 SOURCE = "일간조선해양(asiasis) 신조 발주 보도 집계"
 DEFAULT = ["LNG운반선", "컨테이너선", "벌커", "VLCC(초대형원유운반선)"]
@@ -171,27 +169,7 @@ def run():
         "series": to_series(delivered, cats),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    # 천연가스 탭: LNG선 발주 vs 인도 — 인도 피크가 운임에 주는 압력을 운임 카드 옆에서 본다
-    lng = "LNG운반선"
-    if ordered[lng]:
-        OUT_GAS.mkdir(parents=True, exist_ok=True)
-        peak_y, peak_v = max(delivered[lng].items(), key=lambda kv: kv[1]) if delivered[lng] else (None, 0)
-        (OUT_GAS / "lng_fleet_supply.json").write_text(json.dumps({
-            **common, "id": "lng_fleet_supply", "name": "LNG선 발주 vs 인도(예정)",
-            "default_series": ["발주", "인도(예정)"],
-            "description": (
-                "LNG 운반선이 해마다 몇 척 발주됐고 몇 척이 인도되는지(될지). 발주 붐 몇 년 뒤 인도가 몰리면 "
-                "배가 한꺼번에 시장에 풀려 위 'LNG선 운임'을 누르기 쉽다 — 반대로 앞의 'JKM − TTF'가 벌어져 "
-                "화물이 멀리 돌면 그 공급을 흡수한다. 두 힘의 줄다리기를 이 카드와 운임 카드로 같이 본다."
-            ),
-            "note": (f"이 카드의 인도 정점은 {peak_y}년 약 {peak_v:,.0f}척(보도 기준)이다. 업계 전망(Poten·Drewry·"
-                     "클락슨 계열)은 2025년 79척 → 2026·2027년 연 90~100척으로 2026~27년이 정점이다 — 이 카드가 "
-                     "2026~27년을 낮게, 2028년을 높게 잡는 건 보도 누락(2023년 발주분 약 1/3이 납기 미기재)과 "
-                     "'2027~2028년' 같은 구간을 고르게 나눈 탓으로 보인다. 절대 수준보다 흐름을 보는 용도다."),
-            "series": {"발주": [[f"{y}-01-01", round(v, 1)] for y, v in sorted(ordered[lng].items())],
-                       "인도(예정)": [[f"{y}-01-01", round(v, 1)] for y, v in sorted(delivered[lng].items())]},
-        }, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"  LNG선: 발주 {sum(ordered[lng].values()):,.0f}척 · 인도 정점 {peak_y}년 {peak_v:,.1f}척")
+    # (천연가스 탭 LNG선 인도 카드는 GEM 선박 단위 데이터로 옮겼다 — scripts/aggregate_gem_lng.py)
 
     print(f"  선종 {len(cats)}개 · 총 {total_ships:,.0f}척 · 척수 미기재 {no_count}건 · 납기 미기재 {no_deliv:,.0f}척")
 

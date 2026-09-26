@@ -335,7 +335,7 @@
       "name": "천연가스",
       "icon": "⛽",
       "default_range": "3y",
-      "cadence": "천연가스 가격·선물·LNG 주가·비료는 Yahoo/FRED로 매일 자동. 유럽·아시아 장기(IMF)는 월 1회. 미국 LNG 프로젝트는 EIA 워크북을 매일 확인하지만 원본이 2025-06-30 이후 멈춰 있다(발표분은 빈티지 보관). FLNG 선단은 무료 정형 소스가 없어 manual/flng_fleet.csv 수기 관리다. 전 세계 프로젝트(GEM)는 미연결.",
+      "cadence": "천연가스 가격·선물·LNG 주가·비료는 Yahoo/FRED로 매일 자동. 유럽·아시아 장기(IMF)는 월 1회. 미국 LNG 프로젝트는 EIA 워크북(원본이 2025-06-30 이후 멈춤). 전세계 액화 프로젝트·LNG선 선단은 GEM 트래커(폼 수동 다운로드, 반기~분기) — 새 판을 manual/gem/에 넣으면 갱신된다. FLNG 선단은 수기 CSV.",
       "sections": [
         {
           "title": "가격",
@@ -361,7 +361,23 @@
           "title": "LNG 운임 · 선복 공급",
           "indicators": [
             "lng_freight",
-            "lng_fleet_supply"
+            "lng_carrier_deliveries"
+          ]
+        },
+        {
+          "title": "LNG선 발주잔량 — 조선소별 (GEM)",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "lng_orderbook_by_builder"
+          ]
+        },
+        {
+          "title": "LNG선 발주잔량 — 선박 목록 (GEM)",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "lng_carrier_orderbook"
           ]
         },
         {
@@ -372,7 +388,7 @@
           ]
         },
         {
-          "title": "LNG 공급 — 전세계 신규 (미국 외)",
+          "title": "LNG 공급 — 전세계 액화용량 (GEM)",
           "indicators": [
             "lng_global_timeline"
           ]
@@ -386,7 +402,7 @@
           ]
         },
         {
-          "title": "전세계 프로젝트 목록 (미국 외)",
+          "title": "전세계 액화 프로젝트 — FID·지연 (GEM)",
           "type": "table",
           "table_kind": "power_fleet",
           "indicators": [

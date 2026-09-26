@@ -63,10 +63,10 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_flng.py
 
-      # 전세계(미국 외) LNG 프로젝트 수기 CSV 변환 — GEM 전수 데이터 확보 전까지의 대체
-      - name: 전세계 LNG 프로젝트 집계
+      # GEM LNG 트래커(운반선·터미널·Gas Finance) 변환 — 원본은 manual/gem/에 수동으로 넣는다(CC BY 4.0)
+      - name: GEM LNG 집계
         continue-on-error: true
-        run: python scripts/aggregate_global_lng.py
+        run: python scripts/aggregate_gem_lng.py
 
       # 해운 탭 가스선 운임에서 LNG 계열만 천연가스 탭으로 복제(네트워크 없음, 변환만)
       - name: LNG 운임 복제
