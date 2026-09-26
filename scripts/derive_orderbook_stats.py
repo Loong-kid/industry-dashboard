@@ -169,7 +169,45 @@ def run():
         "series": to_series(delivered, cats),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    # (천연가스 탭 LNG선 인도 카드는 GEM 선박 단위 데이터로 옮겼다 — scripts/aggregate_gem_lng.py)
+    # 천연가스 탭: LNG선 인도 교차검증 — asiasis 보도 집계 vs GEM 선박 단위(aggregate_gem_lng.py 산출물)
+    # 두 소스가 다르게 말하는 해를 한눈에 보려고 한 카드에 겹친다. GEM 파일이 없으면 asiasis만 싣는다.
+    lng = "LNG운반선"
+    gas_dir = ROOT / "data" / "natgas"
+    if ordered[lng]:
+        gem = {}
+        gem_path = gas_dir / "lng_carrier_deliveries.json"
+        if gem_path.exists():
+            gs = json.loads(gem_path.read_text(encoding="utf-8"))["series"]
+            for k in ("인도 완료(실적)", "인도 예정(합계)"):
+                for d, v in gs.get(k, []):
+                    gem[d] = gem.get(d, 0) + v
+        series = {
+            "asiasis 인도(보도·납기 기준)": [[f"{y}-01-01", round(v, 1)] for y, v in sorted(delivered[lng].items())],
+            "GEM 인도(선박 단위)": [[d, v] for d, v in sorted(gem.items())],
+            "asiasis 발주(보도)": [[f"{y}-01-01", round(v, 1)] for y, v in sorted(ordered[lng].items())],
+        }
+        series = {k: v for k, v in series.items() if v}
+        # 겹치는 해의 차이를 주석에 적는다 — 어느 해에 소스가 갈리는지가 이 카드의 핵심
+        a = {p[0][:4]: p[1] for p in series.get("asiasis 인도(보도·납기 기준)", [])}
+        b = {d[:4]: v for d, v in gem.items()}
+        diff = " · ".join(f"{y} {a[y]:.0f} vs {b[y]:.0f}" for y in sorted(set(a) & set(b)) if "2024" <= y <= "2029")
+        gas_dir.mkdir(parents=True, exist_ok=True)
+        (gas_dir / "lng_fleet_supply.json").write_text(json.dumps({
+            **common, "id": "lng_fleet_supply", "name": "LNG선 인도 교차검증 (asiasis 보도 vs GEM)",
+            "source": "일간조선해양(asiasis) 발주 보도 집계 · Global Energy Monitor LNG Carrier Tracker 2026-06 (CC BY 4.0)",
+            "default_series": [k for k in ("asiasis 인도(보도·납기 기준)", "GEM 인도(선박 단위)") if k in series],
+            "description": (
+                "같은 LNG선 인도 스케줄을 두 소스로 겹쳐 본다. asiasis는 발주 보도의 납기 문구를 읽어 척수를 "
+                "해마다 나눠 담은 것이고(구간이면 월 단위로 고르게), GEM은 한 척씩 추적한 선박 목록의 인도연도다. "
+                "두 선이 함께 오르내리면 그 흐름은 믿을 만하고, 갈리는 해는 보도 누락·납기 표기 방식·인도 지연 "
+                "중 무엇 때문인지 따져볼 대목이다. 발주 선은 칩으로 켜서 발주→인도 시차를 본다."
+            ),
+            "note": (f"연도별 asiasis vs GEM(척): {diff}. asiasis는 보도 집계라 전수가 아니고(납기 미기재 보도는 빠짐), "
+                     "GEM은 릴리스(2026-06) 이후 발주분이 없다. 업계 전망(Poten·Drewry·클락슨 계열)은 2026·27년 "
+                     "연 90~100척을 말한다."),
+            "series": series,
+        }, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"  LNG 교차검증: {diff}")
 
     print(f"  선종 {len(cats)}개 · 총 {total_ships:,.0f}척 · 척수 미기재 {no_count}건 · 납기 미기재 {no_deliv:,.0f}척")
 
