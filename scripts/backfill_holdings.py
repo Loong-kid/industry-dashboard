@@ -9,10 +9,113 @@ from pathlib import Path
 import time
 import zipfile
 import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import hashlib
+import random
+import threading
+from holding_document import parse_holding_document, HoldingParseError
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'work' / 'holdings-backfill'
 FIELDS = ['rcept_no','rcept_dt','corp_cls','corp_name','stock_code','report_nm','flr_nm','corp_code']
+DETAIL_FIELDS = ['rcept_no','rcept_dt','corp_code','corp_name','report_tp','repror','stkqy','stkqy_irds','stkrt','stkrt_irds','report_resn']
+STOP = threading.Event()
+
+def load_rows(path):
+    if not path.exists(): return {}
+    with path.open(encoding='utf-8-sig',newline='') as f:
+        return {r['rcept_no']:r for r in csv.DictReader(f)}
+
+def save_rows(path, rows, fields):
+    tmp=path.with_suffix('.tmp')
+    with tmp.open('w',encoding='utf-8-sig',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=fields)
+        w.writeheader()
+        w.writerows(sorted(rows.values(),key=lambda r:(r['rcept_dt'],r['rcept_no']),reverse=True))
+    tmp.replace(path)
+
+def fetch_document(row):
+    if STOP.is_set(): return row, None, 'quota_stopped', None
+    try:
+        with requests.Session() as session:
+            raw=request(session,'document.xml',rcept_no=row['rcept_no']).content
+        if not zipfile.is_zipfile(io.BytesIO(raw)):
+            import re
+            match=re.search(rb'<status>(\d+)</status>',raw)
+            code=match.group(1).decode() if match else 'invalid_response'
+            if code=='020': STOP.set()
+            return row, None, 'api_'+code, None
+        with zipfile.ZipFile(io.BytesIO(raw)) as z:
+            name=next((n for n in z.namelist() if n.lower().endswith('.xml')),z.namelist()[0])
+            xml=z.read(name)
+        try:
+            result=parse_holding_document(xml,row)
+            return row, result, None, hashlib.sha256(xml).hexdigest()
+        except (HoldingParseError,UnicodeDecodeError) as e:
+            (OUT/'rejected').mkdir(exist_ok=True)
+            (OUT/'rejected'/(row['rcept_no']+'.xml')).write_bytes(xml)
+            return row, None, str(e), None
+    except Exception as e:
+        return row, None, type(e).__name__, None
+
+def details(limit, validation=False):
+    listing=load_rows(OUT/'holdings.csv')
+    existing=load_rows(ROOT/'data/_dart/대량보유상세DB.csv')
+    added=load_rows(OUT/'details.csv')
+    audit_path=OUT/'audit.json'
+    audit=json.loads(audit_path.read_text(encoding='utf-8')) if audit_path.exists() else {'success':{},'errors':{}}
+    if audit.get('quota_stopped') and audit.get('quota_day') == dt.date.today().isoformat():
+        print('Quota reached earlier in this run; checkpoint preserved.',flush=True)
+        return
+    if validation:
+        candidates=[r for n,r in listing.items() if n in existing]
+        random.Random(2022).shuffle(candidates)
+        targets=candidates[:160]
+    else:
+        targets=sorted((r for n,r in listing.items() if n not in existing and n not in added and n not in audit['errors']),key=lambda r:r['rcept_no'])[:limit]
+    print(json.dumps({'phase':'validation' if validation else 'documents','targets':len(targets),'already_added':len(added)}),flush=True)
+    checked, mismatches, failures = 0, [], []
+    def checkpoint():
+        save_rows(OUT/'details.csv',added,DETAIL_FIELDS)
+        audit['quota_stopped']=STOP.is_set()
+        audit['quota_day']=dt.date.today().isoformat() if STOP.is_set() else None
+        audit['remaining']=len(set(listing)-set(existing)-set(added))
+        audit['added']=len(added)
+        audit_path.write_text(json.dumps(audit,ensure_ascii=False),encoding='utf-8')
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        futures=[executor.submit(fetch_document,r) for r in targets]
+        for future in as_completed(futures):
+            row,result,error,digest=future.result()
+            checked+=1
+            no=row['rcept_no']
+            if validation:
+                if error:
+                    failures.append({'rcept_no':no,'error':error})
+                else:
+                    old=existing[no]
+                    for field in ('stkrt','stkrt_irds','stkqy','stkqy_irds'):
+                        try: a=float(result[field].replace(',','')); b=float(old[field].replace(',',''))
+                        except (ValueError,KeyError): continue
+                        tolerance=.021 if 'rt' in field else .01
+                        if abs(a-b)>tolerance:
+                            mismatches.append({'rcept_no':no,'field':field,'parsed':result[field],'api':old[field]})
+            elif result:
+                added[no]=result
+                audit['success'][no]={'source':'document.xml','sha256':digest,'parser_version':1}
+            elif error not in ('quota_stopped','api_020'):
+                audit['errors'][no]=error
+            if checked%200==0 and not validation:
+                checkpoint()
+                print(json.dumps({'processed':checked,'added':len(added),'errors':len(audit['errors']),'remaining':audit['remaining'],'quota':STOP.is_set()}),flush=True)
+    if validation:
+        report={'checked':checked,'failures':failures,'mismatches':mismatches}
+        (OUT/'validation.json').write_text(json.dumps(report,ensure_ascii=False),encoding='utf-8')
+        print(json.dumps(report,ensure_ascii=False),flush=True)
+        if mismatches or len(failures)>len(targets)*.1:
+            raise RuntimeError('Document/API validation requires review')
+    else:
+        checkpoint()
+        print(json.dumps({'added':len(added),'errors':len(audit['errors']),'remaining':audit['remaining'],'quota':audit['quota_stopped']}),flush=True)
 
 def request(session, endpoint, **params):
     for attempt in range(4):
@@ -75,5 +178,8 @@ def scan(start):
 if __name__=='__main__':
     ap=argparse.ArgumentParser()
     ap.add_argument('--from',dest='start',default='20220101')
+    ap.add_argument('--mode',choices=['scan','validate','details'],default='scan')
+    ap.add_argument('--limit',type=int,default=4000)
     args=ap.parse_args()
-    scan(args.start)
+    if args.mode=='scan': scan(args.start)
+    else: details(args.limit,validation=args.mode=='validate')

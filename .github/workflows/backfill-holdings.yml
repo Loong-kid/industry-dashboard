@@ -6,8 +6,18 @@ on:
         description: First disclosure date
         default: '20220101'
         required: true
+      mode:
+        description: Scan lists or validate and backfill document details
+        type: choice
+        options: [scan, full]
+        default: full
+      source_run:
+        description: Previous backfill run containing the checkpoint artifact
+        default: '36296598624'
+        required: true
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: backfill-holdings
   cancel-in-progress: false
@@ -21,14 +31,112 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install requests
+      - uses: actions/download-artifact@v4
+        if: inputs.mode == 'full'
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          run-id: ${{ inputs.source_run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Collect institution history
+        if: inputs.mode == 'scan'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           BACKFILL_START: ${{ inputs.start }}
         run: python -u scripts/backfill_holdings.py --from "$BACKFILL_START"
+      - name: Validate documents against existing API data
+        if: inputs.mode == 'full'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode validate
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: holdings-backfill
           path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 1
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 2
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 3
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 4
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 5
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 6
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
+          retention-days: 7
+      - name: Collect detail batch 7
+        if: inputs.mode == 'full' && success()
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/backfill_holdings.py --mode details --limit 4000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: holdings-backfill
+          path: work/holdings-backfill/
+          overwrite: true
           retention-days: 7
