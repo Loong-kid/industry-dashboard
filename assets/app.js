@@ -1036,7 +1036,7 @@ function renderAsiasisTable(doc) {
 // 시장·보고자유형 칩 + 종목·보고자 컬럼필터. 기본은 '개인' 숨김.
 function renderMajorHoldings(doc) {
   const card = document.createElement("div");
-  card.className = "card order-table-card";
+  card.className = "card order-table-card institution-events";
 
   if (!doc || !doc.orders || doc.orders.length === 0) {
     card.innerHTML = `<div class="card-name">${doc?.name || "대량보유 공시"}</div>
@@ -1054,6 +1054,7 @@ function renderMajorHoldings(doc) {
     markets: new Set(markets),
     types: new Set(types.filter((t) => t !== "개인")),
     movedOnly: true,
+    institution: "",
     colFilters: {},
     search: "",
     sortKey: "rcept_dt",
@@ -1113,6 +1114,9 @@ function renderMajorHoldings(doc) {
     { key: "reporter", label: "보고자", filter: true },
     { key: "reporter_type", label: "유형" },
     { key: "stkrt", label: "지분율(직전→현재)", align: "right" },
+    { key: "shares_chg", label: "주식등 수량 증감", align: "right" },
+    { key: "event", label: "변화", filter: true },
+    { key: "report_reason", label: "보고사유", filter: true },
     { key: "report_short", label: "공시" },
     { key: "_link", label: "" },
   ];
@@ -1136,6 +1140,21 @@ function renderMajorHoldings(doc) {
   types.forEach((t) => buildChip(typeChips, t, t !== "개인", (on) => (on ? filt.types.add(t) : filt.types.delete(t))));
   buildChip(optChips, "지분율 변동만", true, (on) => { filt.movedOnly = on; });
 
+  const instSelect = document.createElement("select");
+  instSelect.className = "institution-filter";
+  instSelect.setAttribute("aria-label", "관심기관 필터");
+  instSelect.innerHTML = `<option value="">모든 보고자</option><option value="watch">관심기관 전체</option>` +
+    (doc.institutions || []).map((inst) => {
+      const count = doc.orders.filter((o) => o.institution_id === inst.id).length;
+      return `<option value="${escapeHtml(inst.id)}">${escapeHtml(inst.name)} (${count ? count + "건" : "자료 미확인"})</option>`;
+    }).join("");
+  instSelect.addEventListener("change", () => {
+    filt.institution = instSelect.value;
+    optChips.querySelector("input").disabled = Boolean(filt.institution);
+    renderRows();
+  });
+  filterBar.prepend(instSelect);
+
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
     renderRows();
@@ -1143,6 +1162,12 @@ function renderMajorHoldings(doc) {
 
   function cellValue(o, key) {
     switch (key) {
+      case "shares_chg":
+        return o.shares_chg == null ? "-" : `${o.shares_chg > 0 ? "+" : ""}${o.shares_chg.toLocaleString("ko-KR")}`;
+      case "report_reason":
+        return escapeHtml(o.report_reason || "상세 미확인");
+      case "event":
+        return escapeHtml(o.event || "상세 미확인");
       case "corp_name":
         return o.stock_code ? `<span title="${o.stock_code}">${o.corp_name}</span>` : (o.corp_name || "-");
       case "reporter_type":
@@ -1222,15 +1247,19 @@ function renderMajorHoldings(doc) {
     const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
     const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
     const rows = allOrders.filter((o) => {
+      if (filt.institution === "watch" && !o.institution_id) return false;
+      if (filt.institution && filt.institution !== "watch" && o.institution_id !== filt.institution) return false;
       if (!filt.markets.has(o.market)) return false;
       if (!filt.types.has(o.reporter_type)) return false;
-      if (filt.movedOnly && !(o.chg != null && o.chg !== 0)) return false; // 변동0·불명 제외
+      // 관심기관은 목적·계약 변경과 상세 누락도 보여준다.
+      if (!filt.institution && filt.movedOnly && !(o.chg != null && o.chg !== 0)) return false;
       for (const key in filt.colFilters) {
         const q = filt.colFilters[key];
         if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
       }
       if (filt.search) {
-        const hay = `${o.corp_name} ${o.reporter}`.toLowerCase();
+        const inst = (doc.institutions || []).find((i) => i.id === o.institution_id);
+        const hay = `${o.corp_name} ${o.reporter} ${inst?.name || ""}`.toLowerCase();
         if (!hay.includes(filt.search)) return false;
       }
       return true;
@@ -1249,6 +1278,7 @@ function renderMajorHoldings(doc) {
     const capped = rows.length > RENDER_CAP;
     countLine.textContent =
       `${rows.length.toLocaleString("ko-KR")}건 (전체 ${allOrders.length.toLocaleString("ko-KR")}건)` +
+      (filt.institution ? " · 관심기관은 지분율 동일·상세 미확인 공시도 표시" : "") +
       (capped ? ` — 상위 ${RENDER_CAP}건만 표시, 필터·검색으로 좁히세요` : "");
 
     tbody.innerHTML = "";
@@ -1291,7 +1321,7 @@ function renderStockTrajectory(doc) {
   head.className = "card-head";
   head.innerHTML = `<div class="order-head-left">
       <span class="card-name">종목별 지분 추이 (보고자별 보유비율)</span>
-      <span class="card-freq">대량보유 보고 기준(최근 ~2년) · 상승=매집, 하락=매도</span>
+      <span class="card-freq">저장된 공시 기준 · 지분율 변동이 모두 매매를 뜻하지는 않습니다</span>
     </div>`;
   card.appendChild(head);
 
@@ -1302,6 +1332,38 @@ function renderStockTrajectory(doc) {
   picker.innerHTML = `<input list="${dlId}" placeholder="종목명 입력·선택 (지분율 데이터 있는 종목)" />
     <datalist id="${dlId}">${stockNames.map((n) => `<option value="${n}"></option>`).join("")}</datalist>`;
   card.appendChild(picker);
+
+  const overlap = document.createElement("details");
+  overlap.className = "institution-overlap";
+  const matches = stockNames.map((stock) => {
+    const byInstitution = new Map();
+    for (const [rep, pts] of Object.entries(stocksMap[stock].s)) {
+      const id = doc.reporter_institutions?.[rep];
+      if (!id) continue;
+      const last = pts[pts.length - 1];
+      if (last[1] < 5) continue;
+      const inst = (doc.institutions || []).find((i) => i.id === id);
+      if (!byInstitution.has(id)) byInstitution.set(id, []);
+      byInstitution.get(id).push(`${inst?.name || rep} ${last[1].toFixed(2)}% (${last[0]})`);
+    }
+    return { stock, count: byInstitution.size, reports: [...byInstitution.values()].flat() };
+  }).filter((it) => it.count >= 2).sort((a, b) => b.count - a.count || a.stock.localeCompare(b.stock, "ko"));
+  const overlapTitle = document.createElement("summary");
+  overlapTitle.textContent = `관심기관 2곳 이상이 마지막 공시에서 5% 이상을 보고한 종목 (${matches.length})`;
+  overlap.appendChild(overlapTitle);
+  const overlapNote = document.createElement("p");
+  overlapNote.className = "order-count";
+  overlapNote.textContent = "기관별 보고일이 다릅니다. 현재 동시 보유를 확인한 목록이 아니며, 지분율을 합산하지 않습니다. 종목을 누르면 아래 추이를 표시합니다.";
+  overlap.appendChild(overlapNote);
+  for (const it of matches) {
+    const row = document.createElement("div");
+    const button = document.createElement("button");
+    button.textContent = it.stock;
+    button.addEventListener("click", () => show(it.stock));
+    row.append(button, document.createTextNode(" " + it.reports.join(" · ")));
+    overlap.appendChild(row);
+  }
+  card.appendChild(overlap);
 
   const chartWrap = document.createElement("div");
   chartWrap.className = "chart-wrap";
@@ -1335,14 +1397,15 @@ function renderStockTrajectory(doc) {
     const sum = reporters.map((r) => {
       const pts = series[r];
       const first = pts[0][1], last = pts[pts.length - 1][1];
-      return { r, first, last, net: last - first, n: pts.length, lastDt: pts[pts.length - 1][0] };
+      return { r, first, last, net: last - first, n: entry.meta?.[r]?.reports ?? pts.length,
+        status: entry.meta?.[r]?.status || "보고 상태 미확인", lastDt: pts[pts.length - 1][0] };
     }).sort((a, b) => b.last - a.last);
     summary.style.display = "block";
     summary.innerHTML =
-      `<table><thead><tr><th>보고자</th><th>최초</th><th>최신</th><th>순증감(%p)</th><th>보고</th><th>최근보고</th></tr></thead><tbody>` +
+      `<table><thead><tr><th>보고자</th><th>첫 관측</th><th>마지막 보고</th><th>순증감(%p)</th><th>보고</th><th>최근보고일</th><th>마지막 공시 상태</th></tr></thead><tbody>` +
       sum.map((s) => `<tr><td>${s.r}</td><td>${s.first.toFixed(2)}%</td><td>${s.last.toFixed(2)}%</td>` +
         `<td class="${s.net > 0 ? "up" : s.net < 0 ? "down" : ""}">${s.net > 0 ? "+" : ""}${s.net.toFixed(2)}</td>` +
-        `<td>${s.n}</td><td>${s.lastDt}</td></tr>`).join("") +
+        `<td>${s.n}</td><td>${s.lastDt}</td><td>${escapeHtml(s.status)}</td></tr>`).join("") +
       `</tbody></table>`;
   }
 
@@ -1376,7 +1439,7 @@ function renderInstHoldings(doc) {
   }
   // 2종목 이상 보유한 보고자만(포트폴리오 홀더), 보유종목 많은 순
   const reps = [...byRep.keys()]
-    .filter((r) => Object.keys(byRep.get(r)).length >= 2)
+    .filter((r) => Object.keys(byRep.get(r)).length >= 2 || doc.reporter_institutions?.[r])
     .sort((a, b) => Object.keys(byRep.get(b)).length - Object.keys(byRep.get(a)).length);
   if (!reps.length) {
     card.innerHTML = `<div class="card-name">기관별 종목 증감 추이</div>
@@ -1388,7 +1451,7 @@ function renderInstHoldings(doc) {
   head.className = "card-head";
   head.innerHTML = `<div class="order-head-left">
       <span class="card-name">기관별 종목 증감 추이</span>
-      <span class="card-freq">기관 선택 → 검색박스에서 볼 종목 고르기(최대 30) · 상승=매집</span>
+      <span class="card-freq">최대 30개 차트 · 마지막 공시 이후 실제 보유량은 확인되지 않습니다</span>
     </div>`;
   card.appendChild(head);
 
@@ -1396,10 +1459,30 @@ function renderInstHoldings(doc) {
   picker.className = "order-search";
   picker.style.margin = "8px 0 12px";
   const dlId = "rep-" + Math.random().toString(36).slice(2, 8);
-  picker.innerHTML = `<input list="${dlId}" placeholder="기관·보고자 입력·선택 (2종목 이상 보유)" />
+  picker.innerHTML = `<input list="${dlId}" placeholder="기관·보고자 입력·선택 (관심기관은 1종목도 표시)" />
     <datalist id="${dlId}">${reps.map((r) => `<option value="${r}"></option>`).join("")}</datalist>`;
   card.appendChild(picker);
   const pickerInput = picker.querySelector("input");
+
+  const shortcuts = document.createElement("div");
+  shortcuts.className = "institution-shortcuts";
+  for (const inst of doc.institutions || []) {
+    const reporters = [...byRep.keys()].filter((r) => doc.reporter_institutions?.[r] === inst.id);
+    if (!reporters.length) {
+      const missing = document.createElement("span");
+      missing.className = "card-freq";
+      missing.textContent = `${inst.name} · 자료 미확인`;
+      shortcuts.appendChild(missing);
+    }
+    for (const rep of reporters) {
+      const button = document.createElement("button");
+      button.textContent = reporters.length > 1 ? `${inst.name} · ${rep}` : inst.name;
+      button.title = rep;
+      button.addEventListener("click", () => show(rep));
+      shortcuts.appendChild(button);
+    }
+  }
+  card.appendChild(shortcuts);
 
   const selWrap = document.createElement("div"); // 종목 멀티셀렉트가 들어갈 자리
   card.appendChild(selWrap);
@@ -1426,7 +1509,9 @@ function renderInstHoldings(doc) {
     const stocks = byRep.get(rep);
     const items = Object.entries(stocks).map(([s, pts]) => ({
       s, pts, first: pts[0][1], last: pts[pts.length - 1][1],
-      net: pts[pts.length - 1][1] - pts[0][1], lastDt: pts[pts.length - 1][0], n: pts.length,
+      net: pts[pts.length - 1][1] - pts[0][1], lastDt: pts[pts.length - 1][0],
+      n: stocksMap[s].meta?.[rep]?.reports ?? pts.length,
+      meta: stocksMap[s].meta?.[rep] || {},
     })).sort((a, b) => b.last - a.last); // 메이저=현재 지분율 큰 순
     const itemMap = new Map(items.map((it) => [it.s, it]));
     let selected = items.slice(0, Math.min(DEFAULT_N, items.length)).map((it) => it.s);
@@ -1488,13 +1573,14 @@ function renderInstHoldings(doc) {
       charts = [];
       grid.innerHTML = "";
       const sel = selected.map((s) => itemMap.get(s)).filter(Boolean).sort((a, b) => b.last - a.last);
-      countLine.textContent = `${items.length.toLocaleString("ko-KR")}개 종목 보유 · ${sel.length}개 차트 표시 (최대 ${CAP})`;
+      countLine.textContent = `${items.length.toLocaleString("ko-KR")}개 종목 공시 이력 · ${sel.length}개 차트 표시 (최대 ${CAP}) · 5% 미만 보고도 포함`;
       for (const it of sel) {
         const mc = document.createElement("div"); mc.className = "mini-hold";
         const dir = it.net > 0 ? "up" : it.net < 0 ? "down" : "";
         const arrow = it.net > 0 ? "▲" : it.net < 0 ? "▼" : "";
         mc.innerHTML = `<div class="mini-head"><span class="mini-name">${it.s}</span>
-          <span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${arrow}${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span></div>`;
+          <span class="card-freq">${it.last.toFixed(2)}% <span class="chg ${dir}">${arrow}${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</span></span></div>
+          <div class="card-freq">${it.lastDt} · ${escapeHtml(it.meta.status || "보고 상태 미확인")}</div>`;
         const w = document.createElement("div"); w.className = "chart-wrap mini";
         const cv = document.createElement("canvas"); w.appendChild(cv); mc.appendChild(w);
         grid.appendChild(mc);
@@ -1504,10 +1590,11 @@ function renderInstHoldings(doc) {
 
     // 전체 보유종목 표 — 행 클릭으로도 차트 토글
     tableWrap.innerHTML =
-      `<table><thead><tr><th>종목</th><th>최초</th><th>최신</th><th>순증감(%p)</th><th>보고</th><th>최근보고</th></tr></thead><tbody>` +
+      `<table><thead><tr><th>종목</th><th>첫 관측</th><th>마지막 보고</th><th>순증감(%p)</th><th>보고</th><th>최근보고일</th><th>마지막 공시 상태</th><th>보고사유</th><th>원문</th></tr></thead><tbody>` +
       items.map((it) => `<tr data-s="${it.s}"><td>${it.s}</td><td>${it.first.toFixed(2)}%</td><td>${it.last.toFixed(2)}%</td>` +
         `<td class="${it.net > 0 ? "up" : it.net < 0 ? "down" : ""}">${it.net > 0 ? "+" : ""}${it.net.toFixed(2)}</td>` +
-        `<td>${it.n}</td><td>${it.lastDt}</td></tr>`).join("") +
+        `<td>${it.n}</td><td>${it.lastDt}</td><td>${escapeHtml(it.meta.status || "보고 상태 미확인")}</td>` +
+        `<td>${escapeHtml(it.meta.report_reason || "-")}</td><td>${/^\d{14}$/.test(it.meta.rcept_no || "") ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${it.meta.rcept_no}" target="_blank" rel="noopener">원문</a>` : "-"}</td></tr>`).join("") +
       `</tbody></table>`;
     tableWrap.querySelectorAll("tr[data-s]").forEach((tr) => tr.addEventListener("click", () => {
       const s = tr.getAttribute("data-s");
@@ -1515,6 +1602,7 @@ function renderInstHoldings(doc) {
       else if (selected.length < CAP) selected.push(s);
       refresh();
     }));
+    tableWrap.querySelectorAll("a").forEach((a) => a.addEventListener("click", (e) => e.stopPropagation()));
 
     renderChips();
     renderCharts();

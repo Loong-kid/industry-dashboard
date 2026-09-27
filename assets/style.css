@@ -470,3 +470,10 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
   .sidebar-foot { display: none; }
   .grid { grid-template-columns: 1fr; }
 }
+.institution-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 12px; }
+.institution-shortcuts button, .institution-overlap button { cursor: pointer; border: 1px solid var(--border); border-radius: 6px; padding: 5px 9px; background: var(--surface); color: var(--accent); font: inherit; }
+.institution-overlap { margin: 8px 0 16px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; }
+.institution-overlap summary { cursor: pointer; }
+.institution-overlap > div { margin: 8px 0; font-size: 12px; line-height: 1.7; }
+.institution-filter { border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; background: var(--surface); color: var(--ink); font: inherit; max-width: 100%; }
+.institution-events .order-table-wrap td:nth-child(9) { white-space: normal; min-width: 200px; max-width: 280px; overflow-wrap: anywhere; }

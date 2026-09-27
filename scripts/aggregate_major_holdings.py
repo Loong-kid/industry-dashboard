@@ -24,6 +24,48 @@ CORP_NAMES_PATH = ROOT / "data" / "_dart" / "_corp_names.json"
 OUT = ROOT / "data" / "institution" / "major_holdings.json"
 TRAJ_OUT = ROOT / "data" / "institution" / "holdings_traj.json"
 VIEWER_URL = "https://dart.fss.or.kr/dsaf001/main.do?rcpNo={no}"
+INSTITUTIONS_PATH = ROOT / "manual" / "institutions.json"
+
+
+def institution_key(name):
+    # Only spelling separators are normalized; funds and affiliates stay separate.
+    return re.sub(r"[\s, .·]+", "", name or "").casefold()
+
+
+def load_institutions():
+    institutions = json.loads(INSTITUTIONS_PATH.read_text(encoding="utf-8"))
+    aliases = {}
+    for inst in institutions:
+        for alias in inst["aliases"]:
+            key = institution_key(alias)
+            if key in aliases and aliases[key] != inst["id"]:
+                raise ValueError(f"기관 별칭 중복: {alias}")
+            aliases[key] = inst["id"]
+    return institutions, aliases
+
+
+def event_label(rt, chg, reason):
+    if rt is None:
+        return "상세 미확인"
+    if rt < 5 and ((chg is not None and rt - chg >= 5) or "5% 미만" in reason):
+        return "5% 미만 이탈 보고"
+    if "신규" in reason:
+        return "신규 보고"  # 신규상장 등도 포함; 신규 매수로 단정하지 않는다.
+    if chg is None:
+        return "증감 미확인"
+    if chg > 0:
+        return "지분율 증가"
+    if chg < 0:
+        return "지분율 감소"
+    return "지분율 동일"
+
+
+def holding_status(rt, chg, reason):
+    if rt == 0:
+        return "0% 보고"
+    if rt < 5:
+        return "5% 미만 이탈 보고" if event_label(rt, chg, reason) == "5% 미만 이탈 보고" else "5% 미만 보고"
+    return "5% 이상 보고"
 
 
 def to_float(s):
@@ -39,7 +81,11 @@ def load_details() -> dict:
     if DETAIL_PATH.exists():
         with DETAIL_PATH.open(encoding="utf-8-sig", newline="") as f:
             for r in csv.DictReader(f):
-                d[r["rcept_no"]] = {"stkrt": to_float(r.get("stkrt")), "chg": to_float(r.get("stkrt_irds"))}
+                d[r["rcept_no"]] = {
+                    "stkrt": to_float(r.get("stkrt")), "chg": to_float(r.get("stkrt_irds")),
+                    "shares": to_float(r.get("stkqy")), "shares_chg": to_float(r.get("stkqy_irds")),
+                    "report_reason": r.get("report_resn", ""), "detail_reporter": r.get("repror", ""),
+                }
     return d
 
 CORP_KW = [
@@ -81,18 +127,27 @@ def build_trajectory():
         rt = to_float(r.get("stkrt"))
         if rt is None:
             continue
-        stocks.setdefault(r["corp_name"], {}).setdefault(r["repror"], []).append((r["rcept_dt"], rt))
+        stocks.setdefault(r["corp_name"], {}).setdefault(r["repror"], []).append((r["rcept_dt"], rt, r))
     out = {}
     for name, reps in stocks.items():
-        s = {}
+        s, meta = {}, {}
         for rep, pts in reps.items():
-            pts.sort(key=lambda p: p[0])
+            pts.sort(key=lambda p: (p[0], p[2]["rcept_no"]))
+            latest = pts[-1][2]
+            meta[rep] = {
+                "reports": len(pts), "rcept_no": latest["rcept_no"],
+                "report_reason": latest.get("report_resn", ""),
+                "status": holding_status(pts[-1][1], to_float(latest.get("stkrt_irds")), latest.get("report_resn", "")),
+            }
+            # Keep the final receipt on each date so chart and summary agree.
+            daily = {d: (d, v) for d, v, _ in pts}
+            pts = list(daily.values())
             comp = []
             for i, (d, v) in enumerate(pts):
                 if not comp or comp[-1][1] != v or i == len(pts) - 1:
                     comp.append([d, v])
             s[rep] = comp
-        out[name] = {"s": s}
+        out[name] = {"s": s, "meta": meta}
     return out
 
 
@@ -110,6 +165,7 @@ def run():
     if not corp_names:
         print("  경고: _corp_names.json 없음 → 기업명 대조 없이 키워드/인명 규칙만 적용")
 
+    institutions, aliases = load_institutions()
     details = load_details()
     rows = list(csv.DictReader(DB_PATH.open(encoding="utf-8-sig")))
     orders = []
@@ -138,9 +194,13 @@ def run():
         if stkrt is not None:
             o["stkrt"] = stkrt            # 보고 후 보유비율(%)
             o["chg"] = chg                # 직전대비 증감(%p)
+        for field in ("shares", "shares_chg", "report_reason"):
+            o[field] = det.get(field)
+        o["institution_id"] = aliases.get(institution_key(det.get("detail_reporter")), "") or aliases.get(institution_key(r["flr_nm"]), "")
+        o["event"] = event_label(stkrt, chg, det.get("report_reason") or "")
         orders.append(o)
 
-    orders.sort(key=lambda o: o["rcept_dt"], reverse=True)
+    orders.sort(key=lambda o: (o["rcept_dt"], o["rcept_no"]), reverse=True)
 
     mkt_freq = Counter(o["market"] for o in orders)
     markets = [m for m, _ in mkt_freq.most_common()]
@@ -154,11 +214,13 @@ def run():
         "source": "DART 주식등의 대량보유상황보고서",
         "source_url": "https://dart.fss.or.kr",
         "note": "코스피·코스닥 5% 대량보유 공시. 기본: 개인·지분율 변동없음(담보/계약변경) 숨김(칩으로 토글). "
-                "지분율 = 직전→현재 보유비율. 5% 룰 특성상 5영업일 지연·5%↑ 변동만 포착.",
+                "지분율 = 직전→보고 지분율. 공시 기준이며 실시간 보유·매매 정보가 아닙니다. "
+                "신규 보고는 신규 매수를 뜻하지 않으며, 정정 여부와 보고사유를 함께 확인하세요.",
         "updated": orders[0]["rcept_dt"] if orders else date.today().isoformat(),
         "fetched": date.today().isoformat(),  # 수집 실행일 (updated는 최근 공시 접수일이라 stale 판정 불가)
         "markets": markets,
         "reporter_types": reporter_types,
+        "institutions": institutions,
         "orders": orders,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -168,7 +230,10 @@ def run():
     # 종목별 지분 추이(상세DB 전체 ~2년, 테이블 1년과 별개)
     traj = build_trajectory()
     traj_doc = {"id": "holdings_traj", "name": "종목별 지분 추이",
-                "updated": doc["updated"], "fetched": doc["fetched"], "stocks": traj}
+                "updated": doc["updated"], "fetched": doc["fetched"], "stocks": traj,
+                "institutions": institutions,
+                "reporter_institutions": {rep: aliases[institution_key(rep)]
+                    for entry in traj.values() for rep in entry["s"] if institution_key(rep) in aliases}}
     TRAJ_OUT.write_text(json.dumps(traj_doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  추이: {len(traj):,}종목 → {TRAJ_OUT.relative_to(ROOT)} ({TRAJ_OUT.stat().st_size//1024}KB)")
     tcnt = Counter(o["reporter_type"] for o in orders)
