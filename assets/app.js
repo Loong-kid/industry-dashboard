@@ -1055,6 +1055,7 @@ function renderMajorHoldings(doc) {
     types: new Set(types.filter((t) => t !== "개인")),
     movedOnly: true,
     institution: "",
+    year: "",
     colFilters: {},
     search: "",
     sortKey: "rcept_dt",
@@ -1068,13 +1069,15 @@ function renderMajorHoldings(doc) {
       <span class="card-name">${doc.name}</span>
       <span class="card-freq">출처: <a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a></span>
     </div>`;
-  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; renderRows(); }));
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], (r) => { state.tableRange[doc.id] = r; filt.year = ""; yearSelect.value = ""; renderRows(); }));
   card.appendChild(head);
 
   if (doc.note) {
     const note = document.createElement("div");
     note.className = "order-count";
-    note.textContent = doc.note;
+    note.textContent = doc.note + (doc.history
+      ? ` 저장 범위: ${doc.history.start}~ · 지분율 확인 ${doc.history.with_ratio.toLocaleString("ko-KR")}/${doc.history.reports.toLocaleString("ko-KR")}건.`
+      : "");
     card.appendChild(note);
   }
 
@@ -1154,6 +1157,19 @@ function renderMajorHoldings(doc) {
     renderRows();
   });
   filterBar.prepend(instSelect);
+  const yearSelect = document.createElement("select");
+  yearSelect.className = "institution-filter";
+  yearSelect.setAttribute("aria-label", "공시연도 필터");
+  yearSelect.innerHTML = `<option value="">모든 연도</option>` +
+    [...new Set(doc.orders.map((o) => o.rcept_dt.slice(0, 4)))].sort().reverse()
+      .map((year) => `<option value="${year}">${year}년</option>`).join("");
+  yearSelect.addEventListener("change", () => {
+    filt.year = yearSelect.value;
+    state.tableRange[doc.id] = "all";
+    head.querySelectorAll(".table-range button").forEach((button) => button.classList.toggle("active", button.textContent === "전체"));
+    renderRows();
+  });
+  filterBar.prepend(yearSelect);
 
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
@@ -1245,7 +1261,7 @@ function renderMajorHoldings(doc) {
 
   function renderRows() {
     const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
-    const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff);
+    const allOrders = doc.orders.filter((o) => o.rcept_dt >= cutoff && (!filt.year || o.rcept_dt.startsWith(filt.year + "-")));
     const rows = allOrders.filter((o) => {
       if (filt.institution === "watch" && !o.institution_id) return false;
       if (filt.institution && filt.institution !== "watch" && o.institution_id !== filt.institution) return false;

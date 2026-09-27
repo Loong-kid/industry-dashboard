@@ -118,7 +118,7 @@ def classify(flr_nm: str, corp_names: set) -> str:
 
 
 def build_trajectory():
-    """상세DB(majorstock, ~최근 2년) → 종목별·보고자별 보유비율 시계열.
+    """상세DB(API 및 과거 원문 보강) → 종목별·보고자별 보유비율 시계열.
     연속 동일값(담보/계약변경으로 지분율 그대로)은 접어 스텝만 남긴다(용량↓, 궤적 유지)."""
     if not DETAIL_PATH.exists():
         return {}
@@ -221,13 +221,16 @@ def run():
         "markets": markets,
         "reporter_types": reporter_types,
         "institutions": institutions,
+        "history": {"start": min((o["rcept_dt"] for o in orders), default=None),
+                    "reports": len(orders),
+                    "with_ratio": sum(o.get("stkrt") is not None for o in orders)},
         "orders": orders,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     # 12k행 규모라 compact(무들여쓰기)로 저장해 용량 최소화
     OUT.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
-    # 종목별 지분 추이(상세DB 전체 ~2년, 테이블 1년과 별개)
+    # 종목별 지분 추이: API와 원문에서 확인한 상세DB 전체 이력.
     traj = build_trajectory()
     traj_doc = {"id": "holdings_traj", "name": "종목별 지분 추이",
                 "updated": doc["updated"], "fetched": doc["fetched"], "stocks": traj,

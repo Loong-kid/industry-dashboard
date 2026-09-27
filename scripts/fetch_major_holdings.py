@@ -42,7 +42,7 @@ CORP_NAMES_PATH = ROOT / "data" / "_dart" / "_corp_names.json"
 
 CORP_CLS = {"Y": "코스피", "K": "코스닥", "N": "코넥스", "E": "기타"}
 SCAN_CLS = ["Y", "K"]  # 코스피 + 코스닥 (시총 제한 없음)
-FIELDS = ["rcept_no", "rcept_dt", "corp_cls", "corp_name", "stock_code", "report_nm", "flr_nm"]
+FIELDS = ["rcept_no", "rcept_dt", "corp_cls", "corp_name", "stock_code", "report_nm", "flr_nm", "corp_code"]
 
 
 class DartApiError(RuntimeError):
@@ -155,6 +155,7 @@ def run(api_key: str, bgn_de: str, end_de: str):
                     "stock_code": (it.get("stock_code") or "").strip(),
                     "report_nm": (it.get("report_nm") or "").strip(),
                     "flr_nm": (it.get("flr_nm") or "").strip(),
+                    "corp_code": (it.get("corp_code") or "").strip(),
                 }
             got += len(items)
         print(f"  {CORP_CLS[cls]}: {got:,}건 (대량보유)")

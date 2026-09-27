@@ -11,6 +11,7 @@ majorstock.json은 corp_code당 그 회사의 대량보유 이력 전체를 반�
 """
 import argparse
 import csv
+import datetime as dt
 import io
 import os
 import sys
@@ -75,10 +76,14 @@ def run(api_key: str):
     # 종목코드 → corp_code
     s2c = stock_to_corp_map(session, api_key)
 
-    # main DB를 stock_code(→corp_code)별로 묶고, 상세가 빠진 rcept_no가 있는 corp만 대상
+    # 상세 API가 반환하지 않는 과거 원문 보강 대상은 매일 재조회하지 않는다.
+    # 과거 전체 수집은 backfill_holdings.py에서 별도로 수행한다.
+    cutoff = (dt.date.today() - dt.timedelta(days=90)).strftime("%Y%m%d")
     by_corp = {}  # corp_code -> set(rcept_no)
     for r in main.values():
-        cc = s2c.get(r["stock_code"])
+        if r["rcept_dt"].replace("-", "") < cutoff:
+            continue
+        cc = r.get("corp_code") or s2c.get(r["stock_code"])
         if not cc:
             continue
         by_corp.setdefault(cc, set()).add(r["rcept_no"])
