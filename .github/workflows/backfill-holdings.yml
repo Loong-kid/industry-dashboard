@@ -1,0 +1,36 @@
+name: backfill-holdings
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: First disclosure date
+        default: '20220101'
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Check API coverage
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          BACKFILL_START: ${{ inputs.start }}
+        run: |
+          python - <<'PY'
+          import os, requests, json
+          s=requests.Session()
+          key=os.environ['DART_API_KEY']
+          for corp in ['00603348','00126380']:
+              d=s.get('https://opendart.fss.or.kr/api/majorstock.json',params={'crtfc_key':key,'corp_code':corp},timeout=60).json()
+              rows=d.get('list',[]); dates=sorted(r['rcept_dt'] for r in rows)
+              print(json.dumps({'corp':corp,'status':d.get('status'),'count':len(rows),'min':dates[:1],'max':dates[-1:]},ensure_ascii=False))
+          d=s.get('https://opendart.fss.or.kr/api/list.json',params={'crtfc_key':key,'bgn_de':os.environ['BACKFILL_START'],'end_de':'20220330','pblntf_detail_ty':'D001','page_count':100,'corp_cls':'K'},timeout=60).json()
+          print(json.dumps({'status':d.get('status'),'total_count':d.get('total_count'),'first':d.get('list',[])[:1]},ensure_ascii=False))
+          if d.get('status') not in ('000','013'): raise SystemExit('DART request failed')
+          PY
