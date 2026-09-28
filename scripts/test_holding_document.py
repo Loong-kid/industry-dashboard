@@ -39,6 +39,16 @@ class HoldingDocumentTests(unittest.TestCase):
         with self.assertRaises(HoldingParseError):
             parse_holding_document(document(SUM_TMT_RT='8.0').encode(),LISTING)
 
+    def test_cover_precision_difference_is_accepted(self):
+        result=parse_holding_document(document(SUM_TMT_RT='7.774').encode(),LISTING)
+        self.assertEqual(result['stkrt'],'7.77')
+        with self.assertRaises(HoldingParseError):
+            parse_holding_document(document(SUM_TMT_RT='7.776').encode(),LISTING)
+
+    def test_impossible_ratio_is_rejected(self):
+        with self.assertRaises(HoldingParseError):
+            parse_holding_document(document(THS_STK_RT='500.59',SUM_TMT_RT='500.59').encode(),LISTING)
+
     def test_contract_ratio_does_not_replace_holdings(self):
         text=document()+'<TE ACODE="CTR_TMT_RT">90</TE>'
         self.assertEqual(parse_holding_document(text.encode(),LISTING)['stkrt'],'7.77')

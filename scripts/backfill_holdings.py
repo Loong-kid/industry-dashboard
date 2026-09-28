@@ -101,7 +101,7 @@ def details(limit, validation=False):
                             mismatches.append({'rcept_no':no,'field':field,'parsed':result[field],'api':old[field]})
             elif result:
                 added[no]=result
-                audit['success'][no]={'source':'document.xml','sha256':digest,'parser_version':1}
+                audit['success'][no]={'source':'document.xml','sha256':digest,'parser_version':2}
             elif error not in ('quota_stopped','api_020'):
                 audit['errors'][no]=error
             if checked%200==0 and not validation:

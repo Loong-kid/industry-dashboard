@@ -1,5 +1,5 @@
 """Parse only identified DART holding-summary fields; never infer missing holdings as zero."""
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import html
 import re
 
@@ -38,7 +38,10 @@ def parse_holding_document(raw, listing):
     rt, shares = num('THS_STK_RT'), num('THS_STK_CNT')
     cover_rt, cover_shares = num('SUM_TMT_RT'), num('SUM_TMT_CNT')
     if rt is not None and cover_rt is not None and rt != cover_rt:
-        raise HoldingParseError('cover/detail ratio mismatch')
+        # Accept differing precision only when both round to the same 0.01% value.
+        precision = Decimal('0.01')
+        if rt.quantize(precision, rounding=ROUND_HALF_UP) != cover_rt.quantize(precision, rounding=ROUND_HALF_UP):
+            raise HoldingParseError('cover/detail ratio mismatch')
     if shares is not None and cover_shares is not None and shares != cover_shares:
         raise HoldingParseError('cover/detail shares mismatch')
     rt = rt if rt is not None else cover_rt
