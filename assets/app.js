@@ -1123,17 +1123,22 @@ function renderInstitutionProfiles(institutions, onSelect) {
       const years = Array.from({length:last-first+1},(_,i)=>first+i);
       const max = Math.max(1,...rows.map(a=>a.value || 0));
       const basis = rows[0];
+      const kofia = basis.series === "kofia_nav" || basis.series === "kofia_principal";
+      const kofiaPath = basis.series === "kofia_nav"
+        ? "회사별설정규모 → AUM(펀드+투자일임)"
+        : "투자신탁/회사/일임/기관전용 사모펀드";
       const bars = years.map(year=>{
         const a=byYear.get(year), usable=a?.value!=null;
         return `<div class="aum-bar-item"><span class="aum-bar-value">${usable ? amount(a) : "미확인"}</span><div class="aum-bar-track"><div class="aum-bar ${a?.period==="year_end" ? "" : "aum-bar-partial"}" style="height:${usable ? Math.max(1,a.value/max*100) : 0}%"></div></div><span>${year}${a && a.period!=="year_end" ? "*" : ""}</span></div>`;
       }).join("");
       return `<section class="aum-series"><h5>${esc(basis.series==="kofia_nav" ? "금융투자협회 AUM · 순자산총액+평가액" : basis.series==="kofia_principal" ? "금융투자협회 · 기존 설정원본" : "운용사 공식 AUM")}</h5>
         <p>${esc(basis.scope)} · ${esc(basis.basis)} · ${esc(basis.currency)}</p>
+        ${kofia ? `<p class="profile-update">공통 출처: ${link(basis.source,"금융투자협회 종합통계포털 ↗")}<br>조회 경로: 펀드 → 회사 → 운용사통계 → ${esc(kofiaPath)}. 위 조회 조건과 아래 표의 실제 기준일을 선택하세요.</p>` : ""}
         <div class="aum-chart-scroll"><div class="aum-bars" role="img" aria-label="연도별 운용규모. 정확한 수치와 기준일은 아래 표에 표시합니다.">${bars}</div></div>
-        <div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>연도</th><th>실제 기준일</th><th>규모</th><th>전년 말 대비</th><th>출처</th></tr></thead><tbody>${years.map(year=>{
+        <div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>연도</th><th>실제 기준일</th><th>규모</th><th>전년 말 대비</th>${kofia ? "" : "<th>출처</th>"}</tr></thead><tbody>${years.map(year=>{
           const a=byYear.get(year), prev=byYear.get(year-1);
           const change=a?.value!=null && prev?.value>0 && prev.period==="year_end" && (a.period==="year_end" || a.period==="ytd") ? (a.value/prev.value-1)*100 : null;
-          return `<tr><td>${year}${a && a.period!=="year_end" ? " (연중)" : ""}</td><td>${esc(a?.date || "미확인")}</td><td>${amount(a)}</td><td>${pct(change)}${change!=null && a.period!=="year_end" ? " (연중)" : ""}</td><td>${a ? link(a.source,"출처 ↗") : "—"}</td></tr>`;
+          return `<tr><td>${year}${a && a.period!=="year_end" ? " (연중)" : ""}</td><td>${esc(a?.date || "미확인")}</td><td>${amount(a)}</td><td>${pct(change)}${change!=null && a.period!=="year_end" ? " (연중)" : ""}</td>${kofia ? "" : `<td>${a ? link(a.source,"출처 ↗") : "—"}</td>`}</tr>`;
         }).join("")}</tbody></table></div>
         <p class="profile-update">* 연중 관측값은 연말 값이 아닙니다. 연도 안에 여러 자료가 있으면 마지막 확인값을 표시합니다. 서로 다른 범위·통화·평가기준은 별도 그래프로 표시합니다. 규모 증감률은 투자 수익률이 아닙니다.</p></section>`;
     }).join("");
