@@ -1046,7 +1046,7 @@ function renderInstitutionProfiles(institutions, onSelect) {
     : `${a.currency} ${(a.value / 1e9).toLocaleString("ko-KR", { maximumFractionDigits: 3 })}B`;
   const options = (values) => values.map((v)=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
   const styles = [...new Set(institutions.flatMap((i)=>i.styles || []))].sort();
-  panel.innerHTML = `<summary>기관 분류 · 연도별 AUM/운용규모 · 추적 이유 <span>${institutions.length}개 기관</span></summary>
+  panel.innerHTML = `<summary>기관 분류 · 연도별 AUM · 추적 이유 <span>${institutions.length}개 기관</span></summary>
     <p>관심기관 8곳을 별도로 유지하며 DART 운용·자문사와 금융투자협회 통계에 수록된 기관을 함께 조회합니다. 국내 전체 인허가 명부는 아니며, 과거 명칭과 현재 명칭은 근거 없이 합치지 않습니다. 유형은 명칭 기준이고, 지역·스타일이 확인되지 않으면 미확인·미분류로 표시합니다.</p>
     <div class="profile-controls">
       <input type="search" aria-label="기관 목록 검색" placeholder="기관명·별칭 검색" />
@@ -1056,7 +1056,7 @@ function renderInstitutionProfiles(institutions, onSelect) {
       <select aria-label="DART 연결 여부"><option value="">DART 연결 전체</option><option value="yes">저장 공시 있음</option><option value="no">저장 공시 미확인</option></select>
       <select aria-label="투자 스타일"><option value="">스타일 전체</option>${options(styles)}<option value="unknown">스타일 미분류</option></select>
     </div>
-    <p class="profile-update">AUM/운용규모는 DART와 별도로 공식 자료를 확인해 갱신합니다. 연말과 연중 값을 구분하며, 미확인은 0이나 미보유를 뜻하지 않습니다. USD B는 10억 달러입니다.</p>
+    <p class="profile-update">기본 AUM은 금융투자협회 순자산총액+평가액입니다. 협회 자료가 없는 기관은 확인된 운용사 공식 AUM을 표시합니다. 설정원본은 보조 자료로 보존합니다. AUM은 DART와 별도로 확인해 갱신합니다. 연말과 연중 값을 구분하며, 미확인은 0이나 미보유를 뜻하지 않습니다. USD B는 10억 달러입니다.</p>
     <div class="profile-directory"></div><div class="profile-pages"><button type="button" class="profile-prev">이전</button><span aria-live="polite"></span><button type="button" class="profile-next">다음</button></div>
     <div class="profile-detail" aria-live="polite"></div>`;
   const controls = panel.querySelector(".profile-controls");
@@ -1070,6 +1070,20 @@ function renderInstitutionProfiles(institutions, onSelect) {
   function history(inst) {
     return inst.aum_history || (inst.profile?.aum || []).map((a)=>({...a,series:a.scope,period:"observation",basis:"운용사 공식 발표"}));
   }
+  function primaryHistory(inst) {
+    const points = history(inst);
+    const nav = points.filter(a=>a.series==="kofia_nav");
+    return nav.some(a=>a.value!=null) ? nav : points.filter(a=>a.series!=="kofia_nav" && a.series!=="kofia_principal");
+  }
+  function aumSections(inst) {
+    const points = history(inst), primary = primaryHistory(inst);
+    const principal = points.filter(a=>a.series==="kofia_principal");
+    const otherOfficial = primary.some(a=>a.series==="kofia_nav")
+      ? points.filter(a=>a.series!=="kofia_nav" && a.series!=="kofia_principal") : [];
+    return `<h4>연도별 AUM</h4>${annualSeries(primary)}
+      ${principal.length ? `<details class="aum-secondary"><summary>보조 자료 · 기존 설정원본 보기</summary><p>기존에 수집한 설정원본 기준 자료입니다. 위 AUM과 평가기준·집계 범위가 달라 직접 연결하거나 차이를 수익률로 해석하지 않습니다.</p>${annualSeries(principal)}</details>` : ""}
+      ${otherOfficial.length ? `<details class="aum-secondary"><summary>보조 자료 · 운용사 공식 발표 AUM</summary>${annualSeries(otherOfficial)}</details>` : ""}`;
+  }
   function renderDirectory() {
     const query = search.value.trim().toLowerCase();
     const entries = institutions.filter((i)=>(watch.value!=="watch" || i.watchlist) && (!region.value || i.region===region.value)
@@ -1078,11 +1092,11 @@ function renderInstitutionProfiles(institutions, onSelect) {
       && (!query || [i.name,...i.aliases].join(" ").toLowerCase().includes(query)));
     const pages = Math.max(1, Math.ceil(entries.length/PAGE_SIZE));
     page = Math.min(page,pages-1);
-    directory.innerHTML = `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기관 · 분류</th><th>추적 이유 / 등록 근거</th><th>연도별 규모 자료</th><th>DART 공시</th></tr></thead><tbody>${entries.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE).map((i)=>{
-      const years = [...new Set(history(i).filter(a=>a.value!=null).map(a=>a.date.slice(0,4)))].sort();
+    directory.innerHTML = `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기관 · 분류</th><th>추적 이유 / 등록 근거</th><th>연도별 AUM 자료</th><th>DART 공시</th></tr></thead><tbody>${entries.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE).map((i)=>{
+      const years = [...new Set(primaryHistory(i).filter(a=>a.value!=null).map(a=>a.date.slice(0,4)))].sort();
       return `<tr><td><button type="button" data-profile="${esc(i.id)}" aria-pressed="${i.id===selected}">${esc(i.name)}</button><small>${esc(i.region)} · ${esc(i.kind)}${i.watchlist ? " · 관심기관" : ""}</small></td>
         <td>${esc(i.profile?.reason || i.origins.join(" · "))}<small>${esc(i.styles?.join(" · ") || "투자 스타일 미분류")}</small></td>
-        <td>${years.length ? `${years.join(" · ")}년<small>연도별 표·그래프 보기</small>` : "공식 수치 미확인"}</td><td>${i.dart_reports ? `${i.dart_reports.toLocaleString("ko-KR")}건` : "저장 공시 미확인"}</td></tr>`;
+        <td>${years.length ? `${years.join(" · ")}년<small>연도별 표·그래프 보기</small>` : (history(i).some(a=>a.series==="kofia_principal") ? "AUM 미확인<small>설정원본 보조 자료 있음</small>" : "공식 수치 미확인")}</td><td>${i.dart_reports ? `${i.dart_reports.toLocaleString("ko-KR")}건` : "저장 공시 미확인"}</td></tr>`;
     }).join("") || `<tr><td colspan="4">조건에 맞는 기관이 없습니다.</td></tr>`}</tbody></table></div>`;
     panel.querySelector(".profile-pages span").textContent = `${entries.length}개 기관 · ${page+1}/${pages}페이지`;
     panel.querySelector(".profile-prev").disabled = page===0;
@@ -1113,7 +1127,7 @@ function renderInstitutionProfiles(institutions, onSelect) {
         const a=byYear.get(year), usable=a?.value!=null;
         return `<div class="aum-bar-item"><span class="aum-bar-value">${usable ? amount(a) : "미확인"}</span><div class="aum-bar-track"><div class="aum-bar ${a?.period==="year_end" ? "" : "aum-bar-partial"}" style="height:${usable ? Math.max(1,a.value/max*100) : 0}%"></div></div><span>${year}${a && a.period!=="year_end" ? "*" : ""}</span></div>`;
       }).join("");
-      return `<section class="aum-series"><h5>${esc(basis.series==="kofia_principal" ? "금융투자협회 · 펀드·일임 설정원본" : "운용사 공식 AUM")}</h5>
+      return `<section class="aum-series"><h5>${esc(basis.series==="kofia_nav" ? "금융투자협회 AUM · 순자산총액+평가액" : basis.series==="kofia_principal" ? "금융투자협회 · 기존 설정원본" : "운용사 공식 AUM")}</h5>
         <p>${esc(basis.scope)} · ${esc(basis.basis)} · ${esc(basis.currency)}</p>
         <div class="aum-chart-scroll"><div class="aum-bars" role="img" aria-label="연도별 운용규모. 정확한 수치와 기준일은 아래 표에 표시합니다.">${bars}</div></div>
         <div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>연도</th><th>실제 기준일</th><th>규모</th><th>전년 말 대비</th><th>출처</th></tr></thead><tbody>${years.map(year=>{
@@ -1133,7 +1147,7 @@ function renderInstitutionProfiles(institutions, onSelect) {
     detail.innerHTML=`<div class="profile-title"><h3>${esc(inst.name)}</h3><button type="button" class="profile-filter" ${inst.dart_reports ? "" : "disabled"}>${inst.dart_reports ? "이 기관 공시 보기" : "저장 공시 미확인"}</button></div>
       <p>${esc(inst.region)} · ${esc(inst.kind)} · ${esc(inst.styles?.join(" · ") || "스타일 미분류")} · ${inst.watchlist ? "관심기관" : "일반 등록기관"}</p>
       ${p ? `<dl><dt>공식 자료에서 확인한 특징</dt><dd>${esc(p.fact)} ${link(p.source)}</dd><dt>선정 이유 · 관찰 목적</dt><dd>${esc(p.reason)}</dd><dt>관찰 포인트</dt><dd>${esc(p.watch)}</dd><dt>자료 해석</dt><dd>${esc(p.caution)}</dd></dl><p class="profile-update">설명 확인일 ${esc(p.checked)}</p>` : `<p>등록 근거: ${esc(inst.origins.join(" · "))}. 관심기관 선정이나 투자 추천을 뜻하지 않습니다. 투자 스타일은 검증한 자료가 없으면 미분류로 둡니다.</p>`}
-      <h4>연도별 AUM / 운용규모</h4>${annualSeries(history(inst))}
+      ${aumSections(inst)}
       <h4>펀드별 성과</h4>${p?.funds?.length ? p.funds.map(f=>`<section class="profile-fund"><strong>${esc(f.name)} · ${esc(f.class)}</strong><p>${esc(f.currency)} · ${esc(f.basis)}</p><p>비교지수: ${esc(f.benchmark)} · 운용사 전체 또는 한국 종목만의 성과가 아닙니다.</p>
         ${f.annual.length ? `<h5>연도별 수익률 (1~12월)</h5>${performanceTable(f.annual.map(r=>({...r,label:r.year+"년"})))}` : ""}
         ${f.rolling.length ? `<h5>기간별 수익률</h5>${performanceTable(f.rolling.map(r=>({...r,label:r.period+" · "+r.date})))}` : ""}</section>`).join("") : `<p>${esc(p?.performance_status || "펀드·클래스·보수·기간이 확인된 성과 자료 미확인")}</p>`}

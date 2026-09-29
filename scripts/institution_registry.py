@@ -71,6 +71,22 @@ def load_institutions(root=ROOT):
                 "funds": int(row["funds"]) * 100_000_000 if row["funds"] else None,
                 "discretionary": int(row["discretionary"]) * 100_000_000 if row["discretionary"] else None})
 
+    # Evaluated AUM is a separate series; never replace the preserved principal snapshots.
+    nav_folder = root / "manual/institution_aum_nav"
+    nav_manifest = json.loads((nav_folder / "sources.json").read_text(encoding="utf-8"))
+    for snapshot in nav_manifest["snapshots"]:
+        with (nav_folder / snapshot["file"]).open(encoding="utf-8", newline="") as f:
+            rows = list(csv.DictReader(f))
+        assert len(rows) == snapshot["companies"], snapshot["file"]
+        for row in rows:
+            inst = find_or_add(row["name"], "금융투자협회 통계", domestic=True)
+            inst.setdefault("aum_history", []).append({
+                "date": snapshot["date"], "period": snapshot["period"],
+                "value": int(row["total"]) * 100_000_000 if row["total"] else None,
+                "currency": "KRW", "series": "kofia_nav", "scope": nav_manifest["scope"],
+                "basis": nav_manifest["basis"], "source": nav_manifest["source"],
+                "checked": nav_manifest["checked"]})
+
     alias_path = root / "manual/institution_aliases.json"
     if alias_path.exists():
         for rule in json.loads(alias_path.read_text(encoding="utf-8")):

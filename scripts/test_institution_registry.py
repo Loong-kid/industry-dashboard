@@ -37,9 +37,24 @@ class InstitutionRegistryTest(unittest.TestCase):
             self.assertEqual([p['date'][:4] for p in points],['2022','2023','2024','2025','2026'])
             self.assertEqual([p['period'] for p in points],['year_end']*4+['ytd'])
         life=self.by_id['life']['aum_history']
-        self.assertEqual(len({p['series'] for p in life}),2)
+        self.assertEqual(len({p['series'] for p in life}),3)
         self.assertIn(4_104_400_000_000,[p['value'] for p in life])
         self.assertIn(5_380_300_000_000,[p['value'] for p in life])
+
+    def test_evaluated_aum_is_separate_and_complete(self):
+        for id in ('vip','life','must'):
+            points=[p for p in self.by_id[id]['aum_history'] if p['series']=='kofia_nav']
+            self.assertEqual([p['date'][:4] for p in points],['2022','2023','2024','2025','2026'])
+            self.assertEqual([p['period'] for p in points],['year_end']*4+['ytd'])
+            self.assertTrue(all(p['basis']=='순자산총액+평가액' for p in points))
+        latest={p['date']:p['value'] for p in self.by_id['life']['aum_history'] if p['series']=='kofia_nav'}
+        self.assertEqual(latest['2026-09-28'],5_328_500_000_000)
+        for snapshot in json.loads((ROOT/'manual/institution_aum_nav/sources.json').read_text(encoding='utf-8'))['snapshots']:
+            with (ROOT/'manual/institution_aum_nav'/snapshot['file']).open(encoding='utf-8') as f:
+                for r in csv.DictReader(f):
+                    inst=self.by_id[self.aliases[institution_key(r['name'])]]
+                    p=next(p for p in inst['aum_history'] if p['series']=='kofia_nav' and p['date']==snapshot['date'])
+                    self.assertEqual(p['value'],int(r['total'])*100_000_000 if r['total'] else None)
 
     def test_snapshot_totals_and_absent_values(self):
         for inst in self.entries:
