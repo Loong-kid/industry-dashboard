@@ -499,3 +499,19 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .profile-detail h4 { margin-top: 20px; font-size: 14px; }
 .profile-fund { margin-top: 12px; }
 .profile-fund h5 { font-size: 12px; margin-top: 12px; }
+
+/* Institution directory and annual company-scale series only. */
+.profile-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.profile-controls input, .profile-controls select { min-width: 0; max-width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; background: var(--surface); color: var(--ink); font: inherit; font-size: 12px; }
+.profile-controls input { flex: 1 1 180px; }
+.profile-pages { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 12px; }
+.institution-profiles button:disabled { cursor: default; opacity: .5; }
+.aum-series { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.aum-series h5 { font-size: 13px; margin: 8px 0; }
+.aum-chart-scroll { overflow-x: auto; }
+.aum-bars { display: flex; gap: 12px; height: 205px; min-width: 440px; padding: 12px 6px; }
+.aum-bar-item { flex: 1; min-width: 72px; display: flex; flex-direction: column; text-align: center; gap: 8px; font-size: 11px; }
+.aum-bar-value { min-height: 28px; font-variant-numeric: tabular-nums; }
+.aum-bar-track { height: 130px; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid var(--border); }
+.aum-bar { width: 58%; background: var(--accent); border-radius: 4px 4px 0 0; }
+.aum-bar-partial { opacity: .5; }

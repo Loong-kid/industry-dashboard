@@ -16,6 +16,7 @@ import re
 from collections import Counter
 from datetime import date
 from pathlib import Path
+from institution_registry import institution_key, load_institutions
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "_dart" / "대량보유DB.csv"
@@ -24,24 +25,6 @@ CORP_NAMES_PATH = ROOT / "data" / "_dart" / "_corp_names.json"
 OUT = ROOT / "data" / "institution" / "major_holdings.json"
 TRAJ_OUT = ROOT / "data" / "institution" / "holdings_traj.json"
 VIEWER_URL = "https://dart.fss.or.kr/dsaf001/main.do?rcpNo={no}"
-INSTITUTIONS_PATH = ROOT / "manual" / "institutions.json"
-
-
-def institution_key(name):
-    # Only spelling separators are normalized; funds and affiliates stay separate.
-    return re.sub(r"[\s, .·]+", "", name or "").casefold()
-
-
-def load_institutions():
-    institutions = json.loads(INSTITUTIONS_PATH.read_text(encoding="utf-8"))
-    aliases = {}
-    for inst in institutions:
-        for alias in inst["aliases"]:
-            key = institution_key(alias)
-            if key in aliases and aliases[key] != inst["id"]:
-                raise ValueError(f"기관 별칭 중복: {alias}")
-            aliases[key] = inst["id"]
-    return institutions, aliases
 
 
 def event_label(rt, chg, reason):
