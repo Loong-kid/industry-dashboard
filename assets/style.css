@@ -477,3 +477,25 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .institution-overlap > div { margin: 8px 0; font-size: 12px; line-height: 1.7; }
 .institution-filter { border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; background: var(--surface); color: var(--ink); font: inherit; max-width: 100%; }
 .institution-events .order-table-wrap td:nth-child(9) { white-space: normal; min-width: 200px; max-width: 280px; overflow-wrap: anywhere; }
+
+.institution-profiles { margin: 12px 0 18px; padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.institution-profiles summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.institution-profiles summary span { color: var(--muted); font-size: 12px; margin-left: 8px; }
+.institution-profiles p { font-size: 12px; line-height: 1.7; margin: 8px 0; }
+.institution-profiles .profile-update { color: var(--muted); }
+.profile-table-scroll { overflow-x: auto; max-width: 100%; margin: 12px 0; }
+.profile-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 520px; }
+.profile-table th, .profile-table td { text-align: left; padding: 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.profile-table th { color: var(--muted); font-weight: 500; }
+.profile-table small { display: block; color: var(--muted); }
+.institution-profiles button { border: 1px solid var(--border); background: var(--surface); color: var(--accent); padding: 5px 9px; border-radius: 5px; cursor: pointer; font: inherit; }
+.institution-profiles button[aria-pressed="true"] { border-color: var(--accent); }
+.profile-detail { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.profile-title { display: flex; gap: 12px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.profile-title h3 { font-size: 16px; }
+.profile-detail dl { font-size: 12px; line-height: 1.8; }
+.profile-detail dt { color: var(--muted); margin-top: 10px; }
+.profile-detail dd { margin: 0; }
+.profile-detail h4 { margin-top: 20px; font-size: 14px; }
+.profile-fund { margin-top: 12px; }
+.profile-fund h5 { font-size: 12px; margin-top: 12px; }

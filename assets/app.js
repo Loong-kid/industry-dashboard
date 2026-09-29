@@ -1032,6 +1032,57 @@ function renderAsiasisTable(doc) {
   return card;
 }
 
+// 관심기관 설명과 공식 공표치. 운용사 AUM과 개별 펀드 성과를 구분한다.
+function renderInstitutionProfiles(institutions, onSelect) {
+  const entries = institutions.filter((i) => i.profile);
+  const panel = document.createElement("details");
+  panel.className = "institution-profiles";
+  if (!entries.length) return panel;
+  const esc = escapeHtml;
+  const link = (url, label = "공식 근거 ↗") => /^https:\/\//.test(url || "")
+    ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>` : "";
+  const pct = (v) => v == null ? "미확인" : `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
+  const amount = (a) => a.currency === "KRW"
+    ? `${(a.value / 1e8).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}억원`
+    : `${a.currency} ${(a.value / 1e9).toLocaleString("ko-KR", { maximumFractionDigits: 3 })}B`;
+  const latest = (rows) => [...rows].sort((a,b) => b.date.localeCompare(a.date))[0];
+  const age = (date) => Math.floor((Date.now() - Date.parse(date + "T00:00:00Z")) / 86400000);
+  const stale = (date) => age(date) > 180 ? ` · 기준일 ${age(date)}일 경과` : "";
+  panel.innerHTML = `<summary>관심기관을 추적하는 이유 · AUM · 펀드 성과 <span>${entries.length}개 기관</span></summary>
+    <p>선정 이유는 이 대시보드의 관찰 목적입니다. AUM은 확인 자료 중 최근 공표치이며 한국 보유액이 아닙니다. 펀드 성과는 운용사 전체 성과가 아닙니다.</p>
+    <p class="profile-update">공식 자료 확인 후 갱신하는 자료입니다. DART 일일 갱신과 별도이며 실시간 자동 수집하지 않습니다. USD의 B는 10억 달러입니다.</p>
+    <div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>관심기관</th><th>추적하는 이유</th><th>운용사 AUM · 기준일</th><th>성과 자료</th></tr></thead><tbody>${entries.map((i) => {
+      const p=i.profile, a=latest(p.aum);
+      return `<tr><td><button type="button" data-profile="${esc(i.id)}" aria-label="${esc(i.name)} 설명 보기">${esc(i.name)}</button></td><td>${esc(p.reason)}</td>
+        <td>${a ? `${amount(a)}<small>${esc(a.date)}${stale(a.date)}</small>${link(a.source,"AUM 출처 ↗")}` : "공식 수치 미확인"}</td>
+        <td>${p.funds.length ? `${p.funds.length}개 펀드 · 상세 보기` : "조건 확인 자료 미확인"}</td></tr>`;
+    }).join("")}</tbody></table></div><div class="profile-detail" aria-live="polite"></div>`;
+  const detail=panel.querySelector(".profile-detail");
+  function show(id) {
+    const inst=entries.find((i)=>i.id===id), p=inst.profile;
+    panel.querySelectorAll("[data-profile]").forEach((b)=>b.setAttribute("aria-pressed",String(b.dataset.profile===id)));
+    const a=latest(p.aum);
+    detail.innerHTML=`<div class="profile-title"><h3>${esc(inst.name)}</h3><button type="button" class="profile-filter">이 기관 공시 보기</button></div>
+      <dl><dt>공식 자료에서 확인한 특징</dt><dd>${esc(p.fact)} ${link(p.source)}</dd>
+      <dt>선정 이유 · 관찰 목적</dt><dd>${esc(p.reason)}</dd><dt>관찰 포인트</dt><dd>${esc(p.watch)}</dd>
+      <dt>자료 해석</dt><dd>${esc(p.caution)}</dd></dl>
+      <p class="profile-update">자료 확인일 ${esc(p.checked)}${stale(p.checked)} · 미확인은 비공개 또는 미보유를 뜻하지 않습니다.</p>
+      <h4>운용사 AUM 기록</h4>${a ? `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기준일</th><th>규모</th><th>범위</th><th>출처</th></tr></thead><tbody>${[...p.aum].sort((x,y)=>y.date.localeCompare(x.date)).map((v)=>`<tr><td>${esc(v.date)}</td><td>${amount(v)}</td><td>${esc(v.scope)}</td><td>${link(v.source)}</td></tr>`).join("")}</tbody></table></div><p class="profile-update">${p.aum.length===1 ? "첫 확인값입니다. 같은 범위·통화의 공표치를 누적해 비교합니다." : "AUM 증감에는 자금 유출입과 시장·환율 변동이 함께 반영될 수 있습니다."}</p>` : `<p>${esc(p.aum_status)}</p>`}
+      <h4>펀드별 성과</h4>${p.funds.length ? p.funds.map((f)=>`<section class="profile-fund"><strong>${esc(f.name)} · ${esc(f.class)}</strong>
+        <p>${esc(f.currency)} · ${esc(f.basis)}</p><p>비교지수: ${esc(f.benchmark)} · 한국 종목만의 성과가 아닙니다.</p>
+        ${f.annual.length ? `<h5>연도별 수익률 (1~12월)</h5>${performanceTable(f.annual.map((r)=>({...r,label:r.year+"년"})))}` : ""}
+        ${f.rolling.length ? `<h5>기간별 수익률</h5>${performanceTable(f.rolling.map((r)=>({...r,label:r.period+" · "+r.date})))}` : ""}</section>`).join("") : `<p>${esc(p.performance_status)}</p>`}
+      <p class="profile-update">전략·통화·클래스·보수·기간이 다른 수익률을 단순 순위로 비교하지 않습니다. 과거 성과는 미래 성과를 보장하지 않습니다.</p>`;
+    detail.querySelector(".profile-filter").addEventListener("click",()=>onSelect(id));
+  }
+  function performanceTable(rows) {
+    return `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기간 · 기준일</th><th>펀드</th><th>비교지수</th><th>출처</th></tr></thead><tbody>${rows.map((r)=>`<tr><td>${esc(r.label)}</td><td>${pct(r.return)}</td><td>${pct(r.benchmark_return)}</td><td>${link(r.source)}</td></tr>`).join("")}</tbody></table></div>`;
+  }
+  panel.querySelectorAll("[data-profile]").forEach((b)=>b.addEventListener("click",()=>show(b.dataset.profile)));
+  show(entries[0].id);
+  return panel;
+}
+
 // ── 기관 수급: 대량보유 공시 (major_holdings) ────────────────────
 // 시장·보고자유형 칩 + 종목·보고자 컬럼필터. 기본은 '개인' 숨김.
 function renderMajorHoldings(doc) {
@@ -1170,6 +1221,20 @@ function renderMajorHoldings(doc) {
     renderRows();
   });
   filterBar.prepend(yearSelect);
+  const profiles = renderInstitutionProfiles(doc.institutions || [], (id) => {
+    instSelect.value = id;
+    yearSelect.value = "";
+    filt.year = "";
+    state.tableRange[doc.id] = "all";
+    head.querySelectorAll(".table-range button").forEach((b) => b.classList.toggle("active", b.textContent === "전체"));
+    filt.search = "";
+    searchWrap.querySelector("input").value = "";
+    filt.colFilters = {};
+    instSelect.dispatchEvent(new Event("change"));
+    filterBar.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
+  if ((doc.institutions || []).some((i) => i.profile)) card.insertBefore(profiles, filterBar);
+
 
   searchWrap.querySelector("input").addEventListener("input", (e) => {
     filt.search = e.target.value.trim().toLowerCase();
