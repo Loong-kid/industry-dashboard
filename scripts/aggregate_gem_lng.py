@@ -193,6 +193,9 @@ def terminals():
     ex["orig"] = ex["OriginalPlannedStartYear"].map(year)
     ex["latest"] = ex["LatestPlannedStartYear"].map(year)
     ex["actual"] = ex["ActualStartYear"].map(year)
+    # 계획 가동연도: 최신이 비면 최초 계획으로 대신한다 — 카타르 North Field East(32 MTPA) 등 건설중 83.8 MTPA가
+    # 최신 계획연도 없이 최초 계획만 있어, 안 하면 연도별·누적 전망에서 통째로 빠진다.
+    ex["planned"] = ex["latest"].fillna(ex["orig"])
 
     # Gas Finance(2026-07)가 더 최신이라 FID·EPC는 그쪽을 우선한다. 유닛 ID(Combo)로만 매칭된다(약 1/4).
     f = pd.read_excel(SRC / "gas_finance.xlsx", sheet_name="LNG Terminals")
@@ -270,8 +273,8 @@ def terminals():
         return [[f"{int(y)}-01-01", round(v, 1)] for y, v in g.items() if y and v and y >= 2000]
     series = {
         "가동 개시(실적)": by_year(ex["actual"].notna(), "actual"),
-        "건설중(계획)": by_year((ex["Status"] == "construction") & ex["latest"].notna(), "latest"),
-        "제안(계획, 불확실)": by_year((ex["Status"] == "proposed") & ex["latest"].notna(), "latest"),
+        "건설중(계획)": by_year((ex["Status"] == "construction") & ex["planned"].notna(), "planned"),
+        "제안(계획, 불확실)": by_year((ex["Status"] == "proposed") & ex["planned"].notna(), "planned"),
     }
     write("lng_global_timeline", {
         "id": "lng_global_timeline", "name": "전세계 액화용량 — 연도별 신규",
@@ -288,7 +291,58 @@ def terminals():
                  "미국 train 단위 상세는 위 EIA 카드에 있다."),
         "series": series,
     })
-    print(f"  액화: 유닛 {len(rows)}개 · 건설중 {capsum('construction'):,.0f} MTPA · 지연 {late}/{len(dl)}")
+    # 누적(순가동) — 미국 EIA 누적 카드와 같은 형태. 가동을 시작한 해에 더하고 멈춘 해에 뺀다.
+    # 폐쇄·중단인데 정지연도가 빈 유닛(12개가량)은 릴리스 시점엔 멈춰 있으므로 릴리스 연도에 뺀다 —
+    # 그래야 끝점이 현재 'operating' 합계와 맞는다(안 하면 13 MTPA쯤 과대).
+    rel_year = 2025
+    stop = pd.to_numeric(ex["StopYear"], errors="coerce")
+    live = ex[ex["actual"].notna()].copy()
+    live["stop"] = stop[live.index]
+    live.loc[live["stop"].isna() & (live["Status"] != "operating"), "stop"] = rel_year
+    # 지금 가동 중인데 정지연도가 있는 건 '한때 멈췄다 재가동'한 경우다(Cove Point 1979 정지→재가동,
+    # Damietta, Hammerfest 등 14.5 MTPA) — 현재 가동을 기준으로 삼아 정지연도를 무시한다.
+    live.loc[live["Status"] == "operating", "stop"] = float("nan")
+    first = int(live["actual"].min())
+    net = []
+    for y in range(first, rel_year + 1):
+        on = live[(live["actual"] <= y) & ~(live["stop"].notna() & (live["stop"] <= y))]["cap"].sum()
+        if y >= 2000 or on:
+            net.append([f"{y}-01-01", round(on, 1)])
+    now = net[-1][1]
+    cons = ex[(ex["Status"] == "construction") & ex["planned"].notna()].groupby("planned")["cap"].sum()
+    prop = ex[(ex["Status"] == "proposed") & ex["planned"].notna()].groupby("planned")["cap"].sum()
+    fut, tot = [[net[-1][0], now]], now
+    for y, v in cons.sort_index().items():
+        if y > rel_year:
+            tot = round(tot + v, 1)
+            fut.append([f"{int(y)}-01-01", tot])
+    # 건설중 중 계획연도가 이미 지난(=늦어진) 물량은 다음 해에 몰아 얹는다 — 빼면 전망이 과소가 된다
+    overdue = cons[cons.index <= rel_year].sum()
+    if overdue and len(fut) > 1:
+        fut = [fut[0]] + [[d, round(v + overdue, 1)] for d, v in fut[1:]]
+    pfut, ptot = [[fut[-1][0], fut[-1][1]]], fut[-1][1]
+    for y, v in prop.sort_index().items():
+        if y > int(fut[-1][0][:4]):
+            ptot = round(ptot + v, 1)
+            pfut.append([f"{int(y)}-01-01", ptot])
+    write("lng_global_cumulative", {
+        "id": "lng_global_cumulative", "name": "전세계 액화용량 — 누적",
+        "unit": "MTPA", "frequency": "yearly", "full_range": True,
+        "source": f"Global Energy Monitor, {REL_TERMINAL} (CC BY 4.0)", "source_url": GEM_URL,
+        "updated": "2025-09-01",
+        "default_series": ["가동중 누적(순)", "건설중 포함 전망"],
+        "description": (
+            "전 세계(미국 포함)에서 실제로 돌고 있는 액화용량의 추이와, 지금 짓고 있는 물량이 계획대로 다 들어왔을 때의 "
+            "경로. 가동을 시작한 해에 더하고 폐쇄·중단된 해에 빼서 '순' 가동용량을 만들었다. 위 미국 누적 카드와 "
+            "나란히 보면 전 세계 증설에서 미국이 차지하는 몫이 보인다. 제안 단계까지 얹은 선은 칩으로 켠다."
+        ),
+        "note": (f"현재 순가동 {now:,.0f} MTPA → 건설중 포함 {fut[-1][1]:,.0f} MTPA({fut[-1][0][:4]}년). "
+                 f"계획연도가 이미 지났는데 아직 건설중인 물량 {overdue:,.1f} MTPA는 다음 해에 얹었다. "
+                 "전망선은 최신 계획 가동연도를 그대로 쌓아 지연되면 오른쪽으로 밀린다. 제안 단계는 상당수가 취소·보류된다."),
+        "series": {"가동중 누적(순)": net, "건설중 포함 전망": fut, "제안까지 포함(불확실)": pfut},
+    })
+    print(f"  액화: 유닛 {len(rows)}개 · 건설중 {capsum('construction'):,.0f} MTPA · 지연 {late}/{len(dl)} · "
+          f"순가동 {now} → 건설중 포함 {fut[-1][1]} ({fut[-1][0][:4]})")
 
 
 if __name__ == "__main__":
