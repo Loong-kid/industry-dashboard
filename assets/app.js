@@ -1153,14 +1153,37 @@ function renderInstitutionProfiles(institutions, onSelect) {
       <p>${esc(inst.region)} · ${esc(inst.kind)} · ${esc(inst.styles?.join(" · ") || "스타일 미분류")} · ${inst.watchlist ? "관심기관" : "일반 등록기관"}</p>
       ${p ? `<dl><dt>공식 자료에서 확인한 특징</dt><dd>${esc(p.fact)} ${link(p.source)}</dd><dt>선정 이유 · 관찰 목적</dt><dd>${esc(p.reason)}</dd><dt>관찰 포인트</dt><dd>${esc(p.watch)}</dd><dt>자료 해석</dt><dd>${esc(p.caution)}</dd></dl><p class="profile-update">설명 확인일 ${esc(p.checked)}</p>` : `<p>등록 근거: ${esc(inst.origins.join(" · "))}. 관심기관 선정이나 투자 추천을 뜻하지 않습니다. 투자 스타일은 검증한 자료가 없으면 미분류로 둡니다.</p>`}
       ${aumSections(inst)}
-      <h4>펀드별 성과</h4>${p?.funds?.length ? p.funds.map(f=>`<section class="profile-fund"><strong>${esc(f.name)} · ${esc(f.class)}</strong><p>${esc(f.currency)} · ${esc(f.basis)}</p><p>비교지수: ${esc(f.benchmark)} · 운용사 전체 또는 한국 종목만의 성과가 아닙니다.</p>
-        ${f.annual.length ? `<h5>연도별 수익률 (1~12월)</h5>${performanceTable(f.annual.map(r=>({...r,label:r.year+"년"})))}` : ""}
-        ${f.rolling.length ? `<h5>기간별 수익률</h5>${performanceTable(f.rolling.map(r=>({...r,label:r.period+" · "+r.date})))}` : ""}</section>`).join("") : `<p>${esc(p?.performance_status || "펀드·클래스·보수·기간이 확인된 성과 자료 미확인")}</p>`}
+      ${performanceSections(p)}
       <p class="profile-update">AUM은 한국 보유액이 아닙니다. 설정원본과 순자산 평가액은 다를 수 있습니다. 공시 미확인은 미보유를 뜻하지 않습니다.</p>`;
     detail.querySelector(".profile-filter").addEventListener("click",()=>onSelect(id));
   }
+  function performanceSections(profile) {
+    const perf=profile?.performance || {};
+    const renderRecord=(f)=>`<section class="profile-fund"><strong>${esc(f.name)}${f.class ? ` · ${esc(f.class)}` : ""}</strong>
+      <p>${esc(f.coverage || "해당 자료에 명시된 운용 범위만 포함합니다.")}</p>
+      <p>${esc(f.currency)} · ${esc(f.basis)}</p><p>비교지수: ${esc(f.benchmark || "미확인")}</p>
+      ${(f.annual || []).length ? `<h5>연도별 수익률 (1~12월)</h5>${performanceTable(f.annual.map(r=>({...r,label:r.year+"년"})))}` : "<p>역년 기준 연간 수익률 미확인</p>"}
+      ${(f.rolling || []).length ? `<h5>기간별 수익률 · 역년 성과와 구분</h5>${performanceTable(f.rolling.map(r=>({...r,label:r.period+" · "+r.date})))}` : ""}
+      ${f.checked ? `<p class="profile-update">자료 확인일 ${esc(f.checked)} · 실제 성과 기준일은 표를 참고하세요.</p>` : ""}</section>`;
+    const company=(perf.company || []).filter(f=>f.coverage_verified===true);
+    const korea=(perf.korea_equity || []).filter(f=>f.coverage_verified===true);
+    const funds=profile?.funds || [];
+    return `<section class="institution-performance"><h4>투자성과 · 운용 범위별</h4>
+      <p>AUM 증감은 고객 자금 유출입을 포함하므로 투자수익률로 사용하지 않습니다. 아래 성과는 공식 발표 자료이며 서로 다른 범위의 수익률을 합산·평균하지 않습니다.</p>
+      <h5>1. 운용사 전체 연간 성과</h5>
+      ${company.length ? company.map(renderRecord).join("") : "<p>전체 성과 미확인 · 모든 펀드·일임계좌의 포함 범위와 산출 기준이 확인된 공식 자료가 아직 등록되지 않았습니다.</p>"}
+      <h5>2. 한국 주식 전략 종합 성과</h5>
+      ${korea.length ? korea.map(renderRecord).join("") : "<p>전략 종합 성과 미확인 · 한국 주식 전략의 포함 계좌와 산출 기준이 확인된 공식 자료가 아직 등록되지 않았습니다.</p>"}
+      <h5>3. 확인된 개별 펀드 성과 · ${funds.length}개 펀드·클래스</h5>
+      <p>확인된 일부 상품만 표시합니다. 전체 상품 목록이나 운용사 전체 성과가 아닙니다.</p>
+      ${funds.length ? funds.map(renderRecord).join("") : "<p>펀드·클래스·기간·산출 기준을 확인한 성과 자료 미확인</p>"}
+      <p class="profile-update">초과수익은 같은 행의 수익률과 공식 비교지수 수익률의 차이(%p)입니다. 위험을 조정한 알파가 아니며, 비교지수가 없으면 계산하지 않습니다. 과거 성과가 미래 성과를 보장하지 않습니다.</p></section>`;
+  }
   function performanceTable(rows) {
-    return `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기간 · 기준일</th><th>펀드</th><th>비교지수</th><th>출처</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.label)}</td><td>${pct(r.return)}</td><td>${pct(r.benchmark_return)}</td><td>${link(r.source)}</td></tr>`).join("")}</tbody></table></div>`;
+    return `<div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>기간 · 기준일</th><th>수익률</th><th>비교지수</th><th>초과수익 (%p)</th><th>출처</th></tr></thead><tbody>${rows.map(r=>{
+      const excess=Number.isFinite(r.return) && Number.isFinite(r.benchmark_return) ? r.return-r.benchmark_return : null;
+      return `<tr><td>${esc(r.label)}</td><td>${pct(r.return)}</td><td>${pct(r.benchmark_return)}</td><td>${excess==null ? "—" : `${excess>0 ? "+" : ""}${excess.toFixed(2)}%p`}</td><td>${link(r.source)}</td></tr>`;
+    }).join("")}</tbody></table></div>`;
   }
   controls.querySelectorAll("select").forEach(s=>s.addEventListener("change",()=>{page=0;renderDirectory();}));
   search.addEventListener("input",()=>{page=0;renderDirectory();});
