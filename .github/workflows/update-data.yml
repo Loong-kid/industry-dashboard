@@ -47,6 +47,10 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_commodities.py
 
+      - name: SHFE 구리 주간 재고 수집
+        continue-on-error: true
+        run: python scripts/fetch_copper_inventory.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true

@@ -363,6 +363,13 @@ function renderCard(doc, indicatorId) {
     }</div>`;
   card.appendChild(head);
 
+  if (doc.data_stale_days && daysSince(doc.updated) >= doc.data_stale_days) {
+    const warning = document.createElement("div");
+    warning.className = "card-empty is-error";
+    warning.textContent = `최신 자료 미확보 · 아래는 ${doc.updated} 기준 과거 자료입니다.`;
+    card.appendChild(warning);
+  }
+
   // 헤드라인: 다중 시리즈 카드는 체크된 첫 시리즈를 따라감 (칩 토글 시 갱신)
   const stat = document.createElement("div");
   stat.className = "card-stat";
@@ -375,18 +382,35 @@ function renderCard(doc, indicatorId) {
       stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
       return;
     }
-    const delta = prev ? last[1] - prev[1] : null;
-    const pct = prev && prev[1] !== 0 ? (delta / prev[1]) * 100 : null;
+    const delta = doc.inventory_summary
+      ? (new Map(doc.weekly_changes || []).get(last[0]) ?? null)
+      : prev ? last[1] - prev[1] : null;
+    const previousValue = doc.inventory_summary && delta !== null ? last[1] - delta : prev?.[1];
+    const pct = previousValue ? (delta / previousValue) * 100 : null;
     const dir = delta > 0 ? "up" : delta < 0 ? "down" : "";
     const arrow = delta > 0 ? "▲" : delta < 0 ? "▼" : "";
     stat.innerHTML = `
       ${seriesNames.length > 1 ? `<span class="stat-series">${seriesName}</span>` : ""}
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
-      ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))} (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)</span>` : ""}
+      ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
       <span class="stat-date">${last[0]}</span>`;
   };
   setStat(mainName);
+
+  if (doc.inventory_summary) {
+    const points = doc.series[mainName];
+    const last = points[points.length - 1];
+    const target = new Date(`${last[0]}T00:00:00Z`);
+    target.setUTCDate(target.getUTCDate() - 28);
+    const base = points.find(p => p[0] === target.toISOString().slice(0, 10));
+    const weekly = new Map(doc.weekly_changes || []).get(last[0]);
+    const describe = value => value == null ? "자료 없음" : `${value > 0 ? "+" : ""}${fmt(value)} 톤`;
+    const summary = document.createElement("p");
+    summary.className = "card-foot";
+    summary.textContent = `전주 대비 ${describe(weekly)} · 4주 변화 ${describe(base ? last[1] - base[1] : null)}`;
+    card.appendChild(summary);
+  }
 
   const wrap = document.createElement("div");
   wrap.className = "chart-wrap";
