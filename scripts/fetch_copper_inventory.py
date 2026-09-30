@@ -8,6 +8,7 @@ import datetime as dt
 import json
 import math
 import time
+from html.parser import HTMLParser
 from pathlib import Path
 
 import requests
@@ -15,8 +16,69 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / 'data/commodities/comm_copper_shfe_inventory.json'
 URL = 'https://www.shfe.cn/data/tradedata/future/weeklydata/{date}weeklystock.dat'
+HTML_URL = 'https://www.shfe.cn/data/tradedata/future/stockdata/weeklystock_{date}/ZH/all.html'
 SOURCE = 'https://www.shfe.cn/eng/reports/StatisticalData/WeeklyData/'
 NAME = 'SHFE 구리 주간 재고'
+
+
+class ReportTable(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.rows = []
+        self.row = None
+        self.cell = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'tr':
+            self.row = []
+        elif tag in ('td', 'th'):
+            self.cell = []
+
+    def handle_data(self, data):
+        if self.cell is not None:
+            self.cell.append(data)
+
+    def handle_endtag(self, tag):
+        if tag in ('td', 'th') and self.cell is not None:
+            if self.row is not None:
+                self.row.append(''.join(self.cell).strip())
+            self.cell = None
+        elif tag == 'tr' and self.row is not None:
+            self.rows.append(self.row)
+            self.row = None
+
+
+def validate_values(value, previous, change):
+    if not all(math.isfinite(v) for v in (value, previous, change)) or min(value, previous) < 0:
+        raise ValueError('Invalid inventory')
+    if abs(value - previous - change) > .01:
+        raise ValueError('Inventory change does not reconcile')
+    return value, change
+
+
+def parse_html_report(text, date):
+    table = ReportTable()
+    table.feed(text)
+    iso = dt.datetime.strptime(date, '%Y%m%d').date().isoformat()
+    if not table.rows or not table.rows[0] or not table.rows[0][0].startswith(iso + ' '):
+        raise ValueError('HTML report date does not match requested date')
+    headers = ['地区', '仓库', '上周库存', '本周库存', '库存增减', '可用库容量']
+    subheaders = ['小计', '期货', '小计', '期货', '小计', '期货', '上周', '本周', '增减']
+    active = False
+    totals = []
+    for index, row in enumerate(table.rows):
+        if len(row) == 2 and row[1].startswith('单位'):
+            active = row[0] == '铜'
+            if active and (row[1] != '单位：吨' or table.rows[index-2:index] != [headers, subheaders]):
+                raise ValueError('Unexpected copper unit or table columns')
+        elif active and row and row[0] == '总计':
+            if len(row) != 10:
+                raise ValueError('Unexpected total row width')
+            numbers = [float(v.replace(',', '')) for v in row[1:]]
+            totals.append(validate_values(numbers[2], numbers[0], numbers[4]))
+    if len(totals) != 1:
+        raise ValueError('Expected exactly one copper total')
+    return totals[0]
 
 
 def parse_report(doc, date):
@@ -30,11 +92,21 @@ def parse_report(doc, date):
     row = rows[0]
     # SPOTWGHTS = actual inventory; WHSTOCKS is warehouse capacity.
     values = [float(row[k]) for k in ('SPOTWGHTS', 'PRESPOTWGHTS', 'SPOTCHANGE')]
-    if not all(math.isfinite(v) for v in values) or min(values[:2]) < 0:
-        raise ValueError('Invalid inventory')
-    if abs(values[0] - values[1] - values[2]) > .01:
-        raise ValueError('Inventory change does not reconcile')
-    return values[0], values[2]
+    return validate_values(*values)
+
+
+def fetch_report(session, stamp):
+    # The official page uses HTML first, and legacy JSON only as a fallback.
+    response = session.get(HTML_URL.format(date=stamp), timeout=(5, 15))
+    if response.status_code != 404:
+        response.raise_for_status()
+        response.encoding = 'utf-8'
+        return (*parse_html_report(response.text, stamp), HTML_URL.format(date=stamp))
+    response = session.get(URL.format(date=stamp), timeout=(5, 15))
+    if response.status_code == 404:
+        return None
+    response.raise_for_status()
+    return (*parse_report(response.json(), stamp), URL.format(date=stamp))
 
 
 def run(backfill_weeks=0):
@@ -46,18 +118,20 @@ def run(backfill_weeks=0):
     session = requests.Session()
     session.headers['User-Agent'] = 'Mozilla/5.0'
     found, errors = 0, []
+    report_url = old.get('report_url')
     day = start
     while day <= today:
-        # Backfill Friday reports; incremental runs include shortened trading weeks.
-        if day.weekday() < 5 and (not backfill_weeks or day.weekday() == 4 or (today-day).days <= 21):
+        # Include holiday-shortened weeks; do not assume reports always land on Friday.
+        if day.weekday() < 5 and (day.isoformat() not in history or (today-day).days <= 21):
             stamp = day.strftime('%Y%m%d')
             try:
-                response = session.get(URL.format(date=stamp), timeout=(5, 15))
-                if response.status_code != 404:
-                    response.raise_for_status()
-                    value, change = parse_report(response.json(), stamp)
+                result = fetch_report(session, stamp)
+                if result is not None:
+                    value, change, url = result
                     history[day.isoformat()] = value
                     changes[day.isoformat()] = change
+                    if day.isoformat() == max(history):
+                        report_url = url
                     found += 1
             except (requests.RequestException, ValueError, KeyError) as exc:
                 errors.append(f'{stamp}: {exc}')
@@ -75,7 +149,7 @@ def run(backfill_weeks=0):
                inventory_summary=True,
                description='상하이선물거래소 지정 창고의 구리 재고입니다. 중국 전체 재고가 아니며, 창고증권 재고를 별도로 더하지 않습니다.',
                note='재고 감소는 수요 증가뿐 아니라 창고·지역 간 이동에서도 발생합니다. 춘절 등 계절성을 함께 보세요. 누락 주차는 보간하지 않습니다.',
-               report_url=URL.format(date=latest.replace('-', '')))
+               report_url=report_url)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     temp = OUTPUT.with_suffix('.tmp')
     temp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
