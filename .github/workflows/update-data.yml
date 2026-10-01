@@ -63,6 +63,10 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_copper_history.py
 
+      - name: 3대 거래소 구리 합산 재고 계산
+        continue-on-error: true
+        run: python scripts/derive_copper_inventory.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true

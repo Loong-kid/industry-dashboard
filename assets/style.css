@@ -1,3 +1,7 @@
+.commodity-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.commodity-tabs a { color: var(--ink-2); text-decoration: none; padding: 9px 18px; border: 1px solid var(--border); border-radius: 6px; }
+.commodity-tabs a.active { color: var(--accent); border-color: var(--accent); background: var(--surface); font-weight: 700; }
+.commodity-tabs a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 /* ── 팔레트 (dataviz reference palette) ─────────────────────────── */
 :root {
   --page: #f9f9f7;

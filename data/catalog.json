@@ -321,19 +321,34 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
-      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, SHFE 주간 재고·일간 창고증권은 공식 보고서로 매일 확인합니다. COMEX·LME 재고는 The Vault Report 무료 API의 최신값을 매일 누적하며, 과거 이력은 수집 시작일부터 표시합니다. 각 카드의 기준일을 확인하세요. 탄산리튬은 수기입력.",
+      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, SHFE 재고는 공식 보고서로 확인합니다. COMEX·LME는 공개 과거 자료와 최신 API를 함께 사용합니다. 합산 재고는 SHFE 보고일 기준 주간 자료이며 각 거래소의 기준일이 다를 수 있습니다. 탄산리튬은 수기입력.",
+      "tabs": [
+        { "id": "overview", "name": "기타 원자재" },
+        { "id": "copper", "name": "구리" }
+      ],
       "sections": [
         {
           "title": "금속",
+          "tab": "overview",
           "indicators": [
             "comm_gold",
             "comm_silver",
-            "comm_copper",
             "comm_palladium"
           ]
         },
         {
+          "title": "구리 가격",
+          "tab": "copper",
+          "indicators": ["comm_copper"]
+        },
+        {
+          "title": "3대 거래소 합산 재고",
+          "tab": "copper",
+          "indicators": ["comm_copper_total_inventory"]
+        },
+        {
           "title": "구리 수급 · 거래소 재고",
+          "tab": "copper",
           "indicators": [
             "comm_copper_shfe_inventory",
             "comm_copper_shfe_warrants",
@@ -343,6 +358,7 @@
         },
         {
           "title": "구리 기간구조",
+          "tab": "copper",
           "indicators": [
             "comm_copper_curve",
             "comm_copper_spread"
@@ -350,12 +366,14 @@
         },
         {
           "title": "배터리 금속",
+          "tab": "overview",
           "indicators": [
             "comm_lithium"
           ]
         },
         {
           "title": "가격 비율",
+          "tab": "overview",
           "indicators": [
             "comm_gold_silver_ratio"
           ]

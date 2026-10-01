@@ -78,3 +78,14 @@ COMEX 총재고·등록재고·적격재고, LME 재고를 추가했다.
 - COMEX 2025-10-03 이전 무료 일별 자료는 미확보. TrendForce는 차트 페이지를 확인했지만 공개 원시 이력은 미검증, CommoditiesChart 초기 응답은 1970-01-01/0 자리표시자여서 사용하지 않았다. USGS 월말 재고는 일별 이력과 빈도가 달라 합치지 않았다.
 
 검증: `python -m unittest discover -s scripts -p "test_copper*.py"`, `node scripts/test_copper_card.cjs`.
+
+## 구리 하위 탭과 합산 재고
+
+- `#/commodities/copper`에 구리 가격·3대 거래소 합산 재고·개별 재고·창고증권·기간구조를 모았다. 기타 원자재는 `#/commodities/overview`, 기존 `#/commodities`는 기타 원자재로 열린다. catalog의 tabs와 section.tab으로 품목을 확장할 수 있다. 천연가스 기존 경로는 유지했다.
+- `derive_copper_inventory.py`는 SHFE 주간 보고일을 기준으로 COMEX 총재고와 LME 보고 재고의 당일 또는 직전 4일 이내 관측치를 더한다. 동일 시각 관측치의 합이 아니며, 각 관측치의 실제 기준일은 `source_dates`와 그래프 툴팁에 남긴다. 미래 관측치와 4일 초과 이월값은 사용하지 않고 해당 주를 제외한다.
+- SHFE 창고증권은 총재고에 이미 포함되므로 더하지 않는다. COMEX도 총재고에 등록·적격을 다시 더하지 않는다. 원단위는 모두 미터톤으로 검증한다.
+- 최초 계산 결과 51개 주간 관측치. 최신 SHFE/LME 2026-09-30, COMEX 2026-09-29를 합산한다. 최초 구간은 COMEX 과거 자료 확보 범위에 의해 제한된다.
+- 이 지표는 글로벌 전체 재고가 아니다. 거래소 밖의 생산자·소비자·운송 중 재고와 별도 LME off-warrant 재고 등은 포함하지 않는다. LME는 off-warrant를 별도로 보고한다: https://www.lme.com/en/Market-data/Reports-and-data/Warehouse-and-stocks-reports/Off-warrant-stock-reporting
+- 수집 성공으로 보이게 하지 않도록 합산 파일 fetched는 세 원본 fetched 중 가장 오래된 날을 사용한다. 매일 원본 수집 후 다시 계산한다.
+
+검증: 합계·과거 방향 날짜 매칭·오래된 자료 제외·단위 불일치 및 미래값 배제 테스트, `node scripts/test_commodity_tabs.cjs`로 구리 직접 링크·잘못된 하위 경로·기타 원자재 분리 확인.

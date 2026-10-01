@@ -10,6 +10,7 @@ const SERIES_COLORS = {
 const state = {
   catalog: null,
   industry: null,
+  subtab: null,
   range: "1y",
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
   charts: [], // 렌더된 Chart 인스턴스 (재렌더 시 destroy)
@@ -87,9 +88,10 @@ function showBootError(e) {
 }
 
 function route() {
-  const id = location.hash.replace("#/", "") || state.catalog.industries[0].id;
+  const [id, subtab] = location.hash.replace("#/", "").split("/");
   const prev = state.industry;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
+  state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
   document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
@@ -122,7 +124,8 @@ async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
   const mySeq = ++renderSeq;
-  document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}`;
+  const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab);
+  document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedTab ? " · " + selectedTab.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "institution" || ind.id === "gifts";
@@ -135,6 +138,23 @@ async function renderIndustry() {
   const content = document.getElementById("content");
   content.innerHTML = "";
 
+  if (ind.tabs) {
+    const tabs = document.createElement("nav");
+    tabs.className = "commodity-tabs";
+    tabs.setAttribute("aria-label", `${ind.name} 세부 분류`);
+    for (const tab of ind.tabs) {
+      const link = document.createElement("a");
+      link.href = `#/${ind.id}/${tab.id}`;
+      link.textContent = tab.name;
+      if (tab.id === state.subtab) {
+        link.className = "active";
+        link.setAttribute("aria-current", "page");
+      }
+      tabs.appendChild(link);
+    }
+    content.appendChild(tabs);
+  }
+
   // 빈 대시보드와 '아직 불러오는 중'을 구분한다. 카드는 아래 루프에서 하나씩 채워지고,
   // 이 줄은 전부 끝난 뒤 제거된다.
   const loading = document.createElement("div");
@@ -145,6 +165,7 @@ async function renderIndustry() {
   let latestUpdate = "";
   const collected = []; // 수집 상태 판정용 { name, fetched }
   for (const section of ind.sections) {
+    if (ind.tabs && section.tab !== state.subtab) continue;
     const h = document.createElement("div");
     h.className = "section-title";
     h.textContent = section.title;
@@ -617,6 +638,10 @@ function drawChart(canvas, doc, filtered) {
           boxWidth: 8, boxHeight: 8,
           callbacks: {
             label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
+            afterBody: (items) => {
+              const dates = doc.source_dates?.[items[0]?.label];
+              return dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : [];
+            },
           },
         },
       },
