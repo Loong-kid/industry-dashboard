@@ -1,9 +1,9 @@
 {
   "id": "comm_copper_yangshan_smm",
-  "name": "양산 프리미엄 · SMM 참고값",
+  "name": "양산 프리미엄 · SMM 일간",
   "unit": "USD/톤",
   "frequency": "daily",
-  "fetched": "2026-10-01",
+  "fetched": "2026-10-02",
   "updated": "2026-09-30",
   "data_stale_days": 14,
   "source": "SMM 공개 가격 목록",
@@ -30,24 +30,31 @@
     {
       "date": "2026-09-30",
       "provider": "SMM",
-      "contract": "warehouse_warrant",
-      "low": 110.0,
-      "high": 128.0,
-      "midpoint": 119.0,
-      "unit": "USD/metric tonne",
-      "source_url": "https://www.smm.com.cn/price"
-    },
-    {
-      "date": "2026-09-30",
-      "provider": "SMM",
       "contract": "bill_of_lading",
       "low": 104.0,
       "high": 124.0,
       "midpoint": 114.0,
       "unit": "USD/metric tonne",
       "source_url": "https://www.smm.com.cn/price"
+    },
+    {
+      "date": "2026-09-30",
+      "provider": "SMM",
+      "contract": "warehouse_warrant",
+      "low": 110.0,
+      "high": 128.0,
+      "midpoint": 119.0,
+      "unit": "USD/metric tonne",
+      "source_url": "https://www.smm.com.cn/price"
     }
   ],
   "description": "SMM 창고증권·선하증권 평균값입니다. Mysteel과 제공처·등급 기준이 달라 별도로 표시합니다.",
-  "note": "현재 확보한 기준일 1개의 참고값입니다. 과거 이력과 자동 갱신은 아직 연결하지 않았습니다."
+  "note": "공개 일일 가격표를 매일 KST 07:30 자동 확인합니다. 새 기준일이 없으면 기존 값을 유지합니다. 제공처별 시계열을 분리하며, 누락 날짜의 값은 생성하지 않습니다. 7일 초과 관측 간격은 점선입니다. 날짜·단위·가격 범위 불일치 및 기존 값과 충돌하는 수정치는 검토 전 반영하지 않습니다.",
+  "gaps": [],
+  "highlight_gaps": true,
+  "collection_status": {
+    "checked": "2026-10-02",
+    "ok": true,
+    "message": "공개 자료 확인 완료 · 자료 기준일 2026-09-30"
+  }
 }

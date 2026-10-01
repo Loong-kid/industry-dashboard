@@ -67,6 +67,11 @@ jobs:
         continue-on-error: true
         run: python scripts/derive_copper_inventory.py
 
+      - name: 양산 프리미엄 공개 일일 자료 확인
+        continue-on-error: true
+        timeout-minutes: 6
+        run: python scripts/fetch_yangshan.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true

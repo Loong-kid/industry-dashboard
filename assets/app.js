@@ -392,6 +392,13 @@ function renderCard(doc, indicatorId) {
   }
 
   // 헤드라인: 다중 시리즈 카드는 체크된 첫 시리즈를 따라감 (칩 토글 시 갱신)
+  if (doc.collection_status) {
+    const status = document.createElement("p");
+    status.className = "card-foot";
+    status.textContent = `${doc.collection_status.checked} · ${doc.collection_status.message}`;
+    if (!doc.collection_status.ok) status.style.color = "var(--warn)";
+    card.appendChild(status);
+  }
   const stat = document.createElement("div");
   stat.className = "card-stat";
   card.appendChild(stat);

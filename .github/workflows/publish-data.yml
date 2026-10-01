@@ -1,0 +1,46 @@
+name: publish-updated-data
+
+on:
+  workflow_run:
+    workflows: [update-data]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-data.yml]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish-updated-data
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # The collector commits a new head, so use main instead of its starting SHA.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Prepare public site only
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -R assets data _site/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy updated data
+        id: deployment
+        uses: actions/deploy-pages@v4
