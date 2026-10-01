@@ -19,7 +19,7 @@ const loaded = [];
 const renderCode = source.slice(source.indexOf('let renderSeq = 0;'), source.indexOf('\nfunction renderFootStatus'));
 const routeCode = source.slice(source.indexOf('function route()'), source.indexOf('\nfunction setRange'));
 const api = new Function('state', 'document', 'window', 'location', 'loadDoc', 'renderCard', 'staleDays',
-  'renderFootStatus', 'setRange', renderCode + routeCode + '\nreturn {route, renderIndustry};')(
+  'renderFootStatus', 'setRange', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
   state, document, {}, location, async (industry, id) => {loaded.push(id); return {name:id, updated:'2026-10-01'};},
   () => new Element(), () => null, () => {}, () => {});
 (async () => {

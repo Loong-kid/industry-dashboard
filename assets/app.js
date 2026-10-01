@@ -612,6 +612,13 @@ function drawChart(canvas, doc, filtered) {
       pointHoverBorderColor: css("--surface"),
       pointHoverBorderWidth: 2,
       spanGaps: true,
+      segment: doc.highlight_gaps ? {
+        borderDash: (ctx) => {
+          const start = Date.parse(labels[ctx.p0DataIndex]);
+          const end = Date.parse(labels[ctx.p1DataIndex]);
+          return end - start > 7 * 86400000 ? [5, 5] : undefined;
+        },
+      } : undefined,
       hidden: !visible.has(n),
     };
   });

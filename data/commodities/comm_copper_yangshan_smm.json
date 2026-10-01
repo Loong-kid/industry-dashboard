@@ -1,0 +1,53 @@
+{
+  "id": "comm_copper_yangshan_smm",
+  "name": "양산 프리미엄 · SMM 참고값",
+  "unit": "USD/톤",
+  "frequency": "daily",
+  "fetched": "2026-10-01",
+  "updated": "2026-09-30",
+  "data_stale_days": 14,
+  "source": "SMM 공개 가격 목록",
+  "source_url": "https://www.smm.com.cn/price",
+  "series": {
+    "창고증권": [
+      [
+        "2026-09-30",
+        119.0
+      ]
+    ],
+    "선하증권": [
+      [
+        "2026-09-30",
+        114.0
+      ]
+    ]
+  },
+  "default_series": [
+    "창고증권",
+    "선하증권"
+  ],
+  "source_records": [
+    {
+      "date": "2026-09-30",
+      "provider": "SMM",
+      "contract": "warehouse_warrant",
+      "low": 110.0,
+      "high": 128.0,
+      "midpoint": 119.0,
+      "unit": "USD/metric tonne",
+      "source_url": "https://www.smm.com.cn/price"
+    },
+    {
+      "date": "2026-09-30",
+      "provider": "SMM",
+      "contract": "bill_of_lading",
+      "low": 104.0,
+      "high": 124.0,
+      "midpoint": 114.0,
+      "unit": "USD/metric tonne",
+      "source_url": "https://www.smm.com.cn/price"
+    }
+  ],
+  "description": "SMM 창고증권·선하증권 평균값입니다. Mysteel과 제공처·등급 기준이 달라 별도로 표시합니다.",
+  "note": "현재 확보한 기준일 1개의 참고값입니다. 과거 이력과 자동 갱신은 아직 연결하지 않았습니다."
+}
