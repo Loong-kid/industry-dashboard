@@ -419,8 +419,14 @@ function renderCard(doc, indicatorId) {
     const count = doc.series[mainName].length;
     historyNote.textContent = count === 1
       ? "현재는 최신값 1개입니다. 새 기준일의 자료가 쌓이면 추이 그래프가 이어집니다."
-      : `수집된 기준일 ${count}개 · 수집 시작 전 과거 이력은 포함하지 않습니다.`;
+      : `수집된 기준일 ${count}개 · ${doc.history_note || "수집 시작 전 과거 이력은 포함하지 않습니다."}`;
     card.appendChild(historyNote);
+    if (doc.history_source_url) {
+      const historySource = document.createElement("p");
+      historySource.className = "card-foot";
+      historySource.innerHTML = `과거 자료: <a href="${doc.history_source_url}" target="_blank" rel="noopener">${doc.history_source}</a> · <a href="${doc.history_csv}" download>원단위 CSV</a>`;
+      card.appendChild(historySource);
+    }
   }
 
   const wrap = document.createElement("div");
@@ -458,7 +464,7 @@ function renderCard(doc, indicatorId) {
     licenseLink.href = doc.license_url;
     licenseLink.target = "_blank";
     licenseLink.rel = "noopener";
-    licenseLink.textContent = `데이터 이용: ${doc.license}`;
+    licenseLink.textContent = `${doc.history_source ? "The Vault Report 수집분 이용" : "데이터 이용"}: ${doc.license}`;
     credit.appendChild(licenseLink);
     card.appendChild(credit);
   }

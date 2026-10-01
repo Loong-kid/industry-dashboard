@@ -59,6 +59,10 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_copper_snapshot.py
 
+      - name: COMEX·LME 구리 재고 과거 자료 보충
+        continue-on-error: true
+        run: python scripts/fetch_copper_history.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true

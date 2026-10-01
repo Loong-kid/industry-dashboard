@@ -25,4 +25,10 @@ const daily = render({...sparse, inventory_summary: false, stock_summary: true, 
 assert(daily.children.some(e => e.textContent.includes('전 거래일 대비 -10')));
 const snapshot = render({...sparse, inventory_summary: false, snapshot_history: true}, sparse.id);
 assert(snapshot.children.some(e => e.textContent.includes('최신값 1개')));
+const history = render({...sparse, inventory_summary: false, snapshot_history: true,
+  series: {stock: [['2025-09-25', 90], ['2025-09-26', 100]]},
+  history_note: '공개 과거 자료 포함', history_source: 'Westmetall',
+  history_source_url: 'https://www.westmetall.com/', history_csv: 'data/history.csv'}, sparse.id);
+assert(history.children.some(e => e.textContent.includes('공개 과거 자료 포함')));
+assert(history.children.some(e => e.innerHTML.includes('원단위 CSV')));
 console.log('PASS: stale inventory, weekly change, missing 4-week baseline, zero baseline and ordinary cards');

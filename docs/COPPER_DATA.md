@@ -63,3 +63,18 @@ COMEX 총재고·등록재고·적격재고, LME 재고를 추가했다.
 - LME 무료 열람 및 유료 feed 구분: https://www.lme.com/en/about/faqs/market-data-faqs
 
 추가 검증: `python -m unittest discover -s scripts -p test_copper_sources.py`, `node scripts/test_copper_card.cjs`.
+
+## 과거 재고 보충 (2026-10-01)
+
+`python scripts/fetch_copper_history.py --backfill`로 실제 공개 이력을 확보했다.
+
+- LME: Westmetall 연도별 공개 표, 2008-01-02~2026-09-30, 4,740개 관측치. `LME Copper stock` 열만 사용하며 단위는 미터톤이다. https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash
+- COMEX: 美元环流 공개 페이지의 `chartData`, 2025-10-03~2026-09-29, 246개 관측치. 총재고·등록·적격 원수치는 short tons이다. 화면의 반올림된 미터톤이나 그래프 좌표를 역산하지 않고 원배열을 사용한다. https://www.meiyuanhuanliu.com/copper_stocks/
+- COMEX 원출처 화면은 0.9072로 환산하지만 대시보드는 정확한 0.90718474를 사용한다. 최신 총재고 775,821 short tons와 등록재고 471,428 short tons는 기존 Vault snapshot과 일치했다. LME 최신 249,400톤도 일치했다. 전체 과거를 거래소 원본과 독립 대조한 것은 아니다.
+- 최근 30일도 위 출처에 포함되어 Vault의 이메일 CSV 신청 없이 확보했다. `data/commodities/history/`에 원단위 누적 CSV를 저장하고 카드에 다운로드 링크를 추가했다. 이는 Vault에서 이메일로 받은 파일이 아니다.
+- 현재 날짜보다 미래인 관측치, 중복 날짜, 잘못된 열·단위, COMEX 구성합 불일치, 기존 관측치와의 충돌은 실패로 처리한다. 겹치는 날짜의 수치 확인 후 기존 관측치를 우선 보존한다. 없는 날짜를 0이나 보간값으로 채우지 않는다.
+- 매일 snapshot 후 공개 과거 자료를 보충한다. COMEX는 공개 창, LME는 현재·직전 연도만 다시 읽고 기존 오래된 이력을 보존한다. 전체 2008년 이후 재수집은 `--backfill`로만 수행한다. 출처 하나가 실패해도 다른 출처는 독립 처리한다.
+- 과거 출처와 현재 snapshot 출처를 카드에 각각 표시한다. CC BY 4.0 표시는 Vault 수집분에만 해당하며 다른 제공처 자료에 같은 라이선스를 임의 부여하지 않는다.
+- COMEX 2025-10-03 이전 무료 일별 자료는 미확보. TrendForce는 차트 페이지를 확인했지만 공개 원시 이력은 미검증, CommoditiesChart 초기 응답은 1970-01-01/0 자리표시자여서 사용하지 않았다. USGS 월말 재고는 일별 이력과 빈도가 달라 합치지 않았다.
+
+검증: `python -m unittest discover -s scripts -p "test_copper*.py"`, `node scripts/test_copper_card.cjs`.

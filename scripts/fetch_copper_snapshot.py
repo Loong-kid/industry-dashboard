@@ -70,6 +70,9 @@ def merge_history(old, new):
         raise ValueError('Existing history schema changed')
     if old and new['updated'] < old['updated']:
         raise ValueError('Provider snapshot regressed; existing data preserved')
+    for key in ('history_source', 'history_source_url', 'history_csv', 'history_note'):
+        if key in old:
+            new[key] = old[key]
     for name, points in new['series'].items():
         values = dict(old.get('series', {}).get(name, []))
         values.update(points)
