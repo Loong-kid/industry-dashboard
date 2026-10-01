@@ -8,6 +8,8 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent / 'data/commodities'
 GRADES = {'pyrometallurgical': '화법동', 'hydrometallurgical': '습법동'}
 CONTRACTS = {'warehouse_warrant': '창고증권', 'bill_of_lading': '선하증권'}
+PROCESS_EXPLANATION = ('화법동은 고온 제련 후 전해정련으로 정제한 구리, 습법동은 광석에서 구리를 용액으로 녹여 추출한 뒤 전기로 회수한 구리(SX-EW)입니다. '
+    '둘 다 고순도 전기동으로 생산될 수 있으므로 습법동을 저순도 구리로 보면 안 됩니다. 이 그래프는 제조 경로별 시장 구분이며, 두 선의 프리미엄 차이를 순도 차이로 해석하지 않습니다.')
 
 
 def validate(row):
@@ -53,7 +55,7 @@ def run(folder):
             source='Mysteel 공개 일일 가격표', source_url='https://list1.mysteel.com/article/p-2409----0201---------1.html',
             series=series, default_series=list(series), highlight_gaps=True, gaps=gaps,
             source_records=rows, excluded_observations=len([r for r in flagged if r['contract']==contract]),
-            description=f'상하이 양산 구리 {title} 프리미엄의 공시 중간값입니다. 화법동·습법동을 구분하며 SMM 평균값과 합치지 않습니다.',
+            description=f'상하이 양산 구리 {title} 프리미엄의 공시 중간값입니다. ' + PROCESS_EXPLANATION,
             note=f'{dates[0]}~{dates[-1]} 공개 관측값. 누락 구간도 선으로 연결하지만 값을 보간·생성하지 않습니다. 7일 초과 관측 간격은 점선으로 표시하며 휴일도 포함될 수 있습니다. 원문 가격 범위와 중간값이 불일치한 자료는 제외했습니다. ETA·QP 조건은 원문에 따라 바뀝니다. 일회 수집 자료이며 자동 갱신은 아직 설정하지 않았습니다.'))
     smm = json.loads((folder / 'smm_yangshan_snapshot.json').read_text(encoding='utf-8'))
     series = {CONTRACTS[r['contract']]: [[r['date'], r['midpoint']]] for r in smm['observations'] if validate(r)}
