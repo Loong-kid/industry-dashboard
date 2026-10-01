@@ -323,8 +323,14 @@
       "default_range": "3y",
       "cadence": "금속 가격·구리 월물은 Yahoo 일봉, SHFE 재고는 공식 보고서로 확인합니다. COMEX·LME는 공개 과거 자료와 최신 API를 함께 사용합니다. 합산 재고는 SHFE 보고일 기준 주간 자료이며 각 거래소의 기준일이 다를 수 있습니다. 탄산리튬은 수기입력.",
       "tabs": [
-        { "id": "overview", "name": "기타 원자재" },
-        { "id": "copper", "name": "구리" }
+        {
+          "id": "overview",
+          "name": "기타 원자재"
+        },
+        {
+          "id": "copper",
+          "name": "구리"
+        }
       ],
       "sections": [
         {
@@ -339,12 +345,16 @@
         {
           "title": "구리 가격",
           "tab": "copper",
-          "indicators": ["comm_copper"]
+          "indicators": [
+            "comm_copper"
+          ]
         },
         {
           "title": "3대 거래소 합산 재고",
           "tab": "copper",
-          "indicators": ["comm_copper_total_inventory"]
+          "indicators": [
+            "comm_copper_total_inventory"
+          ]
         },
         {
           "title": "구리 수급 · 거래소 재고",
@@ -494,7 +504,17 @@
       "name": "반도체 소부장",
       "icon": "🔬",
       "default_range": "3y",
-      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력.",
+      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv).",
+      "tabs": [
+        {
+          "id": "snstech",
+          "name": "에스앤에스텍"
+        },
+        {
+          "id": "esc",
+          "name": "정전척 ESC"
+        }
+      ],
       "sections": [
         {
           "title": "에스앤에스텍 실적 vs 전국 수출",
@@ -502,6 +522,16 @@
             "snstech_vs_national",
             "snstech_share",
             "snstech_revenue"
+          ],
+          "tab": "snstech"
+        },
+        {
+          "title": "ASML 노광기 판매 — 블랭크마스크 수요의 바탕",
+          "tab": "snstech",
+          "indicators": [
+            "asml_units_quarterly",
+            "asml_units_cumulative",
+            "asml_duv_cumulative"
           ]
         },
         {
@@ -509,7 +539,8 @@
           "indicators": [
             "blank_export_compare",
             "blank_import_compare"
-          ]
+          ],
+          "tab": "snstech"
         },
         {
           "title": "블랭크마스크 · 반도체용 (HS 3701991000)",
@@ -520,7 +551,8 @@
             "blank_semi_exp_country",
             "blank_semi_exp_price",
             "blank_semi_imp_country"
-          ]
+          ],
+          "tab": "snstech"
         },
         {
           "title": "블랭크마스크 · 디스플레이용 (HS 3701304000 · ~2021 3701309930)",
@@ -531,7 +563,8 @@
             "blank_disp_exp_country",
             "blank_disp_exp_price",
             "blank_disp_imp_country"
-          ]
+          ],
+          "tab": "snstech"
         },
         {
           "title": "정전척 ESC (HS 8486902030)",
@@ -542,7 +575,8 @@
             "esc_exp_country",
             "esc_exp_price",
             "esc_imp_country"
-          ]
+          ],
+          "tab": "esc"
         }
       ]
     }
