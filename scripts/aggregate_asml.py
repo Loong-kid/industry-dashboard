@@ -99,6 +99,8 @@ def run():
     # ② 누적 판매 대수 — 연간(2011~2015) + 분기(2016Q4~). 2016Q1~Q3은 연간 − Q4로 한 점에 묶는다.
     q16_4 = next(r for r in quarters if r["period"] == "2016Q4")
     cum_e, cum_d, e_pts, d_pts = 0, 0, [], []
+    cum_t = {t: 0 for t in DUV}
+    t_pts = {t: [] for t in DUV}  # DUV 기술별 누적(KrF·ArF·ArFi를 따로 보려고)
     for y in sorted(annual):
         a = annual[y]
         e, dsum = num(a["euv"]), (sum(num(a[t]) for t in DUV) if a["arfi"] else None)
@@ -113,11 +115,18 @@ def run():
         if dsum is not None:
             cum_d += dsum
             d_pts.append([date, cum_d])
+            for t in DUV:
+                v = num(a[t]) - (num(q16_4[t]) if y == 2016 else 0)
+                cum_t[t] += v
+                t_pts[t].append([date, cum_t[t]])
     for r in quarters:
         cum_e += num(r["euv"])
         cum_d += sum(num(r[t]) for t in DUV)
         e_pts.append([qdate(r["period"]), cum_e])
         d_pts.append([qdate(r["period"]), cum_d])
+        for t in DUV:
+            cum_t[t] += num(r[t])
+            t_pts[t].append([qdate(r["period"]), cum_t[t]])
     # 누적은 EUV(수백 대)와 DUV(수천 대)의 자릿수가 달라 한 차트에 두면 EUV가 바닥에 깔린다 → 두 장으로 나눈다.
     common_cum = {"unit": "대", "frequency": "quarterly", "full_range": True, **common}
     (OUT / "asml_units_cumulative.json").write_text(json.dumps({
@@ -133,13 +142,16 @@ def run():
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     (OUT / "asml_duv_cumulative.json").write_text(json.dumps({
         "id": "asml_duv_cumulative", "name": "ASML DUV 누적 판매 대수 (2013년 이후)", **common_cum,
+        "default_series": [f"{LABEL[t]} 누적" for t in DUV],
         "description": (
-            "ArFi·ArF dry·KrF·i-line을 합친 DUV 노광기의 누적 판매. 성숙 공정(전력반도체·디스플레이 구동칩·센서 등)과 "
-            "첨단 공정의 비핵심 층에 쓰이며, 블랭크마스크 물량 측면에서는 EUV보다 훨씬 많은 바탕을 이룬다."
+            "DUV 노광기의 누적 판매를 광원별로 나눴다. ArFi(액침, 193nm)는 EUV 직전 세대 첨단 공정의 주력이고, "
+            "ArF dry(193nm)·KrF(248nm)·i-line(365nm)은 파장이 길어 성숙 공정(전력반도체·디스플레이 구동칩·센서·"
+            "아날로그)과 첨단 칩의 비핵심 층에 쓰인다. 블랭크마스크도 노광 파장마다 규격이 달라, 어느 광원의 장비가 "
+            "늘어나는지가 제품 믹스를 가늠하게 해 준다. 'DUV 합계'는 칩으로 켠다."
         ),
-        "note": (f"{last} 기준 2013년 이후분 {cum_d:,}대. DUV는 1980년대부터 팔려 실제 설치 대수는 훨씬 많고, "
+        "note": (f"{last} 기준 2013년 이후분 {cum_d:,}대(" + " · ".join(f"{LABEL[t]} {cum_t[t]:,}" for t in DUV) + "). DUV는 1980년대부터 팔려 실제 설치 대수는 훨씬 많고, "
                  "공개 표가 2013년부터라 그 이후분만 셌다. 오래된 장비의 폐기·이전은 반영하지 않았다."),
-        "series": {"DUV 누적(2013~)": d_pts},
+        "series": {**{f"{LABEL[t]} 누적": t_pts[t] for t in DUV}, "DUV 합계": d_pts},
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"  ASML: 분기 {len(quarters)}개(~{last}) 검증 통과 · EUV 누적 {cum_e} · DUV 누적(2013~) {cum_d:,}")
 

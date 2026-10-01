@@ -123,6 +123,11 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_asml.py
 
+      # ASML 지역별 매출(SEC 반기·연간보고서 글자 표, 키 없음) — 새 제출만 받아 data/_asml 캐시에 붙인다
+      - name: ASML 지역별 매출 수집
+        continue-on-error: true
+        run: python scripts/fetch_asml_regions.py
+
       # DART 국내 조선 4사 수주 공시 증분 수집. 원문 미저장(--no-docs).
       - name: DART 수주 공시 수집
         continue-on-error: true

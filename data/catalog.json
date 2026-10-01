@@ -504,7 +504,7 @@
       "name": "반도체 소부장",
       "icon": "🔬",
       "default_range": "3y",
-      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv).",
+      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영).",
       "tabs": [
         {
           "id": "snstech",
@@ -532,6 +532,14 @@
             "asml_units_quarterly",
             "asml_units_cumulative",
             "asml_duv_cumulative"
+          ]
+        },
+        {
+          "title": "ASML 지역별 매출 — 누가 노광기를 사 가나",
+          "tab": "snstech",
+          "indicators": [
+            "asml_region_sales",
+            "asml_region_share"
           ]
         },
         {
