@@ -21,4 +21,8 @@ assert(missing.children.some(e => e.textContent.includes('4주 변화 자료 없
 assert(!missing.children.some(e => e.innerHTML.includes('Infinity') || e.innerHTML.includes('NaN')));
 const regular = render({...sparse, inventory_summary: false, data_stale_days: undefined}, sparse.id);
 assert(!regular.children.some(e => e.textContent.includes('최신 자료 미확보')));
+const daily = render({...sparse, inventory_summary: false, stock_summary: true, daily_changes: [['2025-09-26', -10]]}, sparse.id);
+assert(daily.children.some(e => e.textContent.includes('전 거래일 대비 -10')));
+const snapshot = render({...sparse, inventory_summary: false, snapshot_history: true}, sparse.id);
+assert(snapshot.children.some(e => e.textContent.includes('최신값 1개')));
 console.log('PASS: stale inventory, weekly change, missing 4-week baseline, zero baseline and ordinary cards');

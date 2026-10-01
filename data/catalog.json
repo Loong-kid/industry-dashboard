@@ -321,7 +321,7 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
-      "cadence": "금·은·구리·팔라듐과 구리 월물은 Yahoo 일봉으로 매일 자동. SHFE 구리 재고는 주간 발표 자료를 매일 확인하며 기준일과 자료 지연을 표시합니다. 금/은 비율은 계산값. 탄산리튬은 수기입력.",
+      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, SHFE 주간 재고·일간 창고증권은 공식 보고서로 매일 확인합니다. COMEX·LME 재고는 The Vault Report 무료 API의 최신값을 매일 누적하며, 과거 이력은 수집 시작일부터 표시합니다. 각 카드의 기준일을 확인하세요. 탄산리튬은 수기입력.",
       "sections": [
         {
           "title": "금속",
@@ -333,9 +333,17 @@
           ]
         },
         {
-          "title": "구리 수급 · 재고와 기간구조",
+          "title": "구리 수급 · 거래소 재고",
           "indicators": [
             "comm_copper_shfe_inventory",
+            "comm_copper_shfe_warrants",
+            "comm_copper_comex_inventory",
+            "comm_copper_lme_inventory"
+          ]
+        },
+        {
+          "title": "구리 기간구조",
+          "indicators": [
             "comm_copper_curve",
             "comm_copper_spread"
           ]

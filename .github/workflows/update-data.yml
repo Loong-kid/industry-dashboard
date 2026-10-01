@@ -51,6 +51,14 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_copper_inventory.py
 
+      - name: SHFE 구리 일간 창고증권 수집
+        continue-on-error: true
+        run: python scripts/fetch_copper_warrants.py
+
+      - name: COMEX·LME 구리 재고 공개 스냅샷 수집
+        continue-on-error: true
+        run: python scripts/fetch_copper_snapshot.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true

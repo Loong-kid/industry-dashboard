@@ -382,10 +382,11 @@ function renderCard(doc, indicatorId) {
       stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
       return;
     }
-    const delta = doc.inventory_summary
-      ? (new Map(doc.weekly_changes || []).get(last[0]) ?? null)
+    const reportedChange = doc.inventory_summary || doc.stock_summary;
+    const delta = reportedChange
+      ? (new Map(doc.inventory_summary ? doc.weekly_changes || [] : doc.daily_changes || []).get(last[0]) ?? null)
       : prev ? last[1] - prev[1] : null;
-    const previousValue = doc.inventory_summary && delta !== null ? last[1] - delta : prev?.[1];
+    const previousValue = reportedChange && delta !== null ? last[1] - delta : prev?.[1];
     const pct = previousValue ? (delta / previousValue) * 100 : null;
     const dir = delta > 0 ? "up" : delta < 0 ? "down" : "";
     const arrow = delta > 0 ? "▲" : delta < 0 ? "▼" : "";
@@ -398,18 +399,28 @@ function renderCard(doc, indicatorId) {
   };
   setStat(mainName);
 
-  if (doc.inventory_summary) {
+  if (doc.inventory_summary || doc.stock_summary) {
     const points = doc.series[mainName];
     const last = points[points.length - 1];
     const target = new Date(`${last[0]}T00:00:00Z`);
     target.setUTCDate(target.getUTCDate() - 28);
     const base = points.find(p => p[0] === target.toISOString().slice(0, 10));
-    const weekly = new Map(doc.weekly_changes || []).get(last[0]);
+    const reported = new Map(doc.inventory_summary ? doc.weekly_changes || [] : doc.daily_changes || []).get(last[0]);
     const describe = value => value == null ? "자료 없음" : `${value > 0 ? "+" : ""}${fmt(value)} 톤`;
     const summary = document.createElement("p");
     summary.className = "card-foot";
-    summary.textContent = `전주 대비 ${describe(weekly)} · 4주 변화 ${describe(base ? last[1] - base[1] : null)}`;
+    summary.textContent = `${doc.inventory_summary ? "전주" : "전 거래일"} 대비 ${describe(reported)} · 4주 변화 ${describe(base ? last[1] - base[1] : null)}`;
     card.appendChild(summary);
+  }
+
+  if (doc.snapshot_history) {
+    const historyNote = document.createElement("p");
+    historyNote.className = "card-foot";
+    const count = doc.series[mainName].length;
+    historyNote.textContent = count === 1
+      ? "현재는 최신값 1개입니다. 새 기준일의 자료가 쌓이면 추이 그래프가 이어집니다."
+      : `수집된 기준일 ${count}개 · 수집 시작 전 과거 이력은 포함하지 않습니다.`;
+    card.appendChild(historyNote);
   }
 
   const wrap = document.createElement("div");
@@ -439,6 +450,18 @@ function renderCard(doc, indicatorId) {
     <span>출처: ${doc.source_url ? `<a href="${doc.source_url}" target="_blank" rel="noopener">${doc.source}</a>` : doc.source || ""}</span>
     <button class="table-btn">표 보기</button>`;
   card.appendChild(foot);
+
+  if (doc.license_url) {
+    const credit = document.createElement("div");
+    credit.className = "card-foot";
+    const licenseLink = document.createElement("a");
+    licenseLink.href = doc.license_url;
+    licenseLink.target = "_blank";
+    licenseLink.rel = "noopener";
+    licenseLink.textContent = `데이터 이용: ${doc.license}`;
+    credit.appendChild(licenseLink);
+    card.appendChild(credit);
+  }
 
   const tableDiv = document.createElement("div");
   tableDiv.className = "data-table";
