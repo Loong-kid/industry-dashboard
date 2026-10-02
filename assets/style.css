@@ -441,6 +441,12 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .order-table-wrap tbody tr:hover { background: var(--page); }
 .order-table-wrap tr.is-correction td:first-child { border-left: 2px solid var(--accent); }
 .order-table-wrap a { color: var(--accent); }
+.ir-disclosure .order-table-wrap table { white-space: normal; min-width: 700px; }
+.ir-disclosure .order-table-wrap th { cursor: default; }
+.ir-disclosure .order-table-wrap td:first-child { white-space: nowrap; font-weight: 600; }
+.ir-scope-note { font-size: 12px; color: var(--muted); line-height: 1.65; margin: 10px 0; }
+.ir-chart { min-width: 0; }
+.data-table a { color: var(--accent); white-space: nowrap; }
 
 /* ── 데이터 표 ─────────────────────────────────────────────────── */
 .data-table { overflow-x: auto; }

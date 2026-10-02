@@ -1,0 +1,33 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const source = fs.readFileSync('assets/app.js', 'utf8');
+const start = source.indexOf('function renderCard(');
+const end = source.indexOf('  const wrap = document.createElement("div");', start);
+class Element {
+  constructor() { this.children = []; this.innerHTML = ''; this.textContent = ''; }
+  appendChild(child) { this.children.push(child); }
+}
+const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff', 'fmt', 'escapeHtml',
+  source.slice(start, end) + '\nreturn card; }\nreturn renderCard;')(
+  {createElement: () => new Element()}, () => 0, () => null, () => '0000-00-00', String, String);
+const headline = doc => render(doc, doc.id).children.map(e => e.innerHTML).join('');
+const sparse = {id:'quarter',name:'Segment',unit:'JPY',quarter_labels:true,quarterly_revenue_summary:true,
+  series:{sales:[['2025-06-30',100],['2025-12-31',150],['2026-06-30',200]]}};
+assert(headline(sparse).includes('YoY +100.0% · QoQ 자료 없음'));
+assert(headline(sparse).includes('2026 Q2'));
+const boundary = {...sparse,series:{sales:[['2025-03-31',100],['2025-12-31',160],['2026-03-31',200]]}};
+assert(headline(boundary).includes('YoY +100.0% · QoQ +25.0%'));
+for (const id of ['hoya_it_revenue','agc_materials_revenue','shinetsu_materials_revenue','hoya_blank_growth','agc_euv_annual_revenue']) {
+  const doc=JSON.parse(fs.readFileSync(`data/semicon/${id}.json`,'utf8'));
+  assert(!/NaN|Infinity/.test(headline(doc)));
+  if(doc.change_mode==='none')assert(!headline(doc).includes('stat-delta'));
+}
+const marker=source.indexOf('function periodLabel(');
+const funcs = new Function('escapeHtml','fmt',source.slice(marker,source.indexOf('// ── 차트',marker))+'\nreturn {buildTable};')(String,String);
+const doc=JSON.parse(fs.readFileSync('data/semicon/hoya_it_revenue.json','utf8'));
+const table=funcs.buildTable(doc,doc.series);
+assert(table.includes('달력 분기'));
+assert(table.includes('2021 Q2'));
+assert(table.includes('#page=8'));
+assert.equal((table.match(/target="_blank"/g)||[]).length,21);
+console.log('PASS: quarterly YoY/QoQ calendar alignment, growth-rate headline, full history and PDF provenance links');

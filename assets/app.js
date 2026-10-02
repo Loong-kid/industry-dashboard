@@ -180,6 +180,7 @@ async function renderIndustry() {
         : section.table_kind === "power_fleet" ? renderPowerFleet
         : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
+        : section.table_kind === "ir_disclosure" ? renderIRDisclosure
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -346,7 +347,9 @@ function buildTableRangePicker(current, onPick) {
 // ── 지표 카드 ───────────────────────────────────────────────────
 function renderCard(doc, indicatorId) {
   const card = document.createElement("div");
-  card.className = "card";
+  card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
+  const dateLabel = date => doc?.quarter_labels
+    ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
 
   if (!doc || !doc.series || Object.values(doc.series).every((s) => s.length === 0)) {
     const name = doc?.name || indicatorId;
@@ -410,6 +413,24 @@ function renderCard(doc, indicatorId) {
       stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
       return;
     }
+    if (doc.quarterly_revenue_summary) {
+      const values = new Map(s);
+      const year = Number(last[0].slice(0, 4));
+      const q = Math.ceil(Number(last[0].slice(5, 7)) / 3);
+      const ends = ["03-31", "06-30", "09-30", "12-31"];
+      const priorQuarter = `${q === 1 ? year - 1 : year}-${ends[(q + 2) % 4]}`;
+      const priorYear = `${year - 1}${last[0].slice(4)}`;
+      const change = date => {
+        const base = values.get(date);
+        return last[1] != null && base != null && base > 0
+          ? `${last[1] >= base ? "+" : ""}${((last[1] / base - 1) * 100).toFixed(1)}%` : "자료 없음";
+      };
+      stat.innerHTML = `<span class="stat-value">${fmt(last[1])}</span>
+        <span class="stat-unit">${escapeHtml(doc.unit || "")}</span>
+        <span class="stat-date">${dateLabel(last[0])}</span>
+        <span class="stat-unit">YoY ${change(priorYear)} · QoQ ${change(priorQuarter)}</span>`;
+      return;
+    }
     if (doc.monthly_trade_summary) {
       const values = new Map(s);
       const year = Number(last[0].slice(0, 4));
@@ -432,7 +453,7 @@ function renderCard(doc, indicatorId) {
     const reportedChange = doc.inventory_summary || doc.stock_summary;
     const delta = reportedChange
       ? (new Map(doc.inventory_summary ? doc.weekly_changes || [] : doc.daily_changes || []).get(last[0]) ?? null)
-      : prev ? last[1] - prev[1] : null;
+      : doc.change_mode === "none" ? null : prev ? last[1] - prev[1] : null;
     const previousValue = reportedChange && delta !== null ? last[1] - delta : prev?.[1];
     const pct = previousValue ? (delta / previousValue) * 100 : null;
     const dir = delta > 0 ? "up" : delta < 0 ? "down" : "";
@@ -442,7 +463,7 @@ function renderCard(doc, indicatorId) {
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
-      <span class="stat-date">${last[0]}</span>`;
+      <span class="stat-date">${dateLabel(last[0])}</span>`;
   };
   setStat(mainName);
 
@@ -578,14 +599,37 @@ function fmt(v) {
   return v.toLocaleString("ko-KR", { maximumFractionDigits: Math.abs(v) < 1000 ? 2 : 0 });
 }
 
+function periodLabel(doc, date) {
+  return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
+}
+
+function renderIRDisclosure(doc) {
+  const card = document.createElement("div");
+  card.className = "card ir-disclosure";
+  if (!doc) return card;
+  const esc = escapeHtml;
+  card.innerHTML = `<div class="card-name">${esc(doc.name)}</div>
+    <p class="ir-scope-note">${esc(doc.description)}</p>
+    <div class="order-table-wrap"><table><thead><tr>
+      <th>회사</th><th>블랭크마스크 분기 매출액</th><th>직접 공개된 지표</th><th>별도 참고 그래프</th>
+    </tr></thead><tbody>${doc.rows.map(r => `<tr>
+      <td><a href="${esc(r.source_url)}" target="_blank" rel="noopener">${esc(r.company)} ↗</a></td>
+      <td>${esc(r.quarterly)}</td><td>${esc(r.direct)}</td><td>${esc(r.reference)}</td>
+    </tr>`).join("")}</tbody></table></div>
+    <p class="ir-scope-note">${esc(doc.note)}</p>`;
+  return card;
+}
+
 function buildTable(doc, filtered) {
   const names = Object.keys(filtered);
-  const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, 15);
+  const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, doc.point_sources ? 100 : 15);
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
-  let html = `<table><thead><tr><th>날짜</th>${names.map((n) => `<th>${n}</th>`).join("")}</tr></thead><tbody>`;
+  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${doc.point_sources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
-    html += `<tr><td>${d}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}</tr>`;
+    const ref = doc.point_sources?.[d];
+    const sourceCell = doc.point_sources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}#page=${ref.pdf_page}" target="_blank" rel="noopener">PDF p.${ref.pdf_page} ↗</a>` : "미확인"}</td>` : "";
+    html += `<tr><td>${periodLabel(doc, d)}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
@@ -650,7 +694,7 @@ function drawChart(canvas, doc, filtered) {
   });
 
   const chart = new Chart(canvas, {
-    type: "line",
+    type: doc.chart_type || "line",
     data: { labels, datasets },
     options: {
       responsive: true,
@@ -670,6 +714,7 @@ function drawChart(canvas, doc, filtered) {
           usePointStyle: true,
           boxWidth: 8, boxHeight: 8,
           callbacks: {
+            title: (items) => items.length ? periodLabel(doc, items[0].label) : "",
             label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
@@ -684,11 +729,13 @@ function drawChart(canvas, doc, filtered) {
             color: css("--muted"),
             maxTicksLimit: 6, maxRotation: 0, autoSkip: true,
             font: { size: 11 },
+            callback: function(value) { return periodLabel(doc, this.getLabelForValue(value)); },
           },
           grid: { display: false },
           border: { color: css("--baseline") },
         },
         y: {
+          beginAtZero: doc.zero_baseline || false,
           ticks: {
             color: css("--muted"),
             maxTicksLimit: 5,
