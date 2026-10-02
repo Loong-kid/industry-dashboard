@@ -54,6 +54,7 @@ def run(folder):
             unit='USD/톤', frequency='daily', fetched=today, updated=dates[-1], data_stale_days=14,
             source='Mysteel 공개 일일 가격표', source_url='https://list1.mysteel.com/article/p-2409----0201---------1.html',
             series=series, default_series=list(series), highlight_gaps=True, gaps=gaps,
+            snapshot_history=True, history_note=f'{dates[0]}부터 확인된 Mysteel 과거 관측값을 포함합니다.',
             source_records=rows, excluded_observations=len([r for r in flagged if r['contract']==contract]),
             description=f'상하이 양산 구리 {title} 프리미엄의 공시 중간값입니다. ' + PROCESS_EXPLANATION,
             note=f'{dates[0]}~{dates[-1]} 공개 관측값. 누락 구간도 선으로 연결하지만 값을 보간·생성하지 않습니다. 7일 초과 관측 간격은 점선으로 표시하며 휴일도 포함될 수 있습니다. 원문 가격 범위와 중간값이 불일치한 자료는 제외했습니다. ETA·QP 조건은 원문에 따라 바뀝니다. 일회 수집 자료이며 자동 갱신은 아직 설정하지 않았습니다.'))
@@ -61,11 +62,12 @@ def run(folder):
     series = {CONTRACTS[r['contract']]: [[r['date'], r['midpoint']]] for r in smm['observations'] if validate(r)}
     if len(series) != 2:
         raise ValueError('Incomplete SMM snapshot')
-    docs.append(dict(id='comm_copper_yangshan_smm', name='양산 프리미엄 · SMM 참고값', unit='USD/톤',
+    docs.append(dict(id='comm_copper_yangshan_smm', name='양산 프리미엄 · SMM 최신값 누적', unit='USD/톤',
         frequency='daily', fetched=smm['retrieved_at'], updated=max(r['date'] for r in smm['observations']),
         data_stale_days=14, source='SMM 공개 가격 목록', source_url='https://www.smm.com.cn/price',
         series=series, default_series=list(series), source_records=smm['observations'],
-        description='SMM 창고증권·선하증권 평균값입니다. Mysteel과 제공처·등급 기준이 달라 별도로 표시합니다.',
+        snapshot_history=True, history_note='수집 시작 전 SMM 과거 이력은 확보하지 못했습니다.',
+        description='SMM 창고증권·선하증권 평균값을 수집한 날짜부터 누적합니다. 과거 이력은 미확보이며, Mysteel 과거 그래프와는 별도 자료입니다.',
         note='현재 확보한 기준일 1개의 참고값입니다. 과거 이력과 자동 갱신은 아직 연결하지 않았습니다.'))
     for doc in docs:
         path = OUT / (doc['id'] + '.json')

@@ -136,6 +136,11 @@ def merge(doc, rows, today):
                       for (a, _), (b, _) in zip(points, points[1:])
                       if (dt.date.fromisoformat(b) - dt.date.fromisoformat(a)).days > 7]
     result['highlight_gaps'] = True
+    result['snapshot_history'] = True
+    first = min(p[0] for points in result['series'].values() for p in points)
+    result['history_note'] = (f'{first}부터 확인된 Mysteel 과거 관측값을 포함합니다.'
+                            if any('grade' in row for row in rows) else
+                            f'SMM의 수집 시작일은 {first}입니다. 그 이전 과거 이력은 확보하지 못했습니다.')
     result['note'] = ('공개 일일 가격표를 매일 KST 07:30 자동 확인합니다. 새 기준일이 없으면 기존 값을 유지합니다. '
                       '제공처별 시계열을 분리하며, 누락 날짜의 값은 생성하지 않습니다. 7일 초과 관측 간격은 점선입니다. '
                       '날짜·단위·가격 범위 불일치 및 기존 값과 충돌하는 수정치는 검토 전 반영하지 않습니다.')
@@ -180,7 +185,8 @@ def run(today=None):
                     raise ValueError('Provider latest date regressed')
                 updated = merge(doc, selected, today)
                 if key == 'smm':
-                    updated['name'] = '양산 프리미엄 · SMM 일간'
+                    updated['name'] = '양산 프리미엄 · SMM 최신값 누적'
+                    updated['description'] = 'SMM 창고증권·선하증권 평균값을 수집한 날짜부터 누적합니다. 과거 이력은 미확보이며, Mysteel 과거 그래프와는 별도 자료입니다.'
                 updated['collection_status'] = dict(checked=today, ok=True, message='공개 자료 확인 완료 · 자료 기준일 ' + updated['updated'])
                 prepared.append(updated)
             for doc in prepared:
