@@ -410,6 +410,25 @@ function renderCard(doc, indicatorId) {
       stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
       return;
     }
+    if (doc.monthly_trade_summary) {
+      const values = new Map(s);
+      const year = Number(last[0].slice(0, 4));
+      const month = Number(last[0].slice(5, 7));
+      const previousMonth = `${month === 1 ? year - 1 : year}-${String(month === 1 ? 12 : month - 1).padStart(2, "0")}-01`;
+      const previousYear = `${year - 1}${last[0].slice(4)}`;
+      const change = date => {
+        const base = values.get(date);
+        return last[1] != null && base != null && base > 0
+          ? `${last[1] >= base ? "+" : ""}${((last[1] / base - 1) * 100).toFixed(1)}%` : "자료 없음";
+      };
+      stat.innerHTML = `
+        ${seriesNames.length > 1 ? `<span class="stat-series">${escapeHtml(seriesName)}</span>` : ""}
+        <span class="stat-value">${last[1] == null ? "—" : fmt(last[1])}</span>
+        <span class="stat-unit">${doc.unit || ""}</span>
+        <span class="stat-date">${last[0]}</span>
+        <span class="stat-unit">YoY ${change(previousYear)} · MoM ${change(previousMonth)}</span>`;
+      return;
+    }
     const reportedChange = doc.inventory_summary || doc.stock_summary;
     const delta = reportedChange
       ? (new Map(doc.inventory_summary ? doc.weekly_changes || [] : doc.daily_changes || []).get(last[0]) ?? null)
@@ -618,7 +637,7 @@ function drawChart(canvas, doc, filtered) {
       pointHoverRadius: 5,
       pointHoverBorderColor: css("--surface"),
       pointHoverBorderWidth: 2,
-      spanGaps: true,
+      spanGaps: doc.span_gaps ?? true,
       segment: doc.highlight_gaps ? {
         borderDash: (ctx) => {
           const start = Date.parse(labels[ctx.p0DataIndex]);

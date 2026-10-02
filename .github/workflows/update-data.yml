@@ -118,6 +118,11 @@ jobs:
           CUSTOMS_API_KEY: ${{ secrets.CUSTOMS_API_KEY }}
         run: python scripts/fetch_customs.py
 
+      # 일본 재무성 월별 수출: e-Stat 공개 CSV, API 키 없음. 과거 연도 정정도 확인.
+      - name: 일본 블랭크마스크 관련 무역통계 수집
+        continue-on-error: true
+        run: python scripts/fetch_japan_customs.py
+
       # 에스앤에스텍 분기 실적(수기입력 CSV) x 전국 블랭크마스크 수출 비교. 키 불필요.
       - name: 에스앤에스텍 비교 집계
         continue-on-error: true

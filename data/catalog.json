@@ -513,7 +513,7 @@
       "name": "반도체 소부장",
       "icon": "🔬",
       "default_range": "3y",
-      "cadence": "관세청 무역통계는 월 1회 확정. 수집은 매일 돌지만 전월분이 다음 달 12~15일경에야 채워지므로, 그 전까지는 전전월이 최신이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영).",
+      "cadence": "한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영).",
       "tabs": [
         {
           "id": "snstech",
@@ -566,6 +566,27 @@
             "blank_import_compare"
           ],
           "tab": "snstech"
+        },
+        {
+          "title": "일본 블랭크마스크 관련 수출 · HS 370199000",
+          "tab": "snstech",
+          "indicators": [
+            "jp_blank_amount",
+            "jp_blank_area",
+            "jp_blank_price",
+            "jp_blank_country",
+            "jp_blank_country_area",
+            "jp_blank_country_price"
+          ]
+        },
+        {
+          "title": "일본 대형 감광 플레이트 수출 · HS 370130000 · 보조지표",
+          "tab": "snstech",
+          "indicators": [
+            "jp_plate_large_amount",
+            "jp_plate_large_area",
+            "jp_plate_large_price"
+          ]
         },
         {
           "title": "블랭크마스크 · 반도체용 (HS 3701991000)",
