@@ -154,6 +154,91 @@ def run():
         "series": {**{f"{LABEL[t]} 누적": t_pts[t] for t in DUV}, "DUV 합계": d_pts},
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"  ASML: 분기 {len(quarters)}개(~{last}) 검증 통과 · EUV 누적 {cum_e} · DUV 누적(2013~) {cum_d:,}")
+    capacity(annual, quarters, common)
+
+
+def capacity(annual, quarters, common):
+    """연간 판매 vs ASML이 밝힌 생산능력. 생산능력은 정기 공시가 아니라 실적 발표·투자자의 날 문장이라
+    manual/asml_capacity.csv에 원문 인용과 함께 둔다. 진행 중인 해는 지금까지 분기 × (4/분기수)로 연환산한다."""
+    cap = list(csv.DictReader((ROOT / "manual" / "asml_capacity.csv").open(encoding="utf-8")))
+
+    # 연간 실적: 2016년까지는 연간보고서 행, 2017년부터는 분기 합
+    yearly = {t: {} for t in TECH}
+    for y, a in annual.items():
+        for t in TECH:
+            if str(a[t]).strip():
+                yearly[t][y] = num(a[t])
+    by_year = {}
+    for r in quarters:
+        by_year.setdefault(int(r["period"][:4]), []).append(r)
+    run_rate = {}
+    for y, rs in by_year.items():
+        if y <= 2016:
+            continue
+        for t in TECH:
+            s = sum(num(r[t]) for r in rs)
+            if len(rs) == 4:
+                yearly[t][y] = s
+            else:
+                run_rate.setdefault(t, {})[y] = round(s * 4 / len(rs), 1)
+    part_year = max(by_year)
+    part_q = len(by_year[part_year])
+
+    def pts(d):
+        return [[f"{y}-01-01", v] for y, v in sorted(d.items())]
+
+    def capser(tech, kinds):
+        return [[f"{r['year']}-01-01", float(r["capacity"])] for r in cap
+                if r["tech"] == tech and r["kind"] in kinds]
+    duv_year = {y: sum(yearly[t].get(y, 0) for t in DUV) for y in yearly["arfi"]}
+    duv_run = {y: sum(run_rate.get(t, {}).get(y, 0) for t in DUV) for y in run_rate.get("arfi", {})}
+    common_y = {**common, "unit": "대", "frequency": "yearly", "full_range": True}
+    rr_label = f"{part_year} 연환산({part_q}분기×{4 // part_q if 4 % part_q == 0 else round(4 / part_q, 2)})"
+
+    euv_now = run_rate.get("euv", {}).get(part_year)
+    cap26 = next((float(r["capacity"]) for r in cap if r["tech"] == "euv" and r["year"] == str(part_year) and r["kind"] == "stated"), None)
+    (OUT / "asml_euv_capacity.json").write_text(json.dumps({
+        "id": "asml_euv_capacity", "name": "ASML EUV — 연간 판매 vs 생산능력", **common_y,
+        "default_series": ["EUV 판매(연간 실적)", rr_label, "생산능력(당해 발표)", "생산능력(중기 목표)", "생산능력(증설 계획)"],
+        "series": {
+            "EUV 판매(연간 실적)": pts(yearly["euv"]),
+            rr_label: pts(run_rate.get("euv", {})),
+            "생산능력(당해 발표)": capser("euv", {"stated"}),
+            "생산능력(중기 목표)": capser("euv", {"target"}),
+            "생산능력(증설 계획)": capser("euv", {"plan"}),
+        },
+        "description": (
+            "ASML이 그해 EUV를 몇 대까지 만들 수 있다고 밝힌 생산능력과 실제 매출 인식 대수를 겹쳤다. 실적이 생산능력에 "
+            "바짝 붙으면 공급이 빠듯하다는 뜻이고, 그 뒤엔 증설 발표가 따라온다. 블랭크마스크 수요는 장비가 늘어나는 "
+            "속도를 따라가므로, 증설 계획선이 곧 몇 년 뒤 EUV 블랭크마스크 수요의 기울기다."
+        ),
+        "note": (f"{part_year}년 연환산 {euv_now}대 vs 당해 생산능력 약 {cap26:.0f}대"
+                 f"({euv_now / cap26 * 100:.0f}%). 2022년 투자자의 날 목표(2025~26년 90대)는 2026년 실제 발표 65대로 "
+                 "낮아졌다. 생산능력은 정기 공시가 아니라 실적 발표·투자자의 날 문장이고 정의도 조금씩 다르다(출하 가능 대수, "
+                 "Low-NA만 등). 판매는 매출 인식 기준이라 출하와 시차가 있어 비율은 '가동률'이 아니라 계획 대비 실현 정도의 "
+                 "근사치다. 2021년은 '45~50대'의 중간값, 증설 계획은 '+30%'를 곱한 값. 원문은 manual/asml_capacity.csv."),
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    imm_now = run_rate.get("arfi", {}).get(part_year)
+    (OUT / "asml_duv_capacity.json").write_text(json.dumps({
+        "id": "asml_duv_capacity", "name": "ASML DUV — 연간 판매 vs 생산능력", **common_y,
+        "default_series": ["ArFi 판매(연간 실적)", f"ArFi {rr_label}", "ArFi 생산능력(발표·계획)"],
+        "series": {
+            "ArFi 판매(연간 실적)": pts(yearly["arfi"]),
+            f"ArFi {rr_label}": pts(run_rate.get("arfi", {})),
+            "ArFi 생산능력(발표·계획)": capser("arfi", {"stated", "plan"}),
+            "DUV 전체 판매(연간 실적)": pts(duv_year),
+            f"DUV 전체 {rr_label}": pts(duv_run),
+            "DUV 전체 생산능력(중기 목표)": capser("duv", {"target"}),
+        },
+        "description": (
+            "DUV는 액침(ArFi) 생산능력만 따로 밝힌다. 액침은 EUV 직전 세대 첨단 공정의 주력이라 EUV와 함께 첨단 "
+            "블랭크마스크 수요를 이룬다. DUV 전체(ArFi·ArF dry·KrF·i-line)와 2022년 투자자의 날 목표(600대)는 칩으로 켠다."
+        ),
+        "note": (f"{part_year}년 ArFi 연환산 {imm_now}대 vs 생산능력 약 130대 — EUV와 달리 여유가 있다. "
+                 "2027년은 '+30%' 계획을 곱한 값. 판매는 매출 인식 기준, 생산능력은 발표 문장(정기 공시 아님)."),
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"  생산능력: EUV {part_year} 연환산 {euv_now} / {cap26} · ArFi 연환산 {imm_now}")
 
 
 if __name__ == "__main__":
