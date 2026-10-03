@@ -42,6 +42,13 @@ jobs:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: python scripts/fetch_global_bonds.py
 
+      # 국가별 정부부채·GDP·재정수지(IMF WEO, 키 없음) + BIS 분기 부채·OECD 10년 금리(FRED) + 중국 10년(일별 누적)
+      - name: 국가별 부채·금리 수집
+        continue-on-error: true
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python scripts/fetch_sovereign.py
+
       # 원자재 금·은·구리 (Yahoo Finance 선물, 키 없음). 리튬은 best-effort.
       - name: 원자재 수집
         continue-on-error: true

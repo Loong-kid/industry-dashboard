@@ -291,7 +291,7 @@
       "name": "매크로",
       "icon": "📊",
       "default_range": "3y",
-      "cadence": "FRED·ECOS·일본 재무성에서 매일 자동. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연.",
+      "cadence": "FRED·ECOS·일본 재무성에서 매일 자동. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연. 국가별 부채는 IMF WEO(연 2회, 4·10월)·BIS(분기)·OECD 장기금리(월간, 1~2개월 지연).",
       "sections": [
         {
           "title": "인플레이션",
@@ -299,20 +299,66 @@
             "inflation_yoy",
             "inflation_exp",
             "inflation_exp_long"
-          ]
+          ],
+          "tab": "rates"
         },
         {
           "title": "금리 · 커브",
           "indicators": [
             "rates_curve"
-          ]
+          ],
+          "tab": "rates"
         },
         {
           "title": "글로벌 국채 (미·한·일)",
           "indicators": [
             "bond_10y",
             "bond_30y"
+          ],
+          "tab": "rates"
+        },
+        {
+          "title": "국가별 요약",
+          "tab": "sovereign",
+          "type": "table",
+          "table_kind": "power_fleet",
+          "indicators": [
+            "sov_table"
           ]
+        },
+        {
+          "title": "정부부채 / GDP",
+          "tab": "sovereign",
+          "indicators": [
+            "sov_debt_imf",
+            "sov_debt_q"
+          ]
+        },
+        {
+          "title": "부채 규모 · GDP · 재정수지",
+          "tab": "sovereign",
+          "indicators": [
+            "sov_debt_usd",
+            "sov_gdp",
+            "sov_deficit"
+          ]
+        },
+        {
+          "title": "10년 국채금리",
+          "tab": "sovereign",
+          "indicators": [
+            "sov_yield_10y"
+          ]
+        }
+      ],
+      "tabs": [
+        {
+          "id": "rates",
+          "name": "물가·금리"
+        },
+        {
+          "id": "sovereign",
+          "name": "국가별 부채·금리"
         }
       ]
     },
