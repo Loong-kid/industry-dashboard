@@ -3,7 +3,7 @@
   "name": "양산 프리미엄 · 창고증권 (Mysteel)",
   "unit": "USD/톤",
   "frequency": "daily",
-  "fetched": "2026-10-01",
+  "fetched": "2026-10-03",
   "updated": "2026-09-30",
   "data_stale_days": 14,
   "source": "Mysteel 공개 일일 가격표",
@@ -1392,11 +1392,11 @@
       ],
       [
         "2026-09-29",
-        123
+        123.0
       ],
       [
         "2026-09-30",
-        123
+        123.0
       ]
     ],
     "습법동": [
@@ -2782,11 +2782,11 @@
       ],
       [
         "2026-09-29",
-        118
+        118.0
       ],
       [
         "2026-09-30",
-        118
+        118.0
       ]
     ]
   },
@@ -11810,65 +11810,61 @@
       "provider": "Mysteel",
       "contract": "warehouse_warrant",
       "grade": "hydrometallurgical",
-      "low": 111,
-      "high": 125,
-      "midpoint": 118,
+      "low": 111.0,
+      "high": 125.0,
+      "midpoint": 118.0,
       "unit": "USD/metric tonne",
       "reported_change": "+2",
       "delivery_pricing_terms": "ETA10，QP10",
-      "source_url": "https://youse.mysteel.com/a/26092911/59A281AF0A742E9E.html",
-      "retrieval_method": "Exact HTML table observed in earlier successful session probe; transcribed offline"
+      "source_url": "https://youse.mysteel.com/a/26092911/59A281AF0A742E9E.html"
     },
     {
       "date": "2026-09-29",
       "provider": "Mysteel",
       "contract": "warehouse_warrant",
       "grade": "pyrometallurgical",
-      "low": 113,
-      "high": 133,
-      "midpoint": 123,
+      "low": 113.0,
+      "high": 133.0,
+      "midpoint": 123.0,
       "unit": "USD/metric tonne",
       "reported_change": "+2",
       "delivery_pricing_terms": "ETA10，QP10",
-      "source_url": "https://youse.mysteel.com/a/26092911/59A281AF0A742E9E.html",
-      "retrieval_method": "Exact HTML table observed in earlier successful session probe; transcribed offline"
+      "source_url": "https://youse.mysteel.com/a/26092911/59A281AF0A742E9E.html"
     },
     {
       "date": "2026-09-30",
       "provider": "Mysteel",
       "contract": "warehouse_warrant",
       "grade": "hydrometallurgical",
-      "low": 111,
-      "high": 125,
-      "midpoint": 118,
+      "low": 111.0,
+      "high": 125.0,
+      "midpoint": 118.0,
       "unit": "USD/metric tonne",
       "reported_change": "-",
       "delivery_pricing_terms": "ETA10，QP10",
-      "source_url": "https://youse.mysteel.com/a/26093011/FD4DC4475C47526B.html",
-      "retrieval_method": "Exact HTML table observed in earlier successful session probe; transcribed offline"
+      "source_url": "https://youse.mysteel.com/a/26093011/FD4DC4475C47526B.html"
     },
     {
       "date": "2026-09-30",
       "provider": "Mysteel",
       "contract": "warehouse_warrant",
       "grade": "pyrometallurgical",
-      "low": 113,
-      "high": 133,
-      "midpoint": 123,
+      "low": 113.0,
+      "high": 133.0,
+      "midpoint": 123.0,
       "unit": "USD/metric tonne",
       "reported_change": "-",
       "delivery_pricing_terms": "ETA10，QP10",
-      "source_url": "https://youse.mysteel.com/a/26093011/FD4DC4475C47526B.html",
-      "retrieval_method": "Exact HTML table observed in earlier successful session probe; transcribed offline"
+      "source_url": "https://youse.mysteel.com/a/26093011/FD4DC4475C47526B.html"
     }
   ],
   "excluded_observations": 12,
   "description": "상하이 양산 구리 창고증권 프리미엄의 공시 중간값입니다. 화법동은 고온 제련 후 전해정련으로 정제한 구리, 습법동은 광석에서 구리를 용액으로 녹여 추출한 뒤 전기로 회수한 구리(SX-EW)입니다. 둘 다 고순도 전기동으로 생산될 수 있으므로 습법동을 저순도 구리로 보면 안 됩니다. 이 그래프는 제조 경로별 시장 구분이며, 두 선의 프리미엄 차이를 순도 차이로 해석하지 않습니다.",
-  "note": "2025-02-18~2026-09-30 공개 관측값. 누락 구간도 선으로 연결하지만 값을 보간·생성하지 않습니다. 7일 초과 관측 간격은 점선으로 표시하며 휴일도 포함될 수 있습니다. 원문 가격 범위와 중간값이 불일치한 자료는 제외했습니다. ETA·QP 조건은 원문에 따라 바뀝니다. 매일 KST 07:30 공개 자료를 확인합니다. 접근 제한 또는 검증 실패 시 기존 관측값을 보존합니다.",
+  "note": "공개 일일 가격표를 매일 KST 07:30 자동 확인합니다. 새 기준일이 없으면 기존 값을 유지합니다. 제공처별 시계열을 분리하며, 누락 날짜의 값은 생성하지 않습니다. 7일 초과 관측 간격은 점선입니다. 날짜·단위·가격 범위 불일치 및 기존 값과 충돌하는 수정치는 검토 전 반영하지 않습니다.",
   "collection_status": {
-    "checked": "2026-10-02",
-    "ok": false,
-    "message": "자동 확인 실패 · 기존 관측값 유지"
+    "checked": "2026-10-03",
+    "ok": true,
+    "message": "공개 자료 확인 완료 · 자료 기준일 2026-09-30"
   },
   "snapshot_history": true,
   "history_note": "2025-02-18부터 확인된 Mysteel 과거 관측값을 포함합니다."
