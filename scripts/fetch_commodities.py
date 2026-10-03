@@ -2,7 +2,7 @@
 """원자재 가격 → data/commodities/comm_*.json (일반 시계열 카드, 종목별 1개씩).
 
 금·은·구리: Yahoo Finance 일봉 선물(키 없음). GC=F/SI=F/HG=F.
-(리튬은 중국 소스 CI 도달 불안정으로 수기입력 방식 — manual/lithium.csv + import_manual.py)
+(리튬 등 KOMIS 광물 가격은 fetch_komis_prices.py에서 수집)
 
     python scripts/fetch_commodities.py
 """

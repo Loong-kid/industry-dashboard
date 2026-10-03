@@ -155,6 +155,13 @@ async function renderIndustry() {
     content.appendChild(tabs);
   }
 
+  if (selectedTab?.description) {
+    const intro = document.createElement("p");
+    intro.className = "tab-description";
+    intro.textContent = selectedTab.description;
+    content.appendChild(intro);
+  }
+
   // 빈 대시보드와 '아직 불러오는 중'을 구분한다. 카드는 아래 루프에서 하나씩 채워지고,
   // 이 줄은 전부 끝난 뒤 제거된다.
   const loading = document.createElement("div");
@@ -519,6 +526,15 @@ function renderCard(doc, indicatorId) {
     card.appendChild(info);
   }
 
+  if (doc.price_details?.length) {
+    const details = document.createElement("details");
+    details.className = "price-details";
+    details.innerHTML = `<summary>가격 기준 자세히</summary><dl>${doc.price_details.map(item =>
+      `<dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd>`).join("")}</dl>${doc.methodology_url ?
+      `<a href="${escapeHtml(doc.methodology_url)}" target="_blank" rel="noopener">기준 해설 원문 ↗</a>` : ""}`;
+    card.appendChild(details);
+  }
+
   const foot = document.createElement("div");
   foot.className = "card-foot";
   foot.innerHTML = `
@@ -729,7 +745,8 @@ function drawChart(canvas, doc, filtered) {
         x: {
           ticks: {
             color: css("--muted"),
-            maxTicksLimit: 6, maxRotation: 0, autoSkip: true,
+            maxTicksLimit: doc.komis_info ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
+            maxRotation: 0, autoSkip: true,
             font: { size: 11 },
             callback: function(value) { return periodLabel(doc, this.getLabelForValue(value)); },
           },

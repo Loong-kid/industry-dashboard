@@ -144,10 +144,10 @@ class MineralPriceTests(unittest.TestCase):
             before = path.read_bytes()
             with patch.object(prices, 'fetch_uranium', side_effect=ValueError('bad table')), \
                     patch.object(prices, 'fetch_swu') as swu, \
-                    patch.object(prices, 'fetch_rare_earth') as rare, patch.object(prices.requests, 'Session'):
+                    patch('fetch_komis_prices.run') as komis, patch.object(prices.requests, 'Session'):
                 with self.assertRaises(RuntimeError):
                     prices.run()
-            self.assertEqual(rare.call_count, 4)
+            komis.assert_called_once()
             swu.assert_called_once()
             self.assertEqual(path.read_bytes(), before)
 

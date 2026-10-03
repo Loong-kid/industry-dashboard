@@ -367,7 +367,7 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
-      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, 우라늄 현물·장기계약 지표는 Cameco 월말 가격, 농축서비스(SWU)는 EIA 연간 실제 구매가격, 희토류 산화물은 KOMIS 일자별 게시값입니다. SHFE 재고는 공식 보고서, COMEX·LME는 공개 과거 자료와 최신 API를 함께 사용합니다. 합산 재고는 SHFE 보고일 기준 주간 자료이며 각 거래소의 기준일이 다를 수 있습니다. 탄산리튬은 수기입력.",
+      "cadence": "금·은·구리·팔라듐 선물은 Yahoo 일봉, 우라늄 현물·장기 지표는 Cameco 월말, SWU는 EIA 연간 구매가격입니다. KOMIS는 49개 광종·79개 가격 기준을 일자별로 자동 수집합니다. LME·LBMA·Johnson Matthey·ISE와 제품·지역·인도조건·단위는 카드의 가격 기준 자세히에서 확인하세요. KOMIS는 오전 10시경 갱신을 안내하며 이 사이트는 매일 KST 07:30에 수집하므로 당일 발표분은 다음 수집에 반영될 수 있습니다. 2026년 자료원 변경 전후 비교에 유의하세요. 합산 구리 재고는 SHFE 보고일 기준 주간 자료입니다.",
       "tabs": [
         {
           "id": "overview",
@@ -376,6 +376,26 @@
         {
           "id": "copper",
           "name": "구리"
+        },
+        {
+          "id": "komis_base",
+          "name": "KOMIS 비철·LME",
+          "description": "비철금속 6종·13개 기준. LME CASH·3개월·주석 15개월을 각각 표시하며 USD/미터톤 기준입니다. 기존 COMEX 구리 선물(USD/lb)과 거래소·만기가 다릅니다."
+        },
+        {
+          "id": "komis_minor",
+          "name": "KOMIS 희소·희토류",
+          "description": "희소금속·희토류 34종·56개 기준. 리튬 3개 제품, 희토류 14종, 순도·제품·지역별 가격을 각각 표시합니다. 대부분 ISE 지역별 가격이며 코발트 LME와 원자료원 미표기 지표도 포함됩니다. 공개 가격 행이 없는 옛 디스프로슘·란탄·테르븀 옵션과 네오디뮴 지수 전용 옵션 4개는 차트에서 제외했습니다."
+        },
+        {
+          "id": "komis_energy",
+          "name": "KOMIS 철·에너지",
+          "description": "우라늄·유연탄·철광석 3종·4개 기준. KOMIS 주간 U₃O₈ 지표와 발전용 석탄·제철용 원료탄·호주산 철광석을 구분합니다. 석탄은 친황다오항·허난 EXW, 철광석은 중국 CNF 조건입니다."
+        },
+        {
+          "id": "komis_other",
+          "name": "KOMIS 귀금속·흑연",
+          "description": "금·은·루테늄·백금·팔라듐·흑연 6종·6개 기준. 금·은은 런던 LBMA 가격, 백금족은 Johnson Matthey 런던 고시가격, 흑연은 중국 FOB 가격입니다. 기존 금속 선물과는 가격 산정 기준이 다릅니다."
         }
       ],
       "sections": [
@@ -448,10 +468,12 @@
           ]
         },
         {
-          "title": "배터리 금속",
+          "title": "리튬 · 탄산염·수산화물·광석",
           "tab": "overview",
           "indicators": [
-            "comm_lithium"
+            "comm_lithium",
+            "comm_komis_lithium_772",
+            "comm_komis_lithium_771"
           ]
         },
         {
@@ -459,6 +481,379 @@
           "tab": "overview",
           "indicators": [
             "comm_gold_silver_ratio"
+          ]
+        },
+        {
+          "title": "니켈",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_nickel_502",
+            "comm_komis_nickel_497"
+          ]
+        },
+        {
+          "title": "구리",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_copper_501",
+            "comm_komis_copper_503"
+          ]
+        },
+        {
+          "title": "아연",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_zinc_561",
+            "comm_komis_zinc_581"
+          ]
+        },
+        {
+          "title": "알루미늄",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_aluminum_495",
+            "comm_komis_aluminum_496"
+          ]
+        },
+        {
+          "title": "납",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_lead_499",
+            "comm_komis_lead_500"
+          ]
+        },
+        {
+          "title": "주석",
+          "tab": "komis_base",
+          "indicators": [
+            "comm_komis_tin_493",
+            "comm_komis_tin_494",
+            "comm_komis_tin_498"
+          ]
+        },
+        {
+          "title": "가돌리늄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_gadolinium_809"
+          ]
+        },
+        {
+          "title": "갈륨",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_gallium_768",
+            "comm_komis_gallium_769",
+            "comm_komis_gallium_767"
+          ]
+        },
+        {
+          "title": "게르마늄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_germanium_759",
+            "comm_komis_germanium_760"
+          ]
+        },
+        {
+          "title": "규소",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_silicon_765"
+          ]
+        },
+        {
+          "title": "네오디뮴",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_neodymium"
+          ]
+        },
+        {
+          "title": "니오븀",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_niobium_770"
+          ]
+        },
+        {
+          "title": "디스프로슘",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_dysprosium"
+          ]
+        },
+        {
+          "title": "란탄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_lanthanum_813"
+          ]
+        },
+        {
+          "title": "루테튬",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_lutetium_807"
+          ]
+        },
+        {
+          "title": "리튬",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_lithium",
+            "comm_komis_lithium_772",
+            "comm_komis_lithium_771"
+          ]
+        },
+        {
+          "title": "마그네슘",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_magnesium_766"
+          ]
+        },
+        {
+          "title": "망간",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_manganese_815"
+          ]
+        },
+        {
+          "title": "몰리브덴",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_molybdenum_763",
+            "comm_komis_molybdenum_756"
+          ]
+        },
+        {
+          "title": "바나듐",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_vanadium_775",
+            "comm_komis_vanadium_774",
+            "comm_komis_vanadium_776"
+          ]
+        },
+        {
+          "title": "사마륨",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_samarium_804"
+          ]
+        },
+        {
+          "title": "세륨",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_cerium_802"
+          ]
+        },
+        {
+          "title": "셀레늄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_selenium_778",
+            "comm_komis_selenium_777"
+          ]
+        },
+        {
+          "title": "스칸듐",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_scandium_812"
+          ]
+        },
+        {
+          "title": "스트론튬",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_strontium_779"
+          ]
+        },
+        {
+          "title": "안티모니",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_antimony_780",
+            "comm_komis_antimony_781"
+          ]
+        },
+        {
+          "title": "에르븀",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_erbium_810"
+          ]
+        },
+        {
+          "title": "유로퓸",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_europium_808"
+          ]
+        },
+        {
+          "title": "이트륨",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_yttrium_805"
+          ]
+        },
+        {
+          "title": "인듐",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_indium_784",
+            "comm_komis_indium_785",
+            "comm_komis_indium_786",
+            "comm_komis_indium_787"
+          ]
+        },
+        {
+          "title": "지르코늄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_zirconium_788"
+          ]
+        },
+        {
+          "title": "창연",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_bismuth_789",
+            "comm_komis_bismuth_790"
+          ]
+        },
+        {
+          "title": "코발트",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_cobalt_791",
+            "comm_komis_cobalt_708",
+            "comm_komis_cobalt_709"
+          ]
+        },
+        {
+          "title": "크롬",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_chromium_794",
+            "comm_komis_chromium_795"
+          ]
+        },
+        {
+          "title": "탄탈륨",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_tantalum_764"
+          ]
+        },
+        {
+          "title": "테르븀",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_terbium"
+          ]
+        },
+        {
+          "title": "텅스텐",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_tungsten_796",
+            "comm_komis_tungsten_800",
+            "comm_komis_tungsten_799",
+            "comm_komis_tungsten_816",
+            "comm_komis_tungsten_798"
+          ]
+        },
+        {
+          "title": "티타늄",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_titanium_761",
+            "comm_komis_titanium_762"
+          ]
+        },
+        {
+          "title": "프라세오디뮴",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_praseodymium"
+          ]
+        },
+        {
+          "title": "홀뮴",
+          "tab": "komis_minor",
+          "indicators": [
+            "comm_komis_holmium_811"
+          ]
+        },
+        {
+          "title": "우라늄",
+          "tab": "komis_energy",
+          "indicators": [
+            "comm_komis_uranium_509"
+          ]
+        },
+        {
+          "title": "유연탄",
+          "tab": "komis_energy",
+          "indicators": [
+            "comm_komis_coal_783",
+            "comm_komis_coal_782"
+          ]
+        },
+        {
+          "title": "철",
+          "tab": "komis_energy",
+          "indicators": [
+            "comm_komis_iron_793"
+          ]
+        },
+        {
+          "title": "금",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_gold_701"
+          ]
+        },
+        {
+          "title": "루테늄",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_ruthenium_817"
+          ]
+        },
+        {
+          "title": "백금",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_platinum_748"
+          ]
+        },
+        {
+          "title": "은",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_silver_555"
+          ]
+        },
+        {
+          "title": "팔라듐",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_palladium_749"
+          ]
+        },
+        {
+          "title": "흑연",
+          "tab": "komis_other",
+          "indicators": [
+            "comm_komis_graphite_801"
           ]
         }
       ]

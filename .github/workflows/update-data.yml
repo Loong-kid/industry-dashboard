@@ -49,12 +49,12 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python scripts/fetch_sovereign.py
 
-      # 원자재 금·은·구리 (Yahoo Finance 선물, 키 없음). 리튬은 best-effort.
+      # 원자재 금·은·구리·팔라듐 (Yahoo Finance 선물, 키 없음).
       - name: 원자재 수집
         continue-on-error: true
         run: python scripts/fetch_commodities.py
 
-      - name: 우라늄·농축·희토류 가격 수집
+      - name: 우라늄·농축·KOMIS 전체 광물 가격 수집
         continue-on-error: true
         run: python scripts/fetch_mineral_prices.py
 

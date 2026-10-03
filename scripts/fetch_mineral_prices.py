@@ -1,4 +1,4 @@
-"""Cameco uranium, EIA annual SWU and KOMIS rare-earth prices (no API keys).
+"""Cameco uranium, EIA annual SWU and all reviewed KOMIS prices (no API keys).
 
 Initial run imports the published history. Later runs recheck two years of
 KOMIS data and merge revisions, preserving older observations. Each source
@@ -26,12 +26,6 @@ KOMIS_PAGE = KOMIS + '/Komis/RsrcPrice/MinorMetals'
 KOMIS_API = KOMIS + '/Komis/RsrcPrice/ajax/'
 SPOT = '현물 가격'
 TERM = '장기계약 가격'
-RARE_EARTHS = [
-    ('comm_neodymium', '네오디뮴 산화물 (Nd₂O₃)', 'MNRL1001', 757, 'Neodymium Oxide', '네오디뮴', '99.5'),
-    ('comm_dysprosium', '디스프로슘 산화물 (Dy₂O₃)', 'MNRL1004', 803, 'Dysprosium Oxide', '디스프로슘', '99.5'),
-    ('comm_terbium', '테르븀 산화물 (Tb)', 'MNRL1005', 806, 'Terbium Oxide', '터븀', '99.99'),
-    ('comm_praseodymium', '프라세오디뮴 산화물 (Pr)', 'MNRL1056', 758, 'Praseodymium Oxide', '프라세오디뮴', '99.5'),
-]
 
 
 def korea_today():
@@ -187,7 +181,9 @@ def save_document(doc):
     path = OUT / (doc['id'] + '.json')
     if path.exists():
         old = json.loads(path.read_text(encoding='utf-8'))
-        if old.get('unit') != doc['unit'] or old.get('price_reference') != doc['price_reference']:
+        empty_lithium_placeholder = (doc['id'] == 'comm_lithium' and old.get('manual') is True
+                                     and not any(old.get('series', {}).values()))
+        if not empty_lithium_placeholder and (old.get('unit') != doc['unit'] or old.get('price_reference') != doc['price_reference']):
             raise ValueError('Existing series has a different unit or price reference')
         for name, incoming in doc['series'].items():
             previous = old.get('series', {}).get(name, [])
@@ -233,38 +229,16 @@ def fetch_swu(session, today):
     })
 
 
-def fetch_rare_earth(session, today, card, backfill=False):
-    cid, name, mineral_code, reference, product, mineral, purity = card
-    options = request(session, 'POST', KOMIS_API + 'getMnrlPriceCrtr',
-                      data={'HP000': 'HP002', 'mnrkndUnqCd': mineral_code}).json()
-    validate_komis_product(options, reference, product, purity)
-    start = 1990 if backfill or not (OUT / (cid + '.json')).exists() else today.year - 1
-    params = {'HP000': 'HP002', 'srchMnrkndUnqCd': mineral_code, 'srchPrcCrtr': reference,
-              'srchAvgOpt': '', 'srchField': 'year', 'srchStartDate': start, 'srchEndDate': today.year}
-    payload = request(session, 'POST', KOMIS_API + 'getMnrlPrcByMnrkndUnqCd', data=params).json()
-    points = parse_komis(payload, mineral, today, purity)
-    save_document({
-        'id': cid, 'name': name, 'unit': '$/kg', 'frequency': 'daily',
-        'source': 'KOMIS 한국자원정보서비스', 'source_url': KOMIS + '/',
-        'price_reference': {'mineral_code': mineral_code, 'reference': reference,
-                            'product': product, 'purity': purity + '%', 'basis': 'FOB China'},
-        'fetched': today.isoformat(), 'series': {name: points}, 'data_stale_days': 21,
-        'description': f'순도 {purity}% 이상 산화물의 중국 FOB 가격 지표입니다. 금속 가격이나 중국 내수 가격과 기준이 다릅니다.',
-        'note': 'KOMIS는 2026년부터 희토류 등의 자료원을 단계적으로 변경한다고 안내합니다. 변경 전후 가격은 같은 규격이어도 차이가 날 수 있습니다. 일자별 게시값이며 가격이 매일 변하는 것은 아닙니다.',
-        'methodology_notice_url': KOMIS_PAGE,
-    })
-
-
 def run(backfill=False):
+    import fetch_komis_prices
+
     today = korea_today()
     session = requests.Session()
     session.headers['User-Agent'] = 'IndustryDashboard/1.0 (public mineral price monitoring)'
     errors = []
     jobs = [('uranium', lambda: fetch_uranium(session, today)),
-            ('swu', lambda: fetch_swu(session, today))]
-    # Use the website's ordinary session, without login or API credentials.
-    jobs.extend((card[0], lambda card=card: fetch_rare_earth(session, today, card, backfill))
-                for card in RARE_EARTHS)
+            ('swu', lambda: fetch_swu(session, today)),
+            ('komis', lambda: fetch_komis_prices.run(backfill, session, today))]
     for name, job in jobs:
         try:
             job()

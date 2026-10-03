@@ -2,6 +2,13 @@
 .commodity-tabs a { color: var(--ink-2); text-decoration: none; padding: 9px 18px; border: 1px solid var(--border); border-radius: 6px; }
 .commodity-tabs a.active { color: var(--accent); border-color: var(--accent); background: var(--surface); font-weight: 700; }
 .commodity-tabs a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.tab-description { color: var(--ink-2); font-size: 13px; line-height: 1.7; margin: -8px 0 24px; }
+.price-details { font-size: 12px; line-height: 1.6; color: var(--ink-2); margin-top: 12px; border-top: 1px solid var(--border); padding-top: 10px; }
+.price-details summary { cursor: pointer; color: var(--ink); }
+.price-details summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.price-details dl { margin: 12px 0; }
+.price-details dt { color: var(--ink); font-weight: 600; margin-top: 10px; }
+.price-details dd { margin: 2px 0 0; overflow-wrap: anywhere; }
 /* ── 팔레트 (dataviz reference palette) ─────────────────────────── */
 :root {
   --page: #f9f9f7;
@@ -476,7 +483,8 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
     flex-direction: row; align-items: center;
     padding: 10px 12px;
   }
-  #nav { flex-direction: row; }
+  #nav { flex-direction: row; min-width: 0; overflow-x: auto; }
+  #nav a { flex-shrink: 0; white-space: nowrap; }
   .sidebar-foot { display: none; }
   .grid { grid-template-columns: 1fr; }
 }

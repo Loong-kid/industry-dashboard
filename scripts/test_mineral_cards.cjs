@@ -73,3 +73,4 @@ for (const id of ['comm_uranium', 'comm_swu', 'comm_neodymium', 'comm_dysprosium
 assert.equal(context.periodLabel({quarter_labels: true}, '2025-12-31'), '2025 Q4');
 assert.equal(context.periodLabel({}, '2025-12-31'), '2025-12-31');
 console.log('PASS: mineral card placement, chart ranges, data dates, sources, tables and uranium series toggle');
+module.exports = {context, charts};
