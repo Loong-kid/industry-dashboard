@@ -349,7 +349,8 @@ function renderCard(doc, indicatorId) {
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
   const dateLabel = date => doc?.quarter_labels
-    ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
+    ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}`
+    : doc?.year_labels ? date.slice(0, 4) : date;
 
   if (!doc || !doc.series || Object.values(doc.series).every((s) => s.length === 0)) {
     const name = doc?.name || indicatorId;
@@ -600,6 +601,7 @@ function fmt(v) {
 }
 
 function periodLabel(doc, date) {
+  if (doc.year_labels) return date.slice(0, 4);
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
 }
 
@@ -625,7 +627,7 @@ function buildTable(doc, filtered) {
   const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, doc.point_sources ? 100 : 15);
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
-  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${doc.point_sources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
+  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${doc.point_sources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
     const ref = doc.point_sources?.[d];
     const sourceCell = doc.point_sources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}#page=${ref.pdf_page}" target="_blank" rel="noopener">PDF p.${ref.pdf_page} ↗</a>` : "미확인"}</td>` : "";

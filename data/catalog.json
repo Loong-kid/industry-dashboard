@@ -367,7 +367,7 @@
       "name": "원자재",
       "icon": "🪨",
       "default_range": "3y",
-      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, 우라늄 현물·장기계약 지표는 Cameco 월말 가격, 희토류 산화물은 KOMIS 일자별 게시값입니다. SHFE 재고는 공식 보고서, COMEX·LME는 공개 과거 자료와 최신 API를 함께 사용합니다. 합산 재고는 SHFE 보고일 기준 주간 자료이며 각 거래소의 기준일이 다를 수 있습니다. 탄산리튬은 수기입력.",
+      "cadence": "금속 가격·구리 월물은 Yahoo 일봉, 우라늄 현물·장기계약 지표는 Cameco 월말 가격, 농축서비스(SWU)는 EIA 연간 실제 구매가격, 희토류 산화물은 KOMIS 일자별 게시값입니다. SHFE 재고는 공식 보고서, COMEX·LME는 공개 과거 자료와 최신 API를 함께 사용합니다. 합산 재고는 SHFE 보고일 기준 주간 자료이며 각 거래소의 기준일이 다를 수 있습니다. 탄산리튬은 수기입력.",
       "tabs": [
         {
           "id": "overview",
@@ -392,7 +392,8 @@
           "title": "우라늄",
           "tab": "overview",
           "indicators": [
-            "comm_uranium"
+            "comm_uranium",
+            "comm_swu"
           ]
         },
         {
@@ -400,7 +401,9 @@
           "tab": "overview",
           "indicators": [
             "comm_neodymium",
-            "comm_dysprosium"
+            "comm_dysprosium",
+            "comm_terbium",
+            "comm_praseodymium"
           ]
         },
         {

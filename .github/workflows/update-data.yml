@@ -54,7 +54,7 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_commodities.py
 
-      - name: 우라늄·희토류 가격 수집
+      - name: 우라늄·농축·희토류 가격 수집
         continue-on-error: true
         run: python scripts/fetch_mineral_prices.py
 

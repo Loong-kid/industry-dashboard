@@ -1,4 +1,4 @@
-"""Cameco monthly uranium and KOMIS rare-earth oxide prices (no API keys).
+"""Cameco uranium, EIA annual SWU and KOMIS rare-earth prices (no API keys).
 
 Initial run imports the published history. Later runs recheck two years of
 KOMIS data and merge revisions, preserving older observations. Each source
@@ -9,6 +9,7 @@ import calendar
 import datetime as dt
 import json
 import math
+import re
 import time
 from pathlib import Path
 
@@ -18,14 +19,18 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'data/commodities'
 CAMECO = 'https://www.cameco.com/invest/markets/uranium-price'
+EIA_SWU = 'https://www.eia.gov/uranium/marketing/summarytable2.php'
+EIA_SWU_CHECK = 'https://www.eia.gov/uranium/marketing/table16.php'
 KOMIS = 'https://www.komis.or.kr'
 KOMIS_PAGE = KOMIS + '/Komis/RsrcPrice/MinorMetals'
 KOMIS_API = KOMIS + '/Komis/RsrcPrice/ajax/'
 SPOT = '현물 가격'
 TERM = '장기계약 가격'
 RARE_EARTHS = [
-    ('comm_neodymium', '네오디뮴 산화물 (Nd₂O₃)', 'MNRL1001', 757, 'Neodymium Oxide', '네오디뮴'),
-    ('comm_dysprosium', '디스프로슘 산화물 (Dy₂O₃)', 'MNRL1004', 803, 'Dysprosium Oxide', '디스프로슘'),
+    ('comm_neodymium', '네오디뮴 산화물 (Nd₂O₃)', 'MNRL1001', 757, 'Neodymium Oxide', '네오디뮴', '99.5'),
+    ('comm_dysprosium', '디스프로슘 산화물 (Dy₂O₃)', 'MNRL1004', 803, 'Dysprosium Oxide', '디스프로슘', '99.5'),
+    ('comm_terbium', '테르븀 산화물 (Tb)', 'MNRL1005', 806, 'Terbium Oxide', '터븀', '99.99'),
+    ('comm_praseodymium', '프라세오디뮴 산화물 (Pr)', 'MNRL1056', 758, 'Praseodymium Oxide', '프라세오디뮴', '99.5'),
 ]
 
 
@@ -73,15 +78,15 @@ def parse_cameco(html, today):
     return {SPOT: sorted(map(list, spot.items())), TERM: sorted(map(list, term.items()))}
 
 
-def validate_komis_product(payload, reference, product):
+def validate_komis_product(payload, reference, product, purity='99.5'):
     matches = [row for row in payload.get('data', []) if str(row.get('cdKey')) == str(reference)]
-    if len(matches) != 1 or matches[0].get('cdVal') != product or str(matches[0].get('spcfct')) != '99.5':
+    if len(matches) != 1 or matches[0].get('cdVal') != product or str(matches[0].get('spcfct')) != purity:
         raise ValueError('KOMIS product, reference or purity changed')
 
 
-def parse_komis(payload, mineral, today):
+def parse_komis(payload, mineral, today, purity='99.5'):
     info = payload.get('dataAvg', {}).get('INFO', {})
-    expected = {'mnrkndKornNm': mineral, 'prcCrtr': '99.5%min FOB China',
+    expected = {'mnrkndKornNm': mineral, 'prcCrtr': purity + '%min FOB China',
                 'weigUnitCd': 'kg', 'prcUnitCdNm': 'USD'}
     if any(info.get(key) != value for key, value in expected.items()):
         raise ValueError('KOMIS mineral, unit or price specification changed')
@@ -105,6 +110,62 @@ def parse_komis(payload, mineral, today):
         if date != max(points) or price(latest['cmercPrc']) != points[date]:
             raise ValueError('KOMIS rows disagree with latest-price summary')
     return sorted(map(list, points.items()))
+
+
+def text(element):
+    return ' '.join(element.get_text(' ', strip=True).split())
+
+
+def eia_table(html, caption_start):
+    tables = [table for table in BeautifulSoup(html, 'html.parser').select('table')
+              if table.find('caption') and text(table.find('caption')).startswith(caption_start)]
+    if len(tables) != 1 or 'owners and operators of U.S. civilian nuclear power reactors' not in text(tables[0].find('caption')):
+        raise ValueError('Expected one EIA civilian-reactor enrichment table')
+    return tables[0]
+
+
+def parse_eia_swu(html, today):
+    table = eia_table(html, 'Table S2. Uranium feed deliveries, enrichment services,')
+    headers = [text(cell) for cell in table.select('thead tr')[-1].select('th')]
+    if headers.count('Year') != 1 or headers.count('Average price (US$ per SWU)') != 1:
+        raise ValueError('EIA annual price column or unit changed')
+    year_index, value_index = headers.index('Year'), headers.index('Average price (US$ per SWU)')
+    points, years = {}, set()
+    for row in table.select('tbody tr'):
+        cells = [text(cell) for cell in row.select('td')]
+        if len(cells) != len(headers) or not re.fullmatch(r'\d{4}', cells[year_index]):
+            raise ValueError('Unexpected EIA annual row')
+        year = int(cells[year_index])
+        if year >= today.year or year < 1900 or year in years:
+            raise ValueError('EIA annual row is duplicated or not a completed year')
+        years.add(year)
+        # '-' = no data reported; W = withheld. Never substitute zero.
+        if cells[value_index] not in ('-', '–', '—', 'W'):
+            add_point(points, f'{year}-12-31', cells[value_index], today)
+    if not points or int(max(points)[:4]) != max(years):
+        raise ValueError('Missing latest EIA annual SWU price')
+    return sorted(map(list, points.items()))
+
+
+def validate_eia_swu(points, html, today):
+    table = eia_table(html, 'Table 16. Purchases of enrichment services')
+    headers = [text(cell) for cell in table.select('thead th')]
+    if not headers or headers[0] != 'Country of enrichment service (SWU-origin)':
+        raise ValueError('EIA verification table header changed')
+    years = headers[1:]
+    if len(years) < 2 or len(set(years)) != len(years) or any(
+            not re.fullmatch(r'\d{4}', year) or int(year) >= today.year for year in years):
+        raise ValueError('Invalid EIA verification years')
+    rows = [[text(cell) for cell in row.select('td')] for row in table.select('tbody tr')]
+    prices = [row for row in rows if row and row[0] == 'Average price (US$ per SWU)']
+    if len(prices) != 1 or len(prices[0]) != len(headers):
+        raise ValueError('EIA verification price row or unit changed')
+    summary = dict(points)
+    if max(years) + '-12-31' != max(summary):
+        raise ValueError('EIA annual tables have different latest years')
+    for year, value in zip(years, prices[0][1:]):
+        if summary.get(year + '-12-31') != price(value):
+            raise ValueError('EIA summary and Table 16 prices disagree')
 
 
 def request(session, method, url, **kwargs):
@@ -152,27 +213,43 @@ def fetch_uranium(session, today):
         'price_reference': 'Cameco month-end U3O8 spot and long-term indicators',
         'default_series': [SPOT, TERM], 'series': series, 'data_stale_days': 70,
         'description': 'U₃O₈(우라늄 정광)의 월말 현물 가격과 장기계약 가격 지표. 일별 선물 종가나 월평균 가격이 아닙니다.',
-        'note': 'Cameco가 UxC·TradeTech의 월말 가격을 평균한 값입니다. 2004년 5월 이전 장기 가격은 TradeTech 단일 자료원입니다. 과거 월초 표기 날짜도 해당 월말로 통일했습니다.',
+        'note': '장기는 특정 5년물이 아니라 다년 공급계약의 기준가격 지표입니다. UxC의 일반 기준은 최소 3년 뒤 인도 시작·최소 5년간 공급이며 인도 시 가격 조정이 붙을 수 있습니다. Cameco는 UxC·TradeTech를 평균하며 2004년 5월 이전 장기 가격은 TradeTech 단독입니다.',
+    })
+
+
+def fetch_swu(session, today):
+    points = parse_eia_swu(request(session, 'GET', EIA_SWU).text, today)
+    validate_eia_swu(points, request(session, 'GET', EIA_SWU_CHECK).text, today)
+    save_document({
+        'id': 'comm_swu', 'name': '미국 원전 농축서비스 구매가격 (SWU)',
+        'unit': '$/SWU', 'frequency': 'yearly', 'year_labels': True,
+        'source': 'EIA · Uranium Marketing Annual Survey', 'source_url': EIA_SWU,
+        'verification_url': EIA_SWU_CHECK,
+        'price_reference': 'EIA-858 annual average price paid by US civilian nuclear reactor owners/operators',
+        'fetched': today.isoformat(), 'series': {'연간 평균 구매가격': points},
+        'data_stale_days': 730,
+        'description': 'SWU는 우라늄 농축의 분리작업량 단위입니다. 미국 민간 원전 사업자가 해당 연도에 구매한 농축서비스의 실제 평균 지불가격을 보여줍니다.',
+        'note': '기존 계약의 인도분도 포함하는 연간 명목 가격이며, 현재 신규 계약의 현물·장기 시장가격과 다릅니다. 물가 조정은 하지 않았습니다. 다음 해 연간 보고서에서 갱신되며, 미공개 연도는 채우지 않습니다.',
     })
 
 
 def fetch_rare_earth(session, today, card, backfill=False):
-    cid, name, mineral_code, reference, product, mineral = card
+    cid, name, mineral_code, reference, product, mineral, purity = card
     options = request(session, 'POST', KOMIS_API + 'getMnrlPriceCrtr',
                       data={'HP000': 'HP002', 'mnrkndUnqCd': mineral_code}).json()
-    validate_komis_product(options, reference, product)
+    validate_komis_product(options, reference, product, purity)
     start = 1990 if backfill or not (OUT / (cid + '.json')).exists() else today.year - 1
     params = {'HP000': 'HP002', 'srchMnrkndUnqCd': mineral_code, 'srchPrcCrtr': reference,
               'srchAvgOpt': '', 'srchField': 'year', 'srchStartDate': start, 'srchEndDate': today.year}
     payload = request(session, 'POST', KOMIS_API + 'getMnrlPrcByMnrkndUnqCd', data=params).json()
-    points = parse_komis(payload, mineral, today)
+    points = parse_komis(payload, mineral, today, purity)
     save_document({
         'id': cid, 'name': name, 'unit': '$/kg', 'frequency': 'daily',
         'source': 'KOMIS 한국자원정보서비스', 'source_url': KOMIS + '/',
         'price_reference': {'mineral_code': mineral_code, 'reference': reference,
-                            'product': product, 'purity': '99.5%', 'basis': 'FOB China'},
+                            'product': product, 'purity': purity + '%', 'basis': 'FOB China'},
         'fetched': today.isoformat(), 'series': {name: points}, 'data_stale_days': 21,
-        'description': '순도 99.5% 이상 산화물의 중국 FOB 가격 지표입니다. 금속 가격이나 중국 내수 가격과 기준이 다릅니다.',
+        'description': f'순도 {purity}% 이상 산화물의 중국 FOB 가격 지표입니다. 금속 가격이나 중국 내수 가격과 기준이 다릅니다.',
         'note': 'KOMIS는 2026년부터 희토류 등의 자료원을 단계적으로 변경한다고 안내합니다. 변경 전후 가격은 같은 규격이어도 차이가 날 수 있습니다. 일자별 게시값이며 가격이 매일 변하는 것은 아닙니다.',
         'methodology_notice_url': KOMIS_PAGE,
     })
@@ -183,7 +260,8 @@ def run(backfill=False):
     session = requests.Session()
     session.headers['User-Agent'] = 'IndustryDashboard/1.0 (public mineral price monitoring)'
     errors = []
-    jobs = [('uranium', lambda: fetch_uranium(session, today))]
+    jobs = [('uranium', lambda: fetch_uranium(session, today)),
+            ('swu', lambda: fetch_swu(session, today))]
     # Use the website's ordinary session, without login or API credentials.
     jobs.extend((card[0], lambda card=card: fetch_rare_earth(session, today, card, backfill))
                 for card in RARE_EARTHS)
