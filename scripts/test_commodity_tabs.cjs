@@ -19,9 +19,9 @@ const loaded = [];
 const renderCode = source.slice(source.indexOf('let renderSeq = 0;'), source.indexOf('\nfunction renderFootStatus'));
 const routeCode = source.slice(source.indexOf('function route()'), source.indexOf('\nfunction setRange'));
 const api = new Function('state', 'document', 'window', 'location', 'loadDoc', 'renderCard', 'staleDays',
-  'renderFootStatus', 'setRange', 'renderMineralSupply', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
+  'renderFootStatus', 'setRange', 'renderMineralSupply', 'renderKoreaMineralTrade', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
   state, document, {}, location, async (industry, id) => {loaded.push(id); return {name:id, updated:'2026-10-01'};},
-  () => new Element(), () => null, () => {}, () => {}, () => new Element());
+  () => new Element(), () => null, () => {}, () => {}, () => new Element(), () => new Element());
 (async () => {
   api.route();
   await api.renderIndustry();
@@ -36,7 +36,7 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert.equal(state.subtab, 'normal');
   assert(!loaded.some(id => id.startsWith('comm_copper')));
   assert(loaded.includes('comm_gold'));
-  for (const tab of ['normal', 'copper', 'rare_earth']) {
+  for (const tab of ['normal', 'copper', 'rare_earth', 'korea_trade']) {
     loaded.length = 0;
     location.hash = '#/commodities/' + tab;
     api.route();
@@ -59,5 +59,5 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert(commodity.sections.every(s => commodity.tabs.some(t => t.id === s.tab)));
   for (const section of commodity.sections) for (const id of section.indicators)
     assert(fs.existsSync(`data/commodities/${id}.json`));
-  console.log('PASS: three commodity tabs, old deep links, normal fallback, descriptions, mineral/price isolation and data paths');
+  console.log('PASS: four commodity tabs, old deep links, normal fallback, descriptions, trade/mineral/price isolation and data paths');
 })().catch(e => { console.error(e); process.exitCode = 1; });

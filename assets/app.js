@@ -132,7 +132,7 @@ async function renderIndustry() {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || selectedTab?.id === "korea_trade" ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -181,7 +181,8 @@ async function renderIndustry() {
     content.appendChild(h);
 
     if (section.type === "table") {
-      const renderer = section.table_kind === "asiasis" ? renderAsiasisTable
+      const renderer = section.table_kind === "korea_mineral_trade" ? renderKoreaMineralTrade
+        : section.table_kind === "asiasis" ? renderAsiasisTable
         : section.table_kind === "major_holdings" ? renderMajorHoldings
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : section.table_kind === "inst_holdings" ? renderInstHoldings
@@ -702,6 +703,182 @@ function periodLabel(doc, date) {
   if (doc.year_labels) return date.slice(0, 4);
   if (doc.month_labels) return date.slice(0, 7);
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
+}
+
+function koreaTradeChart(doc, mineral, kind) {
+  const amount = kind === "amount", divisor = amount ? 1e6 : 1000;
+  const importField = amount ? "incmAmt" : "incmWeig", exportField = amount ? "expAmt" : "expWeig";
+  const series = observations => Object.fromEntries([["수입", importField], ["수출", exportField]].map(([name, field]) =>
+    [name, observations.map(([date, values]) => [date, values == null ? null : values[field] / divisor])]));
+  const periods = keys => keys.map(key => {
+    const snapshot = mineral.snapshots[key];
+    return [`${snapshot.end.slice(0, 4)}-${snapshot.end.slice(4, 6)}-${snapshot.end.slice(6)}`, snapshot.totals];
+  });
+  return {
+    id: `korea_trade_${mineral.id}_${kind}`, name: `${mineral.name} · ${amount ? "수출입 금액" : "수출입 물량"}`,
+    unit: amount ? "백만 USD" : "톤", source: doc.source, source_url: doc.source_url,
+    updated: doc.updated, fetched: doc.fetched, full_range: true, span_gaps: false, change_mode: "none",
+    default_series: ["수입"], default_view: "annual", table_limit: 100,
+    note: (amount ? "수입·수출 통관 금액입니다. 평균 거래가격·원자재 시세와 다릅니다." : "HS 품목 제품의 총중량입니다. 금속 함유량으로 환산하지 않았습니다.")
+      + " 집계 미공개 기간은 —로 표시합니다. 빈 응답은 거래 없음과 자료 미제공을 구분할 수 없어 0으로 바꾸지 않습니다.",
+    series_views: {
+      annual: {label: "연간", year_labels: true, annual_axis: true, frequency: "yearly",
+        description: `${doc.last_full_year}년까지 확정 연간치 · 전체 공개 이력. 빈 연도는 미공개이며 0으로 채우지 않습니다.`,
+        series: series(Object.entries(mineral.annual).map(([year, values]) => [`${year}-12-31`, values]))},
+      ytd: {label: "동기간 누적", cumulative: true, month_labels: true, frequency: "yearly",
+        description: `${doc.year - 1}년 / ${doc.year}년 각각 1~${doc.month}월 누적 비교. 확정 연간치와 섞지 않습니다.`,
+        series: series(periods(["previous_ytd", "ytd"]))},
+      month: {label: "최근 월", month_labels: true, monthly_axis: true, frequency: "monthly",
+        description: "최근 공표월과 직전 월의 개별 월 실적 비교 · 월간 전체 이력은 포함하지 않습니다.",
+        series: series(periods(["previous_month", "month"]))},
+    },
+    basis_details: [{label: "KOMIS 광종", value: mineral.komis_name},
+      {label: "집계 범위", value: doc.note}, {label: "원자료 단위", value: "금액 USD → 백만 USD(÷1,000,000), 중량 kg → 미터톤(÷1,000). 0은 실제 응답값일 때만 표시합니다."},
+      {label: "공표 주기", value: doc.publication_note}],
+  };
+}
+
+function renderKoreaMineralTrade(doc) {
+  const root = document.createElement("div");
+  root.className = "korea-mineral-trade";
+  if (!doc?.minerals?.length) {
+    root.textContent = "한국 광물 수출입 자료를 불러오지 못했습니다.";
+    return root;
+  }
+  const intro = document.createElement("p");
+  intro.className = "ir-scope-note";
+  intro.textContent = `${doc.minerals.length}개 광종 · 최신 공표 ${doc.year}년 ${doc.month}월. ${doc.note} ${doc.publication_note}`;
+  root.appendChild(intro);
+  const controls = document.createElement("div");
+  controls.className = "mineral-trade-search";
+  const label = document.createElement("label");
+  label.textContent = "광물 찾기 ";
+  const search = document.createElement("input");
+  search.type = "search";
+  search.placeholder = "예: 구리, 리튬, 희토류";
+  label.appendChild(search);
+  const count = document.createElement("span");
+  count.setAttribute("aria-live", "polite");
+  count.textContent = `${doc.minerals.length} / ${doc.minerals.length}개 표시`;
+  controls.append(label, count);
+  root.appendChild(controls);
+  const panels = [];
+  for (const mineral of doc.minerals) {
+    const panel = document.createElement("section");
+    panel.className = "mineral-trade-panel";
+    panel.dataset.tradeMineral = mineral.id;
+    panels.push({panel, mineral});
+    const heading = document.createElement("h3");
+    heading.textContent = `${mineral.name} · ${mineral.classification}`;
+    panel.appendChild(heading);
+    root.appendChild(panel);
+    if (!mineral.available) {
+      const empty = document.createElement("p");
+      empty.className = "ir-scope-note";
+      empty.textContent = "광종 목록에는 있으나 수출입 수치가 공개되지 않았습니다.";
+      panel.appendChild(empty);
+      continue;
+    }
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    for (const kind of ["amount", "weight"]) {
+      const chartDoc = koreaTradeChart(doc, mineral, kind);
+      grid.appendChild(renderCard(chartDoc, chartDoc.id));
+    }
+    panel.appendChild(grid);
+    const countryDetail = document.createElement("details");
+    countryDetail.className = "mineral-country-table trade-country-table";
+    const countrySummary = document.createElement("summary");
+    countrySummary.textContent = "국가별 수출입 · 전체 기준 비중 / 기간·방향 선택";
+    countryDetail.appendChild(countrySummary);
+    const countryCard = document.createElement("div");
+    countryCard.className = "card";
+    countryDetail.appendChild(countryCard);
+    const periodLabel = document.createElement("label");
+    periodLabel.className = "mineral-year-control";
+    periodLabel.textContent = "비교 기간 ";
+    const period = document.createElement("select");
+    for (const [value, text] of [["ytd", `${doc.year}년 1~${doc.month}월 누적`], ["annual", `${doc.last_full_year}년 연간`]]) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      period.appendChild(option);
+    }
+    periodLabel.appendChild(period);
+    countryCard.appendChild(periodLabel);
+    const directionLabel = document.createElement("label");
+    directionLabel.className = "mineral-year-control";
+    directionLabel.textContent = "무역 방향 ";
+    const direction = document.createElement("select");
+    for (const [value, text] of [["I", "수입국 · 수입금액 순"], ["E", "수출국 · 수출금액 순"]]) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      direction.appendChild(option);
+    }
+    directionLabel.appendChild(direction);
+    countryCard.appendChild(directionLabel);
+    const total = document.createElement("p");
+    total.className = "ir-scope-note";
+    const table = document.createElement("div");
+    table.className = "order-table-wrap";
+    const coverage = document.createElement("p");
+    coverage.className = "ir-scope-note";
+    countryCard.append(total, table, coverage);
+    function rows() {
+      const snapshot = mineral.snapshots[period.value || "ytd"];
+      const importing = direction.value !== "E", prefix = importing ? "incm" : "exp";
+      const countries = importing ? snapshot.countries : snapshot.export_countries;
+      if (!snapshot.totals) {
+        total.textContent = "선택 기간의 국가별 집계 미공개 · 0으로 표시하지 않습니다.";
+        table.innerHTML = "";
+        coverage.textContent = "";
+        return;
+      }
+      const amount = snapshot.totals[prefix + "Amt"], weight = snapshot.totals[prefix + "Weig"];
+      const share = (value, denominator) => denominator > 0 ? `${(value / denominator * 100).toFixed(1)}%` : "—";
+      total.textContent = `전체 ${importing ? "수입" : "수출"} · ${fmt(amount / 1e6)} 백만 USD · ${fmt(weight / 1000)} 톤`;
+      table.innerHTML = `<table><caption class="blind">${escapeHtml(mineral.name)} 국가별 ${importing ? "수입" : "수출"}</caption><thead><tr><th>국가</th><th>금액(백만 USD)</th><th>금액 비중</th><th>물량(톤)</th><th>물량 비중</th></tr></thead><tbody>${countries.map(country => `<tr><td>${escapeHtml(country.name)}</td><td>${fmt(country[prefix + "Amt"] / 1e6)}</td><td>${share(country[prefix + "Amt"], amount)}</td><td>${fmt(country[prefix + "Weig"] / 1000)}</td><td>${share(country[prefix + "Weig"], weight)}</td></tr>`).join("")}</tbody></table>`;
+      coverage.textContent = `원사이트가 제공하는 금액 순 상위 최대 30개국 중 ${countries.length}개국 표시. 전체 공표 합계 대비 금액 ${share(countries.reduce((sum, country) => sum + country[prefix + "Amt"], 0), amount)} · 물량 ${share(countries.reduce((sum, country) => sum + country[prefix + "Weig"], 0), weight)}. 나머지 국가는 미표시이며 표시 국가만으로 100%를 만들지 않습니다.`;
+    }
+    period.addEventListener("change", rows);
+    direction.addEventListener("change", rows);
+    rows();
+    panel.appendChild(countryDetail);
+    const productDetail = document.createElement("details");
+    productDetail.className = "mineral-country-table trade-product-table";
+    const productSummary = document.createElement("summary");
+    productSummary.textContent = `품목 구분 / HS 코드 ${mineral.hs_codes.length}개`;
+    productDetail.appendChild(productSummary);
+    const productCard = document.createElement("div");
+    productCard.className = "card";
+    const note = document.createElement("p");
+    note.className = "ir-scope-note";
+    note.textContent = `${doc.year}년 1~${doc.month}월 누적 · KOMIS 물질흐름 구분. —는 해당 구분의 수치 미공개입니다. 표시 구분의 합계가 광종 전체와 다를 수 있으며, 전체 값은 별도 공표 합계를 사용합니다.`;
+    const productTable = document.createElement("div");
+    productTable.className = "order-table-wrap";
+    productTable.innerHTML = `<table><thead><tr><th>품목 구분</th><th>수입(백만 USD)</th><th>수입(톤)</th><th>수출(백만 USD)</th><th>수출(톤)</th></tr></thead><tbody>${mineral.products.map(product => `<tr><td>${escapeHtml(product.name)}</td>${["incmAmt", "incmWeig", "expAmt", "expWeig"].map(field => `<td>${product.totals ? fmt(product.totals[field] / (field.endsWith("Amt") ? 1e6 : 1000)) : "—"}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    const hsList = document.createElement("ul");
+    hsList.className = "trade-hs-list";
+    for (const item of mineral.hs_codes) {
+      const li = document.createElement("li");
+      li.textContent = `${item.hsCd} · ${item.itemNm}`;
+      hsList.appendChild(li);
+    }
+    productCard.append(note, productTable, hsList);
+    productDetail.appendChild(productCard);
+    panel.appendChild(productDetail);
+  }
+  search.addEventListener("input", () => {
+    const term = search.value.trim().toLocaleLowerCase();
+    let visible = 0;
+    for (const {panel, mineral} of panels) {
+      panel.hidden = !`${mineral.name} ${mineral.komis_name} ${mineral.classification}`.toLocaleLowerCase().includes(term);
+      if (!panel.hidden) visible++;
+    }
+    count.textContent = `${visible} / ${doc.minerals.length}개 표시`;
+  });
+  return root;
 }
 
 function mineralSupplyTotals(mineral, field) {

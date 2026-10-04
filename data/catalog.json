@@ -544,6 +544,11 @@
           "id": "rare_earth",
           "name": "희토류",
           "description": "희토류 전체 생산량·매장량과 개별 원소의 가격입니다. 전체 물량은 산화물(REO) 환산 기준이며 개별 원소별 생산량으로 나누지 않습니다."
+        },
+        {
+          "id": "korea_trade",
+          "name": "한국 수출입",
+          "description": "KOMIS 공개 73개 광종의 한국 수입·수출 금액, 물량, 상대국과 HS 품목을 한곳에서 확인합니다. 연간 확정치·동기간 누적·최근 월 비교를 구분합니다."
         }
       ],
       "sections": [
@@ -1353,6 +1358,15 @@
             "comm_komis_holmium_811"
           ],
           "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
+        },
+        {
+          "title": "한국 광물 수출입 · 전체 공개 광종",
+          "tab": "korea_trade",
+          "type": "table",
+          "table_kind": "korea_mineral_trade",
+          "indicators": [
+            "comm_korea_mineral_trade"
+          ]
         }
       ]
     },

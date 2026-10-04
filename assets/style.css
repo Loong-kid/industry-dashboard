@@ -563,3 +563,12 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .mineral-country-table table { width:100%; min-width:620px; }
 .mineral-country-table th:not(:first-child), .mineral-country-table td:not(:first-child) { text-align:right; font-variant-numeric:tabular-nums; }
 .mineral-supply .grid { align-items:start; }
+.korea-mineral-trade, .mineral-trade-panel { min-width:0; }
+.mineral-trade-panel { margin:28px 0 40px; }
+.mineral-trade-panel[hidden] { display:none; }
+.mineral-trade-panel h3 { font-size:16px; margin:0 0 12px; }
+.mineral-trade-panel .grid { align-items:start; }
+.mineral-trade-search { display:flex; flex-wrap:wrap; align-items:center; gap:12px; color:var(--muted); font-size:13px; }
+.mineral-trade-search label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.mineral-trade-search input { font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:9px 12px; max-width:100%; box-sizing:border-box; }
+.trade-hs-list { max-height:280px; overflow:auto; padding-left:20px; font-size:12px; line-height:1.7; color:var(--muted); overflow-wrap:anywhere; }
