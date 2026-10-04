@@ -130,8 +130,8 @@ async function renderIndustry() {
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedTab ? " · " + selectedTab.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
-  const tableTab = ind.id === "institution" || ind.id === "gifts";
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || tableTab) ? "" : "none";
+  const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || selectedTab?.id === "korea_trade" ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -189,6 +189,7 @@ async function renderIndustry() {
         : section.table_kind === "major_holdings" ? renderMajorHoldings
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
         : section.table_kind === "inst_holdings" ? renderInstHoldings
+        : section.table_kind === "us_managers" ? renderUSManagers
         : section.table_kind === "power_pipeline" ? renderPowerPipeline
         : section.table_kind === "power_fleet" ? renderPowerFleet
         : section.table_kind === "ba_detail" ? renderBADetail
@@ -442,7 +443,7 @@ function renderCard(doc, indicatorId) {
     filtered[s] = doc.series[s].filter((p) => p[0] >= cutoff);
   }
   // 선택 기간에 데이터가 하나도 없으면(오래된 지표) 전체 기간으로 대체
-  if (seriesNames.every((s) => filtered[s].length === 0)) {
+  if (!doc.strict_range && seriesNames.every((s) => filtered[s].length === 0)) {
     filtered = Object.fromEntries(seriesNames.map((s) => [s, doc.series[s]]));
   }
 
@@ -455,10 +456,17 @@ function renderCard(doc, indicatorId) {
   const sd = staleDays(doc);
   head.innerHTML = `
     <div class="card-name">${doc.name}</div>
-    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기", semiannual: "반기", yearly: "연간" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${doc.full_range ? " · 전체기간" : ""}${
+    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기", semiannual: "반기", yearly: "연간", irregular: "신고 기준" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${doc.full_range ? " · 전체기간" : ""}${
       sd ? `<span class="stale-badge" title="마지막 수집: ${doc.fetched}">수집 ${sd}일 전</span>` : ""
     }</div>`;
   card.appendChild(head);
+
+  if (doc.strict_range && seriesNames.every(s => filtered[s].length === 0)) {
+    const empty = document.createElement("p");
+    empty.className = "card-empty";
+    empty.textContent = `선택한 기간에 공표 자료가 없습니다. 최신 확보 기준일은 ${doc.updated}입니다. 더 긴 기간을 선택하세요.`;
+    card.appendChild(empty);
+  }
 
   if (doc.data_stale_days && daysSince(doc.updated) >= doc.data_stale_days) {
     const warning = document.createElement("div");
@@ -1152,7 +1160,7 @@ function drawChart(canvas, doc, filtered) {
       const [start, end] = gapBounds(ctx);
       return gapMonths(ctx) === 2 && start.slice(5, 7) === "12" && end.slice(5, 7) === "02";
     };
-    const color = palette[i % palette.length];
+    const color = doc.series_colors?.[n] || palette[i % palette.length];
     const count = data.filter((v) => v != null).length;
     return {
       label: n,
@@ -1844,6 +1852,32 @@ function renderAsiasisTable(doc) {
 }
 
 // Institution directory: watchlist membership is independent of coverage and taxonomy.
+function renderUSManagers(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card us-managers";
+  if (!doc?.managers?.length) {
+    card.textContent = "미국 운용사 신고 자료 미확인";
+    return card;
+  }
+  const esc = escapeHtml;
+  const link = url => /^https:\/\//.test(url || "") ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 신고 ↗</a>` : "—";
+  card.innerHTML = `<div class="card-head"><div class="card-name">${esc(doc.name)}</div></div>
+    <p class="profile-update">${esc(doc.note)}</p>
+    <div class="profile-controls"><input type="search" aria-label="미국 운용사 검색" placeholder="운용사명·스타일 검색"></div>
+    <div class="profile-table-scroll"><table class="profile-table"><thead><tr><th>운용사 / 신고 법인</th><th>관찰 분야</th><th>신고 RAUM<br>십억 달러</th><th>신고일 / 확인일</th><th>성과 자료</th><th>출처</th></tr></thead><tbody></tbody></table></div>
+    <p class="profile-update">신고일은 평가일이 아닙니다. 과거 벌크 자료는 아직 연결하지 못해 최신 공식 신고부터 이력을 누적합니다. 그룹 내 별도 법인을 임의로 합치지 않으며, 미국 운용사가 관리하는 해외 펀드도 신고 범위에 포함될 수 있습니다. 아래에서 운용사별 확보 이력과 공개된 개별 상품 성과를 볼 수 있습니다.</p>`;
+  const input = card.querySelector("input");
+  const tbody = card.querySelector("tbody");
+  function render() {
+    const query = input.value.trim().toLowerCase();
+    const entries = doc.managers.filter(m => `${m.name} ${m.legal_name} ${m.style}`.toLowerCase().includes(query));
+    tbody.innerHTML = entries.map(m => `<tr><td><strong>${esc(m.name)}</strong><small>${esc(m.legal_name)} · CRD ${esc(m.crd)}</small></td><td>${esc(m.style)}</td><td>${(m.latest.value / 1e9).toLocaleString("ko-KR", {maximumFractionDigits: 3})}</td><td>${esc(m.latest.date)}<small>확인 ${esc(m.fetched)} · 확보 ${esc(m.observations)}건</small></td><td>${esc(m.performance)}</td><td>${link(m.latest.source)}</td></tr>`).join("") || '<tr><td colspan="6">검색 결과 없음</td></tr>';
+  }
+  input.addEventListener("input", render);
+  render();
+  return card;
+}
+
 function renderInstitutionProfiles(institutions, onSelect) {
   const panel = document.createElement("details");
   panel.className = "institution-profiles";
