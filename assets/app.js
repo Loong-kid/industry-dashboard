@@ -966,6 +966,8 @@ function drawChart(canvas, doc, filtered) {
       borderColor: color,
       backgroundColor: color,
       borderWidth: 2,
+      borderDash: doc.series_dashes?.[n],
+      order: doc.series_dashes?.[n] ? -1 : undefined,
       pointRadius: count < 8 ? 3 : 0, // 점이 적을 땐(수집 초기) 마커로 표시
 
       pointHoverRadius: 5,
