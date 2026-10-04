@@ -18,6 +18,45 @@ SP_HTML = '''<table><tr><td>PERIOD</td><td>MARKET</td></tr>
 
 
 class MarketSizeTests(unittest.TestCase):
+    def test_additional_world_bank_countries_keep_real_gaps_and_require_coverage(self):
+        rows = [{'indicator': {'id': 'CM.MKT.LCAP.CD'}, 'countryiso3code': 'GBR',
+                 'date': str(year), 'value': 1e12 if year in [2014, 2021, 2022] else None}
+                for year in range(2014, 2026)]
+        values = market.parse_world_bank([{'pages': 1}, rows], ['GBR'])
+        self.assertEqual(list(values['GBR']), [2014, 2021, 2022])
+        self.assertNotIn(2025, values['GBR'])
+        with self.assertRaises(ValueError):
+            market.parse_world_bank([{'pages': 1}, rows], ['GBR', 'FRA'])
+
+    def test_ecos_market_caps_use_thousand_won_not_index_levels_or_months(self):
+        row = {'STAT_CODE': '901Y014', 'ITEM_CODE1': '1040000', 'UNIT_NAME': '천원',
+               'TIME': '2025', 'DATA_VALUE': '3477839534743'}
+        payload = {'StatisticSearch': {'list_total_count': 1, 'row': [row]}}
+        self.assertAlmostEqual(market.parse_ecos_cap(payload, '1040000')['2025'], 3477.839534743)
+        for field, wrong in [('UNIT_NAME', '1980.01.04=100'), ('TIME', '202512'), ('ITEM_CODE1', '1070000')]:
+            invalid = {'StatisticSearch': {'list_total_count': 1, 'row': [{**row, field: wrong}]}}
+            with self.assertRaises(ValueError):
+                market.parse_ecos_cap(invalid, '1040000')
+        with self.assertRaises(ValueError):
+            market.parse_ecos_cap({'StatisticSearch': {'list_total_count': 2, 'row': [row]}}, '1040000')
+
+    def test_esma_requires_two_years_all_27_members_and_consistent_ratios(self):
+        countries = 'FR DE NL ES SE IT IE DK BE FI LU PL AT GR PT RO HU CZ HR SI BG CY MT EE LT SK LV'.split()
+        def pdf(ratio='3.7037', omit=False):
+            with market.fitz.open() as book:
+                for year in [2024, 2025]:
+                    page = book.new_page()
+                    text = f'Table 1 Market capitalisation and market capitalisation ratios of Member States ({year})\nEUR bn\n'
+                    text += '\n'.join(f'{country} {1000 + i}.1234 {ratio}' for i, country in enumerate(countries[:-1] if omit else countries))
+                    page.insert_text((30,30), text, fontsize=10)
+                return book.tobytes()
+        values = market.parse_esma_pdf(pdf())
+        self.assertEqual(set(values), {'2024', '2025'})
+        self.assertEqual(values['2025']['FR'], 1000.1234)
+        for invalid in [pdf('9.0'), pdf(omit=True)]:
+            with self.assertRaises(ValueError):
+                market.parse_esma_pdf(invalid)
+
     def test_sp_uses_actual_dates_and_market_value_not_rolling_period_or_buyback(self):
         annual, quarter = market.parse_sp_html(SP_HTML)
         self.assertEqual(annual, {'2024-12-31': 49805})
@@ -90,12 +129,15 @@ class MarketSizeTests(unittest.TestCase):
 
     def test_one_source_failure_does_not_block_independent_sources(self):
         with patch.object(market, 'collect_world_bank', side_effect=RuntimeError('offline')) as wb, \
-                patch.object(market, 'collect_sifma') as sifma, patch.object(market, 'collect_sp') as sp:
+                patch.object(market, 'collect_sifma') as sifma, patch.object(market, 'collect_sp') as sp, \
+                patch.object(market, 'collect_korea_boards') as korea, patch.object(market, 'collect_esma') as esma:
             wb.__name__ = 'collect_world_bank'
             with self.assertRaises(SystemExit):
                 market.run()
             sifma.assert_called_once()
             sp.assert_called_once()
+            korea.assert_called_once()
+            esma.assert_called_once()
 
 
 if __name__ == '__main__':

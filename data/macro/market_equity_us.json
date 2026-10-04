@@ -215,13 +215,13 @@
   ]
  },
  "source": "World Bank WDI · WFE",
- "source_url": "https://data.worldbank.org/indicator/CM.MKT.LCAP.CD",
+ "source_url": "https://data.worldbank.org/indicator/CM.MKT.LCAP.CD?locations=USA",
  "description": "연말 상장 국내기업의 주가 × 발행주식수. 명목 달러 기준의 주식시장 규모다.",
- "note": "비상장기업·ETF/펀드 자산규모는 포함하지 않는다. 국가별 자료 범위와 공표 시점이 달라 세계 합계가 SIFMA 집계와 다를 수 있다. 다른 출처를 이어 붙이지 않는다.",
+ "note": "공개 API에서 확보한 마지막 관측연도는 2025년이다. 비상장기업·외국법인·ETF/펀드 자산규모는 포함하지 않는다. 국가별 자료 범위와 공표 시점이 달라 세계 합계가 SIFMA 집계와 다를 수 있다. 다른 출처를 이어 붙이지 않는다.",
  "basis_details": [
   {
    "label": "집계 범위",
-   "value": "미국(USA)의 국내 상장기업"
+   "value": "미국(USA)의 국내 상장기업 · 거래소 소재 국가 기준"
   },
   {
    "label": "원자료",
@@ -229,7 +229,11 @@
   },
   {
    "label": "시점과 환산",
-   "value": "연말 기준. 달러 원값 ÷ 1조. 물가 조정 없음; 세계 합계는 환율 영향도 받는다."
+   "value": "연말 기준. 달러 원값 ÷ 1조. 물가 조정 없음; 국가 간 비교와 세계 합계는 환율 영향도 받는다."
+  },
+  {
+   "label": "자료 가용성",
+   "value": "공개 API에서 확보한 마지막 관측연도는 2025년이다."
   },
   {
    "label": "자동 갱신",
@@ -240,6 +244,9 @@
  "updated": "2025-12-31",
  "source_updated": "2026-07-13",
  "methodology_url": "https://data.worldbank.org/indicator/CM.MKT.LCAP.CD",
+ "annual_axis": true,
+ "span_gaps": false,
+ "data_stale_days": 730,
  "license": "CC BY 4.0",
  "license_url": "https://creativecommons.org/licenses/by/4.0/"
 }

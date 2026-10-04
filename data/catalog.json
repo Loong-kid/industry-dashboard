@@ -291,7 +291,7 @@
       "name": "매크로",
       "icon": "📊",
       "default_range": "3y",
-      "cadence": "매일 오전 7:30(KST)에 새 공표·정정치를 자동 확인합니다. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연입니다. 국가별 부채는 IMF WEO(연 2회, 4·10월)·BIS(분기)·OECD 장기금리(월간, 1~2개월 지연)입니다. 시장규모는 World Bank·SIFMA 연간, S&P 공개 보고서 분기 자료이며 발표 후 다음 정상 수집 때 반영합니다. 연간 자료를 매일의 시총으로 보간하지 않으며, 새 발표가 없으면 기준연도가 유지됩니다.",
+      "cadence": "매일 오전 7:30(KST) 예약으로 새 공표·정정치를 자동 확인합니다. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연입니다. 국가별 부채는 IMF WEO(연 2회, 4·10월)·BIS(분기)·OECD 장기금리(월간, 1~2개월 지연)입니다. 시장규모는 World Bank·ECOS·ESMA·SIFMA 연간, S&P 공개 보고서 분기 자료이며 발표 후 다음 정상 수집 때 반영합니다. 연간 자료를 매일의 시총으로 보간하지 않으며, 새 발표가 없으면 기준연도가 유지됩니다. 국가별 미공표 연도는 차트의 선을 끊고 마지막 확보 연도를 표시합니다.",
       "sections": [
         {
           "title": "인플레이션",
@@ -356,6 +356,31 @@
           "indicators": ["market_equity_us", "market_equity_global"]
         },
         {
+          "title": "한국 전체 · 주요시장 시총 (달러 · 원화)",
+          "tab": "market_size",
+          "indicators": ["market_equity_kr", "market_equity_kr_krw"]
+        },
+        {
+          "title": "코스피 · 코스닥 · 연말 시가총액 (원화)",
+          "tab": "market_size",
+          "indicators": ["market_kospi", "market_kosdaq"]
+        },
+        {
+          "title": "중국 · 일본 · 연말 시가총액",
+          "tab": "market_size",
+          "indicators": ["market_equity_cn", "market_equity_jp"]
+        },
+        {
+          "title": "유럽 주요국 · 최근 연말 시총 비교 (유로)",
+          "tab": "market_size",
+          "indicators": ["market_equity_eu_recent"]
+        },
+        {
+          "title": "유럽 국가별 · 장기 시총 이력 (달러 · 마지막 확보 연도 확인)",
+          "tab": "market_size",
+          "indicators": ["market_equity_de", "market_equity_es", "market_equity_ch", "market_equity_uk", "market_equity_fr", "market_equity_it", "market_equity_nl"]
+        },
+        {
           "title": "전체 채권시장 · 연말 발행잔액",
           "tab": "market_size",
           "indicators": ["market_bonds_us", "market_bonds_global"]
@@ -383,7 +408,7 @@
         {
           "id": "market_size",
           "name": "시장규모",
-          "description": "시장규모를 조 달러로 표시합니다. 전체 주식은 상장기업 시총, 채권은 발행잔액입니다. 나스닥은 거래소의 미국 국내기업 기준이며 종합지수·100과 다릅니다. S&P 500은 공식 Market Value 기준입니다. 전체시장과 일부 시장의 범위는 서로 겹칩니다. 연간 차트는 전체기간을 표시하고, 데이터 기준연도와 수집일을 구분합니다."
+          "description": "국가별 전체 주식시장과 채권은 조 달러, 국내 코스피·코스닥은 조 원, 유럽 최근 비교는 조 유로입니다. 단위를 확인하세요. 전체 주식은 상장기업 시총, 채권은 발행잔액입니다. 나스닥은 거래소 미국 국내기업, S&P 500은 공식 Market Value 기준입니다. 유럽 최근 비교는 ESMA 기업 법적 주소 기준이며 달러 장기 이력과 집계 범위가 다릅니다. 일부 유럽 국가의 장기 계열은 최근 연도가 미공표되어 마지막 확보 연도를 표시합니다. 전체기간을 표시하며 빈 연도는 보간하지 않습니다. 전체시장과 일부 시장의 범위는 서로 겹칩니다."
         }
       ]
     },

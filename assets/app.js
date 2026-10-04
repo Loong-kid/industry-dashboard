@@ -691,7 +691,13 @@ function drawChart(canvas, doc, filtered) {
   const visible = new Set(doc.default_series || names.slice(0, 1));
 
   // 모든 시리즈의 날짜 합집합을 라벨로
-  const labels = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort();
+  let labels = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort();
+  // 연간 시장규모: 미공표 연도도 축에 남겨 실제 공백을 표시한다.
+  if (doc.annual_axis && labels.length) {
+    const firstYear = Number(labels[0].slice(0, 4));
+    const lastYear = Number(labels.at(-1).slice(0, 4));
+    labels = Array.from({length: lastYear - firstYear + 1}, (_, i) => `${firstYear + i}-12-31`);
+  }
   const idx = Object.fromEntries(labels.map((d, i) => [d, i]));
 
   const datasets = names.map((n, i) => {

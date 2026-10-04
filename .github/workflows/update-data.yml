@@ -49,10 +49,12 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python scripts/fetch_sovereign.py
 
-      # 연간 시장규모도 매일 새 공표·정정 확인. API 키 없이 WB·SIFMA·S&P 공개 자료 수집.
+      # 연간 시장규모도 매일 새 공표·정정 확인. WB·ECOS·ESMA·SIFMA·S&P 수집.
       - name: 주식·채권 시장규모 수집
         continue-on-error: true
         timeout-minutes: 8
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: python scripts/fetch_market_size.py
 
       # 원자재 금·은·구리·팔라듐 (Yahoo Finance 선물, 키 없음).

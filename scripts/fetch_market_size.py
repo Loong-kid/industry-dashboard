@@ -8,6 +8,7 @@ import calendar
 import datetime as dt
 import json
 import math
+import os
 import re
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -21,8 +22,20 @@ OUT = ROOT / 'data' / 'macro'
 CACHE = ROOT / 'data' / '_market_size'
 TODAY = dt.date.today().isoformat()
 SIFMA = 'https://www.sifma.org/research/statistics/fact-book'
-WB = 'https://api.worldbank.org/v2/country/USA;WLD/indicator/CM.MKT.LCAP.CD?format=json&per_page=500'
+WB_COUNTRIES = {
+    'USA': ('us', '미국'), 'WLD': ('global', '글로벌'),
+    'KOR': ('kr', '한국'), 'CHN': ('cn', '중국'), 'JPN': ('jp', '일본'),
+    'GBR': ('uk', '영국'), 'DEU': ('de', '독일'), 'FRA': ('fr', '프랑스'),
+    'ITA': ('it', '이탈리아'), 'ESP': ('es', '스페인'),
+    'NLD': ('nl', '네덜란드'), 'CHE': ('ch', '스위스'),
+}
+WB = 'https://api.worldbank.org/v2/country/' + ';'.join(WB_COUNTRIES) + '/indicator/CM.MKT.LCAP.CD?format=json&per_page=2000'
 WB_PAGE = 'https://data.worldbank.org/indicator/CM.MKT.LCAP.CD'
+ECOS_PAGE = 'https://ecos.bok.or.kr/#/SearchStat'
+ESMA_PAGE = 'https://www.esma.europa.eu/document/market-capitalisation-figures-under-faster-directive'
+ESMA_METHOD = 'https://eur-lex.europa.eu/eli/reg_del/2026/110/oj'
+ESMA_COUNTRIES = {'FR': '프랑스', 'DE': '독일', 'NL': '네덜란드', 'IT': '이탈리아',
+                  'ES': '스페인', 'SE': '스웨덴', 'DK': '덴마크', 'BE': '벨기에'}
 SP_ARCHIVE = 'https://press.spglobal.com/index.php?s=2429&keywords=buybacks&l=100'
 SESSION = requests.Session()
 SESSION.headers['User-Agent'] = 'industry-dashboard public-data collector'
@@ -44,13 +57,15 @@ def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=1, allow_nan=False) + '\n', encoding='utf-8')
 
 
-def save(cid, name, points, source, url, description, note, details, **extra):
-    if len(points) < 3 or points != sorted(points) or len({p[0] for p in points}) != len(points):
-        raise ValueError(f'{cid}: invalid or insufficient history')
-    if any(not math.isfinite(p[1]) or p[1] <= 0 for p in points):
-        raise ValueError(f'{cid}: invalid market size')
-    doc = dict(name=name, unit='조 달러', frequency='yearly', full_range=True,
-               year_labels=True, zero_baseline=True, table_limit=200, series={'시장규모': points},
+def save(cid, name, points, source, url, description, note, details, unit='조 달러', min_points=3, series=None, **extra):
+    histories = series if series is not None else {'시장규모': points}
+    for history in histories.values():
+        if len(history) < min_points or history != sorted(history) or len({p[0] for p in history}) != len(history):
+            raise ValueError(f'{cid}: invalid or insufficient history')
+        if any(not math.isfinite(p[1]) or p[1] <= 0 for p in history):
+            raise ValueError(f'{cid}: invalid market size')
+    doc = dict(name=name, unit=unit, frequency='yearly', full_range=True,
+               year_labels=True, zero_baseline=True, table_limit=200, series=histories,
                source=source, source_url=url, description=description, note=note,
                basis_details=details, fetched=TODAY, updated=points[-1][0], **extra)
     write_json(OUT / f'{cid}.json', doc)
@@ -61,40 +76,163 @@ def annual_points(values):
     return [[f'{year}-12-31', round(value / 1000, 4)] for year, value in sorted(values.items())]
 
 
-def parse_world_bank(payload):
+def parse_world_bank(payload, countries=('USA', 'WLD')):
     if len(payload) != 2 or payload[0].get('pages') != 1:
         raise ValueError('World Bank: unexpected response or pagination')
-    output = {country: {} for country in ('USA', 'WLD')}
+    output = {country: {} for country in countries}
     for row in payload[1]:
         country, value = row.get('countryiso3code'), row.get('value')
         if country in output and value is not None:
             if row['indicator']['id'] != 'CM.MKT.LCAP.CD' or not math.isfinite(value) or value <= 0:
                 raise ValueError('World Bank: invalid indicator/value')
             output[country][int(row['date'])] = value / 1e9  # USD -> billions
-    if any(len(values) < 30 for values in output.values()):
+    if any(len(values) < (30 if country in ('USA', 'WLD') else 3) for country, values in output.items()):
         raise ValueError('World Bank: history unexpectedly truncated')
     return output
 
 
 def collect_world_bank():
     payload = get(WB).json()
-    values = parse_world_bank(payload)
-    for country, cid in [('USA', 'market_equity_us'), ('WLD', 'market_equity_global')]:
+    values = parse_world_bank(payload, WB_COUNTRIES)
+    for country, (suffix, _) in WB_COUNTRIES.items():
+        cid = f'market_equity_{suffix}'
         old = OUT / f'{cid}.json'
         if old.exists() and f'{max(values[country])}-12-31' < json.loads(old.read_text(encoding='utf-8'))['updated']:
             raise ValueError('World Bank: latest observation regressed')
-    for country, cid, title in [('USA', 'market_equity_us', '미국 전체 주식시장 시가총액'),
-                                ('WLD', 'market_equity_global', '글로벌 전체 주식시장 시가총액')]:
+    for country, (suffix, name) in WB_COUNTRIES.items():
+        cid, title = f'market_equity_{suffix}', f'{name} 전체 주식시장 시가총액'
         points = annual_points(values[country])
-        save(cid, title, points, 'World Bank WDI · WFE', WB_PAGE,
+        latest = max(values[country])
+        gaps = [year for year in range(min(values[country]), latest + 1) if year not in values[country]]
+        availability = f'공개 API에서 확보한 마지막 관측연도는 {latest}년이다.'
+        if latest < dt.date.today().year - 2:
+            availability += ' 이후 연말 시총은 이 계열에 미공표되어 과거 이력으로 표시한다.'
+        if gaps:
+            availability += ' 미공표 연도(' + ', '.join(map(str, gaps)) + ')는 차트의 선을 끊으며 보간하지 않는다.'
+        scope = 'World Bank 세계 합계(WLD), 보고된 국가·거래소 자료 기준' if country == 'WLD' else f'{name}({country})의 국내 상장기업 · 거래소 소재 국가 기준'
+        if country == 'CHN':
+            scope += '. 홍콩(HKG) 계열은 별도이므로 이 카드에 합산하지 않는다.'
+        save(cid, title, points, 'World Bank WDI · WFE', WB_PAGE + '?locations=' + country,
              '연말 상장 국내기업의 주가 × 발행주식수. 명목 달러 기준의 주식시장 규모다.',
-             '비상장기업·ETF/펀드 자산규모는 포함하지 않는다. 국가별 자료 범위와 공표 시점이 달라 세계 합계가 SIFMA 집계와 다를 수 있다. 다른 출처를 이어 붙이지 않는다.',
-             [{'label': '집계 범위', 'value': '미국(USA)의 국내 상장기업' if country == 'USA' else 'World Bank 세계 합계(WLD), 보고된 국가·거래소 자료 기준'},
+             availability + ' 비상장기업·외국법인·ETF/펀드 자산규모는 포함하지 않는다. 국가별 자료 범위와 공표 시점이 달라 세계 합계가 SIFMA 집계와 다를 수 있다. 다른 출처를 이어 붙이지 않는다.',
+             [{'label': '집계 범위', 'value': scope},
               {'label': '원자료', 'value': 'CM.MKT.LCAP.CD · current US$ · World Federation of Exchanges database'},
-              {'label': '시점과 환산', 'value': '연말 기준. 달러 원값 ÷ 1조. 물가 조정 없음; 세계 합계는 환율 영향도 받는다.'},
+              {'label': '시점과 환산', 'value': '연말 기준. 달러 원값 ÷ 1조. 물가 조정 없음; 국가 간 비교와 세계 합계는 환율 영향도 받는다.'},
+              {'label': '자료 가용성', 'value': availability},
               {'label': '자동 갱신', 'value': '매일 공개 API를 확인하며 새 연간 관측값과 과거 수정치를 반영한다. 발표 전 연도를 만들지 않는다.'}],
              source_updated=payload[0].get('lastupdated'), methodology_url=WB_PAGE,
+             annual_axis=True, span_gaps=False, data_stale_days=730,
              license='CC BY 4.0', license_url='https://creativecommons.org/licenses/by/4.0/')
+
+
+def parse_ecos_cap(payload, item):
+    block = payload.get('StatisticSearch', {})
+    rows = block.get('row', [])
+    if not rows or block.get('list_total_count') != len(rows):
+        raise ValueError('ECOS: missing or truncated market capitalization response')
+    output = {}
+    for row in rows:
+        if row.get('STAT_CODE') != '901Y014' or row.get('ITEM_CODE1') != item or row.get('UNIT_NAME') != '천원':
+            raise ValueError('ECOS: unexpected table, item or unit')
+        year, value = row['TIME'], float(row['DATA_VALUE'])
+        if not re.fullmatch(r'\d{4}', year) or not math.isfinite(value) or value <= 0 or year in output:
+            raise ValueError('ECOS: invalid annual observation')
+        output[year] = value / 1e9  # thousand KRW -> trillion KRW
+    return output
+
+
+def collect_korea_boards():
+    key = os.environ.get('ECOS_API_KEY', '').strip() or 'sample'
+    histories = {}
+    last_year = dt.date.today().year - 1
+    for item, start in [('1040000', 1984), ('2040000', 2004)]:
+        values = {}
+        # Public sample requests allow ten observations; CI uses the existing ECOS secret.
+        width = 10 if key == 'sample' else 100
+        for year in range(start, last_year + 1, width):
+            end = min(year + width - 1, last_year)
+            url = f'https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/{width}/901Y014/A/{year}/{end}/{item}'
+            try:
+                payload = get(url).json()
+            except requests.RequestException as exc:
+                # ECOS keys are part of request URLs; do not expose them in failure logs.
+                raise RuntimeError(f'ECOS request failed ({type(exc).__name__})') from None
+            if payload.get('RESULT', {}).get('CODE') == 'INFO-200' and year > start:
+                break  # no annual release yet, keep last real observation
+            values.update(parse_ecos_cap(payload, item))
+        if len(values) < 15:
+            raise ValueError('ECOS: annual market history unexpectedly truncated')
+        histories[item] = values
+    shared = set(histories['1040000']) & set(histories['2040000'])
+    total = {year: histories['1040000'][year] + histories['2040000'][year] for year in shared}
+    specs = [('market_kospi', '코스피 시장 시가총액', histories['1040000'], '1040000 · KOSPI_시가총액 · 1984년부터'),
+             ('market_kosdaq', '코스닥 시장 시가총액', histories['2040000'], '2040000 · KOSDAQ_시가총액 · 2004년부터'),
+             ('market_equity_kr_krw', '한국 주요시장 시가총액 (코스피 + 코스닥)', total, '1040000 + 2040000 · 두 항목이 모두 있는 연도만 합산')]
+    for cid, _, values, _ in specs:
+        old = OUT / f'{cid}.json'
+        if old.exists() and f'{max(values)}-12-31' < json.loads(old.read_text(encoding='utf-8'))['updated']:
+            raise ValueError('ECOS: latest annual observation regressed')
+    for cid, title, values, items in specs:
+        points = [[f'{year}-12-31', round(value, 4)] for year, value in sorted(values.items())]
+        save(cid, title, points, '한국거래소 · 한국은행 ECOS', ECOS_PAGE,
+             '해당 시장에 상장된 주식의 연말 시가총액. 원화 명목 금액이다.',
+             '단위는 조 원이며 달러 국가 비교 카드와 단위가 다르다. 코스피·코스닥은 각 시장 전체로 200·150 지수의 시총이 아니다. 합계는 코스피 + 코스닥으로 코넥스를 제외한다. 국내 집계와 WFE 국제 비교용 국내기업 시총은 외국법인·투자회사 등의 포함 범위가 달라 직접 일치하지 않는다.',
+             [{'label': '원자료 항목', 'value': 'ECOS 901Y014 · 주식시장(월,년) · 연간(A) · ' + items},
+              {'label': '시점·단위', 'value': '연말 잔액. 원자료 천원 ÷ 10억 = 조 원. 환율 환산·물가 조정 없음.'},
+              {'label': '집계 범위', 'value': '한국거래소 시장별 상장주식 합계. 국내 통계는 외국법인·부동산투자회사·선박투자회사·증권투자회사 등을 포함한다. ETF/ETN 자산 규모는 별도다.'},
+              {'label': '자동 갱신', 'value': '매일 ECOS 연간 API에서 새 연말값과 과거 정정치를 확인한다. 반기값을 연말값으로 사용하지 않는다.'}],
+             unit='조 원', annual_axis=True, span_gaps=False, methodology_url='https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1079')
+
+
+def parse_esma_pdf(content):
+    output = {}
+    with fitz.open(stream=content, filetype='pdf') as book:
+        for page in book:
+            text = page.get_text()
+            match = re.search(r'Table\s+\d+\s+Market capitalisation and market capitalisation ratios of Member States\s*\((20\d{2})\)', text)
+            if not match:
+                continue
+            if 'EUR bn' not in text:
+                raise ValueError('ESMA: unexpected currency/unit')
+            rows = re.findall(r'(?m)^([A-Z]{2})\s+([\d.]+)\s+([\d.]+)\s*$', text)
+            values = {country: float(value) for country, value, ratio in rows}
+            if len(rows) != 27 or len(values) != 27 or any(not math.isfinite(v) or v <= 0 for v in values.values()):
+                raise ValueError('ESMA: incomplete or invalid Member State table')
+            if abs(sum(float(ratio) for _, _, ratio in rows) - 100) > .01:
+                raise ValueError('ESMA: country ratios do not sum to 100%')
+            output[match[1]] = values
+    if len(output) < 2 or any(not set(ESMA_COUNTRIES) <= set(v) for v in output.values()):
+        raise ValueError('ESMA: insufficient annual history')
+    return output
+
+
+def collect_esma():
+    soup = BeautifulSoup(get(ESMA_PAGE).content, 'html.parser')
+    links = [urljoin(ESMA_PAGE, a['href']) for a in soup.select('a[href]')
+             if '.pdf' in a['href'] and 'market_capitalisation' in a['href'].lower()]
+    if not links:
+        raise ValueError('ESMA: official report link missing')
+    url = sorted(set(links))[-1]
+    values = parse_esma_pdf(get(url).content)
+    old = read_cache('esma')
+    if old and max(values) < max(old['annual']):
+        raise ValueError('ESMA: latest report regressed')
+    merged = dict(old.get('annual', {}))
+    merged.update({year: {'countries': countries, 'url': url} for year, countries in values.items()})
+    series = {name: [[f'{year}-12-31', round(row['countries'][country] / 1000, 4)]
+                     for year, row in sorted(merged.items())] for country, name in ESMA_COUNTRIES.items()}
+    cid = 'market_equity_eu_recent'
+    save(cid, '유럽 주요국 시가총액 · 최근 연말 비교', next(iter(series.values())), 'ESMA · MiFIR / FITRS', url,
+         'EU 회원국에 법적 주소를 둔 기업의 연말 상장주식 시총. ESMA 공표의 유로 기준이다.',
+         '조 유로 기준. 최초 공개 이력은 2024·2025년 두 해다. 장기 World Bank 달러 계열과 연결하지 않는다. 국가별 법적 주소 기준으로 거래소 소재 국가 기준과 다르다. 영국·스위스는 EU 회원국에 해당하지 않아 이 차트에서 제외하며 아래 달러 장기 이력에 표시한다.',
+         [{'label': '집계 방법', 'value': '연말 주가 × 발행주식수. EU 규제시장·다자간거래시설(MTF)의 주식을 기업 법적 주소가 있는 회원국에 배정한다. 중복 거래소 상장은 주식을 중복 합산하지 않는다.'},
+          {'label': '가격·주식수', 'value': 'EU 내 해당 주식의 가장 유동적인 시장에서 연중 마지막 거래 전 5분의 최근 최대 100건 평균가격 × FITRS 연말 발행주식수. 유로로 환산하며 1,000주 미만 발행 증권은 원문 집계에서 제외한다.'},
+          {'label': '단위와 이력', 'value': '원자료 십억 유로 ÷ 1,000 = 조 유로. 2026년 첫 공표에서 2024·2025년 이력을 확보했다.'},
+          {'label': '자동 갱신', 'value': '매일 ESMA 공식 보고서 페이지의 PDF를 확인한다. 새 보고서에 추가 연도가 공표되면 이력을 누적한다.'}],
+         unit='조 유로', min_points=2, series=series, annual_axis=True, span_gaps=False,
+         default_series=['프랑스', '독일', '네덜란드', '이탈리아', '스페인'], methodology_url=ESMA_METHOD,
+         source_dates={f'{year}-12-31': {'ESMA 기준일': f'{year}-12-31'} for year in merged})
+    write_json(CACHE / 'esma.json', {'annual': merged})
 
 
 def parse_pdf_rows(text, expected_columns):
@@ -286,7 +424,7 @@ def collect_sp():
 
 def run():
     failures = []
-    for collect in [collect_world_bank, collect_sifma, collect_sp]:
+    for collect in [collect_world_bank, collect_korea_boards, collect_esma, collect_sifma, collect_sp]:
         try:
             collect()
         except Exception as exc:
