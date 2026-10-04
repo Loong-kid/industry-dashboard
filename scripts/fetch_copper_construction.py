@@ -155,8 +155,8 @@ def cn_scale_views(level, unit):
             if annual is None:
                 break  # Do not silently resume across a missing annual total.
             carried += annual
-    return {
-        "monthly": {"label": "월별 규모", "unit": unit, "series": {"월별 규모 (계산)": sorted(monthly.items())},
+    views = {
+        "monthly": {"label": "월별 막대", "unit": unit, "series": {"월별 규모 (계산)": sorted(monthly.items())},
                     "description": "공식 연초 누적 자료에서 계산한 월별 물량입니다. 월별 증감과 계절적 흐름을 비교할 수 있습니다.",
                     "default_series": ["월별 규모 (계산)"], "cumulative": False,
                     "bridge_missing_january": False, "chart_type": "bar", "zero_baseline": True,
@@ -168,6 +168,9 @@ def cn_scale_views(level, unit):
                   "bridge_missing_january": True,
                   "note": f"{start}년부터의 이전 연도 연간 실적 + 현재 연초 누적입니다. 연초 누적 값을 매월 중복 합산하지 않습니다. 1월 미발표 구간은 점선으로 연결합니다. 통계 범위·수정 기준이 바뀌어 장기 합계는 참고용입니다."},
     }
+    return {"monthly": views["monthly"],
+            "monthly_line": {**views["monthly"], "label": "월별 선그래프", "chart_type": "line"},
+            "total": views["total"]}
 
 
 def set_cn_views(doc, level, unit):

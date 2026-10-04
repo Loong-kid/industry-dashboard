@@ -84,8 +84,10 @@ for(const id of ids) {
         const headline=root.children[0].children.find(c=>c.className==='card-stat').innerHTML;
         assert(headline.includes(view.unit));
         assert.equal(view.unit,key==='yoy' ? '%' : id.endsWith('_investment') ? '십억 위안' : '백만㎡');
-        if(key==='monthly') {
-          assert.equal(active.type,'bar');
+        if(key==='monthly'||key==='monthly_line') {
+          assert.equal(active.type,key==='monthly'?'bar':'line');
+          assert.deepEqual(view.series,doc.series_views.monthly.series,'Monthly line and bars display the same quantities');
+          assert.deepEqual(view.point_annotations,doc.series_views.monthly.point_annotations);
           assert(!headline.includes('1~8월 누적'));
           const display={...doc,...view};
           assert(context.buildTable(display,view.series).includes('추정'));
