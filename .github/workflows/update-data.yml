@@ -13,6 +13,10 @@ on:
         description: 구리 탭 중국·미국 건설 지표만 수집·검증
         type: boolean
         default: false
+      datacenter_only:
+        description: 국내 데이터센터 공개 허가·착공 자료만 수집·검증
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -22,6 +26,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  datacenter:
+    if: inputs.datacenter_only == true && inputs.shipping_only != true && inputs.construction_only != true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 데이터센터 매칭·중복·예정일 집계 검증
+        run: python -m unittest discover -s scripts -p test_korea_datacenter.py -v
+      - name: 데이터센터 표·필터 검증
+        run: node scripts/test_korea_datacenter.cjs
+      - name: 공개 건축허가·착공 자료 수집
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python scripts/fetch_korea_datacenter.py
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/datacenter/
+          git diff --cached --quiet || git commit -m "chore: refresh Korean data centres"
+          git pull --rebase
+          git push
   construction:
     if: inputs.construction_only == true && inputs.shipping_only != true
     runs-on: ubuntu-latest
@@ -68,7 +97,7 @@ jobs:
           git add data/
           git diff --cached --quiet || (git commit -m "chore: refresh shipping market data" && git push)
   update:
-    if: inputs.shipping_only != true && inputs.construction_only != true
+    if: inputs.shipping_only != true && inputs.construction_only != true && inputs.datacenter_only != true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -76,6 +105,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+
+      - name: 국내 데이터센터 수집기·표 검증
+        run: |
+          python -m unittest discover -s scripts -p test_korea_datacenter.py
+          node scripts/test_korea_datacenter.cjs
+      - name: 국내 데이터센터 공개 자료 확인
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python scripts/fetch_korea_datacenter.py
 
       # 해운/조선 시장지표 (KOBC/KCLA/StockQ/TI VLCC 성약). 실패해도 DART는 진행.
       - name: 시장지표 수집

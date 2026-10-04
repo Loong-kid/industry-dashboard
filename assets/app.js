@@ -181,7 +181,10 @@ async function renderIndustry() {
     content.appendChild(h);
 
     if (section.type === "table") {
-      const renderer = section.table_kind === "korea_mineral_trade" ? renderKoreaMineralTrade
+      const renderer = section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
+        : section.table_kind === "dc_facilities" ? renderKoreaDataCenters
+        : section.table_kind === "dc_changes" ? renderKoreaDataCenterChanges
+        : section.table_kind === "korea_mineral_trade" ? renderKoreaMineralTrade
         : section.table_kind === "asiasis" ? renderAsiasisTable
         : section.table_kind === "major_holdings" ? renderMajorHoldings
         : section.table_kind === "stock_trajectory" ? renderStockTrajectory
