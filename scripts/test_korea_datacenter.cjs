@@ -14,7 +14,9 @@ const context = vm.createContext({document: {createElement: tag => new Element(t
 vm.runInContext(fs.readFileSync('assets/korea-datacenter.js', 'utf8'), context);
 const doc = JSON.parse(fs.readFileSync('data/datacenter/dc_facilities.json', 'utf8'));
 const baseline = JSON.parse(fs.readFileSync('manual/korea_datacenter_baseline.json', 'utf8'));
-assert.equal(baseline.facilities.length, 97);
+assert.equal(baseline.facilities.length, doc.summary.baseline_rows);
+assert(baseline.facilities.length > 0);
+assert.equal(new Set(baseline.facilities.map(r => r.id)).size, baseline.facilities.length);
 for (const original of baseline.facilities) {
   const row = doc.records.find(r => r.id === original.id);
   assert(row);
