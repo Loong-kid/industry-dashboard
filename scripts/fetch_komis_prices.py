@@ -18,10 +18,10 @@ REGISTRY = ROOT / 'scripts/komis_prices.json'
 BASE = 'https://www.komis.or.kr'
 API = BASE + '/Komis/RsrcPrice/ajax/'
 GROUPS = {
-    'HP001': ('komis_base', '비철·LME', '/Komis/RsrcPrice/BaseMetals'),
-    'HP002': ('komis_minor', '희소·희토류', '/Komis/RsrcPrice/MinorMetals'),
-    'HP003': ('komis_energy', '철·에너지', '/Komis/RsrcPrice/IronOre'),
-    'HP004': ('komis_other', '귀금속·흑연', '/'),
+    'HP001': ('komis_base', '비철 / LME', '/Komis/RsrcPrice/BaseMetals'),
+    'HP002': ('komis_minor', '희소 / 희토류', '/Komis/RsrcPrice/MinorMetals'),
+    'HP003': ('komis_energy', '철 / 에너지', '/Komis/RsrcPrice/IronOre'),
+    'HP004': ('komis_other', '귀금속 / 흑연', '/'),
 }
 INFO_KEYS = ('mnrkndKornNm', 'prcCrtr', 'weigUnitCd', 'prcUnitCdNm', 'isISE')
 CHANGE_NOTE = ('KOMIS는 2026년부터 자료원을 단계적으로 변경한다고 안내합니다. '
