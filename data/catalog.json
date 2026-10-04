@@ -367,64 +367,44 @@
           ]
         },
         {
-          "title": "세계 · 지역별 주식시장 · 월말 시가총액",
+          "title": "글로벌 주식시장 · 전체 시가총액 · 지역별 비교",
           "tab": "market_size",
-          "indicators": ["market_equity_global_wfe_m", "market_equity_regions_wfe_m"]
+          "indicators": ["market_equity_global", "market_equity_global_wfe_m", "market_equity_regions_wfe_m"]
         },
         {
-          "title": "주요거래소 · 월말 시가총액 (달러)",
+          "title": "미국 주식시장 · 전체 · 주요거래소 · S&P 500 · 나스닥",
           "tab": "market_size",
-          "indicators": ["market_equity_us_wfe_m", "market_equity_cn_wfe_m", "market_equity_jp_wfe_m", "market_equity_hk_wfe_m", "market_equity_europe_wfe_m"]
+          "indicators": ["market_equity_us", "market_equity_us_wfe_m", "market_sp500", "market_sp500_q", "market_nasdaq"]
         },
         {
-          "title": "전체 주식시장 · 연말 시가총액",
+          "title": "한국 주식시장 · 전체 · 코스피 · 코스닥 (달러 · 원화)",
           "tab": "market_size",
-          "indicators": ["market_equity_us", "market_equity_global"]
+          "indicators": ["market_equity_kr", "market_equity_kr_krw_m", "market_kospi_m", "market_kosdaq_m", "market_kospi", "market_kosdaq", "market_equity_kr_krw"]
         },
         {
-          "title": "한국 전체 · 주요시장 시총 (달러 · 원화)",
+          "title": "중국 주식시장 · 전체 · 주요거래소",
           "tab": "market_size",
-          "indicators": ["market_equity_kr", "market_equity_kr_krw_m"]
+          "indicators": ["market_equity_cn", "market_equity_cn_wfe_m"]
         },
         {
-          "title": "코스피 · 코스닥 · 월말 시가총액 (원화)",
+          "title": "홍콩 주식시장 · HKEX",
           "tab": "market_size",
-          "indicators": ["market_kospi_m", "market_kosdaq_m"]
+          "indicators": ["market_equity_hk_wfe_m"]
         },
         {
-          "title": "코스피 · 코스닥 · 연말 시가총액 (원화)",
+          "title": "일본 주식시장 · 전체 · JPX",
           "tab": "market_size",
-          "indicators": ["market_kospi", "market_kosdaq", "market_equity_kr_krw"]
+          "indicators": ["market_equity_jp", "market_equity_jp_wfe_m"]
         },
         {
-          "title": "중국 · 일본 · 연말 시가총액",
+          "title": "유럽 주식시장 · 국가별 전체 · 주요거래소 비교",
           "tab": "market_size",
-          "indicators": ["market_equity_cn", "market_equity_jp"]
+          "indicators": ["market_equity_de", "market_equity_es", "market_equity_ch", "market_equity_uk", "market_equity_fr", "market_equity_it", "market_equity_nl", "market_equity_eu_recent", "market_equity_europe_wfe_m"]
         },
         {
-          "title": "유럽 주요국 · 최근 연말 시총 비교 (유로)",
+          "title": "채권시장 · 글로벌 전체 · 미국",
           "tab": "market_size",
-          "indicators": ["market_equity_eu_recent"]
-        },
-        {
-          "title": "유럽 국가별 · 장기 시총 이력 (달러 · 마지막 확보 연도 확인)",
-          "tab": "market_size",
-          "indicators": ["market_equity_de", "market_equity_es", "market_equity_ch", "market_equity_uk", "market_equity_fr", "market_equity_it", "market_equity_nl"]
-        },
-        {
-          "title": "전체 채권시장 · 연말 발행잔액",
-          "tab": "market_size",
-          "indicators": ["market_bonds_us", "market_bonds_global"]
-        },
-        {
-          "title": "S&P 500 · 나스닥 · 연말 규모",
-          "tab": "market_size",
-          "indicators": ["market_sp500", "market_nasdaq"]
-        },
-        {
-          "title": "S&P 500 · 분기 말 상세",
-          "tab": "market_size",
-          "indicators": ["market_sp500_q"]
+          "indicators": ["market_bonds_global", "market_bonds_us"]
         }
       ],
       "tabs": [
