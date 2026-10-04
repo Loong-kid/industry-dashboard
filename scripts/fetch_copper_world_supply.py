@@ -37,8 +37,8 @@ def parse_chapter(text, unit_text, edition, page):
     with_refinery = 'Refinery production' in header
     if years != expected * (2 if with_refinery else 1):
         raise ValueError('Unexpected production years or columns')
-    numbers = re.findall(r'[0-9,]+', table.split('World total (rounded)', 1)[1])
-    if len(numbers) != (5 if with_refinery else 3):
+    numbers = [line.strip() for line in table.split('World total (rounded)', 1)[1].splitlines() if line.strip()]
+    if len(numbers) != (5 if with_refinery else 3) or not all(re.fullmatch(r'\d{1,3}(?:,\d{3})+', number) for number in numbers):
         raise ValueError('Unexpected number of world total columns')
     values = [int(number.replace(',', '')) * 1000 for number in numbers]
     if not all(10_000_000 <= value <= 50_000_000 for value in values[:2]) or not 100_000_000 <= values[-1] <= 3_000_000_000:

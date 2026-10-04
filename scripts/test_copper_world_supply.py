@@ -44,6 +44,8 @@ class CopperWorldTests(unittest.TestCase):
                                     (chapter().replace('Other countries', 'Missing'), UNIT, 2026),
                                     (chapter().replace('29,000', '29,000\n30,000'), UNIT, 2026),
                                     (chapter().replace('2025e', '2023e'), UNIT, 2026),
+                                    (chapter().replace('23,000', '-23,000'), UNIT, 2026),
+                                    (chapter().replace('980,000', '980,00'), UNIT, 2026),
                                     (chapter().replace('COPPER', 'GOLD'), UNIT, 2026)]:
             with self.subTest(text=text[:40], unit=unit, edition=edition):
                 with self.assertRaises(ValueError):
