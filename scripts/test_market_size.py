@@ -166,7 +166,7 @@ class MarketSizeTests(unittest.TestCase):
         with patch.object(market, 'collect_world_bank', side_effect=RuntimeError('offline')) as wb, \
                 patch.object(market, 'collect_sifma') as sifma, patch.object(market, 'collect_sp') as sp, \
                 patch.object(market, 'collect_korea_boards') as korea, patch.object(market, 'collect_esma') as esma, \
-                patch.object(market, 'collect_korea_monthly') as monthly:
+                patch.object(market, 'collect_korea_monthly') as monthly, patch.object(market, 'collect_wfe_monthly') as wfe:
             wb.__name__ = 'collect_world_bank'
             with self.assertRaises(SystemExit):
                 market.run()
@@ -175,6 +175,7 @@ class MarketSizeTests(unittest.TestCase):
             korea.assert_called_once()
             esma.assert_called_once()
             monthly.assert_called_once()
+            wfe.assert_called_once()
 
 
 if __name__ == '__main__':

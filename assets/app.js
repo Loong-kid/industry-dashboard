@@ -630,6 +630,7 @@ function fmt(v) {
 
 function periodLabel(doc, date) {
   if (doc.year_labels) return date.slice(0, 4);
+  if (doc.month_labels) return date.slice(0, 7);
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
 }
 
@@ -655,10 +656,11 @@ function buildTable(doc, filtered) {
   const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, doc.table_limit || (doc.point_sources ? 100 : 15));
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
-  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${doc.point_sources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
+  const hasSources = doc.point_sources || doc.period_sources;
+  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
-    const ref = doc.point_sources?.[d];
-    const sourceCell = doc.point_sources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}#page=${ref.pdf_page}" target="_blank" rel="noopener">PDF p.${ref.pdf_page} ↗</a>` : "미확인"}</td>` : "";
+    const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
+    const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     html += `<tr><td>${periodLabel(doc, d)}${forecastTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
@@ -699,6 +701,14 @@ function drawChart(canvas, doc, filtered) {
     const firstYear = Number(labels[0].slice(0, 4));
     const lastYear = Number(labels.at(-1).slice(0, 4));
     labels = Array.from({length: lastYear - firstYear + 1}, (_, i) => `${firstYear + i}-12-31`);
+  }
+  if (doc.monthly_axis && labels.length) {
+    const offset = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1;
+    const first = offset(labels[0]), last = offset(labels.at(-1));
+    labels = Array.from({length: last - first + 1}, (_, i) => {
+      const month = first + i;
+      return new Date(Date.UTC(Math.floor(month / 12), month % 12 + 1, 0)).toISOString().slice(0, 10);
+    });
   }
   const idx = Object.fromEntries(labels.map((d, i) => [d, i]));
 
@@ -759,9 +769,11 @@ function drawChart(canvas, doc, filtered) {
             label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
+              const report = doc.series_sources?.[items[0]?.dataset?.label]?.[items[0]?.label] || doc.period_sources?.[items[0]?.label];
               const samples = items.filter(item => doc.sample_counts?.[item.dataset?.label]).map(item =>
                 `${item.dataset.label}: 표본 ${new Map(doc.sample_counts[item.dataset.label]).get(item.label) ?? 0}건`);
-              return [...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples];
+              return [...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples,
+                ...(report ? [`WFE 원문: ${report.issue} 월보 (발행월)`] : [])];
             },
           },
         },
@@ -770,7 +782,7 @@ function drawChart(canvas, doc, filtered) {
         x: {
           ticks: {
             color: css("--muted"),
-            maxTicksLimit: doc.komis_info ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
+            maxTicksLimit: doc.komis_info || doc.month_labels ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
             maxRotation: 0, autoSkip: true,
             font: { size: 11 },
             callback: function(value) { return periodLabel(doc, this.getLabelForValue(value)); },
