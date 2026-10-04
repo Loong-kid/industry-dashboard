@@ -154,6 +154,13 @@ jobs:
         timeout-minutes: 5
         run: python scripts/fetch_copper_world_supply.py
 
+      - name: 한국 광물 수출입 기간·단위·전체 합계 검증
+        run: python -m unittest discover -s scripts -p test_korea_mineral_trade.py
+      - name: 한국 광물 73종 수입·수출 수집
+        continue-on-error: true
+        timeout-minutes: 12
+        run: python scripts/fetch_korea_mineral_trade.py
+
       - name: SHFE 구리 주간 재고 수집
         continue-on-error: true
         run: python scripts/fetch_copper_inventory.py

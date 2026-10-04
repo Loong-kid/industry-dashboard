@@ -4,7 +4,7 @@ const {context, charts} = require('./test_mineral_cards.cjs');
 const doc = JSON.parse(fs.readFileSync('data/commodities/comm_mineral_supply.json', 'utf8'));
 const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
 const commodity = catalog.industries.find(ind => ind.id === 'commodities');
-assert.deepEqual(commodity.tabs.map(tab => tab.name), ['normal', '구리', '희토류']);
+assert.deepEqual(commodity.tabs.map(tab => tab.name), ['normal', '구리', '희토류', '한국 수출입']);
 const placements = commodity.sections.flatMap(section => section.minerals || []);
 assert.equal(placements.length, doc.minerals.length);
 assert.equal(new Set(placements).size, placements.length, 'Supply must appear once per product');
