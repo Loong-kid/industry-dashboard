@@ -8,12 +8,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import import_manual
-from fetchers import kcla, kobc, stockq, tankers_international
+from fetchers import harpex, kcla, kobc, stockq, tankers_international
 from common import record_fetch_failure
 
 JOBS = [
     ("KOBC KCCI", kobc.fetch_kcci, ["kcci"]),
     ("KOBC KDCI", kobc.fetch_kdci, ["kdci"]),
+    ("Harper Petersen HARPEX", harpex.run, ["harpex"]),
     *[(f"KCLA {key.upper()}", partial(kcla.fetch_one, key, *args), [key]) for key, args in kcla.PAGES.items()],
     *[(f"StockQ {key.upper()}", partial(stockq.fetch_one, key, *args), [key]) for key, args in stockq.INDICES.items()],
     ("Tankers International (VLCC 성약 TCE)", tankers_international.run,

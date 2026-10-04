@@ -1,0 +1,1372 @@
+{
+ "checked": "2026-10-04",
+ "policy": "기존 관측치 보존, 신규 날짜만 추가. 결측/휴일 보간 없음.",
+ "indicators": {
+  "scfi": {
+   "added": 0,
+   "start": "2014-06-05",
+   "end": "2026-09-30",
+   "count": 627,
+   "overlap_conflicts_preserved": [],
+   "sources": [
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2014",
+      "F_YEAR": "2016"
+     },
+     "sha256": "6be71174e358ce1d2fd8985223185555142106ef4653c21d9b00efcdbf7d85e4",
+     "count": 133
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2017",
+      "F_YEAR": "2019"
+     },
+     "sha256": "c57f0da1dd0ba46c3d278e5cc0a2bf2be771dd6b671f08e3b0a321867146ae85",
+     "count": 151
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2020",
+      "F_YEAR": "2022"
+     },
+     "sha256": "ae375aab8c36dfd7d9a707ee900c0d99d3e53b2a35f25631600bc61f787083ef",
+     "count": 153
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2023",
+      "F_YEAR": "2025"
+     },
+     "sha256": "cfcaa075e1562328359a44ae3c6069f1930bbb9f22a6af8974566b93cd497394",
+     "count": 149
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2026",
+      "F_YEAR": "2026"
+     },
+     "sha256": "1d312593fd0043d54d7e26f1f8de9c09a05fee4a8ed000e75b005493e38d0d07",
+     "count": 37
+    }
+   ]
+  },
+  "ccfi": {
+   "added": 0,
+   "start": "2014-06-05",
+   "end": "2026-09-30",
+   "count": 626,
+   "overlap_conflicts_preserved": [],
+   "sources": [
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2014",
+      "F_YEAR": "2016"
+     },
+     "sha256": "6be71174e358ce1d2fd8985223185555142106ef4653c21d9b00efcdbf7d85e4",
+     "count": 133
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2017",
+      "F_YEAR": "2019"
+     },
+     "sha256": "c57f0da1dd0ba46c3d278e5cc0a2bf2be771dd6b671f08e3b0a321867146ae85",
+     "count": 151
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2020",
+      "F_YEAR": "2022"
+     },
+     "sha256": "ae375aab8c36dfd7d9a707ee900c0d99d3e53b2a35f25631600bc61f787083ef",
+     "count": 153
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2023",
+      "F_YEAR": "2025"
+     },
+     "sha256": "cfcaa075e1562328359a44ae3c6069f1930bbb9f22a6af8974566b93cd497394",
+     "count": 149
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "CFI",
+      "S_YEAR": "2026",
+      "F_YEAR": "2026"
+     },
+     "sha256": "1d312593fd0043d54d7e26f1f8de9c09a05fee4a8ed000e75b005493e38d0d07",
+     "count": 37
+    }
+   ]
+  },
+  "bdi": {
+   "added": 0,
+   "start": "2014-06-05",
+   "end": "2026-10-02",
+   "count": 3076,
+   "overlap_conflicts_preserved": [],
+   "sources": [
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "BDI",
+      "S_YEAR": "2014",
+      "F_YEAR": "2016"
+     },
+     "sha256": "27dd510b3074b97e951299777071845bcfaea5018e8e3e765af836c6547b8d6c",
+     "count": 642
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "BDI",
+      "S_YEAR": "2017",
+      "F_YEAR": "2019"
+     },
+     "sha256": "05d090e98395ef44c9f1bc574f099e844cdd0fc4333f7375f1693ad045525f64",
+     "count": 749
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "BDI",
+      "S_YEAR": "2020",
+      "F_YEAR": "2022"
+     },
+     "sha256": "bd6a98b8f67c6ae479aa6065a3c898cab3c1eb99eb996f68cf9ce07019742a18",
+     "count": 744
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "BDI",
+      "S_YEAR": "2023",
+      "F_YEAR": "2025"
+     },
+     "sha256": "1189cd6555c2c7d6abdba058ca832fd0a485b2fcfcd9feb255d98309665d18f3",
+     "count": 750
+    },
+    {
+     "url": "https://www.nlic.go.kr/nlic/transInPortCt.action",
+     "params": {
+      "command": "LIST",
+      "S_TRANSIN_SE": "BDI",
+      "S_YEAR": "2026",
+      "F_YEAR": "2026"
+     },
+     "sha256": "e3adcd56467f80463a23969269f9ae3983ffd329c4d2555f8634898cddd8ff20",
+     "count": 188
+    }
+   ]
+  },
+  "hrci": {
+   "added": 1143,
+   "start": "2002-01-02",
+   "end": "2025-06-04",
+   "count": 1164,
+   "overlap_conflicts_preserved": [],
+   "sources": [
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {},
+     "sha256": "e7ab00e27c8488cb7667a8df6b4f18a44a7de3f781c176e342a43746da594906"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "2",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "519bcf92fd697d281637fec639d3937f44a0446d7b6e35e28fecee3d319871d0"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "3",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7d8215c0afd375127c97028b575808ed7b81690c06232fc0f45445001441fac3"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "4",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6db61ca7ea517f3d4d0776541bc515ad9265c7ff51b22280e33696b0db7155d1"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "5",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "8bb0330449132c385a4ea4787e4dfd7539db0010e8988dabe0a7827bfa519c6a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "6",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "87b32361531601e88adafa5d932f67a026abb478207d07b5f59582dd1d482257"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "7",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d19117d0bd21dd5c536ac7cc736bf7ba04c3cd93bab79787a275abb935cf3e91"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "8",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "62b7cc3926334fcb6b8859d7dfb29c9a10a3427b4201006a3cd2f464f530fcdc"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "9",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "45fc5388814cc68db539381ec01b66a6218ea7a1a93db845e9063d9ab7666c69"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "10",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "a0dcec481dc30a92d14e84127c29b22a15eb46dd33b17ad9d0948b5f752a1f67"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "11",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "da4fd630818b4d964f9d494e966d4167f593f295199f5a395baeccbb100e7b4c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "12",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3f6445d4f39dfdc31deddfc23fb80f22a792a4816107a6788f000921a7fedf50"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "13",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "4c6eb52c84898af346cad602103276aa34eebc7846022dd5f677ae89f2a98c02"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "14",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "b33433a73af04dec8628c1205bf67883571081ad18eafc9eaabf31e6cd54af82"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "15",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "20c9d85b63de4167021135cf71686aecf9ab2f1c2a74a1aeb0905b6e94431f49"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "16",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "21e76327557701197256d6e036606c49f5468b075dc91cbda32ee037432342c6"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "17",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6d37be25415f6fadf7459da79462632d55afebb163dc8e0566fa6905b4711780"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "18",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "181e48a1cf6486b6f9152f8e6ba518099754ea2c1da9743509ae0b14a1cd1f53"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "19",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "1a160271d4f9fae58d95e9b205b657cb2de2a08220eaabc5458e20e2178a6987"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "20",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "a96a604d938e80df1d54e8f47b43899b91271d3b95191d9ef92bf4f84df706fa"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "21",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "18bb6544abcca3168541344551daa4c5d1736a00f63d5a2e6839330c3e98026e"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "22",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "52a05bc8e08c99ba8c92ba59ebdb63831decd729f44d1e431e9d00956906aa42"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "23",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "48f26e4ebc57d82e5b1a0d9f782ad09958257c46c566b6a54dd52cb31a6ee875"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "24",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "e16a6b20d33a92b25aba7c576eb2e4d15e4542dc4d730583f2266141bb846317"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "25",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "01f40695de7763d8f7d5033f09382b751222a5566653e97a05f5abcf43c6ab92"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "26",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "105ae30dcdefaa6725f768b57a7e24dd14e98d6e416cb4ec4aec880f553a21bb"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "27",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "43b092b95fbbaf1f1f105599bae5e3d86901a39be87250b46d18bb67a5305a01"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "28",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ebe20d010983f36d8905dddd906cd9f4721121bf94dc71d892116e36099d2786"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "29",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "182425fbe98e1ab7b9e8cb3392824fababba047756a74e50d21b60a1c1f725d4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "30",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "e14128625aafd08ab862432b4331afd247fa947ba837c1ea246f130bc1680b4f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "31",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7bcb7678e2e101f9daf16c6273bb8f2aa7a658fac045afa4c4cd1092c82f47a7"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "32",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ea645d6e72c451fd8a4d9c24f077dbac727810406117c5ff24d22198b1f72acf"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "33",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ab47fac6a17d8c656fab8adce107ba53f8dfaac90c326d2c1925a8c9ff59ba95"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "34",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "450f79cd4efd7b80a83d93889dde0e6aeb791222ed2af4734dffa261f8f08597"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "35",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "a4beba60957db2959867276e19949ed8ab26c983d00d34c24ee4276befca9503"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "36",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6c5697b33edecc2210e4739943b2bcb03657133c0d4aa573398cbed2e0bee759"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "37",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "8e7a3c076665a1d4e9f14d7d475ec57fa4dbdeefe4bf329b754568b10c95134a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "38",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7b5a4e356d9eed696f5a66563dc68e22bf060c69334e5da76f8e3c9e3e5da573"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "39",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "89553c0746844d85d65905c7af721093d19522a12d678b5d8dd6d43d3dbfbbbb"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "40",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6d3ec87c577389f2c2858836011724d595580821465186085e67f6050c0d0c5c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "41",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c2c21158141dd7bee357352d9c21e86e7c9ff2fe8b42258dff2fdac57f8ece84"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "42",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "49a045fd221e42d6a73ea2befe76f061076270a63d1fee0b67a7ed1e0626db6f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "43",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "174e4e39e84e9ac5ad7e96e96cd3765b602442b277305a64a2fb789430e4dce4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "44",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6b05df911793e50a6b8ba35fa5b79ebf787f11d5c30275de2ce0531c0e659150"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "45",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7ecaccdcfe8b0ad61287432636acf73c68f31ce888c60c88ab21de3b4f125e23"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "46",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "8680f7f48a1ad58d291e7d27337f15e85169401e7e86847052d0fc0e6fc4f0e9"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "47",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "bbb1a25e8df7651ebfb8239ce0ffb07a3f095b733928a8f57b933cd20b9080c3"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "48",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "db242cfb128e4eaa8e9aaa40f54d712071056ec971646af774ed8a353b49d8eb"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "49",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c2f2cb92f03251ac470cce185c1e473d5aefd37da326d8e68f706f733a12bb19"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "50",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "93d4c24132a81e04348b9bb1db07bd19808609944ae8e1cfd6b1b81c42f96aba"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "51",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3b14030cb84d813f7b74625022e1a8c7e5889b71f2bdb81fbd7cbb045185b7e8"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "52",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "065ed8e71069bfbdbacbcb95bec93735c02d64d8b9b624557226291d709843f8"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "53",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3f5e1d6f2ca3a87f395e887cf14624eaa167cd45516302248d6a06b527e62a8c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "54",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "08994ec189c8dfcbce54f2230d4828edf1bba4d57784865c5e6ad2c7957a71f1"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "55",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7b5e0e39ccefbe44d341a59e37fe640594cbe63eb18b40b12162c807f50d589b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "56",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "491901deb4f9b1b2c7b143198a02e932d66ba4c88d7615a8f66270e59535106b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "57",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c9248bfd27688f6efa558ab012ae60695b37d88a89cc394d3b00864063f914a6"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "58",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "28d375c991187e47cd8ea72aab01114eebf21d9ec893369f1aed853f77634cae"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "59",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "8757c1bc4526b57812c01084d268af51b205195e7067372da3917ca604fb25f3"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "60",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "57f0abc8378c98f274745520e4160f8918de6020c0040687be2aa04d75b2a203"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "61",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6cf2d45b2157a4dfaaef10eedf9780b6f211127e9df34db8dc822b9b69e801be"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "62",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c61a7b43394abdaa29e3009b0fd1d89cca2c7159547d6f2b109933300d0a2e38"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "63",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "fd1095edcdb7eb6a6361dd78671e202195ba87cd8d960abd6927897889494dc7"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "64",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d04354af752a53a13ee7505ca13493f7afdd9638300e8e924fc178691981002b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "65",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "303ac5b149d4c454cc295a2e94145d427d6a483a1d5af413895d442a5088ccc8"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "66",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "04014af4802d1729f747985f89673877867a9a31ef6806ed39492e799b50de10"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "67",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ab46dc3db3d3d38e668f4ba0efe79dd643a9e23562e65288d0ce167fd25c9e21"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "68",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "0732040a7efec57156f145534bb788ae14f1be5282e4b33834cedb4d08e0be46"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "69",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "008c9ef49ff7a23601296f507e0fab55a239c30f6380f9a79c8f2d06765338ce"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "70",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "0df42c60730893ca31e941612c99f019eecf282cfc5a10715192896769e7cdb6"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "71",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "28aae76a6399d99813d8015919c218ad3f2532a2512c3ee236b0ec1d85ad9f30"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "72",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6de4e267b97b35d3a3022aae4916c7de5e12d09cc2bd17a7a93c676645ac7811"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "73",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c90d9182b264073cdc04b4842675ba043d36858e81dfa2f7ca2c9b48a96a6d1f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "74",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "64de519d5b5660c28fdad1321c8b5f907d121ef9fb9b38d724f95b9c7d7cdb41"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "75",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "bce216de61066507f0d94d780a2e888af4d23afbcef59d01ab331824648e5b9c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "76",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7fa85916aa821804d355d93f57dee27ac37ccaffe6552e3a4445e28bcb0530ee"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "77",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c08f54c7bdf107d8a934002097ffc221e09df75f958cee71d8d72afd8ea10415"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "78",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "9e4514aed16f6708db1a768f7f013b3eeb7d26edf6b29af8a0f7c56c069c2783"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "79",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "91d8220243ca273094041e99b54e0b29dddb39e18be9db9073a506b7fa6f4b7f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "80",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "4f613494a1015c89f61001daec6036a4f369fd6801e20d48bf17818e4af51a4b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "81",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "6d116a6cc3293c7b5a40c9623316fa5c9d1aa55018c2f54a31e827b5c1ea9bae"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "82",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "50ad73735b77817eab9efdef97b2cf0c20919b0aa8aec98dda0aed0dc0005d57"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "83",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d573ea4184c7d8d1fef47c95d3b99cf1699668ae55397243c8f96510014c142f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "84",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "15ef0acde5678faa5b1177f4aa8dc2154958894a3dd440e58dc23ef48b19c4cf"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "85",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3774c49489625067c47c17e90d004a1be55bfa82d0dd6529e2a513280311b173"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "86",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d6a902feedce4f1b454c67a001f1f8355c9e51c04cd18c820c41c9c21fef1857"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "87",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "627becc039d18d04232b5c737f6b7a2b2d3ac7b64a04d3ede3928ba41aeb3479"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "88",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ce75c232a184bbbad63b3da622ee7ba0b9e7c3a00f30921a89d71a1b78dcc342"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "89",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "48cd4fb74cad7eccd7457a298b51083d1ff70c40852d8a4eeaa83fb21bdf3c6f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "90",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "1e49d347bb0f6ff2958a8296e4fe3841b6007c2098ea7c919843614af398ad85"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "91",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "de536db5f792e47e1bc72933aa6f60e597704e8e9741c57d45ae8119360cf57f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "92",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "418b164c7445a68ac8c6be476066799b2387dd519896d27c1eb01cc522b63438"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "93",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "597b0b1e0713381b01303ce6ab481adfb9f915a7d9dfb86efcfee7bb416bf3c2"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "94",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d47b3a8a294208552a625ec75aa543e4a5fc9fb903efbfa925578b2a3da94f4b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "95",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "b01c539838bbe84101a8e7b6005c477df732405545af85a1af8df5d8e7191ca4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "96",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "43e27786ed7fb0ec18577cdafac76cfe58ce89e17a4eb15a08af399c282089b0"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "97",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "97b198d7169402c4703142b305472f0afbcca7903619d25694d31281d104dc7d"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "98",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "158ac6985f51aba26ce60ca5acbf6dc26de3553e12d846e3b19deaa4591c7a1d"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "99",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "24adf113d5d7509ecf3ae215417932e9f903fe2b1fffa6e0436f02c46618855b"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "100",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3cb37c3395956b86398e499a06a2dcc194b9e81a572e68340915026749639e5e"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "101",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "e797ca0728fac7e31e638283f4ae86f23a749d42c59b13fc5f64925ea90bbf69"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "102",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "71c670ed36d5060ae51ac1f301c9040aeb68560a1697b7d48e758dbe860dc5e0"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "103",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "2e40f9137c5a3c74fe431c1e7171b7f0855742df3ddfc799f97450e8bf63212a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "104",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d9247e2cbd30815a4343abea4ed837d0b69b7dfcd1f6ba67ef32eec5e47af6ec"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "105",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "04c08a2c5b964870aca41b054b7b9de56396f43e50dcffb959d19d155faa801a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "106",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "db56aa4305a5a0603d2112036492282efab45deef9a953cccccd4fdf531d3e2a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "107",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "03c4f9a18ce08385e4d54745dd6084be6a7ca46e9ace09c0611f94ea44e4bbd5"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "108",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d6265a7e3e16276b641a555a2227f3699614511ef24c65830f27e04d86306dce"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "109",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "bf9730565d0e1bafc05f5c42ae2747e5a23cfff7011caf82f9d75c70485668ad"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "110",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "53e8372a61c7681e7992d5b40c402b0b64022e12f4c2fcd0399062507a5068bd"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "111",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "0c090d9dcfd07a17db07fdac430ffebe3b1d11c8d1eb2d9e7c4ae8be2a49ca9a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "112",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "2b35b4609812eb1b9278f3de5d5df6b40b635ffe7d58ce3dc1712a9a66363686"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "113",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "fe88f457826b98f58ff0880d87b3c07162e5789daedccdfb23e700370f3cdca3"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "114",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "2379516f9d808866e58d3a4ccff7936eb2f4c90654a5340b8ba1f74785ba56f1"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "115",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "43fb25d8d068cdde7ac64805514716bde863c6c49a89ad0b97c5b7eb8a3a7309"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "116",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "148508fc5dc3ef279c3d0ccb0f90ad5e8b266695862217e8500fe6d06b82bb79"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "117",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "a53a7421bf6ca00a9d24c710a22bb7715b76251db6c7e455e95c832aa51d4d78"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "118",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "03a86dbd664ba806e9b916d5f85f6a9ee1a1c30b7a90952545b1495910b6350a"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "119",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3a2e209766e38e287b76bbc0cfc6c68fd08edf733c20d42dbbfd27c4696dd77c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "120",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ba0d41f3eb3516f2328085013fef637171f351d208e4b9532c29ab92968f2bb4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "121",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "062941acdfbda689decb76b8b70ce4f34095aaa375d4629a25f37f44c97c923c"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "122",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d8dc3d76aa1cac49034643870586511e64c8f2a9c26afe17dddaa397cb6c8f48"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "123",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "15e9358c480662fed1fe24c151a19419a705a4b3cf030c66e488f05c1dc6f2c4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "124",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "fb16d07b3588210a2256a236fc17516bed4c1203e759598dd4f1592d3e1c98c6"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "125",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "46bf1088676d8fbb84ecc79048a7960332ba2afa2f9c2b6c4c4a9341660833c7"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "126",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "545e67d1aed0c7ca9b96d2c1578ef83a9e770aac3329a7d310d83503dc41e5cb"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "127",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "ba93704ee9b0008a20cf33ae10055e3b14cac1bfa3701aa7b6c53891cdd44c76"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "128",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "f1b03c085c1d23afd951043c6d11ffe649563b8fc7b0b6d2e5c7708695144d30"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "129",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "c39cf396849939ec6a8f7e6c5d239c09eb2861adf28916e8b833d42960735d6d"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "130",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7b7480a8f7af4eef4f20b0b072f21b49b42019f7347ee17885f3789f40dadace"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "131",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d71bda439d060659b3a1529738bc70f751f36460111a8eb8dff7e54230fc7346"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "132",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "990ca74ac5e73659d7f05f44faaa57a2603a2198107503aca01c416d893a89b9"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "133",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "e6556ef019c51df85c68a743f55ef0df0dff7c2d56d6eb83371803dfbb94cb3e"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "134",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "f83a5574d89ecee294d87ee92e6550dd4c68c799eaadf5acd63095c17b6197ff"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "135",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "fc1ac42f5df7f19e1ffbe0a35ab9e7c6772cd352036a4d468150a62dfccfd8bf"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "136",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3d2c49dac0821ea247f5be406010d61da9507b5cca99367b26ec16f96c19d3c7"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "137",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "d35bb277b2994fed848d64d295fb52ec393c3f9ffef5ef326cf5188f6ee30e1f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "138",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "00308a1dd3002183726520b621cd94884b1af68998afe0592a1ab558be278b4f"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "139",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "4300c56aa1c858efbecf94cc87a091b2783e629fac1fdfb458e540742b92f538"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "140",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "cb7d576a48ea79f10156842c82c8211bcf51b4cd1c97f4bbce504075603df4d9"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "141",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "3683ea307ea7128553afe74ab1eb1e5d3e1d38fea11e423101eb483aa9a5bab4"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "142",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "f2492799462c02c794fd9d87c7a7a61223baa6f6713c0204776322301da5b2d6"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "143",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "7c80dec6c437d732fe2e8cc54c1ff2bf9dd5afdacca8ef6290e24a619d2ccd90"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "144",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "a0dff180be8bca6f689560ca4946a283ec4c3bf7681c62ed41d90105fefa9127"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "145",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "920dda5d4d92572f247b191315a5744d74b9096427176909ace1d8f9ce47c325"
+    },
+    {
+     "url": "https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp",
+     "params": {
+      "pageNum": "146",
+      "schEDate": "2026-10-04"
+     },
+     "sha256": "df5d8e60394fce05ac82e5694ea7fca5486ee9db40dd68c361fd102bbc48e155"
+    }
+   ]
+  }
+ }
+}

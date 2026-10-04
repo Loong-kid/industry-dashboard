@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""StockQ 공개 발틱 지수: 현재값과 최근 20거래일을 발표일별 누적한다."""
+"""StockQ 공개 발틱 지수: 5년 차트와 최근 20거래일을 발표일별 누적한다."""
 import base64
 import math
 import re
@@ -99,11 +99,49 @@ def parse_page(html):
     return sorted(points.items())
 
 
+def parse_chart(script):
+    """공개 5년 차트의 Price 열만 읽는다. MA 열이나 JS 코드는 실행하지 않는다."""
+    if not re.search(r"\['Time',\s*'Price',\s*'MA20'", script):
+        raise ValueError("StockQ 과거 차트 열 구조 변경")
+    rows = re.findall(r"\[new Date\('([^']+)'\),\s*([^,\]]+),[^\]]*\]", script)
+    if not rows or len(rows) != script.count("new Date("):
+        raise ValueError("StockQ 과거 차트 날짜/값 파싱 불일치")
+    points = {}
+    months = {m: i + 1 for i, m in enumerate("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split())}
+    for timestamp, raw in rows:
+        match = re.fullmatch(r"([A-Z][a-z]{2}) (\d{1,2}), (\d{4})", timestamp)
+        if not match or match[1] not in months:
+            raise ValueError("StockQ 과거 차트 날짜 형식 변경")
+        d = date(int(match[3]), months[match[1]], int(match[2])).isoformat()
+        value = to_float(raw)
+        if value is None or not math.isfinite(value) or value <= 0 or d > date.today().isoformat() or d in points:
+            raise ValueError("StockQ 과거 차트 날짜/값 비정상")
+        points[d] = value
+    return sorted(points.items())
+
+
+def fetch_history(ind_id):
+    url = f"https://www.stockq.org/index/js/{ind_id.upper()}_sma.js"
+    r = requests.get(url, headers=UA, timeout=30)
+    r.raise_for_status()
+    match = re.search(r'"5y":"(https://www\.stockq\.org/index/chart-data\.php\?[^"\s]+)"', r.text)
+    if not match or f"id={ind_id.upper()}&type=sma&range=5y&" not in match[1]:
+        raise ValueError("StockQ 공개 차트 링크 변경")
+    # 공개 페이지가 안내하는 버전 포함 URL과 Referer를 그대로 사용한다.
+    r = requests.get(match[1], headers={**UA, "Referer": f"https://www.stockq.org/index/{ind_id.upper()}.php"}, timeout=30)
+    r.raise_for_status()
+    return parse_chart(r.text), match[1]
+
+
 def fetch_one(ind_id: str, page: str, name: str):
     url = f"https://en.stockq.org/index/{page}"
     r = requests.get(url, headers=UA, timeout=30)
     r.raise_for_status()
     points = parse_page(r.content)
+    history, history_url = fetch_history(ind_id)
+    overlap = dict(history)
+    if any(d in overlap and overlap[d] != v for d, v in points):
+        raise ValueError("StockQ 날짜별 표와 과거 차트 값 불일치: 저장 취소")
 
     doc = load_indicator("shipping", ind_id)
     doc.update({
@@ -116,11 +154,14 @@ def fetch_one(ind_id: str, page: str, name: str):
         "data_stale_days": 10,
         "latest_source_date": points[-1][0],
         "highlight_gaps": True,
-        "note": "최근 20거래일 공개 자료를 매일 누적합니다. 장기 수집 중단으로 남은 과거 공백은 보간하지 않으며, 7일을 넘는 관측 간격은 점선으로 표시합니다.",
+        "history_source": "StockQ 공개 5년 차트 (Price 원자료)",
+        "history_source_url": history_url,
+        "note": "공개 5년 차트의 실제 지수값과 최근 20거래일을 날짜별 검증 후 누적합니다. 이동평균은 사용하지 않습니다. 이미 저장한 과거 이력은 보존하며, 7일을 넘는 관측 간격은 점선으로 표시합니다.",
     })
+    added_history = merge_points(doc, ind_id.upper(), history)
     added = merge_points(doc, ind_id.upper(), points)
     save_indicator("shipping", doc, data_date=True)
-    print(f"  {ind_id.upper()} {points[-1][0]} = {points[-1][1]} ({added} new points)")
+    print(f"  {ind_id.upper()} {points[-1][0]} = {points[-1][1]} ({added + added_history} new points)")
 
 
 def run():

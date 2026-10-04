@@ -72,7 +72,8 @@
       "id": "shipping",
       "name": "해운",
       "icon": "⚓",
-      "cadence": "KOBC·KCLA·StockQ 운임지수, TI VLCC 성약 TCE와 운임 선물 ETF는 매일 자동(원자료는 일간~주간, TI 무료 자료는 지연 가능). 클락슨 선형별 운임·ClarkSea는 신영 위클리 PDF 수동 추출(주 1회).",
+      "default_range": "all",
+      "cadence": "KOBC·KCLA·StockQ·HARPEX 운임·용선 지수, TI VLCC 성약 TCE와 운임 선물 ETF는 매일 자동(원자료는 일간~주간, TI 무료 자료는 지연 가능). 클락슨 선형별 운임·ClarkSea는 신영 위클리 PDF 수동 추출(주 1회).",
       "sections": [
         {
           "title": "컨테이너 운임",
@@ -80,7 +81,8 @@
             "kcci",
             "scfi",
             "ccfi",
-            "hrci"
+            "hrci",
+            "harpex"
           ]
         },
         {

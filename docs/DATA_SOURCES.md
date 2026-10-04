@@ -104,12 +104,13 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 | 지표 | 상태 | 소스 | 비고 |
 |---|---|---|---|
 | KCCI (컨테이너 종합, 13개 항로) | ✅ | [KOBC 해양정보서비스](https://www.kobc.or.kr/ebz/shippinginfo/kcci/gridList.do?mId=0304000000) | timeseries 엑셀 POST 다운로드(세션쿠키 필요). 2022-11부터 전체 히스토리. 주간(월요일 14시) |
-| KDCI (건화물, CAPE/PMX/SMX/HANDY) | ✅ | [KOBC](https://www.kobc.or.kr/ebz/shippinginfo/kdci/gridList.do?mId=0301000000) | 그리드 페이지 인라인 JS 파싱. 최근 며칠치만 제공 → 매일 누적. 일간 16시 |
+| KDCI (건화물, CAPE/PMX/SMX/HANDY) | ✅ | [KOBC](https://www.kobc.or.kr/ebz/shippinginfo/kdci/gridList.do?mId=0301000000) | 공식 기간 지정 엑셀 POST 다운로드. 2013-06-28부터 게시 자료 누적. 초기 주기/선형별 범위 차이 있음. 원문 0은 결측 처리. 일간 16시 |
 | SCFI (상하이 컨테이너) | ✅ | [한국관세물류협회](https://www.kcla.kr/web/inc/html/4-1_3.asp), 실패 시 [국가물류통합정보센터](https://www.nlic.go.kr/nlic/transInPortCt.action) | HTML 날짜/값을 열별 검증 후 누적. NLIC는 발표가 늦을 수 있어 기존 최신 자료도 보존. 원본 SSE |
 | CCFI (중국 수출컨테이너) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_2.asp) | 위와 동일 |
-| HRCI (컨테이너선 용선지수) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_4.asp) | 2026-10-04 확인: 게시 자료는 2025-06-04에서 멈춤. 과거 자료 경고 표시. 원본은 Howe Robinson이며 Harper Petersen의 HARPEX와는 다른 지수 |
-| BDI (발틱 건화물) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_5.asp) (일간 히스토리) + [StockQ](https://en.stockq.org/index/BDI.php) (최신값) | 두 소스 머지. 원본 Baltic Exchange는 유료 |
-| BDTI (더티탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BDTI.php) | 최신값+최근 20거래일 누적. 공개 JS의 숫자 표시 형식 대응. 장기 과거 공백은 보간하지 않음 |
+| HRCI (컨테이너선 용선지수) | ⚠️ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_4.asp), [코리아쉬핑가제트](https://www.ksg.co.kr/shippingGraph/hrci_graph.jsp) | 2002-01-02부터 과거 보강. 두 게시처 모두 2025-06-04에서 멈춤. 과거 자료 경고 표시. 원본 Howe Robinson은 지수 발표를 계속하지만 무료 자동 이력 경로 미확보 |
+| HARPEX (컨테이너선 용선료 지수) | ✅ | [Harper Petersen 공식 공개 차트](https://www.harperpetersen.com/container#harpex) | HRCI와 별도 지수. 6~12개월 용선료 주간 평가. 공개 24개월(2024-10-04~) 차트의 소수값 보존. 전체 이력은 발표사 구독 |
+| BDI (발틱 건화물) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_5.asp), [NLIC](https://www.nlic.go.kr/nlic/transInPortCt.action), [StockQ](https://en.stockq.org/index/BDI.php) | 2014-06-05부터 보강. NLIC 기간 지정 조회 및 StockQ 공개 5년 차트. 원본 Baltic Exchange는 유료 |
+| BDTI (더티탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BDTI.php) | 2021-12-07부터 공개 5년 차트 Price 열+최근 20거래일 누적. 이동평균 열 제외. 최근 표와 겹치는 값 일치 검증. 결측 보간 없음 |
 | BCTI (클린탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BCTI.php) | 위와 동일 |
 | 탱커 운임 Average Earnings (VLCC 등 5종) | 📄 | 신영 위클리 | $/day, 주간 |
 | TI VLCC 성약 TCE·주요 항로·성약 건수 | ✅ | [Tankers International 웹앱](https://app.tankersinternational.com/) | 공개 JSON 성약 응답을 매일 누적. 확정 계약의 발표일 기준 최근 7일 중앙값(USD/day), 표본 수·상태 필터 표. 무료 자료 지연 가능. 계약형 공식 API는 별도 문의 |
@@ -118,6 +119,16 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 | ClarkSea Index (종합 해운운임) | 📄 | 신영 위클리 | $/day, 주간 |
 | FBX (Freightos 글로벌 컨테이너) | 🔍 | freightos.com/fbx | 확장 후보 |
 | 공공데이터포털 KCCI/KDCI 파일 | 🔍 | [data.go.kr KCCI](https://www.data.go.kr/data/15131881/fileData.do) | KOBC 직접 수집이 더 나아서 미사용 (백업 경로) |
+
+### 해운 과거 자료 보강 및 HRCI 대체 추적 (2026-10-04)
+
+- `scripts/backfill_shipping.py`: NLIC의 화면 검색 파라미터(`S_YEAR`, `F_YEAR`, `S_TRANSIN_SE`)를 3년 이하 구간으로 조회. SCFI 627개, CCFI 626개, BDI 3,076개로 확장. 가장 오래된 게시 자료는 2014-06-05. 기존 날짜와 겹치는 값은 모두 일치했다.
+- KSG의 공개 HRCI 표 146페이지에서 Index 열만 수집: 2002-01-02~2025-06-04, 1,164개. 14개 세부 열은 종합 지수로 사용하지 않는다. 기존 관측치는 보존하며 같은 날짜가 상충하면 백필 값으로 덮어쓰지 않는다.
+- 백필 요청 파라미터·원문 SHA-256·검증 결과는 `data/shipping/history_audit.json`에 기록. 원문 캐시는 저장소 밖 `shipping-history-cache`에 보관한다.
+- BDTI가 2026-07-10부터 시작하던 것은 삭제 사고가 아니다. 최초 커밋 `2fb6507`부터 그 날짜 1개로 시작했다. 지난 수정 `b76a8da`는 22개를 모두 보존하고 42개로 확장했다. 이번에는 BDTI·BCTI 각각 1,200개로 보강하고 매일 공개 5년 차트를 재조회하므로 수집 공백도 복구한다. 롤링 차트에서 사라진 오래된 날짜는 로컬 누적에서 삭제하지 않는다.
+- KDCI의 화면 `Download` 버튼은 `kdci/excel/download.do`를 통해 기간 지정 전체 자료를 제공한다. 기존 timeseries 다운로드가 KCCI 전용이었던 것과 구분한다. KDCI 3,003개, 선형 4종 포함 14,885개. 초기에는 일부 선형이 없고 주기가 달라 완전한 일간 패널로 간주하지 않는다.
+- 해운 탭 기본 기간을 전체로 설정. KCCI는 이미 2022-11-07부터 저장한 전체 공개 이력을 유지한다.
+- ClarkSea·선형별 Average Earnings는 보유한 신영 위클리의 가장 오래된 파일이 2024-05-27이므로 관측치는 2024-05-17부터다. 그 이전 PDF 또는 Clarksons 정식 과거 자료가 없으면 확장할 수 없다. 다른 지수/추정값으로 대체하지 않는다. TI 성약은 공개 응답에 포함된 개별 성약만 누적한다.
 
 ### 운임 자동 갱신 복구 (2026-10-04)
 
@@ -212,7 +223,7 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 - **KOBC 엑셀**: GET으로 grid 페이지 방문해 `JSESSIONID` 획득 후 POST 해야 함.
   GET이나 쿠키 없는 POST는 405/오류. `sDay`/`eDay` 파라미터로 기간 지정.
   응답은 구형 `.xls`(OLE2) → `xlrd` 필요. **주의: timeseries 엑셀은 mId와 무관하게
-  KCCI만 반환** (KDCI는 timeseries 페이지 자체가 없음 → 그리드 JS 파싱으로 구현).
+  KCCI만 반환**. KDCI는 별도 `kdci/excel/download.do` 기간 지정 다운로드를 사용한다(2026-10-04 확인).
 - **KCLA**: `4-1_1.asp`(KCFI)는 404로 사라짐. 테이블 구조 = 1행 날짜(`YYYY.MM.DD`),
   2행 값. 연도별 과거 데이터는 페이지에 없음(당해년도만) → 매일 돌려서 누적.
 - **StockQ**: 첫 번째 `align=center>숫자` 셀이 최신값, `MM/DD` 셀이 날짜(연도 추정 필요).

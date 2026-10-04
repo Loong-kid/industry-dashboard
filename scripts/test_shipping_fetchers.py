@@ -2,17 +2,60 @@ import json
 import tempfile
 import unittest
 from contextlib import redirect_stdout, redirect_stderr
-from io import StringIO
+from io import StringIO, BytesIO
 from datetime import date
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 import common
 import fetch_all
-from fetchers import kcla, stockq
+from fetchers import harpex, kcla, kobc, stockq
 
 
 class ShippingTests(unittest.TestCase):
+    def test_stockq_history_uses_price_not_moving_average_and_checks_recent_overlap(self):
+        chart = "window.stockQChartRangeData('sma', '5y', google.visualization.arrayToDataTable([['Time', 'Price', 'MA20', 'MA60'], [new Date('Dec 7, 2021'), 764, 768.1, 726.2], [new Date('Oct 2, 2026'), 6586, 5771.6, 3306.55]]));"
+        self.assertEqual(stockq.parse_chart(chart), [('2021-12-07', 764), ('2026-10-02', 6586)])
+        for wrong in [chart.replace('764,', 'null,'), chart.replace('Dec 7, 2021', 'Dec 7, 2035'), chart.replace("'Price'", "'Other'")]:
+            with self.assertRaises(ValueError):
+                stockq.parse_chart(wrong)
+        r = Mock(); r.content = '<table class="indexpagetable"><tr><td>2026/10/02</td><td>6586</td></tr></table>'
+        previous = {'id': 'bdti', 'series': {'BDTI': [['2020-01-02', 1000]]}}
+        with patch.object(stockq.requests, 'get', return_value=r), patch.object(stockq, 'fetch_history', return_value=(stockq.parse_chart(chart), 'https://www.stockq.org/')), patch.object(stockq, 'load_indicator', return_value=previous), patch.object(stockq, 'save_indicator'):
+            stockq.fetch_one('bdti', *stockq.INDICES['bdti'])
+        self.assertEqual(previous['series']['BDTI'], [['2020-01-02', 1000], ['2021-12-07', 764], ['2026-10-02', 6586]])
+        with patch.object(stockq.requests, 'get', return_value=r), patch.object(stockq, 'fetch_history', return_value=([('2026-10-02', 1)], 'url')), patch.object(stockq, 'save_indicator') as save:
+            with self.assertRaises(ValueError):
+                stockq.fetch_one('bdti', *stockq.INDICES['bdti'])
+            save.assert_not_called()
+
+    def test_kdci_download_header_and_missing_vessel_classes(self):
+        import pandas as pd
+        rows = [['KOBC DRY BULK INDEX', None, None, None, None, None, None], ['번호', 'DATE', 'KDCI', 'CAPE', 'PANAMAX', 'SUPRAMAX', 'HANDY'], [2, '2026-10-02', 29659, 48847, 22489, 22040, 16459], [1, '2013-06-28', 1350, 0, 4500, 0, 0]]
+        def workbook():
+            buffer = BytesIO()
+            pd.DataFrame(rows).to_excel(buffer, header=False, index=False)
+            return buffer.getvalue()
+        parsed = kobc.parse_kdci_excel(workbook())
+        self.assertIn(('2013-06-28', 1350), parsed['KDCI'])
+        self.assertEqual(parsed['CAPE'], [('2026-10-02', 48847)])
+        self.assertIn(('2013-06-28', 4500), parsed['PANAMAX'])
+        rows[1][2], rows[1][3] = rows[1][3], rows[1][2]
+        with self.assertRaises(ValueError):
+            kobc.parse_kdci_excel(workbook())
+
+    def test_harpex_independent_public_series_and_ksg_index_column(self):
+        payload = json.dumps({'harpex': [{'date': '2026-10-02T00:00:00', 'value': 2456.39}]})
+        html = f"<div class='chart_harpex' data-json='{payload}'></div>"
+        self.assertEqual(harpex.parse_page(html + html), [('2026-10-02', 2456.39)])
+        with self.assertRaises(ValueError):
+            harpex.parse_page(html + html.replace('2456.39', '2440'))
+        header = '<table><caption>hrci 그래프</caption><thead><th>날짜</th><th>Index</th></thead><tbody><tr>'
+        row = '<td>2025.06.04</td><td>2,440</td>' + '<td>73.8</td>' * 14
+        self.assertEqual(kcla.parse_ksg_hrci(header + row + '</tr></tbody></table>'), [('2025-06-04', 2440)])
+        with self.assertRaises(ValueError):
+            kcla.parse_ksg_hrci(header + row.replace('<td>2,440</td>', '') + '</tr></tbody></table>')
+
     def test_kcla_dates_and_values_cannot_shift_when_a_cell_is_missing(self):
         html = '<table summary="SCFI"><tr><td rowspan="2">지수</td><td>2026.09.24</td><td>2026.09.30</td></tr><tr><td>3,686.62</td><td>3662.3</td></tr></table>'
         self.assertEqual(kcla.parse_table(html, 'SCFI'), [('2026-09-24', 3686.62), ('2026-09-30', 3662.3)])

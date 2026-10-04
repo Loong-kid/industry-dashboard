@@ -2,9 +2,10 @@
 """KOBC(한국해양진흥공사) 해양정보서비스 페처.
 
 - KCCI: 컨테이너 운임 종합지수(주간). timeseries 엑셀 다운로드(POST, 세션 쿠키 필요) — 전체 히스토리 제공.
-- KDCI: 건화물선 운임지수(일간, USD/day 기반 지수). gridList 페이지의 인라인 JS에서 최근 값 파싱 → 매일 누적.
+- KDCI: 건화물선 운임지수(일간, USD/day 기반 지수). 공식 기간 지정 엑셀의 전체 과거 자료 → 누적.
 """
 import io
+import math
 import re
 import sys
 from pathlib import Path
@@ -55,37 +56,47 @@ def fetch_kcci():
     save_indicator("shipping", doc, data_date=True)
 
 
+def parse_kdci_excel(content):
+    df = pd.read_excel(io.BytesIO(content), header=None)
+    expected = ["번호", "DATE", "KDCI", "CAPE", "PANAMAX", "SUPRAMAX", "HANDY"]
+    if list(df.iloc[1].fillna("")) != expected:
+        raise ValueError("KDCI 과거 엑셀 열 구조 변경")
+    series = {name: [] for name in expected[2:]}
+    dates = set()
+    for row in df.iloc[2:].itertuples(index=False, name=None):
+        d = pd.Timestamp(row[1]).date().isoformat()
+        if d in dates or d > pd.Timestamp.today().date().isoformat():
+            raise ValueError("KDCI 날짜 중복/미래 날짜")
+        dates.add(d)
+        for name, raw in zip(expected[2:], row[2:]):
+            v = to_float(raw)
+            if v is None or not pd.notna(v) or not math.isfinite(v) or v < 0:
+                raise ValueError("KDCI 과거 엑셀 지수값 비정상")
+            # 과거 파일의 미제공 선형은 0으로 표시됨. 0달러 운임으로 그리지 않는다.
+            if v > 0:
+                series[name].append((d, v))
+    if not dates or any(not points for points in series.values()):
+        raise ValueError("KDCI 과거 엑셀 자료 없음")
+    return series
+
+
 def fetch_kdci():
     s = requests.Session()
-    r = s.get(f"{BASE}/ebz/shippinginfo/kdci/gridList.do?mId=0301000000", headers=UA, timeout=30)
+    url = f"{BASE}/ebz/shippinginfo/kdci/gridList.do?mId=0301000000"
+    r = s.get(url, headers=UA, timeout=30)
     r.raise_for_status()
-    html = r.text
-    # 인라인 JS: categories.unshift("20260713"); series[i].data.unshift(parseFloat(unComma("27,823")));
-    dates = re.findall(r'categories\.unshift\("(\d{8})"\)', html)
-    names = re.findall(r"\{name:'([^']+)'", html)
-    values: dict[int, list] = {}
-    # 날짜 블록 단위로 잘라 series[i] 값을 매칭
-    blocks = re.split(r'categories\.unshift\("\d{8}"\);', html)[1:]
-    for bi, block in enumerate(blocks):
-        for si, val in re.findall(r'series\[(\d+)\]\.data\.unshift\(parseFloat\(unComma\("([\d,\.]+)"\)\)\)', block):
-            values.setdefault(int(si), []).append((bi, to_float(val)))
-
+    r = s.post(f"{BASE}/ebz/shippinginfo/kdci/excel/download.do?mId=0301000000",
+               data={"sDay": "2010-01-01", "eDay": pd.Timestamp.today().strftime("%Y-%m-%d"),
+                     "mId": "0301000000", "siteCode": "shippinginfo"},
+               headers={**UA, "Referer": url}, timeout=60)
+    r.raise_for_status()
+    series = parse_kdci_excel(r.content)
     doc = load_indicator("shipping", "kdci")
-    doc.update({
-        "name": "KDCI (KOBC 건화물선 운임지수)",
-        "unit": "USD/day",
-        "frequency": "daily",
-        "source": "한국해양진흥공사",
-        "source_url": "https://www.kobc.or.kr/ebz/shippinginfo/kdci/gridList.do?mId=0301000000",
-        "default_series": ["KDCI"],
-    })
-    for si, pairs in values.items():
-        name = names[si] if si < len(names) else f"S{si}"
-        pts = [(norm_date(dates[bi]), v) for bi, v in pairs if bi < len(dates)]
-        merge_points(doc, name, pts)
-    if not dates or not values:
-        raise ValueError("KDCI 날짜/값 파싱 0건: 기존 데이터 유지")
-    doc["data_stale_days"] = 10
+    doc.update(name="KDCI (KOBC 건화물선 운임지수)", unit="USD/day", frequency="daily",
+               source="한국해양진흥공사", source_url=url, default_series=["KDCI"], data_stale_days=10,
+               note="KOBC의 기간 지정 엑셀에 게시된 과거 자료까지 누적합니다. 초기 자료는 선형별 제공 시점과 관측 주기가 다릅니다. 미제공 선형의 0 표시는 결측으로 처리하며 보간하지 않습니다.")
+    for name, points in series.items():
+        merge_points(doc, name, points)
     save_indicator("shipping", doc, data_date=True)
 
 
