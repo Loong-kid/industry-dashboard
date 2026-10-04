@@ -824,7 +824,7 @@ function drawChart(canvas, doc, filtered) {
         x: {
           ticks: {
             color: css("--muted"),
-            maxTicksLimit: doc.komis_info || doc.month_labels ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
+            maxTicksLimit: doc.komis_info || doc.month_labels || doc.compact_ticks ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
             maxRotation: 0, autoSkip: true,
             font: { size: 11 },
             callback: function(value) { return periodLabel(doc, this.getLabelForValue(value)); },

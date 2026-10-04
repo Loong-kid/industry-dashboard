@@ -89,6 +89,14 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python scripts/fetch_fred.py
 
+      # 일간 TGA 마감 잔고·오버나이트 RRP (재무부 API·FRED 공개 CSV, 키 없음).
+      - name: TGA·RRP 수집기 검증
+        run: python -m unittest discover -s scripts -p test_liquidity.py
+      - name: 미국 유동성 수집
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_liquidity.py
+
       # 글로벌 국채 10/30년 (미 FRED · 한 ECOS · 일 MOF CSV).
       - name: 글로벌 국채 수집
         continue-on-error: true
