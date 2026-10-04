@@ -479,9 +479,14 @@ def collect_sp():
             write_json(path, doc)
 
 
+def collect_wfe_monthly():
+    from fetch_wfe_market_cap import run as collect
+    collect()
+
+
 def run():
     failures = []
-    for collect in [collect_world_bank, collect_korea_boards, collect_korea_monthly, collect_esma, collect_sifma, collect_sp]:
+    for collect in [collect_world_bank, collect_korea_boards, collect_korea_monthly, collect_esma, collect_sifma, collect_sp, collect_wfe_monthly]:
         try:
             collect()
         except Exception as exc:
