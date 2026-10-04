@@ -291,7 +291,7 @@
       "name": "매크로",
       "icon": "📊",
       "default_range": "3y",
-      "cadence": "FRED·ECOS·일본 재무성에서 매일 자동. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연. 국가별 부채는 IMF WEO(연 2회, 4·10월)·BIS(분기)·OECD 장기금리(월간, 1~2개월 지연).",
+      "cadence": "매일 오전 7:30(KST)에 새 공표·정정치를 자동 확인합니다. 원자료 주기는 물가 월간, 금리·국채 일간이며 일본 국고채는 약 2주 지연입니다. 국가별 부채는 IMF WEO(연 2회, 4·10월)·BIS(분기)·OECD 장기금리(월간, 1~2개월 지연)입니다. 시장규모는 World Bank·SIFMA 연간, S&P 공개 보고서 분기 자료이며 발표 후 다음 정상 수집 때 반영합니다. 연간 자료를 매일의 시총으로 보간하지 않으며, 새 발표가 없으면 기준연도가 유지됩니다.",
       "sections": [
         {
           "title": "인플레이션",
@@ -349,6 +349,26 @@
           "indicators": [
             "sov_yield_10y"
           ]
+        },
+        {
+          "title": "전체 주식시장 · 연말 시가총액",
+          "tab": "market_size",
+          "indicators": ["market_equity_us", "market_equity_global"]
+        },
+        {
+          "title": "전체 채권시장 · 연말 발행잔액",
+          "tab": "market_size",
+          "indicators": ["market_bonds_us", "market_bonds_global"]
+        },
+        {
+          "title": "S&P 500 · 나스닥 · 연말 규모",
+          "tab": "market_size",
+          "indicators": ["market_sp500", "market_nasdaq"]
+        },
+        {
+          "title": "S&P 500 · 분기 말 상세",
+          "tab": "market_size",
+          "indicators": ["market_sp500_q"]
         }
       ],
       "tabs": [
@@ -359,6 +379,11 @@
         {
           "id": "sovereign",
           "name": "국가별 부채·금리"
+        },
+        {
+          "id": "market_size",
+          "name": "시장규모",
+          "description": "시장규모를 조 달러로 표시합니다. 전체 주식은 상장기업 시총, 채권은 발행잔액입니다. 나스닥은 거래소의 미국 국내기업 기준이며 종합지수·100과 다릅니다. S&P 500은 공식 Market Value 기준입니다. 전체시장과 일부 시장의 범위는 서로 겹칩니다. 연간 차트는 전체기간을 표시하고, 데이터 기준연도와 수집일을 구분합니다."
         }
       ]
     },

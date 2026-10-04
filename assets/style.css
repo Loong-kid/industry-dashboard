@@ -491,7 +491,7 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
   #nav { flex-direction: row; min-width: 0; overflow-x: auto; }
   #nav a { flex-shrink: 0; white-space: nowrap; }
   .sidebar-foot { display: none; }
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
 }
 .institution-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 12px; }
 .institution-shortcuts button, .institution-overlap button { cursor: pointer; border: 1px solid var(--border); border-radius: 6px; padding: 5px 9px; background: var(--surface); color: var(--accent); font: inherit; }

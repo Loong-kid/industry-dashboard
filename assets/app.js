@@ -535,10 +535,11 @@ function renderCard(doc, indicatorId) {
     card.appendChild(info);
   }
 
-  if (doc.price_details?.length) {
+  const basisDetails = doc.basis_details || doc.price_details;
+  if (basisDetails?.length) {
     const details = document.createElement("details");
     details.className = "price-details";
-    details.innerHTML = `<summary>가격 기준 자세히</summary><dl>${doc.price_details.map(item =>
+    details.innerHTML = `<summary>${doc.basis_details ? "집계 기준 자세히" : "가격 기준 자세히"}</summary><dl>${basisDetails.map(item =>
       `<dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd>`).join("")}</dl>${doc.methodology_url ?
       `<a href="${escapeHtml(doc.methodology_url)}" target="_blank" rel="noopener">기준 해설 원문 ↗</a>` : ""}`;
     card.appendChild(details);
@@ -649,7 +650,7 @@ function renderIRDisclosure(doc) {
 
 function buildTable(doc, filtered) {
   const names = Object.keys(filtered);
-  const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, doc.point_sources ? 100 : 15);
+  const dates = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort().reverse().slice(0, doc.table_limit || (doc.point_sources ? 100 : 15));
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
   let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${doc.point_sources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;

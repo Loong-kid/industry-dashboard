@@ -1,0 +1,115 @@
+{
+ "name": "S&P 500 시장가치 (연말)",
+ "unit": "조 달러",
+ "frequency": "yearly",
+ "full_range": true,
+ "year_labels": true,
+ "zero_baseline": true,
+ "table_limit": 200,
+ "series": {
+  "시장규모": [
+   [
+    "2006-12-31",
+    12.729
+   ],
+   [
+    "2007-12-31",
+    12.868
+   ],
+   [
+    "2008-12-31",
+    7.852
+   ],
+   [
+    "2009-12-31",
+    9.928
+   ],
+   [
+    "2010-12-31",
+    11.43
+   ],
+   [
+    "2011-12-31",
+    11.385
+   ],
+   [
+    "2012-12-31",
+    12.742
+   ],
+   [
+    "2013-12-31",
+    16.495
+   ],
+   [
+    "2014-12-31",
+    18.245
+   ],
+   [
+    "2015-12-31",
+    17.9
+   ],
+   [
+    "2016-12-31",
+    19.2679
+   ],
+   [
+    "2017-12-31",
+    22.821
+   ],
+   [
+    "2018-12-31",
+    21.027
+   ],
+   [
+    "2019-12-31",
+    26.76
+   ],
+   [
+    "2020-12-31",
+    31.659
+   ],
+   [
+    "2021-12-31",
+    40.356
+   ],
+   [
+    "2022-12-31",
+    32.133
+   ],
+   [
+    "2023-12-31",
+    40.039
+   ],
+   [
+    "2024-12-31",
+    49.805
+   ]
+  ]
+ },
+ "source": "S&P Dow Jones Indices · 공식 Buybacks 보고서",
+ "source_url": "https://press.spglobal.com/2025-12-18-S-P-500-Q3-2025-Buybacks-Post-Modest-6-2-Gain-to-249-0-Billion-After-Declining-20-1-Amidst-Uncertainty-in-Q2-Q4-2025-Expenditures-Expected-to-Post-Similar-Growth,-As-2025-Anticipates-a-Record-1-Trillion",
+ "description": "S&P 공식 보고서의 MARKET VALUE 열을 추출한 시장가치. 지수 포인트나 ETF 순자산이 아니다.",
+ "note": "원문 Market Value 기준을 그대로 사용한다. 구성기업 전체 시총 합계와 유동주식 조정 지수 시총은 구분해야 하며 다른 기준의 값으로 이어 붙이지 않는다. 공개 표에 없는 기간은 추정하지 않는다.",
+ "basis_details": [
+  {
+   "label": "집계값",
+   "value": "S&P 500 Buybacks 보고서의 S&P 500, $ U.S. BILLIONS 표 중 MARKET VALUE. 매출·자사주 매입액·12개월 누적 행을 사용하지 않는다."
+  },
+  {
+   "label": "기준일",
+   "value": "연도 행 또는 실제 Q4 날짜 행의 연말 값. 중간 분기 값으로 연말을 추정하지 않는다."
+  },
+  {
+   "label": "환산",
+   "value": "십억 달러 ÷ 1,000. 지수 가격을 고정 배수로 환산한 추정치가 아니다."
+  },
+  {
+   "label": "자동 갱신",
+   "value": "매일 공식 보도자료 목록을 확인하고 최신 표의 과거 정정치도 반영한다. 후속 발표가 없으면 마지막 확인된 관측값을 유지한다."
+  }
+ ],
+ "fetched": "2026-10-04",
+ "updated": "2024-12-31",
+ "source_published": "2025-12-18",
+ "methodology_url": "https://press.spglobal.com/index.php?s=2429&keywords=buybacks&l=100"
+}
