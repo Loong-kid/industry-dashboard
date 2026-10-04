@@ -7,12 +7,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import import_manual
-from fetchers import kcla, kobc, stockq
+from fetchers import kcla, kobc, stockq, tankers_international
 
 JOBS = [
     ("KOBC (KCCI/KDCI)", kobc.run),
     ("KCLA (SCFI/CCFI/KCFI)", kcla.run),
     ("StockQ (BDI/BDTI/BCTI)", stockq.run),
+    ("Tankers International (VLCC 성약 TCE)", tankers_international.run),
     ("수기입력 CSV 변환", import_manual.run),
 ]
 

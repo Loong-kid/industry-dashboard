@@ -112,11 +112,33 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 | BDTI (더티탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BDTI.php) | 최신값만 제공 → 매일 누적 (히스토리는 쌓이면서 생김) |
 | BCTI (클린탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BCTI.php) | 위와 동일 |
 | 탱커 운임 Average Earnings (VLCC 등 5종) | 📄 | 신영 위클리 | $/day, 주간 |
+| TI VLCC 성약 TCE·주요 항로·성약 건수 | ✅ | [Tankers International 웹앱](https://app.tankersinternational.com/) | 공개 JSON 성약 응답을 매일 누적. 확정 계약의 발표일 기준 최근 7일 중앙값(USD/day), 표본 수·상태 필터 표. 무료 자료 지연 가능. 계약형 공식 API는 별도 문의 |
 | 벌커 운임 Average Earnings (케이프 등 3종) | 📄 | 신영 위클리 | $/day, 주간 |
 | 가스선 운임 (VLGC 2항로 + LNG 174k) | 📄 | 신영 위클리 | Spark 수기입력 계획을 대체함 |
 | ClarkSea Index (종합 해운운임) | 📄 | 신영 위클리 | $/day, 주간 |
 | FBX (Freightos 글로벌 컨테이너) | 🔍 | freightos.com/fbx | 확장 후보 |
 | 공공데이터포털 KCCI/KDCI 파일 | 🔍 | [data.go.kr KCCI](https://www.data.go.kr/data/15131881/fileData.do) | KOBC 직접 수집이 더 나아서 미사용 (백업 경로) |
+
+### Tankers International VLCC 성약 (2026-10-04 추가)
+
+- 수집: `scripts/fetchers/tankers_international.py`, `fetch_all.py`를 통해 매일 KST 07:30 워크플로에 포함.
+- 현재 웹앱이 사용하는 공개 엔드포인트: `https://fixturesappfunctionsproduction.azurewebsites.net/api/v1/fixtures`.
+  별도 계약형 공식 API와 구분한다. [공식 API 안내](https://tankersinternational.com/2022/10/13/accessible-data-means-better-decisions/), [앱 이용 조건](https://app.tankersinternational.com/terms).
+  로그인·유료 `Last Done` 응답과 앱의 잠금 화면에 쓰이는 데모 값은 사용하지 않는다.
+- `ti_vlcc_fixtures.json`에 FixtureId 기준으로 누적. 응답에서 빠진 과거 성약은 보존하고 같은 성약의 상태·TCE·발표일 정정은 반영한다.
+- `ti_vlcc_tce.json`: 전체 및 원본 4개 선령/스크러버 분류의 7일 중앙값.
+  `ti_vlcc_routes.json`: AG→China/Korea, WAF→China, USG→China, Brazil→China.
+  `ti_vlcc_count.json`: 최근 7일 확정 건수 및 TCE 공개 건수.
+- TCE는 `ActualValues.ActTcPerDayIncIdle`(대기일 포함 항차 TCE). 숫자가 없을 때만 정확한 `USD …` 문자열을 사용.
+  `K/Day` 반올림값·대기일 제외 왕복 TCE·비공개 WS 값을 대체값으로 쓰지 않는다. 0/음수는 유효값이며 결측은 공백.
+- `Fixed`만 중앙값에 포함. `On Subs`/`Failed`는 표에서 조회 가능. 발표일 D의 D-6~D, 동일 가중치, 첫 6일 제외.
+  마지막 공개 발표일 이후로 연장하지 않으며 유효 표본이 없는 창은 null, 차트 연결선도 끊는다.
+  날짜별·시리즈별 표본 수를 툴팁과 대표값 옆에 표시한다.
+- 실제 계약/선적일과 다른 **발표일 기반 표본 지표**이며 TI 풀의 실현 수익 또는 전체 시장 평균이 아니다.
+  과거 시계열은 최신 공개 상태를 반영해 재계산하므로 당시 시점의 고정 빈티지가 아니다.
+- 빈 응답/형식 변경/중복 ID/페이지 분할 신호/유효 확정 TCE가 없는 응답은 저장 전에 실패시킨다.
+  기존 데이터와 수집일을 유지해 stale 경고가 동작한다. 공개 엔드포인트 제공 범위는 변경될 수 있다.
+  공개 재배포·상업적 활용은 TI 이용 조건 및 별도 데이터/API 계약 범위를 확인해야 한다.
 
 ## 전력 — EIA-860M (미국 발전설비 월간 인벤토리, 2026-08-10 구축) ✅
 

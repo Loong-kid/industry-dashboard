@@ -188,6 +188,7 @@ async function renderIndustry() {
         : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
+        : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -472,7 +473,8 @@ function renderCard(doc, indicatorId) {
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
-      <span class="stat-date">${dateLabel(last[0])}</span>`;
+      <span class="stat-date">${dateLabel(last[0])}</span>
+      ${doc.sample_counts ? `<span class="stat-unit">표본 ${new Map(doc.sample_counts[seriesName] || []).get(last[0]) ?? 0}건</span>` : ""}`;
   };
   setStat(mainName);
 
@@ -757,7 +759,9 @@ function drawChart(canvas, doc, filtered) {
             label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
-              return dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : [];
+              const samples = items.filter(item => doc.sample_counts?.[item.dataset?.label]).map(item =>
+                `${item.dataset.label}: 표본 ${new Map(doc.sample_counts[item.dataset.label]).get(item.label) ?? 0}건`);
+              return [...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples];
             },
           },
         },
@@ -974,6 +978,154 @@ function renderOrderTable(doc) {
     tableWrap.appendChild(table);
   }
 
+  renderRows();
+  return card;
+}
+
+// ── TI VLCC 성약: 상태·항로·선박 사양별 조회 ────────────────────
+function renderTIFixtures(doc) {
+  const card = document.createElement("div");
+  card.className = "card order-table-card ti-fixtures";
+  if (!doc?.fixtures?.length) {
+    card.innerHTML = `<div class="card-name">${escapeHtml(doc?.name || "TI VLCC 성약 내역")}</div><div class="card-empty">아직 데이터가 없습니다.</div>`;
+    return card;
+  }
+  const head = document.createElement("div");
+  head.className = "card-head";
+  const title = document.createElement("div");
+  title.className = "card-name";
+  title.textContent = doc.name;
+  head.appendChild(title);
+  state.tableRange[doc.id] ??= TABLE_RANGE_DEFAULT;
+  head.appendChild(buildTableRangePicker(state.tableRange[doc.id], range => {
+    state.tableRange[doc.id] = range;
+    renderRows();
+  }));
+  card.appendChild(head);
+  const note = document.createElement("p");
+  note.className = "ir-scope-note";
+  note.textContent = `${doc.description} 최신 공개: ${doc.updated} · 수집: ${doc.fetched}`;
+  card.appendChild(note);
+  const sd = staleDays(doc);
+  if (sd != null) {
+    const stale = document.createElement("p");
+    stale.className = "card-empty is-error";
+    stale.textContent = `수집 ${sd}일 전 · 마지막 수집: ${doc.fetched}`;
+    card.appendChild(stale);
+  }
+  const filters = document.createElement("div");
+  filters.className = "order-filters";
+  card.appendChild(filters);
+  const filt = {status: "Fixed", route: "", category: "", search: "", sortKey: "reported_time", sortDir: -1};
+  const statusNames = {Fixed: "확정", "On Subs": "조건부", Failed: "실패", Unknown: "미확인"};
+  function selectFilter(label, key, values, display = value => value) {
+    const wrap = document.createElement("label");
+    wrap.className = "ti-filter";
+    wrap.appendChild(document.createTextNode(label));
+    const select = document.createElement("select");
+    select.setAttribute("aria-label", label);
+    for (const value of ["", ...values]) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value ? display(value) : "전체";
+      option.selected = value === filt[key];
+      select.appendChild(option);
+    }
+    select.addEventListener("change", () => { filt[key] = select.value; renderRows(); });
+    wrap.appendChild(select);
+    filters.appendChild(wrap);
+  }
+  selectFilter("상태", "status", [...new Set(doc.fixtures.map(row => row.status))].sort(), value => statusNames[value] || value);
+  selectFilter("항로", "route", [...new Set(doc.fixtures.map(row => row.route))].sort());
+  selectFilter("선령·연료", "category", [...new Set(doc.fixtures.map(row => row.category))].sort());
+  const searchWrap = document.createElement("label");
+  searchWrap.className = "order-search";
+  const search = document.createElement("input");
+  search.type = "search";
+  search.placeholder = "선박·운항사·용선사 검색";
+  search.setAttribute("aria-label", search.placeholder);
+  search.addEventListener("input", () => { filt.search = search.value.trim().toLowerCase(); renderRows(); });
+  searchWrap.appendChild(search);
+  filters.appendChild(searchWrap);
+  const count = document.createElement("div");
+  count.className = "order-count";
+  card.appendChild(count);
+  const wrap = document.createElement("div");
+  wrap.className = "order-table-wrap";
+  card.appendChild(wrap);
+  const columns = [
+    ["reported_time", "발표 시각"], ["vessel", "선박"], ["route", "항로"],
+    ["category", "선령·연료"], ["tce", "TCE ($/day)"], ["cargo_tonnes", "화물 (톤)"],
+    ["status", "상태"], ["operator", "운항사"], ["charterer", "용선사"], ["source_url", "원문"],
+  ];
+  function renderRows() {
+    const cutoff = cutoffFor(state.tableRange[doc.id]);
+    const rows = doc.fixtures.filter(row => row.reported_date >= cutoff
+      && (!filt.status || row.status === filt.status) && (!filt.route || row.route === filt.route)
+      && (!filt.category || row.category === filt.category)
+      && (!filt.search || `${row.vessel} ${row.operator} ${row.charterer}`.toLowerCase().includes(filt.search)));
+    if (filt.sortKey) rows.sort((a, b) => {
+      const value = row => filt.sortKey === "reported_time"
+        ? `${row.reported_date} ${row.reported_time.split(" ").at(-1) || ""}` : row[filt.sortKey];
+      const av = value(a), bv = value(b);
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      return av > bv ? filt.sortDir : av < bv ? -filt.sortDir : 0;
+    });
+    count.textContent = `${rows.length.toLocaleString("ko-KR")}건 표시 · TCE 공개 ${rows.filter(row => row.tce != null).length}건 · 전체 누적 ${doc.fixtures.length}건`;
+    wrap.innerHTML = "";
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const header = document.createElement("tr");
+    for (const [key, label] of columns) {
+      const th = document.createElement("th");
+      th.textContent = label;
+      if (key !== "source_url") {
+        th.classList.add("sortable");
+        if (key === filt.sortKey) th.classList.add(filt.sortDir > 0 ? "sort-asc" : "sort-desc");
+        th.addEventListener("click", () => { cycleSortState(filt, key); renderRows(); });
+      }
+      if (["tce", "cargo_tonnes"].includes(key)) th.style.textAlign = "right";
+      header.appendChild(th);
+    }
+    thead.appendChild(header);
+    table.appendChild(thead);
+    const tbody = document.createElement("tbody");
+    for (const row of rows) {
+      const tr = document.createElement("tr");
+      for (const [key] of columns) {
+        const td = document.createElement("td");
+        if (key === "source_url") {
+          const link = document.createElement("a");
+          link.href = `https://app.tankersinternational.com/fixtures/${encodeURIComponent(row.fixture_id)}`;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = "TI ↗";
+          td.appendChild(link);
+        } else if (["tce", "cargo_tonnes"].includes(key)) {
+          td.style.textAlign = "right";
+          td.textContent = row[key] == null ? "—" : fmt(row[key]);
+        } else td.textContent = key === "status" ? statusNames[row.status] || row.status : row[key] || "—";
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    if (!rows.length) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = columns.length;
+      td.textContent = "선택한 조건에 해당하는 성약이 없습니다.";
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+  }
+  const foot = document.createElement("div");
+  foot.className = "card-foot";
+  foot.innerHTML = `출처: <a href="https://app.tankersinternational.com/" target="_blank" rel="noopener">Tankers International</a> · <a href="https://app.tankersinternational.com/terms" target="_blank" rel="noopener">이용 조건</a>`;
+  card.appendChild(foot);
   renderRows();
   return card;
 }

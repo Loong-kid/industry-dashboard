@@ -366,6 +366,11 @@ body {
   min-width: 200px;
 }
 .order-search input::placeholder { color: var(--muted); }
+.ti-filter { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.ti-filter select {
+  font: inherit; padding: 5px 8px; max-width: 230px; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--surface); color: var(--ink);
+}
 .order-count { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
 .order-table-wrap { overflow-x: auto; max-height: 640px; overflow-y: auto; }
 .order-table-wrap table {

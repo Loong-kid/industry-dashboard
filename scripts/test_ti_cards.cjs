@@ -1,0 +1,82 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const {context, charts} = require('./test_mineral_cards.cjs');
+const source = fs.readFileSync('assets/app.js', 'utf8');
+const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
+const shipping = catalog.industries.find(ind => ind.id === 'shipping');
+for (const id of ['ti_vlcc_tce', 'ti_vlcc_routes', 'ti_vlcc_count']) {
+  assert(shipping.sections.some(section => section.indicators.includes(id)));
+  const doc = JSON.parse(fs.readFileSync(`data/shipping/${id}.json`, 'utf8'));
+  const card = context.renderCard(doc, id);
+  const chart = charts.at(-1);
+  assert.equal(chart.data.labels.at(-1), doc.updated, 'Do not extend through unpublished collection days');
+  assert(chart.data.datasets.every(dataset => dataset.spanGaps === false));
+  assert(!card.children.find(child => child.className === 'card-stat').innerHTML.includes('stat-delta'), 'No misleading daily delta for rolling medians');
+  assert(card.children.some(child => child.children?.some(link => link.textContent?.includes('이용 조건') && link.href.endsWith('/terms'))));
+  if (doc.sample_counts) {
+    const series = doc.default_series[0], day = doc.updated;
+    const count = new Map(doc.sample_counts[series]).get(day);
+    assert(card.children.find(child => child.className === 'card-stat').innerHTML.includes(`표본 ${count}건`));
+    const tooltip = chart.options.plugins.tooltip.callbacks.afterBody([{label: day, dataset: {label: series}}]);
+    assert.equal(tooltip[0], `${series}: 표본 ${count}건`);
+    assert(chart.data.datasets.some(dataset => dataset.data.some(value => value == null)), 'Route/category observations must retain missing samples');
+  }
+}
+
+// A minimal DOM exercises the real renderer and its event handlers, including remote text safety.
+const createElement = context.document.createElement;
+context.document.createElement = tag => {
+  const el = createElement(tag);
+  el.setAttribute = (key, value) => { el[key] = value; };
+  el.classList.add = () => {};
+  el.querySelectorAll = () => [];
+  return el;
+};
+context.state.tableRange = {};
+context.cutoffFor = () => '0000-00-00';
+vm.runInContext(source.slice(source.indexOf('function cycleSortState('), source.indexOf('// ── 지표 카드')), context);
+vm.runInContext(source.slice(source.indexOf('function renderTIFixtures('), source.indexOf('// ── 글로벌 신조프로젝트')), context);
+const doc = JSON.parse(fs.readFileSync('data/shipping/ti_vlcc_fixtures.json', 'utf8'));
+assert(shipping.sections.some(section => section.table_kind === 'ti_fixtures' && section.indicators.includes(doc.id)));
+const card = context.renderTIFixtures(doc);
+const filters = card.children.find(child => child.className === 'order-filters');
+const selects = filters.children.filter(child => child.className === 'ti-filter').map(child => child.children.at(-1));
+const wrap = card.children.find(child => child.className === 'order-table-wrap');
+const count = card.children.find(child => child.className === 'order-count');
+const currentTable = () => wrap.children.at(-1);
+const body = () => currentTable().children[1];
+const fixed = doc.fixtures.filter(row => row.status === 'Fixed');
+assert.equal(body().children.length, fixed.length, 'Default to Fixed only');
+assert(count.textContent.includes(`${fixed.length}건 표시`));
+assert(body().children.every(row => row.children[6].textContent === '확정'));
+selects[0].value = 'Failed'; selects[0].listeners.change();
+assert.equal(body().children.length, doc.fixtures.filter(row => row.status === 'Failed').length);
+assert(body().children.every(row => row.children[6].textContent === '실패'));
+selects[0].value = ''; selects[0].listeners.change();
+selects[1].value = 'AG → China'; selects[1].listeners.change();
+assert(body().children.every(row => row.children[2].textContent === 'AG → China'));
+selects[2].value = 'Modern (Scrubber)'; selects[2].listeners.change();
+assert(body().children.every(row => row.children[3].textContent === 'Modern (Scrubber)'));
+selects[1].value = ''; selects[1].listeners.change();
+selects[2].value = ''; selects[2].listeners.change();
+const search = filters.children.find(child => child.className === 'order-search').children[0];
+search.value = 'no-matching-fixture-ever'; search.listeners.input();
+assert.equal(body().children.length, 1);
+assert(body().children[0].children[0].textContent.includes('해당하는 성약이 없습니다'));
+search.value = ''; search.listeners.input();
+assert.equal(body().children.length, doc.fixtures.length);
+const tceHeader = currentTable().children[0].children[0].children[4];
+tceHeader.listeners.click();
+const sortedValues = body().children.map(row => row.children[4].textContent);
+const expected = doc.fixtures.filter(row => row.tce != null).map(row => row.tce).sort((a, b) => b - a);
+assert.deepEqual(sortedValues.slice(0, expected.length), expected.map(value => context.fmt(value)));
+assert(sortedValues.slice(expected.length).every(value => value === '—'), 'Missing TCE stays last');
+const unsafe = structuredClone(doc);
+unsafe.fixtures = [{...doc.fixtures[0], status: 'Fixed', vessel: '<img src=x onerror=alert(1)>', tce: null}];
+const unsafeCard = context.renderTIFixtures(unsafe);
+const unsafeRow = unsafeCard.children.find(child => child.className === 'order-table-wrap').children.at(-1).children[1].children[0];
+assert.equal(unsafeRow.children[1].textContent, unsafe.fixtures[0].vessel);
+assert.equal(unsafeRow.children[1].innerHTML, '', 'External fixture strings must use textContent');
+assert.equal(unsafeRow.children[4].textContent, '—');
+console.log('PASS: TI chart placement, date/gap/sample handling, status/route/category/search filters, numeric sorting and safe remote text');

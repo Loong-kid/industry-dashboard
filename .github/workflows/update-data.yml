@@ -22,7 +22,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
 
-      # 해운/조선 시장지표 (KOBC/KCLA/StockQ). 실패해도 DART는 진행.
+      # 해운/조선 시장지표 (KOBC/KCLA/StockQ/TI VLCC 성약). 실패해도 DART는 진행.
       - name: 시장지표 수집
         continue-on-error: true
         run: python scripts/fetch_all.py
