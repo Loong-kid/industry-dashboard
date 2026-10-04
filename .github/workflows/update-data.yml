@@ -134,6 +134,13 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_mineral_prices.py
 
+      - name: 광물 국가별 생산량·매장량 파서 검증
+        run: python -m unittest discover -s scripts -p test_mineral_supply.py
+      - name: 광물 국가별 생산량·매장량 수집
+        continue-on-error: true
+        timeout-minutes: 6
+        run: python scripts/fetch_mineral_supply.py
+
       - name: SHFE 구리 주간 재고 수집
         continue-on-error: true
         run: python scripts/fetch_copper_inventory.py
