@@ -507,7 +507,7 @@ function renderCard(doc, indicatorId) {
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pointsChange ? "p · 전월 대비" : ""}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
-      <span class="stat-date">${doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}</span>
+      <span class="stat-date">${doc.cumulative_since ? `${doc.cumulative_since}년부터 누적 · ${last[0].slice(0, 7)}` : doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}${doc.point_annotations?.[last[0]] ? " · 추정" : ""}</span>
       ${doc.sample_counts ? `<span class="stat-unit">표본 ${new Map(doc.sample_counts[seriesName] || []).get(last[0]) ?? 0}건</span>` : ""}`;
   };
   setStat(mainName);
@@ -697,7 +697,8 @@ function buildTable(doc, filtered) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
     const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : ref.label ? escapeHtml(ref.label) : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
-    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
+    const estimateTag = doc.point_annotations?.[d] ? ` <span title="${escapeHtml(doc.point_annotations[d])}">· 추정</span>` : "";
+    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
@@ -750,6 +751,23 @@ function drawChart(canvas, doc, filtered) {
   const datasets = names.map((n, i) => {
     const data = new Array(labels.length).fill(null);
     for (const [d, v] of filtered[n]) data[idx[d]] = v;
+    // Chart.js style callbacks also visit skipped points. Resolve both ends to
+    // the surrounding observed values so the whole missing interval is styled.
+    const gapBounds = ctx => {
+      let start = ctx.p0DataIndex, end = ctx.p1DataIndex;
+      while (start > 0 && data[start] == null) start--;
+      while (end < data.length - 1 && data[end] == null) end++;
+      return [labels[start], labels[end]];
+    };
+    const gapMonths = ctx => {
+      const offset = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7));
+      const [start, end] = gapBounds(ctx);
+      return offset(end) - offset(start);
+    };
+    const januaryBridge = ctx => {
+      const [start, end] = gapBounds(ctx);
+      return gapMonths(ctx) === 2 && start.slice(5, 7) === "12" && end.slice(5, 7) === "02";
+    };
     const color = palette[i % palette.length];
     const count = data.filter((v) => v != null).length;
     return {
@@ -763,9 +781,12 @@ function drawChart(canvas, doc, filtered) {
       pointHoverRadius: 5,
       pointHoverBorderColor: css("--surface"),
       pointHoverBorderWidth: 2,
-      spanGaps: doc.span_gaps ?? true,
-      segment: doc.forecast_from || doc.highlight_gaps ? {
+      spanGaps: doc.bridge_missing_january ? true : doc.span_gaps ?? true,
+      segment: doc.forecast_from || doc.highlight_gaps || doc.bridge_missing_january ? {
+        borderColor: ctx => doc.bridge_missing_january && gapMonths(ctx) > 1 && !januaryBridge(ctx)
+          ? "transparent" : undefined,
         borderDash: (ctx) => {
+          if (doc.bridge_missing_january && januaryBridge(ctx)) return [5, 4];
           // The connector into the first projected value is forecast too.
           if (doc.forecast_from && labels[ctx.p1DataIndex] >= doc.forecast_from) return [6, 4];
           if (!doc.highlight_gaps) return undefined;
@@ -808,13 +829,13 @@ function drawChart(canvas, doc, filtered) {
           callbacks: {
             title: (items) => items.length ? periodLabel(doc, items[0].label)
               + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
-            label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
+            label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
               const report = doc.series_sources?.[items[0]?.dataset?.label]?.[items[0]?.label] || doc.period_sources?.[items[0]?.label];
               const samples = items.filter(item => doc.sample_counts?.[item.dataset?.label]).map(item =>
                 `${item.dataset.label}: 표본 ${new Map(doc.sample_counts[item.dataset.label]).get(item.label) ?? 0}건`);
-              return [...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples,
+              return [...(doc.point_annotations?.[items[0]?.label] ? [doc.point_annotations[items[0].label]] : []), ...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples,
                 ...(report ? [report.label ? `${report.label}${report.published ? ` · 공표 ${report.published}` : ""}` : `WFE 원문: ${report.issue} 월보 (발행월)`] : [])];
             },
           },

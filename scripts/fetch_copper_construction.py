@@ -126,6 +126,63 @@ def base_doc(identifier, name, source, url):
             "data_stale_days": 100, "change_mode": "none", "span_gaps": False, "series": {}}
 
 
+def cn_scale_views(level, unit):
+    """Derived quantities never sum overlapping YTD observations."""
+    values = dict(level)
+    monthly, annotations = {}, {}
+    for dt, value in sorted(values.items()):
+        year, month = int(dt[:4]), int(dt[5:7])
+        if month == 1:
+            monthly[dt] = value
+        elif month == 2 and month_end(year, 1) not in values:
+            for m in [1, 2]:
+                date_key = month_end(year, m)
+                monthly[date_key] = round(value / 2, 4)
+                annotations[date_key] = "추정 · 1~2월 누적 물량을 절반씩 배분"
+        else:
+            prior = values.get(month_end(year, month - 1))
+            # A missing prior month or a negative revision cannot be monthly output.
+            if prior is not None and value >= prior:
+                monthly[dt] = round(value - prior, 4)
+    complete_years = [int(dt[:4]) for dt in values if dt[5:7] == "12"]
+    total, start = [], min(complete_years) if complete_years else None
+    if start is not None:
+        carried = 0
+        for year in range(start, max(int(dt[:4]) for dt in values) + 1):
+            total.extend([[dt, round(carried + value, 4)] for dt, value in sorted(values.items())
+                          if int(dt[:4]) == year])
+            annual = values.get(month_end(year, 12))
+            if annual is None:
+                break  # Do not silently resume across a missing annual total.
+            carried += annual
+    return {
+        "monthly": {"label": "월별 규모", "unit": unit, "series": {"월별 규모 (계산)": sorted(monthly.items())},
+                    "description": "공식 연초 누적 자료에서 계산한 월별 물량입니다. 월별 증감과 계절적 흐름을 비교할 수 있습니다.",
+                    "default_series": ["월별 규모 (계산)"], "cumulative": False,
+                    "bridge_missing_january": False, "chart_type": "bar", "zero_baseline": True,
+                    "point_annotations": annotations,
+                    "note": "누적 규모의 전월 차이로 계산합니다. 1~2월은 절반씩 배분한 추정치이며 실제 월별 실적과 다를 수 있습니다. 원자료 수정으로 전월 차이가 음수이거나 전월 자료가 없으면 비워둡니다."},
+        "total": {"label": "전체 누적", "unit": unit, "series": {"전체 누적 규모": total},
+                  "description": "각 연도의 실적을 이어 더한 장기 합계입니다. 현재 잔존 건물이나 재고 규모를 뜻하지 않습니다.",
+                  "default_series": ["전체 누적 규모"], "cumulative": False, "cumulative_since": start,
+                  "bridge_missing_january": True,
+                  "note": f"{start}년부터의 이전 연도 연간 실적 + 현재 연초 누적입니다. 연초 누적 값을 매월 중복 합산하지 않습니다. 1월 미발표 구간은 점선으로 연결합니다. 통계 범위·수정 기준이 바뀌어 장기 합계는 참고용입니다."},
+    }
+
+
+def set_cn_views(doc, level, unit):
+    label = "누적 전년동기비"
+    doc.update(bridge_missing_january=True,
+               note="1월은 별도 발표하지 않으며 2월은 1~2월 합산입니다. 12월~2월의 점선은 흐름 연결이며 1월 추정값이 아닙니다. 증가율은 NBS의 공식 비교 가능 기준입니다.")
+    doc["series_views"] = {
+        "yoy": {"label": "누적 증가율", "unit": "%", "series": doc["series"], "default_series": [label]},
+        "level": {"label": "누적 규모", "unit": unit, "series": {"누적 규모": level}, "default_series": ["누적 규모"],
+                  "bridge_missing_january": False,
+                  "note": "연초 이후 누적 규모입니다. 1월은 별도 발표하지 않으며 2월은 1~2월 합산입니다."},
+    }
+    doc["series_views"].update(cn_scale_views(level, unit))
+
+
 def fetch_cn(s, card):
     suffix, name, category, level_id, growth_id, unit, divisor, description = card
     identifier = PREFIX + suffix
@@ -134,14 +191,12 @@ def fetch_cn(s, card):
     label = "누적 전년동기비"
     doc = base_doc(identifier, name, "중국 국가통계국 (NBS)", NBS_PAGE)
     doc.update(unit="%", default_series=[label], cumulative=True, description=description,
-               note="1월은 별도 발표하지 않으며 2월은 1~2월 합산입니다. 증가율은 NBS의 공식 비교 가능 기준입니다.")
+               bridge_missing_january=True,
+               note="1월은 별도 발표하지 않으며 2월은 1~2월 합산입니다. 12월~2월의 점선은 흐름 연결이며 1월 추정값이 아닙니다. 증가율은 NBS의 공식 비교 가능 기준입니다.")
     doc["series"][label] = merged(old.get("series", {}).get(label), result[growth_id])
     old_level = old.get("series_views", {}).get("level", {}).get("series", {}).get("누적 규모", [])
     level = merged(old_level, [[dt, round(v / divisor, 4)] for dt, v in result[level_id]])
-    doc["series_views"] = {
-        "yoy": {"label": "누적 증가율", "unit": "%", "series": doc["series"], "default_series": [label]},
-        "level": {"label": "누적 규모", "unit": unit, "series": {"누적 규모": level}, "default_series": ["누적 규모"]},
-    }
+    set_cn_views(doc, level, unit)
     doc["default_view"] = "yoy"
     doc["nbs_identifiers"] = {"category": category, "level": level_id, "growth": growth_id}
     save_indicator("commodities", doc, data_date=True)

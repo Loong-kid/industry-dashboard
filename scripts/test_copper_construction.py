@@ -94,6 +94,32 @@ class ConstructionTests(unittest.TestCase):
         pts = [["2024-02-29", 100], ["2024-04-30", 200], ["2025-02-28", 110], ["2025-03-31", 120]]
         self.assertEqual(fc.yoy(pts), [["2025-02-28", 10.0]])
 
+    def test_monthly_split_and_whole_total_do_not_double_count_ytd(self):
+        pts = [["2024-02-29", 20], ["2024-03-31", 35], ["2024-11-30", 90],
+               ["2024-12-31", 100], ["2025-02-28", 30], ["2025-03-31", 45]]
+        views = fc.cn_scale_views(pts, "units")
+        monthly = dict(next(iter(views["monthly"]["series"].values())))
+        self.assertEqual(monthly["2024-01-31"], 10)
+        self.assertEqual(monthly["2024-02-29"], 10)
+        self.assertEqual(monthly["2024-03-31"], 15)
+        self.assertNotIn("2024-11-30", monthly)  # October is absent.
+        self.assertEqual(monthly["2024-12-31"], 10)
+        self.assertIn("2024-02-29", views["monthly"]["point_annotations"])
+        total = dict(next(iter(views["total"]["series"].values())))
+        self.assertEqual(total["2024-12-31"], 100)
+        self.assertEqual(total["2025-02-28"], 130)
+        self.assertEqual(total["2025-03-31"], 145)
+        self.assertNotIn("2025-01-31", total)
+
+    def test_missing_annual_total_and_negative_revision_are_not_filled(self):
+        pts = [["2023-12-31", 100], ["2024-02-29", 20], ["2024-03-31", 19], ["2025-02-28", 30]]
+        views = fc.cn_scale_views(pts, "units")
+        monthly = dict(next(iter(views["monthly"]["series"].values())))
+        self.assertNotIn("2024-03-31", monthly)
+        total = dict(next(iter(views["total"]["series"].values())))
+        self.assertNotIn("2025-02-28", total)
+        self.assertEqual(total["2024-02-29"], 120)
+
     def test_failure_keeps_data_and_does_not_block_other_country(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(common, "DATA_DIR", Path(directory)):
             p = Path(directory) / "commodities" / "comm_copper_cn_starts.json"
