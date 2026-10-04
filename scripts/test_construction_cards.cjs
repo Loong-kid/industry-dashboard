@@ -75,6 +75,23 @@ for(const id of ids) {
     assert(table.innerHTML.includes(doc.updated.slice(0,7)));
     const label=Object.keys(newDoc.series)[0];
     assert(table.innerHTML.includes(context.fmt(newDoc.series[label].at(-1)[1])),'Table values follow selected view');
+    if(id==='comm_copper_us_housing') {
+      for(const key of ['ytd','total']) {
+        const view=doc.series_views[key];
+        const controls=root.children[0].children.find(c=>c.className==='series-view-controls');
+        controls.children[Object.keys(doc.series_views).indexOf(key)].listeners.click();
+        const active=charts.at(-1);
+        assert.equal(active.type,'line');
+        assert.equal(active.data.datasets.length,3);
+        assert(active.data.datasets.every(ds=>!ds.hidden));
+        assert.equal(context.state.charts.length,baseline);
+        const headline=root.children[0].children.find(c=>c.className==='card-stat').innerHTML;
+        assert(headline.includes('천 호')&&!headline.includes('천 호/년'));
+        assert(headline.includes(key==='ytd'?'1~8월 누적':'1968년부터 누적'));
+        const display={...doc,...view};
+        assert(context.buildTable(display,view.series).includes(context.fmt(view.series[Object.keys(view.series)[0]].at(-1)[1])));
+      }
+    }
     if(doc.cumulative) {
       for(const [key,view] of Object.entries(doc.series_views)) {
         const controls=root.children[0].children.find(c=>c.className==='series-view-controls');

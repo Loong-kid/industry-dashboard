@@ -67,10 +67,39 @@ class ConstructionTests(unittest.TestCase):
         for offset in range(600):
             s.append([datetime(1959 + offset // 12, offset % 12 + 1, 1), 1200 + offset, 999])
         s.append([datetime(2099, 1, 1), 99999])
+        monthly = w.create_sheet("Not Seasonally Adjusted")
+        monthly.append(["Thousands of units"])
+        monthly.append(["Not seasonally adjusted"])
+        for offset in range(600):
+            monthly.append([datetime(1959 + offset // 12, offset % 12 + 1, 1), 96.2, 9999])
         pts = fc.parse_housing(workbook_bytes(w), "2026-10-05")
         self.assertEqual(len(pts), 600)
         self.assertEqual(pts[0], ["1959-01-31", 1200])
         self.assertEqual(pts[-1], ["2008-12-31", 1799])
+        counts = fc.parse_housing(workbook_bytes(w), "2026-10-05", seasonally_adjusted=False)
+        self.assertEqual(counts[0], ["1959-01-31", 96.2])
+        self.assertNotEqual(counts[0][1], pts[0][1] / 12)
+
+    def test_us_cumulative_resets_year_and_keeps_missing_months_unknown(self):
+        pts = [["2024-11-30", 99], ["2024-12-31", 100], ["2025-01-31", 10],
+               ["2025-02-28", 20], ["2025-04-30", 40], ["2026-01-31", 15], ["2026-02-28", 25]]
+        ytd = dict(fc.cumulative_months(pts, yearly=True))
+        self.assertNotIn("2024-12-31", ytd)
+        self.assertEqual(ytd["2025-02-28"], 30)
+        self.assertNotIn("2025-04-30", ytd)
+        self.assertEqual(ytd["2026-02-28"], 40)
+        total = fc.cumulative_months(pts, start="2025-01-31")
+        self.assertEqual(total, [["2025-01-31", 10], ["2025-02-28", 30]])
+
+    def test_us_cumulative_uses_common_start_and_independent_series(self):
+        doc = {"monthly_counts": {"starts": [["2024-12-31", 999], ["2025-01-31", 10], ["2025-02-28", 20]],
+                                 "permits": [["2025-01-31", 30], ["2025-02-28", 40]],
+                                 "completions": [["2025-01-31", 50], ["2025-02-28", 60]]}, "series_views": {}}
+        fc.set_us_housing_cumulative_views(doc)
+        total = doc["series_views"]["total"]
+        self.assertEqual(total["cumulative_since"], 2025)
+        self.assertEqual(total["unit"], "천 호")
+        self.assertEqual([pts[-1][1] for pts in total["series"].values()], [30, 70, 110])
 
     def test_spending_reordered_columns_revision_flags_and_unit_conversion(self):
         w = openpyxl.Workbook()
