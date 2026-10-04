@@ -140,6 +140,12 @@ jobs:
         continue-on-error: true
         timeout-minutes: 6
         run: python scripts/fetch_mineral_supply.py
+      - name: 구리 세계 전체 생산량·매장량 파서 검증
+        run: python -m unittest discover -s scripts -p test_copper_world_supply.py
+      - name: 구리 세계 전체 생산량·매장량 수집
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_copper_world_supply.py
 
       - name: SHFE 구리 주간 재고 수집
         continue-on-error: true

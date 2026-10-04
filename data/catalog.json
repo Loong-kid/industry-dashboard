@@ -441,72 +441,653 @@
       "cadence": "금·은·구리·팔라듐 선물은 Yahoo 일봉, 우라늄 현물·장기 지표는 Cameco 월말, SWU는 EIA 연간 구매가격입니다. KOMIS는 49개 광종·79개 가격 기준을 일자별로 자동 수집합니다. LME·LBMA·Johnson Matthey·ISE와 제품·지역·인도조건·단위는 카드의 가격 기준 자세히에서 확인하세요. KOMIS는 오전 10시경 갱신을 안내하며 이 사이트는 매일 KST 07:30에 수집하므로 당일 발표분은 다음 수집에 반영될 수 있습니다. 2026년 자료원 변경 전후 비교에 유의하세요. 합산 구리 재고는 SHFE 보고일 기준 주간 자료입니다. 중국 NBS·미국 Census 건설 지표는 월간 공표 자료를 매일 확인하며 과거 이력과 정정치를 병합합니다. 국가별 광물 생산량·매장량은 USGS 연간 자료를 제공하는 KOMIS 광물지도를 매일 확인해 새 연도와 정정치를 반영합니다.",
       "tabs": [
         {
-          "id": "overview",
-          "name": "기타 원자재"
+          "id": "normal",
+          "name": "normal",
+          "description": "광물별로 가격과 국가별 생산량·매장량을 함께 표시합니다. 가격의 제품·단위와 생산량·매장량의 기준은 각 카드에서 확인하세요."
         },
         {
           "id": "copper",
-          "name": "구리"
+          "name": "구리",
+          "description": "구리 가격·세계 전체 및 국가별 생산량·매장량·거래소 재고·건설 수요 지표를 함께 봅니다. USGS 세계 전체와 KOMIS 공개 국가 합계를 구분해서 표시합니다."
         },
         {
-          "id": "komis_base",
-          "name": "비철 / LME",
-          "description": "비철금속 6종·13개 기준. LME CASH·3개월·주석 15개월을 각각 표시하며 USD/미터톤 기준입니다. 기존 COMEX 구리 선물(USD/lb)과 거래소·만기가 다릅니다."
-        },
-        {
-          "id": "komis_minor",
-          "name": "희소 / 희토류",
-          "description": "희소금속·희토류 34종·56개 기준. 리튬 3개 제품, 희토류 14종, 순도·제품·지역별 가격을 각각 표시합니다. 대부분 ISE 지역별 가격이며 코발트 LME와 원자료원 미표기 지표도 포함됩니다. 공개 가격 행이 없는 옛 디스프로슘·란탄·테르븀 옵션과 네오디뮴 지수 전용 옵션 4개는 차트에서 제외했습니다."
-        },
-        {
-          "id": "komis_energy",
-          "name": "철 / 에너지",
-          "description": "우라늄·유연탄·철광석 3종·4개 기준. KOMIS 주간 U₃O₈ 지표와 발전용 석탄·제철용 원료탄·호주산 철광석을 구분합니다. 석탄은 친황다오항·허난 EXW, 철광석은 중국 CNF 조건입니다."
-        },
-        {
-          "id": "komis_other",
-          "name": "귀금속 / 흑연",
-          "description": "금·은·루테늄·백금·팔라듐·흑연 6종·6개 기준. 금·은은 런던 LBMA 가격, 백금족은 Johnson Matthey 런던 고시가격, 흑연은 중국 FOB 가격입니다. 기존 금속 선물과는 가격 산정 기준이 다릅니다."
-        },
-        {
-          "id": "mineral_supply",
-          "name": "생산 / 매장량",
-          "description": "광종을 선택해 국가별 연간 생산량과 매장량을 비교합니다. KOMIS · USGS 공개 자료, 미공개 국가는 0으로 처리하지 않습니다."
+          "id": "rare_earth",
+          "name": "희토류",
+          "description": "희토류 전체 생산량·매장량과 개별 원소의 가격입니다. 전체 물량은 산화물(REO) 환산 기준이며 개별 원소별 생산량으로 나누지 않습니다."
         }
       ],
       "sections": [
         {
-          "title": "금속",
-          "tab": "overview",
+          "title": "금",
+          "tab": "normal",
           "indicators": [
             "comm_gold",
+            "comm_komis_gold_701"
+          ],
+          "minerals": [
+            "MNRL0046"
+          ]
+        },
+        {
+          "title": "은",
+          "tab": "normal",
+          "indicators": [
             "comm_silver",
-            "comm_palladium"
+            "comm_komis_silver_555"
+          ],
+          "minerals": [
+            "MNRL0047"
+          ]
+        },
+        {
+          "title": "백금",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_platinum_748"
+          ],
+          "minerals": [
+            "MNRL0014"
+          ]
+        },
+        {
+          "title": "팔라듐",
+          "tab": "normal",
+          "indicators": [
+            "comm_palladium",
+            "comm_komis_palladium_749"
+          ],
+          "minerals": [
+            "MNRL0015"
+          ]
+        },
+        {
+          "title": "루테늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_ruthenium_817"
+          ]
+        },
+        {
+          "title": "흑연",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_graphite_801"
+          ],
+          "minerals": [
+            "MNRL0005"
           ]
         },
         {
           "title": "우라늄",
-          "tab": "overview",
+          "tab": "normal",
           "indicators": [
             "comm_uranium",
-            "comm_swu"
+            "comm_swu",
+            "comm_komis_uranium_509"
           ]
         },
         {
-          "title": "희토류 · 산화물",
-          "tab": "overview",
+          "title": "유연탄",
+          "tab": "normal",
           "indicators": [
-            "comm_neodymium",
-            "comm_dysprosium",
-            "comm_terbium",
-            "comm_praseodymium"
+            "comm_komis_coal_783",
+            "comm_komis_coal_782"
           ]
         },
         {
-          "title": "구리 가격",
+          "title": "철",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_iron_793"
+          ],
+          "minerals": [
+            "MNRL1011"
+          ]
+        },
+        {
+          "title": "리튬",
+          "tab": "normal",
+          "indicators": [
+            "comm_lithium",
+            "comm_komis_lithium_772",
+            "comm_komis_lithium_771"
+          ],
+          "minerals": [
+            "MNRL0001"
+          ]
+        },
+        {
+          "title": "니켈",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_nickel_502",
+            "comm_komis_nickel_497"
+          ],
+          "minerals": [
+            "MNRL0002"
+          ]
+        },
+        {
+          "title": "아연",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_zinc_561",
+            "comm_komis_zinc_581"
+          ],
+          "minerals": [
+            "MNRL0023"
+          ]
+        },
+        {
+          "title": "알루미늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_aluminum_495",
+            "comm_komis_aluminum_496"
+          ],
+          "minerals": [
+            "MNRL0009"
+          ]
+        },
+        {
+          "title": "납",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_lead_499",
+            "comm_komis_lead_500"
+          ],
+          "minerals": [
+            "MNRL0022"
+          ]
+        },
+        {
+          "title": "주석",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_tin_493",
+            "comm_komis_tin_494",
+            "comm_komis_tin_498"
+          ],
+          "minerals": [
+            "MNRL0016"
+          ]
+        },
+        {
+          "title": "갈륨",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_gallium_768",
+            "comm_komis_gallium_769",
+            "comm_komis_gallium_767"
+          ],
+          "minerals": [
+            "MNRL0024"
+          ]
+        },
+        {
+          "title": "갈탄",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0053"
+          ]
+        },
+        {
+          "title": "게르마늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_germanium_759",
+            "comm_komis_germanium_760"
+          ],
+          "minerals": [
+            "MNRL0035"
+          ]
+        },
+        {
+          "title": "규소",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_silicon_765"
+          ],
+          "minerals": [
+            "MNRL0010"
+          ]
+        },
+        {
+          "title": "규조토",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0060"
+          ]
+        },
+        {
+          "title": "규회석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1025"
+          ]
+        },
+        {
+          "title": "남정석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1051"
+          ]
+        },
+        {
+          "title": "니오븀",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_niobium_770"
+          ],
+          "minerals": [
+            "MNRL0007"
+          ]
+        },
+        {
+          "title": "레늄",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0042"
+          ]
+        },
+        {
+          "title": "루비듐",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0082"
+          ]
+        },
+        {
+          "title": "마그네슘",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_magnesium_766"
+          ],
+          "minerals": [
+            "MNRL0011"
+          ]
+        },
+        {
+          "title": "망간",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_manganese_815"
+          ],
+          "minerals": [
+            "MNRL0004"
+          ]
+        },
+        {
+          "title": "몰리브덴",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_molybdenum_763",
+            "comm_komis_molybdenum_756"
+          ],
+          "minerals": [
+            "MNRL0012"
+          ]
+        },
+        {
+          "title": "바나듐",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_vanadium_775",
+            "comm_komis_vanadium_774",
+            "comm_komis_vanadium_776"
+          ],
+          "minerals": [
+            "MNRL0013"
+          ]
+        },
+        {
+          "title": "베릴륨",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0038"
+          ]
+        },
+        {
+          "title": "불석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1026"
+          ]
+        },
+        {
+          "title": "붕소",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0033"
+          ]
+        },
+        {
+          "title": "브롬",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1008"
+          ]
+        },
+        {
+          "title": "비소",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0034"
+          ]
+        },
+        {
+          "title": "비스무트",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_bismuth_789",
+            "comm_komis_bismuth_790"
+          ],
+          "minerals": [
+            "MNRL0020"
+          ]
+        },
+        {
+          "title": "석고",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0068"
+          ]
+        },
+        {
+          "title": "석류석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1012"
+          ]
+        },
+        {
+          "title": "석면",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0064"
+          ]
+        },
+        {
+          "title": "석회석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0059"
+          ]
+        },
+        {
+          "title": "세슘",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0085"
+          ]
+        },
+        {
+          "title": "셀레늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_selenium_778",
+            "comm_komis_selenium_777"
+          ],
+          "minerals": [
+            "MNRL0029"
+          ]
+        },
+        {
+          "title": "소다회",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0086"
+          ]
+        },
+        {
+          "title": "스트론튬",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_strontium_779"
+          ],
+          "minerals": [
+            "MNRL0028"
+          ]
+        },
+        {
+          "title": "안티모니",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_antimony_780",
+            "comm_komis_antimony_781"
+          ],
+          "minerals": [
+            "MNRL0019"
+          ]
+        },
+        {
+          "title": "요오드",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1015"
+          ]
+        },
+        {
+          "title": "운모",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0063"
+          ]
+        },
+        {
+          "title": "유황",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0062"
+          ]
+        },
+        {
+          "title": "인광석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0036"
+          ]
+        },
+        {
+          "title": "인듐",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_indium_784",
+            "comm_komis_indium_785",
+            "comm_komis_indium_786",
+            "comm_komis_indium_787"
+          ],
+          "minerals": [
+            "MNRL0025"
+          ]
+        },
+        {
+          "title": "장석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0057"
+          ]
+        },
+        {
+          "title": "중정석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0067"
+          ]
+        },
+        {
+          "title": "지르코늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_zirconium_788"
+          ],
+          "minerals": [
+            "MNRL0027"
+          ]
+        },
+        {
+          "title": "진주암",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1017"
+          ]
+        },
+        {
+          "title": "질석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1024"
+          ]
+        },
+        {
+          "title": "질소",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1052"
+          ]
+        },
+        {
+          "title": "카드뮴",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0039"
+          ]
+        },
+        {
+          "title": "칼륨",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL1018"
+          ]
+        },
+        {
+          "title": "코발트",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_cobalt_791",
+            "comm_komis_cobalt_708",
+            "comm_komis_cobalt_709"
+          ],
+          "minerals": [
+            "MNRL0003"
+          ]
+        },
+        {
+          "title": "크롬",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_chromium_794",
+            "comm_komis_chromium_795"
+          ],
+          "minerals": [
+            "MNRL0021"
+          ]
+        },
+        {
+          "title": "탄탈륨",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_tantalum_764"
+          ],
+          "minerals": [
+            "MNRL0026"
+          ]
+        },
+        {
+          "title": "텅스텐",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_tungsten_796",
+            "comm_komis_tungsten_800",
+            "comm_komis_tungsten_799",
+            "comm_komis_tungsten_816",
+            "comm_komis_tungsten_798"
+          ],
+          "minerals": [
+            "MNRL0018"
+          ]
+        },
+        {
+          "title": "텔루륨",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0044"
+          ]
+        },
+        {
+          "title": "티타늄",
+          "tab": "normal",
+          "indicators": [
+            "comm_komis_titanium_761",
+            "comm_komis_titanium_762"
+          ],
+          "minerals": [
+            "MNRL0017_IM",
+            "MNRL0017_RU"
+          ]
+        },
+        {
+          "title": "형석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0061"
+          ]
+        },
+        {
+          "title": "활석",
+          "tab": "normal",
+          "indicators": [],
+          "minerals": [
+            "MNRL0055"
+          ]
+        },
+        {
+          "title": "금 / 은 가격 비율",
+          "tab": "normal",
+          "indicators": [
+            "comm_gold_silver_ratio"
+          ]
+        },
+        {
+          "title": "구리",
           "tab": "copper",
           "indicators": [
-            "comm_copper"
+            "comm_copper",
+            "comm_komis_copper_501",
+            "comm_komis_copper_503"
+          ],
+          "minerals": [
+            "MNRL0008"
           ]
         },
         {
@@ -563,402 +1144,125 @@
           ]
         },
         {
-          "title": "리튬 · 탄산염·수산화물·광석",
-          "tab": "overview",
-          "indicators": [
-            "comm_lithium",
-            "comm_komis_lithium_772",
-            "comm_komis_lithium_771"
-          ]
-        },
-        {
-          "title": "가격 비율",
-          "tab": "overview",
-          "indicators": [
-            "comm_gold_silver_ratio"
-          ]
-        },
-        {
-          "title": "니켈",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_nickel_502",
-            "comm_komis_nickel_497"
-          ]
-        },
-        {
-          "title": "구리",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_copper_501",
-            "comm_komis_copper_503"
-          ]
-        },
-        {
-          "title": "아연",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_zinc_561",
-            "comm_komis_zinc_581"
-          ]
-        },
-        {
-          "title": "알루미늄",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_aluminum_495",
-            "comm_komis_aluminum_496"
-          ]
-        },
-        {
-          "title": "납",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_lead_499",
-            "comm_komis_lead_500"
-          ]
-        },
-        {
-          "title": "주석",
-          "tab": "komis_base",
-          "indicators": [
-            "comm_komis_tin_493",
-            "comm_komis_tin_494",
-            "comm_komis_tin_498"
-          ]
+          "title": "희토류 전체 · 산화물 환산",
+          "tab": "rare_earth",
+          "indicators": [],
+          "minerals": [
+            "MNRL0006"
+          ],
+          "supply_note": "국가별 생산량·매장량은 희토류 전체의 REO 환산 기준입니다. 아래 개별 원소의 가격과 생산품 기준이 다르며 원소별 물량으로 나누지 않습니다."
         },
         {
           "title": "가돌리늄",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_gadolinium_809"
-          ]
-        },
-        {
-          "title": "갈륨",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_gallium_768",
-            "comm_komis_gallium_769",
-            "comm_komis_gallium_767"
-          ]
-        },
-        {
-          "title": "게르마늄",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_germanium_759",
-            "comm_komis_germanium_760"
-          ]
-        },
-        {
-          "title": "규소",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_silicon_765"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "네오디뮴",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_neodymium"
-          ]
-        },
-        {
-          "title": "니오븀",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_niobium_770"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "디스프로슘",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_dysprosium"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "란탄",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_lanthanum_813"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "루테튬",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_lutetium_807"
-          ]
-        },
-        {
-          "title": "리튬",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_lithium",
-            "comm_komis_lithium_772",
-            "comm_komis_lithium_771"
-          ]
-        },
-        {
-          "title": "마그네슘",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_magnesium_766"
-          ]
-        },
-        {
-          "title": "망간",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_manganese_815"
-          ]
-        },
-        {
-          "title": "몰리브덴",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_molybdenum_763",
-            "comm_komis_molybdenum_756"
-          ]
-        },
-        {
-          "title": "바나듐",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_vanadium_775",
-            "comm_komis_vanadium_774",
-            "comm_komis_vanadium_776"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "사마륨",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_samarium_804"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "세륨",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_cerium_802"
-          ]
-        },
-        {
-          "title": "셀레늄",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_selenium_778",
-            "comm_komis_selenium_777"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "스칸듐",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_scandium_812"
-          ]
-        },
-        {
-          "title": "스트론튬",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_strontium_779"
-          ]
-        },
-        {
-          "title": "안티모니",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_antimony_780",
-            "comm_komis_antimony_781"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "에르븀",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_erbium_810"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "유로퓸",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_europium_808"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "이트륨",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_yttrium_805"
-          ]
-        },
-        {
-          "title": "인듐",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_indium_784",
-            "comm_komis_indium_785",
-            "comm_komis_indium_786",
-            "comm_komis_indium_787"
-          ]
-        },
-        {
-          "title": "지르코늄",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_zirconium_788"
-          ]
-        },
-        {
-          "title": "창연",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_bismuth_789",
-            "comm_komis_bismuth_790"
-          ]
-        },
-        {
-          "title": "코발트",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_cobalt_791",
-            "comm_komis_cobalt_708",
-            "comm_komis_cobalt_709"
-          ]
-        },
-        {
-          "title": "크롬",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_chromium_794",
-            "comm_komis_chromium_795"
-          ]
-        },
-        {
-          "title": "탄탈륨",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_tantalum_764"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "테르븀",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_terbium"
-          ]
-        },
-        {
-          "title": "텅스텐",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_tungsten_796",
-            "comm_komis_tungsten_800",
-            "comm_komis_tungsten_799",
-            "comm_komis_tungsten_816",
-            "comm_komis_tungsten_798"
-          ]
-        },
-        {
-          "title": "티타늄",
-          "tab": "komis_minor",
-          "indicators": [
-            "comm_komis_titanium_761",
-            "comm_komis_titanium_762"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "프라세오디뮴",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_praseodymium"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         },
         {
           "title": "홀뮴",
-          "tab": "komis_minor",
+          "tab": "rare_earth",
           "indicators": [
             "comm_komis_holmium_811"
-          ]
-        },
-        {
-          "title": "우라늄",
-          "tab": "komis_energy",
-          "indicators": [
-            "comm_komis_uranium_509"
-          ]
-        },
-        {
-          "title": "유연탄",
-          "tab": "komis_energy",
-          "indicators": [
-            "comm_komis_coal_783",
-            "comm_komis_coal_782"
-          ]
-        },
-        {
-          "title": "철",
-          "tab": "komis_energy",
-          "indicators": [
-            "comm_komis_iron_793"
-          ]
-        },
-        {
-          "title": "금",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_gold_701"
-          ]
-        },
-        {
-          "title": "루테늄",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_ruthenium_817"
-          ]
-        },
-        {
-          "title": "백금",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_platinum_748"
-          ]
-        },
-        {
-          "title": "은",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_silver_555"
-          ]
-        },
-        {
-          "title": "팔라듐",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_palladium_749"
-          ]
-        },
-        {
-          "title": "흑연",
-          "tab": "komis_other",
-          "indicators": [
-            "comm_komis_graphite_801"
-          ]
-        },
-        {
-          "title": "세계 국가별 광물 생산량 / 매장량",
-          "type": "table",
-          "table_kind": "mineral_supply",
-          "tab": "mineral_supply",
-          "indicators": [
-            "comm_mineral_supply"
-          ]
+          ],
+          "supply_note": "KOMIS 광물지도는 이 원소의 국가별 물량을 별도로 제공하지 않습니다. 희토류 전체 생산량·매장량은 이 탭 상단에서 확인하세요."
         }
       ]
     },

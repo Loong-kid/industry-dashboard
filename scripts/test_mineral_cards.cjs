@@ -33,7 +33,8 @@ vm.runInContext(source.slice(source.indexOf('function renderCard('), source.inde
 const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
 const industry = catalog.industries.find(ind => ind.id === 'commodities');
 for (const id of ['comm_uranium', 'comm_swu', 'comm_neodymium', 'comm_dysprosium', 'comm_terbium', 'comm_praseodymium']) {
-  assert(industry.sections.some(section => section.tab === 'overview' && section.indicators.includes(id)), `${id} must appear in 기타 원자재`);
+  const tab = ['comm_uranium', 'comm_swu'].includes(id) ? 'normal' : 'rare_earth';
+  assert(industry.sections.some(section => section.tab === tab && section.indicators.includes(id)), `${id} must appear in ${tab}`);
   const doc = JSON.parse(fs.readFileSync(`data/commodities/${id}.json`, 'utf8'));
   const card = context.renderCard(doc, id);
   const chart = charts.at(-1);

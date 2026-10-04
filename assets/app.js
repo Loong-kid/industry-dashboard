@@ -88,7 +88,9 @@ function showBootError(e) {
 }
 
 function route() {
-  const [id, subtab] = location.hash.replace("#/", "").split("/");
+  const [id, requestedTab] = location.hash.replace("#/", "").split("/");
+  const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
+  const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
   state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
@@ -130,7 +132,7 @@ async function renderIndustry() {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "institution" || ind.id === "gifts";
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || selectedTab?.id === "mineral_supply" ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -189,7 +191,6 @@ async function renderIndustry() {
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
-        : section.table_kind === "mineral_supply" ? renderMineralSupply
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(ind.id, indicatorId);
@@ -202,6 +203,12 @@ async function renderIndustry() {
       continue;
     }
 
+    if (section.supply_note) {
+      const note = document.createElement("p");
+      note.className = "ir-scope-note";
+      note.textContent = section.supply_note;
+      content.appendChild(note);
+    }
     const grid = document.createElement("div");
     grid.className = "grid";
     content.appendChild(grid);
@@ -213,6 +220,25 @@ async function renderIndustry() {
       grid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
       if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
+    }
+    if (section.minerals?.length) {
+      const indicatorId = "comm_mineral_supply";
+      const doc = await loadDoc(ind.id, indicatorId);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get(indicatorId);
+      let world = null;
+      if (section.minerals.includes("MNRL0008")) {
+        world = await loadDoc(ind.id, "comm_copper_world_supply");
+        if (mySeq !== renderSeq) return;
+        const worldError = state.docErrors.get("comm_copper_world_supply");
+        if (worldError) content.appendChild(errorCard(ind.id, "comm_copper_world_supply", worldError));
+        if (world) collected.push({name: world.name, fetched: world.fetched, stale: staleDays(world)});
+      }
+      for (const mineralId of section.minerals) {
+        content.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderMineralSupply(doc, mineralId, world));
+      }
+      if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
+      if (doc) collected.push({ name: section.title + " 생산량·매장량", fetched: doc.fetched, stale: staleDays(doc) });
     }
   }
   loading.remove();
@@ -670,23 +696,45 @@ function periodLabel(doc, date) {
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
 }
 
-function mineralSupplyChart(doc, mineral, field) {
+function mineralSupplyTotals(mineral, field) {
+  const totals = new Map();
+  for (const country of Object.values(mineral.countries)) {
+    for (const [date, value] of country[field]) totals.set(date, (totals.get(date) || 0) + value);
+  }
+  return [...totals].sort(([a], [b]) => a.localeCompare(b));
+}
+
+function mineralSupplyChart(doc, mineral, field, world = null) {
   const available = Object.values(mineral.countries).filter(country => country[field].length);
   const latest = available.length ? available.flatMap(country => country[field].map(point => point[0])).sort().at(-1) : null;
   const atLatest = country => country[field].find(point => point[0] === latest)?.[1] ?? -1;
   available.sort((a, b) => atLatest(b) - atLatest(a) || a.name.localeCompare(b.name, "ko"));
-  const title = field === "production" ? "국가별 생산량" : "국가별 매장량";
+  const title = (mineral.code === "MNRL0008" ? "세계 / 국가별 " : "국가별 ") + (field === "production" ? "생산량" : "매장량");
+  const totalLabel = "전체 · 공개 국가 합계";
+  const withTotal = mineral.code === "MNRL0008" && available.length > 0;
+  const worldLabel = "전체 · 세계(USGS)";
+  const withWorld = withTotal && world?.series?.[field]?.length > 0;
+  const series = Object.fromEntries(available.map(country => [country.name, country[field]]));
+  const worldSources = withWorld ? Object.fromEntries(Object.entries(world.sources[field]).map(([date, url]) => [date, {
+    url, label: `세계 전체 · USGS ${url.match(/mcs(\d{4})/)?.[1] || ""}${world.estimated[field][date] ? " · 생산 추정치" : ""}`,
+  }])) : null;
+  const countryDefaults = available.filter(country => atLatest(country) >= 0).slice(0, withTotal ? 2 : 3).map(country => country.name);
   return {
     id: `${mineral.id}_${field}`, name: `${mineral.label} · ${title}`, unit: "톤",
     frequency: "yearly", year_labels: true, annual_axis: true, full_range: true,
-    span_gaps: false, table_limit: 100, updated: latest, fetched: doc.fetched,
+    span_gaps: false, table_limit: 100, updated: withWorld && world.series[field].at(-1)[0] > latest ? world.series[field].at(-1)[0] : latest, fetched: doc.fetched,
     source: doc.source, source_url: doc.source_url, methodology_url: mineral.reference_page
       ? `${doc.methodology_url}#page=${mineral.reference_page}` : doc.methodology_url,
-    default_series: available.filter(country => atLatest(country) >= 0).slice(0, 3).map(country => country.name),
-    series: Object.fromEntries(available.map(country => [country.name, country[field]])),
+    default_series: withWorld ? [worldLabel, ...countryDefaults] : withTotal ? [totalLabel, ...countryDefaults] : countryDefaults,
+    series: withWorld ? {[worldLabel]: world.series[field], [totalLabel]: mineralSupplyTotals(mineral, field), ...series}
+      : withTotal ? {[totalLabel]: mineralSupplyTotals(mineral, field), ...series} : series,
+    point_sources: worldSources,
+    series_sources: withWorld ? {[worldLabel]: worldSources} : null,
     description: field === "production" ? mineral.production_basis : mineral.reserve_basis,
-    note: field === "production" ? "연간 생산량에는 추정치가 포함됩니다. 국가 칩으로 비교 대상을 선택하세요."
-      : "경제적으로 채굴 가능한 공표 매장량 추정입니다. 자원량(Resources)·창고 재고와 다르며, 탐사·가격·평가 기준에 따라 바뀝니다.",
+    note: (field === "production" ? "연간 생산량에는 추정치가 포함됩니다. 국가 칩으로 비교 대상을 선택하세요."
+      : "경제적으로 채굴 가능한 공표 매장량 추정입니다. 자원량(Resources)·창고 재고와 다르며, 탐사·가격·평가 기준에 따라 바뀝니다.")
+      + (withWorld ? " 세계 전체는 기타 국가를 포함한 USGS 공표 합계(반올림)입니다. 국가별 KOMIS 수치와 자료 빈티지·반올림이 다를 수 있습니다." : "")
+      + (withTotal ? " 공개 국가 합계는 해당 연도에 수치가 공개된 국가들을 합산합니다. 기타 국가·비공개 물량이 빠져 세계 전체와 다르며 연도별 포함 국가가 달라질 수 있습니다." : ""),
     basis_details: [
       {label: "원문 광종", value: mineral.komis_name},
       {label: "생산품 기준", value: field === "production" ? mineral.production_basis : mineral.reserve_basis},
@@ -694,62 +742,27 @@ function mineralSupplyChart(doc, mineral, field) {
       {label: "단위", value: "KOMIS 지도 수량은 미터톤으로 제공됩니다. 원문 단위 코드(kg·ton·k ton)를 수량에 다시 곱하거나 나누지 않았습니다."},
       {label: "자료 범위", value: "공개된 국가만 표시합니다. 미공개·0 값의 의미를 구분할 수 없어 관측치에서 제외하며, 기타 국가 물량을 추정하지 않습니다."},
       {label: "원자료 한계", value: "USGS의 추정·비공개·하한 표시 등 각주가 KOMIS 숫자 응답에 모두 보존되지는 않습니다. 게시 숫자를 원문과 임의로 이어 붙이지 않습니다."},
+      ...(withWorld ? [{label: "세계 전체", value: world.note}, {label: "세계 전체 자료 확인", value: world.fetched}] : []),
     ],
   };
 }
 
-function renderMineralSupply(doc) {
+function renderMineralSupply(doc, mineralId, world = null) {
   const panel = document.createElement("div");
   panel.className = "mineral-supply";
-  if (!doc?.minerals?.length) {
+  panel.dataset.mineral = mineralId;
+  const mineral = doc?.minerals?.find(item => item.id === mineralId);
+  if (!mineral) {
     panel.textContent = "광물 생산량·매장량 자료를 불러오지 못했습니다.";
     return panel;
   }
-  state.mineralSupply ??= {mineral: doc.default_mineral, year: null, sort: "production", query: ""};
-  const view = state.mineralSupply;
-  if (!doc.minerals.some(mineral => mineral.id === view.mineral)) view.mineral = doc.default_mineral;
-  const controls = document.createElement("div");
-  controls.className = "mineral-supply-controls";
-  const searchLabel = document.createElement("label");
-  searchLabel.textContent = "광종 검색";
-  const search = document.createElement("input");
-  search.type = "search";
-  search.placeholder = "구리, 리튬, 흑연…";
-  search.value = view.query;
-  searchLabel.appendChild(search);
-  const mineralLabel = document.createElement("label");
-  mineralLabel.textContent = "광종 / 생산품";
-  const select = document.createElement("select");
-  mineralLabel.appendChild(select);
-  controls.append(searchLabel, mineralLabel);
-  panel.appendChild(controls);
-  const coverage = document.createElement("p");
-  coverage.className = "ir-scope-note";
-  coverage.textContent = `자료 제공 ${doc.available_count}개 광종 / 생산품 · ${doc.years[0]}–${doc.years.at(-1)}년 · 매일 새 공표·정정 확인 · 수집 ${doc.fetched}`;
-  panel.appendChild(coverage);
+  state.mineralSupply ??= {};
+  const view = state.mineralSupply[mineralId] ??= {year: null, sort: "production"};
   const detail = document.createElement("div");
   panel.appendChild(detail);
-  let owned = [];
-  function options() {
-    select.innerHTML = "";
-    const query = view.query.trim().toLocaleLowerCase();
-    const choices = doc.minerals.filter(mineral => !query || `${mineral.label} ${mineral.komis_name}`.toLocaleLowerCase().includes(query) || mineral.id === view.mineral);
-    for (const mineral of choices) {
-      const option = document.createElement("option");
-      option.value = mineral.id;
-      option.textContent = mineral.label + (!mineral.available ? " · 자료 미공개" : mineral.updated.slice(0, 4) < String(doc.years.at(-1)) ? ` · 최신 ${mineral.updated.slice(0, 4)}년` : "");
-      select.appendChild(option);
-    }
-    select.value = view.mineral;
-  }
   function draw() {
-    owned.forEach(chart => chart.destroy());
-    state.charts = state.charts.filter(chart => !owned.includes(chart));
-    owned = [];
-    detail.innerHTML = "";
-    const mineral = doc.minerals.find(item => item.id === view.mineral);
     const heading = document.createElement("h3");
-    heading.textContent = mineral.label;
+    heading.textContent = `${mineral.label} · 생산량 / 매장량`;
     detail.appendChild(heading);
     if (!mineral.available) {
       const empty = document.createElement("p");
@@ -767,9 +780,8 @@ function renderMineralSupply(doc) {
     const grid = document.createElement("div");
     grid.className = "grid";
     detail.appendChild(grid);
-    const before = new Set(state.charts);
     for (const field of ["production", "reserves"]) {
-      const chartDoc = mineralSupplyChart(doc, mineral, field);
+      const chartDoc = mineralSupplyChart(doc, mineral, field, world);
       if (Object.keys(chartDoc.series).length) grid.appendChild(renderCard(chartDoc, chartDoc.id));
       else {
         const empty = document.createElement("div");
@@ -784,9 +796,14 @@ function renderMineralSupply(doc) {
         grid.appendChild(empty);
       }
     }
-    owned = state.charts.filter(chart => !before.has(chart));
+    const comparison = document.createElement("details");
+    comparison.className = "mineral-country-table";
+    const toggle = document.createElement("summary");
+    toggle.textContent = "국가별 비교표 · 연도 선택 / 생산량·매장량 정렬";
+    comparison.appendChild(toggle);
     const table = document.createElement("div");
-    table.className = "card mineral-country-table";
+    table.className = "card";
+    comparison.appendChild(table);
     const title = document.createElement("div");
     title.className = "card-name";
     title.textContent = "국가별 비교 · 공개 국가 합계 기준";
@@ -835,7 +852,7 @@ function renderMineralSupply(doc) {
     note.className = "ir-scope-note";
     note.textContent = doc.note + " 비중은 선택 연도에 수치가 공개된 국가들만을 분모로 계산합니다. 표의 —는 미공개 또는 구분 불가 값입니다.";
     table.appendChild(note);
-    detail.appendChild(table);
+    detail.appendChild(comparison);
     function rows() {
       const date = `${view.year}-12-31`;
       const values = Object.values(mineral.countries).map(country => ({name: country.name,
@@ -852,9 +869,6 @@ function renderMineralSupply(doc) {
     yearSelect.addEventListener("change", () => {view.year = yearSelect.value; rows();});
     rows();
   }
-  search.addEventListener("input", () => {view.query = search.value; options();});
-  select.addEventListener("change", () => {view.mineral = select.value; view.year = null; draw();});
-  options();
   draw();
   return panel;
 }

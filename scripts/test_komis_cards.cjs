@@ -6,10 +6,11 @@ const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
 const commodity = catalog.industries.find(ind => ind.id === 'commodities');
 const manifest = JSON.parse(fs.readFileSync('manual/manifest.json', 'utf8'));
 assert(!manifest.some(entry => entry.id === 'comm_lithium'), 'Manual import must not overwrite automated lithium');
-const groups = {HP001: 'komis_base', HP002: 'komis_minor', HP003: 'komis_energy', HP004: 'komis_other'};
+const rareCodes = new Set(['MNRL1064', 'MNRL1001', 'MNRL1004', 'MNRL1003', 'MNRL1055', 'MNRL1062', 'MNRL1002', 'MNRL1053', 'MNRL1067', 'MNRL1063', 'MNRL1054', 'MNRL1005', 'MNRL1056', 'MNRL1068']);
 for (const entry of registry.cards) {
-  const tab = groups[entry.group];
+  const tab = entry.mineral_code === 'MNRL0008' ? 'copper' : rareCodes.has(entry.mineral_code) ? 'rare_earth' : 'normal';
   assert(commodity.sections.some(section => section.tab === tab && section.indicators.includes(entry.id)), entry.id);
+  assert.equal(commodity.sections.flatMap(section => section.indicators).filter(id => id === entry.id).length, 1, 'Each price appears once');
   const doc = JSON.parse(fs.readFileSync(`data/commodities/${entry.id}.json`, 'utf8'));
   assert.equal(JSON.stringify(doc.price_reference), JSON.stringify(entry.price_reference));
   assert.equal(JSON.stringify(doc.komis_info), JSON.stringify(entry.info));
