@@ -263,6 +263,15 @@ jobs:
         run: python scripts/aggregate_korea_orders.py
 
       # 기관 수급: DART 대량보유(5%) 시장 전체 증분 수집 + 집계
+      - name: 헤지펀드 성과·자산·SEC RAUM 검증
+        run: |
+          python -m unittest discover -s scripts -p test_hedge_funds.py
+          node scripts/test_hedge_fund_cards.cjs
+      - name: 미국 운용사·헤지펀드 지표 수집
+        continue-on-error: true
+        timeout-minutes: 8
+        run: python scripts/fetch_hedge_funds.py
+
       - name: 대량보유 공시 수집
         continue-on-error: true
         env:

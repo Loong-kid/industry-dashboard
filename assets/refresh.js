@@ -18,6 +18,9 @@ const REFRESH_TARGETS = {
 const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
+  const subtab = window.dashboard?.state?.subtab;
+  if (id === "institution" && subtab === "us_managers") return {file: "data/institution/us_managers.json", label: "미국 운용사 갱신"};
+  if (id === "institution" && subtab === "hedge_funds") return {file: "data/institution/hf_returns_composite.json", label: "헤지펀드 지표 갱신"};
   return REFRESH_TARGETS[id] || DEFAULT_TARGET;
 }
 const PAT_KEY = "gh_pat";
