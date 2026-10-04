@@ -9,6 +9,11 @@
 .price-details dl { margin: 12px 0; }
 .price-details dt { color: var(--ink); font-weight: 600; margin-top: 10px; }
 .price-details dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+.forecast-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--ink-2); margin: 8px 0 4px; }
+.forecast-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.forecast-key { display: inline-block; width: 24px; border-top: 2px solid var(--ink-2); }
+.forecast-key.is-forecast { border-top-style: dashed; }
+.forecast-tag { color: var(--muted); font-size: 11px; }
 /* ── 팔레트 (dataviz reference palette) ─────────────────────────── */
 :root {
   --page: #f9f9f7;

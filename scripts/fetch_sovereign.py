@@ -101,8 +101,10 @@ def run():
     debt, gdp, bal = imf("GGXWDG_NGDP"), imf("NGDPD"), imf("GGXCNL_NGDP")
     last_imf = max((y for c in debt.values() for y in c), default=TODAY.year)
     common_y = {"frequency": "yearly", "full_range": True, "source": IMF_SRC, "source_url": IMF_URL,
-                "updated": f"{PROJ_FROM - 1}-12-31"}
-    proj_note = f"{PROJ_FROM}년 이후(~{last_imf})는 IMF 전망치다. 차트에서 실적과 이어진 선이 그 구간이다."
+                "updated": f"{PROJ_FROM - 1}-12-31", "year_labels": True,
+                "forecast_from": f"{PROJ_FROM}-01-01", "forecast_label": "IMF 전망"}
+    proj_note = (f"{PROJ_FROM}년 이후(~{last_imf})는 IMF 전망치로 점선 표시한다. "
+                 "이전 구간은 실적·추정이며 추정치가 포함될 수 있다.")
 
     # ① IMF 부채/GDP (실적+전망)
     save("sov_debt_imf", {

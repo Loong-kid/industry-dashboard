@@ -355,9 +355,10 @@ function buildTableRangePicker(current, onPick) {
 function renderCard(doc, indicatorId) {
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
-  const dateLabel = date => doc?.quarter_labels
+  const dateLabel = date => (doc?.quarter_labels
     ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}`
-    : doc?.year_labels ? date.slice(0, 4) : date;
+    : doc?.year_labels ? date.slice(0, 4) : date)
+    + (doc?.forecast_from && date >= doc.forecast_from ? " · 전망" : "");
 
   if (!doc || !doc.series || Object.values(doc.series).every((s) => s.length === 0)) {
     const name = doc?.name || indicatorId;
@@ -505,6 +506,14 @@ function renderCard(doc, indicatorId) {
     }
   }
 
+  if (doc.forecast_from) {
+    const legend = document.createElement("div");
+    legend.className = "forecast-legend";
+    legend.innerHTML = `<span><i class="forecast-key" aria-hidden="true"></i>실적·추정</span>
+      <span><i class="forecast-key is-forecast" aria-hidden="true"></i>${escapeHtml(doc.forecast_label || "전망")} · ${escapeHtml(doc.forecast_from.slice(0, 4))}년부터</span>`;
+    card.appendChild(legend);
+  }
+
   const wrap = document.createElement("div");
   wrap.className = "chart-wrap";
   const canvas = document.createElement("canvas");
@@ -647,7 +656,8 @@ function buildTable(doc, filtered) {
   for (const d of dates) {
     const ref = doc.point_sources?.[d];
     const sourceCell = doc.point_sources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}#page=${ref.pdf_page}" target="_blank" rel="noopener">PDF p.${ref.pdf_page} ↗</a>` : "미확인"}</td>` : "";
-    html += `<tr><td>${periodLabel(doc, d)}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
+    const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
+    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
@@ -700,8 +710,11 @@ function drawChart(canvas, doc, filtered) {
       pointHoverBorderColor: css("--surface"),
       pointHoverBorderWidth: 2,
       spanGaps: doc.span_gaps ?? true,
-      segment: doc.highlight_gaps ? {
+      segment: doc.forecast_from || doc.highlight_gaps ? {
         borderDash: (ctx) => {
+          // The connector into the first projected value is forecast too.
+          if (doc.forecast_from && labels[ctx.p1DataIndex] >= doc.forecast_from) return [6, 4];
+          if (!doc.highlight_gaps) return undefined;
           const start = Date.parse(labels[ctx.p0DataIndex]);
           const end = Date.parse(labels[ctx.p1DataIndex]);
           return end - start > 7 * 86400000 ? [5, 5] : undefined;
@@ -732,7 +745,8 @@ function drawChart(canvas, doc, filtered) {
           usePointStyle: true,
           boxWidth: 8, boxHeight: 8,
           callbacks: {
-            title: (items) => items.length ? periodLabel(doc, items[0].label) : "",
+            title: (items) => items.length ? periodLabel(doc, items[0].label)
+              + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
             label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
