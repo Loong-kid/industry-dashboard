@@ -97,6 +97,13 @@ jobs:
         timeout-minutes: 5
         run: python scripts/fetch_liquidity.py
 
+      - name: 연준 지준 회계식 검증
+        run: python -m unittest discover -s scripts -p test_fed_reserves.py
+      - name: 연준 대차대조표·지원 창구·지준 수집
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_fed_reserves.py
+
       # 글로벌 국채 10/30년 (미 FRED · 한 ECOS · 일 MOF CSV).
       - name: 글로벌 국채 수집
         continue-on-error: true

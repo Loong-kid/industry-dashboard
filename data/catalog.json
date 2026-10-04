@@ -334,7 +334,22 @@
           "tab": "rates"
         },
         {
-          "title": "미국 유동성 / TGA / RRP",
+          "title": "은행 지급준비금 / 추정과 실제",
+          "tab": "liquidity",
+          "indicators": ["fed_reserves_estimate", "fed_reserves_adjustments"]
+        },
+        {
+          "title": "연준 자산 / SOMA / 유동성 지원 창구",
+          "tab": "liquidity",
+          "indicators": ["fed_soma", "fed_facilities"]
+        },
+        {
+          "title": "연준 부채 / 지준 / TGA / 전체 역레포",
+          "tab": "liquidity",
+          "indicators": ["fed_reserves", "fed_tga_rrp"]
+        },
+        {
+          "title": "미국 유동성 / 일간 TGA / ON RRP",
           "tab": "liquidity",
           "indicators": ["liquidity_tga", "liquidity_rrp"]
         },
@@ -420,7 +435,7 @@
         {
           "id": "liquidity",
           "name": "유동성",
-          "description": "미 재무부 일반계정(TGA)의 일간 마감 잔고와 연준 오버나이트 역레포(RRP)의 일별 이용액입니다. 단위는 십억 달러이며 각 카드의 날짜는 실제 관측일입니다. 매일 오전 7:30(KST) 수집 일정에서 새 공표·정정을 확인합니다. 두 지표의 공표 시점은 다를 수 있습니다."
+          "description": "연준의 국내 보유증권(SOMA)·대출·지급준비금·TGA·역레포를 봅니다. 지준 계산은 모두 H.4.1의 수요일 잔고로 맞추며, 단순식·누락 항목을 보정한 회계 재구성·공식 지준을 비교합니다. 단위는 십억 달러입니다. 아래 일간 TGA·ON RRP는 별도로 볼 수 있습니다. 매일 오전 7:30(KST) 수집 일정에서 새 공표·정정을 확인하며, H.4.1 원자료는 주간 발표입니다."
         },
         {
           "id": "sovereign",
