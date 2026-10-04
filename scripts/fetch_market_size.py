@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """공개 시장규모: World Bank API, SIFMA Fact Book, S&P 공식 분기 보도자료.
 
-매일 실행해 새 발표·정정치를 확인한다. 데이터 주기는 연간/분기이며 보간하지 않는다.
+매일 실행해 새 발표·정정치를 확인한다. 데이터 주기는 연간/분기/월간이며 보간하지 않는다.
 다운로드/표 검증 실패 시 해당 소스의 공개 JSON을 교체하지 않는다.
 """
 import calendar
@@ -57,15 +57,16 @@ def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=1, allow_nan=False) + '\n', encoding='utf-8')
 
 
-def save(cid, name, points, source, url, description, note, details, unit='조 달러', min_points=3, series=None, **extra):
+def save(cid, name, points, source, url, description, note, details, unit='조 달러', min_points=3, series=None,
+         frequency='yearly', full_range=True, table_limit=200, **extra):
     histories = series if series is not None else {'시장규모': points}
     for history in histories.values():
         if len(history) < min_points or history != sorted(history) or len({p[0] for p in history}) != len(history):
             raise ValueError(f'{cid}: invalid or insufficient history')
         if any(not math.isfinite(p[1]) or p[1] <= 0 for p in history):
             raise ValueError(f'{cid}: invalid market size')
-    doc = dict(name=name, unit=unit, frequency='yearly', full_range=True,
-               year_labels=True, zero_baseline=True, table_limit=200, series=histories,
+    doc = dict(name=name, unit=unit, frequency=frequency, full_range=full_range,
+               year_labels=frequency == 'yearly', zero_baseline=True, table_limit=table_limit, series=histories,
                source=source, source_url=url, description=description, note=note,
                basis_details=details, fetched=TODAY, updated=points[-1][0], **extra)
     write_json(OUT / f'{cid}.json', doc)
@@ -125,7 +126,7 @@ def collect_world_bank():
              license='CC BY 4.0', license_url='https://creativecommons.org/licenses/by/4.0/')
 
 
-def parse_ecos_cap(payload, item):
+def parse_ecos_cap(payload, item, cycle='A'):
     block = payload.get('StatisticSearch', {})
     rows = block.get('row', [])
     if not rows or block.get('list_total_count') != len(rows):
@@ -134,10 +135,11 @@ def parse_ecos_cap(payload, item):
     for row in rows:
         if row.get('STAT_CODE') != '901Y014' or row.get('ITEM_CODE1') != item or row.get('UNIT_NAME') != '천원':
             raise ValueError('ECOS: unexpected table, item or unit')
-        year, value = row['TIME'], float(row['DATA_VALUE'])
-        if not re.fullmatch(r'\d{4}', year) or not math.isfinite(value) or value <= 0 or year in output:
-            raise ValueError('ECOS: invalid annual observation')
-        output[year] = value / 1e9  # thousand KRW -> trillion KRW
+        period, value = row['TIME'], float(row['DATA_VALUE'])
+        pattern = r'\d{4}' if cycle == 'A' else r'\d{4}(?:0[1-9]|1[0-2])' if cycle == 'M' else None
+        if pattern is None or not re.fullmatch(pattern, period) or not math.isfinite(value) or value <= 0 or period in output:
+            raise ValueError('ECOS: invalid observation period/value')
+        output[period] = value / 1e9  # thousand KRW -> trillion KRW
     return output
 
 
@@ -182,6 +184,61 @@ def collect_korea_boards():
               {'label': '집계 범위', 'value': '한국거래소 시장별 상장주식 합계. 국내 통계는 외국법인·부동산투자회사·선박투자회사·증권투자회사 등을 포함한다. ETF/ETN 자산 규모는 별도다.'},
               {'label': '자동 갱신', 'value': '매일 ECOS 연간 API에서 새 연말값과 과거 정정치를 확인한다. 반기값을 연말값으로 사용하지 않는다.'}],
              unit='조 원', annual_axis=True, span_gaps=False, methodology_url='https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1079')
+
+
+def collect_korea_monthly():
+    key = os.environ.get('ECOS_API_KEY', '').strip() or 'sample'
+    end_date = dt.date.today().replace(day=1) - dt.timedelta(days=1)
+    end_offset = end_date.year * 12 + end_date.month - 1
+    start_offset = 2005 * 12
+    histories = {}
+    width = 10 if key == 'sample' else 1000
+    for item in ['1040000', '2040000']:
+        values = {}
+        for offset in range(start_offset, end_offset + 1, width):
+            first_year, first_month = divmod(offset, 12)
+            last_year, last_month = divmod(min(offset + width - 1, end_offset), 12)
+            start, end = f'{first_year}{first_month + 1:02}', f'{last_year}{last_month + 1:02}'
+            url = f'https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/{width}/901Y014/M/{start}/{end}/{item}'
+            try:
+                payload = get(url).json()
+            except requests.RequestException as exc:
+                raise RuntimeError(f'ECOS monthly request failed ({type(exc).__name__})') from None
+            if payload.get('RESULT', {}).get('CODE') == 'INFO-200' and offset > start_offset:
+                break
+            values.update(parse_ecos_cap(payload, item, 'M'))
+        if len(values) < 200 or min(values) != '200501':
+            raise ValueError('ECOS monthly: long history unexpectedly truncated')
+        last = max(values)
+        expected = (int(last[:4]) - 2005) * 12 + int(last[4:])
+        if len(values) != expected or last > end_date.strftime('%Y%m'):
+            raise ValueError('ECOS monthly: internal gaps or unfinished month')
+        histories[item] = values
+    shared = set(histories['1040000']) & set(histories['2040000'])
+    total = {period: histories['1040000'][period] + histories['2040000'][period] for period in shared}
+    specs = [('market_kospi_m', '코스피 시장 시가총액 (월말)', histories['1040000'], '1040000 · KOSPI_시가총액'),
+             ('market_kosdaq_m', '코스닥 시장 시가총액 (월말)', histories['2040000'], '2040000 · KOSDAQ_시가총액'),
+             ('market_equity_kr_krw_m', '한국 주요시장 시가총액 (월말 · 코스피 + 코스닥)', total, '1040000 + 2040000 · 공통 월만 합산')]
+    documents = []
+    for cid, title, values, items in specs:
+        points = []
+        for period, value in sorted(values.items()):
+            year, month = int(period[:4]), int(period[4:])
+            points.append([f'{year}-{month:02}-{calendar.monthrange(year, month)[1]}', round(value, 4)])
+        old = OUT / f'{cid}.json'
+        if old.exists() and points[-1][0] < json.loads(old.read_text(encoding='utf-8'))['updated']:
+            raise ValueError('ECOS monthly: latest observation regressed')
+        documents.append((cid, title, points, items))
+    for cid, title, points, items in documents:
+        save(cid, title, points, '한국거래소 · 한국은행 ECOS', ECOS_PAGE,
+             '시장별 상장주식의 월말 시가총액. 2005년 1월부터 원화 명목 금액으로 표시한다.',
+             '조 원 기준. 월평균·지수 수준이 아닌 월말 잔액이다. 날짜는 관측월의 달력상 말일이며 마지막 거래일과 다를 수 있다. 합계는 코스피 + 코스닥으로 코넥스를 제외한다. 연간 장기 이력은 아래 별도 카드에 유지한다. 진행 중인 달과 미공표 달을 추정하지 않는다.',
+             [{'label': '원자료 항목', 'value': 'ECOS 901Y014 · 주식시장(월,년) · 월간(M) · ' + items},
+              {'label': '시점·단위', 'value': '월말 잔액. 원자료 천원 ÷ 10억 = 조 원. 월평균·환율 환산·물가 조정 없음.'},
+              {'label': '포함 범위', 'value': '코스피·코스닥 각각의 시장 전체 시총. 코스피 200·코스닥 150 시총과 다르며 국내 집계의 외국법인·투자회사 등을 포함한다. 국제 비교용 World Bank/WFE 한국 국내기업 시총과 범위가 다르다.'},
+              {'label': '기간 선택', 'value': '기본 3년. 차트와 표 모두 상단 기간 선택을 따르며, 전체 버튼으로 2005년 이후 모든 월을 확인할 수 있다.'},
+              {'label': '자동 갱신', 'value': '매일 ECOS 월간 API에서 새 월말값과 과거 정정치를 확인한다. 아직 공표되지 않은 최근 달은 마지막 확보 월로 표시한다.'}],
+             unit='조 원', frequency='monthly', full_range=False, table_limit=1000, span_gaps=False)
 
 
 def parse_esma_pdf(content):
@@ -424,7 +481,7 @@ def collect_sp():
 
 def run():
     failures = []
-    for collect in [collect_world_bank, collect_korea_boards, collect_esma, collect_sifma, collect_sp]:
+    for collect in [collect_world_bank, collect_korea_boards, collect_korea_monthly, collect_esma, collect_sifma, collect_sp]:
         try:
             collect()
         except Exception as exc:

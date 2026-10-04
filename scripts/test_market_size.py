@@ -40,6 +40,41 @@ class MarketSizeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             market.parse_ecos_cap({'StatisticSearch': {'list_total_count': 2, 'row': [row]}}, '1040000')
 
+    def test_ecos_monthly_accepts_valid_months_but_rejects_index_and_invalid_month(self):
+        row = {'STAT_CODE': '901Y014', 'ITEM_CODE1': '1040000', 'UNIT_NAME': '천원',
+               'TIME': '202608', 'DATA_VALUE': '5620144799211'}
+        payload = {'StatisticSearch': {'list_total_count': 1, 'row': [row]}}
+        self.assertAlmostEqual(market.parse_ecos_cap(payload, '1040000', 'M')['202608'], 5620.144799211)
+        for field, wrong in [('TIME', '202613'), ('TIME', '2026'), ('ITEM_CODE1', '1070000'), ('UNIT_NAME', '포인트')]:
+            with self.assertRaises(ValueError):
+                market.parse_ecos_cap({'StatisticSearch': {'list_total_count': 1, 'row': [{**row, field: wrong}]}}, '1040000', 'M')
+
+    def test_monthly_latest_regression_keeps_all_three_published_cards(self):
+        def response(url):
+            parts = url.split('/')
+            start, end, item = parts[-3:]
+            first = int(start[:4]) * 12 + int(start[4:]) - 1
+            final = int(end[:4]) * 12 + int(end[4:]) - 1
+            rows = []
+            for offset in range(first, final + 1):
+                year, month = divmod(offset, 12)
+                period = f'{year}{month + 1:02}'
+                if period > '202608':
+                    continue
+                rows.append({'STAT_CODE': '901Y014', 'ITEM_CODE1': item, 'UNIT_NAME': '천원',
+                             'TIME': period, 'DATA_VALUE': '1000000000000'})
+            if not rows:
+                return SimpleNamespace(json=lambda: {'RESULT': {'CODE': 'INFO-200'}})
+            return SimpleNamespace(json=lambda: {'StatisticSearch': {'list_total_count': len(rows), 'row': rows}})
+        with tempfile.TemporaryDirectory() as tmp, patch.object(market, 'OUT', Path(tmp)), \
+                patch.object(market, 'get', side_effect=response), patch.dict(market.os.environ, {'ECOS_API_KEY': 'sample'}):
+            for cid in ['market_kospi_m', 'market_kosdaq_m', 'market_equity_kr_krw_m']:
+                market.write_json(Path(tmp) / f'{cid}.json', {'updated': '2026-09-30', 'keep': 'existing'})
+            with self.assertRaisesRegex(ValueError, 'regressed'):
+                market.collect_korea_monthly()
+            for path in Path(tmp).glob('*.json'):
+                self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['keep'], 'existing')
+
     def test_esma_requires_two_years_all_27_members_and_consistent_ratios(self):
         countries = 'FR DE NL ES SE IT IE DK BE FI LU PL AT GR PT RO HU CZ HR SI BG CY MT EE LT SK LV'.split()
         def pdf(ratio='3.7037', omit=False):
@@ -130,7 +165,8 @@ class MarketSizeTests(unittest.TestCase):
     def test_one_source_failure_does_not_block_independent_sources(self):
         with patch.object(market, 'collect_world_bank', side_effect=RuntimeError('offline')) as wb, \
                 patch.object(market, 'collect_sifma') as sifma, patch.object(market, 'collect_sp') as sp, \
-                patch.object(market, 'collect_korea_boards') as korea, patch.object(market, 'collect_esma') as esma:
+                patch.object(market, 'collect_korea_boards') as korea, patch.object(market, 'collect_esma') as esma, \
+                patch.object(market, 'collect_korea_monthly') as monthly:
             wb.__name__ = 'collect_world_bank'
             with self.assertRaises(SystemExit):
                 market.run()
@@ -138,6 +174,7 @@ class MarketSizeTests(unittest.TestCase):
             sp.assert_called_once()
             korea.assert_called_once()
             esma.assert_called_once()
+            monthly.assert_called_once()
 
 
 if __name__ == '__main__':
