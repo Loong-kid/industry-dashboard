@@ -51,7 +51,8 @@ def fetch_kcci():
             continue
         pts = [(norm_date(row["DATE"]), to_float(row[col])) for _, row in df.iterrows()]
         merge_points(doc, col, pts)
-    save_indicator("shipping", doc)
+    doc["data_stale_days"] = 21
+    save_indicator("shipping", doc, data_date=True)
 
 
 def fetch_kdci():
@@ -82,7 +83,10 @@ def fetch_kdci():
         name = names[si] if si < len(names) else f"S{si}"
         pts = [(norm_date(dates[bi]), v) for bi, v in pairs if bi < len(dates)]
         merge_points(doc, name, pts)
-    save_indicator("shipping", doc)
+    if not dates or not values:
+        raise ValueError("KDCI 날짜/값 파싱 0건: 기존 데이터 유지")
+    doc["data_stale_days"] = 10
+    save_indicator("shipping", doc, data_date=True)
 
 
 def run():

@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "30 22 * * *" # 매일 KST 07:30
   workflow_dispatch: # 사이트의 '수주 갱신' 버튼이 이걸 호출
+    inputs:
+      shipping_only:
+        description: 해운 시장지표만 수집·검증
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -13,7 +18,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  shipping:
+    if: inputs.shipping_only == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 운임 파서·실패 격리 검증
+        run: python -m unittest discover -s scripts -p test_shipping_fetchers.py -v
+      - name: 해운 시장지표 수집
+        run: python scripts/fetch_all.py
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add data/
+          git diff --cached --quiet || (git commit -m "chore: refresh shipping market data" && git push)
   update:
+    if: inputs.shipping_only != true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -16,7 +16,7 @@
 """
 import json
 import re
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,19 +32,36 @@ def load_indicator(industry: str, ind_id: str) -> dict:
     return {"id": ind_id, "series": {}}
 
 
-def save_indicator(industry: str, doc: dict) -> None:
+def collection_date() -> str:
+    return datetime.now(timezone(timedelta(hours=9))).date().isoformat()
+
+
+def save_indicator(industry: str, doc: dict, *, data_date: bool = False) -> None:
     path = DATA_DIR / industry / f"{doc['id']}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    doc["updated"] = date.today().isoformat()
+    doc["updated"] = max((p[0] for points in doc.get("series", {}).values() for p in points), default=collection_date()) if data_date else date.today().isoformat()
     # fetched: 수집이 실제로 돌아간 날. updated와 달리 어떤 스크립트에서도 항상 '오늘'이라,
     # 대시보드가 "이 지표 수집이 멈췄나"를 판정하는 유일한 신호다. (updated는 스크립트별로
     # 데이터 날짜를 담기도 해서 stale 판정에 쓸 수 없다.)
-    doc["fetched"] = date.today().isoformat()
+    doc["fetched"] = collection_date()
+    if doc.get("collection_status", {}).get("kind") == "fetch_error":
+        doc.pop("collection_status")
     for name, points in doc.get("series", {}).items():
         doc["series"][name] = sorted(points, key=lambda p: p[0])
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
     n = sum(len(v) for v in doc["series"].values())
     print(f"  saved {path.relative_to(ROOT)} ({n} points)")
+
+
+def record_fetch_failure(industry: str, ind_id: str, error: Exception) -> None:
+    """실패 사실만 기록한다. 데이터 기준일/마지막 성공 수집일은 갱신하지 않는다."""
+    path = DATA_DIR / industry / f"{ind_id}.json"
+    if not path.exists():
+        return
+    doc = load_indicator(industry, ind_id)
+    doc["collection_status"] = {"kind": "fetch_error", "checked": collection_date(), "ok": False,
+                                "message": f"수집 실패 · {type(error).__name__}: {str(error)[:240]}"}
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def merge_points(doc: dict, series_name: str, new_points: list) -> int:

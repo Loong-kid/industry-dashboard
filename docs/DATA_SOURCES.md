@@ -105,11 +105,11 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 |---|---|---|---|
 | KCCI (컨테이너 종합, 13개 항로) | ✅ | [KOBC 해양정보서비스](https://www.kobc.or.kr/ebz/shippinginfo/kcci/gridList.do?mId=0304000000) | timeseries 엑셀 POST 다운로드(세션쿠키 필요). 2022-11부터 전체 히스토리. 주간(월요일 14시) |
 | KDCI (건화물, CAPE/PMX/SMX/HANDY) | ✅ | [KOBC](https://www.kobc.or.kr/ebz/shippinginfo/kdci/gridList.do?mId=0301000000) | 그리드 페이지 인라인 JS 파싱. 최근 며칠치만 제공 → 매일 누적. 일간 16시 |
-| SCFI (상하이 컨테이너) | ✅ | [한국관세물류협회](https://www.kcla.kr/web/inc/html/4-1_3.asp) | HTML 테이블. 당해년도 주간치 게시 → 누적. 원본은 Shanghai Shipping Exchange |
+| SCFI (상하이 컨테이너) | ✅ | [한국관세물류협회](https://www.kcla.kr/web/inc/html/4-1_3.asp), 실패 시 [국가물류통합정보센터](https://www.nlic.go.kr/nlic/transInPortCt.action) | HTML 날짜/값을 열별 검증 후 누적. NLIC는 발표가 늦을 수 있어 기존 최신 자료도 보존. 원본 SSE |
 | CCFI (중국 수출컨테이너) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_2.asp) | 위와 동일 |
-| HRCI (컨테이너선 용선지수) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_4.asp) | 갱신이 다소 늦음. 원본 [harperpetersen.com](https://www.harperpetersen.com/) 크롤링 대체 검토 가능 |
+| HRCI (컨테이너선 용선지수) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_4.asp) | 2026-10-04 확인: 게시 자료는 2025-06-04에서 멈춤. 과거 자료 경고 표시. 원본은 Howe Robinson이며 Harper Petersen의 HARPEX와는 다른 지수 |
 | BDI (발틱 건화물) | ✅ | [KCLA](https://www.kcla.kr/web/inc/html/4-1_5.asp) (일간 히스토리) + [StockQ](https://en.stockq.org/index/BDI.php) (최신값) | 두 소스 머지. 원본 Baltic Exchange는 유료 |
-| BDTI (더티탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BDTI.php) | 최신값만 제공 → 매일 누적 (히스토리는 쌓이면서 생김) |
+| BDTI (더티탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BDTI.php) | 최신값+최근 20거래일 누적. 공개 JS의 숫자 표시 형식 대응. 장기 과거 공백은 보간하지 않음 |
 | BCTI (클린탱커 운임) | ✅ | [StockQ](https://en.stockq.org/index/BCTI.php) | 위와 동일 |
 | 탱커 운임 Average Earnings (VLCC 등 5종) | 📄 | 신영 위클리 | $/day, 주간 |
 | TI VLCC 성약 TCE·주요 항로·성약 건수 | ✅ | [Tankers International 웹앱](https://app.tankersinternational.com/) | 공개 JSON 성약 응답을 매일 누적. 확정 계약의 발표일 기준 최근 7일 중앙값(USD/day), 표본 수·상태 필터 표. 무료 자료 지연 가능. 계약형 공식 API는 별도 문의 |
@@ -118,6 +118,19 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 | ClarkSea Index (종합 해운운임) | 📄 | 신영 위클리 | $/day, 주간 |
 | FBX (Freightos 글로벌 컨테이너) | 🔍 | freightos.com/fbx | 확장 후보 |
 | 공공데이터포털 KCCI/KDCI 파일 | 🔍 | [data.go.kr KCCI](https://www.data.go.kr/data/15131881/fileData.do) | KOBC 직접 수집이 더 나아서 미사용 (백업 경로) |
+
+### 운임 자동 갱신 복구 (2026-10-04)
+
+- GitHub Actions에서 KCLA 페이지 404 및 StockQ 숫자 파싱 실패가 있었지만 묶음 소스 단위 실행과 exit 0으로 전체 워크플로는 성공처럼 표시됐다.
+- KCCI/KDCI, KCLA 4종, StockQ 3종을 지표별로 독립 실행. 하나가 실패해도 다른 지수를 계속 수집한다.
+  실패한 지표에는 `collection_status`와 GitHub warning을 기록하고 데이터 기준일 및 마지막 성공 수집일을 보존한다. 성공하면 해당 수집 오류를 해제한다.
+- KCLA는 표의 날짜/값 개수 및 열 정렬을 검증. SCFI/CCFI 직접 조회가 안 되면 공식 NLIC 게시 자료로 보완한다.
+- StockQ는 공개 `.sq-obfuscated[data-sq]` 표시 값을 공식 `sq-obfuscate.js`와 같은 계산으로 읽는다.
+  날짜별 표와 최신값이 같은 날짜이면 값 일치를 검증하고 최근 20거래일을 함께 누적한다.
+- 해운 자동 지표는 `updated`=실제 자료 발표일, `fetched`=KST 수집일을 분리한다.
+  일간 10일/주간 21일 넘게 자료가 오래되면 카드에 과거 자료 경고를 표시한다.
+- `update-data` 수동 실행의 `shipping_only=true`는 운임 파서 테스트와 해운 지표 수집만 실행한다.
+  기존 수주 갱신 버튼·정기 전체 수집은 기본값 false로 유지한다.
 
 ### Tankers International VLCC 성약 (2026-10-04 추가)
 
