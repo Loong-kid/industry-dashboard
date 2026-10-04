@@ -155,8 +155,8 @@ def cn_scale_views(level, unit):
             if annual is None:
                 break  # Do not silently resume across a missing annual total.
             carried += annual
-    return {
-        "monthly": {"label": "월별 규모", "unit": unit, "series": {"월별 규모 (계산)": sorted(monthly.items())},
+    views = {
+        "monthly": {"label": "월별 막대", "unit": unit, "series": {"월별 규모 (계산)": sorted(monthly.items())},
                     "description": "공식 연초 누적 자료에서 계산한 월별 물량입니다. 월별 증감과 계절적 흐름을 비교할 수 있습니다.",
                     "default_series": ["월별 규모 (계산)"], "cumulative": False,
                     "bridge_missing_january": False, "chart_type": "bar", "zero_baseline": True,
@@ -168,6 +168,9 @@ def cn_scale_views(level, unit):
                   "bridge_missing_january": True,
                   "note": f"{start}년부터의 이전 연도 연간 실적 + 현재 연초 누적입니다. 연초 누적 값을 매월 중복 합산하지 않습니다. 1월 미발표 구간은 점선으로 연결합니다. 통계 범위·수정 기준이 바뀌어 장기 합계는 참고용입니다."},
     }
+    return {"monthly": views["monthly"],
+            "monthly_line": {**views["monthly"], "label": "월별 선그래프", "chart_type": "line"},
+            "total": views["total"]}
 
 
 def set_cn_views(doc, level, unit):
@@ -306,12 +309,13 @@ def fetch_pmi(backfill=False):
     print(f"  PMI: {len(records)} verified releases")
 
 
-def parse_housing(content, today=None):
+def parse_housing(content, today=None, seasonally_adjusted=True):
     workbook = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
     try:
-        sheet = workbook["Seasonally Adjusted"]
+        sheet = workbook["Seasonally Adjusted" if seasonally_adjusted else "Not Seasonally Adjusted"]
         header = " ".join(str(cell) for row in list(sheet.values)[:6] for cell in row if cell is not None)
-        if "Seasonally adjusted annual rate" not in header or "Thousands of units" not in header:
+        basis = "Seasonally adjusted annual rate" if seasonally_adjusted else "Not seasonally adjusted"
+        if basis not in header or "Thousands of units" not in header:
             raise ValueError("Census housing units/seasonal basis changed")
         points = []
         for row in sheet.values:
@@ -371,7 +375,44 @@ def yoy(points):
     return out
 
 
-def save_us(identifier, name, unit, incoming, url, description, old=None):
+def cumulative_months(points, yearly=False, start=None):
+    """Sum monthly counts; missing months never become zero or partial totals."""
+    values = dict(points)
+    if not values:
+        return []
+    offset = lambda dt: int(dt[:4]) * 12 + int(dt[5:7]) - 1
+    first, last = offset(start or min(values)), offset(max(values))
+    total, valid, result = 0, True, []
+    for month in range(first, last + 1):
+        year, m = divmod(month, 12)
+        if yearly and (month == first or m == 0):
+            total, valid = 0, m == 0
+        dt = month_end(year, m + 1)
+        if dt not in values:
+            if not yearly:
+                break
+            valid = False
+        if valid:
+            total += values[dt]
+            result.append([dt, round(total, 3)])
+    return result
+
+
+def set_us_housing_cumulative_views(doc):
+    counts = doc["monthly_counts"]
+    start = max(min(dt for dt, _ in pts) for pts in counts.values())
+    common = {"unit": "천 호", "default_series": list(counts), "chart_type": "line",
+              "zero_baseline": True,
+              "description": "Census의 비계절조정 월별 주택 물량을 합산한 값입니다. 착공·허가·준공은 별개 지표이며 서로 더하지 않습니다."}
+    doc["series_views"]["ytd"] = {**common, "label": "연초 누적", "cumulative": True,
+        "series": {label: cumulative_months(pts, yearly=True) for label, pts in counts.items()},
+        "note": "매년 1월부터 해당 월까지의 물량 합계입니다. 계절성이 포함되며 연율(SAAR)을 합산하거나 나눈 추정치가 아닙니다."}
+    doc["series_views"]["total"] = {**common, "label": "전체 누적", "cumulative_since": int(start[:4]), "zero_baseline": False,
+        "series": {label: cumulative_months(pts, start=start) for label, pts in counts.items()},
+        "note": f"세 지표의 공통 관측 시작인 {start[:7]}부터 월별 물량을 합산합니다. 조회 기간을 바꿔도 누적 기준은 유지됩니다. 현재 잔존 주택이나 미완공 재고를 뜻하지 않습니다."}
+
+
+def save_us(identifier, name, unit, incoming, url, description, old=None, monthly_counts=None):
     old = old or load_indicator("commodities", identifier)
     doc = base_doc(identifier, name, "미국 Census Bureau", url)
     doc.update(unit=unit, default_series=list(incoming), description=description,
@@ -381,6 +422,10 @@ def save_us(identifier, name, unit, incoming, url, description, old=None):
         "level": {"label": "규모 (연율)", "unit": unit, "series": doc["series"], "default_series": list(incoming)},
         "yoy": {"label": "전년동월비", "unit": "%", "series": {label: yoy(pts) for label, pts in doc["series"].items()}, "default_series": list(incoming)},
     }
+    if monthly_counts is not None:
+        doc["monthly_counts"] = {label: merged(old.get("monthly_counts", {}).get(label), pts)
+                                 for label, pts in monthly_counts.items()}
+        set_us_housing_cumulative_views(doc)
     doc["default_view"] = "level"
     save_indicator("commodities", doc, data_date=True)
 
@@ -388,21 +433,25 @@ def save_us(identifier, name, unit, incoming, url, description, old=None):
 def fetch_us_housing(s):
     identifier = PREFIX + "us_housing"
     old = load_indicator("commodities", identifier)
-    incoming, failures = {}, []
+    incoming, monthly_counts, failures = {}, {}, []
     files = [("주택 착공", "starts"), ("건축허가", "permits"), ("주택 준공", "comps")]
     for label, filename in files:
         try:
             url = f"https://www.census.gov/construction/nrc/xls/{filename}_cust.xlsx"
-            incoming[label] = parse_housing(request(s, "GET", url).content)
+            content = request(s, "GET", url).content
+            annualized = parse_housing(content)
+            monthly = parse_housing(content, seasonally_adjusted=False)
+            incoming[label], monthly_counts[label] = annualized, monthly
         except Exception as e:
             failures.append(label)
-            if not old.get("series", {}).get(label):
+            if not old.get("series", {}).get(label) or not old.get("monthly_counts", {}).get(label):
                 raise e
             incoming[label] = old["series"][label]
+            monthly_counts[label] = old["monthly_counts"][label]
     if len(failures) == len(files):
         raise ValueError("All Census housing sources failed")
     save_us(identifier, "미국 주택 건설 · 착공 / 허가 / 준공", "천 호/년", incoming, NRC_PAGE,
-            "전국 민간 신규 주택의 건축허가·착공·준공 물량. 기존 주택 매매는 포함하지 않습니다.", old)
+            "전국 민간 신규 주택의 건축허가·착공·준공 물량. 기존 주택 매매는 포함하지 않습니다.", old, monthly_counts)
     if failures:
         record_fetch_failure("commodities", identifier, ValueError("일부 항목 수집 실패: " + ", ".join(failures)))
 
