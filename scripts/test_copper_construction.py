@@ -81,12 +81,14 @@ class ConstructionTests(unittest.TestCase):
         for offset in range(400):
             year, month = 1993 + offset // 12, offset % 12 + 1
             label = f"{fc.calendar.month_abbr[month]}-{year % 100:02}" + ("p" if offset == 399 else "r")
-            s.append([label, 1300000, 890000])
+            # The real Census file has zero placeholders through 2001.
+            s.append([label, 1300000 if offset >= 108 else 0, 890000 if offset >= 108 else 0])
         s.append(["Dec-50p", 999999, 999999])
         data = fc.parse_spending(workbook_bytes(w), "2026-10-05")
-        self.assertEqual(data["주거용"][0], ("1993-01-31", 890.0))
+        self.assertEqual(data["주거용"][0], ("2002-01-31", 890.0))
         self.assertEqual(data["비주거용"][-1], ("2026-04-30", 1300.0))
-        self.assertEqual(len(data["주거용"]), 400)
+        self.assertEqual(len(data["주거용"]), 292)
+        self.assertTrue(all(value > 0 for points in data.values() for _, value in points))
 
     def test_yoy_uses_calendar_year_not_twelve_available_rows(self):
         pts = [["2024-02-29", 100], ["2024-04-30", 200], ["2025-02-28", 110], ["2025-03-31", 120]]

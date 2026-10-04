@@ -37,6 +37,12 @@ for(const id of ids) {
   assert(chart.data.datasets.every(ds=>ds.isReference||ds.spanGaps===false));
   assert(!root.children[0].children.find(c=>c.className==='card-stat').innerHTML.includes('NaN'));
   assert(doc.updated<=doc.fetched);
+  if(id==='comm_copper_us_construction_spending') {
+    for(const points of Object.values(doc.series)) {
+      assert.equal(points[0][0],'2002-01-31');
+      assert(points.every(([,value])=>value>0),'Census zero placeholders must not appear as spending');
+    }
+  }
   for(const points of Object.values(doc.series)) {
     assert(points.every(([date,value])=>Number.isFinite(value)&&date<=doc.fetched));
     assert.equal(new Set(points.map(p=>p[0])).size,points.length);

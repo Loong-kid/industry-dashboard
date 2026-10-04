@@ -294,9 +294,11 @@ def parse_spending(content, today=None):
                 continue
             for label, col in indices.items():
                 v = number(row[col])
-                if v is not None:
+                # Unavailable pre-2002 category totals are encoded as 0.
+                # National residential/nonresidential spending cannot be zero.
+                if v is not None and v > 0:
                     result[label][dt] = round(v / 1000, 3)  # USD millions -> billions.
-        if any(len(values) < 350 for values in result.values()):
+        if any(len(values) < 250 for values in result.values()):
             raise ValueError("Census spending history unexpectedly short")
         return {label: sorted(values.items()) for label, values in result.items()}
     finally:
@@ -353,8 +355,13 @@ def fetch_us_housing(s):
 def fetch_us_spending(s):
     url = "https://www.census.gov/construction/c30/xlsx/totsatime.xlsx"
     incoming = parse_spending(request(s, "GET", url).content)
-    save_us(PREFIX + "us_construction_spending", "미국 건설 지출 · 주거용 / 비주거용", "십억 달러/년", incoming,
-            VIP_PAGE, "민간·공공의 주거용 및 비주거용 공사 지출. 신축과 기존 시설 개선을 포함하며 명목 금액입니다.")
+    identifier = PREFIX + "us_construction_spending"
+    old = load_indicator("commodities", identifier)
+    # Remove previously imported placeholders, preserving real history.
+    old["series"] = {label: [[dt, value] for dt, value in pts if value > 0]
+                     for label, pts in old.get("series", {}).items()}
+    save_us(identifier, "미국 건설 지출 · 주거용 / 비주거용", "십억 달러/년", incoming,
+            VIP_PAGE, "민간·공공의 주거용 및 비주거용 공사 지출. 신축과 기존 시설 개선을 포함하며 명목 금액입니다. 세부 항목은 2002년부터 제공됩니다.", old)
 
 
 def run(backfill=False, country="all"):
