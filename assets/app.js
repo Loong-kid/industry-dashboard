@@ -354,6 +354,38 @@ function buildTableRangePicker(current, onPick) {
 
 // ── 지표 카드 ───────────────────────────────────────────────────
 function renderCard(doc, indicatorId) {
+  // Alternate views keep physical levels and growth rates on separate axes.
+  if (doc?.series_views) {
+    state.cardViews ??= {};
+    const key = state.cardViews[indicatorId] || doc.default_view || Object.keys(doc.series_views)[0];
+    const view = doc.series_views[key] || Object.values(doc.series_views)[0];
+    const display = {...doc, ...view};
+    delete display.series_views;
+    const before = new Set(state.charts);
+    const card = renderCard(display, indicatorId);
+    const owned = state.charts.filter(chart => !before.has(chart));
+    const controls = document.createElement("div");
+    controls.className = "series-view-controls";
+    controls.setAttribute("role", "group");
+    controls.setAttribute("aria-label", `${doc.name} 표시 기준`);
+    for (const [value, option] of Object.entries(doc.series_views)) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = option.label;
+      button.className = value === key ? "active" : "";
+      button.setAttribute("aria-pressed", String(value === key));
+      button.addEventListener("click", () => {
+        if (value === key) return;
+        state.cardViews[indicatorId] = value;
+        owned.forEach(chart => chart.destroy());
+        state.charts = state.charts.filter(chart => !owned.includes(chart));
+        card.replaceWith(renderCard(doc, indicatorId));
+      });
+      controls.appendChild(button);
+    }
+    card.insertBefore(controls, card.children[1] || null);
+    return card;
+  }
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
   const dateLabel = date => (doc?.quarter_labels
@@ -461,19 +493,21 @@ function renderCard(doc, indicatorId) {
       return;
     }
     const reportedChange = doc.inventory_summary || doc.stock_summary;
-    const delta = reportedChange
+    const pointsChange = doc.change_mode === "percentage_points";
+    const monthOffset = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7));
+    const delta = pointsChange && (!prev || monthOffset(last[0]) - monthOffset(prev[0]) !== 1) ? null : reportedChange
       ? (new Map(doc.inventory_summary ? doc.weekly_changes || [] : doc.daily_changes || []).get(last[0]) ?? null)
       : doc.change_mode === "none" ? null : prev ? last[1] - prev[1] : null;
     const previousValue = reportedChange && delta !== null ? last[1] - delta : prev?.[1];
-    const pct = previousValue ? (delta / previousValue) * 100 : null;
+    const pct = !pointsChange && previousValue ? (delta / previousValue) * 100 : null;
     const dir = delta > 0 ? "up" : delta < 0 ? "down" : "";
     const arrow = delta > 0 ? "▲" : delta < 0 ? "▼" : "";
     stat.innerHTML = `
       ${seriesNames.length > 1 ? `<span class="stat-series">${seriesName}</span>` : ""}
       <span class="stat-value">${fmt(last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
-      ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
-      <span class="stat-date">${dateLabel(last[0])}</span>
+      ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pointsChange ? "p · 전월 대비" : ""}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
+      <span class="stat-date">${doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}</span>
       ${doc.sample_counts ? `<span class="stat-unit">표본 ${new Map(doc.sample_counts[seriesName] || []).get(last[0]) ?? 0}건</span>` : ""}`;
   };
   setStat(mainName);
@@ -600,6 +634,7 @@ function buildChips(container, chart, onToggle) {
   if (datasets.length < 2) return;
   container.className = "chips";
   datasets.forEach((ds, i) => {
+    if (ds.isReference) return;
     const label = document.createElement("label");
     label.className = "chip" + (ds.hidden ? " off" : "");
     const cb = document.createElement("input");
@@ -660,7 +695,7 @@ function buildTable(doc, filtered) {
   let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
-    const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
+    const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : ref.label ? escapeHtml(ref.label) : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     html += `<tr><td>${periodLabel(doc, d)}${forecastTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
@@ -743,6 +778,13 @@ function drawChart(canvas, doc, filtered) {
     };
   });
 
+  if (Number.isFinite(doc.reference_value)) {
+    datasets.push({label: doc.reference_label || `기준 ${doc.reference_value}`,
+      data: labels.map(() => doc.reference_value), borderColor: css("--muted"),
+      borderWidth: 1, borderDash: [5, 5], pointRadius: 0, pointHoverRadius: 0,
+      hidden: false, isReference: true});
+  }
+
   const chart = new Chart(canvas, {
     type: doc.chart_type || "line",
     data: { labels, datasets },
@@ -773,7 +815,7 @@ function drawChart(canvas, doc, filtered) {
               const samples = items.filter(item => doc.sample_counts?.[item.dataset?.label]).map(item =>
                 `${item.dataset.label}: 표본 ${new Map(doc.sample_counts[item.dataset.label]).get(item.label) ?? 0}건`);
               return [...(dates ? ["구성 자료 기준일", ...Object.entries(dates).map(([name, date]) => `${name}: ${date}`)] : []), ...samples,
-                ...(report ? [`WFE 원문: ${report.issue} 월보 (발행월)`] : [])];
+                ...(report ? [report.label ? `${report.label}${report.published ? ` · 공표 ${report.published}` : ""}` : `WFE 원문: ${report.issue} 월보 (발행월)`] : [])];
             },
           },
         },

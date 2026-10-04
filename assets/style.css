@@ -547,3 +547,7 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 /* Secondary institution scale data stays available without replacing AUM. */
 .institution-profiles .aum-secondary { margin: 16px 0; padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
 .institution-profiles .aum-secondary > summary { cursor: pointer; font-weight: 600; }
+.series-view-controls { display:flex; gap:6px; margin:0 0 12px; flex-wrap:wrap; }
+.series-view-controls button { font:inherit; font-size:12px; padding:5px 9px; border:1px solid var(--baseline); border-radius:6px; background:transparent; color:var(--muted); cursor:pointer; }
+.series-view-controls button.active { color:var(--ink); background:var(--surface); border-color:var(--muted); }
+.series-view-controls button:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
