@@ -92,12 +92,15 @@ function route() {
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
   const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
+  const prevSubtab = state.subtab;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
   state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
   document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
   if (state.industry !== prev && state.industry.default_range) setRange(state.industry.default_range);
+  const tabRange = state.industry.tabs?.find(tab => tab.id === state.subtab)?.default_range;
+  if (tabRange && (state.industry !== prev || state.subtab !== prevSubtab)) setRange(tabRange);
   renderIndustry();
 }
 
@@ -132,7 +135,7 @@ async function renderIndustry() {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || selectedTab?.id === "korea_trade" ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -513,11 +516,11 @@ function renderCard(doc, indicatorId) {
       return;
     }
     if (doc.monthly_trade_summary) {
-      const values = new Map(s);
+      const values = new Map(s.map(([date, value]) => [date.slice(0, 7), value]));
       const year = Number(last[0].slice(0, 4));
       const month = Number(last[0].slice(5, 7));
-      const previousMonth = `${month === 1 ? year - 1 : year}-${String(month === 1 ? 12 : month - 1).padStart(2, "0")}-01`;
-      const previousYear = `${year - 1}${last[0].slice(4)}`;
+      const previousMonth = `${month === 1 ? year - 1 : year}-${String(month === 1 ? 12 : month - 1).padStart(2, "0")}`;
+      const previousYear = `${year - 1}${last[0].slice(4, 7)}`;
       const change = date => {
         const base = values.get(date);
         return last[1] != null && base != null && base > 0
@@ -527,7 +530,7 @@ function renderCard(doc, indicatorId) {
         ${seriesNames.length > 1 ? `<span class="stat-series">${escapeHtml(seriesName)}</span>` : ""}
         <span class="stat-value">${last[1] == null ? "—" : fmt(last[1])}</span>
         <span class="stat-unit">${doc.unit || ""}</span>
-        <span class="stat-date">${last[0]}</span>
+        <span class="stat-date">${doc.month_labels ? periodLabel(doc, last[0]) : last[0]}</span>
         <span class="stat-unit">YoY ${change(previousYear)} · MoM ${change(previousMonth)}</span>`;
       return;
     }
@@ -721,19 +724,23 @@ function koreaTradeChart(doc, mineral, kind) {
     id: `korea_trade_${mineral.id}_${kind}`, name: `${mineral.name} · ${amount ? "수출입 금액" : "수출입 물량"}`,
     unit: amount ? "백만 USD" : "톤", source: doc.source, source_url: doc.source_url,
     updated: doc.updated, fetched: doc.fetched, full_range: true, span_gaps: false, change_mode: "none",
-    default_series: ["수입"], default_view: "annual", table_limit: 100,
+    default_series: ["수입"], default_view: "month", table_limit: 1000,
     note: (amount ? "수입·수출 통관 금액입니다. 평균 거래가격·원자재 시세와 다릅니다." : "HS 품목 제품의 총중량입니다. 금속 함유량으로 환산하지 않았습니다.")
       + " 집계 미공개 기간은 —로 표시합니다. 빈 응답은 거래 없음과 자료 미제공을 구분할 수 없어 0으로 바꾸지 않습니다.",
     series_views: {
+      month: {label: "월간", month_labels: true, monthly_axis: true, frequency: "monthly",
+        full_range: false, monthly_trade_summary: true,
+        description: `${doc.monthly_start?.slice(0, 7) || "2014-01"}~${doc.updated.slice(0, 7)} 공개 월별 실적 · 위 기간 버튼으로 조회 구간을 선택하세요.`,
+        series: series(Object.entries(mineral.monthly || {}).map(([date, values]) => {
+          const end = new Date(Date.UTC(Number(date.slice(0, 4)), Number(date.slice(5, 7)), 0)).toISOString().slice(0, 10);
+          return [end, values];
+        }))},
       annual: {label: "연간", year_labels: true, annual_axis: true, frequency: "yearly",
         description: `${doc.last_full_year}년까지 확정 연간치 · 전체 공개 이력. 빈 연도는 미공개이며 0으로 채우지 않습니다.`,
         series: series(Object.entries(mineral.annual).map(([year, values]) => [`${year}-12-31`, values]))},
       ytd: {label: "동기간 누적", cumulative: true, month_labels: true, frequency: "yearly",
         description: `${doc.year - 1}년 / ${doc.year}년 각각 1~${doc.month}월 누적 비교. 확정 연간치와 섞지 않습니다.`,
         series: series(periods(["previous_ytd", "ytd"]))},
-      month: {label: "최근 월", month_labels: true, monthly_axis: true, frequency: "monthly",
-        description: "최근 공표월과 직전 월의 개별 월 실적 비교 · 월간 전체 이력은 포함하지 않습니다.",
-        series: series(periods(["previous_month", "month"]))},
     },
     basis_details: [{label: "KOMIS 광종", value: mineral.komis_name},
       {label: "집계 범위", value: doc.note}, {label: "원자료 단위", value: "금액 USD → 백만 USD(÷1,000,000), 중량 kg → 미터톤(÷1,000). 0은 실제 응답값일 때만 표시합니다."},
@@ -759,6 +766,7 @@ function renderKoreaMineralTrade(doc) {
   const search = document.createElement("input");
   search.type = "search";
   search.placeholder = "예: 구리, 리튬, 희토류";
+  search.value = state.koreaTradeSearch || "";
   label.appendChild(search);
   const count = document.createElement("span");
   count.setAttribute("aria-live", "polite");
@@ -872,15 +880,18 @@ function renderKoreaMineralTrade(doc) {
     productDetail.appendChild(productCard);
     panel.appendChild(productDetail);
   }
-  search.addEventListener("input", () => {
+  function filter() {
     const term = search.value.trim().toLocaleLowerCase();
+    state.koreaTradeSearch = search.value;
     let visible = 0;
     for (const {panel, mineral} of panels) {
       panel.hidden = !`${mineral.name} ${mineral.komis_name} ${mineral.classification}`.toLocaleLowerCase().includes(term);
       if (!panel.hidden) visible++;
     }
     count.textContent = `${visible} / ${doc.minerals.length}개 표시`;
-  });
+  }
+  search.addEventListener("input", filter);
+  filter();
   return root;
 }
 
