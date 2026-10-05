@@ -248,6 +248,30 @@ async function renderIndustry() {
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
       if (doc) collected.push({ name: section.title + " 생산량·매장량", fetched: doc.fetched, stale: staleDays(doc) });
     }
+    for (const company of section.companies || []) {
+      const panel = document.createElement("section");
+      panel.className = "mineral-company-panel";
+      panel.dataset.company = company.id;
+      const title = document.createElement("h3");
+      title.textContent = company.name;
+      panel.appendChild(title);
+      const note = document.createElement("p");
+      note.className = "ir-scope-note";
+      note.textContent = company.description;
+      panel.appendChild(note);
+      const companyGrid = document.createElement("div");
+      companyGrid.className = "grid";
+      panel.appendChild(companyGrid);
+      content.appendChild(panel);
+      for (const indicatorId of company.indicators) {
+        const doc = await loadDoc(ind.id, indicatorId);
+        if (mySeq !== renderSeq) return;
+        const err = state.docErrors.get(indicatorId);
+        companyGrid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
+        if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
+        if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
+      }
+    }
   }
   loading.remove();
   renderFootStatus(latestUpdate, collected, ind);
@@ -497,7 +521,7 @@ function renderCard(doc, indicatorId) {
       stat.innerHTML = `<span class="stat-unit">표시할 시리즈를 선택하세요</span>`;
       return;
     }
-    if (doc.quarterly_revenue_summary) {
+    if (doc.quarterly_revenue_summary || doc.quarterly_profit_summary) {
       const values = new Map(s);
       const year = Number(last[0].slice(0, 4));
       const q = Math.ceil(Number(last[0].slice(5, 7)) / 3);
@@ -506,10 +530,17 @@ function renderCard(doc, indicatorId) {
       const priorYear = `${year - 1}${last[0].slice(4)}`;
       const change = date => {
         const base = values.get(date);
+        if (doc.quarterly_profit_summary && last[1] != null && base != null && (base <= 0 || last[1] <= 0)) {
+          if (last[1] === base) return "동일";
+          if (last[1] === 0) return "손익분기";
+          if (last[1] > 0 && base <= 0) return "흑자전환";
+          if (last[1] < 0 && base >= 0) return "적자전환";
+          return last[1] > base ? "적자축소" : "적자확대";
+        }
         return last[1] != null && base != null && base > 0
           ? `${last[1] >= base ? "+" : ""}${((last[1] / base - 1) * 100).toFixed(1)}%` : "자료 없음";
       };
-      stat.innerHTML = `<span class="stat-value">${fmt(last[1])}</span>
+      stat.innerHTML = `${doc.company_kpi && seriesNames.length > 1 ? `<span class="stat-series">${escapeHtml(seriesName)}</span>` : ""}<span class="stat-value">${last[1] == null ? "—" : fmt(last[1])}</span>
         <span class="stat-unit">${escapeHtml(doc.unit || "")}</span>
         <span class="stat-date">${dateLabel(last[0])}</span>
         <span class="stat-unit">YoY ${change(priorYear)} · QoQ ${change(priorQuarter)}</span>`;

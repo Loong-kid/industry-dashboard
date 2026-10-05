@@ -667,6 +667,18 @@
             "comm_uranium",
             "comm_swu",
             "comm_komis_uranium_509"
+          ],
+          "companies": [
+            {
+              "id": "ccj",
+              "name": "Cameco (NYSE CCJ)",
+              "description": "우라늄 부문 회사 지분 기준 실제 생산량입니다. Inkai 지분 물량은 매입으로 회계 처리되어 이 생산량에 더하지 않습니다. 인도량·연료 kgU와 다릅니다.",
+              "indicators": [
+                "comm_company_ccj_price",
+                "comm_company_ccj_profit",
+                "comm_company_ccj_production"
+              ]
+            }
           ]
         },
         {
@@ -697,6 +709,18 @@
           ],
           "minerals": [
             "MNRL0001"
+          ],
+          "companies": [
+            {
+              "id": "alb",
+              "name": "알버말 (NYSE ALB)",
+              "description": "Energy Storage 리튬염·스포듀민 판매량을 탄산리튬환산(LCE)으로 집계합니다. 생산량이 아니며 금속 Li 중량과 다릅니다.",
+              "indicators": [
+                "comm_company_alb_price",
+                "comm_company_alb_profit",
+                "comm_company_alb_production"
+              ]
+            }
           ]
         },
         {
@@ -730,6 +754,18 @@
           ],
           "minerals": [
             "MNRL0009"
+          ],
+          "companies": [
+            {
+              "id": "aa",
+              "name": "Alcoa (NYSE AA)",
+              "description": "Aluminum/Alumina 부문 공표 생산량입니다. 제품이 달라 두 시리즈를 합산하지 않으며 출하량·보크사이트 생산량과 구분합니다.",
+              "indicators": [
+                "comm_company_aa_price",
+                "comm_company_aa_profit",
+                "comm_company_aa_production"
+              ]
+            }
           ]
         },
         {
@@ -1231,6 +1267,28 @@
           ],
           "minerals": [
             "MNRL0008"
+          ],
+          "companies": [
+            {
+              "id": "fcx",
+              "name": "프리포트 맥모란 (NYSE FCX)",
+              "description": "연결 광산의 회수가능 구리 생산량입니다. FCX 귀속 지분량으로 환산하지 않았습니다.",
+              "indicators": [
+                "comm_company_fcx_price",
+                "comm_company_fcx_profit",
+                "comm_company_fcx_production"
+              ]
+            },
+            {
+              "id": "scco",
+              "name": "서던코퍼 (NYSE SCCO)",
+              "description": "Mined 자체 광산 생산량입니다. 외부 정광 처리분·제련량·정련량·판매량을 더하지 않습니다.",
+              "indicators": [
+                "comm_company_scco_price",
+                "comm_company_scco_profit",
+                "comm_company_scco_production"
+              ]
+            }
           ]
         },
         {
@@ -1293,7 +1351,19 @@
           "minerals": [
             "MNRL0006"
           ],
-          "supply_note": "국가별 생산량·매장량은 희토류 전체의 REO 환산 기준입니다. 아래 개별 원소의 가격과 생산품 기준이 다르며 원소별 물량으로 나누지 않습니다."
+          "supply_note": "국가별 생산량·매장량은 희토류 전체의 REO 환산 기준입니다. 아래 개별 원소의 가격과 생산품 기준이 다르며 원소별 물량으로 나누지 않습니다.",
+          "companies": [
+            {
+              "id": "mp",
+              "name": "MP Materials (NYSE MP)",
+              "description": "REO는 정광에 포함된 희토류 산화물량, NdPr는 분리 제품량입니다. 두 시리즈를 합산하거나 Nd·Pr 개별 생산량으로 나누지 않습니다.",
+              "indicators": [
+                "comm_company_mp_price",
+                "comm_company_mp_profit",
+                "comm_company_mp_production"
+              ]
+            }
+          ]
         },
         {
           "title": "가돌리늄",

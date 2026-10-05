@@ -179,6 +179,16 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_mineral_prices.py
 
+      - name: 광물 관련 기업 공시·기간·통화 검증
+        run: |
+          python -m unittest discover -s scripts -p test_mineral_companies.py
+          node scripts/test_mineral_company_cards.cjs
+          node scripts/test_commodity_tabs.cjs
+      - name: 광물 관련 6개 기업 주가·영업이익·생산량 수집
+        continue-on-error: true
+        timeout-minutes: 12
+        run: python scripts/fetch_mineral_companies.py
+
       - name: 광물 국가별 생산량·매장량 파서 검증
         run: python -m unittest discover -s scripts -p test_mineral_supply.py
       - name: 광물 국가별 생산량·매장량 수집

@@ -27,7 +27,7 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   await api.renderIndustry();
   assert.equal(state.subtab, 'copper');
   assert(loaded.includes('comm_copper_total_inventory'));
-  assert(loaded.every(id => id.startsWith('comm_copper') || id.startsWith('comm_komis_copper') || id === 'comm_mineral_supply'));
+  assert(loaded.every(id => id.startsWith('comm_copper') || id.startsWith('comm_komis_copper') || /^comm_company_(fcx|scco)_/.test(id) || id === 'comm_mineral_supply'));
   assert(loaded.includes('comm_komis_copper_501') && loaded.includes('comm_mineral_supply'));
   loaded.length = 0;
   location.hash = '#/commodities/unknown';
@@ -43,7 +43,7 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
     await api.renderIndustry();
     assert.equal(state.subtab, tab);
     const expected = catalog.industries.find(i => i.id === 'commodities').sections
-      .filter(section => section.tab === tab).flatMap(section => [...section.indicators, ...(section.minerals?.length ? ['comm_mineral_supply'] : []), ...(section.minerals?.includes('MNRL0008') ? ['comm_copper_world_supply'] : [])]);
+      .filter(section => section.tab === tab).flatMap(section => [...section.indicators, ...(section.minerals?.length ? ['comm_mineral_supply'] : []), ...(section.minerals?.includes('MNRL0008') ? ['comm_copper_world_supply'] : []), ...(section.companies || []).flatMap(c => c.indicators)]);
     assert.deepEqual([...new Set(loaded)], [...new Set(expected)], 'Each tab must load only its own prices and supply');
     assert(expected.length > 0);
     assert(elements.get('content').children.some(child => child.className === 'tab-description'));
@@ -57,7 +57,7 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   }
   const commodity = catalog.industries.find(i => i.id === 'commodities');
   assert(commodity.sections.every(s => commodity.tabs.some(t => t.id === s.tab)));
-  for (const section of commodity.sections) for (const id of section.indicators)
+  for (const section of commodity.sections) for (const id of [...section.indicators, ...(section.companies || []).flatMap(c => c.indicators)])
     assert(fs.existsSync(`data/commodities/${id}.json`));
   console.log('PASS: four commodity tabs, old deep links, normal fallback, descriptions, trade/mineral/price isolation and data paths');
 })().catch(e => { console.error(e); process.exitCode = 1; });
