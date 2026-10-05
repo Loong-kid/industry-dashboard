@@ -331,6 +331,20 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_major_holdings.py
 
+      # 증여 계획은 소유상황 변동과 별도로 수집하며 완료로 추정하지 않는다.
+      - name: 증여 계획 파서·정정·철회 검증
+        run: python -m unittest discover -s scripts -p test_gift_plans.py -v
+      - name: 증여 계획 표·필터 검증
+        run: node scripts/test_gift_plans.cjs
+      - name: 증여 거래계획 수집
+        continue-on-error: true
+        timeout-minutes: 15
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/fetch_gift_plans.py
+      - name: 증여 거래계획 집계
+        continue-on-error: true
+        run: python scripts/aggregate_gift_plans.py
       # 대주주 증여: 임원·주요주주 소유보고 원문에서 증여/수증 추출 + 집계
       - name: 증여 공시 수집
         continue-on-error: true
