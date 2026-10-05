@@ -2913,12 +2913,20 @@ function renderPowerPipeline(doc) {
   return card;
 }
 
-// ── 대주주 증여 공시 (gifts) ─────────────────────────────────────
-// 임원·주요주주 소유보고 중 증여/수증. 기본: 소액임원(비주요주주) 숨김.
+// ── 증여 계획과 소유상황 변동 내역: 서로 다른 문서·집계 ────────
+function giftPlanStatus(order) {
+  const stored = {withdrawn: "철회", superseded: "정정 전", latest_unverified: "최신 보고서 확인 필요"};
+  if (stored[order.record_status]) return stored[order.record_status];
+  const today = new Date().toLocaleDateString("sv-SE", {timeZone: "Asia/Seoul"});
+  if (today < order.plan_start) return "계획 공시";
+  if (today <= order.plan_end) return "거래기간 중";
+  return "기간 경과 / 이행 미확인";
+}
+
 function renderGifts(doc) {
   const card = document.createElement("div");
-  card.className = "card order-table-card";
-  if (!doc || !doc.orders || !doc.orders.length) {
+  card.className = "card order-table-card gift-disclosures";
+  if (!doc || !doc.orders) {
     card.innerHTML = `<div class="card-name">${doc?.name || "대주주 증여 공시"}</div>
       <div class="card-empty">아직 데이터가 없습니다.<br><code>fetch_gifts.py</code> → <code>aggregate_gifts.py</code> 실행 후 표시됩니다.</div>`;
     return card;
@@ -2928,11 +2936,16 @@ function renderGifts(doc) {
   const markets = doc.markets || [...new Set(doc.orders.map((o) => o.market))];
   const holders = doc.holder_types || [...new Set(doc.orders.map((o) => o.holder_type))];
   const directions = doc.directions || [...new Set(doc.orders.map((o) => o.direction))];
+  const isPlan = doc.is_plan === true;
+  const orders = doc.orders.map((o) => isPlan ? {...o, plan_status: giftPlanStatus(o)} : o);
+  const statuses = doc.plan_statuses || [];
+  const hiddenStatuses = new Set(["철회", "정정 전", "최신 보고서 확인 필요"]);
 
   const filt = {
     markets: new Set(markets),
     holders: new Set(holders.filter((h) => h !== "소액임원")), // 기본 소액임원 숨김
     directions: new Set(directions),
+    statuses: new Set(statuses.filter(s => !hiddenStatuses.has(s))),
     colFilters: {},
     search: "",
     sortKey: "rcept_dt",
@@ -2955,6 +2968,15 @@ function renderGifts(doc) {
     note.textContent = doc.note;
     card.appendChild(note);
   }
+  if (isPlan && doc.coverage_note) {
+    const coverage = document.createElement("div"); coverage.className = "order-count";
+    coverage.textContent = doc.coverage_note; card.appendChild(coverage);
+  }
+  if (isPlan && doc.legal_summary) {
+    const legal = document.createElement("details"); legal.className = "gift-legal";
+    legal.innerHTML = `<summary>거래계획보고서의 법적 기준</summary><p>${escapeHtml(doc.legal_summary)}</p><p>${(doc.legal_sources || []).map(s => /^https:\/\//.test(s.url) ? `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>` : "").join(" · ")}</p>`;
+    card.appendChild(legal);
+  }
 
   const filterBar = document.createElement("div");
   filterBar.className = "order-filters";
@@ -2962,6 +2984,8 @@ function renderGifts(doc) {
   const marketChips = document.createElement("div"); marketChips.className = "chips"; filterBar.appendChild(marketChips);
   const holderChips = document.createElement("div"); holderChips.className = "chips"; filterBar.appendChild(holderChips);
   const dirChips = document.createElement("div"); dirChips.className = "chips"; filterBar.appendChild(dirChips);
+  const statusChips = document.createElement("div"); statusChips.className = "chips gift-status-filters";
+  if (isPlan) filterBar.appendChild(statusChips);
   const searchWrap = document.createElement("div"); searchWrap.className = "order-search";
   searchWrap.innerHTML = `<input type="text" placeholder="종목·보고자·상대방 검색" />`;
   filterBar.appendChild(searchWrap);
@@ -2971,15 +2995,17 @@ function renderGifts(doc) {
 
   const COLS = [
     { key: "rcept_dt", label: "공시일" },
+    ...(isPlan ? [{key: "plan_status", label: "계획 상태"}, {key: "plan_start", label: "거래 예정기간"}] : []),
     { key: "corp_name", label: "종목", filter: true },
     { key: "market", label: "시장" },
     { key: "reporter", label: "보고자", filter: true },
     { key: "position", label: "직위" },
     { key: "holder_type", label: "유형" },
     { key: "direction", label: "방향" },
-    { key: "gift_shares", label: "규모(주식)", align: "right" },
-    { key: "before_rate", label: "지분율(전→후)", align: "right" },
+    { key: "gift_shares", label: isPlan ? "예정 수량" : "규모(주식)", align: "right" },
+    { key: "before_rate", label: isPlan ? "지분율(현재→계획 후 예상)" : "지분율(전→후)", align: "right" },
     { key: "counterparty", label: "상대방", filter: true },
+    ...(isPlan ? [{key: "security", label: "주식 종류"}, {key: "purpose", label: "거래목적", filter: true}] : []),
     { key: "_link", label: "" },
   ];
 
@@ -2994,15 +3020,18 @@ function renderGifts(doc) {
   markets.forEach((m) => buildChip(marketChips, m, true, (on) => (on ? filt.markets.add(m) : filt.markets.delete(m))));
   holders.forEach((h) => buildChip(holderChips, h, h !== "소액임원", (on) => (on ? filt.holders.add(h) : filt.holders.delete(h))));
   directions.forEach((d) => buildChip(dirChips, d, true, (on) => (on ? filt.directions.add(d) : filt.directions.delete(d))));
+  statuses.forEach((s) => buildChip(statusChips, s, !hiddenStatuses.has(s), (on) => (on ? filt.statuses.add(s) : filt.statuses.delete(s))));
   searchWrap.querySelector("input").addEventListener("input", (e) => { filt.search = e.target.value.trim().toLowerCase(); renderRows(); });
 
   function cellValue(o, key) {
     switch (key) {
-      case "corp_name": return o.stock_code ? `<span title="${o.stock_code}">${o.corp_name}</span>` : (o.corp_name || "-");
-      case "holder_type": return o.holder_type === "소액임원" ? `<span class="size-inferred">소액임원</span>` : o.holder_type;
+      case "corp_name": return o.stock_code ? `<span title="${escapeHtml(o.stock_code)}">${escapeHtml(o.corp_name)}</span>` : escapeHtml(o.corp_name || "-");
+      case "holder_type": return o.holder_type === "소액임원" ? `<span class="size-inferred">소액임원</span>` : escapeHtml(o.holder_type);
+      case "plan_status": return `<span class="gift-plan-status ${o.record_status === "active" ? "active" : "archived"}">${escapeHtml(o.plan_status)}</span>`;
+      case "plan_start": return `${escapeHtml(o.plan_start)}<br>~ ${escapeHtml(o.plan_end)}`;
       case "direction": {
         const cls = o.direction && o.direction.indexOf("증여") === 0 ? "down" : "up"; // 증여(줌)=빨강, 수증(받음)=초록
-        return `<span class="chg ${cls}">${o.direction}</span>`;
+        return `<span class="chg ${cls}">${escapeHtml(o.direction)}</span>`;
       }
       case "gift_shares":
         return o.gift_shares != null ? o.gift_shares.toLocaleString("ko-KR") + "주" : "-";
@@ -3012,8 +3041,9 @@ function renderGifts(doc) {
         return `${o.before_rate}% <span class="chg ${cls}">→ ${o.after_rate}%</span>`;
       }
       case "_link":
-        return o.rcept_no ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.rcept_no}" target="_blank" rel="noopener">원문</a>` : "";
-      default: return o[key] || "-";
+        return /^\d{14}$/.test(o.rcept_no) ? `<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.rcept_no}" target="_blank" rel="noopener">원문</a>` +
+          (isPlan && o.latest_rcept_no !== o.rcept_no && /^\d{14}$/.test(o.latest_rcept_no) ? `<br><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${o.latest_rcept_no}" target="_blank" rel="noopener">최신 보고</a>` : "") : "";
+      default: return escapeHtml(o[key] || "-");
     }
   }
 
@@ -3058,17 +3088,18 @@ function renderGifts(doc) {
 
   function renderRows() {
     const cutoff = cutoffFor(state.tableRange[doc.id] || TABLE_RANGE_DEFAULT);
-    const all = doc.orders.filter((o) => o.rcept_dt >= cutoff);
+    const all = orders.filter((o) => o.rcept_dt >= cutoff);
     const rows = all.filter((o) => {
       if (!filt.markets.has(o.market)) return false;
       if (!filt.holders.has(o.holder_type)) return false;
       if (!filt.directions.has(o.direction)) return false;
+      if (isPlan && !filt.statuses.has(o.plan_status)) return false;
       for (const key in filt.colFilters) {
         const q = filt.colFilters[key];
         if (q && !String(o[key] || "").toLowerCase().includes(q)) return false;
       }
       if (filt.search) {
-        const hay = `${o.corp_name} ${o.reporter} ${o.counterparty}`.toLowerCase();
+        const hay = `${o.corp_name} ${o.reporter} ${o.counterparty} ${o.purpose || ""}`.toLowerCase();
         if (!hay.includes(filt.search)) return false;
       }
       return true;

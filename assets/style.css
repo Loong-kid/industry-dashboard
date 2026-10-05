@@ -584,3 +584,14 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .mineral-trade-search label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
 .mineral-trade-search input { font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:9px 12px; max-width:100%; box-sizing:border-box; }
 .trade-hs-list { max-height:280px; overflow:auto; padding-left:20px; font-size:12px; line-height:1.7; color:var(--muted); overflow-wrap:anywhere; }
+.gift-legal { margin:8px 20px 14px; font-size:12px; line-height:1.7; color:var(--muted); }
+.gift-legal summary { cursor:pointer; color:var(--ink); }
+.gift-legal summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.gift-legal a { color:var(--accent); }
+.gift-plan-status { display:inline-block; padding:3px 7px; border:1px solid var(--border); border-radius:4px; font-size:11px; }
+.gift-plan-status.active { color:var(--accent); background:var(--surface); }
+.gift-plan-status.archived { color:var(--muted); }
+.gift-status-filters { flex-basis:100%; }
+.gift-disclosures .card-head { flex-wrap:wrap; }
+.gift-disclosures .order-head-left { min-width:0; flex:1 1 260px; }
+.gift-disclosures .card-freq { overflow-wrap:anywhere; }

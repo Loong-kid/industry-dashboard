@@ -73,7 +73,7 @@ def scan_reports(session, api_key, bgn, end):
             page = 1
             while True:
                 r = session.get(LIST_URL, params={"crtfc_key": api_key, "bgn_de": cb, "end_de": ce,
-                                                   "pblntf_ty": "D", "corp_cls": cls,
+                                                   "pblntf_detail_ty": "D002", "corp_cls": cls,
                                                    "page_count": 100, "page_no": page}, timeout=30)
                 d = r.json()
                 if d.get("status") == "013":
@@ -81,7 +81,8 @@ def scan_reports(session, api_key, bgn, end):
                 if d.get("status") != "000":
                     raise RuntimeError(f"list {cls} {d.get('status')} {d.get('message')}")
                 for it in d.get("list", []):
-                    if "임원" in (it.get("report_nm") or ""):
+                    title = it.get("report_nm") or ""
+                    if "임원" in title and "소유상황" in title:
                         out.append(it)
                 if page >= int(d.get("total_page", 1)):
                     break
