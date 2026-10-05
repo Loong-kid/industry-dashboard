@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from korea_datacenter import address_key, annual_series, date_info, merge_observations, parse_public_rows, reconcile
+from korea_datacenter import address_key, annual_series, date_info, merge_observations, parse_public_rows, reconcile, enrich_records
 from fetch_korea_datacenter import declared_period, listing
 
 SOURCE = {'id': '1893', 'title': '공식 허가', 'published': '2026-09-17', 'url': 'https://blcm.go.kr', 'kind': 'permits'}
@@ -24,6 +24,22 @@ def facility():
 
 
 class DatacenterTests(unittest.TestCase):
+    def test_research_preserves_manual_facts_and_uses_explicit_provenance(self):
+        row = facility()
+        row['owner'] = ''
+        row['sources'] = [{**SOURCE, 'id': 'baseline-starts'}, SOURCE]
+        original = copy.deepcopy(row)
+        entry = {'checked': '2026-10-05', 'stakeholders': [{'role': 'operator', 'name': '운영법인'}],
+                 'update': {'stage': '운영', 'as_of': '2026-06-16', 'text': '개장 발표'}, 'sources': [SOURCE]}
+        summary = enrich_records([row], {'checked': '2026-10-05', 'records': {row['id']: entry}})
+        self.assertEqual(row['dates'], original['dates'])
+        self.assertEqual(row['owner'], '')
+        self.assertEqual(row['capacity'], original['capacity'])
+        self.assertEqual(summary['unresolved_owner'], 1)
+        self.assertEqual([s['provenance'] for s in row['sources']], ['user_raw', 'public_download'])
+        row['research']['stakeholders'][0]['name'] = '수정'
+        self.assertEqual(entry['stakeholders'][0]['name'], '운영법인')
+
     def test_uncertain_and_invalid_dates_never_become_actual(self):
         for value in ['2022?', '2027.4Q', '2026-06-31(목표)', '2026-04-31(예정)', 2024]:
             self.assertNotEqual(date_info(value)['kind'], 'confirmed')

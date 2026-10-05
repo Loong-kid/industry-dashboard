@@ -16,6 +16,7 @@ from common import collection_date
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_URL = 'https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do'
 BASELINE = ROOT / 'manual/korea_datacenter_baseline.json'
+RESEARCH = ROOT / 'manual/korea_datacenter_research.json'
 OUTPUT = ROOT / 'data/datacenter'
 PROVINCES = {'서울':'서울특별시','서울시':'서울특별시','경기':'경기도','인천':'인천광역시','인천시':'인천광역시',
     '부산':'부산광역시','부산시':'부산광역시','울산':'울산광역시','울산시':'울산광역시',
@@ -334,8 +335,32 @@ def annual_series(records, field, measure='count'):
             for name, points in sorted(series.items(), key=lambda x: (x[0] != '신축', x[0]))}
 
 
-def build_documents(baseline, observations, manifest, status=None):
+def source_provenance(source):
+    return 'user_raw' if source['id'].startswith('baseline-') else 'public_download'
+
+
+def enrich_records(records, research):
+    """Evidence stays separate from the user's facts and administrative dates."""
+    entries = research.get('records', {})
+    for row in records:
+        row['sources'] = [{**s, 'provenance': source_provenance(s)} for s in row['sources']]
+        if row['id'] in entries:
+            row['research'] = copy.deepcopy(entries[row['id']])
+    confirmed = [r for r in records if r['classification'] == 'confirmed']
+    examined = [r for r in confirmed if r.get('research')]
+    return {'checked': research.get('checked'), 'examined': len(examined),
+            'stakeholders_found': sum(bool(r['research'].get('stakeholders')) for r in examined),
+            'status_updates': sum(bool(r['research'].get('update')) for r in examined),
+            'unresolved_owner': sum(r['owner'].strip() in ('', '?', '미확인', '-') and not any(s['role'] == 'owner' for s in r.get('research', {}).get('stakeholders', [])) for r in confirmed)}
+
+
+def build_documents(baseline, observations, manifest, status=None, research=None):
     records, changes = reconcile(baseline, merge_observations(baseline['raw_observations'], observations))
+    if research is None:
+        research = json.loads(RESEARCH.read_text(encoding='utf8')) if RESEARCH.exists() else {}
+    research_summary = enrich_records(records, research)
+    for change in changes:
+        change['sources'] = [{**s, 'provenance': source_provenance(s)} for s in change['sources']]
     today = collection_date()
     common = {'source': '기준 정리자료 + 국토교통부 공개 건축통계', 'source_url': PUBLIC_URL,
         'fetched': status.get('checked', today) if status and status.get('ok') else None,
@@ -355,7 +380,8 @@ def build_documents(baseline, observations, manifest, status=None):
             'year_labels': True, 'annual_axis': True, 'span_gaps': False, 'change_mode': 'none',
             'series': pts, 'default_series': ['신축'] if '신축' in pts else list(pts)[:1]}
     docs['dc_facilities'] = {**common, 'id': 'dc_facilities', 'name': '국내 데이터센터 · 센터·공사 단계별 현황',
-        'records': records, 'changes': changes, 'manifest': manifest, 'baseline': {k: baseline[k] for k in ['label','snapshot_date','imported']},
+        'records': records, 'changes': changes, 'manifest': manifest, 'research_summary': research_summary,
+        'baseline': {k: baseline[k] for k in ['label','snapshot_date','imported']},
         'summary': {'baseline_rows': len(baseline['facilities']), 'tracked_rows': sum(r['classification'] == 'confirmed' for r in records),
                     'candidate_rows': sum(r['classification'] != 'confirmed' for r in records),
                     'applied': sum(c['applied'] for c in changes), 'review': sum(not c['applied'] for c in changes)},
