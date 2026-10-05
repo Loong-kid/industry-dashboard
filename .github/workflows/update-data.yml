@@ -196,8 +196,8 @@ jobs:
         run: python -m unittest discover -s scripts -p test_korea_mineral_trade.py
       - name: 한국 광물 73종 수입·수출 수집
         continue-on-error: true
-        timeout-minutes: 12
-        run: python scripts/fetch_korea_mineral_trade.py
+        timeout-minutes: 20
+        run: python scripts/fetch_korea_mineral_trade.py --workers 4
 
       - name: SHFE 구리 주간 재고 수집
         continue-on-error: true
