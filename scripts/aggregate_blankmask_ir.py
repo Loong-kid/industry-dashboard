@@ -96,7 +96,7 @@ def build_docs(raw):
     card("hoya_blank_growth","HOYA · LSI 블랭크마스크 매출 성장률","%","quarterly",
          "HOYA 공식 분기 실적 설명자료 · LSI 제품군","https://www.hoya.com/en/investor/kessan/",data,
          "반도체용 EUV·DUV 블랭크마스크 제품군의 전년 동기 대비 매출 성장률입니다. 금액 추이가 아닌 수요·매출 성장 추이입니다.",
-         "명목 엔화 기준과 환율 영향을 제거한 CC(Constant Currency) 기준을 구분합니다. 매출 절대액은 확인되지 않아 성장률로 금액을 역산하지 않았습니다. FPD 제품군은 제외합니다. 달력 분기로 통일했으므로 2026 Q2는 회사 표기의 FY26 Q1에 해당합니다.",
+         "명목 엔화 기준과 환율 영향을 제거한 CC(Constant Currency) 기준을 구분합니다. 함께 표시하는 LSI 매출 추정 카드의 근거 성장률이며, 이 카드 자체는 회사 공표 성장률입니다. FPD 제품군은 제외합니다. 달력 분기로 통일했으므로 2026 Q2는 회사 표기의 FY26 Q1에 해당합니다.",
          series={"명목 YoY":[[period_date(r["period"]),r["value"]] for r in data],
                  "환율 제외 YoY (CC)":[[period_date(r["period"]),r["constant_currency_yoy"]] for r in data]},
          default_series=["명목 YoY","환율 제외 YoY (CC)"],quarter_labels=True,change_mode="none")

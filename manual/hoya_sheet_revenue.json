@@ -1,0 +1,135 @@
+{
+  "checked": "2026-10-06",
+  "source_url": "https://docs.google.com/spreadsheets/d/1pxtIFJunhVy47FNyfI4nUDjqCXtHMuKosjek0OLIYXg/edit#gid=1399579661",
+  "unit": "million_jpy",
+  "source_headers": [
+    "26.2Q",
+    "26.1Q",
+    "25.4Q",
+    "25.3Q",
+    "25.2Q",
+    "25.1Q",
+    "24.4Q",
+    "24.3Q",
+    "24.2Q",
+    "24.1Q",
+    "23.4Q",
+    "23.3Q"
+  ],
+  "calendar_quarters": [
+    "2026Q1",
+    "2025Q4",
+    "2025Q3",
+    "2025Q2",
+    "2025Q1",
+    "2024Q4",
+    "2024Q3",
+    "2024Q2",
+    "2024Q1",
+    "2023Q4",
+    "2023Q3",
+    "2023Q2"
+  ],
+  "period_mapping": {
+    "note": "시트 헤더는 달력 분기보다 한 분기 앞서 있으며, 같은 열의 회사 총매출·LSI YoY를 공식 IR과 대조해 실제 달력 분기로 매핑했다.",
+    "anchor": {
+      "cell": "E8",
+      "sheet_header": "26.2Q",
+      "calendar_quarter": "2026Q1",
+      "group_revenue_million_jpy": 248130,
+      "official_source_url": "https://www.hoya.com/wp-content/uploads/2026/05/FY25-Q4-Transcript_E.pdf",
+      "pdf_page": 2,
+      "official_revenue_billion_jpy": 248.1
+    }
+  },
+  "estimation_basis": {
+    "sheet_text": "IR에서 각 섹터별 성장률만 공시하며 성장률을 바탕으로 추정치 산출",
+    "user_explanation": "회사 공시 성장률과 컨콜에서 언급한 매출 금액을 바탕으로 산출한 추정치.",
+    "scope_url": "https://www.hoya.com/ir/2026/en/review/it.html"
+  },
+  "metrics": [
+    {
+      "id": "hoya_electronics_revenue_estimate",
+      "label": "Electronics",
+      "status": "estimate",
+      "range": "E11:P11",
+      "values": [
+        78942,
+        76752,
+        71368,
+        68697,
+        64637,
+        68491,
+        65757,
+        66286,
+        48899,
+        49687,
+        45737,
+        44950
+      ]
+    },
+    {
+      "id": "hoya_lsi_revenue_estimate",
+      "label": "LSI",
+      "status": "estimate",
+      "range": "E12:P12",
+      "sheet_note": "반도체용 블랭크마스크",
+      "values": [
+        41358.1,
+        42766.2,
+        36714.3,
+        37546.7,
+        35049.2,
+        37514.2,
+        32490.5,
+        34765.4,
+        25215.3,
+        29307.9,
+        25583.1,
+        23177
+      ]
+    },
+    {
+      "id": "hoya_fpd_revenue_estimate",
+      "label": "FPD",
+      "status": "estimate",
+      "range": "E13:P13",
+      "sheet_note": "디스플레이용",
+      "values": [
+        6840.8,
+        4237.8,
+        5940.3,
+        6590.3,
+        4993.3,
+        3685,
+        5657.5,
+        5937.2,
+        6484.8,
+        3838.6,
+        6816.2,
+        6985
+      ]
+    },
+    {
+      "id": "hoya_hdd_revenue_estimate",
+      "label": "HDD",
+      "status": "estimate",
+      "range": "E14:P14",
+      "sheet_note": "하드디스크용 유리기판",
+      "values": [
+        30743.1,
+        29748.1,
+        28713.4,
+        24560,
+        24594.5,
+        27291.8,
+        27609,
+        25583.3,
+        17199,
+        16540.5,
+        13337.7,
+        14788
+      ]
+    }
+  ]
+}

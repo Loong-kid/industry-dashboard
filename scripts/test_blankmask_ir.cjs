@@ -17,7 +17,7 @@ assert(headline(sparse).includes('YoY +100.0% · QoQ 자료 없음'));
 assert(headline(sparse).includes('2026 Q2'));
 const boundary = {...sparse,series:{sales:[['2025-03-31',100],['2025-12-31',160],['2026-03-31',200]]}};
 assert(headline(boundary).includes('YoY +100.0% · QoQ +25.0%'));
-for (const id of ['hoya_it_revenue','agc_materials_revenue','shinetsu_materials_revenue','hoya_blank_growth','agc_euv_annual_revenue','agc_sheet_materials_revenue','agc_euv_revenue_estimate','agc_duv_substrate_revenue_estimate']) {
+for (const id of ['hoya_it_revenue','agc_materials_revenue','shinetsu_materials_revenue','hoya_blank_growth','agc_euv_annual_revenue','agc_sheet_materials_revenue','agc_euv_revenue_estimate','agc_duv_substrate_revenue_estimate','hoya_electronics_revenue_estimate','hoya_lsi_revenue_estimate','hoya_fpd_revenue_estimate','hoya_hdd_revenue_estimate']) {
   const doc=JSON.parse(fs.readFileSync(`data/semicon/${id}.json`,'utf8'));
   assert(!/NaN|Infinity/.test(headline(doc)));
   if(doc.change_mode==='none')assert(!headline(doc).includes('stat-delta'));
