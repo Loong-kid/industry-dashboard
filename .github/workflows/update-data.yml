@@ -290,10 +290,13 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_snstech.py
 
-      # 공식 IR 확인값의 변환만 수행. 단독 분기 금액 추정이나 새 발표 자동 추출은 하지 않는다.
+      # 공식 IR 확인값과 사용자 AGC 시트 스냅샷을 변환한다. 새 발표·시트 자동 수집은 하지 않는다.
       - name: 일본 블랭크마스크 공급사 IR 집계
         continue-on-error: true
-        run: python scripts/aggregate_blankmask_ir.py
+        run: |
+          python -m unittest discover -s scripts -p test_agc_sheet.py
+          python scripts/aggregate_blankmask_ir.py
+          python scripts/aggregate_agc_sheet.py
 
       # ASML 노광기 기술별 판매 대수(수기 CSV, 분기 발표자료 이미지에서 옮겨 적음) — 합계·연간 대조 검증 포함
       - name: ASML 노광기 판매 집계
