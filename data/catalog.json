@@ -1610,7 +1610,7 @@
       "name": "반도체 소부장",
       "icon": "🔬",
       "default_range": "3y",
-      "cadence": "한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다.",
+      "cadence": "한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 실적은 분기 수기입력. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다. AGC 전자부재 정리값·EUV 블랭크·DUV 기판 추정은 사용자 구글 시트에서 확인한 22개 분기를 반영하며, 시트 수정 후 요청 시 다시 반영한다.",
       "tabs": [
         {
           "id": "snstech",
@@ -1630,32 +1630,6 @@
             "snstech_revenue"
           ],
           "tab": "snstech"
-        },
-        {
-          "title": "일본 블랭크마스크 공급사 · IR 공개 범위",
-          "tab": "snstech",
-          "type": "table",
-          "table_kind": "ir_disclosure",
-          "indicators": [
-            "blankmask_ir_disclosure"
-          ]
-        },
-        {
-          "title": "블랭크마스크 직접 공개 지표 · 금액과 성장률 구분",
-          "tab": "snstech",
-          "indicators": [
-            "hoya_blank_growth",
-            "agc_euv_annual_revenue"
-          ]
-        },
-        {
-          "title": "일본 3사 관련 사업부 매출 · 블랭크마스크 단독 매출 아님",
-          "tab": "snstech",
-          "indicators": [
-            "hoya_it_revenue",
-            "agc_materials_revenue",
-            "shinetsu_materials_revenue"
-          ]
         },
         {
           "title": "ASML 노광기 판매 — 블랭크마스크 수요의 바탕",
@@ -1691,27 +1665,6 @@
           "tab": "snstech"
         },
         {
-          "title": "일본 블랭크마스크 관련 수출 · HS 370199000",
-          "tab": "snstech",
-          "indicators": [
-            "jp_blank_amount",
-            "jp_blank_area",
-            "jp_blank_price",
-            "jp_blank_country",
-            "jp_blank_country_area",
-            "jp_blank_country_price"
-          ]
-        },
-        {
-          "title": "일본 대형 감광 플레이트 수출 · HS 370130000 · 보조지표",
-          "tab": "snstech",
-          "indicators": [
-            "jp_plate_large_amount",
-            "jp_plate_large_area",
-            "jp_plate_large_price"
-          ]
-        },
-        {
           "title": "블랭크마스크 · 반도체용 (HS 3701991000)",
           "indicators": [
             "blank_semi_amount",
@@ -1734,6 +1687,62 @@
             "blank_disp_imp_country"
           ],
           "tab": "snstech"
+        },
+        {
+          "title": "일본 블랭크마스크 공급사 · IR 공개 범위",
+          "tab": "snstech",
+          "type": "table",
+          "table_kind": "ir_disclosure",
+          "indicators": [
+            "blankmask_ir_disclosure"
+          ]
+        },
+        {
+          "title": "블랭크마스크 직접 공개 지표 · 금액과 성장률 구분",
+          "tab": "snstech",
+          "indicators": [
+            "hoya_blank_growth",
+            "agc_euv_annual_revenue"
+          ]
+        },
+        {
+          "title": "일본 3사 관련 사업부 매출 · 블랭크마스크 단독 매출 아님",
+          "tab": "snstech",
+          "indicators": [
+            "hoya_it_revenue",
+            "agc_materials_revenue",
+            "shinetsu_materials_revenue"
+          ]
+        },
+        {
+          "title": "AGC 세부 매출 · 전자부재 공표값과 EUV·DUV 추정",
+          "tab": "snstech",
+          "indicators": [
+            "agc_sheet_materials_revenue",
+            "agc_euv_revenue_estimate",
+            "agc_duv_substrate_revenue_estimate"
+          ]
+        },
+        {
+          "title": "일본 블랭크마스크 관련 수출 · HS 370199000",
+          "tab": "snstech",
+          "indicators": [
+            "jp_blank_amount",
+            "jp_blank_area",
+            "jp_blank_price",
+            "jp_blank_country",
+            "jp_blank_country_area",
+            "jp_blank_country_price"
+          ]
+        },
+        {
+          "title": "일본 대형 감광 플레이트 수출 · HS 370130000 · 보조지표",
+          "tab": "snstech",
+          "indicators": [
+            "jp_plate_large_amount",
+            "jp_plate_large_area",
+            "jp_plate_large_price"
+          ]
         },
         {
           "title": "정전척 ESC (HS 8486902030)",
