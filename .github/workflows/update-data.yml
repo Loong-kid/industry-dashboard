@@ -290,6 +290,14 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_snstech.py
 
+      # DART 공개 HTML. 최근 정기보고서·정정 접수번호를 확인하며 원문 누적값을 분기로 변환.
+      - name: 에스앤에스텍 생산능력·생산실적 검증
+        run: python -m unittest discover -s scripts -p test_snstech_production.py
+      - name: 에스앤에스텍 생산 공시 수집
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_snstech_production.py
+
       # 공식 IR 확인값과 사용자 HOYA·AGC 시트 스냅샷을 변환한다. 새 발표·시트 자동 수집은 하지 않는다.
       - name: 일본 블랭크마스크 공급사 IR 집계
         continue-on-error: true
