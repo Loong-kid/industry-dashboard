@@ -588,6 +588,16 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .gift-legal summary { cursor:pointer; color:var(--ink); }
 .gift-legal summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .gift-legal a { color:var(--accent); }
+.gift-legal-criteria { margin:12px 0; }
+.gift-legal-criteria > div { display:grid; grid-template-columns:160px minmax(0,1fr); gap:8px 16px; border-top:1px solid var(--border); padding:10px 0; }
+.gift-legal-criteria dt { color:var(--ink); font-weight:600; }
+.gift-legal-criteria dd { margin:0; min-width:0; }
+.gift-legal-criteria p { margin:0; }
+.gift-legal-sources { font-size:11px; overflow-wrap:anywhere; }
+.gift-legal-criteria .gift-legal-sources { margin-top:4px; }
+@media (max-width:600px) {
+  .gift-legal-criteria > div { grid-template-columns:minmax(0,1fr); gap:4px; }
+}
 .gift-plan-status { display:inline-block; padding:3px 7px; border:1px solid var(--border); border-radius:4px; font-size:11px; }
 .gift-plan-status.active { color:var(--accent); background:var(--surface); }
 .gift-plan-status.archived { color:var(--muted); }

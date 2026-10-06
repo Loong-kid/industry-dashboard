@@ -2974,7 +2974,19 @@ function renderGifts(doc) {
   }
   if (isPlan && doc.legal_summary) {
     const legal = document.createElement("details"); legal.className = "gift-legal";
-    legal.innerHTML = `<summary>거래계획보고서의 법적 기준</summary><p>${escapeHtml(doc.legal_summary)}</p><p>${(doc.legal_sources || []).map(s => /^https:\/\//.test(s.url) ? `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>` : "").join(" · ")}</p>`;
+    const sourceLinks = (sources) => sources.filter(s => /^https:\/\//.test(s.url)).map(s =>
+      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>`).join(" · ");
+    const sources = doc.legal_sources || [];
+    const sections = doc.legal_sections || [];
+    legal.open = sections.length > 0;
+    legal.innerHTML = `<summary>증여 전 거래계획: 보고 대상·시점·미이행 제재</summary>
+      <p>${escapeHtml(doc.legal_summary)}</p>
+      ${sections.length ? `<dl class="gift-legal-criteria">${sections.map(section =>
+        `<div><dt>${escapeHtml(section.title)}</dt><dd><p>${escapeHtml(section.text)}</p>
+          <p class="gift-legal-sources">원문: ${sourceLinks(sources.filter(s => (section.source_ids || []).includes(s.id)))}</p></dd></div>`
+      ).join("")}</dl>` : `<p>${sourceLinks(sources)}</p>`}
+      ${doc.legal_note ? `<p>${escapeHtml(doc.legal_note)}</p>` : ""}
+      ${doc.legal_checked ? `<p class="gift-legal-sources">법령 확인일: ${escapeHtml(doc.legal_checked)}</p>` : ""}`;
     card.appendChild(legal);
   }
 
