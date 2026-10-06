@@ -1,4 +1,4 @@
-"""HOYA 시트의 사업부·제품별 추정을 실제 달력 분기로 변환한다."""
+"""HOYA 시트의 공표 사업부 매출과 제품별 추정을 실제 달력 분기로 변환한다."""
 import json
 import math
 import re
@@ -11,9 +11,9 @@ INPUT = ROOT / "manual" / "hoya_sheet_revenue.json"
 OUT = ROOT / "data" / "semicon"
 SPECS = {
     "hoya_electronics_revenue_estimate": (
-        "HOYA · Electronics 매출 · 시트 추정", "Electronics (추정)",
+        "HOYA · Electronics 매출 · 공표 실적", "Electronics 매출 (공표 실적)",
         "LSI·FPD·HDD를 묶은 전자 제품군 매출입니다. Information Technology 사업부 안에서 블랭크마스크와 관련된 제품 매출의 비중을 확인할 수 있습니다.",
-        "LSI·FPD·HDD 추정 매출의 합계이며, 광학 제품 등을 포함하는 전체 IT 사업부와 범위가 다릅니다.",
+        "HOYA IR의 세부 매출 공표값을 사용자 시트에 정리한 실적입니다. 광학 제품 등을 포함하는 전체 IT 사업부와 범위가 다릅니다. 하위 제품군 LSI·FPD·HDD의 매출은 별도의 추정치입니다.",
     ),
     "hoya_lsi_revenue_estimate": (
         "HOYA · LSI 블랭크마스크 매출 · EUV·DUV 추정", "LSI · EUV·DUV 블랭크마스크 (추정)",
@@ -62,7 +62,8 @@ def build_docs(raw, official=None):
     if set(metrics) != set(SPECS) or len(metrics) != len(raw["metrics"]):
         raise ValueError("Missing or duplicate metric")
     for m in metrics.values():
-        if m["status"] != "estimate" or len(m["values"]) != len(dates):
+        expected_status = "actual" if m["id"] == "hoya_electronics_revenue_estimate" else "estimate"
+        if m["status"] != expected_status or len(m["values"]) != len(dates):
             raise ValueError("Incorrect status or missing values")
         if any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v < 0 for v in m["values"]):
             raise ValueError("Invalid revenue value")
@@ -89,11 +90,11 @@ def build_docs(raw, official=None):
             updated=points[-1][0], fetched=raw["checked"], span_gaps=False,
             description=description, note=note + " 달력 분기로 통일한 분기별 3개월 금액입니다.",
             series={label: points}, default_series=[label],
-            quarter_labels=True, quarterly_revenue_summary=True, revenue_status="estimate",
+            quarter_labels=True, quarterly_revenue_summary=True, revenue_status=metric["status"],
             point_sources={d: {"url": raw["source_url"] + "&range=" + metric["range"], "label": "HOYA 시트 · " + metric["range"]} for d, _ in points},
             methodology_url=raw["estimation_basis"]["scope_url"],
             basis_details=[
-                {"label": "추정 근거", "value": raw["estimation_basis"]["user_explanation"]},
+                {"label": "자료 성격" if metric["status"] == "actual" else "추정 근거", "value": "HOYA IR에서 공표한 Electronics 세부 매출 실적을 사용자 시트에 정리한 값입니다." if metric["status"] == "actual" else raw["estimation_basis"]["user_explanation"]},
                 {"label": "시트 메모", "value": metric.get("sheet_note", "LSI·FPD·HDD 합계")},
                 {"label": "분기 정렬", "value": raw["period_mapping"]["note"]},
                 {"label": "확보 기간", "value": "2023 Q2~2026 Q1 · 입력된 12개 분기. 이후 빈 셀은 연장 추정하지 않았습니다."},

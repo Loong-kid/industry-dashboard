@@ -23,7 +23,7 @@ class HOYASheetTest(unittest.TestCase):
             self.assertEqual(len(points), 12)
             self.assertEqual(points[0], ["2023-06-30", first])
             self.assertEqual(points[-1], ["2026-03-31", last])
-            self.assertEqual(doc["revenue_status"], "estimate")
+            self.assertEqual(doc["revenue_status"], "actual" if id_ == "hoya_electronics_revenue_estimate" else "estimate")
             self.assertEqual(set(doc["point_sources"]), {d for d, _ in points})
         self.assertIn("EUV와 DUV", docs["hoya_lsi_revenue_estimate"]["description"])
         self.assertIn("포토마스크", docs["hoya_fpd_revenue_estimate"]["description"])
