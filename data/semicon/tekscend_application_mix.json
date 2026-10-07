@@ -95,7 +95,7 @@
   "메모리"
  ],
  "description": "포토마스크 제품 매출의 로직·기타 및 메모리 비중입니다. 구성비 변화만으로 해당 용도의 절대 매출 증감을 판단할 수 없습니다.",
- "note": "옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 연결 총매출에 곱해 제품별 금액을 추정하지 않았습니다.",
+ "note": "옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 금액 보기에서는 연결 매출에 비중을 적용한 근사 추정치를 별도로 표시합니다.",
  "point_sources": {
   "2024-06-30": {
    "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
@@ -152,5 +152,437 @@
    "label": "갱신",
    "value": "분기 발표 시 그래프의 숫자·분기 축을 확인해 스냅샷을 갱신합니다."
   }
- ]
+ ],
+ "series_views": {
+  "amount": {
+   "label": "금액 (근사 추정)",
+   "name": "Tekscend · 포토마스크 용도별 매출 · 근사 추정",
+   "unit": "억 엔",
+   "series": {
+    "로직·기타": [
+     [
+      "2024-06-30",
+      241.47
+     ],
+     [
+      "2024-09-30",
+      246.55
+     ],
+     [
+      "2024-12-31",
+      256.37
+     ],
+     [
+      "2025-03-31",
+      252.08
+     ],
+     [
+      "2025-06-30",
+      264.67
+     ],
+     [
+      "2025-09-30",
+      275.75
+     ],
+     [
+      "2025-12-31",
+      310.16
+     ],
+     [
+      "2026-03-31",
+      283.4
+     ],
+     [
+      "2026-06-30",
+      307.21
+     ]
+    ],
+    "메모리": [
+     [
+      "2024-06-30",
+      56.64
+     ],
+     [
+      "2024-09-30",
+      50.5
+     ],
+     [
+      "2024-12-31",
+      41.74
+     ],
+     [
+      "2025-03-31",
+      34.38
+     ],
+     [
+      "2025-06-30",
+      36.09
+     ],
+     [
+      "2025-09-30",
+      41.2
+     ],
+     [
+      "2025-12-31",
+      34.46
+     ],
+     [
+      "2026-03-31",
+      50.01
+     ],
+     [
+      "2026-06-30",
+      37.97
+     ]
+    ]
+   },
+   "company_kpi": true,
+   "quarterly_revenue_summary": true,
+   "description": "연결 매출 × 공표 비중으로 계산한 근사 추정치입니다. 회사가 공시한 공정별·용도별 매출 금액이 아닙니다. 비중의 실제 분모는 포토마스크 제품 매출이며, 해당 제품 매출 금액을 별도로 확인하지 못해 단일 포토마스크 사업의 연결 매출을 대용했습니다.",
+   "point_sources": {
+    "2024-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2024 Q1",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2024 Q1"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2024 Q1"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2024-09-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2024 Q2",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2024 Q2"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2024 Q2"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2024-12-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2024 Q3",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2024 Q3"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2024 Q3"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2025-03-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2024 Q4",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2024 Q4"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2024 Q4"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2025-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2025 Q1",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2025 Q1"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2025 Q1"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2025-09-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2025 Q2",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2025 Q2"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2025 Q2"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2025-12-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2025 Q3",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2025 Q3"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2025 Q3"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2026-03-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 26,
+     "label": "FY2025 Q4",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 26,
+       "label": "FY2025 Q4"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+       "pdf_page": 9,
+       "label": "FY2025 Q4"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    },
+    "2026-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/9137f1b0/3e42/43d3/b883/092c6e2ce327/140120260806511205.pdf",
+     "pdf_page": 5,
+     "label": "FY2026 Q1",
+     "source_separator": " × ",
+     "supporting_sources": [
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/9137f1b0/3e42/43d3/b883/092c6e2ce327/140120260806511205.pdf",
+       "pdf_page": 5,
+       "label": "FY2026 Q1"
+      },
+      {
+       "url": "https://contents.xj-storage.jp/xcontents/AS83405/9137f1b0/3e42/43d3/b883/092c6e2ce327/140120260806511205.pdf",
+       "pdf_page": 7,
+       "label": "FY2026 Q1"
+      }
+     ],
+     "calculation": "연결 매출 × 공표 비중"
+    }
+   },
+   "note": "원래 비중을 재정규화하지 않았습니다. 정수 비중의 반올림 오차와 대용 분모의 차이가 있으며, 합계가 연결 매출과 다를 수 있습니다. 선단 공정은 EUV 단독이 아닙니다. 달력 2026 Q2=회사 FY2026 Q1입니다.",
+   "point_annotations": {
+    "2024-06-30": "연결 매출을 분모로 대용한 근사 추정",
+    "2024-09-30": "연결 매출을 분모로 대용한 근사 추정",
+    "2024-12-31": "연결 매출을 분모로 대용한 근사 추정",
+    "2025-03-31": "연결 매출을 분모로 대용한 근사 추정",
+    "2025-06-30": "연결 매출을 분모로 대용한 근사 추정",
+    "2025-09-30": "연결 매출을 분모로 대용한 근사 추정",
+    "2025-12-31": "연결 매출을 분모로 대용한 근사 추정",
+    "2026-03-31": "연결 매출을 분모로 대용한 근사 추정",
+    "2026-06-30": "연결 매출을 분모로 대용한 근사 추정"
+   },
+   "basis_details": [
+    {
+     "label": "금액 산식",
+     "value": "공시 연결 매출(백만 엔) × 비중(%) ÷ 10,000 = 억 엔. 같은 분기의 자료끼리 계산하며 비중 또는 매출이 없는 분기는 추정하지 않습니다."
+    },
+    {
+     "label": "분모 차이",
+     "value": "연결 매출 × 공표 비중으로 계산한 근사 추정치입니다. 회사가 공시한 공정별·용도별 매출 금액이 아닙니다. 비중의 실제 분모는 포토마스크 제품 매출이며, 해당 제품 매출 금액을 별도로 확인하지 못해 단일 포토마스크 사업의 연결 매출을 대용했습니다."
+    },
+    {
+     "label": "공시 비중",
+     "value": "비중 (%) 버튼으로 회사가 발표한 원래 구성비를 볼 수 있습니다. 표의 원문 두 개는 각각 연결 매출과 구성비 자료입니다."
+    }
+   ]
+  },
+  "ratio": {
+   "name": "Tekscend · 포토마스크 용도별 매출 비중",
+   "unit": "%",
+   "series": {
+    "로직·기타": [
+     [
+      "2024-06-30",
+      81
+     ],
+     [
+      "2024-09-30",
+      83
+     ],
+     [
+      "2024-12-31",
+      86
+     ],
+     [
+      "2025-03-31",
+      88
+     ],
+     [
+      "2025-06-30",
+      88
+     ],
+     [
+      "2025-09-30",
+      87
+     ],
+     [
+      "2025-12-31",
+      90
+     ],
+     [
+      "2026-03-31",
+      85
+     ],
+     [
+      "2026-06-30",
+      89
+     ]
+    ],
+    "메모리": [
+     [
+      "2024-06-30",
+      19
+     ],
+     [
+      "2024-09-30",
+      17
+     ],
+     [
+      "2024-12-31",
+      14
+     ],
+     [
+      "2025-03-31",
+      12
+     ],
+     [
+      "2025-06-30",
+      12
+     ],
+     [
+      "2025-09-30",
+      13
+     ],
+     [
+      "2025-12-31",
+      10
+     ],
+     [
+      "2026-03-31",
+      15
+     ],
+     [
+      "2026-06-30",
+      11
+     ]
+    ]
+   },
+   "description": "포토마스크 제품 매출의 로직·기타 및 메모리 비중입니다. 구성비 변화만으로 해당 용도의 절대 매출 증감을 판단할 수 없습니다.",
+   "note": "옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 금액 보기에서는 연결 매출에 비중을 적용한 근사 추정치를 별도로 표시합니다.",
+   "point_sources": {
+    "2024-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2024 Q1"
+    },
+    "2024-09-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2024 Q2"
+    },
+    "2024-12-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2024 Q3"
+    },
+    "2025-03-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2024 Q4"
+    },
+    "2025-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2025 Q1"
+    },
+    "2025-09-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2025 Q2"
+    },
+    "2025-12-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2025 Q3"
+    },
+    "2026-03-31": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+     "pdf_page": 9,
+     "label": "FY2025 Q4"
+    },
+    "2026-06-30": {
+     "url": "https://contents.xj-storage.jp/xcontents/AS83405/9137f1b0/3e42/43d3/b883/092c6e2ce327/140120260806511205.pdf",
+     "pdf_page": 7,
+     "label": "FY2026 Q1"
+    }
+   },
+   "basis_details": [
+    {
+     "label": "자료 기준",
+     "value": "2026년 6월 19일 정정된 연간 설명자료와 이후 분기 발표자료를 대조했습니다. 그래프의 연간 막대는 분기 시계열에 포함하지 않습니다."
+    },
+    {
+     "label": "갱신",
+     "value": "분기 발표 시 그래프의 숫자·분기 축을 확인해 스냅샷을 갱신합니다."
+    }
+   ],
+   "label": "비중 (%)",
+   "quarterly_revenue_summary": false,
+   "point_annotations": {}
+  }
+ },
+ "default_view": "amount"
 }

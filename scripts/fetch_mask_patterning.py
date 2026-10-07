@@ -2,7 +2,8 @@
 
 Public company IR PDFs, no API key. Q1-Q3 use reported three-month values;
 Q4 = annual product revenue - the same year's reported nine-month revenue.
-Tekscend percentages are a separately reviewed snapshot, not revenue estimates.
+Tekscend facts are reviewed snapshots. Mix amounts are explicitly approximate
+allocations of consolidated photomask-business revenue, not disclosed product sales.
 Run --backfill once, normally check recent filings, or --offline to rebuild.
 """
 import argparse
@@ -19,6 +20,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "data/_mask_patterning/photronics_filings.json"
 TEKSCEND = ROOT / "manual/tekscend_sales_mix.json"
+TEKSCEND_FINANCIALS = ROOT / "manual/tekscend_financials.json"
 OUT = ROOT / "data/semicon"
 BASE = "https://photronicsinc.gcs-web.com"
 START_YEAR = 2021
@@ -160,7 +162,7 @@ def source_ref(filing):
             "label": f"{filing['form']} · {filing['period_end']} 종료"}
 
 
-def build_documents(cache, tek):
+def build_documents(cache, tek, financials=None):
     rows = photronics_quarters(cache)
     dates = [r["period_end"] for r in rows]
     labels = {r["period_end"]: f"FY{r['fiscal_year']} Q{r['quarter']}" for r in rows}
@@ -224,12 +226,81 @@ def build_documents(cache, tek):
             fetched=tek["checked"], span_gaps=False, quarter_labels=True, change_mode="none", zero_baseline=True,
             series={name: [[r["date"], r[metric][i]] for r in tek_rows] for i, name in enumerate(names)},
             default_series=names, description=description,
-            note="옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 연결 총매출에 곱해 제품별 금액을 추정하지 않았습니다.",
+            note="옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 금액 보기에서는 연결 매출에 비중을 적용한 근사 추정치를 별도로 표시합니다.",
             point_sources={r["date"]: {"url": r["source_url"], "pdf_page": r[metric+"_page"],
                 "label": r["fiscal_period"]} for r in tek_rows},
             basis_details=[{"label": "자료 기준", "value": "2026년 6월 19일 정정된 연간 설명자료와 이후 분기 발표자료를 대조했습니다. 그래프의 연간 막대는 분기 시계열에 포함하지 않습니다."},
                 {"label": "갱신", "value": "분기 발표 시 그래프의 숫자·분기 축을 확인해 스냅샷을 갱신합니다."}])
+    add_tekscend_amounts(docs, tek, financials or json.loads(TEKSCEND_FINANCIALS.read_text(encoding="utf8")))
     return docs
+
+
+def add_tekscend_amounts(docs, tek, financials):
+    if financials.get("unit") != "million_jpy" or financials.get("scope") != "consolidated_photomask_business":
+        raise ValueError("Unverified Tekscend financial unit or scope")
+    rows = financials["quarters"]
+    dates = [r["date"] for r in rows]
+    if not rows or dates != sorted(set(dates)):
+        raise ValueError("Tekscend financial quarters must be unique and sorted")
+    for r in rows:
+        date = dt.date.fromisoformat(r["date"])
+        calendar_q = (date.month - 1) // 3 + 1
+        fiscal_q = (calendar_q + 2) % 4 + 1
+        fiscal_y = date.year - (date.month <= 3)
+        if r["fiscal_period"] != f"FY{fiscal_y} Q{fiscal_q}" or r["revenue"] <= 0:
+            raise ValueError("Invalid Tekscend fiscal mapping or revenue")
+    for annual in financials["annual_totals"]:
+        year_rows = [r for r in rows if r["fiscal_period"].startswith(f"FY{annual['fiscal_year']} ")]
+        if len(year_rows) == 4:
+            for key in ("revenue", "operating_profit"):
+                # Public amounts are floored to JPY millions, so four quarters
+                # may sum up to three million below the full-year observation.
+                gap = annual[key] - sum(r[key] for r in year_rows)
+                if not 0 <= gap <= 3:
+                    raise ValueError("Tekscend quarter sum differs from annual report")
+    by_date = {r["date"]: r for r in rows}
+    mix_rows = tek["quarters"]
+    if any(r["date"] not in by_date for r in mix_rows):
+        raise ValueError("Missing same-quarter Tekscend revenue for mix estimate")
+    refs = {r["date"]: {"url": r["source_url"], "pdf_page": r["pdf_page"],
+            "label": r["fiscal_period"]} for r in rows}
+    scope_note = "포토마스크 단일 사업의 연결 실적입니다. 포토마스크 제품 판매만의 별도 공시 금액과 동일하다고 단정하지 않습니다. 블랭크마스크 매출이 아닙니다."
+    for key, title in (("revenue", "매출"), ("operating_profit", "영업이익")):
+        id_ = f"tekscend_{key}"
+        docs[id_] = dict(id=id_, name=f"Tekscend · 포토마스크 사업 {title} · 공시", unit="억 엔",
+            frequency="quarterly", manual=True, quarter_labels=True, span_gaps=False,
+            company_kpi=True, source="Tekscend 공식 IR · IFRS 연결 실적",
+            source_url=refs[dates[-1]]["url"], updated=dates[-1], fetched=financials["checked"],
+            series={title: [[r["date"], r[key] / 100] for r in rows]}, default_series=[title],
+            point_sources=refs, description=scope_note,
+            note="달력 분기 기준입니다. 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 백만 엔 공시값을 억 엔으로 변환했으며, 분기값 합과 연간값에는 백만 엔 미만 절사 차이가 있습니다.",
+            basis_details=[{"label": "공시 범위", "value": "회사는 포토마스크 사업을 단일 부문으로 보고합니다. 회사 전체 연결 실적을 해당 사업의 실적으로 표시했습니다."},
+                {"label": "원문", "value": "2026년 6월 19일 정정 연간 자료의 IFRS 분기표(PDF p.26)와 FY2026 Q1 자료(PDF p.5)를 사용했습니다. 비IFRS 조정 이익이 아닙니다."}])
+        docs[id_]["quarterly_revenue_summary" if key == "revenue" else "quarterly_profit_summary"] = True
+    caveat = "연결 매출 × 공표 비중으로 계산한 근사 추정치입니다. 회사가 공시한 공정별·용도별 매출 금액이 아닙니다. 비중의 실제 분모는 포토마스크 제품 매출이며, 해당 제품 매출 금액을 별도로 확인하지 못해 단일 포토마스크 사업의 연결 매출을 대용했습니다."
+    for metric, title in (("node", "공정별"), ("application", "용도별")):
+        doc = docs[f"tekscend_{metric}_mix"]
+        amount_refs = {}
+        for r in mix_rows:
+            ref = doc["point_sources"][r["date"]]
+            amount_refs[r["date"]] = {**refs[r["date"]], "source_separator": " × ",
+                "supporting_sources": [refs[r["date"]], ref], "calculation": "연결 매출 × 공표 비중"}
+        amounts = {name: [[r["date"], round(by_date[r["date"]]["revenue"] * r[metric][i] / 10000, 2)]
+                          for r in mix_rows] for i, name in enumerate(doc["series"])}
+        ratio_view = {key: doc[key] for key in ("name", "unit", "series", "description", "note", "point_sources", "basis_details")}
+        ratio_view.update(label="비중 (%)", quarterly_revenue_summary=False, point_annotations={})
+        doc["series_views"] = {
+            "amount": dict(label="금액 (근사 추정)", name=f"Tekscend · 포토마스크 {title} 매출 · 근사 추정",
+                unit="억 엔", series=amounts, company_kpi=True, quarterly_revenue_summary=True,
+                description=caveat, point_sources=amount_refs,
+                note="원래 비중을 재정규화하지 않았습니다. 정수 비중의 반올림 오차와 대용 분모의 차이가 있으며, 합계가 연결 매출과 다를 수 있습니다. 선단 공정은 EUV 단독이 아닙니다. 달력 2026 Q2=회사 FY2026 Q1입니다.",
+                point_annotations={r["date"]: "연결 매출을 분모로 대용한 근사 추정" for r in mix_rows},
+                basis_details=[{"label": "금액 산식", "value": "공시 연결 매출(백만 엔) × 비중(%) ÷ 10,000 = 억 엔. 같은 분기의 자료끼리 계산하며 비중 또는 매출이 없는 분기는 추정하지 않습니다."},
+                    {"label": "분모 차이", "value": caveat},
+                    {"label": "공시 비중", "value": "비중 (%) 버튼으로 회사가 발표한 원래 구성비를 볼 수 있습니다. 표의 원문 두 개는 각각 연결 매출과 구성비 자료입니다."}]),
+            "ratio": ratio_view,
+        }
+        doc["default_view"] = "amount"
 
 
 def run():

@@ -44,4 +44,18 @@ const fiscalTable=funcs.buildTable(fiscal,fiscal.series);
 assert(fiscalTable.includes('회계 분기 · 종료일'));
 assert(fiscalTable.includes('FY2026 Q3 · 2026-08-02'));
 assert.equal((fiscalTable.match(/target="_blank"/g)||[]).length,28); // 23 quarters + 5 Q4 supporting reports
+const tekRevenue=JSON.parse(fs.readFileSync('data/semicon/tekscend_revenue.json','utf8'));
+assert(headline(tekRevenue).includes('YoY +14.8% · QoQ +3.5%'));
+const tek=JSON.parse(fs.readFileSync('data/semicon/tekscend_node_mix.json','utf8'));
+const amount={...tek,...tek.series_views.amount};
+const ratio={...tek,...tek.series_views.ratio};
+delete amount.series_views;
+delete ratio.series_views;
+assert(headline(amount).includes('억 엔'));
+assert(headline(amount).includes('근사 추정'));
+assert(!headline(ratio).includes('YoY'));
+const amountTable=funcs.buildTable(amount,amount.series);
+assert.equal((amountTable.match(/target="_blank"/g)||[]).length,18);
+assert(amountTable.includes(' × '));
+assert(amountTable.includes('· 추정'));
 console.log('PASS: quarterly YoY/QoQ calendar alignment, growth-rate headline, full history and PDF provenance links');
