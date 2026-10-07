@@ -189,6 +189,15 @@ jobs:
         timeout-minutes: 12
         run: python scripts/fetch_mineral_companies.py
 
+      - name: ESS 기업 공시·배치·수주 집계 검증
+        run: |
+          python -m unittest discover -s scripts -p test_ess_companies.py
+          node scripts/test_ess_company_cards.cjs
+      - name: ESS 기업 매출·배치·수주 공시 수집
+        continue-on-error: true
+        timeout-minutes: 12
+        run: python scripts/fetch_ess_companies.py
+
       - name: 광물 국가별 생산량·매장량 파서 검증
         run: python -m unittest discover -s scripts -p test_mineral_supply.py
       - name: 광물 국가별 생산량·매장량 수집

@@ -448,10 +448,17 @@ function renderCard(doc, indicatorId) {
   }
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
-  const dateLabel = date => (doc?.quarter_labels
-    ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}`
-    : doc?.year_labels ? date.slice(0, 4) : date)
+  const dateLabel = date => (doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual"
+    ? periodLabel(doc, date) : date)
     + (doc?.forecast_from && date >= doc.forecast_from ? " · 전망" : "");
+
+  if (doc?.disclosure_status === "not_disclosed") {
+    card.innerHTML = `<div class="card-head"><div class="card-name">${escapeHtml(doc.name)}</div><div class="card-freq">미공개</div></div>
+      <p class="card-empty">${escapeHtml(doc.note)}</p>
+      <div class="card-foot"><span>확인 자료 기준: ${escapeHtml(doc.updated)}</span>
+      <a href="${escapeHtml(doc.source_url)}" target="_blank" rel="noopener">${escapeHtml(doc.source)} ↗</a></div>`;
+    return card;
+  }
 
   if (!doc || !doc.series || Object.values(doc.series).every((s) => s.length === 0)) {
     const name = doc?.name || indicatorId;
@@ -578,7 +585,7 @@ function renderCard(doc, indicatorId) {
     const arrow = delta > 0 ? "▲" : delta < 0 ? "▼" : "";
     stat.innerHTML = `
       ${seriesNames.length > 1 ? `<span class="stat-series">${seriesName}</span>` : ""}
-      <span class="stat-value">${fmt(last[1])}</span>
+      <span class="stat-value">${observationLabel(doc, last[0], last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pointsChange ? "p · 전월 대비" : ""}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
       <span class="stat-date">${doc.cumulative_since ? `${doc.cumulative_since}년부터 누적 · ${last[0].slice(0, 7)}` : doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}${doc.point_annotations?.[last[0]] ? " · 추정" : ""}</span>
@@ -737,7 +744,19 @@ function fmt(v) {
   return v.toLocaleString("ko-KR", { maximumFractionDigits: Math.abs(v) < 1000 ? 2 : 0 });
 }
 
+function observationLabel(doc, date, value) {
+  if (value == null) return "—";
+  return `${doc.value_qualifiers?.[date] === "lower_bound" ? "> " : ""}${fmt(value)}`;
+}
+
 function periodLabel(doc, date) {
+  if (doc.fiscal_year_end_month === 9) {
+    const month = Number(date.slice(5, 7));
+    const year = Number(date.slice(0, 4)) + (month > 9 ? 1 : 0);
+    if (doc.year_labels) return `FY${year}`;
+    if (doc.quarter_labels) return `FY${year} Q${Math.floor(((month + 2) % 12) / 3) + 1}`;
+  }
+  if (doc.frequency === "semiannual") return `${date.slice(0, 4)} ${Number(date.slice(5, 7)) <= 6 ? "상반기" : "하반기"}`;
   if (doc.year_labels) return date.slice(0, 4);
   if (doc.month_labels) return date.slice(0, 7);
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
@@ -1127,13 +1146,13 @@ function buildTable(doc, filtered) {
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
   const hasSources = doc.point_sources || doc.period_sources;
-  let html = `<table><thead><tr><th>${doc.quarter_labels ? "달력 분기" : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
+  let html = `<table><thead><tr><th>${doc.quarter_labels ? (doc.fiscal_year_end_month === 9 ? "회계 분기 · 9월 결산" : "달력 분기") : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
     const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : ref.label ? escapeHtml(ref.label) : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     const estimateTag = doc.point_annotations?.[d] ? ` <span title="${escapeHtml(doc.point_annotations[d])}">· 추정</span>` : "";
-    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? fmt(map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
+    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? observationLabel(doc, d, map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
@@ -1266,7 +1285,7 @@ function drawChart(canvas, doc, filtered) {
           callbacks: {
             title: (items) => items.length ? periodLabel(doc, items[0].label)
               + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
-            label: (c) => ` ${c.dataset.label}: ${fmt(c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
+            label: (c) => ` ${c.dataset.label}: ${observationLabel(doc, c.label, c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
               const report = doc.series_sources?.[items[0]?.dataset?.label]?.[items[0]?.label] || doc.period_sources?.[items[0]?.label];
