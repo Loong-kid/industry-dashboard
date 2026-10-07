@@ -1212,7 +1212,7 @@ function buildTable(doc, filtered) {
   for (const d of dates) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
     const sources = ref?.supporting_sources || (ref ? [ref] : []);
-    const sourceCell = hasSources ? `<td>${sources.length ? sources.map(source => `<a href="${escapeHtml(source.url)}${source.pdf_page ? `#page=${source.pdf_page}` : ""}" target="_blank" rel="noopener">${source.pdf_page ? `PDF p.${source.pdf_page}` : source.label ? escapeHtml(source.label) : `${escapeHtml(source.issue)} 월보`} ↗</a>`).join(" − ") : "미확인"}</td>` : "";
+    const sourceCell = hasSources ? `<td>${sources.length ? sources.map(source => `<a href="${escapeHtml(source.url)}${source.pdf_page ? `#page=${source.pdf_page}` : ""}" target="_blank" rel="noopener">${source.pdf_page ? `PDF p.${source.pdf_page}` : source.label ? escapeHtml(source.label) : `${escapeHtml(source.issue)} 월보`} ↗</a>`).join(escapeHtml(ref.source_separator || " − ")) : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     const estimateTag = doc.point_annotations?.[d] ? ` <span title="${escapeHtml(doc.point_annotations[d])}">· 추정</span>` : "";
     html += `<tr><td>${periodLabel(doc, d)}${doc.period_labels ? ` · ${escapeHtml(d)}` : ""}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? observationLabel(doc, d, map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;

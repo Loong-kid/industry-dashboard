@@ -3,7 +3,7 @@ import copy
 import json
 import unittest
 
-from fetch_mask_patterning import CACHE, TEKSCEND, PRODUCTS, build_documents, photronics_quarters
+from fetch_mask_patterning import CACHE, TEKSCEND, TEKSCEND_FINANCIALS, PRODUCTS, build_documents, photronics_quarters
 
 
 class MaskPatterningTests(unittest.TestCase):
@@ -11,6 +11,7 @@ class MaskPatterningTests(unittest.TestCase):
     def setUpClass(cls):
         cls.cache = json.loads(CACHE.read_text(encoding="utf8"))
         cls.tek = json.loads(TEKSCEND.read_text(encoding="utf8"))
+        cls.financials = json.loads(TEKSCEND_FINANCIALS.read_text(encoding="utf8"))
         cls.docs = build_documents(cls.cache, cls.tek)
 
     def test_latest_reported_revenue_and_history(self):
@@ -63,7 +64,7 @@ class MaskPatterningTests(unittest.TestCase):
         self.assertEqual([dict(s)["2026-06-30"] for s in node["series"].values()], [35, 35, 30])
         self.assertEqual([dict(s)["2026-06-30"] for s in app["series"].values()], [89, 11])
         self.assertIn("EUV 단독", node["description"])
-        self.assertIn("연결 총매출에 곱해", node["note"])
+        self.assertIn("근사 추정치", node["note"])
         self.assertEqual(node["point_sources"]["2024-06-30"]["pdf_page"], 8)
 
     def test_rejects_invalid_mix(self):
@@ -71,6 +72,46 @@ class MaskPatterningTests(unittest.TestCase):
         tek["quarters"][-1]["node"] = [35, 35, 35]
         with self.assertRaisesRegex(ValueError, "sum to 100"):
             build_documents(self.cache, tek)
+
+    def test_tekscend_disclosed_financials_and_unit(self):
+        revenue = self.docs["tekscend_revenue"]
+        profit = self.docs["tekscend_operating_profit"]
+        self.assertEqual(dict(revenue["series"]["매출"])["2026-06-30"], 345.18)
+        self.assertEqual(dict(profit["series"]["영업이익"])["2026-06-30"], 73.6)
+        self.assertEqual(revenue["unit"], "억 엔")
+        self.assertEqual(revenue["point_sources"]["2024-06-30"]["pdf_page"], 26)
+        self.assertIn("연결 실적", revenue["description"])
+        self.assertNotIn("point_annotations", revenue)
+
+    def test_tekscend_approximate_amounts_keep_reported_ratios(self):
+        node = self.docs["tekscend_node_mix"]
+        app = self.docs["tekscend_application_mix"]
+        self.assertEqual(node["default_view"], "amount")
+        amount = node["series_views"]["amount"]
+        ratio = node["series_views"]["ratio"]
+        self.assertEqual([dict(s)["2026-06-30"] for s in amount["series"].values()], [120.81, 120.81, 103.55])
+        self.assertEqual([dict(s)["2026-06-30"] for s in app["series_views"]["amount"]["series"].values()], [307.21, 37.97])
+        self.assertEqual(ratio["series"], node["series"])
+        self.assertEqual(ratio["unit"], "%")
+        self.assertFalse(ratio["quarterly_revenue_summary"])
+        self.assertIn("공시한", amount["description"])
+        self.assertIn("대용", amount["description"])
+        self.assertEqual(len(amount["point_sources"]["2026-06-30"]["supporting_sources"]), 2)
+        self.assertTrue(amount["point_annotations"])
+
+    def test_tekscend_missing_denominator_and_misaligned_period_rejected(self):
+        missing = copy.deepcopy(self.financials)
+        missing["quarters"] = missing["quarters"][:-1]
+        with self.assertRaisesRegex(ValueError, "Missing same-quarter"):
+            build_documents(self.cache, self.tek, missing)
+        wrong = copy.deepcopy(self.financials)
+        wrong["quarters"][-1]["fiscal_period"] = "FY2026 Q2"
+        with self.assertRaisesRegex(ValueError, "fiscal mapping"):
+            build_documents(self.cache, self.tek, wrong)
+        wrong = copy.deepcopy(self.financials)
+        wrong["quarters"][0]["revenue"] += 100
+        with self.assertRaisesRegex(ValueError, "quarter sum differs"):
+            build_documents(self.cache, self.tek, wrong)
 
 
 if __name__ == "__main__":
