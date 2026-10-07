@@ -471,6 +471,30 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .ir-disclosure .order-table-wrap th { cursor: default; }
 .ir-disclosure .order-table-wrap td:first-child { white-space: nowrap; font-weight: 600; }
 .ir-scope-note { font-size: 12px; color: var(--muted); line-height: 1.65; margin: 10px 0; }
+.factory-controls { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:14px 0; font-size:12px; }
+.factory-controls label { display:flex; align-items:center; gap:6px; }
+.factory-controls select { max-width:100%; min-width:0; padding:7px; font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--border); border-radius:6px; }
+.factory-count { color:var(--muted); }
+.ess-factories { min-width:0; }
+.ess-factories .order-table-wrap table { min-width:1450px; white-space:normal; table-layout:fixed; }
+.ess-factories caption { text-align:left; color:var(--muted); font-size:12px; padding-bottom:10px; }
+.ess-factories .order-table-wrap th { cursor:default; }
+.ess-factories .order-table-wrap td, .ess-factories .order-table-wrap tbody th { vertical-align:top; text-align:left; line-height:1.6; overflow-wrap:anywhere; }
+.ess-factories .order-table-wrap tbody th { position:static; color:var(--ink); background:transparent; letter-spacing:normal; font-size:12px; }
+.ess-factories .order-table-wrap thead th { z-index:2; }
+.ess-factories .order-table-wrap th:first-child { position:sticky; left:0; background:var(--surface); box-shadow:1px 0 var(--border); z-index:1; }
+.ess-factories .order-table-wrap tbody th:first-child { top:auto; }
+.ess-factories .order-table-wrap thead th:first-child { z-index:3; }
+.ess-factories th:first-child { width:190px; }
+.ess-factories th:nth-child(2) { width:190px; }
+.ess-factories th:nth-child(3) { width:180px; }
+.ess-factories th:nth-child(9) { width:220px; }
+.ess-factories small { display:block; color:var(--muted); font-size:11px; line-height:1.55; margin:4px 0; font-weight:normal; }
+.factory-unknown { color:var(--muted); font-size:11px; }
+.factory-status { font-weight:600; }
+.factory-status.planned, .factory-status.unconfirmed { color:var(--muted); }
+.ess-factories summary { cursor:pointer; color:var(--accent); }
+.ess-factories details p { margin:8px 0; font-size:11px; }
 .ir-chart { min-width: 0; }
 .data-table a { color: var(--accent); white-space: nowrap; }
 

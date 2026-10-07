@@ -199,6 +199,7 @@ async function renderIndustry() {
         : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
+        : section.table_kind === "ess_factories" ? renderESSFactories
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
@@ -1123,6 +1124,65 @@ function renderMineralSupply(doc, mineralId, world = null) {
   }
   draw();
   return panel;
+}
+
+function renderESSFactories(doc) {
+  const card = document.createElement("div");
+  card.className = "card ess-factories";
+  if (!doc) return card;
+  const esc = escapeHtml;
+  const number = value => Number(value).toLocaleString("ko-KR", {maximumFractionDigits: 2});
+  const links = ids => [...new Set(ids || [])].map(id => {
+    const source = doc.sources[id];
+    return `<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)} ↗</a>`;
+  }).join("<br>");
+  const unknown = '<span class="factory-unknown">미확인</span>';
+  const fact = (item, area = false) => {
+    if (!item) return unknown;
+    const prefix = area ? "" : ({greater_than: "> ", approx: "약 ", up_to: "≤ "}[item.qualifier] || "");
+    return `<strong>${esc(prefix)}${number(area ? item.m2 : item.value)}</strong><small>${esc(item.basis)}<br>${esc(item.date)}</small>`;
+  };
+  card.innerHTML = `<div class="card-name">${esc(doc.name)}</div>
+    <p class="ir-scope-note">${esc(doc.description)} 검토일 ${esc(doc.reviewed)}.</p>
+    <div class="factory-controls">
+      <label>기업 <select aria-label="ESS 공장 기업"><option value="all">전체 기업</option><option value="tesla">테슬라 에너지</option><option value="sungrow">선그로우</option><option value="fluence">플루언스 에너지</option></select></label>
+      <label>시설 범위 <select aria-label="ESS 공장 시설 범위"><option value="all">가동·계획 전체</option><option value="operating">가동 확인 시설</option><option value="planned">건설·계획 시설</option><option value="unconfirmed">현재 가동 미확인</option></select></label>
+      <label>생산 단계 <select aria-label="ESS 공장 생산 단계"><option value="all">완제품·부품 전체</option><option value="system">ESS 시스템</option><option value="component">모듈·부품</option></select></label>
+      <span class="factory-count" role="status" aria-live="polite"></span>
+    </div>
+    <div class="order-table-wrap" tabindex="0" role="region" aria-label="ESS 공장 비교표 · 가로 스크롤">
+      <table><caption>생산능력 GWh/년 · 면적 ㎡ · 좌우로 스크롤해 CAPA와 출처 확인</caption><thead><tr>
+        <th scope="col">기업 / 공장</th><th scope="col">위치 / 생산품</th><th scope="col">운영·소유 형태</th><th scope="col">가동 상태</th>
+        <th scope="col">전체 연면적 ㎡</th><th scope="col">부지·기타 공표면적 ㎡</th><th scope="col">설치된 CAPA<br>GWh/년</th><th scope="col">설계·계획 CAPA<br>GWh/년</th><th scope="col">근거·범위</th>
+      </tr></thead><tbody></tbody></table>
+    </div><p class="ir-scope-note">${esc(doc.note)}</p>`;
+  const selects = card.querySelectorAll("select");
+  const draw = () => {
+    const [company, status, stage] = [...selects].map(select => select.value);
+    const rows = doc.rows.filter(row => (company === "all" || row.company === company)
+      && (status === "all" || row.status === status) && (stage === "all" || row.stage === stage));
+    card.querySelector(".factory-count").textContent = `${rows.length}개 시설·프로젝트 기록`;
+    card.querySelector("tbody").innerHTML = rows.length ? rows.map(row => {
+      const evidence = [
+        ["운영·권리", row.ownership_date, row.ownership_sources], ["가동 상태", row.status_date, row.status_sources],
+        ...[["전체 연면적", row.floor_area], ["기타 면적", row.other_area], ["설치 CAPA", row.installed_capacity], ["설계·계획 CAPA", row.design_capacity]]
+          .filter(([, item]) => item).map(([label, item]) => [label, item.date, item.sources]),
+        ...(row.extra_sources ? [["추가 공시", "", row.extra_sources]] : [])
+      ];
+      return `<tr data-factory="${esc(row.id)}">
+        <th scope="row"><small>${esc(row.company_name)}</small>${esc(row.factory)}</th>
+        <td>${esc(row.location)}<small>${esc(row.product)}</small></td>
+        <td>${esc(row.ownership)}<small>확인 기준 ${esc(row.ownership_date)}</small></td>
+        <td><span class="factory-status ${esc(row.status)}">${esc(row.status_label)}</span><small>${esc(row.status_date)}</small></td>
+        <td>${fact(row.floor_area, true)}</td><td>${fact(row.other_area, true)}</td>
+        <td>${fact(row.installed_capacity)}</td><td>${fact(row.design_capacity)}</td>
+        <td><details><summary>출처·범위 보기</summary><p>${esc(row.notes)}</p>${evidence.map(([label, date, ids]) => `<p><b>${esc(label)}</b> ${esc(date)}<br>${links(ids)}</p>`).join("")}</details></td>
+      </tr>`;
+    }).join("") : '<tr><td colspan="9">선택한 조건에 해당하는 공개 시설 기록이 없습니다.</td></tr>';
+  };
+  selects.forEach(select => select.addEventListener("change", draw));
+  draw();
+  return card;
 }
 
 function renderIRDisclosure(doc) {

@@ -1,0 +1,140 @@
+{
+  "id": "ess_factories",
+  "name": "ESS 공장 · 위치·면적·생산능력",
+  "manual": true,
+  "reviewed": "2026-10-08",
+  "description": "테슬라·선그로우·플루언스의 공개 자료에서 확인한 생산시설과 증설 프로젝트입니다. 직접 운영과 위탁생산을 구분하며, 건물 소유 여부는 별도로 표시합니다. 시설별 정보의 기준일은 서로 다릅니다.",
+  "note": "CAPA는 연간 제조능력으로 실제 생산량·설치량·수주잔고와 다릅니다. 현재 설치된 CAPA와 설계·계획 CAPA를 더하지 않으며, 부품과 완제품 생산능력도 합산하지 않습니다. 연면적이 명시되지 않은 면적은 별도 열에 표시합니다. 미확인은 검토한 자료에서 확인하지 못했다는 뜻이며 0이 아닙니다. 전체 공장을 망라한 목록이 아니며, 검토일은 자동 갱신되지 않습니다.",
+  "sources": {
+    "tesla_q2_2026": {"label": "Tesla Q2 2026 Update · PDF 8쪽", "url": "https://ir.tesla.com/_flysystem/s3/sec/000162828026049213/tsla-20260722-gen.pdf#page=8", "published": "2026-07-22"},
+    "tesla_10k_2025": {"label": "Tesla 2025 10-K · Properties · PDF 31쪽", "url": "https://ir.tesla.com/_flysystem/s3/sec/000162828026003952/tsla-20251231-gen.pdf#page=31", "published": "2026-01-29"},
+    "lathrop_city": {"label": "Lathrop 시 FY2023–25 예산 발표 · PDF 5쪽", "url": "https://www.ci.lathrop.ca.us/sites/default/files/fileattachments/city_council/meeting/25197/4._eda_budget_presentation_fy_23-25.pdf#page=5", "published": "2023"},
+    "tesla_nevada": {"label": "Tesla · Nevada 투자 발표", "url": "https://www.tesla.com/blog/continuing-our-investment-nevada", "published": "2023-01-24"},
+    "shanghai_site": {"label": "상하이시 · Megafactory 생산 개시", "url": "https://english.shanghai.gov.cn/en-Latest-WhatsNew/20250211/b7d9ad02808d4ade949eef453fb5a614.html", "published": "2025-02-11"},
+    "shanghai_design": {"label": "상하이시 · 연간 약 40GWh 계획", "url": "https://french.shanghai.gov.cn/fr-Latest-WhatsNew/20250217/168ab9f16b5c4859962fb93d33121690.html", "published": "2025-02-17"},
+    "tesla_texas": {"label": "Tesla Megapack 공식 발표 · Brookshire", "url": "https://x.com/Tesla_Megapack/status/2085163367506059461", "published": "2026-08-06", "verification_url": "https://cdn.syndication.twimg.com/tweet-result?id=2085163367506059461&lang=en&token=x"},
+    "sungrow_hefei": {"label": "Sungrow · 2026 GRES Hefei 공장 방문 일정", "url": "https://www.sungrowpower.com/en/gres2026", "published": "2026"},
+    "sungrow_esg": {"label": "Sungrow 2025 지속가능경영보고서 · PDF 40쪽", "url": "https://info-support.sungrowpower.com/group-material/dfff030e-0c5f-4ceb-bb10-125704fcade0.pdf#page=40", "published": "2026"},
+    "sungrow_25": {"label": "CEEC · Hefei 25GWh 1기 공사 수주", "url": "https://www.ceec.net.cn/art/2023/8/11/art_11019_2528401.html", "published": "2023-08-11"},
+    "sungrow_20": {"label": "CEEC Anhui · 20GWh 프로젝트 19동 구조 검수", "url": "https://www.aepc1.ceec.net.cn/art/2026/3/7/art_14630_2524941.html", "published": "2026-03-07"},
+    "sungrow_poland": {"label": "Sungrow · 폴란드 공장 투자 발표", "url": "https://www.sungrowpower.com/uk/en/sungrow-to-open-factory-in-europe-strengthening-local-capabilities", "published": "2026-02-05"},
+    "sungrow_egypt": {"label": "Sungrow 발표 · 이집트 공장", "url": "https://www.prnewswire.com/news-releases/sungrow-deepens-long-term-commitment-to-egypt-with-new-energy-storage-facility-302868615.html", "published": "2026-09-03"},
+    "powerchina_egypt": {"label": "POWERCHINA 발표 · 이집트 공장 착공·부지", "url": "https://www.prnewswire.com/news-releases/powerchina-advances-wind-power-and-energy-storage-development-to-support-egypts-sustainable-energy-transition-302869101.html", "published": "2026-09-03"},
+    "fluence_vietnam": {"label": "Fluence·ACE · 베트남 공장 개소", "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-and-ace-engineering-launch-state-art-automated-energy", "published": "2025-08-20"},
+    "fluence_utah": {"label": "Fluence · 미국 배터리 모듈 생산 개시", "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-initiates-us-manufacturing-battery-modules-energy", "published": "2024-09-10"},
+    "fluence_utah_visit": {"label": "Fluence · Tooele County 공장 방문", "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/us-senator-john-curtis-visits-utah-manufacturing-facility", "published": "2025-05-28"},
+    "fluence_arizona": {"label": "Fluence · Goodyear 외함·BMS 공장", "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-expands-us-manufacturing-footprint-enclosure-and-battery/", "published": "2025-05-20"},
+    "fluence_annual": {"label": "Fluence 2025 Annual Report · PDF 6쪽", "url": "https://ir.fluenceenergy.com/static-files/a7de2741-755e-467a-8bd8-37ee671305d9#page=6", "published": "2025"},
+    "fluence_10k": {"label": "Fluence 2025 10-K · 계약 제조·모듈 라인 리스", "url": "https://www.sec.gov/Archives/edgar/data/1868941/000186894125000081/flnc-20250930.htm", "published": "2025"},
+    "fluence_10q": {"label": "Fluence 2026 Q3 10-Q · 생산시설 확대", "url": "https://www.sec.gov/Archives/edgar/data/1868941/000186894126000029/flnc-20260630.htm", "published": "2026"}
+  },
+  "rows": [
+    {
+      "id": "tesla_lathrop", "company": "tesla", "company_name": "테슬라 에너지", "factory": "Megafactory Lathrop", "product": "Megapack · ESS 완제품", "stage": "system",
+      "location": "미국 캘리포니아주 Lathrop", "operation": "direct", "ownership": "직접 운영 · 건물 임차", "ownership_date": "2025-12-31", "ownership_sources": ["tesla_10k_2025"],
+      "status": "operating", "status_label": "생산 중", "status_date": "2026-06-30", "status_sources": ["tesla_q2_2026"],
+      "floor_area": null,
+      "other_area": {"value": 440538, "unit": "ft2", "basis": "건물면적 · 연면적 여부 미표기", "date": "2023", "sources": ["lathrop_city"]},
+      "installed_capacity": {"value": 40, "qualifier": "exact", "basis": "설치된 제조능력", "date": "2026-06-30", "sources": ["tesla_q2_2026"]}, "design_capacity": null,
+      "notes": "시의 2023년 건물면적 자료입니다. 이후 확장분을 포함한 현재 전체 연면적으로 단정하지 않습니다. 설치된 CAPA는 현재 생산속도를 의미하지 않습니다."
+    },
+    {
+      "id": "tesla_nevada", "company": "tesla", "company_name": "테슬라 에너지", "factory": "Gigafactory Nevada", "product": "Powerwall · 가정용 ESS", "stage": "system",
+      "location": "미국 네바다주 Sparks", "operation": "direct", "ownership": "직접 운영 · 건물 소유", "ownership_date": "2025-12-31", "ownership_sources": ["tesla_10k_2025"],
+      "status": "operating", "status_label": "생산 중", "status_date": "2026-06-30", "status_sources": ["tesla_q2_2026"],
+      "floor_area": null,
+      "other_area": {"value": 5400000, "unit": "ft2", "basis": "Gigafactory 전체 시설면적 · ESS 전용 아님", "date": "2023-01-24", "sources": ["tesla_nevada"]},
+      "installed_capacity": {"value": 6, "qualifier": "greater_than", "basis": "Powerwall 설치 제조능력", "date": "2026-06-30", "sources": ["tesla_q2_2026"]}, "design_capacity": null,
+      "notes": "전체 공장 면적에는 차량용 배터리 등도 포함됩니다. Powerwall 전용 면적은 미확인입니다. 차량용 셀 CAPA와 ESS용 LFP 셀 공정의 CAPA를 Powerwall 완제품 CAPA에 합산하지 않습니다."
+    },
+    {
+      "id": "tesla_shanghai", "company": "tesla", "company_name": "테슬라 에너지", "factory": "Megafactory Shanghai", "product": "Megapack · ESS 완제품", "stage": "system",
+      "location": "중국 상하이 Lin-gang", "operation": "direct", "ownership": "직접 운영 · 건물 소유 / 토지 사용권", "ownership_date": "2025-12-31", "ownership_sources": ["tesla_10k_2025"],
+      "status": "operating", "status_label": "생산 중", "status_date": "2026-06-30", "status_sources": ["tesla_q2_2026"],
+      "floor_area": null,
+      "other_area": {"value": 200000, "unit": "m2", "basis": "부지 면적 · 약", "date": "2025-02-11", "sources": ["shanghai_site"]},
+      "installed_capacity": {"value": 20, "qualifier": "exact", "basis": "설치된 제조능력", "date": "2026-06-30", "sources": ["tesla_q2_2026"]},
+      "design_capacity": {"value": 40, "qualifier": "approx", "basis": "연간 약 1만 대 계획", "date": "2025-02-17", "sources": ["shanghai_design"]},
+      "notes": "설계·계획 약 40GWh와 2026년 2분기 설치 제조능력 20GWh는 서로 다른 기준입니다. 건물은 소유, 토지는 50년 사용권이며 토지 사용권은 운영리스 사용권자산으로 처리합니다."
+    },
+    {
+      "id": "tesla_texas", "company": "tesla", "company_name": "테슬라 에너지", "factory": "Megafactory Brookshire", "product": "Megapack 3 · ESS 완제품", "stage": "system",
+      "location": "미국 텍사스주 Brookshire (Houston 인근)", "operation": "direct", "ownership": "직접 운영 · 건물 소유/임차 미확인", "ownership_date": "2026-08-06", "ownership_sources": ["tesla_texas"],
+      "status": "operating", "status_label": "생산 개시 발표", "status_date": "2026-08-06", "status_sources": ["tesla_texas"],
+      "floor_area": null, "other_area": null, "installed_capacity": null,
+      "design_capacity": {"value": 50, "qualifier": "exact", "basis": "설계 제조능력", "date": "2026-08-06", "sources": ["tesla_texas"]},
+      "notes": "2026년 2분기 자료에서는 시운전 단계였으며, 8월 6일 공식 계정이 생산 개시를 발표했습니다. 50GWh는 설계값으로 현재 달성 생산속도가 아닙니다. 공식 X 게시물은 X의 공개 syndication 응답으로 본문·계정·날짜를 검증했습니다. Austin의 Gigafactory Texas와 다른 시설입니다."
+    },
+    {
+      "id": "sungrow_hefei", "company": "sungrow", "company_name": "선그로우", "factory": "Hefei ESS 생산시설", "product": "ESS 시스템", "stage": "system",
+      "location": "중국 안후이성 Hefei", "operation": "direct", "ownership": "그룹 제조시설 · 건물 소유/임차 미확인", "ownership_date": "2025-06-05", "ownership_sources": ["sungrow_esg"],
+      "status": "operating", "status_label": "ESS 제품 생산 확인", "status_date": "2025-06-05", "status_sources": ["sungrow_esg"],
+      "floor_area": null, "other_area": null, "installed_capacity": null, "design_capacity": null,
+      "notes": "2025 지속가능경영보고서에서 6월 5일 Hefei 본사 제조라인의 PowerTitan 3.0 첫 생산을 확인했습니다. 2026 GRES에는 Hefei 공장 방문 일정도 공개됩니다. 현재 공장별 설치 CAPA와 ESS 전용 연면적은 미확인입니다. 과거 합작공장 2GWh 계획이나 분당 생산속도를 현재 연간 CAPA로 대체하지 않습니다. 아래 증설 프로젝트와의 범위 중복도 미확인입니다.", "extra_sources": ["sungrow_hefei"]
+    },
+    {
+      "id": "sungrow_hefei_25", "company": "sungrow", "company_name": "선그로우", "factory": "Hefei 25GWh 신형 ESS 설비 · 1기 프로젝트", "product": "배터리 작업장·시스템 통합 공장", "stage": "system",
+      "location": "중국 Hefei 고신구 Mingchuan로·Shilian남로 남측", "operation": "direct", "ownership": "그룹 투자 프로젝트 · 건물 권리 미확인", "ownership_date": "2023-08-11", "ownership_sources": ["sungrow_25"],
+      "status": "unconfirmed", "status_label": "2023년 공사 수주 · 현재 가동 미확인", "status_date": "2023-08-11", "status_sources": ["sungrow_25"],
+      "floor_area": {"value": 430000, "unit": "m2", "basis": "프로젝트 전체 계획 연면적 · 약", "date": "2023-08-11", "sources": ["sungrow_25"]}, "other_area": null, "installed_capacity": null,
+      "design_capacity": {"value": 25, "qualifier": "exact", "basis": "프로젝트 설계 제조능력", "date": "2023-08-11", "sources": ["sungrow_25"]},
+      "notes": "시공사 수주 공고의 계획 면적·능력입니다. 현재 완공·가동 및 전량 설치 여부는 미확인입니다. 기존 Hefei 공장 및 20GWh 프로젝트와 겹칠 수 있어 별도 공장 수나 회사 총 CAPA로 합산하지 않습니다."
+    },
+    {
+      "id": "sungrow_hefei_20", "company": "sungrow", "company_name": "선그로우", "factory": "Hefei 20GWh 첨단 ESS 설비 프로젝트", "product": "ESS 제조설비 증설", "stage": "system",
+      "location": "중국 안후이성 Hefei", "operation": "direct", "ownership": "그룹 투자 프로젝트 · 건물 권리 미확인", "ownership_date": "2026-03-07", "ownership_sources": ["sungrow_20"],
+      "status": "planned", "status_label": "건설 · 19동 구조 검수", "status_date": "2026-03-05", "status_sources": ["sungrow_20"],
+      "floor_area": null,
+      "other_area": {"value": 9402.9, "unit": "m2", "basis": "19동 한 동 연면적 · 전체 공장 아님", "date": "2026-03-07", "sources": ["sungrow_20"]}, "installed_capacity": null,
+      "design_capacity": {"value": 20, "qualifier": "exact", "basis": "프로젝트 설계 제조능력", "date": "2026-03-07", "sources": ["sungrow_20"]},
+      "notes": "시공사 발표는 19동 구조 검수에 관한 자료입니다. 9,402.9㎡를 공장 전체 연면적으로 사용하지 않습니다. 기존 시설 및 25GWh 프로젝트와의 관계·중복 범위는 미확인입니다."
+    },
+    {
+      "id": "sungrow_poland", "company": "sungrow", "company_name": "선그로우", "factory": "Poland 제조시설 프로젝트", "product": "ESS + 태양광 인버터", "stage": "system",
+      "location": "폴란드 Lower Silesia · Wałbrzych 경제특구", "operation": "direct", "ownership": "그룹 투자 프로젝트 · 건물 권리 미확인", "ownership_date": "2026-02-05", "ownership_sources": ["sungrow_poland"],
+      "status": "planned", "status_label": "신설 발표 · 당시 12개월 내 운영 계획", "status_date": "2026-02-05", "status_sources": ["sungrow_poland"],
+      "floor_area": null,
+      "other_area": {"value": 65400, "unit": "m2", "basis": "시설면적 · 부지/연면적 구분 미공개", "date": "2026-02-05", "sources": ["sungrow_poland"]}, "installed_capacity": null,
+      "design_capacity": {"value": 12.5, "qualifier": "up_to", "basis": "ESS 연간 제조능력 상한 계획", "date": "2026-02-05", "sources": ["sungrow_poland"]},
+      "notes": "ESS 12.5GWh/년과 태양광 인버터 20GW/년은 다른 생산라인·단위입니다. 65,400㎡에는 인버터 시설도 포함됩니다. 현재 가동 확인값은 없으며 12.5GWh를 설치 완료 CAPA로 표시하지 않습니다."
+    },
+    {
+      "id": "sungrow_egypt", "company": "sungrow", "company_name": "선그로우", "factory": "Egypt ESS 제조시설 프로젝트", "product": "ESS 시스템", "stage": "system",
+      "location": "이집트 Ain Sokhna · Suez Canal Economic Zone", "operation": "direct", "ownership": "그룹 투자 프로젝트 · 건물 권리 미확인", "ownership_date": "2026-09-03", "ownership_sources": ["sungrow_egypt"],
+      "status": "planned", "status_label": "착공 · 2027년 6월 가동 계획", "status_date": "2026-09-03", "status_sources": ["sungrow_egypt", "powerchina_egypt"],
+      "floor_area": null,
+      "other_area": {"value": 50000, "unit": "m2", "basis": "부지 면적", "date": "2026-09-03", "sources": ["powerchina_egypt"]}, "installed_capacity": null,
+      "design_capacity": {"value": 10, "qualifier": "exact", "basis": "계획 연간 제조능력", "date": "2026-09-03", "sources": ["sungrow_egypt"]},
+      "notes": "2026년 9월 회사 발표 기준 운영 목표는 2027년 6월입니다. 공장 출범·착공 발표를 현재 양산으로 해석하지 않습니다. 시공사 공표 50,000㎡는 부지이며 연면적은 미확인입니다."
+    },
+    {
+      "id": "fluence_vietnam", "company": "fluence", "company_name": "플루언스 에너지", "factory": "ACE Engineering Vietnam", "product": "Gridstack Pro·Smartstack · 시스템 조립", "stage": "system",
+      "location": "베트남 Bac Giang", "operation": "contract", "ownership": "ACE Engineering 계약생산 · Fluence 소유 공장 아님", "ownership_date": "2025-08-20", "ownership_sources": ["fluence_vietnam", "fluence_10k"],
+      "status": "operating", "status_label": "공장 개소 · 생산시설", "status_date": "2025-08-20", "status_sources": ["fluence_vietnam"],
+      "floor_area": null, "other_area": null, "installed_capacity": null,
+      "design_capacity": {"value": 35, "qualifier": "exact", "basis": "예상 연간 생산능력 (projected)", "date": "2025-08-20", "sources": ["fluence_vietnam"]},
+      "notes": "35GWh는 개소 발표의 예상 연간 능력으로 실제 달성 생산량이나 Fluence 소유 CAPA가 아닙니다. 최신 공시는 신규 제조시설 확대 과정의 지연 위험을 설명합니다.", "extra_sources": ["fluence_10q"]
+    },
+    {
+      "id": "fluence_utah", "company": "fluence", "company_name": "플루언스 에너지", "factory": "Utah 배터리 모듈 생산시설", "product": "배터리 모듈 · 부품/중간재", "stage": "component",
+      "location": "미국 유타주 Tooele County", "operation": "contract", "ownership": "계약 제조시설 · 모듈 생산라인 금융리스", "ownership_date": "2025-09-30", "ownership_sources": ["fluence_10k"],
+      "status": "operating", "status_label": "모듈 생산 중", "status_date": "2025-05-28", "status_sources": ["fluence_utah", "fluence_utah_visit"],
+      "floor_area": null, "other_area": null, "installed_capacity": null, "design_capacity": null,
+      "notes": "모듈 라인 금융리스는 공장 건물 소유와 다릅니다. 2023년 자료의 FY2024 Cube 조립 약 6GWh 목표를 현재 모듈 공장의 설치 CAPA로 대체하지 않습니다."
+    },
+    {
+      "id": "fluence_goodyear", "company": "fluence", "company_name": "플루언스 에너지", "factory": "Goodyear 외함·BMS 생산시설", "product": "외함·배터리관리 하드웨어 · 부품", "stage": "component",
+      "location": "미국 애리조나주 Goodyear", "operation": "contract", "ownership": "계약 제조 파트너 시설 · 건물 소유 미확인", "ownership_date": "2025-05-20", "ownership_sources": ["fluence_arizona", "fluence_10k"],
+      "status": "operating", "status_label": "생산 개시", "status_date": "2025-05-20", "status_sources": ["fluence_arizona"],
+      "floor_area": null, "other_area": null, "installed_capacity": null, "design_capacity": null,
+      "notes": "외함과 BMS 생산시설입니다. 완제품 ESS의 GWh 제조능력과 같은 단계로 보지 않습니다. 공개 발표에는 공장 면적과 연간 제조능력이 제시되지 않았습니다."
+    },
+    {
+      "id": "fluence_houston", "company": "fluence", "company_name": "플루언스 에너지", "factory": "Houston 열관리장치 생산시설", "product": "Thermal management systems · 부품", "stage": "component",
+      "location": "미국 텍사스주 Houston", "operation": "contract", "ownership": "미국 제조 파트너 시설 · 건물 소유 미확인", "ownership_date": "2025-09-30", "ownership_sources": ["fluence_annual", "fluence_10q"],
+      "status": "operating", "status_label": "2025년 8월 생산 개시", "status_date": "2025-08", "status_sources": ["fluence_annual"],
+      "floor_area": null, "other_area": null, "installed_capacity": null, "design_capacity": null,
+      "notes": "2025 연차보고서의 미국 제조시설 일정에서 열관리장치 생산 개시가 확인됩니다. 배터리 셀·완제품 공장으로 분류하지 않으며, 제조 파트너명·면적·연간 CAPA는 미확인입니다."
+    }
+  ]
+}

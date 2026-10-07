@@ -25,7 +25,7 @@ const ess=catalog.industries.find(i=>i.id==='ess');
 const companies=ess.sections.flatMap(s=>s.companies||[]);
 assert(ess.sections.every(s=>Array.isArray(s.indicators)));
 assert.equal(companies.length,3);
-assert.equal(ess.sections.flatMap(s=>s.indicators||[]).length,5);
+assert.equal(ess.sections.filter(s=>s.type!=='table').flatMap(s=>s.indicators||[]).length,5);
 assert.equal(companies.flatMap(c=>c.indicators).length,18);
 let unavailable=0;
 for (const company of companies) {
