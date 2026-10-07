@@ -1,0 +1,165 @@
+{
+ "id": "mycronic_systems",
+ "name": "Mycronic · 마스크 라이터 · 납품·수주잔고 대수",
+ "unit": "대",
+ "frequency": "quarterly",
+ "quarter_labels": true,
+ "span_gaps": false,
+ "source": "Mycronic 공식 분기보고서 · 본문 검토값",
+ "source_url": "https://www.mycronic.com/investors/financial-reports/",
+ "fetched": "2026-10-08",
+ "updated": "2026-06-30",
+ "description": "레이저 마스크 라이터의 분기 납품 대수와 기말 미납품 장비 대수입니다. 납품은 기간 흐름, 잔고는 기말 누적량으로 서로 더하지 않습니다.",
+ "point_sources": {
+  "2024-03-31": {
+   "url": "https://storage.mfn.se/82c6b201-e6fa-41cd-80b8-7f7bf2439bc7/interim-report-january-march-2024.pdf",
+   "label": "2024-03-31",
+   "pdf_page": 4
+  },
+  "2024-06-30": {
+   "url": "https://storage.mfn.se/e5d60918-60a3-4038-b6c3-abc5a603c66c/interim-report-january-june-2024.pdf",
+   "label": "2024-06-30",
+   "pdf_page": 4
+  },
+  "2024-09-30": {
+   "url": "https://storage.mfn.se/a33f0c8b-0e01-46a9-b3fb-41781fb25e04/interim-report-january-september-2024.pdf",
+   "label": "2024-09-30",
+   "pdf_page": 4
+  },
+  "2024-12-31": {
+   "url": "https://storage.mfn.se/38f354ea-44e6-4b34-86d2-2f3ce946d3d3/year-end-report-january-december-2024.pdf",
+   "label": "2024-12-31",
+   "pdf_page": 4
+  },
+  "2025-03-31": {
+   "url": "https://storage.mfn.se/5230bfda-11ee-4dc6-b008-a7c32b1a0457/interim-report-january-march-2025.pdf",
+   "label": "2025-03-31",
+   "pdf_page": 4
+  },
+  "2025-06-30": {
+   "url": "https://storage.mfn.se/20ebf2ea-548e-4ebd-b63e-1ca3cd5ab9ff/interim-report-january-june-2025.pdf",
+   "label": "2025-06-30",
+   "pdf_page": 4
+  },
+  "2025-09-30": {
+   "url": "https://storage.mfn.se/4187001e-7585-471a-99df-a05da8c2a81a/interim-report-january-september-2025.pdf",
+   "label": "2025-09-30",
+   "pdf_page": 4
+  },
+  "2025-12-31": {
+   "url": "https://storage.mfn.se/a/mycronic/37ef3829-e59c-4a78-aa8c-231ddee1d1f3/year-end-report-january-december-2025.pdf",
+   "label": "2025-12-31",
+   "pdf_page": 4
+  },
+  "2026-03-31": {
+   "url": "https://storage.mfn.se/fc37436b-e2f2-4f49-9f06-cc710a20f428/interim-report-january-march-2026.pdf",
+   "label": "2026-03-31",
+   "pdf_page": 4
+  },
+  "2026-06-30": {
+   "url": "https://storage.mfn.se/c8f3d92b-f205-4f1a-9552-77f0d11afede/interim-report-january-june-2026.pdf",
+   "label": "2026-06-30",
+   "pdf_page": 4
+  }
+ },
+ "series": {
+  "분기 납품": [
+   [
+    "2024-03-31",
+    5
+   ],
+   [
+    "2024-06-30",
+    5
+   ],
+   [
+    "2024-09-30",
+    5
+   ],
+   [
+    "2024-12-31",
+    7
+   ],
+   [
+    "2025-03-31",
+    7
+   ],
+   [
+    "2025-06-30",
+    8
+   ],
+   [
+    "2025-09-30",
+    4
+   ],
+   [
+    "2025-12-31",
+    5
+   ],
+   [
+    "2026-03-31",
+    7
+   ],
+   [
+    "2026-06-30",
+    5
+   ]
+  ],
+  "기말 수주잔고": [
+   [
+    "2024-03-31",
+    27
+   ],
+   [
+    "2024-06-30",
+    30
+   ],
+   [
+    "2024-09-30",
+    27
+   ],
+   [
+    "2024-12-31",
+    29
+   ],
+   [
+    "2025-03-31",
+    27
+   ],
+   [
+    "2025-06-30",
+    19
+   ],
+   [
+    "2025-09-30",
+    19
+   ],
+   [
+    "2025-12-31",
+    18
+   ],
+   [
+    "2026-03-31",
+    14
+   ],
+   [
+    "2026-06-30",
+    13
+   ]
+  ]
+ },
+ "default_series": [
+  "분기 납품",
+  "기말 수주잔고"
+ ],
+ "manual": true,
+ "change_mode": "none",
+ "zero_baseline": true,
+ "note": "2025 Q3·Q4의 qualification SLX 매출 인식은 당기 신규 납품으로 세지 않았습니다. 장비 대수만으로 매출을 역산하지 않습니다. 이 대수 자료는 분기 본문 확인 후 갱신하며 금액 차트의 자동 갱신과 별개입니다.",
+ "basis_details": [
+  {
+   "label": "예정 납품 · 2026 Q2 발표 기준",
+   "value": "2026 Q3: 5대(1 FPS 6100 Evo·4 SLX), Q4: 3대(1 Prexision Lite 8 Evo·1 Prexision MMS·1 SLX), 2027 Q1: 3대(Prexision 8 Evo), Q2: 1대(SLX), 2028: 1대(맞춤형 SLX·분기 미공개). 합계 13대이며 확정 실적이 아닌 회사 일정입니다."
+  }
+ ]
+}
