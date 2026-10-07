@@ -11,6 +11,14 @@ const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff',
   source.slice(start, end) + '\nreturn card; }\nreturn renderCard;')(
   {createElement: () => new Element()}, () => 0, () => null, () => '0000-00-00', String, String);
 const headline = doc => render(doc, doc.id).children.map(e => e.innerHTML).join('');
+const fiscal=JSON.parse(fs.readFileSync('data/semicon/photronics_ic_revenue.json','utf8'));
+// Keep the regression anchor stable as the automatic collector adds quarters.
+for (const name of Object.keys(fiscal.series)) fiscal.series[name]=fiscal.series[name].filter(([date])=>date<='2026-08-02');
+assert(headline(fiscal).includes('FY2026 Q3 · 2026-08-02'));
+assert(headline(fiscal).includes('YoY +27.7% · QoQ +20.9%'));
+const fiscalGap=structuredClone(fiscal);
+fiscalGap.comparison_dates['2026-08-02'].quarter_ago=null;
+assert(headline(fiscalGap).includes('QoQ 자료 없음'));
 const sparse = {id:'quarter',name:'Segment',unit:'JPY',quarter_labels:true,quarterly_revenue_summary:true,
   series:{sales:[['2025-06-30',100],['2025-12-31',150],['2026-06-30',200]]}};
 assert(headline(sparse).includes('YoY +100.0% · QoQ 자료 없음'));
@@ -30,4 +38,8 @@ assert(table.includes('달력 분기'));
 assert(table.includes('2021 Q2'));
 assert(table.includes('#page=8'));
 assert.equal((table.match(/target="_blank"/g)||[]).length,21);
+const fiscalTable=funcs.buildTable(fiscal,fiscal.series);
+assert(fiscalTable.includes('회계 분기 · 종료일'));
+assert(fiscalTable.includes('FY2026 Q3 · 2026-08-02'));
+assert.equal((fiscalTable.match(/target="_blank"/g)||[]).length,28); // 23 quarters + 5 Q4 supporting reports
 console.log('PASS: quarterly YoY/QoQ calendar alignment, growth-rate headline, full history and PDF provenance links');
