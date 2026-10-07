@@ -7,7 +7,7 @@
 | 업체 | 제품/범위 | 확보할 수 있는 정량 지표 | 판단 |
 |---|---|---|---|
 | JEOL | 단일빔 마스크 장비, IMS와 협력하는 멀티빔 마스크 장비. Industrial Equipment에는 spot-beam 직접 묘화 등 다른 장비도 포함 | 산업기기 매출/이익, 연결 수주·잔고, 일부 제품 수주/매출 지수 | 마스크 전용 매출·대수와 구분해야 함. 제품별 컨콜 설명을 함께 보관 |
-| NuFlare | 전자빔 마스크 묘화, 마스크 검사, 에피 성장 장비 | 과거 상장 공시, 현재 기술 로드맵·제품 발표. 최신 분기 마스크 전용 수주/매출의 지속 공개는 미확인 | JEOL과 함께 기억한 회사의 후보. 2020년 상장폐지 이력 때문에 최근 분기 시계열 접근성이 제한됨 |
+| NuFlare | 전자빔 마스크 묘화, 마스크 검사, 에피 성장 장비 | 공식 사이트의 FY2022~FY2025 연간 매출·영업이익, 과거 상장 공시, 기술 로드맵·제품 발표. 최신 분기 마스크 전용 수주/매출의 지속 공개는 미확인 | JEOL과 함께 기억한 회사의 후보. 연간 회사 전체 실적은 확보 가능하며 최근 분기 시계열 접근성은 제한됨 |
 | IMS Nanofabrication | 멀티빔 마스크 장비, JEOL과 전략적 협력 | 기술 세대·신제품·증설 발표. 독립된 공개 분기 재무 시계열은 이번 확인 범위에서 미확보 | JEOL과 독립 경쟁사로 단순 합산하면 안 됨 |
 | Mycronic | 레이저 마스크 장비. Pattern Generators는 반도체·디스플레이 및 서비스 등을 포함 | 사업부 수주액·잔고·매출, 모델별 수주/납품/잔고 대수, 예정 납기 | 정량 추적 우선 후보. 전체 회사 수치와 구분해야 함 |
 
@@ -53,6 +53,10 @@ https://www.jeol.com/news/pr/20231024.10643.php
 - 제품: https://www.nuflare.co.jp/english/corporate/business/
 - 2020-03-30 상장폐지, 2020-04 Toshiba Electronic Devices & Storage 완전자회사 편입 이력: https://www.nuflare.co.jp/english/corporate/history/
 - 최신 기술 발표 MBM-4000(A14 노드): https://www.nuflare.co.jp/wp-content/uploads/index/news_20260610.pdf
+- 공식 채용 사이트의 실적 그래프에서 연간 회사 전체 수치를 확인했다: https://www.nuflare.co.jp/recruit/about/report/
+  - 회사 표기 FY2022/FY2023/FY2024/FY2025 매출은 각각 608/901/779/1,380억 엔, 영업이익은 158/286/134/354억 엔. 그래프의 정수 반올림값이며 분기 또는 마스크 전용 금액이 아니다.
+  - 매출 이미지: https://www.nuflare.co.jp/recruit/wp-content/uploads/sites/2/fy2026_2.jpg
+  - 영업이익 이미지: https://www.nuflare.co.jp/recruit/wp-content/uploads/sites/2/fy2026_1.jpg
 - 최신 단독 연간 결산공고가 제3자 관보 데이터베이스에 검색되지만 공식 원문과 제품별 범위 확인 전에는 검증된 마스크 장비 매출로 차트에 사용하지 않는다.
 
 ## 다음 장비 차트 후보
@@ -60,5 +64,6 @@ https://www.jeol.com/news/pr/20231024.10643.php
 1. Mycronic Pattern Generators 수주/매출/수주잔고 + TTM book-to-bill.
 2. 모델별 수주대수·납품대수, 납품예정 잔고 대수. 반도체용/디스플레이용 구분.
 3. JEOL 산업기기 매출과 마스크 관련 발언을 함께 표시. 순수 마스크 수요 지표라는 표기는 금지.
+4. NuFlare 공식 연간 매출·영업이익을 별도 회사 전체 지표로 비교. 분기 보간 및 마스크 전용 매출 표기는 하지 않는다.
 
 패터닝 업체 CAPEX와 장비 업체 수주를 비교할 때 환율·서비스·장비 교체·생산성 향상 및 인식 시차를 구분한다. 장비 투자액이나 대수를 블랭크 출하 장수로 직접 변환하지 않는다.
