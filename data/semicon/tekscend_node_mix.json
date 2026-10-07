@@ -1,0 +1,195 @@
+{
+ "id": "tekscend_node_mix",
+ "name": "Tekscend · 포토마스크 공정별 매출 비중",
+ "unit": "%",
+ "frequency": "quarterly",
+ "manual": true,
+ "source": "Tekscend 공식 IR · 제품 매출 구성",
+ "source_url": "https://www.photomask.com/en/ir/results-briefing/",
+ "updated": "2026-06-30",
+ "fetched": "2026-10-07",
+ "span_gaps": false,
+ "quarter_labels": true,
+ "change_mode": "none",
+ "zero_baseline": true,
+ "series": {
+  "선단 (≤28nm)": [
+   [
+    "2024-06-30",
+    26
+   ],
+   [
+    "2024-09-30",
+    30
+   ],
+   [
+    "2024-12-31",
+    25
+   ],
+   [
+    "2025-03-31",
+    33
+   ],
+   [
+    "2025-06-30",
+    29
+   ],
+   [
+    "2025-09-30",
+    36
+   ],
+   [
+    "2025-12-31",
+    36
+   ],
+   [
+    "2026-03-31",
+    36
+   ],
+   [
+    "2026-06-30",
+    35
+   ]
+  ],
+  "중간 (28~90nm)": [
+   [
+    "2024-06-30",
+    39
+   ],
+   [
+    "2024-09-30",
+    37
+   ],
+   [
+    "2024-12-31",
+    41
+   ],
+   [
+    "2025-03-31",
+    34
+   ],
+   [
+    "2025-06-30",
+    38
+   ],
+   [
+    "2025-09-30",
+    32
+   ],
+   [
+    "2025-12-31",
+    34
+   ],
+   [
+    "2026-03-31",
+    35
+   ],
+   [
+    "2026-06-30",
+    35
+   ]
+  ],
+  "성숙 (>90nm)": [
+   [
+    "2024-06-30",
+    35
+   ],
+   [
+    "2024-09-30",
+    33
+   ],
+   [
+    "2024-12-31",
+    34
+   ],
+   [
+    "2025-03-31",
+    33
+   ],
+   [
+    "2025-06-30",
+    33
+   ],
+   [
+    "2025-09-30",
+    32
+   ],
+   [
+    "2025-12-31",
+    30
+   ],
+   [
+    "2026-03-31",
+    29
+   ],
+   [
+    "2026-06-30",
+    30
+   ]
+  ]
+ },
+ "default_series": [
+  "선단 (≤28nm)",
+  "중간 (28~90nm)",
+  "성숙 (>90nm)"
+ ],
+ "description": "포토마스크 제품 매출의 공정별 비중입니다. 회사의 선단 분류는 28nm 이하를 포함하며 EUV 단독 비중이 아닙니다.",
+ "note": "옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 연결 총매출에 곱해 제품별 금액을 추정하지 않았습니다.",
+ "point_sources": {
+  "2024-06-30": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2024 Q1"
+  },
+  "2024-09-30": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2024 Q2"
+  },
+  "2024-12-31": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2024 Q3"
+  },
+  "2025-03-31": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2024 Q4"
+  },
+  "2025-06-30": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2025 Q1"
+  },
+  "2025-09-30": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2025 Q2"
+  },
+  "2025-12-31": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2025 Q3"
+  },
+  "2026-03-31": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/7c3f34da/e005/452b/ab95/99b31bf50d05/20260619125645876s.pdf",
+   "pdf_page": 8,
+   "label": "FY2025 Q4"
+  },
+  "2026-06-30": {
+   "url": "https://contents.xj-storage.jp/xcontents/AS83405/9137f1b0/3e42/43d3/b883/092c6e2ce327/140120260806511205.pdf",
+   "pdf_page": 6,
+   "label": "FY2026 Q1"
+  }
+ },
+ "basis_details": [
+  {
+   "label": "자료 기준",
+   "value": "2026년 6월 19일 정정된 연간 설명자료와 이후 분기 발표자료를 대조했습니다. 그래프의 연간 막대는 분기 시계열에 포함하지 않습니다."
+  },
+  {
+   "label": "갱신",
+   "value": "분기 발표 시 그래프의 숫자·분기 축을 확인해 스냅샷을 갱신합니다."
+  }
+ ]
+}

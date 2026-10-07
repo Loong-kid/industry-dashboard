@@ -308,6 +308,14 @@ jobs:
           python scripts/aggregate_agc_sheet.py
           python scripts/aggregate_hoya_sheet.py
 
+      # Photronics 공식 SEC 제품별 매출 + 검토된 Tekscend 비중 스냅샷. 키 불필요.
+      - name: 포토마스크 패터닝 실적 검증
+        run: python -m unittest discover -s scripts -p test_mask_patterning.py
+      - name: 포토마스크 패터닝 실적 수집
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_mask_patterning.py
+
       # ASML 노광기 기술별 판매 대수(수기 CSV, 분기 발표자료 이미지에서 옮겨 적음) — 합계·연간 대조 검증 포함
       - name: ASML 노광기 판매 집계
         continue-on-error: true
