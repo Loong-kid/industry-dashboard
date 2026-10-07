@@ -7,9 +7,11 @@ class Element {
   constructor() { this.children = []; this.innerHTML = ''; this.textContent = ''; }
   appendChild(child) { this.children.push(child); }
 }
-const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff', 'fmt', 'escapeHtml',
+const formatting = new Function('escapeHtml', source.slice(source.indexOf('function fmt('), source.indexOf('function koreaTradeChart('))
+  + '\nreturn {periodLabel, observationLabel};')(String);
+const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff', 'fmt', 'escapeHtml', 'periodLabel', 'observationLabel',
   source.slice(start, end) + '\nreturn card; }\nreturn renderCard;')(
-  {createElement: () => new Element()}, () => 0, () => null, () => '0000-00-00', String, String);
+  {createElement: () => new Element()}, () => 0, () => null, () => '0000-00-00', String, String, formatting.periodLabel, formatting.observationLabel);
 const headline = doc => render(doc, doc.id).children.map(e => e.innerHTML).join('');
 const fiscal=JSON.parse(fs.readFileSync('data/semicon/photronics_ic_revenue.json','utf8'));
 // Keep the regression anchor stable as the automatic collector adds quarters.
@@ -31,7 +33,7 @@ for (const id of ['hoya_it_revenue','agc_materials_revenue','shinetsu_materials_
   if(doc.change_mode==='none')assert(!headline(doc).includes('stat-delta'));
 }
 const marker=source.indexOf('function periodLabel(');
-const funcs = new Function('escapeHtml','fmt',source.slice(marker,source.indexOf('// ── 차트',marker))+'\nreturn {buildTable};')(String,String);
+const funcs = new Function('escapeHtml','fmt','observationLabel',source.slice(marker,source.indexOf('// ── 차트',marker))+'\nreturn {buildTable};')(String,String,formatting.observationLabel);
 const doc=JSON.parse(fs.readFileSync('data/semicon/hoya_it_revenue.json','utf8'));
 const table=funcs.buildTable(doc,doc.series);
 assert(table.includes('달력 분기'));

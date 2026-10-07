@@ -7,9 +7,11 @@ class Element {
   constructor() { this.children = []; this.innerHTML = ''; this.textContent = ''; }
   appendChild(child) { this.children.push(child); }
 }
-const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff', 'fmt',
+const formatting = new Function('escapeHtml', source.slice(source.indexOf('function fmt('), source.indexOf('function koreaTradeChart('))
+  + '\nreturn {periodLabel, observationLabel};')(String);
+const render = new Function('document', 'daysSince', 'staleDays', 'rangeCutoff', 'fmt', 'periodLabel', 'observationLabel',
   source.slice(start, end) + '\nreturn card; }\nreturn renderCard;')(
-  {createElement: () => new Element()}, () => 300, () => null, () => '0000-00-00', String);
+  {createElement: () => new Element()}, () => 300, () => null, () => '0000-00-00', String, formatting.periodLabel, formatting.observationLabel);
 const doc = JSON.parse(fs.readFileSync('data/commodities/comm_copper_shfe_inventory.json', 'utf8'));
 const card = render(doc, doc.id);
 assert(card.children.some(e => e.textContent.includes('최신 자료 미확보')));
