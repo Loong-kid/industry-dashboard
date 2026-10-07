@@ -100,7 +100,32 @@
     "fluence_annual": {
       "label": "Fluence 2025 Annual Report · PDF 6쪽",
       "url": "https://ir.fluenceenergy.com/static-files/a7de2741-755e-467a-8bd8-37ee671305d9#page=6",
-      "published": "2025"
+      "published": "2026"
+    },
+    "fluence_houston_hvac": {
+      "label": "Fluence · Houston Bergstrom HVAC·chiller 생산 개시",
+      "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-expands-us-domestic-supply-chain-houston-based-hvac-and",
+      "published": "2025-08-21"
+    },
+    "fluence_q3_capacity": {
+      "label": "Fluence FY2026 Q3 발표 · Houston 외함시설 · PDF 8·11쪽",
+      "url": "https://ir.fluenceenergy.com/static-files/2a35726b-3a55-40fe-ae27-1f4330b7bef9#page=11",
+      "published": "2026-08-05"
+    },
+    "fluence_sep_guidance": {
+      "label": "Fluence · Houston 생산 확대 지연 및 FY2026 전망 수정",
+      "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-energy-announces-revised-guidance-fiscal-year-2026",
+      "published": "2026-09-16"
+    },
+    "fluence_sep_deck": {
+      "label": "Fluence 9/16 Investor Update · PDF 3·4쪽",
+      "url": "https://ir.fluenceenergy.com/static-files/d330b44f-26f5-4f41-85b7-9958b8985873#page=3",
+      "published": "2026-09-16"
+    },
+    "fluence_sep_call": {
+      "label": "Fluence 9/16 경영진 콜 발언 · 전문 재게시",
+      "url": "https://earningscalls.dev/transcripts/fluence-energy-inc_flnc_earnings_call_transcript_2026-09-16",
+      "published": "2026-09-16"
     },
     "fluence_10k": {
       "label": "Fluence 2025 10-K · 계약 제조·모듈 라인 리스",
@@ -583,28 +608,61 @@
       "id": "fluence_houston",
       "company": "fluence",
       "company_name": "플루언스 에너지",
-      "factory": "Houston 열관리장치 생산시설",
-      "product": "Thermal management systems · 부품",
+      "factory": "휴스턴(Houston) 열관리장치 생산시설",
+      "product": "Gridstack Pro용 HVAC·chiller · 부품",
       "stage": "component",
       "location": "미국 텍사스주 Houston",
       "operation": "contract",
-      "ownership": "미국 제조 파트너 시설 · 건물 소유 미확인",
-      "ownership_date": "2025-09-30",
+      "ownership": "Bergstrom 협력 생산 · 건물 소유 미확인",
+      "ownership_date": "2025-08-21",
       "ownership_sources": [
-        "fluence_annual",
-        "fluence_10q"
+        "fluence_houston_hvac"
       ],
       "status": "operating",
       "status_label": "2025년 8월 생산 개시",
-      "status_date": "2025-08",
+      "status_date": "2025-08-21",
       "status_sources": [
-        "fluence_annual"
+        "fluence_houston_hvac"
       ],
       "floor_area": null,
       "other_area": null,
       "installed_capacity": null,
       "design_capacity": null,
-      "notes": "2025 연차보고서의 미국 제조시설 일정에서 열관리장치 생산 개시가 확인됩니다. 배터리 셀·완제품 공장으로 분류하지 않으며, 제조 파트너명·면적·연간 CAPA는 미확인입니다."
+      "notes": "2025년 8월 21일 회사 발표로 Bergstrom 협력 및 HVAC·chiller 생산 개시를 확인했습니다. 아래 2026년 외함·조립 생산 차질 기록과 생산 기능을 구분합니다. 두 기록이 물리적으로 별도 건물·부지인지 여부는 미확인으로, 독립 공장 수나 CAPA로 합산하지 않습니다. 면적·연간 CAPA는 미확인입니다.",
+      "extra_sources": [
+        "fluence_annual"
+      ]
+    },
+    {
+      "id": "fluence_houston_enclosures",
+      "company": "fluence",
+      "company_name": "플루언스 에너지",
+      "factory": "휴스턴(Houston) ESS 외함·조립 생산시설",
+      "product": "ESS 외함 제작·조립 · 부품/중간재",
+      "stage": "component",
+      "location": "미국 텍사스주 Houston",
+      "operation": "contract",
+      "ownership": "계약 제조 파트너 시설 · 업체명·건물 권리 미확인",
+      "ownership_date": "2026-09-16",
+      "ownership_sources": [
+        "fluence_sep_guidance"
+      ],
+      "status": "operating",
+      "status_label": "제한적 생산 · 생산 확대 지연",
+      "status_date": "2026-09-16",
+      "status_sources": [
+        "fluence_q3_capacity",
+        "fluence_sep_guidance"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "notes": "2026년 8월 공식 실적 자료는 Houston 외함시설의 약 3개월 지연과 초기 생산을 명시합니다. 9월 16일 경영진은 자동 용접 성능·숙련 인력 부족에 따른 조립 병목, 수동 용접 전환과 Houston 내 하청사 3곳 투입을 설명했습니다. 당시 8~9월 가정은 평균 11 unit/일, 8월 실적은 1 unit/일 미만, 9월 첫 2주는 약 3 unit/일입니다. 이는 특정 기간 생산속도로 연간 GWh CAPA로 환산하지 않습니다. 회사 전체 FY2026 매출 전망은 30억→24억 달러로 하향됐고, 약 4.5억 달러의 생산 지연 영향은 주로 Houston에서 발생했다고 발표했습니다. 위 열관리 시설과의 물리적 관계 및 제조 파트너명은 미확인입니다.",
+      "extra_sources": [
+        "fluence_sep_deck",
+        "fluence_sep_call"
+      ]
     }
   ],
   "updated": "2026-10-08"
