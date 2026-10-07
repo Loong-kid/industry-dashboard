@@ -448,8 +448,8 @@ function renderCard(doc, indicatorId) {
   }
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
-  const dateLabel = date => (doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual"
-    ? periodLabel(doc, date) : date)
+  const dateLabel = date => (doc?.period_labels?.[date] ? `${doc.period_labels[date]} · ${date}`
+    : doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual" ? periodLabel(doc, date) : date)
     + (doc?.forecast_from && date >= doc.forecast_from ? " · 전망" : "");
 
   if (doc?.disclosure_status === "not_disclosed") {
@@ -534,8 +534,9 @@ function renderCard(doc, indicatorId) {
       const year = Number(last[0].slice(0, 4));
       const q = Math.ceil(Number(last[0].slice(5, 7)) / 3);
       const ends = ["03-31", "06-30", "09-30", "12-31"];
-      const priorQuarter = `${q === 1 ? year - 1 : year}-${ends[(q + 2) % 4]}`;
-      const priorYear = `${year - 1}${last[0].slice(4)}`;
+      const comparisons = doc.comparison_dates?.[last[0]];
+      const priorQuarter = comparisons ? comparisons.quarter_ago : `${q === 1 ? year - 1 : year}-${ends[(q + 2) % 4]}`;
+      const priorYear = comparisons ? comparisons.year_ago : `${year - 1}${last[0].slice(4)}`;
       const change = date => {
         const base = values.get(date);
         if (doc.quarterly_profit_summary && last[1] != null && base != null && (base <= 0 || last[1] <= 0)) {
@@ -750,6 +751,7 @@ function observationLabel(doc, date, value) {
 }
 
 function periodLabel(doc, date) {
+  if (doc.period_labels?.[date]) return escapeHtml(doc.period_labels[date]);
   if (doc.fiscal_year_end_month === 9) {
     const month = Number(date.slice(5, 7));
     const year = Number(date.slice(0, 4)) + (month > 9 ? 1 : 0);
@@ -1146,13 +1148,14 @@ function buildTable(doc, filtered) {
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
   const hasSources = doc.point_sources || doc.period_sources;
-  let html = `<table><thead><tr><th>${doc.quarter_labels ? (doc.fiscal_year_end_month === 9 ? "회계 분기 · 9월 결산" : "달력 분기") : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
+  let html = `<table><thead><tr><th>${doc.period_labels ? "회계 분기 · 종료일" : doc.quarter_labels ? (doc.fiscal_year_end_month === 9 ? "회계 분기 · 9월 결산" : "달력 분기") : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
-    const sourceCell = hasSources ? `<td>${ref ? `<a href="${escapeHtml(ref.url)}${ref.pdf_page ? `#page=${ref.pdf_page}` : ""}" target="_blank" rel="noopener">${ref.pdf_page ? `PDF p.${ref.pdf_page}` : ref.label ? escapeHtml(ref.label) : `${escapeHtml(ref.issue)} 월보`} ↗</a>` : "미확인"}</td>` : "";
+    const sources = ref?.supporting_sources || (ref ? [ref] : []);
+    const sourceCell = hasSources ? `<td>${sources.length ? sources.map(source => `<a href="${escapeHtml(source.url)}${source.pdf_page ? `#page=${source.pdf_page}` : ""}" target="_blank" rel="noopener">${source.pdf_page ? `PDF p.${source.pdf_page}` : source.label ? escapeHtml(source.label) : `${escapeHtml(source.issue)} 월보`} ↗</a>`).join(" − ") : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     const estimateTag = doc.point_annotations?.[d] ? ` <span title="${escapeHtml(doc.point_annotations[d])}">· 추정</span>` : "";
-    html += `<tr><td>${periodLabel(doc, d)}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? observationLabel(doc, d, map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
+    html += `<tr><td>${periodLabel(doc, d)}${doc.period_labels ? ` · ${escapeHtml(d)}` : ""}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? observationLabel(doc, d, map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
