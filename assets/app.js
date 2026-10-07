@@ -178,6 +178,7 @@ async function renderIndustry() {
   const collected = []; // 수집 상태 판정용 { name, fetched }
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
+    const dataIndustry = section.data_industry || ind.id;
     const h = document.createElement("div");
     h.className = "section-title";
     h.textContent = section.title;
@@ -201,10 +202,10 @@ async function renderIndustry() {
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
-        const doc = await loadDoc(ind.id, indicatorId);
+        const doc = await loadDoc(dataIndustry, indicatorId);
         if (mySeq !== renderSeq) return; // 새 탭 렌더가 시작됨 → stale 렌더 중단
         const err = state.docErrors.get(indicatorId);
-        content.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderer(doc));
+        content.appendChild(err ? errorCard(dataIndustry, indicatorId, err) : renderer(doc));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
         if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
       }
@@ -222,10 +223,10 @@ async function renderIndustry() {
     content.appendChild(grid);
 
     for (const indicatorId of section.indicators) {
-      const doc = await loadDoc(ind.id, indicatorId);
+      const doc = await loadDoc(dataIndustry, indicatorId);
       if (mySeq !== renderSeq) return; // 새 탭 렌더가 시작됨 → stale 렌더 중단
       const err = state.docErrors.get(indicatorId);
-      grid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
+      grid.appendChild(err ? errorCard(dataIndustry, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
       if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
     }
