@@ -1,0 +1,3060 @@
+{
+  "id": "ess_batteries",
+  "name": "ESS 배터리 기업 · 셀과 시스템",
+  "reviewed": "2026-10-08",
+  "manual": true,
+  "description": "중국 7개사와 한국 3사의 공식 자료. 셀 제조, 셀·모듈 미분리 배터리 제품, 시스템 조립, 합산 재무를 구분합니다.",
+  "note": "셀→모듈·팩→DC 컨테이너→PCS·EMS를 포함한 시스템은 서로 다른 단계입니다. 셀과 시스템 수치를 합산하지 않습니다. CAPA는 GWh/년, 판매·출하는 GWh이며 현장 설치량과 다릅니다. 미공개·미분리는 0이 아닙니다.",
+  "sources": {
+    "catl25": {
+      "label": "CATL 2025 연차보고서",
+      "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+      "published": "2026-03-10",
+      "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37"
+    },
+    "catl26h": {
+      "label": "CATL 2026 반기보고서",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+      "published": "2026-07-26",
+      "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a"
+    },
+    "eve25": {
+      "label": "EVE 2025 연차보고서",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF",
+      "published": "2026-03-28",
+      "sha256": "3bee0ca9a6232c60c53f195d078446a45fd4941bd997258b474cebe835eea3b8"
+    },
+    "eve26h": {
+      "label": "EVE 2026 반기보고서",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+      "published": "2026-08-20",
+      "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d"
+    },
+    "eve_factory": {
+      "label": "EVE Jingmen 공장·생산 발표",
+      "url": "https://www.evebattery.com/en/news-1872",
+      "published": "2025-07-04"
+    },
+    "hithium25": {
+      "label": "HiTHIUM 2025 ESG 보고서",
+      "url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+      "published": "2026-09-04",
+      "pdf_page": 6,
+      "sha256": "363984d33ae55b3758f4a06c3c148cd7f3f99b920571bb32096b37eac6b988f1"
+    },
+    "hithium_factory": {
+      "label": "HiTHIUM 생산거점 설명",
+      "url": "https://en.hithium.com/newsroom/insightsinfo/details/119.html",
+      "published": "2025-12-30"
+    },
+    "hithium_texas": {
+      "label": "HiTHIUM Texas 공장 가동 확인",
+      "url": "https://en.hithium.com/newsroom/latest/details/86.html",
+      "published": "2025-09-10"
+    },
+    "byd_sec": {
+      "label": "BYD Saudi Electricity 계약",
+      "url": "https://www.bydglobal.com/sites/Satellite?c=BydArticle&cid=1617162593698&d=Touch&pagename=BYD_EN%2FBydArticle%2FBYD_ENCommon%2FArticleDetails",
+      "published": "2025-02-17"
+    },
+    "byd_profile": {
+      "label": "BYD Energy Storage 제품·사업 범위",
+      "url": "https://www.bydenergy.com/en/companyProfile",
+      "accessed": "2026-10-08"
+    },
+    "calb25": {
+      "label": "CALB 2025 연차보고서",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042900019.pdf",
+      "published": "2026-04-29",
+      "pdf_page": 20,
+      "sha256": "e5e9d53926d99be0fe7666921bc2f9087c8cc3a44950efaa52a0dbb5d39f084d"
+    },
+    "calb26h": {
+      "label": "CALB 2026 반기보고서",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0930/2026093001136.pdf",
+      "published": "2026-09-30",
+      "pdf_page": 20,
+      "sha256": "ec1c3252e41b7d10ce106b7ef1b64392b9bd8b2e900d18d054877efef9d6bd6e"
+    },
+    "cornex24": {
+      "label": "CORNEX 2024 출하·수주 발표",
+      "url": "https://en.cornexbattery.com/en/Index/news_detail/id/1434.html",
+      "published": "2025-03-28"
+    },
+    "cornex26": {
+      "label": "CORNEX SNEC 2026 전략적 협약",
+      "url": "https://cornexbattery.com/en/Index/news_detail/id/1622.html",
+      "published": "2026-06-03"
+    },
+    "cornex_factory": {
+      "label": "CORNEX Xiangyang 공장 가동",
+      "url": "https://en.cornexbattery.com/en/Index/news_detail/id/1647.html",
+      "published": "2026-08-30"
+    },
+    "rept25": {
+      "label": "REPT 2025 연차보고서",
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+      "published": "2026-03-26",
+      "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30"
+    },
+    "rept26h": {
+      "label": "REPT 2026 반기보고서",
+      "url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+      "published": "2026-09-22",
+      "sha256": "b7ade259bdf2f286c69196452cb3a9d9f16a2f3325838e159c64e527707b3371"
+    },
+    "lg26h": {
+      "label": "LGES 2026 2분기 실적 발표",
+      "url": "https://inside.lgensol.com/en/2026/07/lg-energy-solution-releases-2026-second-quarter-financial-results/",
+      "published": "2026-07-30"
+    },
+    "lg_capa": {
+      "label": "LGES 랜싱 가동·북미 ESS 계획",
+      "url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+      "published": "2026-08-19"
+    },
+    "sdi_plan": {
+      "label": "삼성SDI 2025 4분기 IR",
+      "url": "https://www.samsungsdi.com/upload/download/ir/2025.4Q_IR_Final_En.pdf",
+      "published": "2026-02-02",
+      "pdf_page": 7,
+      "sha256": "c0c677d64b464825eeb44dff9887a024eb45036e3178fcf68156de0cd26cfbc1"
+    },
+    "sdi_order": {
+      "label": "삼성SDI ESS용 LFP 공급 계약",
+      "url": "https://www.samsungsdi.co.kr/sdi-now/sdi-news/4641.html",
+      "published": "2025-12-10"
+    },
+    "sdi26q2": {
+      "label": "삼성SDI 2026 2분기 실적 발표",
+      "url": "https://www.samsungsdi.com/sdi-now/sdi-news/4942.html",
+      "published": "2026-07-30"
+    },
+    "sdi_sbb": {
+      "label": "삼성SDI 미국 LFP 생산 일정",
+      "url": "https://www.samsungsdi.com/sdi-now/sdi-news/4822.html",
+      "published": "2026-03-24"
+    },
+    "sk_order": {
+      "label": "SK On NeoVolta LFP 셀 공급 계약",
+      "url": "https://eng.sk.com/news/sk-on-adds-large-scale-battery-cell-agreement-as-u-s-ess-business-accelerates",
+      "published": "2026-09-24"
+    }
+  },
+  "companies": [
+    {
+      "id": "catl",
+      "name": "CATL",
+      "role": "LFP 셀 제조 · TENER DC 캐비닛 및 시스템 통합",
+      "capacity_note": "공시된 전체 772GWh는 EV+ESS 합산. ESS 전용 셀 CAPA로 사용하지 않음.",
+      "financial_note": "ESS 배터리 매출·매출총이익 공개. 셀·모듈·캐비닛 포함.",
+      "gaps": [
+        "ESS 전용 셀 CAPA",
+        "셀만의 매출·출하량",
+        "ESS 영업이익·시스템 CAPA"
+      ],
+      "sources": [
+        "catl25",
+        "catl26h"
+      ]
+    },
+    {
+      "id": "hithium",
+      "name": "HiTHIUM",
+      "role": "LFP 셀 제조 · DC 컨테이너 및 시스템 솔루션",
+      "capacity_note": "Chongqing 셀 56GWh는 프로젝트 계획. Texas 10GWh/년은 모듈·시스템 조립.",
+      "financial_note": "배터리 / 시스템 / 관련 소재 매출 구성비 공개. 검토 자료에는 절대 매출·이익 미기재.",
+      "gaps": [
+        "글로벌 ESS 셀 실가동 CAPA 합계",
+        "절대 매출·영업이익",
+        "배터리 판매량의 셀·모듈 세부 분리"
+      ],
+      "sources": [
+        "hithium25",
+        "hithium_factory",
+        "hithium_texas"
+      ]
+    },
+    {
+      "id": "eve",
+      "name": "EVE Energy",
+      "role": "LFP 셀 제조 · Mr.Giant DC 컨테이너",
+      "capacity_note": "Jingmen 60GWh는 공장 전체 프로젝트 규모. 단계별 실가동 용량과 구분.",
+      "financial_note": "ESS 배터리 부문 매출·원가·총이익률 공개. 셀 전용 아님.",
+      "gaps": [
+        "ESS 셀 실가동 CAPA 합계",
+        "검증 가능한 ESS 셀 전용 출하 시계열",
+        "ESS 영업이익·시스템 CAPA"
+      ],
+      "sources": [
+        "eve25",
+        "eve26h",
+        "eve_factory"
+      ]
+    },
+    {
+      "id": "byd",
+      "name": "BYD",
+      "role": "Blade LFP 셀 제조 · BESS+PCS+EMS 완제품",
+      "capacity_note": "ESS 전용 셀 / 시스템 CAPA를 분리한 수치 미확인.",
+      "financial_note": "배터리·태양광 등 합산 자료를 ESS 매출로 대체하지 않음.",
+      "gaps": [
+        "ESS 셀·시스템 전용 CAPA",
+        "ESS 연간 총출하량·매출·영업이익"
+      ],
+      "sources": [
+        "byd_sec",
+        "byd_profile"
+      ]
+    },
+    {
+      "id": "calb",
+      "name": "CALB",
+      "role": "LFP 셀 제조 · 액랭 컨테이너 및 에너지 솔루션",
+      "capacity_note": "EV·ESS 공유 CAPA에서 ESS 전용 용량을 추산하지 않음.",
+      "financial_note": "ESS products and others: 기타 제품을 포함한 매출.",
+      "gaps": [
+        "ESS 전용 셀·시스템 CAPA",
+        "ESS만의 매출·영업이익",
+        "셀만의 출하량"
+      ],
+      "sources": [
+        "calb25",
+        "calb26h"
+      ]
+    },
+    {
+      "id": "cornex",
+      "name": "CORNEX",
+      "role": "LFP 셀 제조 · M5/M6 DC 컨테이너",
+      "capacity_note": "Xiangyang 70GWh는 EV+ESS 프로젝트 설계 규모. ESS 셀 CAPA에서 제외.",
+      "financial_note": "비상장사. 검토한 공식 자료에 ESS 부문 매출·이익 없음.",
+      "gaps": [
+        "ESS 전용 실가동 셀 CAPA",
+        "ESS 매출·영업이익",
+        "연간 셀·시스템 별도 출하량"
+      ],
+      "sources": [
+        "cornex24",
+        "cornex26",
+        "cornex_factory"
+      ]
+    },
+    {
+      "id": "rept",
+      "name": "REPT BATTERO",
+      "role": "LFP 셀 제조 · Powtrix DC 컨테이너",
+      "capacity_note": "90GWh는 EV+ESS 합산 설계 용량. ESS 전용 CAPA에서 제외.",
+      "financial_note": "ESS 매출 공개. 2025 총이익은 ESS 별도, 2026H1 총이익은 EV+ESS 합산.",
+      "gaps": [
+        "ESS 전용 셀·시스템 CAPA",
+        "ESS 영업이익",
+        "2026H1 ESS 별도 매출총이익"
+      ],
+      "sources": [
+        "rept25",
+        "rept26h"
+      ]
+    },
+    {
+      "id": "lg",
+      "name": "LG에너지솔루션",
+      "role": "LFP 셀 제조 · Vertech 시스템 통합",
+      "capacity_note": "2026년 말 북미 ESS LFP >50GWh/년은 목표. 랜싱 >35GWh는 EV+ESS 합산.",
+      "financial_note": "ESS 매출 성장배수 공개. 정확한 ESS 매출액·영업이익은 미분리.",
+      "gaps": [
+        "현재 글로벌 ESS LFP 셀 CAPA",
+        "ESS 절대 매출·영업이익",
+        "셀 / Vertech 시스템 별도 출하량"
+      ],
+      "sources": [
+        "lg26h",
+        "lg_capa"
+      ]
+    },
+    {
+      "id": "sdi",
+      "name": "삼성SDI",
+      "role": "LFP·NCA 셀 제조 · SBB DC 배터리 컨테이너",
+      "capacity_note": "2026 ESS 각형 20GWh는 판매 목표 / 생산능력 활용 계획. LFP만의 CAPA 아님.",
+      "financial_note": "ESS 부문 절대 매출·영업이익 미분리. LFP 셀 계약금액은 매출 인식액이 아님.",
+      "gaps": [
+        "LFP 전용 실가동 ESS 셀 CAPA",
+        "ESS 매출·영업이익",
+        "LFP 셀 / 시스템 별도 출하량"
+      ],
+      "sources": [
+        "sdi_plan",
+        "sdi_order",
+        "sdi26q2",
+        "sdi_sbb"
+      ]
+    },
+    {
+      "id": "sk",
+      "name": "SK On",
+      "role": "LFP 파우치 셀 제조 · GRIDON 시스템 제품",
+      "capacity_note": "검토 자료에서 ESS LFP 실가동 생산능력 수치 미확인.",
+      "financial_note": "EV 등 합산 배터리 사업 실적을 ESS 전용 실적으로 대체하지 않음.",
+      "gaps": [
+        "ESS LFP 셀·시스템 CAPA",
+        "ESS 매출·영업이익",
+        "실제 ESS 셀 출하량"
+      ],
+      "sources": [
+        "sk_order"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "ess_battery_catl_revenue",
+      "company": "catl",
+      "stage": "finance",
+      "measure": "revenue",
+      "status": "actual",
+      "name": "CATL · ESS 매출",
+      "unit": "백만 CNY",
+      "scope": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "CATL 2026 반기보고서",
+      "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출": [
+              [
+                "2024-12-31",
+                57290.46
+              ],
+              [
+                "2025-12-31",
+                62439.82
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 33
+            },
+            "2025-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 33
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출": [
+              [
+                "2025-06-30",
+                28400.044
+              ],
+              [
+                "2026-06-30",
+                53260.967
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 21
+            },
+            "2026-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 21
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_catl_gross",
+      "company": "catl",
+      "stage": "finance",
+      "measure": "gross_profit",
+      "status": "actual",
+      "name": "CATL · ESS 매출총이익",
+      "unit": "백만 CNY",
+      "scope": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "영업이익이 아닌 매출총이익. 판관비·R&D 등 차감 전.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "CATL 2026 반기보고서",
+      "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익": [
+              [
+                "2024-12-31",
+                15376.457
+              ],
+              [
+                "2025-12-31",
+                16676.131
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 34
+            },
+            "2025-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 34
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출총이익": [
+              [
+                "2025-06-30",
+                7246.775
+              ],
+              [
+                "2026-06-30",
+                12760.115
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 22
+            },
+            "2026-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 22
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "영업이익이 아닌 매출총이익. 판관비·R&D 등 차감 전."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_catl_margin",
+      "company": "catl",
+      "stage": "finance",
+      "measure": "gross_margin",
+      "status": "actual",
+      "name": "CATL · ESS 매출총이익률",
+      "unit": "%",
+      "scope": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "CATL 2026 반기보고서",
+      "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익률": [
+              [
+                "2024-12-31",
+                26.84
+              ],
+              [
+                "2025-12-31",
+                26.71
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 34
+            },
+            "2025-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 34
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출총이익률": [
+              [
+                "2025-06-30",
+                25.52
+              ],
+              [
+                "2026-06-30",
+                23.96
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 22
+            },
+            "2026-06-30": {
+              "label": "CATL 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0726/2026072600031.pdf",
+              "published": "2026-07-26",
+              "sha256": "1757370a274209473757d38f085455e72564994b4d20c2e8a8f493af84b5c10a",
+              "pdf_page": 22
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_catl_sales",
+      "company": "catl",
+      "stage": "battery",
+      "measure": "sales",
+      "status": "actual",
+      "name": "CATL · ESS 배터리 판매량",
+      "unit": "GWh",
+      "scope": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "회사가 공시한 ESS 배터리 판매량. 시장조사업체의 셀 출하량 추정치와 혼합하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "CATL 2025 연차보고서",
+      "source_url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 배터리 판매량": [
+              [
+                "2025-12-31",
+                121
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "CATL 2025 연차보고서",
+              "url": "https://www.catl.com/en/uploads/1/file/public/202603/20260310105310_46xjbwckvn.pdf",
+              "published": "2026-03-10",
+              "sha256": "b3250cb8eb62b5abc73183390b40f8d2cf6012f08db42aa1e8a334d32ae13e37",
+              "pdf_page": 28
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS 배터리: 셀·모듈·배터리 박스·캐비닛 포함. 셀 단독 / 시스템 단독 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "회사가 공시한 ESS 배터리 판매량. 시장조사업체의 셀 출하량 추정치와 혼합하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_hithium_battery_sales",
+      "company": "hithium",
+      "stage": "battery",
+      "measure": "sales",
+      "status": "actual",
+      "name": "HiTHIUM · ESS 배터리 판매량",
+      "unit": "GWh",
+      "scope": "보고서의 energy storage battery sales. 시스템 판매량과 별도 공시하나 셀·모듈 범위의 상세 분리는 없음.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "시스템 판매량 10.1GWh와 더해 셀 출하량으로 표시하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "HiTHIUM 2025 ESG 보고서",
+      "source_url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 배터리 판매량": [
+              [
+                "2025-12-31",
+                56.6
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "HiTHIUM 2025 ESG 보고서",
+              "url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+              "published": "2026-09-04",
+              "pdf_page": 6,
+              "sha256": "363984d33ae55b3758f4a06c3c148cd7f3f99b920571bb32096b37eac6b988f1"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "보고서의 energy storage battery sales. 시스템 판매량과 별도 공시하나 셀·모듈 범위의 상세 분리는 없음."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "시스템 판매량 10.1GWh와 더해 셀 출하량으로 표시하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_hithium_system_sales",
+      "company": "hithium",
+      "stage": "system",
+      "measure": "sales",
+      "status": "actual",
+      "name": "HiTHIUM · ESS 시스템 판매량",
+      "unit": "GWh",
+      "scope": "energy storage system sales. 배터리 판매량과 분리된 시스템 제품 판매.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "현장 설치·준공 용량 또는 누적 배치량이 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "HiTHIUM 2025 ESG 보고서",
+      "source_url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 시스템 판매량": [
+              [
+                "2025-12-31",
+                10.1
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "HiTHIUM 2025 ESG 보고서",
+              "url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+              "published": "2026-09-04",
+              "pdf_page": 6,
+              "sha256": "363984d33ae55b3758f4a06c3c148cd7f3f99b920571bb32096b37eac6b988f1"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "시스템 · 모듈/컨테이너 조립"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "energy storage system sales. 배터리 판매량과 분리된 시스템 제품 판매."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "현장 설치·준공 용량 또는 누적 배치량이 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_hithium_mix",
+      "company": "hithium",
+      "stage": "finance",
+      "measure": "revenue_mix",
+      "status": "actual",
+      "name": "HiTHIUM · 배터리 / 시스템 매출 구성",
+      "unit": "%",
+      "scope": "회사 영업수익 구성. 배터리·시스템·관련 소재를 구분. 절대 매출액은 추산하지 않음.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "HiTHIUM 2025 ESG 보고서",
+      "source_url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 배터리": [
+              [
+                "2025-12-31",
+                64.5
+              ]
+            ],
+            "ESS 시스템": [
+              [
+                "2025-12-31",
+                33.1
+              ]
+            ],
+            "배터리 관련 소재": [
+              [
+                "2025-12-31",
+                2.4
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "HiTHIUM 2025 ESG 보고서",
+              "url": "https://en.hithium.com/bocupload/2026/09/04/17885082512527hh9qw.pdf",
+              "published": "2026-09-04",
+              "pdf_page": 6,
+              "sha256": "363984d33ae55b3758f4a06c3c148cd7f3f99b920571bb32096b37eac6b988f1"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true,
+          "default_series": [
+            "ESS 배터리",
+            "ESS 시스템",
+            "배터리 관련 소재"
+          ]
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "회사 영업수익 구성. 배터리·시스템·관련 소재를 구분. 절대 매출액은 추산하지 않음."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_hithium_cell_capa",
+      "company": "hithium",
+      "stage": "cell",
+      "measure": "capacity",
+      "status": "design",
+      "name": "HiTHIUM · Chongqing 셀 프로젝트 CAPA",
+      "unit": "GWh/년",
+      "scope": "Chongqing 차세대 ESS 리튬 배터리 프로젝트 계획. 모듈 생산능력과 분리.",
+      "chemistry": "ESS 리튬 배터리 · 해당 공시에서 LFP 단독 여부 미분리",
+      "note": "전체 프로젝트 계획 규모. 전 용량의 설치·정상 가동을 확인한 수치가 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-30",
+      "reviewed": "2026-10-08",
+      "source": "HiTHIUM 생산거점 설명",
+      "source_url": "https://en.hithium.com/newsroom/insightsinfo/details/119.html",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Chongqing 셀 프로젝트 CAPA": [
+              [
+                "2025-12-30",
+                56
+              ]
+            ]
+          },
+          "unit": "GWh/년",
+          "period_sources": {
+            "2025-12-30": {
+              "label": "HiTHIUM 생산거점 설명",
+              "url": "https://en.hithium.com/newsroom/insightsinfo/details/119.html",
+              "published": "2025-12-30"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "프로젝트 설계·계획"
+        },
+        {
+          "label": "집계 범위",
+          "value": "Chongqing 차세대 ESS 리튬 배터리 프로젝트 계획. 모듈 생산능력과 분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 리튬 배터리 · 해당 공시에서 LFP 단독 여부 미분리"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "프로젝트 완성 시점 · 확정일 미공개"
+        },
+        {
+          "label": "해석 기준",
+          "value": "전체 프로젝트 계획 규모. 전 용량의 설치·정상 가동을 확인한 수치가 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_hithium_system_capa",
+      "company": "hithium",
+      "stage": "system",
+      "measure": "capacity",
+      "status": "actual",
+      "name": "HiTHIUM · Texas 모듈·시스템 CAPA",
+      "unit": "GWh/년",
+      "scope": "Mesquite, Texas 모듈 및 시스템 조립 공장. 셀 제조능력이 아님.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "공장 가동과 회사 발표 연간 조립 CAPA. 실제 연간 생산량은 별도. 상세 생산 단계는 2025-12-30 생산거점 설명으로 교차 확인.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-09-10",
+      "reviewed": "2026-10-08",
+      "source": "HiTHIUM Texas 공장 가동 확인",
+      "source_url": "https://en.hithium.com/newsroom/latest/details/86.html",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Texas 모듈·시스템 CAPA": [
+              [
+                "2025-09-10",
+                10
+              ]
+            ]
+          },
+          "unit": "GWh/년",
+          "period_sources": {
+            "2025-09-10": {
+              "label": "HiTHIUM Texas 공장 가동 확인",
+              "url": "https://en.hithium.com/newsroom/latest/details/86.html",
+              "published": "2025-09-10",
+              "supporting_sources": [
+                {
+                  "label": "HiTHIUM Texas 공장 가동 확인",
+                  "url": "https://en.hithium.com/newsroom/latest/details/86.html",
+                  "published": "2025-09-10"
+                },
+                {
+                  "label": "HiTHIUM 생산거점 설명",
+                  "url": "https://en.hithium.com/newsroom/insightsinfo/details/119.html",
+                  "published": "2025-12-30"
+                }
+              ]
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "시스템 · 모듈/컨테이너 조립"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "Mesquite, Texas 모듈 및 시스템 조립 공장. 셀 제조능력이 아님."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "공장 가동과 회사 발표 연간 조립 CAPA. 실제 연간 생산량은 별도. 상세 생산 단계는 2025-12-30 생산거점 설명으로 교차 확인."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_eve_revenue",
+      "company": "eve",
+      "stage": "finance",
+      "measure": "revenue",
+      "status": "actual",
+      "name": "EVE · ESS 매출",
+      "unit": "백만 CNY",
+      "scope": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음. 2025H1은 2026 반기보고서의 재작성 비교 수치(p.20). 연간 원공시와 합산·차감하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "EVE 2026 반기보고서",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출": [
+              [
+                "2024-12-31",
+                19026.92160715
+              ],
+              [
+                "2025-12-31",
+                24441.02838651
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "EVE 2025 연차보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF",
+              "published": "2026-03-28",
+              "sha256": "3bee0ca9a6232c60c53f195d078446a45fd4941bd997258b474cebe835eea3b8",
+              "pdf_page": 20
+            },
+            "2025-12-31": {
+              "label": "EVE 2025 연차보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF",
+              "published": "2026-03-28",
+              "sha256": "3bee0ca9a6232c60c53f195d078446a45fd4941bd997258b474cebe835eea3b8",
+              "pdf_page": 20
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출": [
+              [
+                "2025-06-30",
+                8923.44616281
+              ],
+              [
+                "2026-06-30",
+                15094.04495177
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 20
+            },
+            "2026-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 19
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음. 2025H1은 2026 반기보고서의 재작성 비교 수치(p.20). 연간 원공시와 합산·차감하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_eve_gross",
+      "company": "eve",
+      "stage": "finance",
+      "measure": "gross_profit",
+      "status": "actual",
+      "name": "EVE · ESS 매출총이익 (산출)",
+      "unit": "백만 CNY",
+      "scope": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "공시 매출−공시 매출원가로 산출. 영업이익 아님. 2025H1 재작성 수치.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "EVE 2026 반기보고서",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익 (산출)": [
+              [
+                "2025-12-31",
+                3000.170872579998
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "EVE 2025 연차보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF",
+              "published": "2026-03-28",
+              "sha256": "3bee0ca9a6232c60c53f195d078446a45fd4941bd997258b474cebe835eea3b8",
+              "pdf_page": 20
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출총이익 (산출)": [
+              [
+                "2025-06-30",
+                1237.3755595699997
+              ],
+              [
+                "2026-06-30",
+                1887.9744237200011
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 20
+            },
+            "2026-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 19
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "공시 매출−공시 매출원가로 산출. 영업이익 아님. 2025H1 재작성 수치."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_eve_margin",
+      "company": "eve",
+      "stage": "finance",
+      "measure": "gross_margin",
+      "status": "actual",
+      "name": "EVE · ESS 매출총이익률",
+      "unit": "%",
+      "scope": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "2025H1은 2026 보고서에서 재작성한 비교 기준. 영업이익률 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "EVE 2026 반기보고서",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익률": [
+              [
+                "2025-12-31",
+                12.28
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "EVE 2025 연차보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225045391.PDF",
+              "published": "2026-03-28",
+              "sha256": "3bee0ca9a6232c60c53f195d078446a45fd4941bd997258b474cebe835eea3b8",
+              "pdf_page": 20
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출총이익률": [
+              [
+                "2025-06-30",
+                13.87
+              ],
+              [
+                "2026-06-30",
+                12.51
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 20
+            },
+            "2026-06-30": {
+              "label": "EVE 2026 반기보고서",
+              "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483571.PDF",
+              "published": "2026-08-20",
+              "sha256": "e7c873e533141ede8bb9ebff7ac1285484b78fcd4fedd13f12778ebb420c1a7d",
+              "pdf_page": 19
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "储能电池(ESS 배터리) 부문. 셀·모듈·시스템 전용 매출이 분리되지 않음."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "2025H1은 2026 보고서에서 재작성한 비교 기준. 영업이익률 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_eve_cell_capa",
+      "company": "eve",
+      "stage": "cell",
+      "measure": "capacity",
+      "status": "design",
+      "name": "EVE · Jingmen 셀 프로젝트 CAPA",
+      "unit": "GWh/년",
+      "scope": "Jingmen Super Energy Storage Factory 전체 프로젝트 규모. Mr.Big 대형 ESS 셀 제조.",
+      "chemistry": "ESS용 LFP 셀",
+      "note": "단계별 가동분과 전체 설계 규모를 구분. 60GWh 전부가 현재 설치·가동된 것으로 해석하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-07-04",
+      "reviewed": "2026-10-08",
+      "source": "EVE Jingmen 공장·생산 발표",
+      "source_url": "https://www.evebattery.com/en/news-1872",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Jingmen 셀 프로젝트 CAPA": [
+              [
+                "2025-07-04",
+                60
+              ]
+            ]
+          },
+          "unit": "GWh/년",
+          "period_sources": {
+            "2025-07-04": {
+              "label": "EVE Jingmen 공장·생산 발표",
+              "url": "https://www.evebattery.com/en/news-1872",
+              "published": "2025-07-04"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "프로젝트 설계·계획"
+        },
+        {
+          "label": "집계 범위",
+          "value": "Jingmen Super Energy Storage Factory 전체 프로젝트 규모. Mr.Big 대형 ESS 셀 제조."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 셀"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "전체 프로젝트 완성 시점 · 확정일 미공개"
+        },
+        {
+          "label": "해석 기준",
+          "value": "단계별 가동분과 전체 설계 규모를 구분. 60GWh 전부가 현재 설치·가동된 것으로 해석하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_eve_production",
+      "company": "eve",
+      "stage": "cell",
+      "measure": "production_milestone",
+      "status": "actual",
+      "name": "EVE · Mr.Big 누적 셀 생산 이정표",
+      "unit": "개",
+      "scope": "Mr.Big 628Ah 대형 ESS 셀 누적 생산 30만 개 달성. 회사 전체 연간 생산량 아님.",
+      "chemistry": "ESS용 LFP 셀",
+      "note": "특정 모델의 누적 생산 이정표. GWh로 환산하거나 출하량·설치량으로 대체하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-06-18",
+      "reviewed": "2026-10-08",
+      "source": "EVE Jingmen 공장·생산 발표",
+      "source_url": "https://www.evebattery.com/en/news-1872",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Mr.Big 누적 셀 생산 이정표": [
+              [
+                "2025-06-18",
+                300000
+              ]
+            ]
+          },
+          "unit": "개",
+          "period_sources": {
+            "2025-06-18": {
+              "label": "EVE Jingmen 공장·생산 발표",
+              "url": "https://www.evebattery.com/en/news-1872",
+              "published": "2025-07-04"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "Mr.Big 628Ah 대형 ESS 셀 누적 생산 30만 개 달성. 회사 전체 연간 생산량 아님."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 셀"
+        },
+        {
+          "label": "해석 기준",
+          "value": "특정 모델의 누적 생산 이정표. GWh로 환산하거나 출하량·설치량으로 대체하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_byd_order",
+      "company": "byd",
+      "stage": "system",
+      "measure": "contract",
+      "status": "contracted",
+      "name": "BYD · Saudi Electricity 시스템 계약",
+      "unit": "GWh",
+      "scope": "Saudi Electricity Company 신규 ESS 프로젝트 계약. MC Cube-T 시스템 공급.",
+      "chemistry": "LFP 기반 BESS",
+      "note": "개별 계약 용량. 연간 출하·설치 실적이나 전체 수주잔고가 아님. 2.6GWh 기존 납품분 제외.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-02-17",
+      "reviewed": "2026-10-08",
+      "source": "BYD Saudi Electricity 계약",
+      "source_url": "https://www.bydglobal.com/sites/Satellite?c=BydArticle&cid=1617162593698&d=Touch&pagename=BYD_EN%2FBydArticle%2FBYD_ENCommon%2FArticleDetails",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Saudi Electricity 시스템 계약": [
+              [
+                "2025-02-17",
+                12.5
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-02-17": {
+              "label": "BYD Saudi Electricity 계약",
+              "url": "https://www.bydglobal.com/sites/Satellite?c=BydArticle&cid=1617162593698&d=Touch&pagename=BYD_EN%2FBydArticle%2FBYD_ENCommon%2FArticleDetails",
+              "published": "2025-02-17"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "시스템 · 모듈/컨테이너 조립"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공급 계약 / 수주"
+        },
+        {
+          "label": "집계 범위",
+          "value": "Saudi Electricity Company 신규 ESS 프로젝트 계약. MC Cube-T 시스템 공급."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "LFP 기반 BESS"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "계약 이행 기간 · 해당 발표에 상세 일정 없음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "개별 계약 용량. 연간 출하·설치 실적이나 전체 수주잔고가 아님. 2.6GWh 기존 납품분 제외."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_byd_delivery",
+      "company": "byd",
+      "stage": "system",
+      "measure": "project_delivery",
+      "status": "actual",
+      "name": "BYD · Saudi Electricity 기존 납품",
+      "unit": "GWh",
+      "scope": "2025-02-17 발표에서 이미 납품했다고 명시한 Saudi Electricity 기존 프로젝트.",
+      "chemistry": "LFP 기반 BESS",
+      "note": "단일 거래처 기존 납품 용량. BYD 글로벌 누적 출하량이나 해당 분기 신규 배치량이 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-02-17",
+      "reviewed": "2026-10-08",
+      "source": "BYD Saudi Electricity 계약",
+      "source_url": "https://www.bydglobal.com/sites/Satellite?c=BydArticle&cid=1617162593698&d=Touch&pagename=BYD_EN%2FBydArticle%2FBYD_ENCommon%2FArticleDetails",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "Saudi Electricity 기존 납품": [
+              [
+                "2025-02-17",
+                2.6
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-02-17": {
+              "label": "BYD Saudi Electricity 계약",
+              "url": "https://www.bydglobal.com/sites/Satellite?c=BydArticle&cid=1617162593698&d=Touch&pagename=BYD_EN%2FBydArticle%2FBYD_ENCommon%2FArticleDetails",
+              "published": "2025-02-17"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "시스템 · 모듈/컨테이너 조립"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "2025-02-17 발표에서 이미 납품했다고 명시한 Saudi Electricity 기존 프로젝트."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "LFP 기반 BESS"
+        },
+        {
+          "label": "해석 기준",
+          "value": "단일 거래처 기존 납품 용량. BYD 글로벌 누적 출하량이나 해당 분기 신규 배치량이 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_calb_revenue",
+      "company": "calb",
+      "stage": "finance",
+      "measure": "revenue",
+      "status": "actual",
+      "name": "CALB · ESS 매출 및 기타",
+      "unit": "백만 CNY",
+      "scope": "ESS products and others. ESS 제품 및 기타 관련 제품 매출. ESS만의 매출·셀만의 매출 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "CALB 2026 반기보고서",
+      "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0930/2026093001136.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출 및 기타": [
+              [
+                "2024-12-31",
+                8200.633
+              ],
+              [
+                "2025-12-31",
+                14100.397
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "CALB 2025 연차보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042900019.pdf",
+              "published": "2026-04-29",
+              "pdf_page": 20,
+              "sha256": "e5e9d53926d99be0fe7666921bc2f9087c8cc3a44950efaa52a0dbb5d39f084d"
+            },
+            "2025-12-31": {
+              "label": "CALB 2025 연차보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042900019.pdf",
+              "published": "2026-04-29",
+              "pdf_page": 20,
+              "sha256": "e5e9d53926d99be0fe7666921bc2f9087c8cc3a44950efaa52a0dbb5d39f084d"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출 및 기타": [
+              [
+                "2025-06-30",
+                5756.532
+              ],
+              [
+                "2026-06-30",
+                10578.586
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "CALB 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0930/2026093001136.pdf",
+              "published": "2026-09-30",
+              "pdf_page": 20,
+              "sha256": "ec1c3252e41b7d10ce106b7ef1b64392b9bd8b2e900d18d054877efef9d6bd6e"
+            },
+            "2026-06-30": {
+              "label": "CALB 2026 반기보고서",
+              "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0930/2026093001136.pdf",
+              "published": "2026-09-30",
+              "pdf_page": 20,
+              "sha256": "ec1c3252e41b7d10ce106b7ef1b64392b9bd8b2e900d18d054877efef9d6bd6e"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS products and others. ESS 제품 및 기타 관련 제품 매출. ESS만의 매출·셀만의 매출 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_cornex_shipments",
+      "company": "cornex",
+      "stage": "battery",
+      "measure": "shipments",
+      "status": "actual",
+      "name": "CORNEX · ESS 제품 출하량 하한",
+      "unit": "GWh",
+      "scope": "공식 발표의 energy storage products. 셀·모듈·시스템 출하 비중 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "20GWh 초과. 정확한 값 미공개. 2025·2026 연간 실적 추산 없음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2024-12-31",
+      "reviewed": "2026-10-08",
+      "source": "CORNEX 2024 출하·수주 발표",
+      "source_url": "https://en.cornexbattery.com/en/Index/news_detail/id/1434.html",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 제품 출하량 하한": [
+              [
+                "2024-12-31",
+                20
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "CORNEX 2024 출하·수주 발표",
+              "url": "https://en.cornexbattery.com/en/Index/news_detail/id/1434.html",
+              "published": "2025-03-28"
+            }
+          },
+          "value_qualifiers": {
+            "2024-12-31": "lower_bound"
+          },
+          "year_labels": true,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "공식 발표의 energy storage products. 셀·모듈·시스템 출하 비중 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "20GWh 초과. 정확한 값 미공개. 2025·2026 연간 실적 추산 없음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_cornex_framework",
+      "company": "cornex",
+      "stage": "cell",
+      "measure": "framework",
+      "status": "framework",
+      "name": "CORNEX · SNEC 셀 공급 전략적 협약",
+      "unit": "GWh",
+      "scope": "SNEC 2026: Dongfang Electric 8 + CHINT 2 + AlphaESS 2GWh. 314Ah·588Ah 셀 관련 협약.",
+      "chemistry": "ESS용 LFP 셀",
+      "note": "기본·전략적 협약 규모. 확정 매출·신규 출하·수주잔고로 합산하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-03",
+      "reviewed": "2026-10-08",
+      "source": "CORNEX SNEC 2026 전략적 협약",
+      "source_url": "https://cornexbattery.com/en/Index/news_detail/id/1622.html",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "SNEC 셀 공급 전략적 협약": [
+              [
+                "2026-06-03",
+                12
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2026-06-03": {
+              "label": "CORNEX SNEC 2026 전략적 협약",
+              "url": "https://cornexbattery.com/en/Index/news_detail/id/1622.html",
+              "published": "2026-06-03"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "전략적·기본 협약"
+        },
+        {
+          "label": "집계 범위",
+          "value": "SNEC 2026: Dongfang Electric 8 + CHINT 2 + AlphaESS 2GWh. 314Ah·588Ah 셀 관련 협약."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 셀"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "협약 이행 기간 · 개별 세부 일정 미공개"
+        },
+        {
+          "label": "해석 기준",
+          "value": "기본·전략적 협약 규모. 확정 매출·신규 출하·수주잔고로 합산하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_rept_revenue",
+      "company": "rept",
+      "stage": "finance",
+      "measure": "revenue",
+      "status": "actual",
+      "name": "REPT · ESS 매출",
+      "unit": "백만 CNY",
+      "scope": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "REPT 2026 반기보고서",
+      "source_url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출": [
+              [
+                "2024-12-31",
+                7259.021
+              ],
+              [
+                "2025-12-31",
+                13561.333
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 22
+            },
+            "2025-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 22
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        },
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 매출": [
+              [
+                "2025-06-30",
+                5082.62
+              ],
+              [
+                "2026-06-30",
+                9225.488
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2025-06-30": {
+              "label": "REPT 2026 반기보고서",
+              "url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+              "published": "2026-09-22",
+              "sha256": "b7ade259bdf2f286c69196452cb3a9d9f16a2f3325838e159c64e527707b3371",
+              "pdf_page": 16
+            },
+            "2026-06-30": {
+              "label": "REPT 2026 반기보고서",
+              "url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+              "published": "2026-09-22",
+              "sha256": "b7ade259bdf2f286c69196452cb3a9d9f16a2f3325838e159c64e527707b3371",
+              "pdf_page": 16
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "연간과 상반기 누적을 별도 표시. 환율 환산·셀 매출 추산 없음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_rept_gross",
+      "company": "rept",
+      "stage": "finance",
+      "measure": "gross_profit",
+      "status": "actual",
+      "name": "REPT · ESS 매출총이익",
+      "unit": "백만 CNY",
+      "scope": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "2026H1은 EV+ESS 총이익만 공개하여 ESS 시계열에 연결하지 않음. 영업이익 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "REPT 2025 연차보고서",
+      "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익": [
+              [
+                "2024-12-31",
+                388.439
+              ],
+              [
+                "2025-12-31",
+                1461.951
+              ]
+            ]
+          },
+          "unit": "백만 CNY",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 23
+            },
+            "2025-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 23
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "2026H1은 EV+ESS 총이익만 공개하여 ESS 시계열에 연결하지 않음. 영업이익 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_rept_margin",
+      "company": "rept",
+      "stage": "finance",
+      "measure": "gross_margin",
+      "status": "actual",
+      "name": "REPT · ESS 매출총이익률",
+      "unit": "%",
+      "scope": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "2026H1 13.1%는 EV+ESS 합산이므로 제외. ESS 영업이익률 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "REPT 2025 연차보고서",
+      "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+      "series_views": {
+        "annual": {
+          "label": "연간",
+          "frequency": "yearly",
+          "series": {
+            "ESS 매출총이익률": [
+              [
+                "2024-12-31",
+                5.4
+              ],
+              [
+                "2025-12-31",
+                10.8
+              ]
+            ]
+          },
+          "unit": "%",
+          "period_sources": {
+            "2024-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 23
+            },
+            "2025-12-31": {
+              "label": "REPT 2025 연차보고서",
+              "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0326/2026032602768.pdf",
+              "published": "2026-03-26",
+              "sha256": "092dba029c9d1ff0dbf48efc175bd5b1e6a903ca9dbdb57cef15cdaa92723d30",
+              "pdf_page": 23
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": true,
+          "chart_type": "line",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "annual",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "ESS battery products. 셀 전용 / 시스템 전용 매출 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "2026H1 13.1%는 EV+ESS 합산이므로 제외. ESS 영업이익률 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_rept_shipments",
+      "company": "rept",
+      "stage": "battery",
+      "measure": "shipments",
+      "status": "actual",
+      "name": "REPT · ESS 배터리 출하량",
+      "unit": "GWh",
+      "scope": "회사가 보고한 ESS battery shipments. 셀 / 모듈 / 컨테이너 상세 범위 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "출하량은 고객 설치·준공 용량과 다름. 증가율로 전년 출하량을 역산하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "REPT 2026 반기보고서",
+      "source_url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+      "series_views": {
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "ESS 배터리 출하량": [
+              [
+                "2026-06-30",
+                27.2
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2026-06-30": {
+              "label": "REPT 2026 반기보고서",
+              "url": "https://www.reptbattero.com/wp-content/uploads/2026/09/20260922-2026-Interim-Report.pdf",
+              "published": "2026-09-22",
+              "sha256": "b7ade259bdf2f286c69196452cb3a9d9f16a2f3325838e159c64e527707b3371",
+              "pdf_page": 17
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "회사가 보고한 ESS battery shipments. 셀 / 모듈 / 컨테이너 상세 범위 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "출하량은 고객 설치·준공 용량과 다름. 증가율로 전년 출하량을 역산하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_lg_cell_capa",
+      "company": "lg",
+      "stage": "cell",
+      "measure": "capacity",
+      "status": "target",
+      "name": "LGES · 북미 ESS LFP 셀 CAPA 목표",
+      "unit": "GWh/년",
+      "scope": "북미 5대 생산거점 합계의 2026년 말 ESS용 LFP 생산능력 목표. 글로벌 합계 아님.",
+      "chemistry": "ESS용 LFP 셀",
+      "note": "50GWh/년 초과 목표. 현재 가동분과 목표를 혼동하지 않도록 발표일에 표시.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-08-19",
+      "reviewed": "2026-10-08",
+      "source": "LGES 랜싱 가동·북미 ESS 계획",
+      "source_url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "북미 ESS LFP 셀 CAPA 목표": [
+              [
+                "2026-08-19",
+                50
+              ]
+            ]
+          },
+          "unit": "GWh/년",
+          "period_sources": {
+            "2026-08-19": {
+              "label": "LGES 랜싱 가동·북미 ESS 계획",
+              "url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+              "published": "2026-08-19"
+            }
+          },
+          "value_qualifiers": {
+            "2026-08-19": "lower_bound"
+          },
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "향후 목표"
+        },
+        {
+          "label": "집계 범위",
+          "value": "북미 5대 생산거점 합계의 2026년 말 ESS용 LFP 생산능력 목표. 글로벌 합계 아님."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 셀"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "2026년 말"
+        },
+        {
+          "label": "해석 기준",
+          "value": "50GWh/년 초과 목표. 현재 가동분과 목표를 혼동하지 않도록 발표일에 표시."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_lg_orders",
+      "company": "lg",
+      "stage": "battery",
+      "measure": "order_intake",
+      "status": "contracted",
+      "name": "LGES · 상반기 ESS 신규수주 금액 하한",
+      "unit": "십억원 KRW",
+      "scope": "2026H1 신규 ESS 계약. 셀 / 팩 / Vertech 시스템 범위 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "3조원 초과. 반기 신규수주이며 분기 매출·수주잔고가 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "LGES 랜싱 가동·북미 ESS 계획",
+      "source_url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+      "series_views": {
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "상반기 ESS 신규수주 금액 하한": [
+              [
+                "2026-06-30",
+                3000
+              ]
+            ]
+          },
+          "unit": "십억원 KRW",
+          "period_sources": {
+            "2026-06-30": {
+              "label": "LGES 랜싱 가동·북미 ESS 계획",
+              "url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+              "published": "2026-08-19"
+            }
+          },
+          "value_qualifiers": {
+            "2026-06-30": "lower_bound"
+          },
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공급 계약 / 수주"
+        },
+        {
+          "label": "집계 범위",
+          "value": "2026H1 신규 ESS 계약. 셀 / 팩 / Vertech 시스템 범위 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "신규 계약별 이행 기간"
+        },
+        {
+          "label": "해석 기준",
+          "value": "3조원 초과. 반기 신규수주이며 분기 매출·수주잔고가 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_lg_backlog",
+      "company": "lg",
+      "stage": "battery",
+      "measure": "backlog",
+      "status": "contracted",
+      "name": "LGES · ESS 수주잔고 (약)",
+      "unit": "GWh",
+      "scope": "2025년 말 기준 북미 중심 ESS 수주잔고. 셀 / 시스템별 범위 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "회사 발표 약 140GWh. 확정 시점 이후 납품될 계약 잔량이며 생산능력·누적 설치량이 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-31",
+      "reviewed": "2026-10-08",
+      "source": "LGES 랜싱 가동·북미 ESS 계획",
+      "source_url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "ESS 수주잔고 (약)": [
+              [
+                "2025-12-31",
+                140
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2025-12-31": {
+              "label": "LGES 랜싱 가동·북미 ESS 계획",
+              "url": "https://www.lgensol.com/kr/company/newsroom-detail?seq=8778",
+              "published": "2026-08-19"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공급 계약 / 수주"
+        },
+        {
+          "label": "집계 범위",
+          "value": "2025년 말 기준 북미 중심 ESS 수주잔고. 셀 / 시스템별 범위 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "잔여 계약 이행 기간"
+        },
+        {
+          "label": "해석 기준",
+          "value": "회사 발표 약 140GWh. 확정 시점 이후 납품될 계약 잔량이며 생산능력·누적 설치량이 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_lg_growth",
+      "company": "lg",
+      "stage": "finance",
+      "measure": "revenue_growth",
+      "status": "actual",
+      "name": "LGES · 상반기 ESS 매출 성장배수",
+      "unit": "배",
+      "scope": "2026H1 ESS 매출 / 2025H1 ESS 매출. 셀 / 시스템, 화학계열 상세 미분리.",
+      "chemistry": "ESS 전체 · LFP만 분리되지 않음",
+      "note": "전년 동기 대비 4.6배. 정확한 ESS 매출액·영업이익이나 LFP만의 매출은 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-06-30",
+      "reviewed": "2026-10-08",
+      "source": "LGES 2026 2분기 실적 발표",
+      "source_url": "https://inside.lgensol.com/en/2026/07/lg-energy-solution-releases-2026-second-quarter-financial-results/",
+      "series_views": {
+        "half": {
+          "label": "상반기",
+          "frequency": "semiannual",
+          "series": {
+            "상반기 ESS 매출 성장배수": [
+              [
+                "2026-06-30",
+                4.6
+              ]
+            ]
+          },
+          "unit": "배",
+          "period_sources": {
+            "2026-06-30": {
+              "label": "LGES 2026 2분기 실적 발표",
+              "url": "https://inside.lgensol.com/en/2026/07/lg-energy-solution-releases-2026-second-quarter-financial-results/",
+              "published": "2026-07-30"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "half",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "재무 · 공시 범위 합산"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공시 실적 / 가동 확인"
+        },
+        {
+          "label": "집계 범위",
+          "value": "2026H1 ESS 매출 / 2025H1 ESS 매출. 셀 / 시스템, 화학계열 상세 미분리."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 전체 · LFP만 분리되지 않음"
+        },
+        {
+          "label": "해석 기준",
+          "value": "전년 동기 대비 4.6배. 정확한 ESS 매출액·영업이익이나 LFP만의 매출은 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_sdi_sales_target",
+      "company": "sdi",
+      "stage": "battery",
+      "measure": "sales",
+      "status": "target",
+      "name": "삼성SDI · ESS 각형 배터리 판매 목표",
+      "unit": "GWh",
+      "scope": "2026 ESS 각형 배터리 Full Capacity Sales 계획 20GWh. NCA·LFP 등 ESS 전체 범위.",
+      "chemistry": "ESS 각형 전체 · NCA+LFP",
+      "note": "연간 판매 목표 / 생산능력 활용 계획. LFP 전용 설치 CAPA 또는 실제 판매량으로 표시하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-02-02",
+      "reviewed": "2026-10-08",
+      "source": "삼성SDI 2025 4분기 IR",
+      "source_url": "https://www.samsungsdi.com/upload/download/ir/2025.4Q_IR_Final_En.pdf",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "ESS 각형 배터리 판매 목표": [
+              [
+                "2026-02-02",
+                20
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2026-02-02": {
+              "label": "삼성SDI 2025 4분기 IR",
+              "url": "https://www.samsungsdi.com/upload/download/ir/2025.4Q_IR_Final_En.pdf",
+              "published": "2026-02-02",
+              "pdf_page": 7,
+              "sha256": "c0c677d64b464825eeb44dff9887a024eb45036e3178fcf68156de0cd26cfbc1"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "배터리 제품 · 셀/모듈 미분리"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "향후 목표"
+        },
+        {
+          "label": "집계 범위",
+          "value": "2026 ESS 각형 배터리 Full Capacity Sales 계획 20GWh. NCA·LFP 등 ESS 전체 범위."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS 각형 전체 · NCA+LFP"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "2026년"
+        },
+        {
+          "label": "해석 기준",
+          "value": "연간 판매 목표 / 생산능력 활용 계획. LFP 전용 설치 CAPA 또는 실제 판매량으로 표시하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_sdi_contract",
+      "company": "sdi",
+      "stage": "cell",
+      "measure": "contract",
+      "status": "contracted",
+      "name": "삼성SDI · 미국 ESS LFP 셀 공급 계약",
+      "unit": "십억원 KRW",
+      "scope": "미국 고객에 2027년부터 약 3년간 공급할 ESS용 LFP 셀 계약. 회사 발표 계약금액.",
+      "chemistry": "ESS용 LFP 각형 셀",
+      "note": "2조원 초과 계약. 전체 ESS 수주잔고 또는 매출 인식액이 아님.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2025-12-10",
+      "reviewed": "2026-10-08",
+      "source": "삼성SDI ESS용 LFP 공급 계약",
+      "source_url": "https://www.samsungsdi.co.kr/sdi-now/sdi-news/4641.html",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "미국 ESS LFP 셀 공급 계약": [
+              [
+                "2025-12-10",
+                2000
+              ]
+            ]
+          },
+          "unit": "십억원 KRW",
+          "period_sources": {
+            "2025-12-10": {
+              "label": "삼성SDI ESS용 LFP 공급 계약",
+              "url": "https://www.samsungsdi.co.kr/sdi-now/sdi-news/4641.html",
+              "published": "2025-12-10"
+            }
+          },
+          "value_qualifiers": {
+            "2025-12-10": "lower_bound"
+          },
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공급 계약 / 수주"
+        },
+        {
+          "label": "집계 범위",
+          "value": "미국 고객에 2027년부터 약 3년간 공급할 ESS용 LFP 셀 계약. 회사 발표 계약금액."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 각형 셀"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "2027–2029년"
+        },
+        {
+          "label": "해석 기준",
+          "value": "2조원 초과 계약. 전체 ESS 수주잔고 또는 매출 인식액이 아님."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    },
+    {
+      "id": "ess_battery_sk_contract",
+      "company": "sk",
+      "stage": "cell",
+      "measure": "contract",
+      "status": "contracted",
+      "name": "SK On · NeoVolta LFP 셀 공급 계약",
+      "unit": "GWh",
+      "scope": "미국 생산 LFP 파우치 셀을 NeoVolta Power에 공급하는 기본 공급 계약.",
+      "chemistry": "ESS용 LFP 파우치 셀",
+      "note": "2027–2031년 계약 물량. 별도 추진 중인 추가 9GWh 위탁생산 구상은 제외. 연간 CAPA·출하량으로 환산하지 않음.",
+      "manual": true,
+      "company_kpi": true,
+      "change_mode": "none",
+      "span_gaps": false,
+      "updated": "2026-09-24",
+      "reviewed": "2026-10-08",
+      "source": "SK On NeoVolta LFP 셀 공급 계약",
+      "source_url": "https://eng.sk.com/news/sk-on-adds-large-scale-battery-cell-agreement-as-u-s-ess-business-accelerates",
+      "series_views": {
+        "snapshot": {
+          "label": "발표 기준",
+          "frequency": "irregular",
+          "series": {
+            "NeoVolta LFP 셀 공급 계약": [
+              [
+                "2026-09-24",
+                9
+              ]
+            ]
+          },
+          "unit": "GWh",
+          "period_sources": {
+            "2026-09-24": {
+              "label": "SK On NeoVolta LFP 셀 공급 계약",
+              "url": "https://eng.sk.com/news/sk-on-adds-large-scale-battery-cell-agreement-as-u-s-ess-business-accelerates",
+              "published": "2026-09-24"
+            }
+          },
+          "value_qualifiers": {},
+          "year_labels": false,
+          "chart_type": "bar",
+          "zero_baseline": true
+        }
+      },
+      "default_view": "snapshot",
+      "basis_details": [
+        {
+          "label": "생산 단계",
+          "value": "셀 제조"
+        },
+        {
+          "label": "실적·계획 구분",
+          "value": "공급 계약 / 수주"
+        },
+        {
+          "label": "집계 범위",
+          "value": "미국 생산 LFP 파우치 셀을 NeoVolta Power에 공급하는 기본 공급 계약."
+        },
+        {
+          "label": "배터리 화학계열",
+          "value": "ESS용 LFP 파우치 셀"
+        },
+        {
+          "label": "계획·계약 대상 기간",
+          "value": "2027–2031년"
+        },
+        {
+          "label": "해석 기준",
+          "value": "2027–2031년 계약 물량. 별도 추진 중인 추가 9GWh 위탁생산 구상은 제외. 연간 CAPA·출하량으로 환산하지 않음."
+        },
+        {
+          "label": "자료 검토일",
+          "value": "2026-10-08"
+        }
+      ],
+      "snapshot_history": true,
+      "history_note": "확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다."
+    }
+  ],
+  "stages": {
+    "cell": "셀 제조",
+    "battery": "배터리 제품 · 셀/모듈 미분리",
+    "system": "시스템 · 모듈/컨테이너 조립",
+    "finance": "재무 · 공시 범위 합산"
+  },
+  "statuses": {
+    "actual": "공시 실적 / 가동 확인",
+    "design": "프로젝트 설계·계획",
+    "target": "향후 목표",
+    "contracted": "공급 계약 / 수주",
+    "framework": "전략적·기본 협약"
+  },
+  "updated": "2026-10-08"
+}

@@ -200,6 +200,7 @@ async function renderIndustry() {
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
         : section.table_kind === "ess_factories" ? renderESSFactories
+        : section.table_kind === "ess_batteries" ? renderESSBatteries
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : section.table_kind === "copper_mines" ? renderCopperMines
         : renderOrderTable;
@@ -498,6 +499,14 @@ function renderCard(doc, indicatorId) {
     }</div>`;
   card.appendChild(head);
 
+  if (doc.scope_summary) {
+    card.setAttribute("data-battery-metric", indicatorId);
+    const scope = document.createElement("p");
+    scope.className = "ess-battery-scope";
+    scope.innerHTML = `<strong>${escapeHtml(doc.scope_summary.label)}</strong>${escapeHtml(doc.scope_summary.text)}${doc.scope_summary.detail ? `<br>${escapeHtml(doc.scope_summary.detail)}` : ""}`;
+    card.appendChild(scope);
+  }
+
   if (doc.strict_range && seriesNames.every(s => filtered[s].length === 0)) {
     const empty = document.createElement("p");
     empty.className = "card-empty";
@@ -615,7 +624,7 @@ function renderCard(doc, indicatorId) {
     historyNote.className = "card-foot";
     const count = doc.series[mainName].length;
     historyNote.textContent = count === 1
-      ? "현재는 최신값 1개입니다. 새 기준일의 자료가 쌓이면 추이 그래프가 이어집니다."
+      ? doc.history_note || "현재는 최신값 1개입니다. 새 기준일의 자료가 쌓이면 추이 그래프가 이어집니다."
       : `수집된 기준일 ${count}개 · ${doc.history_note || "수집 시작 전 과거 이력은 포함하지 않습니다."}`;
     card.appendChild(historyNote);
     if (doc.history_source_url) {

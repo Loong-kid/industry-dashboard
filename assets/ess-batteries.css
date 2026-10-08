@@ -1,0 +1,23 @@
+.ess-batteries { min-width: 0; margin-bottom: 36px; }
+.ess-battery-rule { font-size: 13px; line-height: 1.8; color: var(--ink-2); padding: 14px 16px; border-left: 3px solid var(--accent); background: var(--surface); margin: 12px 0 18px; }
+.ess-battery-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; margin-bottom: 18px; }
+.ess-battery-controls label { display: grid; gap: 6px; font-size: 12px; color: var(--ink-2); }
+.ess-battery-controls select { background: var(--surface); color: var(--ink); border: 1px solid var(--baseline); border-radius: 5px; font: inherit; font-size: 13px; padding: 9px 12px; min-height: 40px; max-width: 100%; }
+.ess-battery-count { font-size: 12px; color: var(--ink-2); padding-bottom: 10px; }
+.ess-battery-coverage { margin-bottom: 24px; border-block: 1px solid var(--border); padding: 14px 0; }
+.ess-battery-coverage summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+.ess-battery-coverage .order-table-wrap { margin-top: 16px; }
+.ess-battery-coverage table { min-width: 1100px; font-size: 12px; line-height: 1.7; }
+.ess-battery-coverage td { white-space: normal; min-width: 170px; max-width: 280px; vertical-align: top; }
+.ess-battery-coverage th { vertical-align: top; }
+.ess-battery-coverage a { display: inline-block; overflow-wrap: anywhere; }
+.ess-battery-coverage caption { text-align: left; color: var(--ink-2); font-size: 12px; padding-bottom: 10px; }
+.ess-battery-group h3 { font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--border); margin: 26px 0 16px; padding-bottom: 10px; }
+.ess-battery-scope { font-size: 12px; color: var(--ink-2); line-height: 1.7; margin: 10px 0 12px; }
+.ess-battery-scope strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+.ess-battery-empty { color: var(--ink-2); font-size: 13px; line-height: 1.8; padding: 18px; border: 1px solid var(--border); }
+@media (max-width: 600px) {
+  .ess-battery-controls { align-items: stretch; gap: 12px; }
+  .ess-battery-controls label { width: 100%; }
+  .ess-battery-count { padding: 0; }
+}
