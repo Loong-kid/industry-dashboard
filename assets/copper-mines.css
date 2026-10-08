@@ -1,0 +1,58 @@
+.copper-mines .card-head { align-items:start; gap:16px; }
+.copper-mines h2 { margin:0; }
+.copper-mines .card-freq { margin:6px 0 0; }
+.mine-scope { color:var(--muted); font-size:12px; line-height:1.7; margin:0 0 16px; max-width:1100px; }
+.mine-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:16px 0; }
+.mine-summary>div { border:1px solid var(--border); border-radius:8px; padding:14px; }
+.mine-summary span { display:block; color:var(--muted); font-size:11px; margin-bottom:7px; }
+.mine-summary strong { font-size:19px; font-variant-numeric:tabular-nums; }
+.mine-method { font-size:12px; color:var(--muted); line-height:1.7; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:14px; }
+.mine-method summary { cursor:pointer; color:var(--ink); }
+.mine-method ul { padding-left:18px; }
+.mine-filters { display:flex; align-items:end; flex-wrap:wrap; gap:10px; margin:16px 0; }
+.mine-filters label { display:flex; flex-direction:column; gap:5px; font-size:11px; color:var(--muted); }
+.mine-filters input,.mine-filters select,.mine-reset,.mine-download { font:inherit; font-size:12px; border:1px solid var(--border); color:var(--ink); background:var(--surface); border-radius:6px; min-height:35px; padding:7px 10px; }
+.mine-filters select { max-width:220px; }
+.mine-search { flex:1; min-width:230px; }
+.mine-reset,.mine-download { cursor:pointer; }
+.mine-reset:hover,.mine-download:hover { border-color:var(--accent); }
+.copper-mines .order-table-wrap { max-height:760px; }
+.copper-mines .order-table-wrap>table { width:100%; min-width:2350px; table-layout:fixed; white-space:normal; }
+.copper-mines th:nth-child(1) { width:200px; }
+.copper-mines th:nth-child(2) { width:105px; }
+.copper-mines th:nth-child(3) { width:110px; }
+.copper-mines th:nth-child(4) { width:150px; }
+.copper-mines th:nth-child(5) { width:230px; }
+.copper-mines th:nth-child(6),.copper-mines th:nth-child(7),.copper-mines th:nth-child(8) { width:235px; }
+.copper-mines th:nth-child(9) { width:175px; }
+.copper-mines th:nth-child(10) { width:110px; }
+.copper-mines th:nth-child(11) { width:130px; }
+.copper-mines th:nth-child(12) { width:180px; }
+.copper-mines .order-table-wrap td,.copper-mines .order-table-wrap tbody th { vertical-align:top; text-align:left; padding:14px 10px; overflow-wrap:anywhere; line-height:1.55; }
+.copper-mines .order-table-wrap tbody th { position:sticky; left:0; top:auto; z-index:1; background:var(--surface); font-weight:400; color:var(--ink); font-size:12px; letter-spacing:normal; box-shadow:1px 0 var(--border); }
+.copper-mines thead th:first-child { position:sticky; left:0; z-index:4; background:var(--surface); }
+.copper-mines thead th { z-index:3; }
+.copper-mines thead button { border:0; padding:0; color:inherit; background:transparent; font:inherit; text-align:left; cursor:pointer; }
+.copper-mines small { display:block; font-size:10px; font-weight:400; color:var(--muted); margin-top:5px; line-height:1.55; }
+.mine-owners>span { display:block; margin-bottom:3px; }
+.mine-detail-toggle { display:block; color:var(--accent); background:none; border:0; padding:8px 0 0; font-size:11px; cursor:pointer; }
+.mine-missing { color:var(--muted); }
+.mine-status { display:inline-block; border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-size:10px; }
+.status-operating,.status-ramp_up { color:var(--accent); }
+.copper-mines .mine-detail-row>td { padding:20px; background:var(--page); }
+.mine-detail { display:grid; grid-template-columns:1fr 1.3fr 1fr; gap:28px; max-width:1900px; }
+.mine-detail h3 { font-size:12px; margin:0 0 8px; }
+.mine-detail p { font-size:12px; margin:0 0 12px; }
+.mine-detail a { font-size:11px; }
+.copper-mines .mine-history { width:100%; font-size:11px; min-width:0; table-layout:auto; }
+.copper-mines .mine-history th,.copper-mines .mine-history td { position:static; width:auto; background:transparent; padding:5px; }
+.mine-empty { text-align:center!important; padding:30px!important; }
+.mine-sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+@media(max-width:700px) {
+  .mine-summary { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .mine-summary strong { font-size:16px; }
+  .mine-filters label { flex:1; min-width:135px; }
+  .mine-filters select { max-width:100%; width:100%; }
+  .mine-filters .mine-search { flex-basis:100%; }
+  .copper-mines .card-head { flex-wrap:wrap; }
+}

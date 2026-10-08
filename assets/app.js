@@ -201,6 +201,7 @@ async function renderIndustry() {
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
         : section.table_kind === "ess_factories" ? renderESSFactories
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
+        : section.table_kind === "copper_mines" ? renderCopperMines
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(dataIndustry, indicatorId);
