@@ -1149,7 +1149,12 @@ function renderESSFactories(doc) {
   const card = document.createElement("div");
   card.className = "card ess-factories";
   if (!doc) return card;
+  const cells = doc.register_kind === "cell";
+  if (cells) card.classList.add("ess-cell-factories");
+  card.dataset.factoryRegister = doc.id;
   const esc = escapeHtml;
+  const controlPrefix = cells ? "ESS 셀 공장" : "ESS 공장";
+  const companies = [...new Map(doc.rows.map(row => [row.company, row.company_name])).entries()];
   const number = value => Number(value).toLocaleString("ko-KR", {maximumFractionDigits: 2});
   const links = ids => [...new Set(ids || [])].map(id => {
     const source = doc.sources[id];
@@ -1164,28 +1169,31 @@ function renderESSFactories(doc) {
   card.innerHTML = `<div class="card-name">${esc(doc.name)}</div>
     <p class="ir-scope-note">${esc(doc.description)} 검토일 ${esc(doc.reviewed)}.</p>
     <div class="factory-controls">
-      <label>기업 <select aria-label="ESS 공장 기업"><option value="all">전체 기업</option><option value="tesla">테슬라 에너지</option><option value="sungrow">선그로우</option><option value="fluence">플루언스 에너지</option></select></label>
-      <label>시설 범위 <select aria-label="ESS 공장 시설 범위"><option value="all">가동·계획 전체</option><option value="operating">가동 확인 시설</option><option value="planned">건설·계획 시설</option><option value="unconfirmed">현재 가동 미확인</option></select></label>
-      <label>생산 단계 <select aria-label="ESS 공장 생산 단계"><option value="all">완제품·부품 전체</option><option value="system">ESS 시스템</option><option value="component">모듈·부품</option></select></label>
+      <label>기업 <select aria-label="${controlPrefix} 기업"><option value="all">전체 기업</option>${companies.map(([id, name]) => `<option value="${esc(id)}">${esc(name)}</option>`).join("")}</select></label>
+      <label>시설 범위 <select aria-label="${controlPrefix} 시설 범위"><option value="all">가동·계획 전체</option><option value="operating">가동 확인 시설</option><option value="planned">건설·계획 시설</option><option value="unconfirmed">현재 가동 미확인</option></select></label>
+      ${cells ? '<label>셀 종류 <select aria-label="ESS 셀 공장 셀 종류"><option value="all">모든 셀 종류</option><option value="lfp">LFP 단일 표시</option><option value="nca_ncm">삼원계</option><option value="sodium">나트륨이온</option><option value="mixed">복수·미분리</option></select></label>' : '<label>생산 단계 <select aria-label="ESS 공장 생산 단계"><option value="all">완제품·부품 전체</option><option value="system">ESS 시스템</option><option value="component">모듈·부품</option></select></label>'}
       <span class="factory-count" role="status" aria-live="polite"></span>
     </div>
-    <div class="order-table-wrap" tabindex="0" role="region" aria-label="ESS 공장 비교표 · 가로 스크롤">
+    <div class="order-table-wrap" tabindex="0" role="region" aria-label="${controlPrefix} 비교표 · 가로 스크롤">
       <table><caption>생산능력 GWh/년 · 면적 ㎡ · 좌우로 스크롤해 CAPA와 출처 확인</caption><thead><tr>
         <th scope="col">기업 / 공장</th><th scope="col">위치 / 생산품</th><th scope="col">운영·소유 형태</th><th scope="col">가동 상태</th>
-        <th scope="col">전체 연면적 ㎡</th><th scope="col">부지·기타 공표면적 ㎡</th><th scope="col">설치된 CAPA<br>GWh/년</th><th scope="col">설계·계획 CAPA<br>GWh/년</th><th scope="col">근거·범위</th>
+        <th scope="col">전체 연면적 ㎡</th><th scope="col">부지·기타 공표면적 ㎡</th><th scope="col">${cells ? 'ESS 전용 설치 CAPA' : '설치된 CAPA'}<br>GWh/년</th><th scope="col">${cells ? 'ESS 설계·계획 CAPA' : '설계·계획 CAPA'}<br>GWh/년</th>${cells ? '<th scope="col">참고 CAPA<br>EV 합산·과거·추정</th>' : ''}<th scope="col">근거·범위</th>
       </tr></thead><tbody></tbody></table>
-    </div><p class="ir-scope-note">${esc(doc.note)}</p>`;
+    </div><p class="ir-scope-note">${esc(doc.note)}</p>
+    ${cells && doc.regional_targets?.length ? `<details class="factory-regional-targets"><summary>공장별로 배분되지 않은 지역 CAPA 목표</summary><div class="order-table-wrap"><table><thead><tr><th>기업 / 지역</th><th>ESS 목표 GWh/년</th><th>목표 시점</th><th>범위 / 원문</th></tr></thead><tbody>${doc.regional_targets.map(item => `<tr><th scope="row">${esc(item.company)}<small>${esc(item.region)}</small></th><td>${esc(item.value)}</td><td>${esc(item.target)}<small>발표 ${esc(item.date)}</small></td><td>${esc(item.note)}<small>${links(item.sources)}</small></td></tr>`).join("")}</tbody></table></div></details>` : ''}
+    ${cells && doc.claim_checks?.length ? `<details class="factory-claim-checks"><summary>CAPA 수치 확인 · CATL 100·720 / 삼성SDI 10·23</summary>${doc.claim_checks.map(item => `<article><b>${esc(item.claim)}</b><p>${esc(item.result)}</p><p>${esc(item.note)}</p><p>${links(item.sources)}</p></article>`).join("")}</details>` : ''}`;
   const selects = card.querySelectorAll("select");
   const draw = () => {
     const [company, status, stage] = [...selects].map(select => select.value);
     const rows = doc.rows.filter(row => (company === "all" || row.company === company)
-      && (status === "all" || row.status === status) && (stage === "all" || row.stage === stage));
+      && (status === "all" || row.status === status) && (stage === "all" || (cells ? row.chemistry : row.stage) === stage));
     card.querySelector(".factory-count").textContent = `${rows.length}개 시설·프로젝트 기록`;
     card.querySelector("tbody").innerHTML = rows.length ? rows.map(row => {
       const evidence = [
         ["운영·권리", row.ownership_date, row.ownership_sources], ["가동 상태", row.status_date, row.status_sources],
         ...[["전체 연면적", row.floor_area], ["기타 면적", row.other_area], ["설치 CAPA", row.installed_capacity], ["설계·계획 CAPA", row.design_capacity]]
           .filter(([, item]) => item).map(([label, item]) => [label, item.date, item.sources]),
+        ...(row.reference_capacities || []).map(item => [item.basis, item.date, item.sources]),
         ...(row.extra_sources ? [["추가 공시", "", row.extra_sources]] : [])
       ];
       return `<tr data-factory="${esc(row.id)}">
@@ -1195,9 +1203,10 @@ function renderESSFactories(doc) {
         <td><span class="factory-status ${esc(row.status)}">${esc(row.status_label)}</span><small>${esc(row.status_date)}</small></td>
         <td>${fact(row.floor_area, true)}</td><td>${fact(row.other_area, true)}</td>
         <td>${fact(row.installed_capacity)}</td><td>${fact(row.design_capacity)}</td>
+        ${cells ? `<td>${row.reference_capacities?.length ? row.reference_capacities.map(item => `<div class="factory-reference">${fact(item)}</div>`).join("") : unknown}</td>` : ''}
         <td><details><summary>출처·범위 보기</summary><p>${esc(row.notes)}</p>${evidence.map(([label, date, ids]) => `<p><b>${esc(label)}</b> ${esc(date)}<br>${links(ids)}</p>`).join("")}</details></td>
       </tr>`;
-    }).join("") : '<tr><td colspan="9">선택한 조건에 해당하는 공개 시설 기록이 없습니다.</td></tr>';
+    }).join("") : `<tr><td colspan="${cells ? 10 : 9}">선택한 조건에 해당하는 공개 시설 기록이 없습니다.</td></tr>`;
   };
   selects.forEach(select => select.addEventListener("change", draw));
   draw();

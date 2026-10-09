@@ -495,6 +495,13 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .factory-status.planned, .factory-status.unconfirmed { color:var(--muted); }
 .ess-factories summary { cursor:pointer; color:var(--accent); }
 .ess-factories details p { margin:8px 0; font-size:11px; }
+.ess-cell-factories > .order-table-wrap table { min-width:1710px; }
+.ess-cell-factories > .order-table-wrap th:nth-child(9) { width:220px; }
+.ess-cell-factories > .order-table-wrap th:nth-child(10) { width:200px; }
+.factory-reference + .factory-reference { margin-top:12px; padding-top:10px; border-top:1px solid var(--border); }
+.factory-regional-targets, .factory-claim-checks { margin-top:16px; }
+.factory-regional-targets .order-table-wrap table { min-width:750px; table-layout:auto; }
+.factory-claim-checks article { margin:14px 0; padding:12px 0; border-top:1px solid var(--border); }
 .ir-chart { min-width: 0; }
 .data-table a { color: var(--accent); white-space: nowrap; }
 

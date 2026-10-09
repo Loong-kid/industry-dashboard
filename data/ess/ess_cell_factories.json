@@ -1,0 +1,809 @@
+{
+  "id": "ess_cell_factories",
+  "name": "ESS 셀 업체 공장 · 위치·생산능력",
+  "manual": true,
+  "reviewed": "2026-10-10",
+  "register_kind": "cell",
+  "description": "CATL·LG에너지솔루션·삼성SDI·SK온의 ESS 관련 셀 생산시설과 전환 계획입니다. 공장·라인별 출처와 확인 시점을 표시하며 LFP, 삼원계, 나트륨이온을 구분합니다.",
+  "note": "모든 CAPA 단위는 GWh/년입니다. ESS 전용 설치능력, ESS 설계·계획, EV 합산·과거·증권사 추정은 서로 합산하지 않습니다. 지역 목표를 공장별로 임의 배분하지 않습니다. 미확인은 0이 아니며 전체 공장 목록을 망라하지 않습니다. 가동·계획은 해당 출처 기준이고 계획 기한이 지나도 자동으로 가동에 포함하지 않습니다.",
+  "sources": {
+    "catl_jining": {
+      "label": "CATL · 산둥 1기 가동·60GWh·연면적",
+      "url": "https://www.catl.com/en/news/6472.html",
+      "published": "2025-05-17",
+      "kind": "primary"
+    },
+    "catl_bases": {
+      "label": "CATL · 13개 생산기지 소개",
+      "url": "https://www.catl.com/news/8368.html",
+      "published": "2025-03-27",
+      "kind": "primary"
+    },
+    "catl_sodium": {
+      "label": "CATL · 푸딩 40GWh·지닝 160GWh 나트륨이온",
+      "url": "https://www.catl.com/en/news/6861.html",
+      "published": "2026-06-22",
+      "kind": "primary"
+    },
+    "lg_oc11": {
+      "label": "LGES 2026 투자설명서 · PDF 11쪽 / 인쇄 2쪽",
+      "url": "https://links.sgx.com/FileOpen/LGES%20-%20Final%20Offering%20Circular%20%28March%2025_2026%29.ashx?App=Prospectus&FileID=69099#page=11",
+      "published": "2026-03-25",
+      "kind": "primary"
+    },
+    "lg_oc82": {
+      "label": "LGES 2026 투자설명서 · PDF 82쪽 / 인쇄 73쪽",
+      "url": "https://links.sgx.com/FileOpen/LGES%20-%20Final%20Offering%20Circular%20%28March%2025_2026%29.ashx?App=Prospectus&FileID=69099#page=82",
+      "published": "2026-03-25",
+      "kind": "primary"
+    },
+    "lg_oc86": {
+      "label": "LGES 2026 투자설명서 · PDF 86쪽 · 공장 위치·제품",
+      "url": "https://links.sgx.com/FileOpen/LGES%20-%20Final%20Offering%20Circular%20%28March%2025_2026%29.ashx?App=Prospectus&FileID=69099#page=86",
+      "published": "2026-03-25",
+      "kind": "primary"
+    },
+    "lg_lansing": {
+      "label": "LGES · 랜싱 가동·북미 ESS 5개 시설",
+      "url": "https://www.lgcorp.com/media/release/30470",
+      "published": "2026-08-19",
+      "kind": "primary"
+    },
+    "lg_25ir": {
+      "label": "LGES 2025 4Q IR · PDF 11쪽 · 글로벌 ESS CAPA",
+      "url": "https://www.lgensol.com/upload/file/irEvent/25_4Q_LGES_business_performance_F_EN.pdf#page=11",
+      "published": "2026-01-29",
+      "kind": "primary"
+    },
+    "sdi_22": {
+      "label": "삼성SDI · 코코모 EV 23→33GWh 최초 계획",
+      "url": "https://www.samsungsdi.com/sdi-now/sdi-news/2765.html",
+      "published": "2022-05-25",
+      "kind": "primary"
+    },
+    "sdi_24esg": {
+      "label": "삼성SDI 2024 지속가능경영보고서 · PDF 10쪽 · EV 1공장 33GWh",
+      "url": "https://www.samsungsdi.com/upload/download/sustainable-management/2024_Samsung_SDI_Sustainability_Report_Korean.pdf#page=10",
+      "published": "2024",
+      "kind": "primary"
+    },
+    "sdi_25audit": {
+      "label": "삼성SDI 2025 감사보고서 · PDF 15쪽 · 생산 거점",
+      "url": "https://www.samsungsdi.com/upload/download/ir/SDI_Audit%20report_2026.02.19_eng.pdf#page=15",
+      "published": "2026-02-19",
+      "kind": "primary"
+    },
+    "sdi_25q3": {
+      "label": "삼성SDI · 미국 NCA ESS 양산·LFP·30GWh 목표",
+      "url": "https://samsungsdi.com/sdi-now/sdi-news/4562.html?idx=4562",
+      "published": "2025-10-28",
+      "kind": "primary"
+    },
+    "sdi_ibk": {
+      "label": "IBK투자증권 2026-02-03 · PDF 1쪽 · 울산 10GWh 추정",
+      "url": "https://file.alphasquare.co.kr/media/pdfs/company-report/20260203071133833_ko.pdf#page=1",
+      "published": "2026-02-03",
+      "kind": "analyst"
+    },
+    "sdi_ulsan23": {
+      "label": "딜사이트 2023-10-26 · 울산 EV·ESS 합산 10GWh 보도",
+      "url": "https://dealsite.co.kr/articles/111891",
+      "published": "2023-10-26",
+      "kind": "media"
+    },
+    "sk_seosan": {
+      "label": "SK온 · 서산 2공장 3GWh ESS LFP 전환 계획",
+      "url": "https://askinno.com/archives/157723",
+      "published": "2026-02-12",
+      "kind": "primary"
+    },
+    "sk_georgia": {
+      "label": "SK온 · 조지아 셀 생산·2027–2031년 9GWh 계약",
+      "url": "https://askinno.com/archives/170702",
+      "published": "2026-08-31",
+      "kind": "primary"
+    }
+  },
+  "rows": [
+    {
+      "id": "catl_jining",
+      "company": "catl",
+      "company_name": "CATL",
+      "factory": "산둥 지닝 생산기지",
+      "location": "중국 산둥성 지닝시 옌저우",
+      "product": "EV·ESS 셀 / 나트륨이온 증설 계획",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2025-05-17",
+      "ownership_sources": [
+        "catl_jining"
+      ],
+      "status": "operating",
+      "status_label": "1기 생산 중 · 증설 계획",
+      "status_date": "2025-05-17",
+      "status_sources": [
+        "catl_jining"
+      ],
+      "floor_area": {
+        "value": 520000,
+        "unit": "m2",
+        "basis": "1기 전체 연면적 · 생산시설·직원 편의시설 포함",
+        "date": "2025-05-17",
+        "sources": [
+          "catl_jining"
+        ],
+        "m2": 520000
+      },
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 60,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "2025년 가동한 1기 · EV·ESS 합산 설치능력",
+          "date": "2025-05-17",
+          "sources": [
+            "catl_jining"
+          ],
+          "scope": "mixed",
+          "evidence": "primary"
+        },
+        {
+          "value": 160,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "나트륨이온 연간 계획 · ESS 전용 배분·목표연도 미공개",
+          "date": "2026-06-22",
+          "sources": [
+            "catl_sodium"
+          ],
+          "scope": "unsplit",
+          "evidence": "primary"
+        }
+      ],
+      "notes": "60GWh는 2025년 1기 가동 시점의 EV·ESS 합산 수치이며 현재 ESS 전용 CAPA가 아닙니다. 2026년 나트륨이온 ESS 발표에서는 지닝 160GWh를 계획으로 기재했지만 ESS 전용 배분을 따로 명시하지 않았습니다. 동일 기지의 단계·제품 전환 범위가 중복될 수 있어 60과 160을 합산하지 않습니다. 2028년 720GWh 근거로도 사용하지 않습니다.",
+      "extra_sources": [
+        "catl_sodium"
+      ]
+    },
+    {
+      "id": "catl_fuding",
+      "company": "catl",
+      "company_name": "CATL",
+      "factory": "푸딩 나트륨이온 생산라인",
+      "location": "중국 푸젠성 푸딩시",
+      "product": "ESS용 나트륨이온 셀 · LFP와 별도",
+      "stage": "cell",
+      "chemistry": "sodium",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2025-03-27",
+      "ownership_sources": [
+        "catl_bases"
+      ],
+      "status": "operating",
+      "status_label": "회사 발표 · 양산라인 가동",
+      "status_date": "2026-06-22",
+      "status_sources": [
+        "catl_sodium"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 40,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "나트륨이온 증설 · 양산라인 가동 발표 / ESS 전용 배분 미공개",
+          "date": "2026-06-22",
+          "sources": [
+            "catl_sodium"
+          ],
+          "scope": "unsplit",
+          "evidence": "primary"
+        }
+      ],
+      "notes": "2026년 6월 CATL은 푸딩 나트륨이온 라인에 50억 위안을 투자해 연간 40GWh를 추가했고 양산라인이 가동 중이라고 발표했습니다. ESS 발표에 포함된 나트륨이온 수치지만 ESS 전용 배분을 따로 명시하지 않아 참고 CAPA에 둡니다. LFP CAPA나 푸딩 전체 생산능력으로 대체하지 않습니다. 공장별 현재 실생산량은 미확인입니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "catl_liyang",
+      "company": "catl",
+      "company_name": "CATL",
+      "factory": "장쑤 리양 생산기지",
+      "location": "중국 장쑤성 리양시",
+      "product": "리튬이온 배터리 셀 · ESS 배분 미분리",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2025-03-27",
+      "ownership_sources": [
+        "catl_bases"
+      ],
+      "status": "operating",
+      "status_label": "제조시설 확인 · ESS 배분 미확인",
+      "status_date": "2025-03-27",
+      "status_sources": [
+        "catl_bases"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 66,
+          "unit": "GWh/year",
+          "qualifier": "greater_than",
+          "basis": "기지 총 계획 CAPA · ESS 전용 미분리",
+          "date": "2025-03-27",
+          "sources": [
+            "catl_bases"
+          ],
+          "scope": "unsplit",
+          "evidence": "primary"
+        }
+      ],
+      "notes": "회사 생산기지 소개의 계획 생산능력 66GWh 초과입니다. 현재 설치능력 또는 ESS 전용 물량으로 표시하지 않습니다. 보고서에 제시된 부지는 연면적이 아니므로 연면적 칸을 채우지 않습니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "catl_zhaoqing",
+      "company": "catl",
+      "company_name": "CATL",
+      "factory": "광둥 자오칭 · 루이칭",
+      "location": "중국 광둥성 자오칭시",
+      "product": "ESS 셀·전기함·전기박스 / 승용차 팩",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2025-03-27",
+      "ownership_sources": [
+        "catl_bases"
+      ],
+      "status": "operating",
+      "status_label": "ESS 중심 제조시설 확인",
+      "status_date": "2025-03-27",
+      "status_sources": [
+        "catl_bases"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "회사는 ESS 배터리 중심의 탄소중립 생산시설로 소개합니다. 셀·전기함·전기박스·승용차 팩을 함께 생산하므로 팩 조립 능력을 셀 CAPA로 간주하지 않습니다. 공장별 ESS 셀 CAPA·연면적은 미확인입니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "lg_holland",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "미시간 홀랜드",
+      "location": "미국 미시간주 Holland",
+      "product": "ESS용 LFP 셀",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "LGES 단독 소유 제조법인 · 건물 권리 미확인",
+      "ownership_date": "2026-08-19",
+      "ownership_sources": [
+        "lg_lansing"
+      ],
+      "status": "operating",
+      "status_label": "ESS 셀 생산 확인",
+      "status_date": "2026-03-25",
+      "status_sources": [
+        "lg_oc82"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": {
+        "value": 16.5,
+        "unit": "GWh/year",
+        "qualifier": "exact",
+        "basis": "2025년 5월 양산 개시 ESS 전용 능력 · 2026 투자설명서",
+        "date": "2026-03-25",
+        "sources": [
+          "lg_oc82"
+        ],
+        "scope": "ess",
+        "evidence": "primary"
+      },
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "발행사 투자설명서에서 미시간 첫 LFP 공장의 ESS 전용 연간 16.5GWh와 2025년 5월 생산 개시를 확인했습니다. 2026년 8월 자료의 홀랜드·랜싱 구분과 대조했습니다. 이후 지역 총 증설 목표는 이 공장 단독 CAPA로 배분하지 않습니다.",
+      "extra_sources": [
+        "lg_oc11"
+      ]
+    },
+    {
+      "id": "lg_lansing",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "미시간 랜싱",
+      "location": "미국 미시간주 Lansing",
+      "product": "ESS LFP 셀 / EV NMC 셀",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "LGES 단독 소유 제조법인 · 건물 권리 미확인",
+      "ownership_date": "2026-08-19",
+      "ownership_sources": [
+        "lg_lansing"
+      ],
+      "status": "operating",
+      "status_label": "2026년 8월 생산 개시",
+      "status_date": "2026-08-19",
+      "status_sources": [
+        "lg_lansing"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 35,
+          "unit": "GWh/year",
+          "qualifier": "greater_than",
+          "basis": "본격 가동 시 기지 총 목표 · EV·ESS 합산",
+          "date": "2026-08-19",
+          "sources": [
+            "lg_lansing"
+          ],
+          "scope": "mixed",
+          "evidence": "primary"
+        }
+      ],
+      "notes": "2026년 8월 18일 가동을 시작한 EV·ESS 병행 공장입니다. 35GWh 초과는 본격 가동 시의 전체 목표이며 현재 ESS 전용 설치능력은 공개되지 않았습니다. 부지 226에이커는 연면적이 아닙니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "lg_windsor",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "NextStar Energy · 윈저",
+      "location": "캐나다 온타리오주 Windsor",
+      "product": "ESS용 LFP 셀 / EV 제품 병행",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "2026년 8월 회사 발표상 LGES 단독 소유 법인 · 건물 권리 미확인",
+      "ownership_date": "2026-08-19",
+      "ownership_sources": [
+        "lg_lansing"
+      ],
+      "status": "operating",
+      "status_label": "ESS LFP 셀 생산 · 2025년 11월 개시",
+      "status_date": "2026-03-25",
+      "status_sources": [
+        "lg_oc82"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "투자설명서는 캐나다 공장의 ESS LFP 셀 양산을 2025년 11월부터로 기재합니다. 2026년 8월 북미 거점 발표와 대조해 NextStar 윈저에 연결했습니다. 과거 합작법인 설명을 현재 소유구조에 그대로 적용하지 않습니다. ESS 전용 공장 CAPA는 미확인입니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "lg_poland",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "폴란드 브로츠와프",
+      "location": "폴란드 브로츠와프권",
+      "product": "유럽 고객용 ESS LFP 셀 / EV 병행",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2026-03-25",
+      "ownership_sources": [
+        "lg_oc82"
+      ],
+      "status": "operating",
+      "status_label": "ESS LFP 셀 생산 · 2025년 12월 개시",
+      "status_date": "2026-03-25",
+      "status_sources": [
+        "lg_oc82"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "발행사 투자설명서에서 폴란드 공장이 2025년 12월부터 유럽 고객용 ESS LFP 셀을 제조한다고 확인했습니다. 공장 위치·제품 표의 브로츠와프 제조시설과 대조했습니다. EV 포함 총공장 CAPA를 ESS 전용으로 옮기지 않습니다. ESS 전용 설치능력은 미확인입니다.",
+      "extra_sources": [
+        "lg_oc86"
+      ]
+    },
+    {
+      "id": "lg_ochang",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "오창 ESS LFP 전환라인",
+      "location": "한국 충청북도 청주시 오창",
+      "product": "ESS용 LFP 셀",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2026-03-25",
+      "ownership_sources": [
+        "lg_oc11"
+      ],
+      "status": "planned",
+      "status_label": "2027년 목표 · ESS 전용라인 계획",
+      "status_date": "2026-03-25",
+      "status_sources": [
+        "lg_oc11"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": {
+        "value": 1,
+        "unit": "GWh/year",
+        "qualifier": "exact",
+        "basis": "ESS 전용 LFP 라인 · 2027년 목표",
+        "date": "2026-03-25",
+        "sources": [
+          "lg_oc11"
+        ],
+        "scope": "ess",
+        "evidence": "primary"
+      },
+      "reference_capacities": [],
+      "notes": "2025년 11월 발표한 ESS LFP 라인 계획을 2026년 투자설명서에서 재확인했습니다. 기존 오창 사업장 전체 생산능력과 다르며, 2027년 1GWh 계획을 현재 설치능력으로 표시하지 않습니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "lg_ohio",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "L-H Battery Company",
+      "location": "미국 오하이오주 Jeffersonville",
+      "product": "ESS용 LFP 셀 생산 거점 계획",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "LGES 합작 제조법인 · 공시 지분 CAPA 환산 없음",
+      "ownership_date": "2026-08-19",
+      "ownership_sources": [
+        "lg_lansing"
+      ],
+      "status": "planned",
+      "status_label": "북미 ESS 제조계획 포함 · 셀 양산 미확인",
+      "status_date": "2026-08-19",
+      "status_sources": [
+        "lg_lansing"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "2026년 말 북미 LFP ESS 셀 제조능력 50GWh 초과를 구성하는 5개 거점 중 하나입니다. 이 자료만으로 공장별 ESS 양산 완료나 개별 CAPA를 확정하지 않습니다. 원래 EV용 전체 설계능력과도 구분합니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "lg_tennessee",
+      "company": "lg",
+      "company_name": "LG에너지솔루션",
+      "factory": "Ultium Cells 2 · 스프링힐",
+      "location": "미국 테네시주 Spring Hill",
+      "product": "ESS용 LFP 셀 생산 거점 계획",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "LGES 합작 제조법인 · 공시 지분 CAPA 환산 없음",
+      "ownership_date": "2026-08-19",
+      "ownership_sources": [
+        "lg_lansing"
+      ],
+      "status": "planned",
+      "status_label": "북미 ESS 제조계획 포함 · 셀 양산 미확인",
+      "status_date": "2026-08-19",
+      "status_sources": [
+        "lg_lansing"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "2026년 말 북미 LFP ESS 셀 제조능력 50GWh 초과를 구성하는 5개 거점 중 하나입니다. 기존 EV 공장의 가동과 ESS LFP 라인의 양산 개시를 구분합니다. 공장별 ESS 설치능력·전환 목표량은 미확인입니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "sdi_ulsan",
+      "company": "sdi",
+      "company_name": "삼성SDI",
+      "factory": "울산 생산시설",
+      "location": "한국 울산광역시 울주군",
+      "product": "EV·ESS 각형 배터리 · 삼원계",
+      "stage": "cell",
+      "chemistry": "nca_ncm",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2026-02-19",
+      "ownership_sources": [
+        "sdi_25audit"
+      ],
+      "status": "operating",
+      "status_label": "EV·ESS 생산거점 · ESS 전용 CAPA 미확인",
+      "status_date": "2026-02-19",
+      "status_sources": [
+        "sdi_25audit"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 10,
+          "unit": "GWh/year",
+          "qualifier": "approx",
+          "basis": "IBK 2026년 ESS CAPA 추정 · 회사 직접 공시 아님",
+          "date": "2026-02-03",
+          "sources": [
+            "sdi_ibk"
+          ],
+          "scope": "ess",
+          "evidence": "analyst"
+        },
+        {
+          "value": 10,
+          "unit": "GWh/year",
+          "qualifier": "approx",
+          "basis": "2023년 언론의 울산 EV·ESS 합산 연산 보도",
+          "date": "2023-10-26",
+          "sources": [
+            "sdi_ulsan23"
+          ],
+          "scope": "mixed",
+          "evidence": "media"
+        }
+      ],
+      "notes": "10GWh를 ESS 능력으로 기재한 2026년 IBK 보고서가 있으나 증권사 추정입니다. 2023년 보도에서는 같은 10GWh를 EV·ESS 합산으로 설명해 시점·범위가 다릅니다. 공식 자료에서 울산 ESS 전용 10GWh는 재확인하지 못했으며 설치능력 칸은 미확인으로 유지합니다. 울산 현재 LFP 양산을 가정하지 않습니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "sdi_kokomo",
+      "company": "sdi",
+      "company_name": "삼성SDI",
+      "factory": "StarPlus Energy · 코코모",
+      "location": "미국 인디애나주 Kokomo",
+      "product": "ESS NCA 셀 / LFP 전환 계획",
+      "stage": "cell",
+      "chemistry": "mixed",
+      "operation": "direct",
+      "ownership": "삼성SDI·Stellantis 합작 제조법인 · 지분 CAPA 환산 없음",
+      "ownership_date": "2022-05-25",
+      "ownership_sources": [
+        "sdi_22"
+      ],
+      "status": "operating",
+      "status_label": "NCA ESS 2025년 10월 양산 · LFP 2026년 4Q 계획",
+      "status_date": "2025-10-28",
+      "status_sources": [
+        "sdi_25q3"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [
+        {
+          "value": 33,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "EV 1공장 확대 계획 · 현재 ESS 전용 아님",
+          "date": "2024",
+          "sources": [
+            "sdi_24esg"
+          ],
+          "scope": "ev",
+          "evidence": "primary"
+        },
+        {
+          "value": 23,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "2022년 EV 셀·모듈 최초 계획 · 역사적 참고",
+          "date": "2022-05-25",
+          "sources": [
+            "sdi_22"
+          ],
+          "scope": "ev",
+          "evidence": "primary"
+        },
+        {
+          "value": 29,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "IBK 2026년 말 ESS 전환 추정 · 회사 직접 공시 아님",
+          "date": "2026-02-03",
+          "sources": [
+            "sdi_ibk"
+          ],
+          "scope": "ess",
+          "evidence": "analyst"
+        }
+      ],
+      "notes": "23GWh는 2022년 EV 셀·모듈 1공장 최초 계획이고 이후 33GWh로 확대됐습니다. 회사의 미국 ESS 약 30GWh는 2026년 말 지역 총 목표여서 공장별 현재 설치능력으로 넣지 않습니다. 2026년 4Q LFP 양산도 발표 일정이며 아직 현재 가동으로 단정하지 않습니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "sk_seosan",
+      "company": "sk",
+      "company_name": "SK온",
+      "factory": "서산 2공장 · ESS 전환라인",
+      "location": "한국 충청남도 서산시",
+      "product": "ESS용 LFP 파우치 셀",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2026-02-12",
+      "ownership_sources": [
+        "sk_seosan"
+      ],
+      "status": "planned",
+      "status_label": "기존 공장 가동 · ESS 전환 완료 미확인",
+      "status_date": "2026-02-12",
+      "status_sources": [
+        "sk_seosan"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": {
+        "value": 3,
+        "unit": "GWh/year",
+        "qualifier": "exact",
+        "basis": "2공장 4개 라인 중 2개 전환 · 발표상 2026년 상반기 계획",
+        "date": "2026-02-12",
+        "sources": [
+          "sk_seosan"
+        ],
+        "scope": "ess",
+        "evidence": "primary"
+      },
+      "reference_capacities": [
+        {
+          "value": 6,
+          "unit": "GWh/year",
+          "qualifier": "exact",
+          "basis": "가동 중인 서산 2공장 전체 능력 · ESS 전환 전",
+          "date": "2026-02-12",
+          "sources": [
+            "sk_seosan"
+          ],
+          "scope": "unsplit",
+          "evidence": "primary"
+        }
+      ],
+      "notes": "회사 발표의 서산 2공장 전체 6GWh 가운데 2개 라인을 ESS LFP로 전환해 3GWh를 확보하는 계획입니다. 3GWh를 6GWh에 더하지 않습니다. 2026년 상반기 전환 완료 예정이지만 검토 자료에서 실제 완료를 확인하지 못해 설치능력으로 승격하지 않았습니다.",
+      "extra_sources": []
+    },
+    {
+      "id": "sk_georgia",
+      "company": "sk",
+      "company_name": "SK온",
+      "factory": "조지아 ESS LFP 셀 공급시설",
+      "location": "미국 조지아주 · 계약 발표에 세부 공장 미명시",
+      "product": "ESS용 LFP 파우치 셀 · 2027년 공급 계획",
+      "stage": "cell",
+      "chemistry": "lfp",
+      "operation": "direct",
+      "ownership": "그룹 직접 운영 · 건물 권리 미확인",
+      "ownership_date": "2026-08-31",
+      "ownership_sources": [
+        "sk_georgia"
+      ],
+      "status": "planned",
+      "status_label": "미국 기존 시설 · 계약용 셀 양산 미확인",
+      "status_date": "2026-08-31",
+      "status_sources": [
+        "sk_georgia"
+      ],
+      "floor_area": null,
+      "other_area": null,
+      "installed_capacity": null,
+      "design_capacity": null,
+      "reference_capacities": [],
+      "notes": "SK온은 2027–2031년 NeoVolta Power에 공급하는 총 9GWh 셀을 조지아주 공장에서 생산한다고 발표했습니다. 개별 공장명과 ESS 전용 연간 CAPA는 미공개입니다. 계약 9GWh를 연간 CAPA로 환산하지 않습니다. NeoVolta의 Pendergrass 팩 공장은 SK온 셀 공장과 별도입니다. 미국 약 100GWh는 여러 EV 포함 시설 총합이므로 이 행에 배분하지 않습니다.",
+      "extra_sources": []
+    }
+  ],
+  "regional_targets": [
+    {
+      "company": "LG에너지솔루션",
+      "region": "글로벌",
+      "value": "> 60",
+      "target": "2026년",
+      "date": "2026-01-29",
+      "scope": "region",
+      "sources": [
+        "lg_25ir"
+      ],
+      "note": "ESS 전체 계획 · 공장별 능력과 합산 금지"
+    },
+    {
+      "company": "LG에너지솔루션",
+      "region": "북미 5개 거점",
+      "value": "> 50",
+      "target": "2026년 말",
+      "date": "2026-08-19",
+      "scope": "region",
+      "sources": [
+        "lg_lansing"
+      ],
+      "note": "ESS LFP 셀 목표 · 글로벌 목표에 포함 / 개별 배분 미공개"
+    },
+    {
+      "company": "삼성SDI",
+      "region": "미국",
+      "value": "약 30",
+      "target": "2026년 말 전후",
+      "date": "2025-10-28",
+      "scope": "region",
+      "sources": [
+        "sdi_25q3"
+      ],
+      "note": "NCA·LFP ESS 전체 목표 · 현재 공장별 설치능력 아님"
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "CATL 현재 ESS CAPA 약 100GWh/년",
+      "result": "공식 ESS 전용 글로벌 수치 미확인",
+      "note": "지닝 1기 60GWh는 2025년 EV·ESS 합산입니다. 최신 나트륨이온 공장별 발표와도 범위가 달라 글로벌 LFP 100GWh를 확정하지 않습니다.",
+      "sources": [
+        "catl_jining",
+        "catl_sodium"
+      ]
+    },
+    {
+      "claim": "CATL 2028년 ESS CAPA 720GWh/년",
+      "result": "회사 공식 발표·원출처 미확인",
+      "note": "공식 생산기지·나트륨이온 ESS 발표와 연차 자료를 검토했으나 해당 연도·수치 조합은 찾지 못했습니다. 확인되지 않은 목표를 공장 또는 시계열 데이터로 추가하지 않습니다.",
+      "sources": [
+        "catl_bases",
+        "catl_sodium"
+      ]
+    },
+    {
+      "claim": "삼성SDI 울산 ESS CAPA 10GWh/년",
+      "result": "증권사 추정에는 있음 · 공식 공장별 ESS 수치 미확인",
+      "note": "IBK 2026-02-03 자료는 ESS 10GWh로 추정합니다. 2023년 언론의 10GWh는 EV·ESS 합산이라 동일 수치의 범위·시점에 주의해야 합니다.",
+      "sources": [
+        "sdi_ibk",
+        "sdi_ulsan23"
+      ]
+    },
+    {
+      "claim": "삼성SDI 미국 공장 CAPA 23GWh/년",
+      "result": "2022년 코코모 EV 셀·모듈 최초 계획",
+      "note": "이후 33GWh로 확대된 EV 1공장 계획입니다. 별도로 미국 ESS 약 30GWh 목표는 2026년 말 지역 총합이며 현재 ESS 전용 23GWh와는 다릅니다.",
+      "sources": [
+        "sdi_22",
+        "sdi_24esg",
+        "sdi_25q3"
+      ]
+    }
+  ],
+  "updated": "2026-10-10"
+}

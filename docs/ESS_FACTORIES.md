@@ -4,6 +4,8 @@ ESS 탭에 테슬라 4개, 선그로우 5개, 플루언스 5개의 **시설·프
 
 ## 자료와 갱신
 
+2026-10-10에 셀 업체 4사의 공장 등록부를 별도로 추가했다. 범위와 수치 검증은 [ESS_CELL_FACTORIES.md](ESS_CELL_FACTORIES.md)를 참고한다. 기존 시스템 공급망 시설 14개는 같은 게시 스크립트에서 유지한다.
+
 - 원본: `manual/ess_factories.json` — 사람의 자료 검토를 거쳐 갱신하는 등록부.
 - 게시: `data/ess/ess_factories.json` — `python scripts/aggregate_ess_factories.py`로 생성.
 - 각 면적·CAPA·가동 상태·운영 권리에 개별 기준일과 출처 ID를 기록한다. 화면의 ‘출처·범위 보기’에서 해당 근거를 확인할 수 있다.
