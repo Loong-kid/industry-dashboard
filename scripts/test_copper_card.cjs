@@ -34,3 +34,18 @@ const history = render({...sparse, inventory_summary: false, snapshot_history: t
 assert(history.children.some(e => e.textContent.includes('공개 과거 자료 포함')));
 assert(history.children.some(e => e.innerHTML.includes('원단위 CSV')));
 console.log('PASS: stale inventory, weekly change, missing 4-week baseline, zero baseline and ordinary cards');
+
+const chartSource = source.slice(source.indexOf('function drawChart('), source.indexOf('// ── 수주 테이블'));
+class ChartStub { constructor(canvas, config) { this.config = config; } }
+const makeChart = new Function('Chart', 'state', 'SERIES_COLORS', 'css', 'crosshair', 'isDark',
+  'periodLabel', 'observationLabel', 'fmt', chartSource + '\nreturn drawChart;')(
+  ChartStub, {charts: []}, {light: ['blue'], dark: ['blue']}, String, {}, () => false, formatting.periodLabel, formatting.observationLabel, String);
+const points = {TC: [['2024-02-28', 5], ['2024-03-08', -2]]};
+const calendar = makeChart({}, {daily_axis: true, highlight_gaps: true}, points).config;
+assert.equal(calendar.data.labels.length, 10);
+assert.equal(calendar.data.labels[1], '2024-02-29');
+assert.deepEqual(calendar.data.datasets[0].data, [5, ...Array(8).fill(null), -2]);
+assert.deepEqual(points.TC, [['2024-02-28', 5], ['2024-03-08', -2]]);
+assert.deepEqual(calendar.data.datasets[0].segment.borderDash({p0DataIndex: 3, p1DataIndex: 4}), [5, 5]);
+assert.equal(makeChart({}, {}, points).config.data.labels.length, 2);
+console.log('PASS: calendar spacing, leap day, missing observations and dashed long gaps');

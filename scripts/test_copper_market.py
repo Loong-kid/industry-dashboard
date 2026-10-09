@@ -8,6 +8,8 @@ from unittest.mock import patch
 import requests
 import derive_copper_market as m
 import fetch_copper_tc as tc
+import fetch_copper_tc_mysteel as mysteel
+import fetch_copper_lme_warrants as lme
 
 
 def tc_html(value='-231.68', date='Sep 30, 2026'):
@@ -104,9 +106,82 @@ class CopperMarketTests(unittest.TestCase):
 
     def test_published_derived_docs_match_validated_inputs(self):
         def read(name): return json.loads((m.OUT/name).read_text(encoding='utf-8'))
-        self.assertEqual(read('comm_copper_lme_warrant_composition.json'), m.lme_document(self.sources))
+        published = read('comm_copper_lme_warrant_composition.json')
+        if published.get('collection_provider') == 'mjfins_archive':
+            rebuilt = m.lme_document(dict(reviewed=published['fetched'],lme_warrants=published['source_records']))
+            for field in ('series','series_views','updated','history_started'):
+                self.assertEqual(published[field],rebuilt[field])
+            self.assertGreater(len(published['source_records']),1000)
+            self.assertLessEqual(published['history_started'],'2022-01-04')
+        else:
+            self.assertEqual(published,m.lme_document(self.sources))
         self.assertEqual(read('comm_copper_yangshan_delivery_gap.json'), m.premium_document(
             read('comm_copper_yangshan_warehouse_warrant.json'), read('comm_copper_yangshan_bill_of_lading.json')))
+
+    def test_lme_pdf_dates_columns_and_stock_identity(self):
+        text = ('8/10/2026\nLME库存报告\n伦敦铜\n239875\n300\n4950\n235225\n-4650\n129700\n105525\n44.9%\n伦敦锌')
+        def parse(value):return lme.parse_text(value,'2026-10-08','2026-10-09',lme.pdf_url('2026-10-08'),'abc')
+        row = parse(text)
+        self.assertEqual((row['total'],row['live'],row['cancelled']),(235225,129700,105525))
+        self.assertTrue(row['flows_valid'])
+        self.assertEqual(row['share_precision'],1)
+        for bad in [text.replace('8/10/2026','9/10/2026'),text.replace('129700','129725'),
+                text.replace('44.9%','40.0%'),text.replace('300\n',''),text.replace('105525','-105525')]:
+            with self.subTest(value=bad),self.assertRaises(ValueError):parse(bad)
+
+    def test_lme_bad_flow_does_not_invent_or_discard_valid_stocks(self):
+        text = '2022/4/28\nLME库存报告\n伦敦铜\n148500\n2000\n200\n150850\n2350\n102100\n48750\n32.32\n伦敦锌'
+        row = lme.parse_text(text,'2022-04-28','2026-10-09',lme.pdf_url('2022-04-28'),'abc')
+        self.assertFalse(row['flows_valid'])
+        self.assertEqual(row['delivered_in'],2000)  # preserve the incorrect source cell, never repair by inference
+        good = dict(row,date='2022-04-29',flows_valid=True)
+        doc = m.lme_document(dict(reviewed='2026-10-09',lme_warrants=[row,good]))
+        self.assertEqual(len(next(iter(doc['series'].values()))),2)
+        self.assertEqual(len(next(iter(doc['series_views']['flows']['series'].values()))),1)
+
+    def test_lme_only_public_archive_links(self):
+        html = '<a href="/Uploads/LMEData/LME库存报告_20261008.pdf">PDF</a><a href="/login">login</a>'
+        self.assertEqual(lme.public_links(html,'2026-10-09'),{'2026-10-08':lme.pdf_url('2026-10-08')})
+        with self.assertRaises(ValueError):lme.public_links('<a href="/login">login</a>','2026-10-09')
+        with self.assertRaises(ValueError):lme.public_links(html.replace('20261008','20261010'),'2026-10-09')
+
+    def test_mysteel_chart_identity_dates_negatives_and_missing_values(self):
+        def payload(dates=None,values=None,code=None):
+            return {'status':'200','response':json.dumps({'xAxis':dates or ['2013-01-11','2026-10-09'],
+                'datas':[{'indexCode':code or mysteel.CODE,'yAxis':values or ['75','-237.8']}]})}
+        rows = mysteel.parse_chart(payload(),'2026-10-09')
+        self.assertEqual([r['value'] for r in rows],[75,-237.8])
+        self.assertTrue(all(r['provider']=='Mysteel' and r['unit']=='USD/dmt' for r in rows))
+        self.assertEqual(len(mysteel.parse_chart(payload(values=['75',None]),'2026-10-09')),1)
+        for bad in [payload(code='ID01154993'),payload(dates=['2013-01-11','2013-01-11']),
+                payload(dates=['2026-10-09','2013-01-11']),payload(values=['75','NaN']),
+                payload(values=['75']),payload(dates=['2013-01-11','2026-10-10']),{'status':'403'}]:
+            with self.subTest(payload=bad),self.assertRaises(ValueError):mysteel.parse_chart(bad,'2026-10-09')
+
+    def test_mysteel_failure_or_revision_preserves_history(self):
+        rows = mysteel.parse_chart({'status':'200','response':json.dumps({'xAxis':['2013-01-11'],
+            'datas':[{'indexCode':mysteel.CODE,'yAxis':['75']}]})},'2026-10-08')
+        old = mysteel.build_document(rows,'2026-10-08')
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/(mysteel.ID+'.json')
+            path.write_text(json.dumps(old),encoding='utf-8')
+            with patch.object(mysteel,'OUT',Path(folder)),patch.object(m,'OUT',Path(folder)),\
+                    patch.object(mysteel.requests,'get',side_effect=requests.HTTPError('403')):
+                with self.assertRaises(requests.HTTPError):mysteel.run('2026-10-09')
+            after = json.loads(path.read_text(encoding='utf-8'))
+            for field in ('series','source_records','updated','fetched'):
+                self.assertEqual(old[field],after[field])
+            self.assertFalse(after['collection_status']['ok'])
+
+    def test_published_mysteel_history_matches_original_records(self):
+        doc = json.loads((m.OUT/(mysteel.ID+'.json')).read_text(encoding='utf-8'))
+        rebuilt = mysteel.build_document(doc['source_records'],doc['fetched'])
+        self.assertEqual(doc['series'],rebuilt['series'])
+        self.assertEqual(doc['history_started'],'2013-01-11')
+        self.assertGreater(len(doc['source_records']),1600)
+        points = dict(next(iter(doc['series'].values())))
+        self.assertEqual(points['2024-12-26'],7.75)  # independently published daily article
+        self.assertEqual(points['2024-07-24'],9.5)
 
 
 if __name__ == '__main__':

@@ -698,7 +698,7 @@ function renderCard(doc, indicatorId) {
   }
 
   const tableDiv = document.createElement("div");
-  tableDiv.className = "data-table";
+  tableDiv.className = doc.table_scroll ? "data-table order-table-wrap" : "data-table";
   tableDiv.style.display = "none";
   card.appendChild(tableDiv);
   foot.querySelector(".table-btn").addEventListener("click", () => {
@@ -1263,6 +1263,12 @@ function drawChart(canvas, doc, filtered) {
 
   // 모든 시리즈의 날짜 합집합을 라벨로
   let labels = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort();
+  // Calendar spacing preserves elapsed time when observation frequency changes.
+  if (doc.daily_axis && labels.length) {
+    const first = Date.parse(labels[0]), last = Date.parse(labels.at(-1));
+    labels = Array.from({length: Math.round((last - first) / 86400000) + 1},
+      (_, i) => new Date(first + i * 86400000).toISOString().slice(0, 10));
+  }
   // 연간 시장규모: 미공표 연도도 축에 남겨 실제 공백을 표시한다.
   if (doc.annual_axis && labels.length) {
     const firstYear = Number(labels[0].slice(0, 4));
@@ -1323,8 +1329,9 @@ function drawChart(canvas, doc, filtered) {
           // The connector into the first projected value is forecast too.
           if (doc.forecast_from && labels[ctx.p1DataIndex] >= doc.forecast_from) return [6, 4];
           if (!doc.highlight_gaps) return undefined;
-          const start = Date.parse(labels[ctx.p0DataIndex]);
-          const end = Date.parse(labels[ctx.p1DataIndex]);
+          const [first, last] = gapBounds(ctx);
+          const start = Date.parse(first);
+          const end = Date.parse(last);
           return end - start > 7 * 86400000 ? [5, 5] : undefined;
         },
       } : undefined,

@@ -1361,28 +1361,6 @@
           ],
           "minerals": [
             "MNRL0008"
-          ],
-          "companies": [
-            {
-              "id": "fcx",
-              "name": "프리포트 맥모란 (NYSE FCX)",
-              "description": "연결 광산의 회수가능 구리 생산량입니다. FCX 귀속 지분량으로 환산하지 않았습니다.",
-              "indicators": [
-                "comm_company_fcx_price",
-                "comm_company_fcx_profit",
-                "comm_company_fcx_production"
-              ]
-            },
-            {
-              "id": "scco",
-              "name": "서던코퍼 (NYSE SCCO)",
-              "description": "Mined 자체 광산 생산량입니다. 외부 정광 처리분·제련량·정련량·판매량을 더하지 않습니다.",
-              "indicators": [
-                "comm_company_scco_price",
-                "comm_company_scco_profit",
-                "comm_company_scco_production"
-              ]
-            }
           ]
         },
         {
@@ -1406,7 +1384,7 @@
         {
           "title": "정광 수급 · 제련수수료 TC",
           "tab": "copper",
-          "indicators": ["comm_copper_concentrate_tc"]
+          "indicators": ["comm_copper_concentrate_tc_mysteel", "comm_copper_concentrate_tc"]
         },
         {
           "title": "중국 수입 수요 · 양산 프리미엄",
@@ -1443,6 +1421,33 @@
           "indicators": [
             "comm_copper_us_housing",
             "comm_copper_us_construction_spending"
+          ]
+        },
+        {
+          "title": "구리 기업 지표",
+          "tab": "copper",
+          "indicators": [],
+          "companies": [
+            {
+              "id": "scco",
+              "name": "서던코퍼 (NYSE SCCO)",
+              "description": "Mined 자체 광산 생산량입니다. 외부 정광 처리분·제련량·정련량·판매량을 더하지 않습니다.",
+              "indicators": [
+                "comm_company_scco_price",
+                "comm_company_scco_profit",
+                "comm_company_scco_production"
+              ]
+            },
+            {
+              "id": "fcx",
+              "name": "프리포트 맥모란 (NYSE FCX)",
+              "description": "연결 광산의 회수가능 구리 생산량입니다. FCX 귀속 지분량으로 환산하지 않았습니다.",
+              "indicators": [
+                "comm_company_fcx_price",
+                "comm_company_fcx_profit",
+                "comm_company_fcx_production"
+              ]
+            }
           ]
         },
         {
