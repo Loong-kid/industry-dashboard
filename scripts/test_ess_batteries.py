@@ -68,6 +68,7 @@ class ReviewedBatteryMetricsTest(unittest.TestCase):
         self.assertEqual(points("sdi_ess_production"), [["2021-12-31",20.3],["2022-12-31",20.8],["2023-12-31",20.6],["2024-12-31",22.2]])
         self.assertEqual(cards["sdi_ess_production"]["unit"], "백만 셀")
         self.assertEqual(points("catl_revenue")[0], ["2021-12-31",13623.8347])
+        self.assertEqual(cards["catl_revenue"]["default_view"], "annual")
         self.assertEqual([p[1] for p in points("catl_margin")[:3]], [28.52,17.01,23.79])
         self.assertNotIn("2026-12-31", dict(points("lg_ess_capa")))
         self.assertEqual(doc["focus_companies"], ["catl","lg","sdi","sk"])

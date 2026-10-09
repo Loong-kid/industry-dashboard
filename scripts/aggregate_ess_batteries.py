@@ -108,6 +108,9 @@ def build(source):
             continue
         all_points = [p for key in views for p in view_points[key]]
         default = max(views, key=lambda k: max(p[0] for s in views[k]["series"].values() for p in s))
+        if item.get("default_view"):
+            assert item["default_view"] in views
+            default = item["default_view"]
         latest_ref = sources[max(all_points, key=lambda p: (p["date"], sources[p["source"]]["published"]))["source"]]
         details = [{"label": "생산 단계", "value": STAGES[item["stage"]]},
                    {"label": "실적·계획 구분", "value": STATUSES[item["status"]]},
