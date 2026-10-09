@@ -29,7 +29,7 @@ def build(source):
     for c in doc["companies"]:
         assert c["sources"] and set(c["sources"]) <= sources.keys()
         assert all(c[k] for k in ("role", "capacity_note", "financial_note", "gaps"))
-    ids, cards = set(), []
+    ids, cards, excluded = set(), [], []
     for item in doc["metrics"]:
         assert item["id"] not in ids
         ids.add(item["id"])
@@ -47,12 +47,12 @@ def build(source):
             assert item["status"] == "contracted"
         if item["measure"] == "framework":
             assert item["status"] == "framework"
-        views = {}
+        views, view_points = {}, {}
         all_points = []
         for key, raw in item["views"].items():
             assert raw["frequency"] in {"yearly", "semiannual", "irregular"}
             raw_series = raw.get("series", {item["name"].split(" · ", 1)[-1]: raw["points"]})
-            series, refs, qualifiers = {}, {}, {}
+            series, refs, qualifiers, checked_points = {}, {}, {}, []
             for name, points in raw_series.items():
                 dates = [p["date"] for p in points]
                 assert dates and dates == sorted(set(dates)), (item["id"], dates)
@@ -78,6 +78,7 @@ def build(source):
                     if p.get("qualifier"): qualifiers[p["date"]] = p["qualifier"]
                 series[name] = [[p["date"], p["value"]] for p in points]
                 all_points.extend(points)
+                checked_points.extend(points)
             one_date = len({p[0] for s in series.values() for p in s}) == 1
             views[key] = dict(label=raw["label"], frequency=raw["frequency"], series=series,
                               unit=item["unit"], period_sources=refs, value_qualifiers=qualifiers,
@@ -87,12 +88,23 @@ def build(source):
                 assert all(math.isclose(sum(dict(s).get(day, 0) for s in series.values()), 100, abs_tol=0.01)
                            for day in refs)
                 views[key]["default_series"] = list(series)
+            view_points[key] = checked_points
         if item.get("calculation"):
             assert item["calculation"] == "revenue_minus_cost"
             values = {p["date"]: p["value"] for p in all_points}
             assert set(values) == {r["date"] for r in item["reconciliation"]}
             for r in item["reconciliation"]:
                 assert math.isclose(values[r["date"]], r["revenue"] - r["cost"], abs_tol=0.000001)
+        # Validate the archive before excluding one-date views, including those on
+        # cards whose other period view already has history.
+        for key in list(views):
+            if any(len(series) < 2 for series in views[key]["series"].values()):
+                excluded.append({"id": item["id"], "name": item["name"], "view": key,
+                                 "reason": "fewer_than_two_periods"})
+                del views[key]
+        if not views:
+            continue
+        all_points = [p for key in views for p in view_points[key]]
         default = max(views, key=lambda k: max(p[0] for s in views[k]["series"].values() for p in s))
         latest_ref = sources[max(all_points, key=lambda p: (p["date"], sources[p["source"]]["published"]))["source"]]
         details = [{"label": "생산 단계", "value": STAGES[item["stage"]]},
@@ -108,10 +120,11 @@ def build(source):
                     updated=max(p["date"] for p in all_points), reviewed=doc["reviewed"],
                     source=latest_ref["label"], source_url=latest_ref["url"],
                     series_views=views, default_view=default, basis_details=details,
-                    snapshot_history=True, history_note="확인한 공시 시점만 표시합니다. 단일 시점의 막대는 추세가 아닙니다.")
+                    snapshot_history=True, history_note="연간과 상반기는 별도로 비교합니다. 결측 기간은 추정하지 않습니다.")
         cards.append(card)
     doc.pop("metrics")
-    doc.update(cards=cards, stages=STAGES, statuses=STATUSES, updated=doc["reviewed"])
+    doc.update(cards=cards, stages=STAGES, statuses=STATUSES, updated=doc["reviewed"],
+               excluded_views=excluded, minimum_history_periods=2)
     return doc
 
 

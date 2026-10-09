@@ -14,17 +14,18 @@ class ReviewedBatteryMetricsTest(unittest.TestCase):
     def test_scope_and_source_regressions(self):
         doc = build(self.raw)
         self.assertEqual(len(doc["companies"]), 10)
-        self.assertEqual(len(doc["cards"]), 30)
+        self.assertEqual(len(doc["cards"]), 13)
         cards = {c["id"].removeprefix("ess_battery_"): c for c in doc["cards"]}
+        archive = {c["id"].removeprefix("ess_battery_"): c for c in self.raw["metrics"]}
         # These are not interchangeable cell capacity, system capacity or revenue.
-        self.assertEqual(cards["hithium_system_capa"]["stage"], "system")
-        self.assertEqual(cards["lg_cell_capa"]["status"], "target")
-        self.assertEqual(cards["eve_cell_capa"]["status"], "design")
-        self.assertEqual(cards["sdi_sales_target"]["measure"], "sales")
-        self.assertEqual(cards["cornex_framework"]["status"], "framework")
-        self.assertEqual(cards["sk_contract"]["series_views"]["snapshot"]["series"]["NeoVolta LFP 셀 공급 계약"], [["2026-09-24", 9]])
-        for key in ("catl_sales", "hithium_battery_sales", "rept_shipments", "cornex_shipments"):
-            self.assertEqual(cards[key]["stage"], "battery")
+        self.assertEqual(archive["hithium_system_capa"]["stage"], "system")
+        self.assertEqual(archive["lg_cell_capa"]["status"], "target")
+        self.assertEqual(archive["eve_cell_capa"]["status"], "design")
+        self.assertEqual(archive["sdi_sales_target"]["measure"], "sales")
+        self.assertEqual(archive["cornex_framework"]["status"], "framework")
+        self.assertEqual(archive["sk_contract"]["views"]["snapshot"]["points"][0]["value"], 9)
+        for key in ("catl_sales", "hithium_battery_sales", "rept_shipments", "cornex_shipments", "eve_shipments"):
+            self.assertEqual(archive[key]["stage"], "battery")
         # 2026H1 13.1% includes EV, so it cannot extend the ESS margin series.
         self.assertNotIn("half", cards["rept_margin"]["series_views"])
         self.assertNotIn("half", cards["rept_gross"]["series_views"])
@@ -36,6 +37,28 @@ class ReviewedBatteryMetricsTest(unittest.TestCase):
                 dates = {p[0] for s in v["series"].values() for p in s}
                 self.assertEqual(dates, set(v["period_sources"]))
                 self.assertTrue(all(p[1] is not None for s in v["series"].values() for p in s))
+                self.assertGreaterEqual(len(dates), 2)
+                self.assertTrue(all(len(s) >= 2 for s in v["series"].values()))
+
+    def test_history_and_single_period_exclusion(self):
+        doc = build(self.raw)
+        cards = {c["id"].removeprefix("ess_battery_"): c for c in doc["cards"]}
+        def values(key, view): return next(iter(cards[key]["series_views"][view]["series"].values()))
+        self.assertEqual(values("catl_sales", "annual"), [["2022-12-31",47],["2023-12-31",69],["2024-12-31",93],["2025-12-31",121]])
+        self.assertEqual(values("eve_shipments", "half"), [["2024-06-30",20.95],["2025-06-30",28.71],["2026-06-30",44.46]])
+        self.assertEqual(values("rept_shipments", "half"), [["2025-06-30",18.87],["2026-06-30",27.2]])
+        for key in ("eve_shipments", "eve_gross", "eve_margin"):
+            self.assertNotIn("annual", cards[key]["series_views"])
+            self.assertEqual(cards[key]["default_view"], "half")
+        self.assertNotIn("hithium_mix", cards)  # Three categories on one date are not history.
+        self.assertNotIn("lg_cell_capa", cards)
+        self.assertNotIn("sk_contract", cards)
+        self.assertEqual(len({x["id"] for x in doc["excluded_views"]} - {c["id"] for c in doc["cards"]}), 18)
+
+    def test_single_period_data_still_validated(self):
+        item = next(m for m in self.raw["metrics"] if m["id"] == "ess_battery_sk_contract")
+        item["views"]["snapshot"]["points"][0]["source"] = "missing"
+        with self.assertRaises(AssertionError): build(self.raw)
 
     def test_rejects_capacity_as_output_or_finance(self):
         item = next(m for m in self.raw["metrics"] if m["measure"] == "capacity")

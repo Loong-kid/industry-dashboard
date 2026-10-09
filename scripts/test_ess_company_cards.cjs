@@ -25,10 +25,20 @@ const ess=catalog.industries.find(i=>i.id==='ess');
 const companies=ess.sections.flatMap(s=>s.companies||[]);
 assert(ess.sections.every(s=>Array.isArray(s.indicators)));
 assert.equal(companies.length,3);
-assert.equal(ess.sections.filter(s=>s.type!=='table').flatMap(s=>s.indicators||[]).length,5);
-assert.equal(companies.flatMap(c=>c.indicators).length,18);
+assert(companies.every(c=>c.description && !c.description.includes('??')));
+assert.equal(companies.flatMap(c=>c.indicators).length,6);
+const productIds=ess.sections.filter(s=>s.type!=='table' && s.data_industry!=='power').flatMap(s=>s.indicators||[]);
+const allIds=[...productIds,...companies.flatMap(c=>c.indicators)];
+assert.equal(allIds.length,18);
+assert.equal(new Set(allIds).size,18);
+assert.equal(ess.sections.filter(s=>s.data_industry==='power').flatMap(s=>s.indicators).length,5);
+const expected=['tesla_revenue','tesla_profit','tesla_deployment','tesla_cumulative','tesla_rpo',
+  'sungrow_revenue','sungrow_profit','sungrow_deployment','sungrow_cumulative','sungrow_shipments',
+  'fluence_revenue','fluence_profit','fluence_deployment','fluence_cumulative','fluence_backlog',
+  'fluence_order_intake','fluence_backlog_gw','fluence_pipeline'].map(id=>'ess_'+id);
+assert.deepEqual([...allIds].sort(),expected.sort());
 let unavailable=0;
-for (const company of companies) {
+for (const company of [...companies,{indicators:productIds}]) {
   for (const id of company.indicators) {
     const doc=JSON.parse(fs.readFileSync(`data/ess/${id}.json`,'utf8'));
     assert.equal(doc.id,id);

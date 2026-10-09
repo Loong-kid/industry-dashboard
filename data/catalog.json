@@ -259,7 +259,7 @@
       "name": "ESS",
       "icon": "🔋",
       "default_range": "all",
-      "cadence": "미국 유틸리티 규모 배터리 ESS · EIA-860M 월간 자료입니다. 전력 탭과 같은 원자료를 함께 표시하며, 공표에는 약 2개월 시차가 있습니다. GW는 출력, GWh는 저장 에너지입니다. 기업 지표는 공식 분기·반기·연간 공시 기준입니다. 출하·배치·누적 순증·수주·미계약 파이프라인을 구분하며 미공개는 0으로 채우지 않습니다.",
+      "cadence": "미국 유틸리티 규모 배터리 ESS · EIA-860M 월간 자료입니다. 전력 탭과 같은 원자료를 함께 표시하며, 공표에는 약 2개월 시차가 있습니다. GW는 출력, GWh는 저장 에너지입니다. 기업 지표는 공식 분기·반기·연간 공시 기준입니다. 출하·배치·누적 순증·수주·미계약 파이프라인을 구분하며 미공개는 0으로 채우지 않습니다. 화면은 시장 → 완제품 배치·수주 및 공급망 CAPA → 배터리 셀·모듈 물량 → 기업별 재무 순서입니다. 배터리 차트는 동일 기준의 공시 이력이 2개 기간 이상인 경우만 표시합니다.",
       "sections": [
         {
           "title": "미국 배터리 ESS · 준공 용량·지속시간",
@@ -273,63 +273,87 @@
           ]
         },
         {
-          "title": "ESS 배터리 기업 · 셀과 시스템",
+          "title": "ESS 완제품 · 배치·수주잔고·파이프라인",
+          "indicators": [
+            "ess_tesla_deployment",
+            "ess_tesla_cumulative",
+            "ess_tesla_rpo",
+            "ess_fluence_deployment",
+            "ess_fluence_cumulative",
+            "ess_fluence_backlog",
+            "ess_fluence_order_intake",
+            "ess_fluence_backlog_gw",
+            "ess_fluence_pipeline"
+          ],
+          "supply_note": "테슬라 Megapack·Powerwall과 플루언스 ESS 솔루션의 공시입니다. 배치·누적 순증·계약 잔고·미계약 파이프라인을 구분합니다. RPO는 태양광 등 에너지 부문을 포함하며, 배터리 셀 출하량과 합산하지 않습니다."
+        },
+        {
+          "title": "ESS 통합업체 · 출하 공시 범위",
+          "indicators": [
+            "ess_sungrow_deployment",
+            "ess_sungrow_cumulative",
+            "ess_sungrow_shipments"
+          ],
+          "supply_note": "선그로우 공시의 ESS 총출하량입니다. PCS·EMS 포함 완제품만의 물량이 별도로 분리되지 않아 완제품 배치량과 직접 비교하지 않습니다. 신규 설치량·누적 설치량은 미공개입니다."
+        },
+        {
+          "title": "ESS 시스템 공급망 공장 · 위치·면적·CAPA",
+          "type": "table",
+          "table_kind": "ess_factories",
+          "indicators": [
+            "ess_factories"
+          ]
+        },
+        {
+          "title": "배터리 셀·모듈 · 판매·출하 추이",
           "type": "table",
           "table_kind": "ess_batteries",
           "indicators": [
             "ess_batteries"
-          ]
+          ],
+          "battery_view": "physical"
         },
         {
-          "title": "ESS 공장 · 위치·면적·CAPA",
-          "type": "table",
-          "table_kind": "ess_factories",
-          "indicators": ["ess_factories"]
-        },
-        {
-          "title": "ESS 기업 · 공식 공시 지표",
+          "title": "ESS 기업별 · 매출·수익성",
           "indicators": [],
           "companies": [
             {
               "id": "tesla",
               "name": "테슬라 에너지",
-              "description": "태양광 포함 에너지 부문 매출과 ESS 배치량입니다. 부문 영업이익은 미공개이며 누계는 2019년 이후 공개 배치량 합계입니다.",
+              "description": "태양광 포함 에너지 부문 매출입니다. 부문 영업이익은 미공개입니다.",
               "indicators": [
                 "ess_tesla_revenue",
-                "ess_tesla_profit",
-                "ess_tesla_deployment",
-                "ess_tesla_cumulative",
-                "ess_tesla_rpo"
+                "ess_tesla_profit"
               ]
             },
             {
               "id": "sungrow",
               "name": "선그로우",
-              "description": "ESS 부문 매출은 반기·연간, 출하량은 연간 공시입니다. 미공개 분기 배치량·누적 설치량을 출하량으로 대체하지 않습니다.",
+              "description": "ESS 부문 매출은 반기·연간 공시입니다. 매출총이익을 부문 영업이익으로 대체하지 않습니다.",
               "indicators": [
                 "ess_sungrow_revenue",
-                "ess_sungrow_profit",
-                "ess_sungrow_deployment",
-                "ess_sungrow_cumulative",
-                "ess_sungrow_shipments"
+                "ess_sungrow_profit"
               ]
             },
             {
               "id": "fluence",
               "name": "플루언스 에너지",
-              "description": "9월 결산입니다. ESS 솔루션 / 연결 매출을 구분하고, 영업손익은 연결 공시 항목의 계산 소계입니다. 누적 배치량은 실질 준공 후 폐기되지 않은 설비입니다.",
+              "description": "9월 결산입니다. ESS 솔루션 / 연결 매출을 구분하고, 영업손익은 연결 공시 항목의 계산 소계입니다.",
               "indicators": [
                 "ess_fluence_revenue",
-                "ess_fluence_profit",
-                "ess_fluence_deployment",
-                "ess_fluence_cumulative",
-                "ess_fluence_backlog",
-                "ess_fluence_order_intake",
-                "ess_fluence_backlog_gw",
-                "ess_fluence_pipeline"
+                "ess_fluence_profit"
               ]
             }
           ]
+        },
+        {
+          "title": "ESS 배터리 기업 · 셀과 시스템",
+          "type": "table",
+          "table_kind": "ess_batteries",
+          "indicators": [
+            "ess_batteries"
+          ],
+          "battery_view": "companies"
         }
       ]
     },
