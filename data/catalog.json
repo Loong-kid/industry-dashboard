@@ -1717,6 +1717,12 @@
         {
           "id": "esc",
           "name": "정전척 ESC"
+        },
+        {
+          "id": "mocvd",
+          "name": "MOCVD",
+          "default_range": "all",
+          "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → GaN 투자 → 공개된 발주·인도 기록 순서입니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다."
         }
       ],
       "sections": [
@@ -1928,6 +1934,97 @@
             "esc_imp_country"
           ],
           "tab": "esc"
+        },
+        {
+          "tab": "mocvd",
+          "title": "수요 전환 · 수주·잔고·광전자 비중",
+          "indicators": [
+            "mocvd_aix_orders",
+            "mocvd_aix_backlog",
+            "mocvd_aix_btb",
+            "mocvd_aix_order_mix"
+          ],
+          "supply_note": "AIXTRON 총수주액·매출에는 서비스·부품 포함, 수주잔고는 장비만 포함합니다. 광전자 수주 비중도 장비 수주를 분모로 합니다."
+        },
+        {
+          "tab": "mocvd",
+          "title": "장비 공급사 · 회사별 실적과 매출 범위",
+          "indicators": [],
+          "companies": [
+            {
+              "id": "aixtron",
+              "name": "AIXTRON",
+              "description": "InP/GaAs·GaN MOCVD와 SiC CVD 포함. 용도별 광전자 매출을 InP 단독 매출로 해석하지 않습니다.",
+              "indicators": [
+                "mocvd_aix_revenue",
+                "mocvd_aix_applications",
+                "mocvd_aix_profit",
+                "mocvd_aix_advances"
+              ]
+            },
+            {
+              "id": "veeco",
+              "name": "Veeco",
+              "description": "연결·Compound Semiconductor 매출을 함께 봅니다. Compound에는 광학·전력·RF·태양광, MOCVD 외 장비도 포함됩니다.",
+              "indicators": [
+                "mocvd_veeco_revenue",
+                "mocvd_veeco_share"
+              ]
+            }
+          ]
+        },
+        {
+          "tab": "mocvd",
+          "title": "InP · 고객사 투자 · 현금 CAPEX",
+          "indicators": [
+            "mocvd_lumentum_capex",
+            "mocvd_coherent_capex"
+          ],
+          "supply_note": "회사 전체 유형자산 취득 현금지출입니다. InP/MOCVD 전용 금액이 아니며 두 회사는 6월 결산입니다."
+        },
+        {
+          "tab": "mocvd",
+          "title": "InP · 생산능력·공장·직접 발주",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_inp_projects"
+          ]
+        },
+        {
+          "tab": "mocvd",
+          "title": "GaN · 제조사 투자와 양산 전환",
+          "indicators": [
+            "mocvd_infineon_capex"
+          ],
+          "supply_note": "Infineon은 9월 결산. 현금 유형자산 취득과 회사가 정의한 Investments를 분리합니다. 모두 회사 전체이며 GaN 단독 금액은 미공개입니다."
+        },
+        {
+          "tab": "mocvd",
+          "title": "GaN · 계획·파일럿·실제 출하 기록",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_gan_projects"
+          ]
+        },
+        {
+          "tab": "mocvd",
+          "title": "장비 · 대수·발주·인도 기록",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_equipment_events"
+          ]
+        },
+        {
+          "tab": "mocvd",
+          "title": "경쟁사 · 공시 범위와 확보 현황",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_coverage"
+          ]
         }
       ]
     }

@@ -1,0 +1,67 @@
+{
+ "name": "장비 · 발주·인도·누적 대수",
+ "description": "분기 출하대수의 연속 공시는 확보되지 않았습니다. 아래는 회사가 직접 발표한 개별 사건입니다.",
+ "columns": [
+  [
+   "date",
+   "발표·보고일"
+  ],
+  [
+   "company",
+   "공급사"
+  ],
+  [
+   "area",
+   "제품·용도"
+  ],
+  [
+   "status",
+   "지표 종류"
+  ],
+  [
+   "metric",
+   "공개된 수량·내역"
+  ],
+  [
+   "note",
+   "해석 범위"
+  ]
+ ],
+ "rows": [
+  {
+   "date": "2026-08-05",
+   "company": "Veeco",
+   "area": "LUMINA+ / InP 레이저",
+   "status": "장비 수주 확인",
+   "metric": "LUMINA+ InP 레이저용 주문 · 정확한 대수·금액 미공개",
+   "target": "미공개",
+   "note": "경쟁사 InP 진입 확인. MOCVD 시장 전체 점유율로 환산하지 않습니다.",
+   "url": "https://www.globenewswire.com/news-release/2026/08/05/3339657/0/en/veeco-announces-lumina-mocvd-system-order-for-manufacturing-indium-phosphide-lasers.html"
+  },
+  {
+   "date": "2026-05-19",
+   "company": "AIXTRON",
+   "area": "G10-AsP / InP",
+   "status": "장비 수주 확인",
+   "metric": "Lumentum 복수 주문 · 정확한 대수 미공개",
+   "target": "미공개",
+   "note": "복수 발주를 임의의 출하대수로 채우지 않습니다.",
+   "url": "https://www.aixtron.com/en/investors/news/AIXTRON%20receives%20multiple%20orders%20for%20G10-AsP%20MOCVD%20Systems%20from%20Lumentum%20to%20support%20expansion%20of%20High-Speed%20Optical%20Solutions%20for%20AI%20Networks_n13987"
+  },
+  {
+   "date": "2025-10-30",
+   "company": "AIXTRON",
+   "area": "G10-SiC / SiC CVD",
+   "status": "누적 인도",
+   "metric": "2022년 출시 이후 100번째 G10-SiC 인도",
+   "target": "2025년 발표",
+   "note": "누적 100대이며 2025년 분기 출하 100대가 아닙니다. SiC CVD 보조 기록으로 InP MOCVD와 분리합니다.",
+   "url": "https://www.aixtron.com/en/press/press-releases/AIXTRON%20Q3/2025%20with%20strong%20FCF%2C%20volume%20shifts%20and%20FX%20headwinds_n13843"
+  }
+ ],
+ "note": "모델별 장비 매출과 신뢰 가능한 평균판매단가 범위를 함께 확보하지 못해 환산 대수 추정은 아직 만들지 않았습니다. 시스템·챔버·누적 설치·신규 출하를 더하거나 섞지 않습니다.",
+ "id": "mocvd_equipment_events",
+ "manual": true,
+ "fetched": "2026-10-09",
+ "updated": "2026-10-09"
+}

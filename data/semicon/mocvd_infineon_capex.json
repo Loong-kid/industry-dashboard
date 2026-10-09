@@ -1,0 +1,69 @@
+{
+ "id": "mocvd_infineon_capex",
+ "name": "Infineon · 회사 전체 투자 · 최근 공시",
+ "unit": "백만 EUR",
+ "frequency": "quarterly",
+ "quarter_labels": true,
+ "updated": "2026-06-30",
+ "fetched": "2026-10-09",
+ "source": "기업 공식 IR·공시",
+ "source_url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+ "description": "9월 결산. 첫 구축은 FY2026 Q2·Q3입니다. Investments는 유형자산·기타 무형자산 투자·개발비 자산화의 합입니다. 두 계열 모두 회사 전체로 GaN 전용 금액이 아닙니다. 현금 유형자산은 PDF p.13, Investments는 p.3.",
+ "span_gaps": false,
+ "series": {
+  "유형자산 취득 현금지출": [
+   [
+    "2026-03-31",
+    456
+   ],
+   [
+    "2026-06-30",
+    422
+   ]
+  ],
+  "Investments · 무형자산·개발비 포함": [
+   [
+    "2026-03-31",
+    541
+   ],
+   [
+    "2026-06-30",
+    514
+   ]
+  ]
+ },
+ "point_sources": {
+  "2026-03-31": {
+   "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+   "label": "FY2026 Q2",
+   "pdf_page": 13
+  },
+  "2026-06-30": {
+   "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+   "label": "FY2026 Q3",
+   "pdf_page": 13
+  }
+ },
+ "default_series": [
+  "유형자산 취득 현금지출",
+  "Investments · 무형자산·개발비 포함"
+ ],
+ "change_mode": "yoy",
+ "period_labels": {
+  "2026-03-31": "FY2026 Q2",
+  "2026-06-30": "FY2026 Q3"
+ },
+ "manual": true,
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": true,
+ "comparison_dates": {
+  "2026-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2026-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2026-03-31"
+  }
+ }
+}

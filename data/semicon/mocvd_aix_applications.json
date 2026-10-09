@@ -1,0 +1,124 @@
+{
+ "id": "mocvd_aix_applications",
+ "name": "AIXTRON · 장비 용도별 연간 매출",
+ "unit": "백만 EUR",
+ "frequency": "yearly",
+ "quarter_labels": false,
+ "updated": "2025-12-31",
+ "fetched": "2026-10-09",
+ "source": "기업 공식 IR·공시",
+ "source_url": "https://www.aixtron.com/investoren/publikationen/2025/en/Annual%20Report%202025.pdf",
+ "description": "2025 공식 금액. 이전 연도는 공시 장비 매출×반올림된 용도 비중으로 계산한 근사치입니다. 광전자에는 레이저·태양광·통신 등이 포함되어 InP 단독 매출이 아닙니다.",
+ "span_gaps": false,
+ "series": {
+  "광전자·통신": [
+   [
+    "2022-12-31",
+    106.512
+   ],
+   [
+    "2023-12-31",
+    63.876
+   ],
+   [
+    "2024-12-31",
+    62.7
+   ],
+   [
+    "2025-12-31",
+    101.4
+   ]
+  ],
+  "GaN·SiC 전력": [
+   [
+    "2022-12-31",
+    159.768
+   ],
+   [
+    "2023-12-31",
+    393.902
+   ],
+   [
+    "2024-12-31",
+    287.375
+   ],
+   [
+    "2025-12-31",
+    254.9
+   ]
+  ],
+  "LED·Micro LED": [
+   [
+    "2022-12-31",
+    102.708
+   ],
+   [
+    "2023-12-31",
+    58.553
+   ],
+   [
+    "2024-12-31",
+    146.3
+   ],
+   [
+    "2025-12-31",
+    65.4
+   ]
+  ],
+  "기타": [
+   [
+    "2022-12-31",
+    11.412
+   ],
+   [
+    "2023-12-31",
+    15.969
+   ],
+   [
+    "2024-12-31",
+    26.125
+   ],
+   [
+    "2025-12-31",
+    22.9
+   ]
+  ]
+ },
+ "point_sources": {
+  "2022-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/2022/en/Annual%20Report-2022.pdf",
+   "label": "2022-12-31",
+   "pdf_page": 79
+  },
+  "2023-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/2023/en/Annual-Report-2023.pdf",
+   "label": "2023-12-31",
+   "pdf_page": 83
+  },
+  "2024-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Annual%20Report%202024.pdf",
+   "label": "2024-12-31",
+   "pdf_page": 84
+  },
+  "2025-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Annual%20Report%202025.pdf",
+   "label": "2025-12-31",
+   "pdf_page": 95
+  }
+ },
+ "default_series": [
+  "광전자·통신",
+  "GaN·SiC 전력",
+  "LED·Micro LED",
+  "기타"
+ ],
+ "change_mode": "yoy",
+ "year_labels": true,
+ "manual": true,
+ "point_annotations": {
+  "2022-12-31": "공시 장비 매출×반올림 비중",
+  "2023-12-31": "공시 장비 매출×반올림 비중",
+  "2024-12-31": "공시 장비 매출×반올림 비중"
+ },
+ "chart_type": "bar"
+}

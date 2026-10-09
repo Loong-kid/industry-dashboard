@@ -171,6 +171,10 @@ async function renderIndustry() {
     content.appendChild(renderCopperMarketGuide());
   }
 
+  if (ind.id === "semicon" && state.subtab === "mocvd" && typeof renderMOCVDGuide === "function") {
+    content.appendChild(renderMOCVDGuide());
+  }
+
   // 빈 대시보드와 '아직 불러오는 중'을 구분한다. 카드는 아래 루프에서 하나씩 채워지고,
   // 이 줄은 전부 끝난 뒤 제거된다.
   const loading = document.createElement("div");
@@ -203,6 +207,7 @@ async function renderIndustry() {
         : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
+        : section.table_kind === "mocvd_disclosures" ? renderMOCVDTable
         : section.table_kind === "ess_factories" ? renderESSFactories
         : section.table_kind === "ess_batteries" ? renderESSBatteries
         : section.table_kind === "ti_fixtures" ? renderTIFixtures

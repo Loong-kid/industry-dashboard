@@ -370,6 +370,13 @@ jobs:
         timeout-minutes: 5
         run: python scripts/fetch_mask_equipment.py
 
+      - name: MOCVD 분기·누적·공시 범위 검증
+        run: python -m unittest discover -s scripts -p test_mocvd.py
+      - name: MOCVD · AIXTRON·Coherent 공식 분기 자료 확인
+        continue-on-error: true
+        timeout-minutes: 6
+        run: python scripts/fetch_mocvd.py
+
       # ASML 노광기 기술별 판매 대수(수기 CSV, 분기 발표자료 이미지에서 옮겨 적음) — 합계·연간 대조 검증 포함
       - name: ASML 노광기 판매 집계
         continue-on-error: true
