@@ -1,0 +1,21 @@
+.copper-market-guide { margin: 12px 0 24px; }
+.copper-guide-intro { color: var(--ink-2); font-size: 13px; line-height: 1.7; margin: 10px 0 16px; }
+.copper-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; counter-reset: copper-step; padding: 0; margin: 0; }
+.copper-chain li { border-left: 2px solid var(--accent); padding: 4px 10px; counter-increment: copper-step; }
+.copper-chain strong { display: block; font-size: 13px; }
+.copper-chain strong::before { content: counter(copper-step) ". "; color: var(--muted); }
+.copper-chain span, .copper-guide-caption { font-size: 11px; color: var(--muted); line-height: 1.65; }
+.copper-guide-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; align-items: start; }
+.copper-guide-topics details { border: 1px solid var(--grid); border-radius: 6px; padding: 12px 14px; min-width: 0; }
+.copper-market-guide summary { cursor: pointer; font-size: 13px; line-height: 1.6; }
+.copper-guide-topics summary span { display: block; padding-left: 16px; color: var(--muted); font-size: 12px; }
+.copper-guide-topics p, .copper-guide-data li { font-size: 12px; line-height: 1.8; color: var(--ink-2); }
+.copper-guide-formula { background: var(--page); border-left: 2px solid var(--accent); padding: 10px 12px; }
+.copper-guide-sources { overflow-wrap: anywhere; }
+.copper-guide-sources a { color: var(--accent); }
+.copper-guide-data { border-top: 1px solid var(--grid); padding-top: 14px; margin-top: 16px; }
+.copper-guide-data ul { padding-left: 20px; }
+@media (max-width: 640px) {
+  .copper-chain { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 8px; }
+  .copper-guide-topics { grid-template-columns: 1fr; }
+}

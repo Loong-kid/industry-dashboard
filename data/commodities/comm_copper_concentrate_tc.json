@@ -1,0 +1,75 @@
+{
+  "id": "comm_copper_concentrate_tc",
+  "name": "정광 TC · SMM 중국 수입 주간 지수",
+  "unit": "USD/건조정광톤",
+  "frequency": "weekly",
+  "updated": "2026-09-30",
+  "fetched": "2026-10-09",
+  "data_stale_days": 21,
+  "source": "SMM 공식 공개 주간 TC · 공개 기사 확인값 포함",
+  "source_url": "https://www-old.metal.com/Copper/201910240001",
+  "series": {
+    "정광 TC · SMM 중국 수입 주간 지수": [
+      [
+        "2026-08-28",
+        -199.84
+      ],
+      [
+        "2026-09-04",
+        -200.31
+      ],
+      [
+        "2026-09-30",
+        -231.68
+      ]
+    ]
+  },
+  "source_records": [
+    {
+      "date": "2026-08-28",
+      "value": -199.84,
+      "unit": "USD/dmt",
+      "provider": "SMM",
+      "product": "SMM Copper Concentrate Index (Weekly)",
+      "source_url": "https://news.metal.com/en/newscontent/104099029-codelco-q2-own-copper-production-declined-yoy-spot-tc-decline-slowed-smm-copper-concentrates-spot-weekly-review",
+      "locator": "2026-09-04 주간 기사 첫 문단의 previous period 값",
+      "checked": "2026-10-09"
+    },
+    {
+      "date": "2026-09-04",
+      "value": -200.31,
+      "unit": "USD/dmt",
+      "provider": "SMM",
+      "product": "SMM Copper Concentrate Index (Weekly)",
+      "source_url": "https://news.metal.com/en/newscontent/104099029-codelco-q2-own-copper-production-declined-yoy-spot-tc-decline-slowed-smm-copper-concentrates-spot-weekly-review",
+      "locator": "2026-09-04 주간 기사 첫 문단 stood at -$200.31/dmt",
+      "checked": "2026-10-09"
+    },
+    {
+      "date": "2026-09-30",
+      "value": -231.68,
+      "low": -231.68,
+      "high": -231.68,
+      "unit": "USD/dmt",
+      "provider": "SMM",
+      "product": "SMM Copper Concentrate Index (Weekly)",
+      "source_url": "https://www-old.metal.com/Copper/201910240001",
+      "checked": "2026-10-09",
+      "locator": "공개 Copper 가격 목록 · Weekly 지수의 Avg. 및 Date · 로그인 이력은 수집하지 않음"
+    }
+  ],
+  "reference_value": 0,
+  "reference_label": "TC 0",
+  "highlight_gaps": true,
+  "change_mode": "none",
+  "snapshot_history": true,
+  "history_started": "2026-08-28",
+  "history_note": "공개 기사에서 확인한 2026-08-28·09-04와 수집 이후 공개 주간 값을 누적합니다. 전체 과거 이력은 미확보이며 빈 주를 생성하지 않습니다. 기사 공표 당시 값과 이후 정정 빈티지가 다를 수 있습니다.",
+  "description": "TC(Treatment Charge)는 광산 정광을 제련하는 대가입니다. 단위는 구리 금속 1톤이 아닌 건조 정광 1톤(USD/dmt)입니다. SMM의 중국 제련소 수입 현물 주간 지수이며 연간 장기계약 TC와 구분합니다.",
+  "note": "TC 하락은 정광 공급이 제련능력 대비 타이트해졌음을 시사합니다. 음수이면 같은 지급대상 금속가치 기준에서 TC 공제액이 가산액으로 바뀝니다. 구리 가격 자체가 음수이거나 모든 제련소가 적자라는 뜻은 아닙니다. RC는 지급대상 구리의 cents/lb이며 별도 계약값입니다. TC에서 RC를 자동 환산하지 않습니다. 매일 공개 가격표만 확인하고 원래 지수 날짜를 보존합니다. 7일 초과 공백은 점선이며, 장기 이력/API는 SMM 회원 서비스입니다.",
+  "collection_status": {
+    "checked": "2026-10-09",
+    "ok": true,
+    "message": "공식 공개 가격표 확인 · 지수 기준일은 별도"
+  }
+}

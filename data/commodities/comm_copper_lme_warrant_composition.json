@@ -1,0 +1,122 @@
+{
+  "id": "comm_copper_lme_warrant_composition",
+  "name": "LME 구리 · 등록·취소 워런트 구성",
+  "unit": "톤",
+  "frequency": "irregular",
+  "frequency_label": "공개표 검토",
+  "manual": true,
+  "reviewed": "2026-10-09",
+  "fetched": "2026-10-09",
+  "updated": "2026-10-02",
+  "data_stale_days": 14,
+  "source": "CNAL · 有色宝 공개 LME 구성표 (수기 검토)",
+  "source_url": "https://market.cnal.com/lme/2026/10-02/1790929490670346.shtml",
+  "source_original": "LME warehouse stocks · CNAL 재공표",
+  "source_records": [
+    {
+      "date": "2026-10-02",
+      "total": 248650,
+      "live": 134650,
+      "cancelled": 114000,
+      "reported_cancelled_share": 45.85,
+      "reported_previous_share": 47.01,
+      "unit": "metric tonnes",
+      "provider": "CNAL · 有色宝",
+      "source_url": "https://market.cnal.com/lme/2026/10-02/1790929490670346.shtml",
+      "image_url": "https://pic2.cnal.com/cnalmarket/lme/2026-10-02/1790929464947844.jpg",
+      "locator": "铜 행: 库存 / 注册仓单 / 注销仓单 / 注销占比 / 上日占比",
+      "checked": "2026-10-09"
+    }
+  ],
+  "series": {
+    "등록 (Live · 선물 인도 가능)": [
+      [
+        "2026-10-02",
+        134650
+      ]
+    ],
+    "취소 (Cancelled · 인도 대상 제외)": [
+      [
+        "2026-10-02",
+        114000
+      ]
+    ],
+    "총재고 (등록 + 취소)": [
+      [
+        "2026-10-02",
+        248650
+      ]
+    ]
+  },
+  "default_series": [
+    "등록 (Live · 선물 인도 가능)",
+    "취소 (Cancelled · 인도 대상 제외)",
+    "총재고 (등록 + 취소)"
+  ],
+  "highlight_gaps": true,
+  "change_mode": "none",
+  "series_views": {
+    "tonnes": {
+      "label": "등록·취소 물량",
+      "unit": "톤",
+      "series": {
+        "등록 (Live · 선물 인도 가능)": [
+          [
+            "2026-10-02",
+            134650
+          ]
+        ],
+        "취소 (Cancelled · 인도 대상 제외)": [
+          [
+            "2026-10-02",
+            114000
+          ]
+        ],
+        "총재고 (등록 + 취소)": [
+          [
+            "2026-10-02",
+            248650
+          ]
+        ]
+      },
+      "default_series": [
+        "등록 (Live · 선물 인도 가능)",
+        "취소 (Cancelled · 인도 대상 제외)",
+        "총재고 (등록 + 취소)"
+      ]
+    },
+    "share": {
+      "label": "취소 비중",
+      "unit": "%",
+      "series": {
+        "취소 비중": [
+          [
+            "2026-10-02",
+            45.8476
+          ]
+        ]
+      },
+      "default_series": [
+        "취소 비중"
+      ]
+    }
+  },
+  "default_view": "tonnes",
+  "basis_details": [
+    {
+      "label": "공식 취득 경로",
+      "value": "LME Stock breakdown: 2일 지연 XLS. 총재고·등록·취소·입고·출고를 금속·지역별로 제공하며 계정 로그인이 필요합니다."
+    },
+    {
+      "label": "현재 수록값",
+      "value": "CNAL의 2026-10-02 구리 행: 총재고 248,650톤 = 등록 134,650톤 + 취소 114,000톤. 취소 비중은 원문 45.85%, 계산 정밀값은 114,000 ÷ 248,650 × 100입니다."
+    },
+    {
+      "label": "범위",
+      "value": "검토된 한 시점입니다. 표의 원문 전일 비중 47.01%는 그 날짜의 총재고·취소톤 이력으로 역산하지 않습니다. 실제 입출고량은 아직 미확보입니다."
+    }
+  ],
+  "methodology_url": "https://www.lme.com/market-data/reports-and-data/warehouse-and-stocks-reports/stock-breakdown-report",
+  "description": "등록은 LME 선물 인도에 사용할 수 있는 창고증권 물량, 취소는 창고증권을 취소해 인도 대상에서 빠진 물량입니다. 취소 물량도 실제 출고 전에는 창고에 남고 총재고에 포함됩니다. 등록이 곧 즉시 매수 가능하거나 취소가 곧 소비됐다는 뜻은 아닙니다.",
+  "note": "현재 1개 공개표만 확인했습니다. 일간 전체 이력·실시간 자료가 아니며 자동 수집되지 않습니다. CNAL 원문 2026-10-02 취소 비중 45.85%, 원문 전일 47.01% 대비 -1.16%p. 첨부 보고서·기존 LME 총재고 카드와 제공처 또는 기준 시점이 달라 수치가 다를 수 있습니다. 총재고 합산에는 기존 총재고만 사용하며 이 카드를 더하지 않습니다."
+}

@@ -167,6 +167,10 @@ async function renderIndustry() {
     content.appendChild(intro);
   }
 
+  if (ind.id === "commodities" && state.subtab === "copper" && typeof renderCopperMarketGuide === "function") {
+    content.appendChild(renderCopperMarketGuide());
+  }
+
   // 빈 대시보드와 '아직 불러오는 중'을 구분한다. 카드는 아래 루프에서 하나씩 채워지고,
   // 이 줄은 전부 끝난 뒤 제거된다.
   const loading = document.createElement("div");
@@ -494,7 +498,7 @@ function renderCard(doc, indicatorId) {
   const sd = staleDays(doc);
   head.innerHTML = `
     <div class="card-name">${doc.name}</div>
-    <div class="card-freq">${{ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기", semiannual: "반기", yearly: "연간", irregular: "신고 기준" }[doc.frequency] || ""}${doc.manual ? " · 수기입력" : ""}${doc.full_range ? " · 전체기간" : ""}${
+    <div class="card-freq">${doc.frequency_label ? escapeHtml(doc.frequency_label) : ({ daily: "일간", weekly: "주간", monthly: "월간", quarterly: "분기", semiannual: "반기", yearly: "연간", irregular: "신고 기준" }[doc.frequency] || "")}${doc.manual ? " · 수기입력" : ""}${doc.full_range ? " · 전체기간" : ""}${
       sd ? `<span class="stale-badge" title="마지막 수집: ${doc.fetched}">수집 ${sd}일 전</span>` : ""
     }</div>`;
   card.appendChild(head);

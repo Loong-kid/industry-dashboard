@@ -10,6 +10,14 @@ GRADES = {'pyrometallurgical': '화법동', 'hydrometallurgical': '습법동'}
 CONTRACTS = {'warehouse_warrant': '창고증권', 'bill_of_lading': '선하증권'}
 PROCESS_EXPLANATION = ('화법동은 고온 제련 후 전해정련으로 정제한 구리, 습법동은 광석에서 구리를 용액으로 녹여 추출한 뒤 전기로 회수한 구리(SX-EW)입니다. '
     '둘 다 고순도 전기동으로 생산될 수 있으므로 습법동을 저순도 구리로 보면 안 됩니다. 이 그래프는 제조 경로별 시장 구분이며, 두 선의 프리미엄 차이를 순도 차이로 해석하지 않습니다.')
+CONTRACT_EXPLANATION = {
+    'warehouse_warrant': '보세창고에 보관된 정련동을 창고증권 조건으로 거래할 때 LME 기준가격에 붙는 추가 가격입니다. LME 선물 인도용 워런트·SHFE 등록 창고증권이나 재고량이 아닙니다. 중국 내수 수입 통관 전의 물량입니다. ',
+    'bill_of_lading': '정련동을 선하증권(B/L) 조건으로 거래할 때 LME 기준가격에 붙는 추가 가격입니다. 주로 해상 운송 중·도착 예정 물량이지만 도착 후에도 B/L로 거래될 수 있습니다. 운임 그 자체나 정광 제련수수료가 아닙니다. ',
+}
+
+
+def description_for(contract):
+    return f'상하이 양산 구리 {CONTRACTS[contract]} 프리미엄의 공시 중간값입니다. ' + CONTRACT_EXPLANATION[contract] + PROCESS_EXPLANATION
 
 
 def validate(row):
@@ -56,7 +64,7 @@ def run(folder):
             series=series, default_series=list(series), highlight_gaps=True, gaps=gaps,
             snapshot_history=True, history_note=f'{dates[0]}부터 확인된 Mysteel 과거 관측값을 포함합니다.',
             source_records=rows, excluded_observations=len([r for r in flagged if r['contract']==contract]),
-            description=f'상하이 양산 구리 {title} 프리미엄의 공시 중간값입니다. ' + PROCESS_EXPLANATION,
+            description=description_for(contract),
             note=f'{dates[0]}~{dates[-1]} 공개 관측값. 누락 구간도 선으로 연결하지만 값을 보간·생성하지 않습니다. 7일 초과 관측 간격은 점선으로 표시하며 휴일도 포함될 수 있습니다. 원문 가격 범위와 중간값이 불일치한 자료는 제외했습니다. ETA·QP 조건은 원문에 따라 바뀝니다. 일회 수집 자료이며 자동 갱신은 아직 설정하지 않았습니다.'))
     smm = json.loads((folder / 'smm_yangshan_snapshot.json').read_text(encoding='utf-8'))
     series = {CONTRACTS[r['contract']]: [[r['date'], r['midpoint']]] for r in smm['observations'] if validate(r)}

@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
-from import_yangshan import OUT, GRADES, CONTRACTS, validate
+from import_yangshan import OUT, GRADES, CONTRACTS, validate, description_for
 
 LIST_URL = 'https://list1.mysteel.com/article/p-2409----0201---------1.html'
 SMM_URL = 'https://www.smm.com.cn/price'
@@ -131,6 +131,11 @@ def merge(doc, rows, today):
     result['source_records'] = [old_records[k] for k in sorted(old_records)]
     result['updated'] = max(p[0] for points in result['series'].values() for p in points)
     result['fetched'] = today
+    if any('grade' in row for row in rows):
+        contracts = {row['contract'] for row in rows}
+        if len(contracts) != 1:
+            raise ValueError('Mixed contracts in Mysteel document')
+        result['description'] = description_for(next(iter(contracts)))
     result['gaps'] = [dict(series=name, **{'from': a, 'to': b})
                       for name, points in result['series'].items()
                       for (a, _), (b, _) in zip(points, points[1:])

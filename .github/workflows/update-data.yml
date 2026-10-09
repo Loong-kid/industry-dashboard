@@ -254,6 +254,15 @@ jobs:
         timeout-minutes: 6
         run: python scripts/fetch_yangshan.py
 
+      - name: 정광 TC 공식 공개 주간값 확인
+        continue-on-error: true
+        timeout-minutes: 2
+        run: python scripts/fetch_copper_tc.py
+      - name: LME 검토표·양산 프리미엄 차이 계산
+        run: python scripts/derive_copper_market.py
+      - name: 구리 TC·워런트·프리미엄 차이 검증
+        run: python -m unittest discover -s scripts -p test_copper_market.py
+
       # 천연가스·비료 (FRED 키 + Yahoo, 구 natgas-monitor 이관)
       - name: 천연가스 수집
         continue-on-error: true
