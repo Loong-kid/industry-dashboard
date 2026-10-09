@@ -10,7 +10,7 @@ STAGES = {"cell": "셀 제조", "battery": "배터리 제품 · 셀/모듈 미�
           "system": "시스템 · 모듈/컨테이너 조립", "finance": "재무 · 공시 범위 합산"}
 STATUSES = {"actual": "공시 실적 / 가동 확인", "design": "프로젝트 설계·계획",
             "target": "향후 목표", "contracted": "공급 계약 / 수주", "framework": "전략적·기본 협약"}
-MEASURES = {"capacity", "production_milestone", "sales", "shipments", "contract",
+MEASURES = {"capacity", "production", "production_milestone", "sales", "shipments", "contract",
             "project_delivery", "framework", "revenue", "gross_profit", "gross_margin",
             "revenue_mix", "order_intake", "backlog", "revenue_growth"}
 FINANCIAL = {"revenue", "gross_profit", "gross_margin", "revenue_mix", "revenue_growth"}
@@ -40,7 +40,9 @@ def build(source):
         assert (item["stage"] == "finance") == (item["measure"] in FINANCIAL)
         if item["measure"] == "capacity":
             assert item["unit"] == "GWh/년"
-            assert item["stage"] in {"cell", "system"}
+            assert item["stage"] in {"cell", "battery", "system"}
+        if item["measure"] == "production":
+            assert item["stage"] == "cell" and item["unit"] == "백만 셀"
         if item["status"] != "actual":
             assert item["target_period"]
         if item["measure"] in {"contract", "order_intake", "backlog"}:
@@ -123,6 +125,21 @@ def build(source):
                     snapshot_history=True, history_note="연간과 상반기는 별도로 비교합니다. 결측 기간은 추정하지 않습니다.")
         cards.append(card)
     doc.pop("metrics")
+    for row in doc.get("focus_history", []):
+        assert row["company"] in doc["focus_companies"]
+        assert row["kind"] in {"revenue", "capacity"}
+        assert len(row["periods"]) == 5
+        for year, point in row["periods"].items():
+            assert year in {"2021", "2022", "2023", "2024", "2025"}
+            assert point["source"] in sources and point["label"]
+            if "value" in point:
+                assert math.isfinite(point["value"]) and point["value"] > 0
+                assert point["status"] == "actual"
+            else:
+                assert point["status"] == "unverified"
+    for target in doc.get("focus_targets", []):
+        assert target["status"] == "target" and target["source"] in sources
+        assert target["company"] in doc["focus_companies"] and target["target_period"]
     doc.update(cards=cards, stages=STAGES, statuses=STATUSES, updated=doc["reviewed"],
                excluded_views=excluded, minimum_history_periods=2)
     return doc

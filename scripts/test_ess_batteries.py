@@ -14,7 +14,7 @@ class ReviewedBatteryMetricsTest(unittest.TestCase):
     def test_scope_and_source_regressions(self):
         doc = build(self.raw)
         self.assertEqual(len(doc["companies"]), 10)
-        self.assertEqual(len(doc["cards"]), 13)
+        self.assertEqual(len(doc["cards"]), 15)
         cards = {c["id"].removeprefix("ess_battery_"): c for c in doc["cards"]}
         archive = {c["id"].removeprefix("ess_battery_"): c for c in self.raw["metrics"]}
         # These are not interchangeable cell capacity, system capacity or revenue.
@@ -59,6 +59,24 @@ class ReviewedBatteryMetricsTest(unittest.TestCase):
         item = next(m for m in self.raw["metrics"] if m["id"] == "ess_battery_sk_contract")
         item["views"]["snapshot"]["points"][0]["source"] = "missing"
         with self.assertRaises(AssertionError): build(self.raw)
+
+    def test_focused_history_preserves_units_and_disclosure_gaps(self):
+        doc = build(self.raw)
+        cards = {c["id"].removeprefix("ess_battery_"): c for c in doc["cards"]}
+        def points(key): return next(iter(cards[key]["series_views"]["annual"]["series"].values()))
+        self.assertEqual(points("lg_ess_capa"), [["2024-12-31",12],["2025-12-31",36]])
+        self.assertEqual(points("sdi_ess_production"), [["2021-12-31",20.3],["2022-12-31",20.8],["2023-12-31",20.6],["2024-12-31",22.2]])
+        self.assertEqual(cards["sdi_ess_production"]["unit"], "백만 셀")
+        self.assertEqual(points("catl_revenue")[0], ["2021-12-31",13623.8347])
+        self.assertEqual([p[1] for p in points("catl_margin")[:3]], [28.52,17.01,23.79])
+        self.assertNotIn("2026-12-31", dict(points("lg_ess_capa")))
+        self.assertEqual(doc["focus_companies"], ["catl","lg","sdi","sk"])
+        for row in doc["focus_history"]:
+            if row["kind"] == "revenue" and row["company"] != "catl":
+                self.assertTrue(all("value" not in p for p in row["periods"].values()))
+        raw = copy.deepcopy(self.raw)
+        next(m for m in raw["metrics"] if m["measure"] == "production")["unit"] = "GWh"
+        with self.assertRaises(AssertionError): build(raw)
 
     def test_rejects_capacity_as_output_or_finance(self):
         item = next(m for m in self.raw["metrics"] if m["measure"] == "capacity")

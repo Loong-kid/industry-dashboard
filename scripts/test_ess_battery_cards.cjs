@@ -32,7 +32,7 @@ for(const c of doc.cards) for(const v of Object.values(c.series_views)){
   assert(table.includes('https://'),c.id);
   if(Object.keys(v.value_qualifiers).length){assert(stat.innerHTML.includes('> '));assert(table.includes('> '));}
 }
-assert.equal(doc.cards.length,13);
+assert.equal(doc.cards.length,15);
 assert.equal(doc.companies.length,10);
 const cat=JSON.parse(fs.readFileSync('data/catalog.json','utf8'));
 const sections=cat.industries.find(i=>i.id==='ess').sections;
