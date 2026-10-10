@@ -203,6 +203,11 @@ jobs:
           python scripts/aggregate_ess_factories.py
           python -m unittest discover -s scripts -p test_ess_factories.py
 
+      - name: ESS 제품 사양 수동 검토 자료 검증·게시
+        run: |
+          python scripts/aggregate_ess_products.py
+          python -m unittest discover -s scripts -p test_ess_products.py
+
       - name: ESS 배터리 셀·시스템 공시 자료 검증·게시
         run: |
           python scripts/aggregate_ess_batteries.py

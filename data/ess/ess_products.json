@@ -1,0 +1,389 @@
+{
+  "id": "ess_products",
+  "name": "테슬라·플루언스 ESS 제품 사양",
+  "manual": true,
+  "reviewed": "2026-10-10",
+  "description": "제조사 기술자료의 제품·구성별 사양입니다. 용량·출력·효율은 아래에 표시한 측정 범위를 함께 확인하세요.",
+  "note": "MWh는 저장 에너지, MW는 AC 유효출력입니다. 최대 전류·셀 CP-rate를 MW로 환산하지 않았습니다. 자료에 없는 항목은 미공개로 표시합니다. 효율의 시험 조건이 달라 수치만으로 순위를 매기지 않습니다. UL 9540A는 열폭주·화재 전파 시험 방법이며 제품 인증과 구분합니다.",
+  "sources": {
+    "tesla_2026": {
+      "author": "Tesla",
+      "label": "Tesla Megablock / Megapack 3 데이터시트",
+      "url": "https://carpenterhillpower.com/files/megablock-datasheet.pdf",
+      "revision": "Rev. 1.7 · 2026-06-29",
+      "host_note": "Tesla 작성 · Carpenter Hill 프로젝트 공개 문서 재게시",
+      "pages": 3,
+      "sha256": "e3ebcf34838485961bced039ea183f346ca131def5526524faf3e5d3c75a6504"
+    },
+    "gridstack_pro": {
+      "author": "Fluence",
+      "label": "Gridstack Pro 기술 브로슈어",
+      "url": "https://info.fluenceenergy.com/hubfs/Fluence%20Gridstack%20Pro_Global_US%20EN.pdf",
+      "revision": "BR-042-04-EN · ©2024 (발행일 미표기)",
+      "host_note": "Fluence 공식 PDF",
+      "pages": 6,
+      "sha256": "5e5c89a128d24fd5c4bc490b35947c19d38e34c125781f51ff7c9d3e2832fb9f"
+    },
+    "smartstack": {
+      "author": "Fluence",
+      "label": "Smartstack 기술 브로슈어",
+      "url": "https://info.fluenceenergy.com/hubfs/Fluence-Smartstack_Global-Specs_BR-061-03-EN.pdf",
+      "revision": "BR-061-03-EN · ©2026 (발행일 미표기)",
+      "host_note": "Fluence 공식 PDF",
+      "pages": 5,
+      "sha256": "f619e41cb5750d60380fbd655615498d21fde888354fb394e23a772fcfa45421"
+    }
+  },
+  "products": {
+    "megapack_3": {
+      "company": "tesla",
+      "company_name": "Tesla Energy",
+      "name": "Megapack 3 / Megablock",
+      "rating_status": "standard",
+      "rating_label": "Tesla 표준 구성",
+      "capacity_scope": "battery_unit",
+      "capacity_basis": "Megapack 3 한 대의 공칭 에너지 · 25°C. Megablock 전체 용량이 아닙니다.",
+      "architecture": "Megapack 3 개별 장치 + Tesla System Controller. MV 완제품 Megablock은 Megapack 3 두 대 이상과 MV 변압기·LV 연결부·MV 개폐기·통신 인터페이스로 구성됩니다. 전체 블록의 용량·외형·중량은 구성별 확인이 필요합니다.",
+      "electrical": "480 V AC · 3상 · 50/60 Hz",
+      "rte_basis": "25°C, 전체 방전 깊이의 충·방전 사이클. 전력 변환 및 열관리 손실 포함. 개별 Megapack 기준이며 MV 변압기까지 포함한 계통 접속점 효율은 미표기.",
+      "environment": "−40~+50°C",
+      "protection": "주 외함 IP66 / NEMA 3R · 열관리 구획 IP2X",
+      "cooling": "방식 미표기 (열관리 손실은 RTE에 포함)",
+      "controls": "Tesla System Controller (Megablock 통신 인터페이스 연결)",
+      "certifications": "UL 1973 · UL 9540 · UL 1642 · IEC 62619 · IEEE 1547 (자료에 열거된 주요 인증)",
+      "fire_testing": "UL 9540A 시험을 충족·초과하도록 설계한다는 제조사 설명. 시험 성적서·프로젝트별 인증 범위는 별도 확인.",
+      "availability": "미공개",
+      "response_time": "미공개",
+      "warranty": "이 데이터시트에 보증 기간·보증 사이클·잔존 용량 조건 미공개",
+      "chemistry": "셀 화학계·공급사 미표기",
+      "extra": "BM01/BM02 기반 Tesla-Standard 값입니다. 데이터시트의 배터리 모듈 옵션별 최대 출력·에너지는 별도 값이므로 이 표의 표준값과 혼합하지 않았습니다. 인버터 kVA는 피상전력으로 AC 유효출력 kW와 구분합니다.",
+      "references": [
+        {
+          "source": "tesla_2026",
+          "page": 2,
+          "fields": "표준 에너지·AC 유효출력·RTE·방전 시간·모듈 옵션"
+        },
+        {
+          "source": "tesla_2026",
+          "page": 3,
+          "fields": "전압·온도·IP·외형·운송 중량·인증"
+        },
+        {
+          "source": "tesla_2026",
+          "page": 1,
+          "fields": "Megablock MV 구성·System Controller"
+        }
+      ]
+    },
+    "gridstack_pro": {
+      "company": "fluence",
+      "company_name": "Fluence Energy",
+      "name": "Gridstack Pro",
+      "rating_status": "design_estimate",
+      "rating_label": "설계 추정치 · 보증값 아님",
+      "capacity_scope": "battery_enclosure",
+      "capacity_basis": "배터리 팩 옵션 / 외함의 에너지 용량. AC/DC 측정 기준 미명시. PCS·변압기 포함 AC 블록 전체 용량이 아닙니다.",
+      "architecture": "배터리 외함·Fluence BMS·OS7을 사용하는 통합 ESS 솔루션. PCS·변압기·MV 인프라 배치는 프로젝트별 시스템 설계에 따릅니다. 외함 크기·중량에는 이 설비들의 전체 범위가 포함되지 않습니다.",
+      "electrical": "DC 최대 1,500 V · 50/60 Hz · AC 전압 미공개",
+      "rte_basis": "브로슈어 시스템 RTE >87%. AC/DC 측정 경계·온도·방전 깊이·보조전력 포함 여부 미명시. 프로젝트별 설계 추정치.",
+      "environment": "−20~+50°C",
+      "protection": "배터리 외함 IP55",
+      "cooling": "액체 냉각 · 무감액 고도 2,000 m",
+      "controls": "Fluence OS7 · BMS/시스템 제어 · Modbus/DNP3/OPC UA · Nispera · Mosaic은 선택 서비스(일부 시장)",
+      "certifications": "UL/IEC · UL 1741 · UL 1741 SA / IEEE 1547 · NFPA 68/69/72/855 (브로슈어 열거 규격)",
+      "fire_testing": "UL 9540A 셀·모듈·유닛 시험. 안전 설명은 UL 9540/9540A/NFPA 855 및 대규모 화재 시험 설계를 언급합니다.",
+      "availability": ">97% (설계 추정치)",
+      "response_time": "150 ms (설계 추정치)",
+      "warranty": "이 브로슈어에 표준 보증 기간·사이클·잔존 용량 조건 미공개",
+      "chemistry": "3XX/5XX Ah 옵션만 표기 · 화학계·공급사 미분리",
+      "extra": "2쪽의 모든 사양은 설계 추정치이며 보장되지 않는다고 명시합니다. 셀 CP-rate를 AC 정격 MW로 사용하지 않습니다. 전체 시스템 설치 면적과 배터리 외함 면적을 구분합니다.",
+      "references": [
+        {
+          "source": "gridstack_pro",
+          "page": 2,
+          "fields": "팩 옵션·에너지·CP-rate·RTE·온도·외형·중량·규격·제어"
+        },
+        {
+          "source": "gridstack_pro",
+          "page": 5,
+          "fields": "인버터·변압기·MV 인프라를 포함한 프로젝트 구성"
+        },
+        {
+          "source": "gridstack_pro",
+          "page": 6,
+          "fields": "화재 시험·환기·감지 설계"
+        }
+      ]
+    },
+    "smartstack": {
+      "company": "fluence",
+      "company_name": "Fluence Energy",
+      "name": "Smartstack",
+      "rating_status": "design_estimate",
+      "rating_label": "설계 추정치 · 보증값 아님",
+      "capacity_scope": "pack_option",
+      "capacity_basis": "브로슈어 배터리 팩 옵션별 에너지. AC/DC 측정 경계 미명시. Skid와 Pod의 치수·중량은 각 부품 기준입니다.",
+      "architecture": "Smart Skid + 배터리 Pod의 분리 구조, Fluence OS7 기반 통합 솔루션. 690 V AC 인터페이스를 표기하며 부품별 크기·중량과 프로젝트 전체 설치 범위를 구분합니다.",
+      "electrical": "690 V 3AC IT · DC 최대 1,500 V · 50/60 Hz",
+      "rte_basis": "이 브로슈어에 RTE 미공개. Gridstack Pro의 >87%를 적용하지 않았습니다.",
+      "environment": "−30~+55°C · 50°C 초과 시 출력 감액",
+      "protection": "배터리 외함 IP55",
+      "cooling": "액체 냉각 · 고도 2,000 m, 최대 4,000 m까지 감액 · 25°C/1 m 소음 70 dB(A)",
+      "controls": "Fluence OS7 · BMS/시스템 제어 · Modbus/DNP3/OPC UA · Nispera · Mosaic은 선택 서비스(일부 시장)",
+      "certifications": "UL 9540 · IEC 62933 · IEC 62477-1 · UL 1741 · CSA C22.2 No.107.1 · NFPA 68/69 등 (브로슈어 열거 규격)",
+      "fire_testing": "UL 9540A 시험 방법. Pod 격리·간격 및 Skid 소화 설계 설명이며 개별 프로젝트의 시험 성적서는 별도 확인.",
+      "availability": "최대 99% (설계 추정치 / 선택 서비스 계약 보장)",
+      "response_time": "미공개",
+      "warranty": "선택 Smart Service Plans의 Energy Capacity Guarantee 최대 25년. 모든 제품의 기본 25년 보증이나 수명을 뜻하지 않습니다. 보증 사이클·잔존 용량 세부 조건 미공개.",
+      "chemistry": "3XX Ah 표기 · 정확한 Ah·화학계·공급사 미분리",
+      "extra": "2쪽의 모든 사양은 설계 추정치이며 보장되지 않는다고 명시합니다. 최대 AC 전류는 유효출력 MW가 아니므로 역률이나 지속 출력 조건을 가정해 환산하지 않았습니다. Skid와 단일 Pod 중량을 전체 시스템 중량으로 합산하지 않았습니다.",
+      "references": [
+        {
+          "source": "smartstack",
+          "page": 2,
+          "fields": "옵션별 용량·전류·방전 시간·치수·온도·규격·제어"
+        },
+        {
+          "source": "smartstack",
+          "page": 4,
+          "fields": "선택 서비스 계약·최대 25년 용량 보장"
+        },
+        {
+          "source": "smartstack",
+          "page": 5,
+          "fields": "Pod 격리·Skid 소화·화재 시험 설계"
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "id": "megapack3_2h",
+      "product": "megapack_3",
+      "variant": "2시간 · Tesla-Standard",
+      "energy_kwh": {
+        "min": 4372,
+        "max": 4372,
+        "qualifier": "exact"
+      },
+      "ac_power_kw": {
+        "min": 2186,
+        "max": 2186,
+        "qualifier": "exact"
+      },
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 89.7,
+        "max": 89.7,
+        "qualifier": "exact"
+      },
+      "duration_hours": [
+        2
+      ],
+      "duration_basis": "개별 Megapack 표준 구성",
+      "power_basis": "개별 Megapack의 AC 유효출력",
+      "dimensions": "W 8,550 × D 1,925 × H 2,845 mm",
+      "mass": "39,010 kg",
+      "mass_basis": "표준 Megapack 한 대의 운송 중량 · MV 조립체 제외",
+      "cell_rate": "미표기",
+      "extra": "인버터 최대 피상전력 3,180 kVA (MW 아님) · BM01/BM02 옵션"
+    },
+    {
+      "id": "megapack3_4h",
+      "product": "megapack_3",
+      "variant": "4시간 · Tesla-Standard",
+      "energy_kwh": {
+        "min": 4826,
+        "max": 4826,
+        "qualifier": "exact"
+      },
+      "ac_power_kw": {
+        "min": 1206,
+        "max": 1206,
+        "qualifier": "exact"
+      },
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 92.5,
+        "max": 92.5,
+        "qualifier": "exact"
+      },
+      "duration_hours": [
+        4
+      ],
+      "duration_basis": "개별 Megapack 표준 구성",
+      "power_basis": "개별 Megapack의 AC 유효출력",
+      "dimensions": "W 8,550 × D 1,925 × H 2,845 mm",
+      "mass": "39,010 kg",
+      "mass_basis": "표준 Megapack 한 대의 운송 중량 · MV 조립체 제외",
+      "cell_rate": "미표기",
+      "extra": "인버터 최대 피상전력 1,596 kVA (MW 아님) · BM01/BM02 옵션"
+    },
+    {
+      "id": "megapack3_8h",
+      "product": "megapack_3",
+      "variant": "8시간 · Tesla-Standard",
+      "energy_kwh": {
+        "min": 4824,
+        "max": 4824,
+        "qualifier": "exact"
+      },
+      "ac_power_kw": {
+        "min": 603,
+        "max": 603,
+        "qualifier": "exact"
+      },
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 92.5,
+        "max": 92.5,
+        "qualifier": "exact"
+      },
+      "duration_hours": [
+        8
+      ],
+      "duration_basis": "개별 Megapack 표준 구성",
+      "power_basis": "개별 Megapack의 AC 유효출력",
+      "dimensions": "W 8,550 × D 1,925 × H 2,845 mm",
+      "mass": "39,010 kg",
+      "mass_basis": "표준 Megapack 한 대의 운송 중량 · MV 조립체 제외",
+      "cell_rate": "미표기",
+      "extra": "인버터 최대 피상전력 798 kVA (MW 아님) · BM01/BM02 옵션"
+    },
+    {
+      "id": "gridstack_2000",
+      "product": "gridstack_pro",
+      "variant": "2000 Series · 3XX Ah",
+      "energy_kwh": {
+        "min": 2436,
+        "max": 2436,
+        "qualifier": "exact"
+      },
+      "ac_power_kw": null,
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 87,
+        "max": 87,
+        "qualifier": "greater_than"
+      },
+      "duration_hours": [],
+      "duration_basis": "플랫폼 2·4·6·8시간. 팩 옵션별 지원 구성 미분리; 5XX Ah에 2시간 지원을 단정하지 않습니다.",
+      "power_basis": "AC 정격 MW 미공개 · CP-rate로 환산하지 않음",
+      "dimensions": "H 2,550 × L 7,537 × D 1,734 mm",
+      "mass": "약 22,400~23,300 kg",
+      "mass_basis": "배터리 외함 · 냉각수 제외 · PCS/변압기 제외",
+      "cell_rate": "최대 CP-rate 0.5",
+      "extra": "응답 시간·RTE·가용성은 플랫폼 공통 설계 추정치"
+    },
+    {
+      "id": "gridstack_5000_3xx",
+      "product": "gridstack_pro",
+      "variant": "5000 Series · 3XX Ah",
+      "energy_kwh": {
+        "min": 4872,
+        "max": 5016,
+        "qualifier": "range"
+      },
+      "ac_power_kw": null,
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 87,
+        "max": 87,
+        "qualifier": "greater_than"
+      },
+      "duration_hours": [],
+      "duration_basis": "플랫폼 2·4·6·8시간. 팩 옵션별 지원 구성 미분리; 5XX Ah에 2시간 지원을 단정하지 않습니다.",
+      "power_basis": "AC 정격 MW 미공개 · CP-rate로 환산하지 않음",
+      "dimensions": "H 2,896 × L 6,820 × D 2,438 mm",
+      "mass": "43,500 kg",
+      "mass_basis": "배터리 외함 · 냉각수 제외 · PCS/변압기 제외",
+      "cell_rate": "최대 CP-rate 0.5",
+      "extra": "응답 시간·RTE·가용성은 플랫폼 공통 설계 추정치"
+    },
+    {
+      "id": "gridstack_5000_5xx",
+      "product": "gridstack_pro",
+      "variant": "5000 Series · 5XX Ah",
+      "energy_kwh": {
+        "min": 5644,
+        "max": 5644,
+        "qualifier": "exact"
+      },
+      "ac_power_kw": null,
+      "ac_current_a": null,
+      "rte_percent": {
+        "min": 87,
+        "max": 87,
+        "qualifier": "greater_than"
+      },
+      "duration_hours": [],
+      "duration_basis": "플랫폼 2·4·6·8시간. 팩 옵션별 지원 구성 미분리; 5XX Ah에 2시간 지원을 단정하지 않습니다.",
+      "power_basis": "AC 정격 MW 미공개 · CP-rate로 환산하지 않음",
+      "dimensions": "H 2,896 × L 6,058 × D 2,438 mm",
+      "mass": "45,500 kg",
+      "mass_basis": "배터리 외함 · 냉각수 제외 · PCS/변압기 제외",
+      "cell_rate": "최대 CP-rate 0.25",
+      "extra": "응답 시간·RTE·가용성은 플랫폼 공통 설계 추정치"
+    },
+    {
+      "id": "smartstack_75",
+      "product": "smartstack",
+      "variant": "7.5 MWh 옵션",
+      "energy_kwh": {
+        "min": 7308,
+        "max": 7524,
+        "qualifier": "range"
+      },
+      "ac_power_kw": null,
+      "ac_current_a": {
+        "min": 3762,
+        "max": 3762,
+        "qualifier": "up_to"
+      },
+      "rte_percent": null,
+      "duration_hours": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "duration_basis": "옵션별 브로슈어 표기 방전 시간",
+      "power_basis": "AC 정격 MW 미공개 · 최대 AC 출력 전류만 공개",
+      "dimensions": "Skid L 7,371 × D 2,202 × H 1,616 mm\nPod L 1,764 × D 2,656 × H 2,524 mm",
+      "mass": "Skid 약 10,000 kg · 단일 Pod 약 15,000 kg",
+      "mass_basis": "각 부품 중량 · Pod 수 미확인으로 전체 중량 합산 안 함",
+      "cell_rate": "CP-rate ≤0.5",
+      "extra": "7.5 / 10 MWh는 옵션 명칭이며 정확한 에너지 사양은 별도 열에 표시"
+    },
+    {
+      "id": "smartstack_10",
+      "product": "smartstack",
+      "variant": "10 MWh 옵션",
+      "energy_kwh": {
+        "min": 10000,
+        "max": 10000,
+        "qualifier": "approx"
+      },
+      "ac_power_kw": null,
+      "ac_current_a": {
+        "min": 2508,
+        "max": 2508,
+        "qualifier": "exact"
+      },
+      "rte_percent": null,
+      "duration_hours": [
+        4,
+        6,
+        8
+      ],
+      "duration_basis": "옵션별 브로슈어 표기 방전 시간",
+      "power_basis": "AC 정격 MW 미공개 · 최대 AC 출력 전류만 공개",
+      "dimensions": "Skid L 7,371 × D 2,202 × H 1,616 mm\nPod L 1,764 × D 2,656 × H 3,330 mm",
+      "mass": "Skid 약 10,000 kg · 단일 Pod 약 20,000 kg",
+      "mass_basis": "각 부품 중량 · Pod 수 미확인으로 전체 중량 합산 안 함",
+      "cell_rate": "CP-rate 0.25",
+      "extra": "7.5 / 10 MWh는 옵션 명칭이며 정확한 에너지 사양은 별도 열에 표시"
+    }
+  ],
+  "updated": "2026-10-10"
+}

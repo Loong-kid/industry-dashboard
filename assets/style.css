@@ -502,6 +502,24 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .factory-regional-targets, .factory-claim-checks { margin-top:16px; }
 .factory-regional-targets .order-table-wrap table { min-width:750px; table-layout:auto; }
 .factory-claim-checks article { margin:14px 0; padding:12px 0; border-top:1px solid var(--border); }
+.ess-products { min-width:0; }
+.ess-products .order-table-wrap table { min-width:2130px; table-layout:fixed; white-space:normal; }
+.ess-products caption { text-align:left; color:var(--muted); font-size:12px; padding-bottom:10px; }
+.ess-products .order-table-wrap th { cursor:default; }
+.ess-products .order-table-wrap td, .ess-products .order-table-wrap tbody th { vertical-align:top; text-align:left; line-height:1.6; overflow-wrap:anywhere; }
+.ess-products .order-table-wrap tbody th { position:static; color:var(--ink); background:transparent; letter-spacing:normal; font-size:12px; }
+.ess-products .order-table-wrap th:first-child { position:sticky; left:0; background:var(--surface); box-shadow:1px 0 var(--border); width:190px; z-index:1; }
+.ess-products .order-table-wrap tbody th:first-child { top:auto; }
+.ess-products .order-table-wrap thead th:first-child { z-index:3; }
+.ess-products th:nth-child(4) { width:185px; }
+.ess-products th:nth-child(7) { width:275px; }
+.ess-products th:nth-child(8) { width:280px; }
+.ess-products small { display:block; color:var(--muted); font-size:11px; line-height:1.55; margin:5px 0; font-weight:normal; }
+.ess-products summary { cursor:pointer; color:var(--accent); }
+.ess-products details p { margin:10px 0; font-size:11px; }
+.product-basis-note { font-size:12px; line-height:1.7; padding:10px 12px; border-left:2px solid var(--accent); background:var(--page); }
+.product-count { color:var(--muted); }
+.product-rating { display:inline-block; padding:2px 6px; border:1px solid var(--border); border-radius:4px; font-size:10px; font-weight:normal; }
 .ir-chart { min-width: 0; }
 .data-table a { color: var(--accent); white-space: nowrap; }
 

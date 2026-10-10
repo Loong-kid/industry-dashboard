@@ -209,6 +209,7 @@ async function renderIndustry() {
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
         : section.table_kind === "mocvd_disclosures" ? renderMOCVDTable
         : section.table_kind === "ess_factories" ? renderESSFactories
+        : section.table_kind === "ess_products" ? renderESSProducts
         : section.table_kind === "ess_batteries" ? doc => renderESSBatteries(doc, {view: section.battery_view})
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : section.table_kind === "copper_mines" ? renderCopperMines
