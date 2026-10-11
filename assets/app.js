@@ -11,6 +11,7 @@ const state = {
   catalog: null,
   industry: null,
   subtab: null,
+  photomaskView: "indicators",
   range: "1y",
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
   charts: [], // 렌더된 Chart 인스턴스 (재렌더 시 destroy)
@@ -88,13 +89,14 @@ function showBootError(e) {
 }
 
 function route() {
-  const [id, requestedTab] = location.hash.replace("#/", "").split("/");
+  const [id, requestedTab, requestedView] = location.hash.replace("#/", "").split("/");
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
   const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
   const prevSubtab = state.subtab;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
   state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
+  state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
@@ -130,12 +132,14 @@ async function renderIndustry() {
   if (!ind) return;
   const mySeq = ++renderSeq;
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab);
+  const photomask = ind.id === "semicon" && state.subtab === "snstech";
+  const irLibrary = photomask && state.photomaskView === "ir";
   document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedTab ? " · " + selectedTab.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -167,6 +171,10 @@ async function renderIndustry() {
     content.appendChild(intro);
   }
 
+  if (photomask && typeof renderPhotomaskViews === "function") {
+    content.appendChild(renderPhotomaskViews(state.photomaskView));
+  }
+
   if (ind.id === "commodities" && state.subtab === "copper" && typeof renderCopperMarketGuide === "function") {
     content.appendChild(renderCopperMarketGuide());
   }
@@ -181,6 +189,16 @@ async function renderIndustry() {
   loading.className = "page-loading";
   loading.textContent = "데이터 불러오는 중…";
   content.appendChild(loading);
+
+  if (irLibrary) {
+    const doc = await loadDoc("semicon", "photomask_ir_library");
+    if (mySeq !== renderSeq) return;
+    const err = state.docErrors.get("photomask_ir_library");
+    content.appendChild(err ? errorCard("semicon", "photomask_ir_library", err) : renderPhotomaskLibrary(doc));
+    loading.remove();
+    renderFootStatus(doc?.updated || "", doc ? [{name: doc.name, fetched: doc.fetched, stale: staleDays(doc)}] : [], ind);
+    return;
+  }
 
   let latestUpdate = "";
   const collected = []; // 수집 상태 판정용 { name, fetched }
