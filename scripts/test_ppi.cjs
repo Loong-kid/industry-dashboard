@@ -1,0 +1,23 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+(async () => {
+  const source = fs.readFileSync('assets/ppi.js', 'utf8');
+  const ppi = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+  assert.equal(ppi.shiftMonth('2026-01', -1), '2025-12');
+  assert.equal(ppi.shiftMonth('2026-01', -12), '2025-01');
+  const points = [['2025-01', 100], ['2025-12', 150], ['2026-01', 200]];
+  const stats = ppi.stats(points);
+  assert.equal(stats.yoy, 100);
+  assert(Math.abs(stats.mom - 100 / 3) < 1e-9);
+  assert.equal(ppi.stats([['2025-01', 100], ['2025-11', 150], ['2026-01', 200]]).mom, null);
+  assert.equal(ppi.stats(points, '2026-02').latest, null);
+  assert.equal(ppi.change(50, 0), null);
+  assert.deepEqual(ppi.transform(points, 'YoY %').at(-1), ['2026-01', 100]);
+  assert.deepEqual(ppi.transform(points, 'Indexed (=100)', '1Y', '2026-12'), [['2025-12', 100], ['2026-01', 200 / 150 * 100]]);
+  assert(ppi.matches({id: 'PCU123', title: 'Steel mill products'}, 'steel mill'));
+  assert(!ppi.matches({id: 'PCU123', title: 'Steel products'}, 'steel mill'));
+  assert(ppi.csvText(['Title', 'Value'], [['a,"b', null]]).startsWith('\uFEFF"Title","Value"\r\n"a,""b",""'));
+  const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
+  assert.equal(catalog.industries.filter(i => i.id === 'ppi').length, 1);
+  console.log('PASS: calendar-aligned YoY/MoM, missing months, indexed comparison, AND search, CSV, PPI navigation');
+})().catch(e => { console.error(e); process.exitCode = 1; });

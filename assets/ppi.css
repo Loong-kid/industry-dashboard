@@ -1,0 +1,44 @@
+/* Keep the original monitor's option rail, blue mini-charts and wide scanner. */
+.ppi-monitor h2 { font-size: 25px; margin: 4px 0 8px; }
+.ppi-monitor h3 { font-size: 18px; margin: 20px 0 12px; }
+.ppi-caption { color: var(--muted); font-size: 12px; line-height: 1.7; margin: 6px 0 12px; overflow-wrap: anywhere; }
+.ppi-layout { display: grid; grid-template-columns: 245px minmax(0, 1fr); gap: 28px; margin-top: 24px; }
+.ppi-controls { background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: 6px; align-self: start; }
+.ppi-body { min-width: 0; }
+.ppi-modes { border: 0; margin-bottom: 22px; }
+.ppi-modes legend { font-weight: 600; margin-bottom: 10px; }
+.ppi-modes label { display: flex; gap: 9px; align-items: center; margin: 10px 0; }
+.ppi-field { display: flex; flex-direction: column; gap: 7px; margin: 16px 0 6px; font-size: 12px; }
+.ppi-field:has(input[type=checkbox]) { flex-direction: row-reverse; justify-content: flex-end; align-items: center; }
+.ppi-field select, .ppi-field input[type=search] { width: 100%; padding: 8px; color: var(--ink); background: var(--page); border: 1px solid var(--border); border-radius: 4px; font: inherit; }
+.ppi-field input[type=range] { width: 100%; accent-color: var(--accent); }
+.ppi-controls output { font-size: 12px; color: var(--muted); }
+.ppi-source { font-size: 12px; line-height: 1.8; margin-top: 22px; overflow-wrap: anywhere; }
+.ppi-source summary { cursor: pointer; font-weight: 600; }
+.ppi-source p { margin-top: 8px; }
+.ppi-monitor a { color: var(--accent); }
+.ppi-grid { display: grid; grid-template-columns: repeat(var(--ppi-cols, 4), minmax(0, 1fr)); gap: 22px 16px; }
+.ppi-mini-card { min-width: 0; padding: 6px 0 14px; border-bottom: 1px solid var(--border); }
+.ppi-mini-card > a { display: block; font-size: 13px; line-height: 1.5; font-weight: 600; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.ppi-mini-card > a:hover { text-decoration: underline; }
+.ppi-chart-mini { height: 130px; margin: 8px 0; }
+.ppi-chart-large { height: 560px; margin: 22px 0; }
+.ppi-rise { color: #d62728; }
+.ppi-fall { color: #249543; }
+.ppi-message { padding: 18px; border: 1px solid var(--border); border-radius: 5px; color: var(--ink-2); }
+.ppi-button { font: inherit; font-size: 12px; padding: 7px 10px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; }
+.ppi-button:disabled { opacity: .45; cursor: default; }
+.ppi-selected { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.ppi-series-results { display: flex; flex-direction: column; gap: 8px; max-height: 230px; overflow: auto; padding: 12px; border: 1px solid var(--border); }
+.ppi-series-results label { display: flex; align-items: baseline; gap: 10px; font-size: 12px; overflow-wrap: anywhere; }
+.ppi-table-wrap { overflow: auto; border: 1px solid var(--border); margin-top: 12px; }
+.ppi-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12px; }
+.ppi-table th, .ppi-table td { text-align: right; white-space: nowrap; padding: 9px 12px; border-bottom: 1px solid var(--border); }
+.ppi-table th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.ppi-table th .ppi-button { border: 0; padding: 0; font-weight: 600; }
+.ppi-table td:first-child, .ppi-table th:first-child { text-align: left; min-width: 280px; max-width: 380px; white-space: normal; }
+.ppi-table td:nth-child(2) { text-align: left; }
+.ppi-pagination { display: flex; gap: 12px; align-items: center; margin-top: 12px; font-size: 12px; }
+@media (max-width: 1200px) { .ppi-layout { grid-template-columns: 210px minmax(0, 1fr); gap: 18px; } .ppi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .ppi-layout { grid-template-columns: minmax(0, 1fr); } .ppi-controls { width: 100%; } .ppi-monitor h2 { font-size: 21px; } .ppi-chart-large { height: 380px; } }
+@media (max-width: 420px) { .ppi-grid { grid-template-columns: minmax(0, 1fr); } }

@@ -2,7 +2,7 @@ name: publish-updated-data
 
 on:
   workflow_run:
-    workflows: [update-data]
+    workflows: [update-data, update-ppi]
     types: [completed]
     branches: [main]
   workflow_dispatch:

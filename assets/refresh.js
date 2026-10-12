@@ -14,6 +14,7 @@ const REFRESH_TARGETS = {
   institution: { file: "data/institution/major_holdings.json", label: "수급 갱신" },
   gifts: { file: "data/gifts/gift_plans.json", label: "증여 / 계획 갱신" },
   semicon: { file: "data/semicon/semicon_import_ttm.json", label: "무역통계 갱신" },
+  ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
 };
 const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
 function currentTarget() {
@@ -52,8 +53,8 @@ function setBtn(state, text) {
 }
 
 // ── GitHub API 흐름 ──────────────────────────────────────────────
-async function dispatchWorkflow() {
-  const res = await fetch(`${API}/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, {
+async function dispatchWorkflow(workflow = WORKFLOW) {
+  const res = await fetch(`${API}/repos/${REPO}/actions/workflows/${workflow}/dispatches`, {
     method: "POST",
     headers: ghHeaders(),
     body: JSON.stringify({ ref: "main" }),
@@ -64,10 +65,10 @@ async function dispatchWorkflow() {
   throw new Error(`dispatch 실패 (${res.status}): ${body.slice(0, 120)}`);
 }
 
-async function findRun(sinceMs) {
+async function findRun(sinceMs, workflow = WORKFLOW) {
   // dispatch 이후 생성된 최신 workflow_dispatch 런을 찾음
   const res = await fetch(
-    `${API}/repos/${REPO}/actions/runs?event=workflow_dispatch&per_page=5`,
+    `${API}/repos/${REPO}/actions/workflows/${workflow}/runs?event=workflow_dispatch&per_page=5`,
     { headers: ghHeaders() }
   );
   if (!res.ok) return null;
@@ -122,11 +123,11 @@ async function onRefresh() {
   try {
     setBtn("is-loading", "실행 요청…");
     const prevUpdated = await currentUpdated(target.file);
-    await dispatchWorkflow();
+    await dispatchWorkflow(target.workflow || WORKFLOW);
 
     setBtn("is-loading", "실행 대기…");
     let run = null;
-    for (let i = 0; i < 12 && !run; i++) { await sleep(3000); run = await findRun(started); }
+    for (let i = 0; i < 12 && !run; i++) { await sleep(3000); run = await findRun(started, target.workflow || WORKFLOW); }
     if (!run) throw new Error("실행된 워크플로를 찾지 못함 (Actions 탭 확인)");
 
     setBtn("is-loading", "수집 중…");
@@ -176,7 +177,9 @@ function closeModal() { $("pat-modal").hidden = true; }
 function setRefreshLabel() {
   if (busy) return;
   const label = $("refresh-label");
-  if (label) label.textContent = currentTarget().label;
+  const target = currentTarget();
+  if (label) label.textContent = target.label;
+  if ($("refresh-btn")) $("refresh-btn").title = `${target.label} — GitHub Actions로 최신 데이터를 수집합니다.`;
 }
 window.setRefreshLabel = setRefreshLabel;
 
@@ -190,7 +193,7 @@ function initRefresh() {
   $("pat-save").addEventListener("click", () => {
     const v = $("pat-input").value.trim();
     setPat(v);
-    $("pat-status").textContent = v ? "저장됨 — 이제 '수주 갱신'을 누르세요." : "토큰이 비었습니다.";
+    $("pat-status").textContent = v ? `저장됨 — 이제 '${currentTarget().label}'을 누르세요.` : "토큰이 비었습니다.";
     $("pat-status").className = "modal-status ok";
     if (v) setTimeout(closeModal, 900);
   });

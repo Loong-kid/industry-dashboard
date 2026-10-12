@@ -127,10 +127,12 @@ function renderNav() {
 // 렌더 세대: 무거운 탭 로딩(await) 중 다른 탭을 클릭하면, 이전 렌더의 await가
 // 뒤늦게 끝나며 새 탭 화면에 옛 카드를 붙이는 경쟁이 있었다. mySeq로 stale 렌더를 중단.
 let renderSeq = 0;
+let ppiCleanup = null;
 async function renderIndustry() {
   const ind = state.industry;
   if (!ind) return;
   const mySeq = ++renderSeq;
+  if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab);
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
@@ -138,14 +140,26 @@ async function renderIndustry() {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
 
   const content = document.getElementById("content");
   content.innerHTML = "";
+
+  if (ind.id === "ppi") {
+    const loading = document.createElement("p");
+    loading.className = "page-loading"; loading.textContent = "PPI 모니터 불러오는 중…"; content.appendChild(loading);
+    try {
+      const ppi = await import("./ppi.js");
+      if (mySeq !== renderSeq) return;
+      loading.remove(); ppiCleanup = ppi.mount(content);
+      document.getElementById("last-updated").textContent = "PPI 수집일은 화면의 데이터 갱신 / 출처에서 확인";
+    } catch (e) { if (mySeq === renderSeq) loading.textContent = "PPI 모니터를 불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
+  }
 
   if (ind.tabs) {
     const tabs = document.createElement("nav");
