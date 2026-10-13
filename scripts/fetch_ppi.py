@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
+from build_ppi_navigation import navigation
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "ppi"
@@ -95,6 +96,7 @@ def export(catalog: dict, observations: dict, output: Path = OUT) -> dict:
     manifest = {"updated": fetched, "data_through": latest, "catalog_built": catalog["built_at"],
                 "source": URL, "sectors": sectors, "series": catalog["series"],
                 "available": sum(bool(p) for p in observations.values())}
+    write_json(output / "navigation.json", navigation(observations, fetched))
     write_json(output / "catalog.json", manifest)
     return manifest
 

@@ -25,6 +25,8 @@ jobs:
           node scripts/test_ppi.cjs
       - name: Collect industry PPI histories
         run: python -u scripts/fetch_ppi.py
+      - name: Validate refreshed classification and lifecycle metadata
+        run: node scripts/test_ppi.cjs
       - name: Commit snapshots
         run: |
           git config user.name "github-actions[bot]"

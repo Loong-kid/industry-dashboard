@@ -5,6 +5,8 @@
 .ppi-layout { display: grid; grid-template-columns: 245px minmax(0, 1fr); gap: 28px; margin-top: 24px; }
 .ppi-controls { background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: 6px; align-self: start; }
 .ppi-body { min-width: 0; }
+.ppi-options { min-width: 0; }
+.ppi-options > summary { display: none; }
 .ppi-modes { border: 0; margin-bottom: 22px; }
 .ppi-modes legend { font-weight: 600; margin-bottom: 10px; }
 .ppi-modes label { display: flex; gap: 9px; align-items: center; margin: 10px 0; }
@@ -39,6 +41,39 @@
 .ppi-table td:first-child, .ppi-table th:first-child { text-align: left; min-width: 280px; max-width: 380px; white-space: normal; }
 .ppi-table td:nth-child(2) { text-align: left; }
 .ppi-pagination { display: flex; gap: 12px; align-items: center; margin-top: 12px; font-size: 12px; }
+.ppi-notice:empty { display: none; }
+.ppi-scroll-hint { display: none; }
+.ppi-notice { color: var(--warn); margin: 12px 0; }
+.ppi-heatmap-group, .ppi-tree-group { margin: 24px 0; }
+.ppi-heatmap-group h4, .ppi-tree-group h4 { font-size: 15px; margin: 14px 0 8px; }
+.ppi-heatmap { font-variant-numeric: tabular-nums; }
+.ppi-heatmap th, .ppi-heatmap td { padding: 8px 4px; font-size: 11px; }
+.ppi-heatmap th { font-size: 10px; }
+.ppi-heatmap td:first-child, .ppi-heatmap th:first-child { min-width: 180px; max-width: 210px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
+.ppi-heatmap th:first-child { z-index: 2; }
+.ppi-industry-link { border: 0; padding: 0; background: transparent; text-align: left; font-weight: 600; color: var(--ink); }
+.ppi-industry-link:hover { color: var(--accent); text-decoration: underline; }
+.ppi-series-code { display: block; font-size: 10px; color: var(--muted); margin-top: 4px; }
+.ppi-heatmap .ppi-date { text-align: left; }
+.ppi-heat-cell { min-width: 46px; }
+.ppi-row-actions { display: inline-flex; gap: 5px; align-items: center; }
+.ppi-row-actions .ppi-button { padding: 4px 7px; }
+.ppi-watch { color: var(--accent); font-size: 16px; }
+.ppi-watch[aria-pressed=true] { color: var(--warn); }
+.ppi-tree-node { margin: 8px 0; border: 1px solid var(--border); border-radius: 4px; min-width: 0; }
+.ppi-tree-node > summary { padding: 11px 12px; cursor: pointer; background: var(--surface); overflow-wrap: anywhere; }
+.ppi-tree-name { font-weight: 600; }
+.ppi-tree-count { font-size: 11px; color: var(--muted); margin-left: 12px; }
+.ppi-tree-children { padding: 6px 10px 10px 18px; min-width: 0; }
+.ppi-tree-series { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; border-bottom: 1px solid var(--border); padding: 12px 0; font-size: 12px; overflow-wrap: anywhere; }
+.ppi-tree-series > div { min-width: 0; }
+.ppi-tree-series small { display: block; margin: 4px 0 0; }
+.ppi-kind { color: var(--accent); font-size: 10px; border: 1px solid var(--border); border-radius: 3px; padding: 2px 5px; margin: 0 8px 4px 0; display: inline-block; }
+.ppi-breadcrumb, .ppi-theme-description { color: var(--ink-2); line-height: 1.7; margin: 12px 0; }
+.ppi-past { margin-top: 24px; }
+.ppi-past > summary { cursor: pointer; color: var(--muted); }
+@media (prefers-color-scheme: dark) { .ppi-rise { color: #ff8989; } .ppi-fall { color: #66cd87; } }
 @media (max-width: 1200px) { .ppi-layout { grid-template-columns: 210px minmax(0, 1fr); gap: 18px; } .ppi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .ppi-layout { grid-template-columns: minmax(0, 1fr); } .ppi-controls { width: 100%; } .ppi-monitor h2 { font-size: 21px; } .ppi-chart-large { height: 380px; } }
 @media (max-width: 420px) { .ppi-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .ppi-tree-series { flex-wrap: wrap; } .ppi-tree-children { padding-left: 10px; } .ppi-tree-count { display: block; margin-left: 16px; } .ppi-options > summary { display: list-item; cursor: pointer; font-weight: 600; padding: 12px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); } .ppi-options[open] > summary { margin-bottom: 8px; } .ppi-scroll-hint { display: block; } }

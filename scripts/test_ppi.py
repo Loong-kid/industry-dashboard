@@ -1,4 +1,5 @@
 import tempfile
+import json
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,9 @@ class PPIExportTests(unittest.TestCase):
             self.assertEqual(result["available"], 1)
             self.assertIn("1990-01", (path / "series/PCU1.json").read_text())
             self.assertNotIn("1990-01", (path / "sectors/2.json").read_text())
+            nav = json.loads((path / "navigation.json").read_text())
+            self.assertEqual(nav["latest_dates"], {"PCU1": "2026-01", "PCU2": None})
+            self.assertEqual(nav["updated"], result["updated"])
             original = (path / "catalog.json").read_bytes()
             with self.assertRaises(ValueError):
                 export(catalog, {"PCU1": []}, path)
