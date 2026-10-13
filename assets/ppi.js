@@ -48,7 +48,7 @@ async function load(path, version = "") {
   const url = `data/ppi/${path}.json${version ? `?v=${encodeURIComponent(version)}` : ""}`;
   if (!cache.has(url)) {
     if (cache.size >= 96) cache.delete(cache.keys().next().value);
-    cache.set(url, fetch(url).then(r => {
+    cache.set(url, fetch(url, {cache: path === "catalog" || path === "navigation" ? "no-cache" : "default"}).then(r => {
       if (!r.ok) throw new Error(`데이터를 불러오지 못했습니다 (HTTP ${r.status}).`);
       return r.json();
     }).catch(e => { cache.delete(url); throw e; }));
