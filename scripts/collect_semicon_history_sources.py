@@ -21,7 +21,7 @@ def collect(out, asof):
     for company, cik in SEC_COMPANIES.items():
         url = f'https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010}.json'
         try:
-            r = session.get(url, timeout=60)
+            r = session.get(url, timeout=25)
             r.raise_for_status()
             value = r.json()
             if int(value.get('cik', -1)) != cik or not value.get('facts'):
@@ -30,25 +30,34 @@ def collect(out, asof):
             status[company] = {'ok': True, 'url': url, 'entity': value.get('entityName')}
         except Exception as e:
             status[company] = {'ok': False, 'error_type': type(e).__name__, 'http_status': getattr(getattr(e, 'response', None), 'status_code', None)}
+        print(company, json.dumps(status[company]), flush=True)
         time.sleep(.3)
     key = os.environ.get('DART_API_KEY')
     reports = []
+    network_failures = 0
     if key:
         for year in range(2015, int(asof[:4]) + 1):
+            if network_failures >= 3:
+                break
             for code, month in [('11013', 3), ('11012', 6), ('11014', 9), ('11011', 12)]:
                 # Skip reporting periods not yet ended; unpublished periods return 013.
                 if f'{year}-{month:02}-01' > asof:
                     continue
                 try:
-                    r = session.get('https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json', params={'crtfc_key': key, 'corp_code': '00411048', 'bsns_year': year, 'reprt_code': code, 'fs_div': 'CFS'}, timeout=35)
+                    r = session.get('https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json', params={'crtfc_key': key, 'corp_code': '00411048', 'bsns_year': year, 'reprt_code': code, 'fs_div': 'CFS'}, timeout=10)
                     r.raise_for_status(); value = r.json()
                     if value.get('status') == '013':
-                        r = session.get('https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json', params={'crtfc_key': key, 'corp_code': '00411048', 'bsns_year': year, 'reprt_code': code, 'fs_div': 'OFS'}, timeout=35)
+                        r = session.get('https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json', params={'crtfc_key': key, 'corp_code': '00411048', 'bsns_year': year, 'reprt_code': code, 'fs_div': 'OFS'}, timeout=10)
                         r.raise_for_status(); value = r.json()
                     reports.append({'year': year, 'month': month, 'status': value.get('status'), 'rows': value.get('list', [])})
+                    network_failures = 0
                 except Exception as e:
                     reports.append({'year': year, 'month': month, 'error_type': type(e).__name__})
+                    network_failures += 1
+                    if network_failures >= 3:
+                        break
                 time.sleep(.2)
+            print('DART', year, 'available reports', sum(bool(r.get('rows')) for r in reports), 'network failures', network_failures, flush=True)
         (out / 'snstech-dart.json').write_text(json.dumps({'checked': asof, 'corp_code': '00411048', 'reports': reports}, ensure_ascii=False), encoding='utf-8')
     status['snstech'] = {'key_configured': bool(key), 'reports': sum(bool(r.get('rows')) for r in reports)}
     (out / 'status.json').write_text(json.dumps(status, indent=2), encoding='utf-8')
