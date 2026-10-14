@@ -12,8 +12,8 @@
 |메모리|Micron|FY2014 Q1–FY2026 Q4 · 52분기|
 |파운드리|TSMC·SMIC·UMC|2014 Q1–2026 Q2 · 각 50분기|
 |파운드리|GlobalFoundries|2020 Q3–2026 Q2 · 24분기; 비상장 시기 미확인 분기는 미수록|
-|SSD|Sandisk|FY2025 Q3–FY2026 Q4 · 6분기; JV 포함 CAPEX는 FY2026 4분기|
-|SSD|Kioxia|FY2024 Q1–FY2026 Q1 · 9분기|
+|SSD|Sandisk|구 SanDisk FY2014 Q1–FY2016 Q1 · 9분기 / WDC Flash FY2018 Q1–FY2025 Q2 · 30분기 / 재분사 후 FY2025 Q3–FY2026 Q4 · 6분기|
+|SSD|Kioxia|도시바 Memory FY2014 Q1–FY2017 Q4 · 16분기 / Toshiba Memory·Kioxia IFRS FY2018 Q3–FY2026 Q1 · 31분기|
 
 주소는 `#/semicon/memory`, `#/semicon/foundry`, `#/semicon/ssd`.
 기존 소부장 지표는 `#/semicon/materials/snstech`, `.../esc`, `.../mocvd`.
@@ -66,11 +66,32 @@ SSD는 사용자 지정 Sandisk·Kioxia 두 회사다. SSD 시장 점유율 상�
   FY2025 Q4 설명자료 p.9의 890백만 USD는 `Year Ended` 연간 총 CAPEX여서
   분기 그래프에서 제외한다. FY2025 Q3·Q4 JV 포함 분기값은 null로 남기고,
   별도 자체 PP&E 계열은 6분기를 제공한다. 공란을 0이나 추정값으로 채우지 않는다.
+  구 SanDisk는 SEC 실적 발표문의 천 USD 단위 연결 매출·GAAP 영업이익 및
+  `Acquisition of property and equipment, net`의 **3개월** 현금흐름을 사용한다.
+  이를 백만 USD로 변환하며 JV 투자·장비 리스가 포함된 총투자로 간주하지 않는다.
+  WDC 시기는 공식 Quarterly Financial/Financial Metrics 표의 **Flash Revenue**만
+  사용한다. HDD 매출과 WDC 전체 영업이익·CAPEX는 포함하지 않는다.
+  표의 Flash gross profit은 영업이익으로 바꾸지 않는다. 2016년 인수 전후부터
+  FY2017까지의 미확보 기간은 비어 있으며 분사 전후 서로 다른 FY·계열을 연결하지 않는다.
+  공식 표끼리 겹치는 FY2018~FY2025 구간을 대조했다. 모든 기간별 원문 URL과 PDF
+  페이지는 `history_groups`의 개별 분기에 보관한다.
 - [Kioxia 분기 IR](https://www.kioxia-holdings.com/en-jp/ir/library/presentation.html):
   발표자료 부록 IFRS 매출·영업이익·CAPEX, 십억 JPY. 총 CAPEX에는
   유형·무형자산 취득이 포함되며 정부 지원금 차감 Net CAPEX와 구분한다.
   이후 발표된 비교표가 있으면 같은 IFRS 범위의 정정값을 우선한다.
   FY2024 4분기는 FY2025 Q4 자료 p.28, FY2025–FY2026 Q1은 FY2026 Q1 자료 p.23.
+  상장 전 Financial Results Overview의 Sales·IFRS Operating Income/Profit을
+  FY2018 Q3부터 추가했다. 매출·영업이익은 동일 보고서의 이전/현재 분기 열을 사용한다.
+  FY2022 Q4와 FY2023의 CAPEX는 FY2024 Q3 발표 p.17의 IFRS 분기 원표에서 확인했다.
+  더 이전 발표자료에 수록되지 않은 단일 분기 CAPEX는 null이며 `missing_reasons`에
+  이유를 기록한다. 연간·투자 약정·향후 계획을 분기로 나누지 않는다.
+  도시바 시기는 회사 전체·HDD 포함 Storage 사업부가 아닌 **Memory/Memories**
+  제품·사업의 매출을 사용한다. FY2014는 FY2015 발표 비교표의 기존 분류,
+  FY2015~FY2017은 FY2016부터 공개한 사업별 분류의 비교값을 우선하므로 계열을 나눈다.
+  FY2014 Q4 매출은 연간 860.6−9개월 누적 638.3=222.3십억 엔이다.
+  사업별 영업이익은 FY2015 비교값부터만 확보했다. FY2017 도시바 Memory 영업이익
+  479.1십억 엔을 후속 Former TMC IFRS 연간 영업이익 456.8과 동일 범위로 취급하지 않는다.
+  Toshiba Memory 인수 전후 FY2018 Q1·Q2는 미확보 구간이다.
 
 ## 갱신과 검증
 
@@ -89,6 +110,10 @@ python scripts/test_semicon_navigation.py --url http://127.0.0.1:8765/
 빌더는 네트워크를 사용하지 않으며 27개 차트를 재현한다. 데이터 기준일과 검토일을
 구분한다. YoY·QoQ는 FY·분기 매칭을 사용해 53주 결산과 달력 분기 이동을 처리한다.
 각 차트의 펼침 데이터 표에서 분기별 공식 원문으로 이동할 수 있다.
+
+전신·사업부 자료는 `history_groups`에 통화·계열·공시 범위·분기를 명시한다.
+빌더는 원래 연결 실적과 별도 계열로 그리며, 서로 다른 분류 사이의 YoY·QoQ를
+계산하지 않는다. 이전 분기 값만으로 누락 분기를 채우거나 기간 사이를 보간하지 않는다.
 
 ## 포토마스크 실적 확장
 

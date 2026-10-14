@@ -30,12 +30,33 @@ def validate(snapshot):
                     continue
                 if value is None and metric == 'capex' and company == 'micron' and isinstance(row.get('capex_gross'), (int, float)):
                     continue
+                if value is None and metric == 'capex' and company == 'kioxia' and row.get('missing_reasons', {}).get(metric):
+                    continue
                 if not isinstance(value, (int, float)) or not math.isfinite(value):
                     raise ValueError(f'{company}: invalid {metric}')
                 if metric != 'profit' and value < 0:
                     raise ValueError(f'{company}: negative {metric}')
             if not row['source_url'].startswith('https://'):
                 raise ValueError(f'{company}: official source missing')
+        for group in meta.get('history_groups', []):
+            if group['unit'] != meta['unit']:
+                raise ValueError(f'{company}: historical unit differs')
+            dates, periods = set(), set()
+            for row in group['quarters']:
+                date = dt.date.fromisoformat(row['date'])
+                period = (row['year'], row['quarter'])
+                if row.get('period_basis') != 'quarter' or not 1 <= row['quarter'] <= 4:
+                    raise ValueError(f'{company}: historical fact is not a quarter')
+                if date > reviewed or row['date'] in dates or period in periods:
+                    raise ValueError(f'{company}: duplicate/future historical quarter')
+                dates.add(row['date']); periods.add(period)
+                if not row['source_url'].startswith('https://'):
+                    raise ValueError(f'{company}: historical source missing')
+                facts = [row.get(field) for fields in group['fields'].values() for field in fields]
+                if not any(value is not None for value in facts):
+                    raise ValueError(f'{company}: empty historical quarter')
+                if any(value is not None and (not isinstance(value, (int,float)) or not math.isfinite(value)) for value in facts):
+                    raise ValueError(f'{company}: invalid historical fact')
 
 
 def build(snapshot):
@@ -78,10 +99,38 @@ def build(snapshot):
                 updated=rows[-1]['date'], fetched=snapshot['reviewed'], manual=True,
                 source='기업 공식 IR·공시', source_url=refs[rows[-1]['date']]['url'],
                 description=meta['fiscal']+'. '+note, span_gaps=False,
-                series=series, default_series=meta.get(metric+'_default',list(fields.values())),
+                series=series, default_series=list(meta.get(metric+'_default',fields.values())),
                 point_sources=refs, table_limit=100, company_kpi=True,
                 quarterly_revenue_summary=metric!='profit', quarterly_profit_summary=metric=='profit'
             )
+            doc = docs[id]
+            for group in meta.get('history_groups', []):
+                historical = sorted(group['quarters'], key=lambda r:r['date'])
+                fields = group['fields'].get(metric, {})
+                if not fields:
+                    continue
+                lookup = {(r['year'],r['quarter']):r['date'] for r in historical}
+                for field,label in fields.items():
+                    if label in doc['series']:
+                        raise ValueError(f'Duplicate historical series {label}')
+                    doc['series'][label] = [[r['date'],r.get(field)] for r in historical]
+                    doc['default_series'].append(label)
+                for row in historical:
+                    date = row['date']
+                    label = f"{group['name']} FY{row['year']} Q{row['quarter']}"
+                    if date in doc['point_sources']:
+                        raise ValueError(f'Historical/current periods overlap: {date}')
+                    doc['period_labels'][date] = f"FY{row['year']} Q{row['quarter']}"
+                    doc['comparison_dates'][date] = dict(
+                        year_ago=lookup.get((row['year']-1,row['quarter'])),
+                        quarter_ago=lookup.get((row['year']-(row['quarter']==1),(row['quarter']-2)%4+1)))
+                    ref = dict(url=row['source_url'],label=label,pdf_page=row.get('source_pages',{}).get(metric))
+                    if row.get('supporting_sources'):
+                        ref.update(supporting_sources=row['supporting_sources'],source_separator=' / ')
+                    doc['point_sources'][date] = ref
+                doc.setdefault('basis_details',[]).append(dict(label=group['name'],value=group['description']))
+            if meta.get('history_notes',{}).get(metric):
+                doc['description'] += ' '+meta['history_notes'][metric]
     return docs
 
 

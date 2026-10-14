@@ -59,7 +59,7 @@ class QuarterlyFinancials(unittest.TestCase):
 
     def test_capex_does_not_mix_annual_jv_and_own_ppe(self):
         doc = self.docs['company_sandisk_capex']
-        gross,cash,own = (dict(points) for points in doc['series'].values())
+        gross,cash,own = (dict(doc['series'][label]) for label in ['총 CAPEX · JV 지분 포함','현금 CAPEX · JV 지분 포함','자체 유형자산 취득 · JV 제외'])
         self.assertIsNone(gross['2025-06-27'])
         self.assertIsNone(cash['2025-06-27'])
         self.assertEqual(own['2025-06-27'],45)
@@ -68,6 +68,48 @@ class QuarterlyFinancials(unittest.TestCase):
         self.assertEqual(cash['2025-10-03'],-10+50)
         self.assertFalse(doc['span_gaps'])
         self.assertEqual(len(doc['point_sources']['2026-07-03']['supporting_sources']),2)
+
+    def test_ssd_predecessor_history_is_separate_and_sourced(self):
+        snapshot=copy.deepcopy(self.snapshot)
+        self.assertEqual(build(snapshot),build(snapshot))
+        sndk=self.docs['company_sandisk_revenue']
+        old=dict(sndk['series']['구 SanDisk 연결 매출'])
+        self.assertEqual(old['2014-03-30'],1511.945)
+        self.assertAlmostEqual(sum(v for d,v in old.items() if d.startswith('2014')),6627.701)
+        wd=dict(sndk['series']['WDC Flash 매출 · HDD 제외'])
+        self.assertEqual(wd['2018-06-29'],2363)
+        self.assertEqual(wd['2024-12-27'],1876)
+        self.assertEqual(self.docs['company_sandisk_profit']['series']['구 SanDisk GAAP 영업이익'][0],['2014-03-30',425.174])
+        self.assertEqual(self.docs['company_sandisk_capex']['series']['구 SanDisk 자체 PP&E 순취득 · JV 제외'][0],['2014-03-30',34.517])
+        old_rows=self.snapshot['companies']['sandisk']['history_groups'][0]['quarters']
+        for y,total in [(2014,232.786),(2015,413.828)]:
+            self.assertAlmostEqual(sum(r['capex_own_ppe'] for r in old_rows if r['year']==y),total)
+        self.assertNotIn('WDC Flash 매출 · HDD 제외',self.docs['company_sandisk_profit']['series'])
+        k=self.snapshot['companies']['kioxia']
+        for year,revenue,profit in [(2019,987.2,-173.1),(2020,1178.5,6.6),(2021,1526.5,216.2),(2023,1076.6,-252.7)]:
+            rows=[r for r in k['quarters'] if r['year']==year]
+            self.assertEqual(len(rows),4)
+            self.assertAlmostEqual(sum(r['revenue'] for r in rows),revenue,delta=.11)
+            self.assertAlmostEqual(sum(r['profit'] for r in rows),profit,delta=.11)
+        legacy=self.docs['company_kioxia_revenue']['series']['도시바 Memory 매출 · FY2014 분류']
+        self.assertEqual(legacy[0],['2014-06-30',177.7])
+        self.assertAlmostEqual(sum(v for d,v in legacy),860.6)
+        tm=k['history_groups'][1]['quarters']
+        self.assertAlmostEqual(sum(r['profit'] for r in tm if r['year']==2017),479.1)
+        cap=dict(self.docs['company_kioxia_capex']['series']['CAPEX'])
+        self.assertIsNone(cap['2018-12-31'])
+        self.assertEqual(cap['2023-03-31'],184.2)
+        self.assertEqual(cap['2023-06-30'],104.5)
+        self.assertEqual(self.docs['company_kioxia_revenue']['comparison_dates']['2015-06-30']['year_ago'],None)
+
+    def test_reject_invalid_historical_period_source_and_missing_capex_reason(self):
+        for field,value in [('period_basis','annual'),('source_url',''),('revenue',float('nan'))]:
+            snap=copy.deepcopy(self.snapshot)
+            snap['companies']['sandisk']['history_groups'][0]['quarters'][0][field]=value
+            with self.assertRaises(ValueError):validate(snap)
+        snap=copy.deepcopy(self.snapshot)
+        snap['companies']['kioxia']['quarters'][0].pop('missing_reasons')
+        with self.assertRaises(ValueError):validate(snap)
 
     def test_scopes_and_losses_remain_distinct(self):
         revenue = self.docs['company_samsung_revenue']
