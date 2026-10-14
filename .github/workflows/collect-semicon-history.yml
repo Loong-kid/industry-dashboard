@@ -1,0 +1,29 @@
+name: collect-semicon-history-sources
+on:
+  workflow_dispatch:
+    inputs:
+      asof:
+        description: Review cutoff date (Asia/Seoul)
+        required: true
+        default: '2026-10-15'
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install requests
+      - name: Collect public financial source facts
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          REVIEW_ASOF: ${{ inputs.asof }}
+        run: python scripts/collect_semicon_history_sources.py --as-of "$REVIEW_ASOF"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semicon-regulator-sources
+          path: tmp/semicon-regulator-sources
+          retention-days: 7
