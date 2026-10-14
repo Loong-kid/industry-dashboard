@@ -57,13 +57,13 @@ function renderPhotomaskMarkdown(text, originalURL) {
   return root;
 }
 
-function renderPhotomaskViews(view) {
+function renderPhotomaskViews(view, base = '#/semicon/snstech') {
   const nav = document.createElement('nav');
   nav.className = 'photomask-views';
   nav.setAttribute('aria-label', '포토마스크 보기');
   for (const [id, name, hash] of [
-    ['indicators', '지표', '#/semicon/snstech'],
-    ['ir', 'IR · Q&A 도서관', '#/semicon/snstech/ir'],
+    ['indicators', '지표', base],
+    ['ir', 'IR · Q&A 도서관', base + '/ir'],
   ]) {
     const link = document.createElement('a');
     link.href = hash;

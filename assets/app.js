@@ -11,6 +11,7 @@ const state = {
   catalog: null,
   industry: null,
   subtab: null,
+  semiconGroup: null,
   photomaskView: "indicators",
   range: "1y",
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
@@ -113,14 +114,23 @@ function showBootError(e) {
 }
 
 function route() {
-  const [id, requestedTab, requestedView] = location.hash.replace("#/", "").split("/");
+  const [id, requestedTab, requestedView, requestedDetail] = location.hash.replace("#/", "").split("/");
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
   const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
   const prevSubtab = state.subtab;
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
-  state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
-  state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
+  state.semiconGroup = null;
+  if (state.industry.id === "semicon" && state.industry.groups) {
+    const legacy = state.industry.tabs.some(tab => tab.id === requestedTab);
+    state.semiconGroup = legacy ? "materials" : state.industry.groups.find(group => group.id === requestedTab)?.id || state.industry.groups[0].id;
+    const leaf = legacy ? requestedTab : requestedView;
+    state.subtab = state.semiconGroup === "materials" ? state.industry.tabs.find(tab => tab.id === leaf)?.id || state.industry.tabs[0].id : state.semiconGroup;
+    state.photomaskView = state.subtab === "snstech" && (legacy ? requestedView : requestedDetail) === "ir" ? "ir" : "indicators";
+  } else {
+    state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
+    state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
+  }
   document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
@@ -157,10 +167,11 @@ async function renderIndustry(options = {}) {
   if (!ind) return;
   const mySeq = ++renderSeq;
   if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
-  const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab);
+  const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
+  const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
-  document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedTab ? " · " + selectedTab.name : ""}`;
+  document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedTab ? " · " + selectedTab.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
@@ -188,13 +199,30 @@ async function renderIndustry(options = {}) {
     return;
   }
 
-  if (ind.tabs) {
+  if (ind.groups) {
+    const groups = document.createElement("nav");
+    groups.className = "commodity-tabs semicon-groups";
+    groups.setAttribute("aria-label", "반도체 분야");
+    for (const group of ind.groups) {
+      const link = document.createElement("a");
+      link.href = `#/semicon/${group.id}`;
+      link.textContent = group.name;
+      if (group.id === state.semiconGroup) {
+        link.className = "active";
+        link.setAttribute("aria-current", "page");
+      }
+      groups.appendChild(link);
+    }
+    pageTabs.appendChild(groups);
+  }
+
+  if (ind.tabs && (!ind.groups || state.semiconGroup === "materials")) {
     const tabs = document.createElement("nav");
     tabs.className = "commodity-tabs";
     tabs.setAttribute("aria-label", `${ind.name} 세부 분류`);
     for (const tab of ind.tabs) {
       const link = document.createElement("a");
-      link.href = `#/${ind.id}/${tab.id}`;
+      link.href = ind.groups ? `#/semicon/materials/${tab.id}` : `#/${ind.id}/${tab.id}`;
       link.textContent = tab.name;
       if (tab.id === state.subtab) {
         link.className = "active";
@@ -213,7 +241,7 @@ async function renderIndustry(options = {}) {
   }
 
   if (photomask && typeof renderPhotomaskViews === "function") {
-    pageTabs.appendChild(renderPhotomaskViews(state.photomaskView));
+    pageTabs.appendChild(renderPhotomaskViews(state.photomaskView, ind.groups ? "#/semicon/materials/snstech" : "#/semicon/snstech"));
   }
 
   if (ind.id === "commodities" && state.subtab === "copper" && typeof renderCopperMarketGuide === "function") {

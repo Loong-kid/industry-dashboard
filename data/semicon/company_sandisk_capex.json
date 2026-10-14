@@ -1,0 +1,217 @@
+{
+  "id": "company_sandisk_capex",
+  "name": "Sandisk · CAPEX",
+  "unit": "백만 USD",
+  "frequency": "quarterly",
+  "frequency_label": "분기 · 공식 IR 확인",
+  "quarter_labels": true,
+  "period_labels": {
+    "2025-03-28": "FY2025 Q3",
+    "2025-06-27": "FY2025 Q4",
+    "2025-10-03": "FY2026 Q1",
+    "2026-01-02": "FY2026 Q2",
+    "2026-04-03": "FY2026 Q3",
+    "2026-07-03": "FY2026 Q4"
+  },
+  "comparison_dates": {
+    "2025-03-28": {
+      "year_ago": null,
+      "quarter_ago": null
+    },
+    "2025-06-27": {
+      "year_ago": null,
+      "quarter_ago": "2025-03-28"
+    },
+    "2025-10-03": {
+      "year_ago": null,
+      "quarter_ago": "2025-06-27"
+    },
+    "2026-01-02": {
+      "year_ago": null,
+      "quarter_ago": "2025-10-03"
+    },
+    "2026-04-03": {
+      "year_ago": "2025-03-28",
+      "quarter_ago": "2026-01-02"
+    },
+    "2026-07-03": {
+      "year_ago": "2025-06-27",
+      "quarter_ago": "2026-04-03"
+    }
+  },
+  "updated": "2026-07-03",
+  "fetched": "2026-10-14",
+  "manual": true,
+  "source": "기업 공식 IR·공시",
+  "source_url": "https://investor.sandisk.com/static-files/c75d1bee-c5c9-4e5a-8605-302c1aeac59b",
+  "description": "6월 말~7월 초 결산 · 52/53주. 총 CAPEX는 Kioxia와의 생산 JV 투자 중 Sandisk 지분과 자체 유형자산 취득의 합입니다. 현금 CAPEX는 외부 조달·웨이퍼 원가의 감가상각 회수 등 회사 정의를 적용한 순지출입니다. FY2026 Q1부터 분기 JV 포함 수치를 확보했습니다. FY2025 Q3·Q4는 자체 유형자산만 확보해 JV 포함 계열은 공란입니다. FY2025 연간 890백만 USD를 Q4로 넣지 않았습니다.",
+  "span_gaps": false,
+  "series": {
+    "총 CAPEX · JV 지분 포함": [
+      [
+        "2025-03-28",
+        null
+      ],
+      [
+        "2025-06-27",
+        null
+      ],
+      [
+        "2025-10-03",
+        387
+      ],
+      [
+        "2026-01-02",
+        255
+      ],
+      [
+        "2026-04-03",
+        240
+      ],
+      [
+        "2026-07-03",
+        562
+      ]
+    ],
+    "현금 CAPEX · JV 지분 포함": [
+      [
+        "2025-03-28",
+        null
+      ],
+      [
+        "2025-06-27",
+        null
+      ],
+      [
+        "2025-10-03",
+        40
+      ],
+      [
+        "2026-01-02",
+        176
+      ],
+      [
+        "2026-04-03",
+        83
+      ],
+      [
+        "2026-07-03",
+        153
+      ]
+    ],
+    "자체 유형자산 취득 · JV 제외": [
+      [
+        "2025-03-28",
+        44.0
+      ],
+      [
+        "2025-06-27",
+        45.0
+      ],
+      [
+        "2025-10-03",
+        50.0
+      ],
+      [
+        "2026-01-02",
+        39.0
+      ],
+      [
+        "2026-04-03",
+        45.0
+      ],
+      [
+        "2026-07-03",
+        43.0
+      ]
+    ]
+  },
+  "default_series": [
+    "총 CAPEX · JV 지분 포함",
+    "현금 CAPEX · JV 지분 포함"
+  ],
+  "point_sources": {
+    "2025-03-28": {
+      "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-05-07-sandisk-reports-fiscal-third-quarter-2025-financial-results",
+      "label": "FY2025 Q3",
+      "pdf_page": null
+    },
+    "2025-06-27": {
+      "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-08-14-sandisk-reports-fiscal-fourth-quarter-2025-financial-results",
+      "label": "FY2025 Q4",
+      "pdf_page": null
+    },
+    "2025-10-03": {
+      "url": "https://investor.sandisk.com/static-files/a1cf180d-5720-4475-a3cc-345cfc8aab38",
+      "label": "FY2026 Q1",
+      "pdf_page": 8,
+      "supporting_sources": [
+        {
+          "url": "https://investor.sandisk.com/static-files/a1cf180d-5720-4475-a3cc-345cfc8aab38",
+          "label": "FY2026 Q1",
+          "pdf_page": 8
+        },
+        {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-11-6-sandisk-reports-fiscal-first-quarter-2026-financial-results",
+          "label": "자체 유형자산 · 실적 발표"
+        }
+      ],
+      "source_separator": " / "
+    },
+    "2026-01-02": {
+      "url": "https://investor.sandisk.com/static-files/1b7ca99b-f84a-4294-9f56-690b32fce69a",
+      "label": "FY2026 Q2",
+      "pdf_page": 8,
+      "supporting_sources": [
+        {
+          "url": "https://investor.sandisk.com/static-files/1b7ca99b-f84a-4294-9f56-690b32fce69a",
+          "label": "FY2026 Q2",
+          "pdf_page": 8
+        },
+        {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-01-29-sandisk-reports-fiscal-second-quarter-2026-financial-results",
+          "label": "자체 유형자산 · 실적 발표"
+        }
+      ],
+      "source_separator": " / "
+    },
+    "2026-04-03": {
+      "url": "https://investor.sandisk.com/static-files/8ea78860-f8e5-4f1c-ada3-c554437d6281",
+      "label": "FY2026 Q3",
+      "pdf_page": 8,
+      "supporting_sources": [
+        {
+          "url": "https://investor.sandisk.com/static-files/8ea78860-f8e5-4f1c-ada3-c554437d6281",
+          "label": "FY2026 Q3",
+          "pdf_page": 8
+        },
+        {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-04-30-sandisk-reports-fiscal-third-quarter-2026-financial-results",
+          "label": "자체 유형자산 · 실적 발표"
+        }
+      ],
+      "source_separator": " / "
+    },
+    "2026-07-03": {
+      "url": "https://investor.sandisk.com/static-files/c75d1bee-c5c9-4e5a-8605-302c1aeac59b",
+      "label": "FY2026 Q4",
+      "pdf_page": 14,
+      "supporting_sources": [
+        {
+          "url": "https://investor.sandisk.com/static-files/c75d1bee-c5c9-4e5a-8605-302c1aeac59b",
+          "label": "FY2026 Q4",
+          "pdf_page": 14
+        },
+        {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+          "label": "자체 유형자산 · 실적 발표"
+        }
+      ],
+      "source_separator": " / "
+    }
+  },
+  "table_limit": 100,
+  "company_kpi": true,
+  "quarterly_revenue_summary": true,
+  "quarterly_profit_summary": false
+}
