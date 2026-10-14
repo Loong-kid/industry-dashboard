@@ -49,6 +49,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 
 // ── 부트스트랩 ──────────────────────────────────────────────────
 async function boot() {
+  observeDashboardHeader();
   try {
     const res = await fetch("data/catalog.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -60,15 +61,38 @@ async function boot() {
   }
   renderNav();
   document.querySelectorAll("#range-picker button").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
+      const content = document.getElementById("content");
+      const scrollTop = window.scrollY;
+      // Charts are rebuilt below. Keep the page tall while the old cards are
+      // removed, so the browser cannot clamp a lower scroll position to zero.
+      content.style.minHeight = `${content.getBoundingClientRect().height}px`;
       state.range = btn.dataset.range;
       document.querySelectorAll("#range-picker button").forEach((b) => b.classList.toggle("active", b === btn));
-      renderIndustry();
+      const rendering = renderIndustry({preserveScroll: true});
+      const sequence = renderSeq;
+      try { await rendering; }
+      finally {
+        if (sequence === renderSeq) {
+          content.style.minHeight = "";
+          window.scrollTo({top: scrollTop, behavior: "instant"});
+        }
+      }
     });
   });
   darkMq.addEventListener("change", renderIndustry);
   window.addEventListener("hashchange", route);
   route();
+}
+
+// Keep anchor scrolling and the IR sidebar below a header that can wrap on mobile.
+function observeDashboardHeader() {
+  const header = document.querySelector(".dashboard-header");
+  if (!header) return;
+  const measure = () => document.documentElement.style.setProperty("--dashboard-header-height", `${Math.ceil(header.getBoundingClientRect().height)}px`);
+  measure();
+  if (typeof ResizeObserver !== "undefined") new ResizeObserver(measure).observe(header);
+  else window.addEventListener("resize", measure);
 }
 
 function showBootError(e) {
@@ -128,7 +152,7 @@ function renderNav() {
 // 뒤늦게 끝나며 새 탭 화면에 옛 카드를 붙이는 경쟁이 있었다. mySeq로 stale 렌더를 중단.
 let renderSeq = 0;
 let ppiCleanup = null;
-async function renderIndustry() {
+async function renderIndustry(options = {}) {
   const ind = state.industry;
   if (!ind) return;
   const mySeq = ++renderSeq;
@@ -147,7 +171,10 @@ async function renderIndustry() {
   state.charts = [];
 
   const content = document.getElementById("content");
+  if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
+  const pageTabs = document.getElementById("page-tabs");
+  pageTabs.innerHTML = "";
 
   if (ind.id === "ppi") {
     const loading = document.createElement("p");
@@ -175,7 +202,7 @@ async function renderIndustry() {
       }
       tabs.appendChild(link);
     }
-    content.appendChild(tabs);
+    pageTabs.appendChild(tabs);
   }
 
   if (selectedTab?.description) {
@@ -186,7 +213,7 @@ async function renderIndustry() {
   }
 
   if (photomask && typeof renderPhotomaskViews === "function") {
-    content.appendChild(renderPhotomaskViews(state.photomaskView));
+    pageTabs.appendChild(renderPhotomaskViews(state.photomaskView));
   }
 
   if (ind.id === "commodities" && state.subtab === "copper" && typeof renderCopperMarketGuide === "function") {

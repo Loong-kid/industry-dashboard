@@ -16,6 +16,7 @@
 .forecast-tag { color: var(--muted); font-size: 11px; }
 /* ── 팔레트 (dataviz reference palette) ─────────────────────────── */
 :root {
+  --dashboard-header-height: 0px;
   --page: #f9f9f7;
   --surface: #fcfcfb;
   --ink: #0b0b0b;
@@ -108,6 +109,20 @@ body {
 
 /* ── 메인 ─────────────────────────────────────────────────────── */
 .main { flex: 1; padding: 20px 24px 60px; min-width: 0; }
+.dashboard-header {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--page);
+  margin: -20px -24px 16px;
+  padding: 20px 24px 12px;
+  border-bottom: 1px solid var(--border);
+}
+html { scroll-padding-top: calc(var(--dashboard-header-height) + 16px); }
+.dashboard-header .topbar { margin-bottom: 0; }
+#page-tabs:not(:empty) { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.dashboard-header .commodity-tabs { margin: 0; padding: 0; border: 0; flex-wrap: nowrap; overflow-x: auto; }
+.dashboard-header .commodity-tabs a { flex-shrink: 0; padding: 7px 14px; white-space: nowrap; }
+.dashboard-header .photomask-views { margin: 0; border: 0; }
+.dashboard-header .photomask-views a { padding: 7px 0; }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 12px;
