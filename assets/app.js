@@ -218,7 +218,7 @@ async function renderIndustry(options = {}) {
 
   if (ind.tabs && (!ind.groups || state.semiconGroup === "materials")) {
     const tabs = document.createElement("nav");
-    tabs.className = "commodity-tabs";
+    tabs.className = ind.groups ? "commodity-tabs semicon-material-tabs" : "commodity-tabs";
     tabs.setAttribute("aria-label", `${ind.name} 세부 분류`);
     for (const tab of ind.tabs) {
       const link = document.createElement("a");
@@ -230,7 +230,15 @@ async function renderIndustry(options = {}) {
       }
       tabs.appendChild(link);
     }
-    pageTabs.appendChild(tabs);
+    if (ind.groups) {
+      const row = document.createElement("div");
+      row.className = "semicon-material-row";
+      const label = document.createElement("span");
+      label.className = "semicon-material-label";
+      label.textContent = "소부장 세부 분야";
+      row.append(label, tabs);
+      pageTabs.appendChild(row);
+    } else pageTabs.appendChild(tabs);
   }
 
   if (selectedTab?.description) {
@@ -320,6 +328,7 @@ async function renderIndustry(options = {}) {
     }
     const grid = document.createElement("div");
     grid.className = "grid";
+    if (section.layout === "financial") grid.classList.add("financial-grid");
     content.appendChild(grid);
 
     for (const indicatorId of section.indicators) {

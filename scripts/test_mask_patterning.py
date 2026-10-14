@@ -17,7 +17,12 @@ class MaskPatterningTests(unittest.TestCase):
     def test_latest_reported_revenue_and_history(self):
         rows = photronics_quarters(self.cache)
         self.assertGreaterEqual(len(rows), 23)
-        self.assertEqual((rows[0]["fiscal_year"], rows[0]["quarter"]), (2021, 1))
+        self.assertEqual((rows[0]["fiscal_year"], rows[0]["quarter"]), (2014, 1))
+        self.assertEqual(rows[0]['values']['ic_total'],76200)
+        self.assertIsNone(rows[0]['values']['ic_high'])
+        old_q4=next(r for r in rows if (r['fiscal_year'],r['quarter'])==(2020,4))
+        self.assertEqual((old_q4['values']['ic_total'],old_q4['values']['fpd_total']),(105900,43400))
+        self.assertFalse(old_q4['derived'])
         anchor = next(r for r in rows if r["period_end"] == "2026-08-02")
         self.assertEqual(anchor["values"], dict(zip(PRODUCTS, [68506, 86165, 154671, 52311, 9065, 61376])))
 

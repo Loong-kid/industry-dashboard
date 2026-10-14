@@ -28,6 +28,8 @@ def validate(snapshot):
                 value = row[metric]
                 if value is None and metric == 'capex' and company == 'sandisk':
                     continue
+                if value is None and metric == 'capex' and company == 'micron' and isinstance(row.get('capex_gross'), (int, float)):
+                    continue
                 if not isinstance(value, (int, float)) or not math.isfinite(value):
                     raise ValueError(f'{company}: invalid {metric}')
                 if metric != 'profit' and value < 0:

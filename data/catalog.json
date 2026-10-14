@@ -1747,8 +1747,8 @@
       "id": "semicon",
       "name": "반도체",
       "icon": "🔬",
-      "default_range": "3y",
-      "cadence": "메모리·파운드리·SSD 기업 실적은 공식 IR·공시에서 확인한 분기 스냅샷이며 새 발표 후 검토하여 수기 갱신한다. 회사별 결산일·통화·CAPEX 정의가 다르며 제품별 실적으로 분리되지 않는 항목은 연결 기준으로 표시한다. 한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 실적은 분기 수기입력. 생산공시는 DART 정기보고서를 매일 확인하며 새 발표·정정을 반영한다. 생산실적은 장수·금액 공시 구간을 나누고, 생산능력의 연간·누적 기준을 구분한다. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다. AGC 전자부재 정리값·EUV 블랭크·DUV 기판 추정은 사용자 구글 시트에서 확인한 22개 분기를 반영하며, 시트 수정 후 요청 시 다시 반영한다. HOYA는 사용자 시트의 Electronics 공표 실적과 LSI·FPD·HDD 추정 매출을 실제 달력 분기에 맞춰 반영하며, LSI는 EUV·DUV를 포함한다.",
+      "default_range": "all",
+      "cadence": "메모리·파운드리·SSD 기업 실적은 공식 IR·공시에서 확인한 분기 스냅샷이며 새 발표 후 검토하여 수기 갱신한다. 회사별 결산일·통화·CAPEX 정의가 다르며 제품별 실적으로 분리되지 않는 항목은 연결 기준으로 표시한다. 한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 매출·영업이익·CAPEX는 2014년부터 DART 연결 재무제표를 검토한 분기 스냅샷이며 새 공시 후 갱신한다. 생산공시는 DART 정기보고서를 매일 확인하며 새 발표·정정을 반영한다. 생산실적은 장수·금액 공시 구간을 나누고, 생산능력의 연간·누적 기준을 구분한다. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다. AGC 전자부재 정리값·EUV 블랭크·DUV 기판 추정은 사용자 구글 시트에서 확인한 22개 분기를 반영하며, 시트 수정 후 요청 시 다시 반영한다. HOYA는 사용자 시트의 Electronics 공표 실적과 LSI·FPD·HDD 추정 매출을 실제 달력 분기에 맞춰 반영하며, LSI는 EUV·DUV를 포함한다.",
       "tabs": [
         {
           "id": "snstech",
@@ -1773,7 +1773,8 @@
             "company_samsung_revenue",
             "company_samsung_profit",
             "company_samsung_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "SK하이닉스 · 분기 실적",
@@ -1782,7 +1783,8 @@
             "company_hynix_revenue",
             "company_hynix_profit",
             "company_hynix_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "Micron · 분기 실적",
@@ -1791,7 +1793,8 @@
             "company_micron_revenue",
             "company_micron_profit",
             "company_micron_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "TSMC · 분기 실적",
@@ -1800,7 +1803,8 @@
             "company_tsmc_revenue",
             "company_tsmc_profit",
             "company_tsmc_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "SMIC · 분기 실적",
@@ -1809,7 +1813,8 @@
             "company_smic_revenue",
             "company_smic_profit",
             "company_smic_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "UMC · 분기 실적",
@@ -1818,7 +1823,18 @@
             "company_umc_revenue",
             "company_umc_profit",
             "company_umc_capex"
-          ]
+          ],
+          "layout": "financial"
+        },
+        {
+          "title": "GlobalFoundries · 분기 실적",
+          "tab": "foundry",
+          "indicators": [
+            "company_globalfoundries_revenue",
+            "company_globalfoundries_profit",
+            "company_globalfoundries_capex"
+          ],
+          "layout": "financial"
         },
         {
           "title": "Sandisk · 분기 실적",
@@ -1827,7 +1843,8 @@
             "company_sandisk_revenue",
             "company_sandisk_profit",
             "company_sandisk_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "Kioxia · 분기 실적",
@@ -1836,7 +1853,8 @@
             "company_kioxia_revenue",
             "company_kioxia_profit",
             "company_kioxia_capex"
-          ]
+          ],
+          "layout": "financial"
         },
         {
           "title": "ASML 노광기 판매 — 블랭크마스크 수요의 바탕",
@@ -1896,11 +1914,20 @@
           "tab": "snstech"
         },
         {
+          "title": "에스앤에스텍 · 분기 실적",
+          "tab": "snstech",
+          "indicators": [
+            "snstech_revenue",
+            "snstech_operating_profit",
+            "snstech_capex"
+          ],
+          "layout": "financial"
+        },
+        {
           "title": "에스앤에스텍 실적 vs 전국 수출",
           "indicators": [
             "snstech_vs_national",
-            "snstech_share",
-            "snstech_revenue"
+            "snstech_share"
           ],
           "tab": "snstech"
         },
@@ -2148,7 +2175,7 @@
         {
           "id": "foundry",
           "name": "파운드리",
-          "description": "TSMC·SMIC·UMC의 연결 분기 매출·영업이익·CAPEX입니다. 2026년 2분기 순위 기준 TSMC와 삼성 제외 3·4위 기업을 선정했습니다. 회사별 공시 통화를 유지하며 순위는 이후 달라질 수 있습니다."
+          "description": "TSMC·SMIC·UMC·GlobalFoundries의 분기 매출·영업이익·CAPEX입니다. TSMC·SMIC·UMC는 2014년부터, GlobalFoundries는 공개 분기 자료가 확인되는 2020년 3분기부터 제공합니다. 통화·회계 기준·CAPEX 정의는 각 카드에서 확인할 수 있습니다."
         },
         {
           "id": "ssd",

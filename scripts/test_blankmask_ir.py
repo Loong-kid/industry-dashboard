@@ -13,10 +13,11 @@ class BlankmaskIRTest(unittest.TestCase):
         for id_, latest in [("hoya_it_revenue",1010), ("agc_materials_revenue",402.05), ("shinetsu_materials_revenue",2792)]:
             doc=docs[id_]
             pts=next(iter(doc["series"].values()))
-            self.assertEqual(len(pts),21)
-            self.assertEqual(pts[0][0],"2021-06-30")
+            count,start={'hoya_it_revenue':(50,'2014-03-31'),'agc_materials_revenue':(46,'2015-03-31'),'shinetsu_materials_revenue':(21,'2021-06-30')}[id_]
+            self.assertEqual(len(pts),count)
+            self.assertEqual(pts[0][0],start)
             self.assertEqual(pts[-1],["2026-06-30",latest])
-            self.assertEqual(set(doc["point_sources"]),{p[0] for p in pts})
+            self.assertEqual(set(doc["point_sources"]),{p[0] for series in doc['series'].values() for p in series})
             self.assertIn("블랭크마스크 단독",doc["note"])
         growth=docs["hoya_blank_growth"]
         self.assertEqual(growth["series"]["명목 YoY"][-1],["2026-06-30",21])
@@ -27,6 +28,9 @@ class BlankmaskIRTest(unittest.TestCase):
         self.assertEqual(euv["frequency"],"yearly")
         self.assertEqual(euv["point_sources"]["2024-12-31"]["pdf_page"],45)
         self.assertEqual(period_date("2026Q1"),"2026-03-31")
+        self.assertEqual(docs['shinetsu_materials_revenue']['series']['이전 두 사업부 합계'][0],['2014-03-31',954.81])
+        self.assertNotIn('pdf_page',docs['agc_materials_revenue']['point_sources']['2015-03-31'])
+        self.assertIn('C180',docs['agc_materials_revenue']['point_sources']['2015-03-31']['label'])
 
     def test_reject_forecasts_and_annual_to_quarter(self):
         raw=copy.deepcopy(self.raw)
@@ -39,7 +43,7 @@ class BlankmaskIRTest(unittest.TestCase):
 
     def test_reject_missing_provenance_and_double_count(self):
         raw=copy.deepcopy(self.raw)
-        raw["records"][0]["pdf_page"]=0
+        next(r for r in raw['records'] if r['source_url'].endswith('.pdf'))['pdf_page']=0
         with self.assertRaises(AssertionError):validate(raw)
         raw=copy.deepcopy(self.raw)
         raw["records"].append(copy.deepcopy(raw["records"][0]))

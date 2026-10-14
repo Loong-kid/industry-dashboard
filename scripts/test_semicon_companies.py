@@ -24,6 +24,28 @@ class QuarterlyFinancials(unittest.TestCase):
             self.assertEqual(len(rows),4)
             self.assertAlmostEqual(sum(r['revenue'] for r in rows),total,delta=0.003)
 
+    def test_historical_coverage_and_micron_capex_basis(self):
+        for company in ['samsung','hynix','tsmc','smic','umc']:
+            rows=self.snapshot['companies'][company]['quarters']
+            self.assertEqual(rows[0]['date'],'2014-03-31')
+            self.assertEqual(len(rows),50)
+        rows=self.snapshot['companies']['micron']['quarters']
+        self.assertEqual(rows[0]['date'],'2013-11-28')
+        self.assertEqual(len(rows),52)
+        first=next(r for r in rows if (r['year'],r['quarter'])==(2016,1))
+        self.assertEqual((first['date'],first['revenue']),('2015-12-03',3350))
+        self.assertIsNone(rows[0]['capex'])
+        self.assertEqual(rows[0]['capex_gross'],669)
+        self.assertEqual(next(r['capex'] for r in rows if (r['year'],r['quarter'])==(2019,4)),1970)
+        annual={2014:16358,2015:16192,2016:12399,2017:20322,2018:30391,2019:23406,2020:21435,2021:27705,2022:30758,2023:15540}
+        for y,total in annual.items():self.assertAlmostEqual(sum(r['revenue'] for r in rows if r['year']==y),total,delta=2)
+        gf=self.snapshot['companies']['globalfoundries']['quarters']
+        self.assertEqual((len(gf),gf[0]['date']),(24,'2020-09-30'))
+        self.assertEqual(sum(r['revenue'] for r in gf if r['year']==2024),6750)
+        self.assertEqual(next(r['profit'] for r in gf if (r['year'],r['quarter'])==(2024,4)),-701)
+        smic=next(r for r in self.snapshot['companies']['smic']['quarters'] if (r['year'],r['quarter'])==(2023,1))
+        self.assertEqual((smic['date'],smic['revenue']),('2023-03-31',1462.288))
+
     def test_fiscal_comparisons_survive_53_week_year(self):
         doc = self.docs['company_micron_revenue']
         self.assertEqual(doc['period_labels']['2026-09-03'],'FY2026 Q4')
@@ -67,7 +89,7 @@ class QuarterlyFinancials(unittest.TestCase):
         with self.assertRaises(ValueError):validate(snapshot)
 
     def test_published_files_match_reviewed_facts_and_sources(self):
-        self.assertEqual(len(self.docs),24)
+        self.assertEqual(len(self.docs),27)
         catalog = json.loads((ROOT/'data/catalog.json').read_text(encoding='utf-8'))
         semicon = next(i for i in catalog['industries'] if i['id']=='semicon')
         linked = {id for s in semicon['sections'] if s.get('tab') in ['memory','foundry','ssd'] for id in s['indicators']}

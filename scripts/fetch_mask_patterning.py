@@ -154,7 +154,24 @@ def photronics_quarters(cache):
             classification = {key: diff for key, diff in differences.items() if abs(diff) > 2}
             if classification:
                 next(r for r in values if r["quarter"] == 4)["reconciliation_differences_thousand_usd"] = classification
-    return quarters
+    legacy=cache.get('legacy_quarters',[])
+    seen={(r['fiscal_year'],r['quarter']) for r in quarters}
+    for r in legacy:
+        period=(r['fiscal_year'],r['quarter'])
+        if period in seen or not (2014<=period[0]<START_YEAR and 1<=period[1]<=4):
+            raise ValueError('Duplicate or invalid historical Photronics quarter')
+        seen.add(period)
+        if not r['sources'] or not r['sources'][0]['url'].startswith('https://'):
+            raise ValueError('Historical revenue needs company source')
+        if r['period_end']>cache['checked'] or any(r['values'][k]<0 for k in ['ic_total','fpd_total']):
+            raise ValueError('Invalid historical revenue fact')
+        quarters.append(r)
+    if legacy:
+        for metric,total in [('ic_total',418400),('fpd_total',191300)]:
+            year=[r for r in legacy if r['fiscal_year']==2020]
+            if len(year)==4 and abs(sum(r['values'][metric] for r in year)-total)>200:
+                raise ValueError('FY2020 historical quarter sum differs from company annual release')
+    return sorted(quarters,key=lambda r:r['period_end'])
 
 
 def source_ref(filing):
@@ -184,15 +201,16 @@ def build_documents(cache, tek, financials=None):
         id_ = f"photronics_{prefix}_revenue"
         names = {"high": "고급 (High-end)", "main": "범용 (Mainstream)", "total": "합계"}
         docs[id_] = dict(id=id_, name=f"Photronics · {title} 포토마스크 매출 · 고급·범용",
-            unit="백만 달러", frequency="quarterly", source="Photronics 공식 SEC 10-Q·10-K 제품별 매출",
+            unit="백만 달러", frequency="quarterly", source="Photronics 공식 분기 실적 발표·SEC 제품별 매출",
             source_url=BASE + "/financial-information/sec-filings", updated=dates[-1], fetched=cache["checked"],
-            span_gaps=False, series={name: [[r["period_end"], r["values"][prefix+"_"+key]/1000] for r in rows]
+            span_gaps=False, series={name: [[r["period_end"], r["values"][prefix+"_"+key]/1000 if r['values'][prefix+'_'+key] is not None else None] for r in rows]
                                      for key, name in names.items()},
-            default_series=[names["high"], names["main"]], quarterly_revenue_summary=True,
+            default_series=[names["total"], names["high"], names["main"]], quarterly_revenue_summary=True,
             period_labels=labels, comparison_dates=comparisons, point_sources=refs,
             description=f"완성 포토마스크의 제품별 분기 매출입니다. {scope}",
-            note="미국 달러 명목 금액입니다. 회사 회계분기와 실제 종료일을 표시합니다. 달력 분기로 치환하지 않습니다. 블랭크마스크 매출이나 출하량이 아니며 외주 시장의 참고 지표입니다.",
+            note="미국 달러 명목 금액입니다. FY2014~FY2020은 공식 분기 실적 발표문의 IC·FPD 합계(0.1백만 달러 반올림)를 사용합니다. 이 기간 고급·범용은 미수집으로 빈 값이며 임의 배분하지 않습니다. FY2021부터 SEC 주석의 천 달러 단위 제품별 수치를 제공합니다. 회사 회계분기와 실제 종료일을 표시합니다. 달력 분기로 치환하지 않습니다. 블랭크마스크 매출이나 출하량이 아니며 외주 시장의 참고 지표입니다.",
             basis_details=[
+                {"label":"FY2014~FY2020", "value":"공식 실적 발표문의 단일 분기 IC·FPD 전체 매출입니다. 고급·범용 구분은 빈 값입니다. Q4도 발표문에 명시된 3개월 금액이며 연간 금액을 사용하지 않습니다."},
                 {"label": "Q1~Q3", "value": "분기보고서 매출 주석의 3개월 실적을 사용합니다. 천 달러 공표값을 백만 달러로 변환했습니다."},
                 {"label": "Q4", "value": "같은 회계연도 연차보고서 금액에서 Q3 보고서의 9개월 누적값을 뺍니다. 분기 합계는 연간 실적과 대조합니다."},
                 {"label": "비교 기준", "value": "YoY·QoQ는 종료일의 월·일이 아닌 회사 회계연도와 분기 번호로 대조합니다."},
@@ -317,7 +335,7 @@ def run():
             with read_pdf(filing["url"]) as pdf:
                 known[filing["url"]] = parse_photronics(pdf, filing)
             print(f"Parsed {filing['filed']} {filing['form']}")
-        cache = {"checked": dt.date.today().isoformat(), "filings": sorted(known.values(), key=lambda f: f["filed"])}
+        cache = {**cache, "checked": dt.date.today().isoformat(), "filings": sorted(known.values(), key=lambda f: f["filed"])}
     tek = json.loads(TEKSCEND.read_text(encoding="utf8"))
     docs = build_documents(cache, tek)
     # Validate everything before replacing either the archive or chart data.

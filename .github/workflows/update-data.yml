@@ -341,6 +341,9 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_snstech.py
 
+      - name: 에스앤에스텍 검토된 연결 재무 실적 집계
+        run: python scripts/aggregate_snstech_financials.py
+
       # DART 공개 HTML. 최근 정기보고서·정정 접수번호를 확인하며 원문 누적값을 분기로 변환.
       - name: 에스앤에스텍 생산능력·생산실적 검증
         run: python -m unittest discover -s scripts -p test_snstech_production.py

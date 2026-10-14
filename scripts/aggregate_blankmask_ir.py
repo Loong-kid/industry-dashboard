@@ -15,6 +15,7 @@ METRICS = {
     ("HOYA", "it_revenue"), ("HOYA", "lsi_yoy"),
     ("AGC", "electronic_materials_revenue"), ("AGC", "euv_blanks_annual_revenue"),
     ("Shin-Etsu", "electronics_revenue"),
+    ("Shin-Etsu", "legacy_electronics_revenue"),
 }
 
 
@@ -37,7 +38,10 @@ def validate(raw):
         assert r["status"] == "actual", key
         assert period_date(r["period"]) <= raw["checked"], key
         assert r["source_url"].startswith("https://"), key
-        assert isinstance(r["pdf_page"], int) and r["pdf_page"] > 0, key
+        if r['source_url'].endswith('.xlsx'):
+            assert r.get('source_label'), key
+        else:
+            assert isinstance(r["pdf_page"], int) and r["pdf_page"] > 0, key
         assert isinstance(r["value"], (int, float)), key
         if r["metric"] == "lsi_yoy":
             assert r["unit"] == "percent", key
@@ -71,7 +75,7 @@ def build_docs(raw):
         docs[id_] = dict(id=id_, name=name, unit=unit, frequency=frequency,
             source=source, source_url=url, updated=last, **common,
             description=description, note=note,
-            point_sources={period_date(r["period"]): {"url":r["source_url"], "pdf_page":r["pdf_page"]} for r in data}, **extra)
+            point_sources={period_date(r["period"]): {"url":r["source_url"], **({'pdf_page':r['pdf_page']} if r.get('pdf_page') else {}), **({'label':r['source_label']} if r.get('source_label') else {})} for r in data}, **extra)
 
     segments = [
         ("HOYA", "it_revenue", "hoya_it_revenue", "HOYA · Information Technology 분기 매출", "IT 사업부 매출",
@@ -91,6 +95,14 @@ def build_docs(raw):
              "블랭크마스크 단독 매출액이 아닙니다. 회사별 포함 제품이 달라 매출 합계나 비중을 블랭크마스크 시장으로 해석할 수 없습니다. 실제 3개월 매출이며 누적 실적이 아닙니다. 달력 분기 기준, 엔화 명목 금액입니다. 회사 공표값의 반올림 차이가 있습니다. 분기 발표 때 IR을 확인해 수기 갱신합니다.",
              series={label:[[period_date(r["period"]),round(r["value"]*10,3)] for r in data]},
              default_series=[label],quarter_labels=True,quarterly_revenue_summary=True)
+        if company == 'Shin-Etsu':
+            legacy=rows(company,'legacy_electronics_revenue')
+            doc=docs[id_]
+            doc['series']['이전 두 사업부 합계']=[[period_date(r['period']),round(r['value']*10,3)] for r in legacy]
+            doc['default_series'].append('이전 두 사업부 합계')
+            for r in legacy:
+                doc['point_sources'][period_date(r['period'])]={'url':r['source_url'],'pdf_page':r['pdf_page'],'label':r['source_label'],**({'supporting_sources':r['supporting_sources']} if r.get('supporting_sources') else {})}
+            doc['note']+=' 2014 Q1~2021 Q1은 이전 Semiconductor Silicon과 Electronics & Functional Materials 두 사업부의 외부 매출 합계를 별도 계열로 표시합니다. 2021년 사업부 재편 전후를 한 계열로 연결하지 않습니다. 2019 Q4~2021 Q1은 공식 분기 부록의 십억 엔 단위 반올림값입니다.'
 
     data=rows("HOYA","lsi_yoy")
     card("hoya_blank_growth","HOYA · LSI 블랭크마스크 매출 성장률","%","quarterly",

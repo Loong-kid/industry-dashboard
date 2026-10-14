@@ -1,6 +1,6 @@
 """Official JEOL Data Book and Mycronic report archive; reviewed NuFlare/units.
 
---backfill loads four eight-quarter tables; --offline rebuilds cached facts.
+--backfill loads historical eight-quarter tables; --offline rebuilds cached facts.
 No credentials. Validate all documents before replacing the cache or charts.
 """
 import argparse
@@ -142,9 +142,10 @@ def extract_mycronic(data, url):
             raise ValueError("Mycronic source unit unverified")
         for i, page in enumerate(doc):
             text = page.get_text()
-            if "Quarterly data" not in text or "Pattern Generators" not in text:
+            if "Quarterly data" not in text or not re.search(r"Pattern Generators|\bPG\b", text, re.I):
                 continue
-            headers = re.findall(r"Q([1-4])\s+(\d{2})\*?", text.split("Order", 1)[0])
+            text = text.split('Quarterly data', 1)[1]
+            headers = re.findall(r"Q\s*([1-4])[-\s]+(\d{2})\*?", text.split("Order", 1)[0])
             if len(headers) != 8:
                 raise ValueError("Unexpected Mycronic quarterly header")
             metrics = {}
@@ -152,9 +153,12 @@ def extract_mycronic(data, url):
                                ("sales", "Net Sales"), ("gross_margin", "Gross Margin"),
                                ("profit", "Of which EBIT")):
                 # Pre-2021 layout puts the division on the same line as the metric.
-                pattern = label + (r"\s+Pattern Generators" if key == "profit" else r"(?:\s*\n| )Pattern Generators")
+                pattern = (r'(?:Net\s+)?Sales' if key == 'sales' else label) + r"\s+(?:Pattern Generators|PG)\b"
                 match = re.search(pattern, text, re.I)
                 if not match:
+                    if max(int(y) for q,y in headers) <= 16 and key in ['backlog', 'profit']:
+                        metrics[key] = [None]*8
+                        continue
                     raise ValueError(f"Mycronic quarterly {key} missing")
                 tail = text[match.end():].strip().splitlines()[:8]
                 if len(tail) != 8 or any(not re.fullmatch(r"-?\d[\d,]*(?:\.\d+)?%?", v.strip()) for v in tail):
@@ -195,7 +199,7 @@ def collect(cache, backfill=False):
         raise ValueError("Mycronic official reports missing")
     selected = reports[:1]
     if backfill or not cache.get("mycronic"):
-        selected += [r for r in reports if r[0] in {f"Interim Report Q2 {y}" for y in (2020, 2022, 2024, 2026)} and r not in selected]
+        selected += [r for r in reports if r[0] in {f"Interim Report Q2 {y}" for y in (2016, 2018, 2020, 2022, 2024, 2026)} and r not in selected]
     fact_keys = ("date", "url", "pdf_page", "orders", "backlog", "sales", "gross_margin", "profit")
     known = {r["date"]: {k: r[k] for k in fact_keys} for r in cache.get("mycronic", [])}
     # Newer published tables override older values (including restatements).
@@ -275,7 +279,7 @@ def build_documents(cache, manual):
     rows = [dict(r) for r in cache["mycronic"]]
     scope = "Pattern Generators 사업부 실적입니다. 디스플레이·반도체용 레이저 마스크 라이터와 서비스 등을 포함합니다. 전자빔 EUV 장비 단독 수치가 아닙니다."
     source = "Mycronic 공식 분기보고서 · 8개 분기 원표"
-    note = "공시된 단일 분기의 명목 SEK 금액입니다. 환율·제품 믹스와 인수 효과가 포함됩니다. 2026 Q2에는 Cowin DST 매출 26백만 SEK와 비반복 맞춤형 SLX 수주가 포함되어 전년·장비 대수와 단순 비교에 주의가 필요합니다."
+    note = "공시된 단일 분기의 명목 SEK 금액입니다. 2014년부터 제공하며 초기 보고서에서 PG 사업부 수주잔고·EBIT를 구분하지 않은 기간은 빈 값입니다. 환율·제품 믹스와 인수 효과가 포함됩니다. 2026 Q2에는 Cowin DST 매출 26백만 SEK와 비반복 맞춤형 SLX 수주가 포함되어 전년·장비 대수와 단순 비교에 주의가 필요합니다."
     specs = [("orders_sales", "수주·매출", "백만 SEK", [("orders", "수주액", 1), ("sales", "매출", 1)]),
              ("backlog", "수주잔고", "백만 SEK", [("backlog", "수주잔고", 1)]),
              ("profit", "EBIT", "백만 SEK", [("profit", "EBIT", 1)]),
@@ -283,7 +287,7 @@ def build_documents(cache, manual):
              ("book_to_bill", "수주/매출 · 분기·TTM", "배", [("book_to_bill", "분기 수주/매출", 1), ("ttm_book_to_bill", "TTM 수주/매출", 1)])]
     for i, row in enumerate(rows):
         row = row.copy()
-        row["ebit_margin"] = row["profit"] / row["sales"] * 100
+        row["ebit_margin"] = row["profit"] / row["sales"] * 100 if row['profit'] is not None else None
         row["book_to_bill"] = row["orders"] / row["sales"]
         window = rows[max(0, i-3):i+1]
         serials = [int(r["date"][:4])*4+(int(r["date"][5:7])-1)//3 for r in window]

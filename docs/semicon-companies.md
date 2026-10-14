@@ -1,6 +1,6 @@
 # 반도체 기업 분기 실적
 
-검토일: 2026-10-14. 기업 공식 IR·공시의 확정 분기값을 사용한다.
+검토일: 2026-10-15. 기업 공식 IR·공시의 확정 분기값을 사용한다.
 제품별 실적으로 분리되지 않은 영업이익·CAPEX를 임의 배분하지 않는다.
 현재 기업 실적은 검토 스냅샷이며 자동으로 새 분기를 수집하는 기능은 아니다.
 
@@ -8,9 +8,10 @@
 
 |탭|기업|확보 구간|
 |---|---|---|
-|메모리|삼성전자·SK하이닉스|2023 Q1–2026 Q2 · 각 14분기|
-|메모리|Micron|FY2024 Q1–FY2026 Q4 · 12분기|
-|파운드리|TSMC·SMIC·UMC|2023 Q1–2026 Q2 · 각 14분기|
+|메모리|삼성전자·SK하이닉스|2014 Q1–2026 Q2 · 각 50분기|
+|메모리|Micron|FY2014 Q1–FY2026 Q4 · 52분기|
+|파운드리|TSMC·SMIC·UMC|2014 Q1–2026 Q2 · 각 50분기|
+|파운드리|GlobalFoundries|2020 Q3–2026 Q2 · 24분기; 비상장 시기 미확인 분기는 미수록|
 |SSD|Sandisk|FY2025 Q3–FY2026 Q4 · 6분기; JV 포함 CAPEX는 FY2026 4분기|
 |SSD|Kioxia|FY2024 Q1–FY2026 Q1 · 9분기|
 
@@ -20,8 +21,7 @@
 기존 `#/semicon/snstech`, `#/semicon/snstech/ir`, `#/semicon/esc`,
 `#/semicon/mocvd`도 같은 화면을 연다. 기간 버튼과 분류는 고정 헤더 안에 있다.
 
-파운드리는 [TrendForce 2026 Q2 순위](https://www.trendforce.com/presscenter/news/20260909-13225.html)의
-TSMC·삼성·SMIC·UMC 순서에서 요청대로 삼성을 제외한 1·3·4위로 선정했다.
+파운드리는 TSMC·SMIC·UMC에 사용자 요청으로 GlobalFoundries를 추가했다.
 SSD는 사용자 지정 Sandisk·Kioxia 두 회사다. SSD 시장 점유율 상위 2사라는 의미가 아니다.
 
 ## 공식 자료와 범위
@@ -29,6 +29,8 @@ SSD는 사용자 지정 Sandisk·Kioxia 두 회사다. SSD 시장 점유율 상�
 - [삼성전자 분기 IR](https://www.samsung.com/global/ir/financial-information/earnings-release/):
   매출은 연결·DS·메모리 3계열, 영업이익은 연결·DS 2계열.
   메모리 단독 영업이익은 별도 분기 공시하지 않는다. DS는 파운드리·System LSI를 포함한다.
+  2014~2021년은 당시 Semiconductor 사업부, 2022년부터는 DS다.
+  Display를 포함했던 과거 DS 전체를 반도체 실적으로 사용하지 않는다.
   CAPEX는 연결 분기 현금흐름표 `Purchase(s) of PP&E`로 무형자산을 제외한다.
   현금 지급액이므로 IR 설비투자 발표액과 시점이 다를 수 있다. 단위 조 원.
 - [SK하이닉스 분기 IR](https://www.skhynix.com/ir/UI-FR-IR01/):
@@ -38,6 +40,8 @@ SSD는 사용자 지정 Sandisk·Kioxia 두 회사다. SSD 시장 점유율 상�
   연결 매출·GAAP 영업이익·발표문에 기재된 순 CAPEX, 백만 USD.
   순 CAPEX는 정부 지원금·자산 매각 회수 등을 차감한 회사 정의다.
   발표문의 반올림된 금액을 유지한다. 52/53주 회계연도, 실제 종료일을 보존한다.
+  FY2014~FY2016 Q3 초기 발표 CAPEX는 차감 기준이 명시되지 않아 별도 계열이다.
+  FY2016 Q4부터 파트너 부담액 차감 순액을 연결한다. FY2014 Q1 종료일은 2013-11-28이다.
 - [TSMC 분기 IR](https://investor.tsmc.com/english/quarterly-results):
   Management Report의 연결 매출·영업이익·현금흐름표 NT$ Capital Expenditures,
   십억 TWD. USD 투자계획과 섞지 않는다. 2023 Q4·2025 Q3·2026 Q1은
@@ -48,6 +52,10 @@ SSD는 사용자 지정 Sandisk·Kioxia 두 회사다. SSD 시장 점유율 상�
 - [UMC 분기 IR](https://www.umc.com/en/Html/quarterly_results):
   연결 Operating Revenues·Operating Income·현금흐름표 Acquisition of PP&E,
   십억 TWD. 무형자산·연간 투자 예산은 CAPEX 계열에 넣지 않는다.
+- [GlobalFoundries 공식 실적](https://investors.gf.com/financial-information/quarterly-results):
+  IFRS 연결 매출·영업이익, 백만 USD. 2024 Q4 자산손상차손을 포함한다.
+  CAPEX는 유형·무형자산 현금 취득액이며 정부 보조금 차감 전 금액이다.
+  확인 가능한 공개 비교표는 2020 Q3부터이며 과거 비상장 분기를 추정하지 않는다.
 - [Sandisk 실적 발표](https://www.sandisk.com/company/newsroom/press-releases),
   [실적 설명자료](https://investor.sandisk.com/news-events/presentations):
   회사 전체 연결 매출·GAAP 영업이익, 백만 USD. FY2025 Q3 영업이익에는
@@ -78,6 +86,36 @@ python -m unittest discover -s scripts -p test_semicon_companies.py
 python scripts/test_semicon_navigation.py --url http://127.0.0.1:8765/
 ```
 
-빌더는 네트워크를 사용하지 않으며 24개 차트를 재현한다. 데이터 기준일과 검토일을
+빌더는 네트워크를 사용하지 않으며 27개 차트를 재현한다. 데이터 기준일과 검토일을
 구분한다. YoY·QoQ는 FY·분기 매칭을 사용해 53주 결산과 달력 분기 이동을 처리한다.
 각 차트의 펼침 데이터 표에서 분기별 공식 원문으로 이동할 수 있다.
+
+## 포토마스크 실적 확장
+
+|기업/지표|기간|기준|
+|---|---|---|
+|에스앤에스텍 매출·영업이익·CAPEX|2014 Q1–2026 Q2 · 50분기|DART 연결 재무제표, 백만 원|
+|HOYA IT 사업부 매출|2014 Q1–2026 Q2 · 50분기|회사 공식 IR, 제품별 추정 매출과 분리|
+|AGC 전자부재 매출|2015 Q1–2026 Q2 · 46분기|공식 Data Book Excel, 백만 엔을 억 엔으로 변환|
+|신에츠 전자재료 매출|2014 Q1–2026 Q2|2021 Q1까지 이전 두 사업부 합계를 별도 계열로 표시|
+|Photronics IC·FPD 합계|FY2014 Q1–FY2026 Q3 · 51분기|FY2020까지 공식 분기 발표의 0.1백만 USD 반올림값; 이후 SEC 제품별 주석|
+|Mycronic PG 수주·매출·매출총이익률|2014 Q1–2026 Q2 · 50분기|공식 8개 분기 원표; 초기 미구분 PG EBIT·잔고는 null|
+
+JEOL의 현재 공식 Data Book에서 확보한 분기 사업부 실적은 2016년부터,
+NuFlare는 기존 공식 연간 그래프 구간, Tekscend는 독립 법인 공시 구간을 유지한다.
+상장 전 모기업 전체 실적·연간 실적을 분기 사업부 실적으로 바꾸지 않는다.
+HOYA·AGC의 사용자 시트 제품별 추정치는 원래 시트 기간을 유지한다.
+
+에스앤에스텍 정규화 원장은 `data/_snstech/financial_quarters.json`이다.
+2014 및 2015년 초기 공시는 DART 공개 HTML, 이후 공시는 OpenDART 원문 계정을 확인했다.
+원 단위 금액·회계기간·원문 접수번호를 보관하고 차트 생성 시 백만 원으로 나눈다.
+매출·영업이익은 공시된 3개월 금액, Q4는 연간−Q3 누적이다.
+CAPEX는 CF 유형자산 취득 누적액의 차분이며 무형자산은 제외한다.
+후속 비교표 재분류를 보존하며 분기 합계를 맞추려고 임의 보정하지 않는다.
+연간 대조 차이는 원장 `annual_checks`, 각 카드 설명과 검증 테스트에 기록했다.
+2015 매출 +95,217원, 영업이익 −26,329,076원; 2025 매출 −42,035,269원이다.
+
+`aggregate_snstech.py` 다음에 `aggregate_snstech_financials.py`를 실행한다.
+자동 갱신 작업도 이 순서를 지켜 과거 연결 재무 차트를 짧은 CSV로 덮어쓰지 않는다.
+새 공시의 연결 범위·재분류를 검토해 원장을 갱신한 뒤 빌더를 실행한다.
+API 키는 CI Secret으로만 사용하며 공개 원장·산출물·출처 링크에는 넣지 않는다.

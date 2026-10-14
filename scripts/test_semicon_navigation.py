@@ -21,7 +21,7 @@ def verify(base):
                 page.wait_for_function('(n)=>state.charts.length===n',arg=count)
                 assert page.locator('#content .is-error').count()==0,route
                 assert not page.evaluate('document.documentElement.scrollWidth>innerWidth'),route
-            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',9,'파운드리'),('#/semicon/ssd',6,'SSD')]:
+            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/ssd',6,'SSD')]:
                 open_route(route,count)
                 assert title in page.locator('#page-title').inner_text()
                 assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','SSD','소부장']
@@ -29,8 +29,10 @@ def verify(base):
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
             open_route('#/semicon/memory',9)
             assert page.locator('.section-title').all_text_contents()==['삼성전자 · 분기 실적','SK하이닉스 · 분기 실적','Micron · 분기 실적']
-            page.evaluate('window.scrollTo(0,1400)')
-            page.wait_for_function('scrollY>1000')
+            # Three-column financial groups are shorter on wide screens.
+            # Exercise the sticky header away from the document's bottom clamp.
+            page.evaluate('window.scrollTo(0,Math.min(800,(document.documentElement.scrollHeight-innerHeight)/2))')
+            page.wait_for_function('scrollY>100')
             before=page.evaluate('scrollY')
             # Click the pinned control as a user would. Locator.click's automatic
             # scrollIntoView can scroll a sticky header to its normal-flow position.
@@ -45,7 +47,7 @@ def verify(base):
             page.wait_for_function('state.range==="all" && state.charts.length===9 && !document.querySelector(".page-loading")')
             page.evaluate('window.scrollTo(0,0)')
             page.screenshot(path=str(ROOT/f'tmp/semicon-20261014/memory-{width}.png'))
-            for route,count,leaf in [('#/semicon/materials/snstech',71,'포토마스크'),('#/semicon/snstech',71,'포토마스크'),
+            for route,count,leaf in [('#/semicon/materials/snstech',73,'포토마스크'),('#/semicon/snstech',73,'포토마스크'),
                                      ('#/semicon/materials/esc',6,'정전척'),('#/semicon/esc',6,'정전척'),
                                      ('#/semicon/materials/mocvd',13,'MOCVD'),('#/semicon/mocvd',13,'MOCVD')]:
                 open_route(route,count)
@@ -64,7 +66,7 @@ def verify(base):
             assert not errors,errors
             page.close()
         browser.close()
-    print('Nested routes, 24 financial charts, legacy materials, IR reader, mobile and sticky range controls verified')
+    print('Nested routes, 27 financial charts, legacy materials, IR reader, mobile and sticky range controls verified')
 
 
 if __name__=='__main__':
