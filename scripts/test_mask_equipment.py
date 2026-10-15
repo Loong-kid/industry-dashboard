@@ -33,6 +33,39 @@ class EquipmentTests(unittest.TestCase):
         self.assertEqual(sb["series_views"]["annual"]["series"]["수주"][0], ["2019-03-31", 5])
         self.assertEqual(self.docs["jeol_mb_units"]["series_views"]["annual"]["series"]["수주"][0], ["2013-03-31", 2])
 
+    def test_jeol_2014_history_differences_flows_not_balances(self):
+        rows = m.jeol_history_quarters(self.manual["jeol_history"])
+        self.assertEqual(rows[0]["date"], "2014-03-31")
+        self.assertEqual(rows[0]["sales"], 9089-5407)
+        self.assertEqual(rows[0]["profit"], 800-27)
+        self.assertEqual(len(rows[0]["supporting_sources"]), 2)
+        for year, annual_sales, annual_profit in [(2014,7436,478),(2015,9988,1504)]:
+            complete = [r for r in rows if r["fiscal_year"] == year]
+            self.assertEqual(sum(r["sales"] for r in complete), annual_sales)
+            self.assertEqual(sum(r["profit"] for r in complete), annual_profit)
+        sales = self.docs["jeol_industrial_sales"]
+        self.assertGreaterEqual(len(sales["series"]["매출"]), 50)
+        self.assertEqual(sales["series"]["매출"][0], ["2014-03-31",36.82])
+        self.assertEqual(self.docs["jeol_industrial_orders"]["series"]["수주액"][0], ["2014-03-31",77.55])
+        self.assertEqual(self.docs["jeol_industrial_backlog"]["series"]["수주잔고"][0], ["2014-03-31",27.53])
+        self.assertEqual(dict(self.docs["jeol_industrial_profit"]["series"]["영업이익"])["2014-06-30"],-2.1)
+        incomplete = copy.deepcopy(self.manual["jeol_history"])
+        incomplete["ytd"] = [r for r in incomplete["ytd"] if (r["fiscal_year"],r["quarter"]) != (2014,2)]
+        self.assertNotIn("2014-12-31", {r["date"] for r in m.jeol_history_quarters(incomplete)})
+
+    def test_nuflare_annual_history_is_standalone_and_not_a_forecast(self):
+        doc = self.docs["nuflare_sales"]
+        self.assertEqual(doc["frequency"],"yearly")
+        self.assertEqual(len(doc["series"]["매출"]),13)
+        values = dict(doc["series"]["매출"])
+        self.assertEqual(values["2014-03-31"],439.86)  # Individual results, not consolidated 443.66.
+        self.assertEqual(values["2019-03-31"],573.2)  # Individual results, not consolidated 578.22.
+        self.assertEqual(values["2020-03-31"],402.73)  # Actual gazette, not the old 440 forecast.
+        self.assertEqual(dict(self.docs["nuflare_profit"]["series"]["영업이익"])["2022-03-31"],40.97)
+        self.assertEqual(doc["point_sources"]["2014-03-31"]["pdf_page"],2)
+        self.assertEqual(len(doc["point_sources"]),13)
+        self.assertIn("단독",doc["description"])
+
     def test_ttm_is_ratio_of_sums_and_requires_contiguous_quarters(self):
         points = self.docs["mycronic_book_to_bill"]["series"]["TTM 수주/매출"]
         self.assertEqual([v for d, v in points[:3]], [None]*3)

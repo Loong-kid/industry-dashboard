@@ -210,6 +210,32 @@ def collect(cache, backfill=False):
     return dict(checked=dt.date.today().isoformat(), jeol=jeol, mycronic=sorted(known.values(), key=lambda r: r["date"]))
 
 
+def jeol_history_quarters(history):
+    """Difference reviewed segment YTD flows, never annual stock balances."""
+    rows = history.get("ytd", [])
+    lookup = {(r["fiscal_year"], r["quarter"]): r for r in rows}
+    if len(lookup) != len(rows):
+        raise ValueError("Duplicate JEOL historical period")
+    result = []
+    for (year, quarter), row in sorted(lookup.items()):
+        if quarter not in (1, 2, 3, 4):
+            raise ValueError("Invalid JEOL historical quarter")
+        previous = lookup.get((year, quarter-1))
+        if quarter > 1 and previous is None:
+            continue
+        values = {key: row[key]-(previous[key] if previous else 0) for key in ("sales", "profit")}
+        if values["sales"] < 0:
+            raise ValueError("JEOL cumulative sales decreased")
+        date = end_date(year, quarter)
+        if date < "2014-01-01":
+            continue
+        sources = [dict(url=r["url"], pdf_page=r["pdf_page"],
+                        label=f"FY{year} {r['quarter']}개 분기 누적") for r in [row, previous] if r]
+        result.append(dict(row, **values, date=date, period=f"FY{year} Q{quarter}",
+                           supporting_sources=sources))
+    return result
+
+
 def build_documents(cache, manual):
     docs = {}
 
@@ -222,6 +248,8 @@ def build_documents(cache, manual):
         refs = {r["date"]: dict(url=r.get("url", url), label=r.get("period", r["date"]),
                  **({"pdf_page": r["pdf_page"]} if "pdf_page" in r else {})) for r in rows}
         for r in rows:
+            if "supporting_sources" in r:
+                refs[r["date"]]["supporting_sources"] = r["supporting_sources"]
             if "sheet" in r:
                 refs[r["date"]]["label"] += f" · Excel {r['sheet']} · " + ", ".join(r["cells"].values())
         doc = dict(id=id_, name=name, unit=unit, frequency="quarterly", quarter_labels=True,
@@ -233,15 +261,23 @@ def build_documents(cache, manual):
         docs[id_] = doc
         return doc
 
-    j = cache["jeol"]
-    js = "JEOL 공식 IR Data Book · Excel 원표"
+    j = dict(cache["jeol"])
+    history = manual.get("jeol_history", {})
+    merged = {r["date"]: r for r in jeol_history_quarters(history)}
+    merged.update({r["date"]: r for r in j["quarters"]})
+    j["quarters"] = sorted(merged.values(), key=lambda r:r["date"])
+    merged = {end_date(r["fiscal_year"]): dict(r,date=end_date(r["fiscal_year"]),period=f"FY{r['fiscal_year']}") for r in history.get("annual_orders", [])}
+    merged.update({r["date"]: r for r in j["annual"]})
+    j["annual"] = sorted(merged.values(), key=lambda r:r["date"])
+    js = "JEOL 공식 결산 공시·IR Data Book"
     jscope = "산업기기 사업부 실적입니다. 마스크 라이터 외에 스폿빔 직접묘화 장비·기타 산업 장비를 포함하므로 마스크 장비 단독 매출이 아닙니다."
-    jnote = "FY는 4월 시작 연도입니다. FY2025 Q4는 2026년 1~3월, FY2026 Q1은 2026년 4~6월입니다. Excel에 공시된 단일 분기값을 사용하며 백만 엔을 억 엔으로 변환했습니다."
+    jnote = "FY는 4월 시작 연도입니다. 2014년 1~3월부터 표시합니다. FY2013 Q4~FY2015 Q4는 공식 결산 공시의 사업부 누적값을 차분했고, 이후는 Data Book의 단일 분기값입니다. Q4는 연간−9개월이며 최신 공시의 비교표를 우선합니다. 백만 엔 ÷ 100 = 억 엔으로, 원표 절사에 따른 미세한 차이가 있을 수 있습니다."
     for key, label in (("sales", "매출"), ("profit", "영업이익")):
-        chart(f"jeol_industrial_{key}", f"JEOL · 산업기기 {label} · 분기", "억 엔", j["quarters"],
+        doc = chart(f"jeol_industrial_{key}", f"JEOL · 산업기기 {label} · 분기", "억 엔", j["quarters"],
               [(key, label, .01)], js, j["url"], jscope, note=jnote,
               period_labels={r["date"]: r["period"] for r in j["quarters"]},
               **{"quarterly_revenue_summary" if key == "sales" else "quarterly_profit_summary": True})
+        doc["fetched"] = max(doc["fetched"], history.get("checked", ""))
     for prefix, label, explanation in (
         ("mb", "MBMW 플랫폼", "JEOL의 멀티빔 마스크 라이터 플랫폼 수주·매출인식 대수입니다. IMS 완성 장비의 판매 대수나 전체 EUV 마스크 장비 시장 대수가 아닙니다."),
         ("sb", "싱글빔 마스크 라이터", "JEOL 3050/3200 시리즈의 수주·매출인식 대수입니다. 웨이퍼 직접묘화용 스폿빔 장비를 포함하지 않습니다.")):
@@ -265,14 +301,15 @@ def build_documents(cache, manual):
                     note="산업기기 사업부의 연간 수주액 또는 3월 말 수주잔고입니다. 마스크 라이터 단독 수치가 아닙니다. FY는 4월 시작 연도입니다.",
                     period_labels={r["date"]: r["period"] for r in j["annual"]})
         doc.update(frequency="yearly", quarter_labels=False)
+        doc["fetched"] = max(doc["fetched"], history.get("checked", ""))
 
     n = manual["nuflare"]
     for key, label in (("sales", "매출"), ("profit", "영업이익")):
         rows = [{**r, "date": end_date(r["fiscal_year"]), "period": f"FY{r['fiscal_year']}"} for r in n["years"]]
         doc = chart(f"nuflare_{key}", f"NuFlare · 회사 전체 {label} · 연간", "억 엔", rows, [(key, label, 1)],
-                    "NuFlare 공식 업적 추이", n[key+"_url"],
-                    "회사 전체 연간 실적입니다. 전자빔 마스크 묘화·마스크 검사·에피택셜 성장 장비 사업을 포함하며 마스크 라이터 단독 매출이 아닙니다.",
-                    manual=True, full_range=True, change_mode="none", note="공식 그래프의 정수 억 엔 표기를 그대로 옮겼습니다. FY2025는 2026년 3월 종료 연도입니다. 상장폐지 이후 동일 범위의 분기 실적을 확인하지 못해 연간만 표시합니다. 새 연간 그래프 발표 시 검토해 갱신합니다.",
+                    "NuFlare 결산 공시·관보 공고·공식 업적 추이", n[key+"_url"],
+                    "회사 전체 단독 기준 연간 실적입니다. 전자빔 마스크 묘화·마스크 검사·에피택셜 성장 장비를 포함하며 마스크 라이터 단독 매출이 아닙니다. 과거 연결값과 단독값을 섞지 않습니다.",
+                    manual=True, full_range=True, change_mode="none", note="2014년 3월 결산부터 제공합니다. FY는 4월 시작 연도이며 FY2025는 2026년 3월 종료 연도입니다. 2014~2019년 3월 결산은 결산 원문의 개별 실적(個別業績), 2020~2022년 3월 결산은 관보 공고 전재, 이후는 공식 그래프의 정수 억 엔 공표값입니다. 전재 PDF는 회사 작성 원문입니다. 연간값을 분기로 배분하지 않으며 갱신 시 새 원문을 검토합니다.",
                     period_labels={r["date"]: r["period"] for r in rows})
         doc.update(frequency="yearly", quarter_labels=False, fetched=n["checked"])
 
@@ -334,7 +371,7 @@ def run():
     write_json(CACHE, cache)
     for id_, doc in docs.items():
         write_json(ROOT / "data/semicon" / (id_+".json"), doc)
-    print(f"Mask equipment: {len(docs)} charts; JEOL {len(cache['jeol']['quarters'])} and Mycronic {len(cache['mycronic'])} quarters")
+    print(f"Mask equipment: {len(docs)} charts; JEOL {len(docs['jeol_industrial_sales']['series']['매출'])} and Mycronic {len(cache['mycronic'])} quarters")
 
 
 if __name__ == "__main__":

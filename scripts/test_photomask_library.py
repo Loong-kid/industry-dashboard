@@ -23,6 +23,10 @@ def plain_markdown(text):
 
 def verify(base):
     index = json.loads((ROOT / 'data/semicon/photomask_ir_library.json').read_text(encoding='utf-8'))
+    catalog = json.loads((ROOT / 'data/catalog.json').read_text(encoding='utf-8'))
+    photomask = next(i for i in catalog['industries'] if i['id'] == 'semicon')
+    indicator_charts = sum(len(s['indicators']) for s in photomask['sections']
+                           if s.get('tab') == 'snstech' and s.get('type') != 'table')
     assert len(index['documents']) == len({d['id'] for d in index['documents']}) == 82
     files = {}
     for row in index['documents']:
@@ -84,10 +88,10 @@ def verify(base):
                 page.screenshot(path=str(output / f'translation-{width}.png'), full_page=True)
             page.locator('.photomask-views a').first.click()
             page.wait_for_function('state.charts.length > 0 && !document.querySelector(".page-loading")', timeout=60000)
-            assert page.locator('canvas').count() == 71
+            assert page.locator('canvas').count() == indicator_charts
             assert page.locator('#range-picker').is_visible()
             assert not errors, errors
-            print(json.dumps({'width': width, 'documents': 82, 'indicator_charts': 71, 'errors': errors}), flush=True)
+            print(json.dumps({'width': width, 'documents': 82, 'indicator_charts': indicator_charts, 'errors': errors}), flush=True)
             page.close()
         # Hold an earlier request, select a different company, then release it.
         page = browser.new_page()

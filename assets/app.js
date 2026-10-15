@@ -131,7 +131,20 @@ function route() {
     state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   }
-  document.querySelectorAll("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.id === state.industry.id));
+  document.querySelectorAll("#nav a").forEach((a) => {
+    const selected = a.dataset.id === state.industry.id;
+    a.classList.toggle("active", selected);
+    if (selected) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  const nav = document.getElementById("nav");
+  const activeLink = nav.querySelector('[aria-current="page"]');
+  if (activeLink && nav.scrollWidth > nav.clientWidth) {
+    const linkBounds = activeLink.getBoundingClientRect();
+    const navBounds = nav.getBoundingClientRect();
+    if (linkBounds.left < navBounds.left) nav.scrollLeft += linkBounds.left-navBounds.left;
+    else if (linkBounds.right > navBounds.right) nav.scrollLeft += linkBounds.right-navBounds.right;
+  }
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
   if (state.industry !== prev && state.industry.default_range) setRange(state.industry.default_range);
@@ -148,12 +161,32 @@ function setRange(range) {
 function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
-  for (const ind of state.catalog.industries) {
-    const a = document.createElement("a");
-    a.href = `#/${ind.id}`;
-    a.dataset.id = ind.id;
-    a.innerHTML = `<span>${ind.icon}</span><span>${ind.name}</span>`;
-    nav.appendChild(a);
+  const groups = [
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "shipbuilding", "shipping"]},
+    {name: "시장", ids: ["commodities", "macro", "ppi"]},
+    {name: "수급", ids: ["institution", "gifts"]},
+  ];
+  const included = new Set(groups.flatMap(group => group.ids));
+  const extra = state.catalog.industries.filter(ind => !included.has(ind.id));
+  if (extra.length) groups.push({name: "기타", ids: extra.map(ind => ind.id)});
+  for (const [index, group] of groups.entries()) {
+    const section = document.createElement("section");
+    section.className = "nav-group";
+    section.setAttribute("aria-labelledby", `nav-group-${index}`);
+    const heading = document.createElement("h2");
+    heading.id = `nav-group-${index}`;
+    heading.textContent = group.name;
+    section.appendChild(heading);
+    for (const id of group.ids) {
+      const ind = state.catalog.industries.find(ind => ind.id === id);
+      if (!ind) continue;
+      const a = document.createElement("a");
+      a.href = `#/${ind.id}`;
+      a.dataset.id = ind.id;
+      a.textContent = ind.name;
+      section.appendChild(a);
+    }
+    nav.appendChild(section);
   }
 }
 
@@ -171,7 +204,7 @@ async function renderIndustry(options = {}) {
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
-  document.getElementById("page-title").textContent = `${ind.icon} ${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedTab ? " · " + selectedTab.name : ""}`;
+  document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedTab ? " · " + selectedTab.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
