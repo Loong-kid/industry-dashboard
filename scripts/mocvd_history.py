@@ -11,7 +11,7 @@ def extend_history(docs,history,chart):
         rows=[r for r in rows if any(k in r for k in fields)]
         doc=chart(id,name,unit,rows,fields,note,manual=True)
         doc['period_labels']={r['date']:r['period'] for r in rows}
-        doc['frequency_label']='연간 · 공시 현금흐름' if annual else '분기 · 공시/누적 차분'
+        doc['frequency_label']='연간 · 공시/계산' if annual else '분기 · 공시/누적 차분'
         doc['quarterly_profit_summary']=profit and not annual
         doc['quarterly_revenue_summary']=not profit and not annual
         if annual:
@@ -84,6 +84,13 @@ def extend_history(docs,history,chart):
     old['description']+=' 연결 매출은 2014년부터 SEC 공시 이력, Compound Semiconductor와 비중은 동일 분류가 확보된 2023년부터입니다. 과거 LED·전력·RF 분류를 임의로 같은 부문으로 합치지 않았습니다.'
     old['updated']=old['series'][field][-1][0]
     if old['updated']<=companies['veeco']['quarters'][-1]['date']:old['fetched']=history['reviewed']
+    revenue=dict(old['series'][field])
+    compound=old['series']['Compound Semiconductor']
+    share=docs['mocvd_veeco_share']
+    share['series']['Compound Semiconductor / 연결']=[[date,round(value/revenue[date]*100,3)] for date,value in compound]
+    share['point_sources']={date:copy.deepcopy(old['point_sources'][date]) for date,_ in compound}
+    share['fetched']=history['reviewed']
+    share['description']+=' 분모는 장기 그래프와 같은 SEC 연결 매출이며 부문 매출은 원 발표의 반올림 정밀도를 유지합니다.'
 
     id='mocvd_infineon_capex'
     note='9월 결산. 회사 전체 투자입니다. Investments는 현금 유형자산 + 무형자산·자산화 개발비 등의 합계이며 GaN 전용 금액이 아닙니다. 연간 값은 FY2014–2025 공시, 분기 값은 별도로 확인한 FY2026 Q2·Q3만 표시합니다. 과거 연간 값을 분기로 나누지 않았습니다.'

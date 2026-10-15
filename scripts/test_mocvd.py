@@ -93,6 +93,10 @@ class MOCVDTests(unittest.TestCase):
         self.assertEqual(veeco['연결 매출'][0][0],'2014-03-31')
         self.assertEqual(len(veeco['연결 매출']),50)
         self.assertEqual(veeco['Compound Semiconductor'][0][0],'2023-03-31')
+        revenue=dict(veeco['연결 매출'])
+        share=dict(self.docs['mocvd_veeco_share']['series']['Compound Semiconductor / 연결'])
+        for date,value in veeco['Compound Semiconductor']:
+            self.assertEqual(share[date],round(value/revenue[date]*100,3))
 
     def test_later_collector_quarters_survive_history_merge(self):
         facts=copy.deepcopy(self.facts)
