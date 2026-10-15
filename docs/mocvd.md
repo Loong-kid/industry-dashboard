@@ -3,7 +3,7 @@
 Route: `#/semicon/materials/mocvd` (legacy `#/semicon/mocvd` retained).
 First build reviewed 2026-10-09; historical extension reviewed 2026-10-16.
 
-15 charts and 4 searchable disclosure tables. AIXTRON: 2014Q1–2026Q2
+23 charts and 4 searchable disclosure tables. AIXTRON: 2014Q1–2026Q2
 (50 quarters). Veeco consolidated revenue: 2014Q1–2026Q2 (50 quarters);
 Compound Semiconductor remains 2023Q1–2026Q2 (14 quarters). Coherent revenue,
 operating profit and cash CAPEX: FY2014–FY2026 (52 quarters). Lumentum cash
@@ -93,6 +93,47 @@ to reconcile by altering a quarter. Only the quarterly revenue series is shown.
   discloses MOCVD379m CNY. [2025 annual, p.65](https://star.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-03-31/688012_20260331_3UTD.pdf#page=65)
   groups semiconductor equipment products; volume is all dedicated-equipment
   chambers. Do not use those totals as MOCVD revenue or systems shipped.
+
+## GaN power-device companies
+
+Three company financial groups contain revenue, IFRS/GAAP operating profit
+and cash CAPEX in million original currency (CNY/EUR/USD). These are company
+totals, not GaN product sales or GaN-only profitability. Infineon and Power
+Integrations also have substantial non-GaN businesses. Do not interpret their
+company CAPEX as orders placed with AIXTRON or pure MOCVD spending.
+
+- **Innoscience:** founded July2017; public financial history starts FY2021.
+  Annual2021–2025 and half-year2023H1–2026H1 have separate views. H2 is annual
+  minus H1, not an independently reported quarter. Loss from operations is
+  used instead of net loss or adjusted EBITDA. Cash CAPEX is the combined
+  **property, plant and equipment and intangible assets** purchase line;
+  investments in financial products are excluded. Original company-hosted
+  IPO PDF pages503/508, annual2024 pages82/86, annual2025 pages88/92,
+  interim2025 pages39/44 and interim2026 pages20/23 were extracted with their
+  original units and reviewed columns. Every observation retains URL, PDF
+  page and SHA-256; H2 also retains both supporting statements.
+- **Infineon:** annual FY2014–2025, plus separately verified FY2026Q2/Q3.
+  Revenue and operating income use original annual2014 p.4, annual2016
+  p.130, and the company's Financial Data2016–2020/2021–2025 p.1. Recent
+  income figures use Q3FY26 consolidated income p.8. Operating profit is
+  distinct from Segment Result and from EBIT (FY2025:1515m, not1536m).
+  Existing CAPEX retains both cash PP&E and the broader Investments series.
+  Annual figures are never divided by four to simulate missing quarters.
+- **Power Integrations:** 50quarters, 2014Q1–2026Q2, plus annual2014–2025.
+  Original SEC companyfacts (CIK833640) from the public archive are hash
+  checked; original SEC filing accessions and calculation inputs are retained.
+  The [2017 10-K accounting-policy note](https://www.sec.gov/Archives/edgar/data/833640/000083364018000067/powi-2017123110k.htm)
+  confirms retrospective ASU2014-09 adoption: FY2015 revenue343.989m became
+  344.609m. Older quarter observations differ by0.620m and are preserved.
+  2019 operating profit includes the ON Semiconductor patent settlement;
+  the chart note identifies this nonrecurring effect without adjusting GAAP.
+
+`manual/mocvd_gan_financials.json` contains these reviewed observations.
+`python scripts/import_gan_financials.py --source-dir <source-folder> --as-of YYYY-MM-DD`
+reimports the downloaded Innoscience PDFs and verified Power Integrations
+SEC archive, preserving separately reviewed Infineon data. Daily builds load
+this snapshot, but new GaN company reports require source review and reimport;
+these three financial histories are not yet automatically collected.
 
 ## Updating
 

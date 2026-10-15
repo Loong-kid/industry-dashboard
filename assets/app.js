@@ -1366,7 +1366,8 @@ function buildTable(doc, filtered) {
   const map = {};
   for (const n of names) map[n] = Object.fromEntries(filtered[n]);
   const hasSources = doc.point_sources || doc.period_sources;
-  let html = `<table><thead><tr><th>${doc.period_labels ? "회계 분기 · 종료일" : doc.quarter_labels ? (doc.fiscal_year_end_month === 9 ? "회계 분기 · 9월 결산" : "달력 분기") : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
+  const periodHeader = doc.frequency === "semiannual" ? "반기 · 종료일" : doc.frequency === "yearly" ? "회계연도 · 종료일" : "회계 분기 · 종료일";
+  let html = `<table><thead><tr><th>${doc.period_labels ? periodHeader : doc.quarter_labels ? (doc.fiscal_year_end_month === 9 ? "회계 분기 · 9월 결산" : "달력 분기") : doc.year_labels ? "연도" : doc.month_labels ? "관측월" : "날짜"}</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join("")}${hasSources ? "<th>공식 원문</th>" : ""}</tr></thead><tbody>`;
   for (const d of dates) {
     const ref = doc.point_sources?.[d] || doc.period_sources?.[d];
     const sources = ref?.supporting_sources || (ref ? [ref] : []);

@@ -379,7 +379,7 @@ jobs:
         run: python scripts/fetch_mask_equipment.py
 
       - name: MOCVD 분기·누적·공시 범위 검증
-        run: python -m unittest discover -s scripts -p test_mocvd.py
+        run: python -m unittest discover -s scripts -p 'test_mocvd*.py'
       - name: MOCVD · AIXTRON·Coherent 공식 분기 자료 확인
         continue-on-error: true
         timeout-minutes: 6

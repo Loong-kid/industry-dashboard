@@ -97,7 +97,7 @@ def sec_history(folder, company, asof):
     meta = read(folder/f'{company}-selected.json')
     assert hashlib.sha256(raw).hexdigest() == meta['source_sha256'], 'Source hash mismatch'
     doc = json.loads(raw)
-    cik = {'coherent':820318, 'lumentum':1633978, 'veeco':103145}[company]
+    cik = {'coherent':820318, 'lumentum':1633978, 'veeco':103145, 'powi':833640}[company]
     assert int(doc['cik']) == cik
     facts = doc['facts']['us-gaap']
     def select(tags):
@@ -138,7 +138,7 @@ def sec_history(folder, company, asof):
     # Actual fiscal starts anchor 52/53-week reporters. Do not use calendar FY
     # labels from XBRL's fy field: comparative facts carry the filing's FY.
     anchors = sorted(annual_intervals)
-    if company == 'veeco':
+    if company in ['veeco','powi']:
         # An incomplete current year still has valid published quarters.
         years={int(e[:4]) for values in selected.values() for s,e in values if s.endswith('-01-01')}
         anchors=sorted(set(anchors) | {(f'{y}-01-01',f'{y}-12-31') for y in years})

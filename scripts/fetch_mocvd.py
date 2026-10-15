@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'data/_mocvd/facts.json'
 MANUAL = ROOT / 'manual/mocvd.json'
 HISTORY = ROOT / 'manual/mocvd_history.json'
+GAN = ROOT / 'manual/mocvd_gan_financials.json'
 AIX = 'https://www.aixtron.com/en/investors/publications'
 COHR = 'https://ir.coherent.com/financial-information/quarterly-results'
 VECO = 'https://s1.q4cdn.com/522285864/files/doc_presentations/2026/May/Investor-Presentation-May-2026-FINAl.pdf'
@@ -215,8 +216,9 @@ def chart(id,name,unit,rows,fields,description,**extra):
                 default_series=list(series),change_mode='yoy',**extra)
 
 
-def build(facts,manual,history=None):
+def build(facts,manual,history=None,gan=None):
     history=history if history is not None else json.loads(HISTORY.read_text(encoding='utf-8'))
+    gan=gan if gan is not None else json.loads(GAN.read_text(encoding='utf-8'))
     aix=merge(merge(history.get('aix',[]),facts.get('aix',[])),manual['aix_annual'])
     # Annual values supply Q4 balances and YTD equipment totals. Flow metrics
     # for Q4 are calculated from annual minus 9M; no balance differencing.
@@ -284,13 +286,15 @@ def build(facts,manual,history=None):
         docs[id]=dict(manual[id],id=id,manual=True,fetched=manual['reviewed'],updated=manual['reviewed'])
     from mocvd_history import extend_history
     extend_history(docs,history,chart)
+    from mocvd_gan import extend_gan
+    extend_gan(docs,gan,chart)
     for d in docs.values():
         if d.pop('frequency_override',None)=='yearly':d['frequency']='yearly'
         if 'quarter_labels_override' in d:d['quarter_labels']=d.pop('quarter_labels_override')
         if 'change_mode_override' in d:d['change_mode']=d.pop('change_mode_override')
         if d.get('unit')=='%':d['change_mode']='percentage_points' if d['id']!='mocvd_aix_order_mix' else 'none'
         if d.get('frequency')=='quarterly' and d.get('unit','').startswith('백만'):
-            d['quarterly_profit_summary']=d['id'] in ['mocvd_aix_profit','mocvd_coherent_profit']
+            d['quarterly_profit_summary']=d['id'].endswith('_profit')
             d['quarterly_revenue_summary']=not d['quarterly_profit_summary']
             dates=sorted({p[0] for points in d['series'].values() for p in points})
             buckets={(int(date[:4]),(int(date[5:7])-1)//3+1):date for date in dates}
