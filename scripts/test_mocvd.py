@@ -14,6 +14,7 @@ class MOCVDTests(unittest.TestCase):
     def setUpClass(cls):
         cls.facts=json.loads((ROOT/'data/_mocvd/facts.json').read_text(encoding='utf-8'))
         cls.manual=json.loads((ROOT/'manual/mocvd.json').read_text(encoding='utf-8'))
+        cls.history=json.loads((ROOT/'manual/mocvd_history.json').read_text(encoding='utf-8'))
         cls.docs=build(copy.deepcopy(cls.facts),copy.deepcopy(cls.manual))
 
     def test_aix_quarters_reconcile_to_annual(self):
@@ -39,13 +40,73 @@ class MOCVDTests(unittest.TestCase):
         self.assertAlmostEqual(dict(d['mocvd_aix_btb']['series']['분기 수주/매출'])[date],214.5/115.1,places=3)
 
     def test_cash_capex_fiscal_year_conservation(self):
-        for company,total in [('lumentum',451.3),('coherent',1102.9)]:
+        for company,total in [('lumentum',451.3),('coherent',1102.909)]:
             doc=self.docs[f'mocvd_{company}_capex']
             points=doc['series']['유형자산 취득 현금지출']
             fy26=[v for date,v in points if doc['period_labels'][date].startswith('FY2026')]
             self.assertEqual(len(fy26),4)
             self.assertAlmostEqual(sum(fy26),total,places=2)
         self.assertEqual(dict(self.docs['mocvd_lumentum_capex']['series']['유형자산 취득 현금지출'])['2026-06-27'],166.8)
+
+    def test_history_annual_anchors_and_scope_break(self):
+        # Independent 2014 annual-report anchors, million original currency.
+        aix=self.docs['mocvd_aix_orders']['series']
+        self.assertAlmostEqual(sum(v for d,v in aix['연결 매출'] if d.startswith('2014')),193.8)
+        self.assertAlmostEqual(sum(v for d,v in aix['장비 수주 · 2014 구기준']),153.4)
+        self.assertTrue(all(d>='2015-01-01' for d,_ in aix['총수주액']))
+        self.assertTrue(all(d>='2015-01-01' for d,_ in self.docs['mocvd_aix_btb']['series']['분기 수주/매출']))
+        for metric,anchor in [('revenue',683.261),('profit',46.486),('capex',29.220)]:
+            doc=self.docs['mocvd_coherent_'+metric]
+            points=next(iter(doc['series'].values()))
+            vals=[v for date,v in points if doc['period_labels'][date].startswith('FY2014 ')]
+            self.assertEqual(len(vals),4)
+            self.assertAlmostEqual(sum(vals),anchor,places=3)
+
+    def test_coherent_operating_profit_sign_and_included_charges(self):
+        # FY2025 report p.54: sales minus COGS, R&D, SG&A,
+        # restructuring and held-for-sale impairment. No EBITDA adjustment.
+        doc=self.docs['mocvd_coherent_profit']['series_views']['annual']
+        value=dict(next(iter(doc['series'].values())))['2025-06-30']
+        self.assertAlmostEqual(value,(5810115-3766793-581924-926451-160081-84988)/1000,places=3)
+        ref=doc['point_sources']['2025-06-30']
+        self.assertEqual(ref['tag'],'calculated_operating_profit')
+
+    def test_annual_only_history_is_never_fabricated_as_quarters(self):
+        lumen=self.docs['mocvd_lumentum_capex']
+        self.assertEqual(dict(lumen['series_views']['annual']['series']['유형자산 취득 현금지출'])['2014-06-28'],64.2)
+        self.assertNotIn('2014-06-28',dict(lumen['series']['유형자산 취득 현금지출']))
+        ifx=self.docs['mocvd_infineon_capex']
+        self.assertEqual(ifx['default_view'],'annual')
+        self.assertEqual(ifx['frequency'],'yearly')
+        self.assertEqual(len(ifx['series_views']['quarter']['series']['유형자산 취득 현금지출']),2)
+        self.assertEqual(dict(ifx['series']['유형자산 취득 현금지출'])['2014-09-30'],567)
+        self.assertEqual(dict(ifx['series']['Investments · 무형자산·개발비 포함'])['2025-09-30'],2094)
+
+    def test_week_based_fiscal_comparisons(self):
+        doc=self.docs['mocvd_lumentum_capex']['series_views']['quarter']
+        comparisons=doc['comparison_dates']['2021-10-02']
+        self.assertEqual(comparisons['year_ago'],'2020-09-26')
+        self.assertEqual(comparisons['quarter_ago'],'2021-07-03')
+
+    def test_disclosure_specific_history_ranges(self):
+        veeco=self.docs['mocvd_veeco_revenue']['series']
+        self.assertEqual(veeco['연결 매출'][0][0],'2014-03-31')
+        self.assertEqual(len(veeco['연결 매출']),50)
+        self.assertEqual(veeco['Compound Semiconductor'][0][0],'2023-03-31')
+
+    def test_later_collector_quarters_survive_history_merge(self):
+        facts=copy.deepcopy(self.facts)
+        facts['coherent'].append(dict(date='2026-09-30',year=2027,quarter=1,
+            capex_ytd=123.4,url='https://example.com/new-report',fetched='2026-11-04'))
+        manual=copy.deepcopy(self.manual)
+        manual['veeco_quarters'].append(dict(date='2026-09-30',revenue=200,compound=30,
+            url='https://example.com/new-veeco-report',fetched='2026-11-04'))
+        docs=build(facts,manual)
+        cohr=docs['mocvd_coherent_capex']['series_views']['quarter']
+        self.assertEqual(cohr['series']['유형자산 취득 현금지출'][-1],['2026-09-30',123.4])
+        self.assertEqual(cohr['comparison_dates']['2026-09-30']['quarter_ago'],'2026-06-30')
+        self.assertEqual(cohr['fetched'],'2026-11-04')
+        self.assertEqual(dict(docs['mocvd_veeco_revenue']['series']['연결 매출'])['2026-09-30'],200)
 
     def test_missing_quarter_is_not_zero_or_ytd(self):
         rows=[dict(date='2026-06-30',year=2026,quarter=2,capex_ytd=159.8,url='https://example.com')]

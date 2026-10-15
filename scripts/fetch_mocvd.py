@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'data/_mocvd/facts.json'
 MANUAL = ROOT / 'manual/mocvd.json'
+HISTORY = ROOT / 'manual/mocvd_history.json'
 AIX = 'https://www.aixtron.com/en/investors/publications'
 COHR = 'https://ir.coherent.com/financial-information/quarterly-results'
 VECO = 'https://s1.q4cdn.com/522285864/files/doc_presentations/2026/May/Investor-Presentation-May-2026-FINAl.pdf'
@@ -195,6 +196,16 @@ def chart(id,name,unit,rows,fields,description,**extra):
     series={label:[[r['date'],r[key]] for r in rows if key in r] for key,label in fields.items()}
     refs={r['date']:dict(url=r['url'],label=r.get('period',r['date']),
                          pdf_page=r.get('pdf_page'),**({'supporting_sources':r['supporting_sources']} if r.get('supporting_sources') else {})) for r in rows}
+    for row in rows:
+        sources=[]
+        for key in fields:
+            ref=row.get('refs',{}).get(key,row.get('refs',{}).get(key+'_ytd'))
+            if key=='equipment_orders':ref=row.get('refs',{}).get('orders_ytd')
+            if isinstance(ref,dict):sources.append(dict(ref,label=row.get('period',row['date'])))
+            elif isinstance(ref,int):sources.append(dict(url=row['url'],pdf_page=ref,label=row['date']))
+        if sources:
+            refs[row['date']].update(sources[0])
+            refs[row['date']]['supporting_sources']=sources+row.get('supporting_sources',[])
     dates=[d for points in series.values() for d,v in points]
     latest=max(dates)
     fetched=min((r.get('fetched','2026-10-09') for r in rows if r['date']==latest),default='2026-10-09')
@@ -204,20 +215,23 @@ def chart(id,name,unit,rows,fields,description,**extra):
                 default_series=list(series),change_mode='yoy',**extra)
 
 
-def build(facts,manual):
-    aix=merge(facts.get('aix',[]),manual['aix_annual'])
+def build(facts,manual,history=None):
+    history=history if history is not None else json.loads(HISTORY.read_text(encoding='utf-8'))
+    aix=merge(merge(history.get('aix',[]),facts.get('aix',[])),manual['aix_annual'])
     # Annual values supply Q4 balances and YTD equipment totals. Flow metrics
     # for Q4 are calculated from annual minus 9M; no balance differencing.
     for key in ['orders','revenue','ebit']:
         qs={r['date']:r for r in difference(aix,key+'_ytd')}
         for r in aix:
-            if r['quarter']==4 and r['date'] in qs:
+            if (r['quarter']==4 or key not in r) and r['date'] in qs:
                 r[key]=qs[r['date']]['value'];r['supporting_sources']=qs[r['date']]['supporting_sources']
+    for row in aix:
+        if row.get('orders_scope')=='equipment':row['equipment_orders']=row.pop('orders')
     docs={}
     def add(*args,**kwargs):
         d=chart(*args,**kwargs);docs[d['id']]=d
-    add('mocvd_aix_orders','AIXTRON · 총수주액·총매출','백만 EUR',aix,{'orders':'총수주액','revenue':'연결 매출'},
-        '장비와 서비스·부품을 포함한 같은 범위의 수주액·매출입니다. Q4는 연간−9개월 누적 계산으로 원표 반올림 차이가 있을 수 있습니다.')
+    add('mocvd_aix_orders','AIXTRON · 수주액·총매출','백만 EUR',aix,{'orders':'총수주액','revenue':'연결 매출','equipment_orders':'장비 수주 · 2014 구기준'},
+        '2014 수주는 장비만의 구기준이며 별도 계열입니다. 2015년부터 총수주액은 서비스·부품을 포함합니다. 매출은 연결 전체입니다. 과거 분기는 누적 차분, Q4는 연간−9개월 누적이며 반올림 차이가 있을 수 있습니다. 2017년은 구조조정 효과를 제외하지 않은 실제 수치입니다.')
     add('mocvd_aix_backlog','AIXTRON · 장비 수주잔고','백만 EUR',aix,{'backlog':'장비 수주잔고'},
         '분기 말 장비 주문 잔액입니다. 서비스·부품 제외. 총수주액과 범위가 달라 잔고 증감을 총수주액으로 간주할 수 없습니다. 예산환율·취소·인식 기준 변화가 반영됩니다.')
     equip=difference(aix,'equipment_ytd')
@@ -268,18 +282,21 @@ def build(facts,manual):
     # Manual tables retain their actual review date, never today's run timestamp.
     for id in ['mocvd_inp_projects','mocvd_gan_projects','mocvd_equipment_events','mocvd_coverage']:
         docs[id]=dict(manual[id],id=id,manual=True,fetched=manual['reviewed'],updated=manual['reviewed'])
+    from mocvd_history import extend_history
+    extend_history(docs,history,chart)
     for d in docs.values():
         if d.pop('frequency_override',None)=='yearly':d['frequency']='yearly'
         if 'quarter_labels_override' in d:d['quarter_labels']=d.pop('quarter_labels_override')
         if 'change_mode_override' in d:d['change_mode']=d.pop('change_mode_override')
         if d.get('unit')=='%':d['change_mode']='percentage_points' if d['id']!='mocvd_aix_order_mix' else 'none'
         if d.get('frequency')=='quarterly' and d.get('unit','').startswith('백만'):
-            d['quarterly_profit_summary']=d['id']=='mocvd_aix_profit'
-            d['quarterly_revenue_summary']=d['id']!='mocvd_aix_profit'
+            d['quarterly_profit_summary']=d['id'] in ['mocvd_aix_profit','mocvd_coherent_profit']
+            d['quarterly_revenue_summary']=not d['quarterly_profit_summary']
             dates=sorted({p[0] for points in d['series'].values() for p in points})
             buckets={(int(date[:4]),(int(date[5:7])-1)//3+1):date for date in dates}
             d['comparison_dates']={date:dict(year_ago=buckets.get((int(date[:4])-1,(int(date[5:7])-1)//3+1)),
                                             quarter_ago=buckets.get((int(date[:4])-(int(date[5:7])<=3),((int(date[5:7])-1)//3-1)%4+1))) for date in dates}
+            if d.get('fiscal_comparison_dates'):d['comparison_dates']=d.pop('fiscal_comparison_dates')
     return docs
 
 

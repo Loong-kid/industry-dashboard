@@ -1,47 +1,177 @@
 {
  "id": "mocvd_infineon_capex",
- "name": "Infineon · 회사 전체 투자 · 최근 공시",
+ "name": "Infineon · 회사 전체 투자",
  "unit": "백만 EUR",
- "frequency": "quarterly",
- "quarter_labels": true,
- "updated": "2026-06-30",
- "fetched": "2026-10-09",
+ "frequency": "yearly",
+ "quarter_labels": false,
+ "updated": "2025-09-30",
+ "fetched": "2026-10-16",
  "source": "기업 공식 IR·공시",
- "source_url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
- "description": "9월 결산. 첫 구축은 FY2026 Q2·Q3입니다. Investments는 유형자산·기타 무형자산 투자·개발비 자산화의 합입니다. 두 계열 모두 회사 전체로 GaN 전용 금액이 아닙니다. 현금 유형자산은 PDF p.13, Investments는 p.3.",
+ "source_url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+ "description": "9월 결산. 회사 전체 투자입니다. Investments는 현금 유형자산 + 무형자산·자산화 개발비 등의 합계이며 GaN 전용 금액이 아닙니다. 연간 값은 FY2014–2025 공시, 분기 값은 별도로 확인한 FY2026 Q2·Q3만 표시합니다. 과거 연간 값을 분기로 나누지 않았습니다.",
  "span_gaps": false,
  "series": {
   "유형자산 취득 현금지출": [
    [
-    "2026-03-31",
-    456
+    "2014-09-30",
+    567
    ],
    [
-    "2026-06-30",
-    422
+    "2015-09-30",
+    646
+   ],
+   [
+    "2016-09-30",
+    716
+   ],
+   [
+    "2017-09-30",
+    874
+   ],
+   [
+    "2018-09-30",
+    1090
+   ],
+   [
+    "2019-09-30",
+    1295
+   ],
+   [
+    "2020-09-30",
+    915
+   ],
+   [
+    "2021-09-30",
+    1268
+   ],
+   [
+    "2022-09-30",
+    2053
+   ],
+   [
+    "2023-09-30",
+    2739
+   ],
+   [
+    "2024-09-30",
+    2432
+   ],
+   [
+    "2025-09-30",
+    1800
    ]
   ],
   "Investments · 무형자산·개발비 포함": [
    [
-    "2026-03-31",
-    541
+    "2014-09-30",
+    668
    ],
    [
-    "2026-06-30",
-    514
+    "2015-09-30",
+    785
+   ],
+   [
+    "2016-09-30",
+    826
+   ],
+   [
+    "2017-09-30",
+    1022
+   ],
+   [
+    "2018-09-30",
+    1254
+   ],
+   [
+    "2019-09-30",
+    1451
+   ],
+   [
+    "2020-09-30",
+    1099
+   ],
+   [
+    "2021-09-30",
+    1497
+   ],
+   [
+    "2022-09-30",
+    2310
+   ],
+   [
+    "2023-09-30",
+    2994
+   ],
+   [
+    "2024-09-30",
+    2719
+   ],
+   [
+    "2025-09-30",
+    2094
    ]
   ]
  },
  "point_sources": {
-  "2026-03-31": {
-   "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
-   "label": "FY2026 Q2",
-   "pdf_page": 13
+  "2014-09-30": {
+   "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/archive/infineon-annual-report-report-v13-00-en.pdf",
+   "label": "FY2014",
+   "pdf_page": 203
   },
-  "2026-06-30": {
-   "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
-   "label": "FY2026 Q3",
-   "pdf_page": 13
+  "2015-09-30": {
+   "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2016.pdf",
+   "label": "FY2015",
+   "pdf_page": 133
+  },
+  "2016-09-30": {
+   "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2016.pdf",
+   "label": "FY2016",
+   "pdf_page": 133
+  },
+  "2017-09-30": {
+   "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2018.pdf",
+   "label": "FY2017",
+   "pdf_page": 117
+  },
+  "2018-09-30": {
+   "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2018.pdf",
+   "label": "FY2018",
+   "pdf_page": 117
+  },
+  "2019-09-30": {
+   "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2020/infineon-annual-report-report-v10-00-en.pdf",
+   "label": "FY2019",
+   "pdf_page": 147
+  },
+  "2020-09-30": {
+   "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2020/infineon-annual-report-report-v10-00-en.pdf",
+   "label": "FY2020",
+   "pdf_page": 147
+  },
+  "2021-09-30": {
+   "url": "https://www.infineon.com/dgdl/Infineon%2BConsolidated%2BFinancial%2BStatements%2B2022.pdf?fileId=8ac78c8b84a33cb40184b9552a320014",
+   "label": "FY2021",
+   "pdf_page": 4
+  },
+  "2022-09-30": {
+   "url": "https://www.infineon.com/dgdl/Infineon%2BConsolidated%2BFinancial%2BStatements%2B2022.pdf?fileId=8ac78c8b84a33cb40184b9552a320014",
+   "label": "FY2022",
+   "pdf_page": 4
+  },
+  "2023-09-30": {
+   "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2023/2023-infineon-annual-report-v01-00-en.pdf?fileId=8ac78c8b8b657de2018bfceb193d00a8",
+   "label": "FY2023",
+   "pdf_page": 93
+  },
+  "2024-09-30": {
+   "url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+   "label": "FY2024",
+   "pdf_page": 96
+  },
+  "2025-09-30": {
+   "url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+   "label": "FY2025",
+   "pdf_page": 96
   }
  },
  "default_series": [
@@ -49,21 +179,388 @@
   "Investments · 무형자산·개발비 포함"
  ],
  "change_mode": "yoy",
- "period_labels": {
-  "2026-03-31": "FY2026 Q2",
-  "2026-06-30": "FY2026 Q3"
- },
  "manual": true,
+ "period_labels": {
+  "2014-09-30": "FY2014",
+  "2015-09-30": "FY2015",
+  "2016-09-30": "FY2016",
+  "2017-09-30": "FY2017",
+  "2018-09-30": "FY2018",
+  "2019-09-30": "FY2019",
+  "2020-09-30": "FY2020",
+  "2021-09-30": "FY2021",
+  "2022-09-30": "FY2022",
+  "2023-09-30": "FY2023",
+  "2024-09-30": "FY2024",
+  "2025-09-30": "FY2025"
+ },
+ "frequency_label": "연간 · 공시 현금흐름",
  "quarterly_profit_summary": false,
- "quarterly_revenue_summary": true,
+ "quarterly_revenue_summary": false,
+ "year_labels": true,
  "comparison_dates": {
-  "2026-03-31": {
+  "2014-09-30": {
    "year_ago": null,
    "quarter_ago": null
   },
-  "2026-06-30": {
-   "year_ago": null,
-   "quarter_ago": "2026-03-31"
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": null
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": null
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": null
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": null
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": null
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": null
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": null
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": null
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": null
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": null
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": null
+  }
+ },
+ "default_view": "annual",
+ "series_views": {
+  "quarter": {
+   "id": "mocvd_infineon_capex",
+   "name": "Infineon · 회사 전체 투자 · 최근 공시",
+   "unit": "백만 EUR",
+   "frequency": "quarterly",
+   "quarter_labels": true,
+   "updated": "2026-06-30",
+   "fetched": "2026-10-09",
+   "source": "기업 공식 IR·공시",
+   "source_url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+   "description": "9월 결산. 회사 전체 투자입니다. Investments는 현금 유형자산 + 무형자산·자산화 개발비 등의 합계이며 GaN 전용 금액이 아닙니다. 연간 값은 FY2014–2025 공시, 분기 값은 별도로 확인한 FY2026 Q2·Q3만 표시합니다. 과거 연간 값을 분기로 나누지 않았습니다.",
+   "span_gaps": false,
+   "series": {
+    "유형자산 취득 현금지출": [
+     [
+      "2026-03-31",
+      456
+     ],
+     [
+      "2026-06-30",
+      422
+     ]
+    ],
+    "Investments · 무형자산·개발비 포함": [
+     [
+      "2026-03-31",
+      541
+     ],
+     [
+      "2026-06-30",
+      514
+     ]
+    ]
+   },
+   "point_sources": {
+    "2026-03-31": {
+     "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+     "label": "FY2026 Q2",
+     "pdf_page": 13
+    },
+    "2026-06-30": {
+     "url": "https://www.infineon.com/content/dam/infineon/row/public/documents/corporate/press/2026/infpr202608-125e.pdf",
+     "label": "FY2026 Q3",
+     "pdf_page": 13
+    }
+   },
+   "default_series": [
+    "유형자산 취득 현금지출",
+    "Investments · 무형자산·개발비 포함"
+   ],
+   "change_mode": "yoy",
+   "period_labels": {
+    "2026-03-31": "FY2026 Q2",
+    "2026-06-30": "FY2026 Q3"
+   },
+   "manual": true,
+   "frequency_label": "분기 · FY2026 Q2·Q3",
+   "quarterly_revenue_summary": true,
+   "label": "분기"
+  },
+  "annual": {
+   "id": "mocvd_infineon_capex",
+   "name": "Infineon · 회사 전체 투자",
+   "unit": "백만 EUR",
+   "frequency": "yearly",
+   "quarter_labels": false,
+   "updated": "2025-09-30",
+   "fetched": "2026-10-16",
+   "source": "기업 공식 IR·공시",
+   "source_url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+   "description": "9월 결산. 회사 전체 투자입니다. Investments는 현금 유형자산 + 무형자산·자산화 개발비 등의 합계이며 GaN 전용 금액이 아닙니다. 연간 값은 FY2014–2025 공시, 분기 값은 별도로 확인한 FY2026 Q2·Q3만 표시합니다. 과거 연간 값을 분기로 나누지 않았습니다.",
+   "span_gaps": false,
+   "series": {
+    "유형자산 취득 현금지출": [
+     [
+      "2014-09-30",
+      567
+     ],
+     [
+      "2015-09-30",
+      646
+     ],
+     [
+      "2016-09-30",
+      716
+     ],
+     [
+      "2017-09-30",
+      874
+     ],
+     [
+      "2018-09-30",
+      1090
+     ],
+     [
+      "2019-09-30",
+      1295
+     ],
+     [
+      "2020-09-30",
+      915
+     ],
+     [
+      "2021-09-30",
+      1268
+     ],
+     [
+      "2022-09-30",
+      2053
+     ],
+     [
+      "2023-09-30",
+      2739
+     ],
+     [
+      "2024-09-30",
+      2432
+     ],
+     [
+      "2025-09-30",
+      1800
+     ]
+    ],
+    "Investments · 무형자산·개발비 포함": [
+     [
+      "2014-09-30",
+      668
+     ],
+     [
+      "2015-09-30",
+      785
+     ],
+     [
+      "2016-09-30",
+      826
+     ],
+     [
+      "2017-09-30",
+      1022
+     ],
+     [
+      "2018-09-30",
+      1254
+     ],
+     [
+      "2019-09-30",
+      1451
+     ],
+     [
+      "2020-09-30",
+      1099
+     ],
+     [
+      "2021-09-30",
+      1497
+     ],
+     [
+      "2022-09-30",
+      2310
+     ],
+     [
+      "2023-09-30",
+      2994
+     ],
+     [
+      "2024-09-30",
+      2719
+     ],
+     [
+      "2025-09-30",
+      2094
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-09-30": {
+     "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/archive/infineon-annual-report-report-v13-00-en.pdf",
+     "label": "FY2014",
+     "pdf_page": 203
+    },
+    "2015-09-30": {
+     "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2016.pdf",
+     "label": "FY2015",
+     "pdf_page": 133
+    },
+    "2016-09-30": {
+     "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2016.pdf",
+     "label": "FY2016",
+     "pdf_page": 133
+    },
+    "2017-09-30": {
+     "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2018.pdf",
+     "label": "FY2017",
+     "pdf_page": 117
+    },
+    "2018-09-30": {
+     "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/i/infineon-technologies_2018.pdf",
+     "label": "FY2018",
+     "pdf_page": 117
+    },
+    "2019-09-30": {
+     "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2020/infineon-annual-report-report-v10-00-en.pdf",
+     "label": "FY2019",
+     "pdf_page": 147
+    },
+    "2020-09-30": {
+     "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2020/infineon-annual-report-report-v10-00-en.pdf",
+     "label": "FY2020",
+     "pdf_page": 147
+    },
+    "2021-09-30": {
+     "url": "https://www.infineon.com/dgdl/Infineon%2BConsolidated%2BFinancial%2BStatements%2B2022.pdf?fileId=8ac78c8b84a33cb40184b9552a320014",
+     "label": "FY2021",
+     "pdf_page": 4
+    },
+    "2022-09-30": {
+     "url": "https://www.infineon.com/dgdl/Infineon%2BConsolidated%2BFinancial%2BStatements%2B2022.pdf?fileId=8ac78c8b84a33cb40184b9552a320014",
+     "label": "FY2022",
+     "pdf_page": 4
+    },
+    "2023-09-30": {
+     "url": "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2023/2023-infineon-annual-report-v01-00-en.pdf?fileId=8ac78c8b8b657de2018bfceb193d00a8",
+     "label": "FY2023",
+     "pdf_page": 93
+    },
+    "2024-09-30": {
+     "url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+     "label": "FY2024",
+     "pdf_page": 96
+    },
+    "2025-09-30": {
+     "url": "https://www.infineon.com/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf",
+     "label": "FY2025",
+     "pdf_page": 96
+    }
+   },
+   "default_series": [
+    "유형자산 취득 현금지출",
+    "Investments · 무형자산·개발비 포함"
+   ],
+   "change_mode": "yoy",
+   "manual": true,
+   "period_labels": {
+    "2014-09-30": "FY2014",
+    "2015-09-30": "FY2015",
+    "2016-09-30": "FY2016",
+    "2017-09-30": "FY2017",
+    "2018-09-30": "FY2018",
+    "2019-09-30": "FY2019",
+    "2020-09-30": "FY2020",
+    "2021-09-30": "FY2021",
+    "2022-09-30": "FY2022",
+    "2023-09-30": "FY2023",
+    "2024-09-30": "FY2024",
+    "2025-09-30": "FY2025"
+   },
+   "frequency_label": "연간 · 공시 현금흐름",
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "year_labels": true,
+   "comparison_dates": {
+    "2014-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2015-09-30": {
+     "year_ago": "2014-09-30",
+     "quarter_ago": null
+    },
+    "2016-09-30": {
+     "year_ago": "2015-09-30",
+     "quarter_ago": null
+    },
+    "2017-09-30": {
+     "year_ago": "2016-09-30",
+     "quarter_ago": null
+    },
+    "2018-09-30": {
+     "year_ago": "2017-09-30",
+     "quarter_ago": null
+    },
+    "2019-09-30": {
+     "year_ago": "2018-09-30",
+     "quarter_ago": null
+    },
+    "2020-09-30": {
+     "year_ago": "2019-09-30",
+     "quarter_ago": null
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": null
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": null
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": null
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": null
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": null
+    }
+   },
+   "label": "연간 · 2014년부터"
   }
  }
 }
