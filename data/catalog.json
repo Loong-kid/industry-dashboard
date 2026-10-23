@@ -1763,6 +1763,12 @@
           "name": "MOCVD",
           "default_range": "all",
           "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → GaN 투자 → 공개된 발주·인도 기록 순서입니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다."
+        },
+        {
+          "id": "wafer",
+          "name": "실리콘 웨이퍼",
+          "default_range": "all",
+          "description": "글로벌 출하 → 고객 재고 → 공급사 실적 → 증설·가동 흐름을 봅니다. 연간·분기·월간 주기와 현금/검수/발생 기준 CAPEX를 구분합니다."
         }
       ],
       "sections": [
@@ -2200,6 +2206,89 @@
           "indicators": [
             "mocvd_coverage"
           ]
+        },
+        {
+          "tab": "wafer",
+          "title": "글로벌 · 출하와 시장 규모",
+          "indicators": [
+            "wafer_global_shipments",
+            "wafer_global_growth",
+            "wafer_global_revenue"
+          ]
+        },
+        {
+          "tab": "wafer",
+          "title": "고객 재고 · 구매와 생산 투입",
+          "indicators": [
+            "wafer_customer_evidence"
+          ],
+          "type": "table",
+          "table_kind": "wafer_evidence"
+        },
+        {
+          "tab": "wafer",
+          "title": "SUMCO · 실적과 투자",
+          "indicators": [
+            "wafer_sumco_revenue",
+            "wafer_sumco_profit",
+            "wafer_sumco_capex"
+          ],
+          "layout": "financial",
+          "supply_note": "연간2014년부터. 분기 자료는 확보 구간만 표시합니다. 분기 IR의0.1십억 JPY 금액을 백만 JPY로 환산하여 연간 확정치와 반올림 차이가 있습니다. CAPEX의 현금·검수 기준을 버튼으로 구분합니다."
+        },
+        {
+          "tab": "wafer",
+          "title": "Siltronic · 실적과 투자",
+          "indicators": [
+            "wafer_siltronic_revenue",
+            "wafer_siltronic_profit",
+            "wafer_siltronic_capex"
+          ],
+          "layout": "financial",
+          "supply_note": "연간2014년부터, 분기는 확보 구간. 공시 투자액은 발생 기준이며 현금 지급액과 다릅니다. FY2017 분기 투자액의 원문 불일치 구간은 연간 보기에서 확인합니다."
+        },
+        {
+          "tab": "wafer",
+          "title": "Siltronic · 감가상각 전 수익성",
+          "indicators": [
+            "wafer_siltronic_ebitda"
+          ]
+        },
+        {
+          "tab": "wafer",
+          "title": "GlobalWafers · 실적과 투자",
+          "indicators": [
+            "wafer_globalwafers_revenue",
+            "wafer_globalwafers_profit",
+            "wafer_globalwafers_capex"
+          ],
+          "layout": "financial",
+          "supply_note": "연간 매출·이익2014년부터, 현금 CAPEX2016년부터. 모회사 SAS를 합산하지 않습니다. 장비 선급금 포함 여부와 인수 전후 연결 범위를 원문에서 확인합니다."
+        },
+        {
+          "tab": "wafer",
+          "title": "GlobalWafers · 월간 매출 신호",
+          "indicators": [
+            "wafer_globalwafers_monthly",
+            "wafer_globalwafers_monthly_yoy"
+          ]
+        },
+        {
+          "tab": "wafer",
+          "title": "참고 · 신에츠 전자재료",
+          "indicators": [
+            "wafer_shinetsu_reference"
+          ],
+          "supply_note": "웨이퍼 외 소재를 포함한 사업부입니다. 웨이퍼 단독 매출·시장점유율과 구분하며 다른 업체 매출과 합산하지 않습니다."
+        },
+        {
+          "tab": "wafer",
+          "title": "공급 · 증설과 가동 기록",
+          "indicators": [
+            "wafer_supply_events"
+          ],
+          "type": "table",
+          "table_kind": "wafer_events"
         }
       ],
       "groups": [

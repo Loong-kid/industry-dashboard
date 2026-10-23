@@ -49,7 +49,8 @@ def verify(base):
             page.screenshot(path=str(ROOT/f'tmp/semicon-20261014/memory-{width}.png'))
             for route,count,leaf in [('#/semicon/materials/snstech',73,'포토마스크'),('#/semicon/snstech',73,'포토마스크'),
                                      ('#/semicon/materials/esc',6,'정전척'),('#/semicon/esc',6,'정전척'),
-                                     ('#/semicon/materials/mocvd',23,'MOCVD'),('#/semicon/mocvd',23,'MOCVD')]:
+                                     ('#/semicon/materials/mocvd',23,'MOCVD'),('#/semicon/mocvd',23,'MOCVD'),
+                                     ('#/semicon/materials/wafer',16,'실리콘 웨이퍼'),('#/semicon/wafer',16,'실리콘 웨이퍼')]:
                 open_route(route,count)
                 assert '소부장' in page.locator('#page-title').inner_text()
                 assert leaf in page.locator('#page-title').inner_text()

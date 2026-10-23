@@ -380,6 +380,12 @@ jobs:
 
       - name: MOCVD 분기·누적·공시 범위 검증
         run: python -m unittest discover -s scripts -p 'test_mocvd*.py'
+      - name: 실리콘 웨이퍼 통계·실적 검증
+        run: python -m unittest discover -s scripts -p test_silicon_wafer.py
+      - name: 실리콘 웨이퍼 · GlobalWafers 월 매출 확인
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python scripts/fetch_silicon_wafer.py
       - name: MOCVD · AIXTRON·Coherent 공식 분기 자료 확인
         continue-on-error: true
         timeout-minutes: 6
