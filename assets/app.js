@@ -162,7 +162,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "shipbuilding", "shipping"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "shipbuilding", "shipping", "games"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
   ];
@@ -195,11 +195,13 @@ function renderNav() {
 // 뒤늦게 끝나며 새 탭 화면에 옛 카드를 붙이는 경쟁이 있었다. mySeq로 stale 렌더를 중단.
 let renderSeq = 0;
 let ppiCleanup = null;
+let gamesCleanup = null;
 async function renderIndustry(options = {}) {
   const ind = state.industry;
   if (!ind) return;
   const mySeq = ++renderSeq;
   if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
+  if (gamesCleanup) { gamesCleanup(); gamesCleanup = null; }
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
@@ -208,8 +210,8 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "games" || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -219,6 +221,17 @@ async function renderIndustry(options = {}) {
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
   pageTabs.innerHTML = "";
+
+  if (ind.id === "games") {
+    const loading = document.createElement("p");
+    loading.className = "page-loading"; loading.textContent = "게임 시장 불러오는 중…"; content.appendChild(loading);
+    try {
+      const games = await import("./games.js");
+      if (mySeq !== renderSeq) return;
+      loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", tabsRoot: pageTabs});
+    } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임 시장을 불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
+  }
 
   if (ind.id === "ppi") {
     const loading = document.createElement("p");
