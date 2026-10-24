@@ -1,0 +1,34 @@
+name: update-cpu
+on:
+  schedule:
+    - cron: "20 23 * * *" # KST 08:20
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Validate CPU fiscal periods and accounting definitions
+        run: python -m unittest discover -s scripts -p test_cpu_companies.py -v
+      - name: Refresh public SEC company accounts
+        run: python scripts/fetch_cpu_companies.py
+      - name: Validate published CPU history
+        run: python -m unittest discover -s scripts -p test_cpu_companies.py -v
+      - name: Commit CPU data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/cpu_state.json data/semicon/company_intel_*.json data/semicon/company_amd_*.json data/semicon/company_arm_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh CPU company accounts"
+          git pull --rebase
+          git push

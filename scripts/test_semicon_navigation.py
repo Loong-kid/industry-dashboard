@@ -21,10 +21,10 @@ def verify(base):
                 page.wait_for_function('(n)=>state.charts.length===n',arg=count)
                 assert page.locator('#content .is-error').count()==0,route
                 assert not page.evaluate('document.documentElement.scrollWidth>innerWidth'),route
-            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/ssd',6,'SSD')]:
+            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/cpu',12,'CPU'),('#/semicon/ssd',6,'SSD')]:
                 open_route(route,count)
                 assert title in page.locator('#page-title').inner_text()
-                assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','SSD','소부장']
+                assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','SSD','소부장']
                 assert page.locator('#page-tabs .commodity-tabs').count()==1
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
             open_route('#/semicon/memory',9)
