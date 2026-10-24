@@ -47,6 +47,10 @@ const fs = require('node:fs');
     const tencent=m.publisherRevenue(mixed).filter(r=>r.publisher==='Tencent');
     assert.equal(tencent.length,2); // never sum overlapping store scopes
     const companies=read('companies').companies;
+    const fx=read('fx');
+    assert.equal(fx.base,'USD');
+    assert(Array.isArray(fx.missing));
+    const beforeOriginals=JSON.stringify(companies);
     assert.equal(new Set(companies.map(c=>c.id)).size,companies.length);
     for(const c of companies){
       assert(['USD','KRW','CNY','JPY','PLN'].includes(c.currency));
@@ -55,8 +59,38 @@ const fs = require('node:fs');
         assert(r.date<=c.checked && r.start<=r.date);
         assert(r.revenue>0 && r.refs.revenue.url.startsWith('https://'));
         assert(r.refs.revenue.filed<=c.checked);
+        const usd=m.usdAmount(r.revenue,c.currency,r,fx),q=m.fxQuote(fx,c.currency,r);
+        if(usd==null){
+          assert(fx.missing.includes(`${c.currency}|${r.start}|${r.date}`),`${c.id} ${r.date}: missing FX must be tracked`);
+          continue;
+        }
+        assert(usd>0);
+        assert(Math.abs(usd*q.local_per_usd-r.revenue)<1e-6);
+        if(c.currency==='USD')assert.equal(usd,r.revenue);
+        else {
+          assert(q.observations>=50);
+          assert(q.first>=r.start&&q.last<=r.date);
+          assert(m.moneyMemo(r.revenue,c.currency,r,fx).join(' ').includes(c.currency));
+        }
       }
     }
+    assert.equal(JSON.stringify(companies),beforeOriginals); // conversion never rewrites original amounts/provenance
+    const interval={kind:'quarter',start:'2026-01-01',date:'2026-03-31'},prior={...interval,start:'2025-01-01',date:'2025-03-31',revenue:140000};
+    const fakeFx={periods:{'KRW|2026-01-01|2026-03-31':{currency:'KRW',start:interval.start,end:interval.date,local_per_usd:1500},'KRW|2025-01-01|2025-03-31':{currency:'KRW',start:prior.start,end:prior.date,local_per_usd:1400}}};
+    assert.equal(m.usdAmount(-150000,'KRW',interval,fakeFx),-100); // losses retain their sign
+    assert.equal(m.usdAmount(0,'KRW',interval,fakeFx),0);
+    assert.equal(m.usdAmount(null,'KRW',interval,fakeFx),null);
+    assert.equal(m.usdAmount(NaN,'USD',interval,fakeFx),null);
+    assert.equal(m.usdAmount(150000,'JPY',interval,fakeFx),null);
+    assert.equal(m.usdAmount(150000,'KRW',{...interval,start:'2026-01-02'},fakeFx),null); // no neighboring period/spot fallback
+    assert.equal(m.usdAmount(150000,'KRW',interval,null),null);
+    assert.equal(m.usdAmount(123,'USD',interval,null),123); // native USD works even during FX outage
+    assert.equal(m.usdGrowth({currency:'KRW',rows:[prior]},{...interval,revenue:150000},fakeFx),0); // native growth differs from USD growth
+    assert(m.companyGrowth([prior],{...interval,revenue:150000})>7);
+    const crossCountry=[{currency:'KRW',revenue:150000},{currency:'USD',revenue:110}];
+    assert.equal(crossCountry.sort((a,b)=>m.usdAmount(b.revenue,b.currency,interval,fakeFx)-m.usdAmount(a.revenue,a.currency,interval,fakeFx))[0].currency,'USD');
+    const invalidFx=structuredClone(fakeFx);invalidFx.periods['KRW|2026-01-01|2026-03-31'].local_per_usd=0;
+    assert.equal(m.usdAmount(150000,'KRW',interval,invalidFx),null);
     assert.equal(m.companyGrowth([{kind:'quarter',date:'2025-06-30',revenue:-5}],{kind:'quarter',date:'2026-06-30',revenue:10}),null);
     const sparse=m.companySeries([{kind:'quarter',date:'2025-03-31',revenue:1},{kind:'quarter',date:'2026-03-31',revenue:2}],'quarter');
     assert.equal(sparse.length,5);
@@ -73,6 +107,14 @@ const fs = require('node:fs');
     assert(companies.filter(c=>['epic','valve'].includes(c.id)).every(c=>c.listing==='private'&&c.rows.length===0));
     assert.equal(companies.find(c=>c.id==='ea').listing,'private');
     const platforms=read('platforms');
+    for(const p of platforms.profiles)for(const r of p.metrics)if(m.monetaryMetric(r)){
+      const currency=r.unit.split(' ').at(-1);
+      const converted=m.usdAmount(r.value,currency,r,fx);
+      assert(converted>0||fx.missing.includes(`${currency}|${r.start}|${r.date}`));
+      if(currency==='USD')assert.equal(m.usdAmount(r.value,currency,r,fx),r.value);
+    }
+    for(const r of revenue.official_games)assert(m.usdAmount(r.revenue_millions,r.currency,r,fx)>0||fx.missing.includes(`${r.currency}|${r.start}|${r.date}`));
+    assert(!m.monetaryMetric({kind:'activity',unit:'백만 계정',value:100}));
     assert.equal(m.platformMetrics(platforms,'epic').find(r=>r.id==='store_spend').kind,'spend');
     assert.equal(m.platformMetrics(platforms,'steam').filter(r=>r.id==='online_now').length,platforms.steam.observations.length);
     assert(m.platformMetrics(platforms,'steam').every(r=>r.kind==='concurrency'&&r.unit==='계정'));

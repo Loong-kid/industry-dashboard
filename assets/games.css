@@ -51,4 +51,8 @@
 .gm-pagination { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 14px; font-size: 12px; color: var(--ink-2); }
 .gm-pagination button { cursor: pointer; }
 .gm-pagination button:disabled { opacity: .4; cursor: default; }
+.gm-root .gm-money { color: inherit; font: inherit; font-variant-numeric: tabular-nums; background: transparent; border: 0; border-bottom: 1px dotted var(--muted); border-radius: 0; min-height: 0; padding: 2px 0; cursor: help; line-height: inherit; }
+.gm-root .gm-money:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.gm-root .gm-money:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.gm-money-tooltip { position: fixed; z-index: 1000; max-width: min(360px,calc(100vw - 24px)); box-sizing: border-box; padding: 12px 15px; border: 1px solid var(--baseline); border-radius: 6px; color: var(--ink); background: var(--page); box-shadow: 0 4px 18px #0002; font-size: 12px; line-height: 1.75; white-space: pre-line; overflow-wrap: anywhere; pointer-events: none; }
 @media(max-width:800px) { .gm-grid { grid-template-columns: 1fr; gap: 0; } .gm-stats { grid-template-columns: 1fr; } .gm-stats>div { border-bottom: 1px solid var(--border); padding: 12px 0; } .gm-stats>div:last-child { border: 0; } .gm-stats dd { font-size: 27px; } .gm-chart { height: 290px; } .gm-chart-tall { height: 370px; } .gm-toolbar { gap: 10px; } .gm-toolbar label { flex: 1 1 130px; } .gm-toolbar input,.gm-toolbar select { width: 100%; min-width: 0; } .gm-toolbar input[type=search] { min-width: 0; } }
