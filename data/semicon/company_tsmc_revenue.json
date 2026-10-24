@@ -728,5 +728,418 @@
   "table_limit": 100,
   "company_kpi": true,
   "quarterly_revenue_summary": true,
-  "quarterly_profit_summary": false
+  "quarterly_profit_summary": false,
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "연결 매출": [
+          [
+            "2014-12-31",
+            762.8100000000001
+          ],
+          [
+            "2015-12-31",
+            843.5
+          ],
+          [
+            "2016-12-31",
+            947.95
+          ],
+          [
+            "2017-12-31",
+            977.45
+          ],
+          [
+            "2018-12-31",
+            1031.48
+          ],
+          [
+            "2019-12-31",
+            1069.99
+          ],
+          [
+            "2020-12-31",
+            1339.26
+          ],
+          [
+            "2021-12-31",
+            1587.42
+          ],
+          [
+            "2022-12-31",
+            2263.89
+          ],
+          [
+            "2023-12-31",
+            2161.73
+          ],
+          [
+            "2024-12-31",
+            2894.3
+          ],
+          [
+            "2025-12-31",
+            3809.0499999999997
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-12-31": "FY2014",
+        "2015-12-31": "FY2015",
+        "2016-12-31": "FY2016",
+        "2017-12-31": "FY2017",
+        "2018-12-31": "FY2018",
+        "2019-12-31": "FY2019",
+        "2020-12-31": "FY2020",
+        "2021-12-31": "FY2021",
+        "2022-12-31": "FY2022",
+        "2023-12-31": "FY2023",
+        "2024-12-31": "FY2024",
+        "2025-12-31": "FY2025"
+      },
+      "point_sources": {
+        "2014-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q4/4Q15ManagementReport.pdf",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q1/1Q15ManagementReport.pdf",
+              "label": "2014 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q2/2Q15ManagementReport.pdf",
+              "label": "2014 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q3/3Q15ManagementReport.pdf",
+              "label": "2014 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q4/4Q15ManagementReport.pdf",
+              "label": "2014 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2015-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q4/4Q15ManagementReport.pdf",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q2/2Q15ManagementReport.pdf",
+              "label": "2015 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q3/3Q15ManagementReport.pdf",
+              "label": "2015 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q4/4Q15ManagementReport.pdf",
+              "label": "2015 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2015/Q4/4Q15ManagementReport.pdf",
+              "label": "2015 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q1/1Q17ManagementReport.pdf",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q1/1Q17ManagementReport.pdf",
+              "label": "2016 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q2/2Q17ManagementReport.pdf",
+              "label": "2016 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q3/3Q17ManagementReport.pdf",
+              "label": "2016 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q1/1Q17ManagementReport.pdf",
+              "label": "2016 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2017-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2018/Q1/1Q18ManagementReport.pdf",
+          "label": "FY2017 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2018/Q1/1Q18ManagementReport.pdf",
+              "label": "2017 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q3/3Q17ManagementReport.pdf",
+              "label": "2017 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2017/Q3/3Q17ManagementReport.pdf",
+              "label": "2017 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2018/Q1/1Q18ManagementReport.pdf",
+              "label": "2017 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q4/4Q19ManagementReport.pdf",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2018/Q1/1Q18ManagementReport.pdf",
+              "label": "2018 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q2/2Q19ManagementReport.pdf",
+              "label": "2018 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q3/3Q19ManagementReport.pdf",
+              "label": "2018 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q4/4Q19ManagementReport.pdf",
+              "label": "2018 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q4/4Q19ManagementReport.pdf",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q2/2Q19ManagementReport.pdf",
+              "label": "2019 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q3/3Q19ManagementReport.pdf",
+              "label": "2019 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q4/4Q19ManagementReport.pdf",
+              "label": "2019 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/english/2019/Q4/4Q19ManagementReport.pdf",
+              "label": "2019 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-01/f7c72d6d88b224476ab812fc3ba28169ec091a86/4Q21ManagementReport.pdf",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2021-04/c3503e3be4f98cd83817a8abff6e4586deaa3904/1Q21ManagementReport.pdf",
+              "label": "2020 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2021-07/048b7a33a72733c8dd5ab4aa3b6a02ed6167ffbb/2Q21ManagementReport.pdf",
+              "label": "2020 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2021-10/8a955b1705b45fc12d3aa78ecc01231b4a03cbd4/3Q21ManagementReport.pdf",
+              "label": "2020 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-01/f7c72d6d88b224476ab812fc3ba28169ec091a86/4Q21ManagementReport.pdf",
+              "label": "2020 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-01/91107cbb4214c395a1a26e73edb31f5c1813c599/4Q22ManagementReport.pdf",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-07/433cc369bbdb0bbfa43a7d23c05b197249117990/1Q22ManagementReport.pdf",
+              "label": "2021 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-07/a49bf25516daeca5a101ec03c0852de00c8a1d7c/2Q22ManagementReport.pdf",
+              "label": "2021 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-10/0aad3caf9324d01d834b215a98884f24be5aef77/3Q22ManagementReport.pdf",
+              "label": "2021 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-01/91107cbb4214c395a1a26e73edb31f5c1813c599/4Q22ManagementReport.pdf",
+              "label": "2021 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-01/91107cbb4214c395a1a26e73edb31f5c1813c599/4Q22ManagementReport.pdf",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-07/a49bf25516daeca5a101ec03c0852de00c8a1d7c/2Q22ManagementReport.pdf",
+              "label": "2022 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2022-10/0aad3caf9324d01d834b215a98884f24be5aef77/3Q22ManagementReport.pdf",
+              "label": "2022 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-01/91107cbb4214c395a1a26e73edb31f5c1813c599/4Q22ManagementReport.pdf",
+              "label": "2022 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-01/91107cbb4214c395a1a26e73edb31f5c1813c599/4Q22ManagementReport.pdf",
+              "label": "2022 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2024-04/9581a862df11956db366e0f18aa0f859e7e0b6db/1Q24ManagementReport.pdf",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-04/f58bb638a3230c1018f1516c990e535c77fbf187/1Q23ManagementReport.pdf",
+              "label": "2023 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-07/d0aea5e175f63c90dcd121adcd38da8b520537ef/2Q23ManagementReport.pdf",
+              "label": "2023 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2023-10/1b3950499f2e6d02b6910adf903705404f829200/3Q23ManagementReport.pdf",
+              "label": "2023 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2024-04/9581a862df11956db366e0f18aa0f859e7e0b6db/1Q24ManagementReport.pdf",
+              "label": "2023 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-01/2d8b2bb6fc3b5887d24ae0635f639c1cdca834f3/4Q24ManagementReport.pdf",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2024-04/9581a862df11956db366e0f18aa0f859e7e0b6db/1Q24ManagementReport.pdf",
+              "label": "2024 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2024-07/2550bfd736184ea491797ba93a95bc28efa4348c/2Q24ManagementReport.pdf",
+              "label": "2024 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2024-10/a4e7bb7392eb95e242cf1bef89bee75a6ddbde3a/3Q24ManagementReport.pdf",
+              "label": "2024 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-01/2d8b2bb6fc3b5887d24ae0635f639c1cdca834f3/4Q24ManagementReport.pdf",
+              "label": "2024 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-12-31": {
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-01/00fe50f72b38d74e6b9b066398f020f337cd4e9d/4Q25%20Management%20Report.pdf",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-04/8e7d27fd8fb010c689d221dc3b8450095bbfc7e2/1Q25ManagementReport.pdf",
+              "label": "2025 Q1",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-07/1fec9df3de99e6e9f190e1eda7179449381ce6d8/2Q25ManagementReport.pdf",
+              "label": "2025 Q2",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-01/00fe50f72b38d74e6b9b066398f020f337cd4e9d/4Q25%20Management%20Report.pdf",
+              "label": "2025 Q3",
+              "pdf_page": 1
+            },
+            {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-01/00fe50f72b38d74e6b9b066398f020f337cd4e9d/4Q25%20Management%20Report.pdf",
+              "label": "2025 Q4",
+              "pdf_page": 1
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-01/00fe50f72b38d74e6b9b066398f020f337cd4e9d/4Q25%20Management%20Report.pdf",
+      "updated": "2025-12-31",
+      "description": "12월 결산. 회사 전체 연결 분기 매출입니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }

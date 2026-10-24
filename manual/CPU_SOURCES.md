@@ -27,18 +27,40 @@ Arm은 3월, Qualcomm·Apple은 9월 결산이다. 직접 분기 공시는 최�
 분기별 공시 시점의 기준 차이가 있으므로 합계가 이후 재작성 연간 보고서와
 다를 수 있다. 차분의 두 출처를 표의 원문 링크로 확인할 수 있다.
 
-`manual/cpu_segments.json`은 최근 공식 실적 발표를 대조한 별도 스냅샷이다.
-이는 SEC 기본 재무와 달리 새 발표 후 원문 검토를 거쳐 추가한다. Intel
-CCG/CCPG·DCAI의 재분류, AMD Client와 Gaming의 구분, Data Center의
-CPU·GPU 혼합, Arm 로열티·라이선스를 카드에 설명한다. 확인하지 않은 중간
-분기는 선을 연결하지 않는다. CPU 출하량·점유율·CPU 단독 매출은 추정하지 않는다.
+메모리·파운드리·CPU·SSD의 기업 실적 및 사업 매출 카드 48개 모두 `분기`와
+`연간`을 선택할 수 있다. CPU 전사·사업 매출의 연간 값은 SEC 원문에 공시된
+완결 회계연도 실적을 사용한다. 다른 반도체 기업 실적은 같은 회계연도의
+4개 분기 값이 모두 있는 시리즈만 합산한다. 진행 중이거나 일부 분기가 없는
+연도는 연환산하지 않는다. 회사별 결산월을 유지하므로 FY와 달력 연도는 다를 수 있다.
+
+`scripts/cpu_business_history.py`는 SEC 제출 공시의 원본 XBRL에서 사업·제품
+차원을 읽는다. Company Facts에는 이 세부 차원이 포함되지 않아 별도 수집이
+필요하다. Apple의 과거 제품 매출처럼 숫자 태그가 없던 공시는 같은 공시의
+MD&A 제품별 순매출 표를 읽으며, 판매 대수와 증감률은 제외한다. 기존 최근
+분기만 보이던 구간은 공시 누락이 아니라 초기 수집 범위의 한계였다.
+
+Arm 로열티·라이선스는 2022년 9월부터 16개 분기, Qualcomm QTL은 2014년
+3월부터 50개 분기를 확보했다(2026-10-25 확인). Qualcomm QCT 세부 매출은
+공시 분류를 확인할 수 있는 2019년 12월부터 제공한다. `manual/cpu_segments.json`은
+시리즈 정의·설명과 초기 원문 대조 표본을 유지하며, 전체 이력은 자동 수집한
+원문 자료에서 생성한다. Intel CCG/CCPG·DCAI의 재분류, AMD Client와 Gaming의
+구분, Data Center의 CPU·GPU 혼합을 카드에 설명한다. 사업 매출의 누적 차분은
+선행 분기와 일치하는 공시 기준을 확인하며, Apple은 제품 합계와 연결 매출도
+대조한다. 확인하지 않은 중간 분기는 선을 연결하지 않는다. CPU 출하량·점유율·
+CPU 단독 매출은 추정하지 않는다. 사업별 수집 실패 역시 마지막 성공 이력을 보존한다.
 
 Apple Silicon은 별도 공시 사업부가 아니다. Apple 전사 매출·손익·CAPEX와
-Mac·iPad·iPhone 완제품 매출을 별도로 표시한다. 제품 매출을 M/A 시리즈 칩의
+Mac·iPad·iPhone·Services·Wearables/Home/Accessories 매출을 별도로 표시한다.
+iPhone·Mac·iPad·Services는 2014년 3월부터 50개 분기를 확보했다. 현재 분류의
+Wearables/Home/Accessories와 과거 iPod·Accessories·Other Products는 서로
+다른 시리즈로 유지한다. 과거 분류는 기본 숨김이며 범례에서 선택할 수 있다.
+제품 매출을 M/A 시리즈 칩의
 매출·이익·출하량으로 환산하지 않는다. 2014년부터의 전사 그래프에는 Mac용
 Apple Silicon 전환 이전도 포함된다. Qualcomm QCT의 휴대폰·자동차·IoT 매출도
 CPU 전용 실적이 아니며 IoT에는 PC·XR·네트워크·산업용 등이 함께 포함된다.
 
 오프라인 재생성: `python scripts/fetch_cpu_companies.py --offline`
 
-검증: `python -m unittest discover -s scripts -p test_cpu_companies.py -v`
+검증: `python -m unittest discover -s scripts -p 'test_cpu*.py' -v`
+
+연간 집계 검증: `python -m unittest discover -s scripts -p test_company_period_views.py -v`

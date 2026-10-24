@@ -377,5 +377,114 @@
    "label": "갱신 확인",
    "value": "2026-10-25 · 정상"
   }
- ]
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "연결 GAAP 영업이익": [
+     [
+      "2022-03-31",
+      633.0
+     ],
+     [
+      "2023-03-31",
+      671.0
+     ],
+     [
+      "2024-03-31",
+      111.0
+     ],
+     [
+      "2025-03-31",
+      831.0
+     ],
+     [
+      "2026-03-31",
+      900.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/0001973239-24-000012-index.html",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/0001973239-24-000012-index.html",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000016/0001973239-25-000016-index.html",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000016/0001973239-25-000016-index.html",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+     "label": "FY2026",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+       "label": "FY2026"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2022-03-31": "FY2022",
+    "2023-03-31": "FY2023",
+    "2024-03-31": "FY2024",
+    "2025-03-31": "FY2025",
+    "2026-03-31": "FY2026"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/0001973239-26-000097-index.html",
+   "updated": "2026-03-31",
+   "description": "현재 상장 법인 연결 · IP·로열티 등 포함. 회사 전체 연결 GAAP 영업이익입니다. 조정 영업이익과 구분합니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ }
 }

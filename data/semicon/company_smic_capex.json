@@ -728,5 +728,418 @@
   "table_limit": 100,
   "company_kpi": true,
   "quarterly_revenue_summary": true,
-  "quarterly_profit_summary": false
+  "quarterly_profit_summary": false,
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "CAPEX": [
+          [
+            "2014-12-31",
+            1014.4
+          ],
+          [
+            "2015-12-31",
+            1572.7
+          ],
+          [
+            "2016-12-31",
+            2694.7
+          ],
+          [
+            "2017-12-31",
+            2458.5
+          ],
+          [
+            "2018-12-31",
+            1813.5
+          ],
+          [
+            "2019-12-31",
+            2029.3
+          ],
+          [
+            "2020-12-31",
+            5732.8
+          ],
+          [
+            "2021-12-31",
+            4515.8
+          ],
+          [
+            "2022-12-31",
+            6350.7
+          ],
+          [
+            "2023-12-31",
+            7465.7
+          ],
+          [
+            "2024-12-31",
+            7325.8
+          ],
+          [
+            "2025-12-31",
+            8102.299999999999
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-12-31": "FY2014",
+        "2015-12-31": "FY2015",
+        "2016-12-31": "FY2016",
+        "2017-12-31": "FY2017",
+        "2018-12-31": "FY2018",
+        "2019-12-31": "FY2019",
+        "2020-12-31": "FY2020",
+        "2021-12-31": "FY2021",
+        "2022-12-31": "FY2022",
+        "2023-12-31": "FY2023",
+        "2024-12-31": "FY2024",
+        "2025-12-31": "FY2025"
+      },
+      "point_sources": {
+        "2014-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/qe/201502092058369_en.pdf",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/201404282118159_en.pdf",
+              "label": "2014 Q1",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/201408061940499_en.pdf",
+              "label": "2014 Q2",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/201411051854279_en.pdf",
+              "label": "2014 Q3",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/201502092058369_en.pdf",
+              "label": "2014 Q4",
+              "pdf_page": 10
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2015-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/qe/20160218203416944425923_en.pdf",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/201505072012259_en.pdf",
+              "label": "2015 Q1",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20150811183202915028418_en.pdf",
+              "label": "2015 Q2",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20151110190034908842794_en.pdf",
+              "label": "2015 Q3",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20160218203416944425923_en.pdf",
+              "label": "2015 Q4",
+              "pdf_page": 10
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/qe/20170214190701990291745_en.pdf",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20160512191927973635489_en.pdf",
+              "label": "2016 Q1",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20160810230504951739960_en.pdf",
+              "label": "2016 Q2",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20161107202944968376019_en.pdf",
+              "label": "2016 Q3",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20170214190701990291745_en.pdf",
+              "label": "2016 Q4",
+              "pdf_page": 11
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2017-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/qe/20180208183711977157899_en.pdf",
+          "label": "FY2017 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20170510185320968524529_en.pdf",
+              "label": "2017 Q1",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20170808190102997148578_en.pdf",
+              "label": "2017 Q2",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20171114151038979152440_en.pdf",
+              "label": "2017 Q3",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/qe/20180208183711977157899_en.pdf",
+              "label": "2017 Q4",
+              "pdf_page": 11
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/2018 Q4 Earnings Release_ENG_News Release.pdf",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/20180509193952692934418_en.pdf",
+              "label": "2018 Q1",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/5b6c0f07/2018 Q2 Earnings Release_ENG_News Release.pdf",
+              "label": "2018 Q2",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/5be2cbbc/2018 Q3 Earnings Release_ENG_News Release.pdf",
+              "label": "2018 Q3",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2018 Q4 Earnings Release_ENG_News Release.pdf",
+              "label": "2018 Q4",
+              "pdf_page": 11
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/2019 Q4 Earnings Release_ENG_Final.pdf",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2019 Q1 Earnings Release_ENG_Final v2.pdf",
+              "label": "2019 Q1",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2019Q2EarningsReleaseEN.pdf",
+              "label": "2019 Q2",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/5dca7a67/2019 Q3 Earnings Release_ENG.pdf",
+              "label": "2019 Q3",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2019 Q4 Earnings Release_ENG_Final.pdf",
+              "label": "2019 Q4",
+              "pdf_page": 11
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/601bd109/2020 Q4 Earnings Release_ENG_Final.pdf",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2020 Q1 Earnings Release_ENG_final.pdf",
+              "label": "2020 Q1",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2020 Q2 Earnings Release_ENG_final.pdf",
+              "label": "2020 Q2",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2020 Q3 Earnings Release_ENG_Final.pdf",
+              "label": "2020 Q3",
+              "pdf_page": 11
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/601bd109/2020 Q4 Earnings Release_ENG_Final.pdf",
+              "label": "2020 Q4",
+              "pdf_page": 10
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/2021 Q4 Earnings Release_ENG final.pdf",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2021 Q1 Earnings Release_ENG_final.pdf",
+              "label": "2021 Q1",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/610ba2e4/2021 Q2 Earnings Release_ENG final.pdf",
+              "label": "2021 Q2",
+              "pdf_page": 10
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/618cf5dc/2021 Q3 Earnings Release_ENG_Final.pdf",
+              "label": "2021 Q3",
+              "pdf_page": 9
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/2021 Q4 Earnings Release_ENG final.pdf",
+              "label": "2021 Q4",
+              "pdf_page": 9
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/63e4d9b4/Q422_EN.pdf",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/627d0041/ER_ENG.pdf",
+              "label": "2022 Q1",
+              "pdf_page": 9
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/Q2 ER EN.pdf",
+              "label": "2022 Q2",
+              "pdf_page": 9
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/636cd68f/Q322_EN.pdf",
+              "label": "2022 Q3",
+              "pdf_page": 9
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/63e4d9b4/Q422_EN.pdf",
+              "label": "2022 Q4",
+              "pdf_page": 9
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/65c20820/ER-en.pdf",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/645cc628/ER_EN.pdf",
+              "label": "2023 Q1",
+              "pdf_page": 9
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/64d4aaba/ER_EN.pdf",
+              "label": "2023 Q2",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/654caf4e/ER_EN.pdf",
+              "label": "2023 Q3",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/65c20820/ER-en.pdf",
+              "label": "2023 Q4",
+              "pdf_page": 5
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/67ab0dc6/ER_EN.pdf",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/663c9c80/ER_EN.pdf",
+              "label": "2024 Q1",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/66b4a5b9/ER_EN.pdf",
+              "label": "2024 Q2",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/672c8aa1/ER_EN.pdf",
+              "label": "2024 Q3",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/67ab0dc6/ER_EN.pdf",
+              "label": "2024 Q4",
+              "pdf_page": 5
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-12-31": {
+          "url": "https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/681c74b6/ER_EN.pdf",
+              "label": "2025 Q1",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/689f075f/ER_EN.pdf",
+              "label": "2025 Q2",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/6915b489/ER_EN.pdf",
+              "label": "2025 Q3",
+              "pdf_page": 5
+            },
+            {
+              "url": "https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf",
+              "label": "2025 Q4",
+              "pdf_page": 5
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://smic.cdn.shwebspace.com/uploads/698ad7da/ER_EN.pdf",
+      "updated": "2025-12-31",
+      "description": "12월 결산. 공식 분기 실적 발표의 Capital Expenditure 실제 금액입니다. 연간 투자계획이나 수주잔고가 아닙니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }

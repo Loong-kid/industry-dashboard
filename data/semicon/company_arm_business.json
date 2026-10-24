@@ -3,62 +3,162 @@
  "name": "Arm · 로열티·라이선스 매출",
  "unit": "USD 백만",
  "frequency": "quarterly",
- "frequency_label": "분기 · 공식 IR 검토",
+ "frequency_label": "분기 · SEC 사업·제품 공시",
  "quarter_labels": true,
  "period_labels": {
+  "2022-09-30": "FY2023 Q2",
+  "2022-12-31": "FY2023 Q3",
+  "2023-03-31": "FY2023 Q4",
+  "2023-06-30": "FY2024 Q1",
+  "2023-09-30": "FY2024 Q2",
+  "2023-12-31": "FY2024 Q3",
+  "2024-03-31": "FY2024 Q4",
+  "2024-06-30": "FY2025 Q1",
+  "2024-09-30": "FY2025 Q2",
+  "2024-12-31": "FY2025 Q3",
+  "2025-03-31": "FY2025 Q4",
   "2025-06-30": "FY2026 Q1",
+  "2025-09-30": "FY2026 Q2",
+  "2025-12-31": "FY2026 Q3",
   "2026-03-31": "FY2026 Q4",
   "2026-06-30": "FY2027 Q1"
  },
  "updated": "2026-06-30",
  "fetched": "2026-10-25",
- "manual": true,
- "source": "기업 공식 실적 발표",
- "source_url": "https://investors.arm.com/static-files/d8db20bd-7b96-486a-b99b-23315627d1ec",
- "description": "Royalty와 License and other는 Arm의 수익 인식 분류입니다. CPU 판매액·칩 출하량·서버 CPU 시장점유율과 다릅니다. 스마트폰·임베디드 등 여러 최종 시장을 포함합니다. 3월 결산으로 2026년 6월 종료 분기는 FY2027 Q1입니다. 원문 대조한 최근 분기만 제공합니다. 미확인 기간은 채우지 않습니다.",
+ "source": "SEC · 사업·제품별 공식 공시",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000114/arm-20260630.htm",
+ "description": "Royalty와 License and other는 Arm의 수익 인식 분류입니다. CPU 판매액·칩 출하량·서버 CPU 시장점유율과 다릅니다. 스마트폰·임베디드 등 여러 최종 시장을 포함합니다. 3월 결산으로 2026년 6월 종료 분기는 FY2027 Q1입니다.",
  "series": {
   "Royalty · 로열티": [
    [
+    "2022-09-30",
+    442.0
+   ],
+   [
+    "2022-12-31",
+    425.0
+   ],
+   [
+    "2023-03-31",
+    374.0
+   ],
+   [
+    "2023-06-30",
+    400.0
+   ],
+   [
+    "2023-09-30",
+    418.0
+   ],
+   [
+    "2023-12-31",
+    470.0
+   ],
+   [
+    "2024-03-31",
+    514.0
+   ],
+   [
+    "2024-06-30",
+    467.0
+   ],
+   [
+    "2024-09-30",
+    514.0
+   ],
+   [
+    "2024-12-31",
+    580.0
+   ],
+   [
+    "2025-03-31",
+    607.0
+   ],
+   [
     "2025-06-30",
-    585
+    585.0
    ],
    [
     "2025-09-30",
-    null
+    620.0
    ],
    [
     "2025-12-31",
-    null
+    737.0
    ],
    [
     "2026-03-31",
-    671
+    671.0
    ],
    [
     "2026-06-30",
-    715
+    715.0
    ]
   ],
   "License and other · 라이선스·기타": [
    [
+    "2022-09-30",
+    188.0
+   ],
+   [
+    "2022-12-31",
+    299.0
+   ],
+   [
+    "2023-03-31",
+    259.0
+   ],
+   [
+    "2023-06-30",
+    275.0
+   ],
+   [
+    "2023-09-30",
+    388.0
+   ],
+   [
+    "2023-12-31",
+    354.0
+   ],
+   [
+    "2024-03-31",
+    414.0
+   ],
+   [
+    "2024-06-30",
+    472.0
+   ],
+   [
+    "2024-09-30",
+    330.0
+   ],
+   [
+    "2024-12-31",
+    403.0
+   ],
+   [
+    "2025-03-31",
+    634.0
+   ],
+   [
     "2025-06-30",
-    468
+    468.0
    ],
    [
     "2025-09-30",
-    null
+    515.0
    ],
    [
     "2025-12-31",
-    null
+    505.0
    ],
    [
     "2026-03-31",
-    819
+    819.0
    ],
    [
     "2026-06-30",
-    574
+    574.0
    ]
   ]
  },
@@ -66,29 +166,342 @@
   "Royalty · 로열티",
   "License and other · 라이선스·기타"
  ],
- "span_gaps": false,
- "change_mode": "none",
  "point_sources": {
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323923000011/arm-20230930.htm",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323923000011/arm-20230930.htm",
+     "label": "2022-07-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000004/arm-20231231.htm",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000004/arm-20231231.htm",
+     "label": "2022-10-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/arm-20240331.htm",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/arm-20240331.htm",
+     "label": "2022-04-01 ~ 2023-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000004/arm-20231231.htm",
+     "label": "2022-04-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000019/arm-20240630.htm",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000019/arm-20240630.htm",
+     "label": "2023-04-01 ~ 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000040/arm-20240930.htm",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000040/arm-20240930.htm",
+     "label": "2023-07-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000007/arm-20241231.htm",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000007/arm-20241231.htm",
+     "label": "2023-10-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "2023-04-01 ~ 2024-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000007/arm-20241231.htm",
+     "label": "2023-04-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000024/arm-20250630.htm",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000024/arm-20250630.htm",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000043/arm-20250930.htm",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000043/arm-20250930.htm",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+     "label": "2024-10-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "2024-04-01 ~ 2025-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+     "label": "2024-04-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
   "2025-06-30": {
-   "url": "https://investors.arm.com/static-files/d8db20bd-7b96-486a-b99b-23315627d1ec",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000114/arm-20260630.htm",
    "label": "FY2026 Q1",
-   "pdf_page": 5
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000114/arm-20260630.htm",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000043/arm-20250930.htm",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000043/arm-20250930.htm",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+   "label": "FY2026 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+     "label": "2025-10-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
   },
   "2026-03-31": {
-   "url": "https://investors.arm.com/node/8141/html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
    "label": "FY2026 Q4",
-   "pdf_page": null
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "2025-04-01 ~ 2026-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000006/arm-20251231.htm",
+     "label": "2025-04-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
   },
   "2026-06-30": {
-   "url": "https://investors.arm.com/static-files/d8db20bd-7b96-486a-b99b-23315627d1ec",
+   "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000114/arm-20260630.htm",
    "label": "FY2027 Q1",
-   "pdf_page": 5
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000114/arm-20260630.htm",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
   }
  },
+ "span_gaps": false,
+ "change_mode": "none",
+ "table_limit": 100,
  "basis_details": [
   {
-   "label": "검토 기준일",
-   "value": "2026-10-25"
+   "label": "수집 범위",
+   "value": "공시 원문의 사업·제품별 항목을 직접 수집합니다. 표준 API에서 빠진 세부 항목과 과거 주석 표를 포함합니다. 연간과 9개월 누적이 있는 경우 같은 회계연도 차분으로 4분기를 계산합니다."
+  },
+  {
+   "label": "사업·제품 분류",
+   "value": "보고서의 부문 재편·재분류를 반영한 비교 수치입니다. Apple 과거 iPod·Accessories·Other Products는 별도 시리즈로 남기며 현재 Wearables 분류와 이어 붙이지 않습니다."
   }
- ]
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "Royalty · 로열티": [
+     [
+      "2022-03-31",
+      1562.0
+     ],
+     [
+      "2023-03-31",
+      1675.0
+     ],
+     [
+      "2024-03-31",
+      1802.0
+     ],
+     [
+      "2025-03-31",
+      2168.0
+     ],
+     [
+      "2026-03-31",
+      2613.0
+     ]
+    ],
+    "License and other · 라이선스·기타": [
+     [
+      "2022-03-31",
+      1141.0
+     ],
+     [
+      "2023-03-31",
+      1004.0
+     ],
+     [
+      "2024-03-31",
+      1431.0
+     ],
+     [
+      "2025-03-31",
+      1839.0
+     ],
+     [
+      "2026-03-31",
+      2307.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/arm-20240331.htm",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323924000012/arm-20240331.htm",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000016/arm-20250331.htm",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323925000016/arm-20250331.htm",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+     "label": "FY2026",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+       "label": "FY2026"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2022-03-31": "FY2022",
+    "2023-03-31": "FY2023",
+    "2024-03-31": "FY2024",
+    "2025-03-31": "FY2025",
+    "2026-03-31": "FY2026"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000097/arm-20260331.htm",
+   "updated": "2026-03-31",
+   "description": "Royalty와 License and other는 Arm의 수익 인식 분류입니다. CPU 판매액·칩 출하량·서버 CPU 시장점유율과 다릅니다. 스마트폰·임베디드 등 여러 최종 시장을 포함합니다. 3월 결산으로 2026년 6월 종료 분기는 FY2027 Q1입니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ }
 }

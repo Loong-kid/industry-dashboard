@@ -21,14 +21,14 @@ def verify(base):
                 page.wait_for_function('(n)=>state.charts.length===n',arg=count)
                 assert page.locator('#content .is-error').count()==0,route
                 assert not page.evaluate('document.documentElement.scrollWidth>innerWidth'),route
-            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/cpu',20,'CPU'),('#/semicon/ssd',6,'SSD')]:
+            for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/cpu',21,'CPU'),('#/semicon/ssd',6,'SSD')]:
                 open_route(route,count)
                 assert title in page.locator('#page-title').inner_text()
                 assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','SSD','소부장']
                 assert page.locator('#page-tabs .commodity-tabs').count()==1
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
             open_route('#/semicon/memory',9)
-            assert page.locator('.section-title').all_text_contents()==['삼성전자 · 분기 실적','SK하이닉스 · 분기 실적','Micron · 분기 실적']
+            assert page.locator('.section-title').all_text_contents()==['삼성전자 · 실적','SK하이닉스 · 실적','Micron · 실적']
             # Three-column financial groups are shorter on wide screens.
             # Exercise the sticky header away from the document's bottom clamp.
             page.evaluate('window.scrollTo(0,Math.min(800,(document.documentElement.scrollHeight-innerHeight)/2))')

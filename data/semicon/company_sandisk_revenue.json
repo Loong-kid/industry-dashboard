@@ -674,5 +674,501 @@
       "label": "WDC Flash",
       "value": "WDC 소속 시기 Flash 제품·사업부 매출만 표시하며 HDD 매출은 제외했습니다. 매출총이익은 영업이익으로 사용하지 않습니다. Flash 단독 영업이익·분기 CAPEX가 확인되지 않은 기간은 비어 있습니다. 구 SanDisk 인수 전후 미확보 기간은 임의 보간하지 않습니다."
     }
-  ]
+  ],
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "연결 매출": [
+          [
+            "2014-12-28",
+            null
+          ],
+          [
+            "2016-01-03",
+            null
+          ],
+          [
+            "2016-12-31",
+            null
+          ],
+          [
+            "2017-12-31",
+            null
+          ],
+          [
+            "2018-06-29",
+            null
+          ],
+          [
+            "2019-06-28",
+            null
+          ],
+          [
+            "2020-07-03",
+            null
+          ],
+          [
+            "2021-07-02",
+            null
+          ],
+          [
+            "2022-07-01",
+            null
+          ],
+          [
+            "2023-06-30",
+            null
+          ],
+          [
+            "2024-06-28",
+            null
+          ],
+          [
+            "2025-06-27",
+            null
+          ],
+          [
+            "2026-07-03",
+            20248.0
+          ]
+        ],
+        "구 SanDisk 연결 매출": [
+          [
+            "2014-12-28",
+            6627.701
+          ],
+          [
+            "2016-01-03",
+            5564.872
+          ],
+          [
+            "2016-12-31",
+            null
+          ],
+          [
+            "2017-12-31",
+            null
+          ],
+          [
+            "2018-06-29",
+            null
+          ],
+          [
+            "2019-06-28",
+            null
+          ],
+          [
+            "2020-07-03",
+            null
+          ],
+          [
+            "2021-07-02",
+            null
+          ],
+          [
+            "2022-07-01",
+            null
+          ],
+          [
+            "2023-06-30",
+            null
+          ],
+          [
+            "2024-06-28",
+            null
+          ],
+          [
+            "2025-06-27",
+            null
+          ],
+          [
+            "2026-07-03",
+            null
+          ]
+        ],
+        "WDC Flash 매출 · HDD 제외": [
+          [
+            "2014-12-28",
+            null
+          ],
+          [
+            "2016-01-03",
+            null
+          ],
+          [
+            "2016-12-31",
+            null
+          ],
+          [
+            "2017-12-31",
+            null
+          ],
+          [
+            "2018-06-29",
+            9949.0
+          ],
+          [
+            "2019-06-28",
+            7823.0
+          ],
+          [
+            "2020-07-03",
+            7769.0
+          ],
+          [
+            "2021-07-02",
+            8706.0
+          ],
+          [
+            "2022-07-01",
+            9753.0
+          ],
+          [
+            "2023-06-30",
+            6063.0
+          ],
+          [
+            "2024-06-28",
+            6687.0
+          ],
+          [
+            "2025-06-27",
+            null
+          ],
+          [
+            "2026-07-03",
+            null
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-12-28": "FY2014",
+        "2016-01-03": "FY2015",
+        "2016-12-31": "FY2016",
+        "2017-12-31": "FY2017",
+        "2018-06-29": "FY2018",
+        "2019-06-28": "FY2019",
+        "2020-07-03": "FY2020",
+        "2021-07-02": "FY2021",
+        "2022-07-01": "FY2022",
+        "2023-06-30": "FY2023",
+        "2024-06-28": "FY2024",
+        "2025-06-27": "FY2025",
+        "2026-07-03": "FY2026"
+      },
+      "point_sources": {
+        "2014-12-28": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018015000006/exhibit991-q414earningsrel.htm",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018014000025/exhibit991-q114earningsrel.htm",
+              "label": "FY2014 Q1"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018014000043/exhibit991-q214earningsrel.htm",
+              "label": "FY2014 Q2"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018014000062/exhibit991-q314earningsrel.htm",
+              "label": "FY2014 Q3"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018015000006/exhibit991-q414earningsrel.htm",
+              "label": "FY2014 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-01-03": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018016000058/exhibit991-q415earningsrel.htm",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018015000023/exhibit991-q115earningsrel.htm",
+              "label": "FY2015 Q1"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018015000035/exhibit991-q215earningsrel.htm",
+              "label": "FY2015 Q2"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000110465915071780/a15-21372_2ex99d1.htm",
+              "label": "FY2015 Q3"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018016000058/exhibit991-q415earningsrel.htm",
+              "label": "FY2015 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-12-31": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018016000087/exhibit991-q116earningsrel.htm",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/1000180/000100018016000087/exhibit991-q116earningsrel.htm",
+              "label": "FY2016 Q1"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-06-29": {
+          "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/04cda96e-77e3-4a90-88de-7820c9407e91",
+              "label": "FY2018 Q1",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/04cda96e-77e3-4a90-88de-7820c9407e91",
+              "label": "FY2018 Q2",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/04cda96e-77e3-4a90-88de-7820c9407e91",
+              "label": "FY2018 Q3",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+              "label": "FY2018 Q4",
+              "pdf_page": 8
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-06-28": {
+          "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+              "label": "FY2019 Q1",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+              "label": "FY2019 Q2",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+              "label": "FY2019 Q3",
+              "pdf_page": 8
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/a32416ef-bc79-41ca-971a-4c3cd305868f",
+              "label": "FY2019 Q4",
+              "pdf_page": 8
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-07-03": {
+          "url": "https://investor.wdc.com/static-files/20e08b13-300f-49ab-8875-65c071ddd4b5",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/f883db9e-a1e1-48de-a529-61a111111910",
+              "label": "FY2020 Q1",
+              "pdf_page": 16
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/f883db9e-a1e1-48de-a529-61a111111910",
+              "label": "FY2020 Q2",
+              "pdf_page": 16
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/f883db9e-a1e1-48de-a529-61a111111910",
+              "label": "FY2020 Q3",
+              "pdf_page": 16
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/20e08b13-300f-49ab-8875-65c071ddd4b5",
+              "label": "FY2020 Q4",
+              "pdf_page": 15
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-07-02": {
+          "url": "https://investor.wdc.com/static-files/7a02a646-b769-442b-885c-c62cf97ced6e",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/20e08b13-300f-49ab-8875-65c071ddd4b5",
+              "label": "FY2021 Q1",
+              "pdf_page": 15
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/20e08b13-300f-49ab-8875-65c071ddd4b5",
+              "label": "FY2021 Q2",
+              "pdf_page": 15
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/20e08b13-300f-49ab-8875-65c071ddd4b5",
+              "label": "FY2021 Q3",
+              "pdf_page": 15
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/7a02a646-b769-442b-885c-c62cf97ced6e",
+              "label": "FY2021 Q4",
+              "pdf_page": 14
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-07-01": {
+          "url": "https://investor.wdc.com/static-files/98ffd9ca-25c1-4e99-bd80-7048708e5762",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/7a02a646-b769-442b-885c-c62cf97ced6e",
+              "label": "FY2022 Q1",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/7a02a646-b769-442b-885c-c62cf97ced6e",
+              "label": "FY2022 Q2",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/7a02a646-b769-442b-885c-c62cf97ced6e",
+              "label": "FY2022 Q3",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/98ffd9ca-25c1-4e99-bd80-7048708e5762",
+              "label": "FY2022 Q4",
+              "pdf_page": 21
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-06-30": {
+          "url": "https://wdc.gcs-web.com/static-files/2dd32636-fcf0-4377-998e-37816581f5ee",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/98ffd9ca-25c1-4e99-bd80-7048708e5762",
+              "label": "FY2023 Q1",
+              "pdf_page": 21
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/98ffd9ca-25c1-4e99-bd80-7048708e5762",
+              "label": "FY2023 Q2",
+              "pdf_page": 21
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/98ffd9ca-25c1-4e99-bd80-7048708e5762",
+              "label": "FY2023 Q3",
+              "pdf_page": 21
+            },
+            {
+              "url": "https://wdc.gcs-web.com/static-files/2dd32636-fcf0-4377-998e-37816581f5ee",
+              "label": "FY2023 Q4",
+              "pdf_page": 13
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-06-28": {
+          "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://wdc.gcs-web.com/static-files/2dd32636-fcf0-4377-998e-37816581f5ee",
+              "label": "FY2024 Q1",
+              "pdf_page": 13
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+              "label": "FY2024 Q2",
+              "pdf_page": 13
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+              "label": "FY2024 Q3",
+              "pdf_page": 13
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+              "label": "FY2024 Q4",
+              "pdf_page": 13
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-06-27": {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-08-14-sandisk-reports-fiscal-fourth-quarter-2025-financial-results",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+              "label": "FY2025 Q1",
+              "pdf_page": 13
+            },
+            {
+              "url": "https://investor.wdc.com/static-files/07f4bb36-f352-4440-8a14-e3cbddb10288",
+              "label": "FY2025 Q2",
+              "pdf_page": 13
+            },
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-05-07-sandisk-reports-fiscal-third-quarter-2025-financial-results",
+              "label": "FY2025 Q3"
+            },
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-08-14-sandisk-reports-fiscal-fourth-quarter-2025-financial-results",
+              "label": "FY2025 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2026-07-03": {
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+          "label": "FY2026 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2025/2025-11-6-sandisk-reports-fiscal-first-quarter-2026-financial-results",
+              "label": "FY2026 Q1"
+            },
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-01-29-sandisk-reports-fiscal-second-quarter-2026-financial-results",
+              "label": "FY2026 Q2"
+            },
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-04-30-sandisk-reports-fiscal-third-quarter-2026-financial-results",
+              "label": "FY2026 Q3"
+            },
+            {
+              "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+              "label": "FY2026 Q4"
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+      "updated": "2026-07-03",
+      "description": "6월 말~7월 초 결산 · 52/53주. 플래시·SSD 등을 포함한 회사 전체 매출입니다. 2014년 구 SanDisk, WDC 소속 시기의 Flash 매출, 재분사 후 Sandisk 연결 실적을 별도 계열로 표시합니다. WDC의 HDD 포함 연결 매출을 붙이지 않습니다. 구 SanDisk는 2014년 3월 종료 분기부터, WDC Flash는 확인된 분기부터 제공합니다. 인수 전후 공란은 미확보 구간입니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }

@@ -3,62 +3,180 @@
  "name": "AMD · CPU 관련 사업 매출",
  "unit": "USD 백만",
  "frequency": "quarterly",
- "frequency_label": "분기 · 공식 IR 검토",
+ "frequency_label": "분기 · SEC 사업·제품 공시",
  "quarter_labels": true,
  "period_labels": {
+  "2022-03-26": "FY2022 Q1",
+  "2022-06-25": "FY2022 Q2",
+  "2022-09-24": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-04-01": "FY2023 Q1",
+  "2023-07-01": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-30": "FY2023 Q4",
+  "2024-03-30": "FY2024 Q1",
+  "2024-06-29": "FY2024 Q2",
+  "2024-09-28": "FY2024 Q3",
+  "2024-12-28": "FY2024 Q4",
+  "2025-03-29": "FY2025 Q1",
   "2025-06-28": "FY2025 Q2",
+  "2025-09-27": "FY2025 Q3",
+  "2025-12-27": "FY2025 Q4",
   "2026-03-28": "FY2026 Q1",
   "2026-06-27": "FY2026 Q2"
  },
  "updated": "2026-06-27",
  "fetched": "2026-10-25",
- "manual": true,
- "source": "기업 공식 실적 발표",
- "source_url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
- "description": "Client는 Client and Gaming 내에 별도 공시된 클라이언트 매출이며 Gaming 매출은 제외합니다. Data Center에는 EPYC CPU와 Instinct GPU·기타 데이터센터 제품이 함께 포함됩니다. Data Center 매출을 EPYC 단독 매출로 해석하지 않습니다. 원문 대조한 최근 분기만 제공합니다. 미확인 기간은 채우지 않습니다.",
+ "source": "SEC · 사업·제품별 공식 공시",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
+ "description": "Client는 Client and Gaming 내에 별도 공시된 클라이언트 매출이며 Gaming 매출은 제외합니다. Data Center에는 EPYC CPU와 Instinct GPU·기타 데이터센터 제품이 함께 포함됩니다. Data Center 매출을 EPYC 단독 매출로 해석하지 않습니다.",
  "series": {
   "Client · Gaming 제외": [
    [
+    "2022-03-26",
+    1293.0
+   ],
+   [
+    "2022-06-25",
+    1486.0
+   ],
+   [
+    "2022-09-24",
+    1609.0
+   ],
+   [
+    "2022-12-31",
+    1813.0
+   ],
+   [
+    "2023-04-01",
+    1295.0
+   ],
+   [
+    "2023-07-01",
+    1321.0
+   ],
+   [
+    "2023-09-30",
+    1598.0
+   ],
+   [
+    "2023-12-30",
+    437.0
+   ],
+   [
+    "2024-03-30",
+    1368.0
+   ],
+   [
+    "2024-06-29",
+    1492.0
+   ],
+   [
+    "2024-09-28",
+    1881.0
+   ],
+   [
+    "2024-12-28",
+    2313.0
+   ],
+   [
+    "2025-03-29",
+    2294.0
+   ],
+   [
     "2025-06-28",
-    2499
+    2499.0
    ],
    [
-    "2025-09-30",
-    null
+    "2025-09-27",
+    2750.0
    ],
    [
-    "2025-12-31",
-    null
+    "2025-12-27",
+    3097.0
    ],
    [
     "2026-03-28",
-    2885
+    2885.0
    ],
    [
     "2026-06-27",
-    3062
+    3062.0
    ]
   ],
   "Data Center · CPU·GPU 등": [
    [
+    "2022-03-26",
+    1875.0
+   ],
+   [
+    "2022-06-25",
+    1655.0
+   ],
+   [
+    "2022-09-24",
+    1631.0
+   ],
+   [
+    "2022-12-31",
+    882.0
+   ],
+   [
+    "2023-04-01",
+    1757.0
+   ],
+   [
+    "2023-07-01",
+    1581.0
+   ],
+   [
+    "2023-09-30",
+    1506.0
+   ],
+   [
+    "2023-12-30",
+    1652.0
+   ],
+   [
+    "2024-03-30",
+    2337.0
+   ],
+   [
+    "2024-06-29",
+    2834.0
+   ],
+   [
+    "2024-09-28",
+    3549.0
+   ],
+   [
+    "2024-12-28",
+    3859.0
+   ],
+   [
+    "2025-03-29",
+    3674.0
+   ],
+   [
     "2025-06-28",
-    3240
+    3240.0
    ],
    [
-    "2025-09-30",
-    null
+    "2025-09-27",
+    4341.0
    ],
    [
-    "2025-12-31",
-    null
+    "2025-12-27",
+    5380.0
    ],
    [
     "2026-03-28",
-    5775
+    5775.0
    ],
    [
     "2026-06-27",
-    6718
+    6718.0
    ]
   ]
  },
@@ -66,29 +184,384 @@
   "Client · Gaming 제외",
   "Data Center · CPU·GPU 등"
  ],
- "span_gaps": false,
- "change_mode": "none",
  "point_sources": {
+  "2022-03-26": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000076/amd-20230401.htm",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000076/amd-20230401.htm",
+     "label": "2021-12-26 ~ 2022-03-26"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-25": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000139/amd-20230701.htm",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000139/amd-20230701.htm",
+     "label": "2022-03-27 ~ 2022-06-25"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-24": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000195/amd-20230930.htm",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000195/amd-20230930.htm",
+     "label": "2022-06-26 ~ 2022-09-24"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+     "label": "2021-12-26 ~ 2022-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000195/amd-20230930.htm",
+     "label": "2021-12-26 ~ 2022-09-24"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-04-01": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+     "label": "2023-01-01 ~ 2023-04-01"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-07-01": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000123/amd-20240629.htm",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000123/amd-20240629.htm",
+     "label": "2023-04-02 ~ 2023-07-01"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000163/amd-20240928.htm",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000163/amd-20240928.htm",
+     "label": "2023-07-02 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "2023-01-01 ~ 2023-12-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000163/amd-20240928.htm",
+     "label": "2023-01-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000047/amd-20250329.htm",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000047/amd-20250329.htm",
+     "label": "2023-12-31 ~ 2024-03-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-29": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+     "label": "2024-03-31 ~ 2024-06-29"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-28": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+     "label": "2024-06-30 ~ 2024-09-28"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-28": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "2023-12-31 ~ 2024-12-28"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+     "label": "2023-12-31 ~ 2024-09-28"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-29": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000076/amd-20260328.htm",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000076/amd-20260328.htm",
+     "label": "2024-12-29 ~ 2025-03-29"
+    }
+   ],
+   "source_separator": " / "
+  },
   "2025-06-28": {
-   "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
    "label": "FY2025 Q2",
-   "pdf_page": null
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
+     "label": "2025-03-30 ~ 2025-06-28"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-27": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+     "label": "2025-06-29 ~ 2025-09-27"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-27": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "2024-12-29 ~ 2025-12-27"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000166/amd-20250927.htm",
+     "label": "2024-12-29 ~ 2025-09-27"
+    }
+   ],
+   "source_separator": " / "
   },
   "2026-03-28": {
-   "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000076/amd-20260328.htm",
    "label": "FY2026 Q1",
-   "pdf_page": null
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000076/amd-20260328.htm",
+     "label": "2025-12-28 ~ 2026-03-28"
+    }
+   ],
+   "source_separator": " / "
   },
   "2026-06-27": {
-   "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+   "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
    "label": "FY2026 Q2",
-   "pdf_page": null
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
+     "label": "2026-03-29 ~ 2026-06-27"
+    }
+   ],
+   "source_separator": " / "
   }
  },
+ "span_gaps": false,
+ "change_mode": "none",
+ "table_limit": 100,
  "basis_details": [
   {
-   "label": "검토 기준일",
-   "value": "2026-10-25"
+   "label": "수집 범위",
+   "value": "공시 원문의 사업·제품별 항목을 직접 수집합니다. 표준 API에서 빠진 세부 항목과 과거 주석 표를 포함합니다. 연간과 9개월 누적이 있는 경우 같은 회계연도 차분으로 4분기를 계산합니다."
+  },
+  {
+   "label": "사업·제품 분류",
+   "value": "보고서의 부문 재편·재분류를 반영한 비교 수치입니다. Apple 과거 iPod·Accessories·Other Products는 별도 시리즈로 남기며 현재 Wearables 분류와 이어 붙이지 않습니다."
   }
- ]
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "Client · Gaming 제외": [
+     [
+      "2020-12-26",
+      5189.0
+     ],
+     [
+      "2021-12-25",
+      6887.0
+     ],
+     [
+      "2022-12-31",
+      6201.0
+     ],
+     [
+      "2023-12-30",
+      4651.0
+     ],
+     [
+      "2024-12-28",
+      7054.0
+     ],
+     [
+      "2025-12-27",
+      10640.0
+     ]
+    ],
+    "Data Center · CPU·GPU 등": [
+     [
+      "2020-12-26",
+      1685.0
+     ],
+     [
+      "2021-12-25",
+      3694.0
+     ],
+     [
+      "2022-12-31",
+      6043.0
+     ],
+     [
+      "2023-12-30",
+      6496.0
+     ],
+     [
+      "2024-12-28",
+      12579.0
+     ],
+     [
+      "2025-12-27",
+      16635.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2020-12-26": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-25": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000012/amd-20231230.htm",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000012/amd-20231230.htm",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-28": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-27": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2020-12-26": "FY2020",
+    "2021-12-25": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-30": "FY2023",
+    "2024-12-28": "FY2024",
+    "2025-12-27": "FY2025"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+   "updated": "2025-12-27",
+   "description": "Client는 Client and Gaming 내에 별도 공시된 클라이언트 매출이며 Gaming 매출은 제외합니다. Data Center에는 EPYC CPU와 Instinct GPU·기타 데이터센터 제품이 함께 포함됩니다. Data Center 매출을 EPYC 단독 매출로 해석하지 않습니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ }
 }

@@ -967,5 +967,452 @@
   "table_limit": 100,
   "company_kpi": true,
   "quarterly_revenue_summary": true,
-  "quarterly_profit_summary": false
+  "quarterly_profit_summary": false,
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "순 CAPEX": [
+          [
+            "2014-08-28",
+            null
+          ],
+          [
+            "2015-09-03",
+            null
+          ],
+          [
+            "2016-09-01",
+            null
+          ],
+          [
+            "2017-08-31",
+            5130.0
+          ],
+          [
+            "2018-08-30",
+            8190.0
+          ],
+          [
+            "2019-08-29",
+            9110.0
+          ],
+          [
+            "2020-09-03",
+            7950.0
+          ],
+          [
+            "2021-09-02",
+            9710.0
+          ],
+          [
+            "2022-09-01",
+            11980.0
+          ],
+          [
+            "2023-08-31",
+            7020.0
+          ],
+          [
+            "2024-08-29",
+            8120
+          ],
+          [
+            "2025-08-28",
+            13810
+          ],
+          [
+            "2026-09-03",
+            27370
+          ]
+        ],
+        "초기 발표 CAPEX (차감 기준 미명시)": [
+          [
+            "2014-08-28",
+            3140.0
+          ],
+          [
+            "2015-09-03",
+            4106.0
+          ],
+          [
+            "2016-09-01",
+            null
+          ],
+          [
+            "2017-08-31",
+            null
+          ],
+          [
+            "2018-08-30",
+            null
+          ],
+          [
+            "2019-08-29",
+            null
+          ],
+          [
+            "2020-09-03",
+            null
+          ],
+          [
+            "2021-09-02",
+            null
+          ],
+          [
+            "2022-09-01",
+            null
+          ],
+          [
+            "2023-08-31",
+            null
+          ],
+          [
+            "2024-08-29",
+            null
+          ],
+          [
+            "2025-08-28",
+            null
+          ],
+          [
+            "2026-09-03",
+            null
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-08-28": "FY2014",
+        "2015-09-03": "FY2015",
+        "2016-09-01": "FY2016",
+        "2017-08-31": "FY2017",
+        "2018-08-30": "FY2018",
+        "2019-08-29": "FY2019",
+        "2020-09-03": "FY2020",
+        "2021-09-02": "FY2021",
+        "2022-09-01": "FY2022",
+        "2023-08-31": "FY2023",
+        "2024-08-29": "FY2024",
+        "2025-08-28": "FY2025",
+        "2026-09-03": "FY2026"
+      },
+      "point_sources": {
+        "2014-08-28": {
+          "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312514000145/a2014q4exhibit991-pressrel.htm",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312514000012/exhibit_99-1.htm",
+              "label": "FY2014 Q1"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312514000065/exhibit_99-1.htm",
+              "label": "FY2014 Q2"
+            },
+            {
+              "url": "https://www.globenewswire.com/news-release/2014/06/23/646032/12205/en/micron-technology-inc-reports-results-for-the-third-quarter-of-fiscal-2014.html",
+              "label": "FY2014 Q3"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312514000145/a2014q4exhibit991-pressrel.htm",
+              "label": "FY2014 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2015-09-03": {
+          "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312515000077/a2015q4exhibit991-pressrel.htm",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312515000005/a2015q1exhibit991-pressrel.htm",
+              "label": "FY2015 Q1"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312515000034/a2015q2exhibit991-pressrel.htm",
+              "label": "FY2015 Q2"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312515000060/a2015q3exhibit991-pressrel.htm",
+              "label": "FY2015 Q3"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312515000077/a2015q4exhibit991-pressrel.htm",
+              "label": "FY2015 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-09-01": {
+          "url": "https://investors.micron.com/news/press-release/2016/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-2016-Fiscal-Year-10-04-2016/default.aspx",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.globenewswire.com/news-release/2015/12/22/797768/14450/en/Micron-Technology-Inc-Reports-Results-for-the-First-Quarter-of-Fiscal-2016.html",
+              "label": "FY2016 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2016/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2016-03-30-2016/default.aspx",
+              "label": "FY2016 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2016/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2016-06-30-2016/default.aspx",
+              "label": "FY2016 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2016/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-2016-Fiscal-Year-10-04-2016/default.aspx",
+              "label": "FY2016 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2017-08-31": {
+          "url": "https://investors.micron.com/news/press-release/2017/Micron-Technology-Inc--Reports-Results-for-The-Fourth-Quarter-and-Full-Year-of-2017-09-26-2017/default.aspx",
+          "label": "FY2017 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2016/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2017-12-21-2016/default.aspx",
+              "label": "FY2017 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2017/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2017-03-23-2017/default.aspx",
+              "label": "FY2017 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2017/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2017-06-29-2017/default.aspx",
+              "label": "FY2017 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2017/Micron-Technology-Inc--Reports-Results-for-The-Fourth-Quarter-and-Full-Year-of-2017-09-26-2017/default.aspx",
+              "label": "FY2017 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-08-30": {
+          "url": "https://investors.micron.com/news/press-release/2018/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2018-09-20-2018/default.aspx",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2017/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2018-12-19-2017/default.aspx",
+              "label": "FY2018 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2018/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2018-03-22-2018/default.aspx",
+              "label": "FY2018 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2018/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2018-06-20-2018/default.aspx",
+              "label": "FY2018 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2018/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2018-09-20-2018/default.aspx",
+              "label": "FY2018 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-08-29": {
+          "url": "https://investors.micron.com/news/press-release/2019/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2019-09-26-2019/default.aspx",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2018/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2019-12-18-2018/default.aspx",
+              "label": "FY2019 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2019/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2019-03-20-2019/default.aspx",
+              "label": "FY2019 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2019/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2019-06-25-2019/default.aspx",
+              "label": "FY2019 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2019/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2019-09-26-2019/default.aspx",
+              "label": "FY2019 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-09-03": {
+          "url": "https://investors.micron.com/news/press-release/2020/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2020-09-29-2020/default.aspx",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2019/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2020-12-18-2019/default.aspx",
+              "label": "FY2020 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2020/MICRON-TECHNOLOGY-INC--REPORTS-RESULTS-FOR-THE-SECOND-QUARTER-OF-FISCAL-2020-03-25-2020/default.aspx",
+              "label": "FY2020 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2020/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2020-06-29-2020/default.aspx",
+              "label": "FY2020 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2020/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2020-09-29-2020/default.aspx",
+              "label": "FY2020 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-09-02": {
+          "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2021-09-28-2021/default.aspx",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2021-01-07-2021/default.aspx",
+              "label": "FY2021 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2021-03-31-2021/default.aspx",
+              "label": "FY2021 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2021-06-30-2021/default.aspx",
+              "label": "FY2021 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2021-09-28-2021/default.aspx",
+              "label": "FY2021 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-09-01": {
+          "url": "https://investors.micron.com/news/press-release/2022/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2022-09-29-2022/default.aspx",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2021/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2022-12-20-2021/default.aspx",
+              "label": "FY2022 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2022/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2022-03-29-2022/default.aspx",
+              "label": "FY2022 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2022/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2022-06-30-2022/default.aspx",
+              "label": "FY2022 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2022/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2022-09-29-2022/default.aspx",
+              "label": "FY2022 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-08-31": {
+          "url": "https://investors.micron.com/news/press-release/2023/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2023-09-27-2023/default.aspx",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2022/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2023-12-21-2022/default.aspx",
+              "label": "FY2023 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2023/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2023-03-28-2023/default.aspx?trk=article-ssr-frontend-pulse_little-text-block",
+              "label": "FY2023 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2023/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2023-06-28-2023/default.aspx",
+              "label": "FY2023 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2023/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2023-09-27-2023/default.aspx",
+              "label": "FY2023 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-08-29": {
+          "url": "https://investors.micron.com/news/press-release/2024/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2024-09-25-2024/default.aspx",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2023/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2024-12-20-2023/default.aspx",
+              "label": "FY2024 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2024/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2024-03-20-2024/default.aspx",
+              "label": "FY2024 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2024/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2024-06-26-2024/default.aspx",
+              "label": "FY2024 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2024/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2024-09-25-2024/default.aspx",
+              "label": "FY2024 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-08-28": {
+          "url": "https://investors.micron.com/news/press-release/2025/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2025-09-23-2025/default.aspx",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://investors.micron.com/news/press-release/2024/Micron-Technology-Inc--Reports-Results-for-the-First-Quarter-of-Fiscal-2025-12-18-2024/default.aspx",
+              "label": "FY2025 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2025/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2025-03-20-2025/",
+              "label": "FY2025 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2025/Micron-Technology-Inc--Reports-Results-for-the-Third-Quarter-of-Fiscal-2025-06-25-2025/default.aspx",
+              "label": "FY2025 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2025/Micron-Technology-Inc--Reports-Results-for-the-Fourth-Quarter-and-Full-Year-of-Fiscal-2025-09-23-2025/default.aspx",
+              "label": "FY2025 Q4"
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2026-09-03": {
+          "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/",
+          "label": "FY2026 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000044/a2026q1ex991-pressrelease.htm",
+              "label": "FY2026 Q1"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Results-for-the-Second-Quarter-of-Fiscal-2026-03-18-2026/default.aspx",
+              "label": "FY2026 Q2"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Results-for-the-Third-Quarter-of-Fiscal-2026/default.aspx",
+              "label": "FY2026 Q3"
+            },
+            {
+              "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/",
+              "label": "FY2026 Q4"
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/",
+      "updated": "2026-09-03",
+      "description": "8월 말~9월 초 결산 · 52/53주. 공식 실적 발표의 순 CAPEX입니다. 설비투자에서 정부 지원금·매각 회수액 등을 차감한 회사 발표 기준으로, 다른 회사의 총 유형자산 취득액과 범위가 다릅니다. 발표문 금액의 반올림을 유지합니다. FY2014~FY2016 Q3의 초기 발표액은 파트너 부담액 차감 여부가 명시되지 않아 별도 계열로 표시합니다. 순 CAPEX로 간주하지 않습니다. FY2016 Q4부터 순액을 연결하며, 초기 발표액은 보도자료의 반올림된 금액입니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }

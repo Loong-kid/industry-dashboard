@@ -1399,5 +1399,468 @@
   "table_limit": 100,
   "company_kpi": true,
   "quarterly_revenue_summary": false,
-  "quarterly_profit_summary": true
+  "quarterly_profit_summary": true,
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "DS 영업이익": [
+          [
+            "2014-12-31",
+            8.77
+          ],
+          [
+            "2015-12-31",
+            12.79
+          ],
+          [
+            "2016-12-31",
+            13.59
+          ],
+          [
+            "2017-12-31",
+            35.2
+          ],
+          [
+            "2018-12-31",
+            44.58
+          ],
+          [
+            "2019-12-31",
+            14.02
+          ],
+          [
+            "2020-12-31",
+            18.81
+          ],
+          [
+            "2021-12-31",
+            29.2
+          ],
+          [
+            "2022-12-31",
+            23.82
+          ],
+          [
+            "2023-12-31",
+            -14.870000000000001
+          ],
+          [
+            "2024-12-31",
+            15.12
+          ],
+          [
+            "2025-12-31",
+            24.9
+          ]
+        ],
+        "연결 영업이익": [
+          [
+            "2014-12-31",
+            25.03
+          ],
+          [
+            "2015-12-31",
+            26.41
+          ],
+          [
+            "2016-12-31",
+            29.240000000000002
+          ],
+          [
+            "2017-12-31",
+            53.65
+          ],
+          [
+            "2018-12-31",
+            58.88
+          ],
+          [
+            "2019-12-31",
+            27.77
+          ],
+          [
+            "2020-12-31",
+            36.0
+          ],
+          [
+            "2021-12-31",
+            51.64
+          ],
+          [
+            "2022-12-31",
+            43.379999999999995
+          ],
+          [
+            "2023-12-31",
+            6.5600000000000005
+          ],
+          [
+            "2024-12-31",
+            32.73
+          ],
+          [
+            "2025-12-31",
+            43.7
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-12-31": "FY2014",
+        "2015-12-31": "FY2015",
+        "2016-12-31": "FY2016",
+        "2017-12-31": "FY2017",
+        "2018-12-31": "FY2018",
+        "2019-12-31": "FY2019",
+        "2020-12-31": "FY2020",
+        "2021-12-31": "FY2021",
+        "2022-12-31": "FY2022",
+        "2023-12-31": "FY2023",
+        "2024-12-31": "FY2024",
+        "2025-12-31": "FY2025"
+      },
+      "point_sources": {
+        "2014-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20150129_conference_eng.pdf",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20140429_conference_eng.pdf",
+              "label": "2014 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20140731_conference_eng.pdf",
+              "label": "2014 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20141030_conference_eng.pdf",
+              "label": "2014 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20150129_conference_eng.pdf",
+              "label": "2014 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2015-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20160128_conference_eng.pdf",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20150429_conference_eng.pdf",
+              "label": "2015 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20150730_conference_eng.pdf",
+              "label": "2015 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20151029_conference_eng.pdf",
+              "label": "2015 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20160128_conference_eng.pdf",
+              "label": "2015 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20170124_conference_eng.pdf",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20160428_conference_eng.pdf",
+              "label": "2016 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20160728_conference_eng.pdf",
+              "label": "2016 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20161027_conference_eng.pdf",
+              "label": "2016 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/20170124_conference_eng.pdf",
+              "label": "2016 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2017-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2017_4Q_Earnings_Release_Samsung_Electronics.pdf",
+          "label": "FY2017 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2017_1Q_Earnings_Release_Samsung_Electronics.pdf",
+              "label": "2017 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2017_2Q_Earnings_Release_Samsung_Electronics.pdf",
+              "label": "2017 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2017_3Q_Earnings_Release_Samsung_Electronics.pdf",
+              "label": "2017 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2017_4Q_Earnings_Release_Samsung_Electronics.pdf",
+              "label": "2017 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2018_4Q_conference_eng.pdf",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2018_1Q_conference_eng.pdf",
+              "label": "2018 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2018_2Q_conference_eng.pdf",
+              "label": "2018 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2018_3Q_conference_eng.pdf",
+              "label": "2018 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2018_4Q_conference_eng.pdf",
+              "label": "2018 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2019_4Q_conference_eng.pdf",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2019_1Q_conference_eng.pdf",
+              "label": "2019 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2019_2Q_conference_eng.pdf",
+              "label": "2019 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2019_3Q_conference_eng.pdf",
+              "label": "2019 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2019_4Q_conference_eng.pdf",
+              "label": "2019 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2020_4Q_conference_eng.pdf",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2020_1Q_conference_eng.pdf",
+              "label": "2020 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2020_2Q_conference_eng.pdf",
+              "label": "2020 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/p5/global/ir/docs/2020_3Q_conference_eng.pdf",
+              "label": "2020 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2020_4Q_conference_eng.pdf",
+              "label": "2020 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2021_4Q_conference_eng.pdf",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2021_1Q_conference_eng.pdf",
+              "label": "2021 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2021_2Q_conference_eng.pdf",
+              "label": "2021 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2021_3Q_conference_eng.pdf",
+              "label": "2021 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2021_4Q_conference_eng.pdf",
+              "label": "2021 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2022_4Q_conference_eng.pdf",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2022_1Q_conference_eng.pdf",
+              "label": "2022 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2022_2Q_conference_eng.pdf",
+              "label": "2022 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2022_3Q_conference_eng.pdf",
+              "label": "2022 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2022_4Q_conference_eng.pdf",
+              "label": "2022 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2023_4Q_conference_eng_01.pdf",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2023_1Q_conference_eng.pdf",
+              "label": "2023 Q1",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2023_2Q_conference_eng.pdf",
+              "label": "2023 Q2",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2023_3Q_conference_eng_01.pdf",
+              "label": "2023 Q3",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2023_4Q_conference_eng_01.pdf",
+              "label": "2023 Q4",
+              "pdf_page": 6
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2024_4Q_conference_eng.pdf",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2024_1Q_conference_eng.pdf",
+              "label": "2024 Q1",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2024_2Q_conference_eng.pdf",
+              "label": "2024 Q2",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2024_3Q_conference_eng.pdf",
+              "label": "2024 Q3",
+              "pdf_page": 6
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2024_4Q_conference_eng.pdf",
+              "label": "2024 Q4",
+              "pdf_page": 7
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-12-31": {
+          "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_conference_eng.pdf",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_1Q_conference_eng.pdf",
+              "label": "2025 Q1",
+              "pdf_page": 7
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_2Q_conference_eng.pdf",
+              "label": "2025 Q2",
+              "pdf_page": 7
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_3Q_conference_eng.pdf",
+              "label": "2025 Q3",
+              "pdf_page": 7
+            },
+            {
+              "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_conference_eng.pdf",
+              "label": "2025 Q4",
+              "pdf_page": 7
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_conference_eng.pdf",
+      "updated": "2025-12-31",
+      "description": "12월 결산. 메모리 단독 영업이익은 별도 분기 공시하지 않아 DS 영업이익과 연결 영업이익을 표시합니다. DS에는 파운드리·System LSI도 포함됩니다. 2014~2021년은 당시 Semiconductor 사업부, 2022년부터는 DS 기준입니다. 과거 Display를 포함한 DS 전체를 반도체 실적으로 사용하지 않았습니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }

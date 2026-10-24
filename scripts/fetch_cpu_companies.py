@@ -1,4 +1,4 @@
-"""Quarterly CPU-company accounts from SEC Company Facts; reviewed business mix.
+"""CPU-company accounts and business history from public SEC disclosures.
 
 Consolidated GAAP accounts are not CPU-only sales. Fiscal quarter ends and source
 filings are preserved. Cash PP&E is differenced within the same fiscal year only.
@@ -12,6 +12,8 @@ from pathlib import Path
 import time
 
 import requests
+from company_period_views import add_period_views
+from cpu_business_history import collect_business
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/semicon'
@@ -63,15 +65,16 @@ def save(path, value):
 
 def reference(fact, cik):
     accn = fact['accn']
-    return dict(url=f'https://www.sec.gov/Archives/edgar/data/{cik}/{accn.replace("-", "")}/{accn}-index.html',
-                filed=fact['filed'], start=fact['start'], end=fact['end'], tag=fact['tag'])
+    return dict(url=fact.get('source_url') or f'https://www.sec.gov/Archives/edgar/data/{cik}/{accn.replace("-", "")}/{accn}-index.html',
+                filed=fact['filed'], start=fact['start'], end=fact['end'], tag=fact.get('source_tag',fact['tag']))
 
 
-def parse_facts(payload, company, asof):
+def parse_facts(payload, company, asof, tags_by_metric=None):
     if int(payload['cik']) != company['cik']:
         raise ValueError('SEC company mismatch')
     selected, all_facts = {}, {}
-    for metric, tags in TAGS.items():
+    metrics=tags_by_metric or TAGS
+    for metric, tags in metrics.items():
         tags=company.get('tags',{}).get(metric,tags)
         values, facts = {}, []
         for priority, tag in enumerate(tags):
@@ -122,9 +125,36 @@ def parse_facts(payload, company, asof):
                                 and abs(days(start,f['end'])-(quarter-1)*91.25) <= 15
                                 and 75 <= days(f['end'],end)-1 <= 105 and f['tag'] == fact['tag']
                                 and f['filed'] <= fact['filed']]
-                    if not previous:
-                        continue
+                    if not previous and tags_by_metric is not None:
+                        for candidate in sorted(candidates,key=lambda f:f['rank']):
+                            compatible=[f for f in all_facts[metric] if f['start']==start and f['end']<end
+                                and abs(days(start,f['end'])-(quarter-1)*91.25)<=15
+                                and 75<=days(f['end'],end)-1<=105 and f['filed']<=candidate['filed']]
+                            if compatible:
+                                fact,previous=candidate,compatible;break
+                    if not previous:continue
                     prior = max(previous, key=lambda f:(f['end'],f['rank']))
+                    if tags_by_metric is not None:
+                        # Prefer a restated business basis only when its prior YTD
+                        # reconciles to all of the preceding reported quarters.
+                        # This handles AMD's Client reclassification without mixing
+                        # an old Client+Gaming comparative with the new Client total.
+                        for candidate in sorted(candidates,key=lambda f:f['rank'],reverse=True):
+                            prior_candidates=[f for f in all_facts[metric] if f['start']==start and f['end']<end
+                                and abs(days(start,f['end'])-(quarter-1)*91.25)<=15
+                                and 75<=days(f['end'],end)-1<=105 and f['filed']<=candidate['filed']]
+                            if not prior_candidates:continue
+                            prior_candidate=max(prior_candidates,key=lambda f:(f['end'],f['rank']))
+                            direct_quarters={}
+                            for f in all_facts[metric]:
+                                if not start<=f['start']<=f['end']<=prior_candidate['end'] or f['filed']>candidate['filed'] or not 75<=days(f['start'],f['end'])<=105:continue
+                                q=round(days(start,f['end'])/91.25)
+                                if q not in direct_quarters or f['rank']>direct_quarters[q]['rank']:direct_quarters[q]=f
+                            if set(direct_quarters)!=set(range(1,quarter)):continue
+                            if abs(sum(f['val'] for f in direct_quarters.values())-prior_candidate['val'])>1:continue
+                            if candidate['val']<prior_candidate['val']:continue
+                            fact,prior=candidate,prior_candidate
+                            break
                     value = fact['val']-prior['val']
                     refs = [reference(fact,company['cik']), reference(prior,company['cik'])]
                     quarter_start = (dt.date.fromisoformat(prior['end'])+dt.timedelta(days=1)).isoformat()
@@ -138,13 +168,47 @@ def parse_facts(payload, company, asof):
                 row[metric] = value/1e6
                 row['refs'][metric] = dict(refs[0], components=refs,
                     calculation='reported quarter' if len(refs)==1 else 'same fiscal-year YTD minus prior YTD')
-    result = [r for _,r in sorted(rows.items()) if r.get('revenue') is not None]
-    if not result or not all(any(r.get(m) is not None for r in result) for m in TAGS):
+    result = [r for _,r in sorted(rows.items()) if any(r.get(m) is not None for m in metrics)]
+    if tags_by_metric is None:result=[r for r in result if r.get('revenue') is not None]
+    if not result or (tags_by_metric is None and not all(any(r.get(m) is not None for r in result) for m in TAGS)):
         raise ValueError('Incomplete quarterly accounts')
     periods = [(r['year'],r['quarter']) for r in result]
     if len(periods) != len(set(periods)):
         raise ValueError('Duplicate fiscal period')
     return result
+
+
+def parse_annual(payload,company,asof,tags_by_metric=None):
+    if int(payload['cik'])!=company['cik']:raise ValueError('SEC company mismatch')
+    rows={}
+    for metric,tags in (tags_by_metric or TAGS).items():
+        tags=company.get('tags',{}).get(metric,tags)
+        candidates={}
+        for priority,tag in enumerate(tags):
+            for fact in payload['facts'].get('us-gaap',{}).get(tag,{}).get('units',{}).get('USD',[]):
+                if not fact.get('start') or fact['end']<'2014-01-01' or fact['end']>asof or fact['filed']>asof:continue
+                if not 350<=days(fact['start'],fact['end'])<=380 or fact.get('form') not in ('10-K','10-K/A','20-F','20-F/A','6-K'):continue
+                rank=fact['filed'],-priority,fact['accn']
+                if fact['end'] not in candidates or rank>candidates[fact['end']]['rank']:
+                    candidates[fact['end']]=dict(fact,tag='us-gaap:'+tag,rank=rank)
+        for end,fact in candidates.items():
+            row=rows.setdefault(end,dict(date=end,year=int(end[:4]),refs={}))
+            row[metric]=fact['val']/1e6
+            row['refs'][metric]=dict(reference(fact,company['cik']),components=[reference(fact,company['cik'])],calculation='reported annual')
+    return [r for _,r in sorted(rows.items())]
+
+
+def annual_view(rows,fields,note):
+    dates=[r['date'] for r in rows]
+    refs={}
+    for r in rows:
+        sources={ref['url']:ref for metric,ref in r['refs'].items() if metric in fields}
+        if sources:refs[r['date']]=dict(url=next(iter(sources)),label=f"FY{r['year']}",
+            supporting_sources=[dict(url=url,label=f"FY{r['year']}") for url in sources],source_separator=' / ')
+    return dict(series={label:[[r['date'],r.get(field)] for r in rows] for field,label in fields.items()},
+                point_sources=refs,period_labels={r['date']:f"FY{r['year']}" for r in rows},
+                source_url=refs[max(refs)]['url'] if refs else '',
+                updated=max(dates) if dates else '',description=note+' 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.')
 
 
 def build_company(key, cohort):
@@ -188,10 +252,12 @@ def build_company(key, cohort):
                 dict(label='갱신 확인',value=cohort['checked']+' · '+('정상' if cohort['ok'] else '확인 실패 · 마지막 성공 자료 유지'))])
         if not cohort['ok']:
             docs[indicator]['collection_status']=dict(ok=False,checked=cohort['checked'],message='원문 확인 실패 · 마지막 성공 자료와 기준일을 유지합니다.')
+        add_period_views(docs[indicator],annual_view(cohort.get('annual',[]),{metric:series_label},docs[indicator]['description']))
     return docs
 
 
 def build_segments(snapshot):
+    """Legacy seed renderer; automatic collection uses build_business_history."""
     docs = {}
     for key,company in snapshot['companies'].items():
         rows = sorted(company['quarters'],key=lambda r:r['date'])
@@ -225,6 +291,99 @@ def build_segments(snapshot):
     return docs
 
 
+def business_payload(key,cohort):
+    return dict(cik=COMPANIES[key]['cik'],facts={'us-gaap':{field:dict(units={'USD':rows}) for field,rows in cohort['facts'].items()}})
+
+
+def reconcile_apple_products(rows,facts):
+    """Keep a derived Q4 on one reporting vintage across all product categories."""
+    base=['iphone','ipad','mac','services']
+    for row in rows:
+        if row.get('_total') is None:continue
+        tail=['wearables'] if row.get('wearables') is not None else ['other_products'] if row.get('other_products') is not None else ['ipod','accessories']
+        if any(row.get(f) is None for f in base+tail):continue
+        if abs(sum(row[f] for f in base+tail)-row['_total'])<.000001:continue
+        if row['quarter']!=4:raise ValueError('Apple product sum differs from consolidated sales')
+        annual={}
+        for field,values in facts.items():
+            if field=='_total':continue
+            for f in values:
+                if f['end']==row['date'] and 350<=days(f['start'],f['end'])<=380:
+                    annual.setdefault((f['filed'],f['accn']),{})[field]=f
+        resolved=False
+        for _,current in sorted(annual.items(),reverse=True):
+            tail=['wearables'] if 'wearables' in current else ['other_products'] if 'other_products' in current else ['ipod','accessories']
+            names=base+tail
+            if any(f not in current for f in names):continue
+            start=current['iphone']['start'];limit=current['iphone']['filed']
+            previous={}
+            for field in names:
+                for f in facts[field]:
+                    if f['start']==start and 260<=days(start,f['end'])<=290 and f['filed']<=limit:
+                        previous.setdefault((f['filed'],f['accn']),{})[field]=f
+            for _,prior in sorted(previous.items(),reverse=True):
+                if any(f not in prior for f in names):continue
+                values={f:(current[f]['val']-prior[f]['val'])/1e6 for f in names}
+                if any(v<0 for v in values.values()) or abs(sum(values.values())-row['_total'])>.000001:continue
+                for field,value in values.items():
+                    components=[reference(dict(f,tag=f['source_tag']),COMPANIES['apple']['cik']) for f in (current[field],prior[field])]
+                    row[field]=value
+                    row['refs'][field]=dict(components[0],components=components,calculation='same reporting-basis annual minus nine months')
+                resolved=True;break
+            if resolved:break
+        if not resolved:raise ValueError('Apple Q4 product vintages could not be reconciled')
+    return rows
+
+
+def build_business_history(cohorts,snapshot):
+    docs={}
+    for key,cohort in cohorts.items():
+        meta=snapshot['companies'][key]
+        fields={field:label for field,label in meta['fields'].items() if field in cohort['facts']}
+        groups=[(f'company_{key}_business',meta['title'],fields,meta['note'])]
+        if key=='qualcomm':
+            groups.append(('company_qualcomm_royalty','QTL 라이선스·로열티 매출',{'qtl':'QTL · 라이선스 매출'},
+                'QTL 특허 라이선스 사업 매출로 주로 휴대폰 판매 관련 로열티입니다. 순수 경상 로열티만 분리한 값은 아니며 계약 합의·과거기간 정산 등이 포함될 수 있습니다. QCT의 소프트웨어 관련 로열티·칩 매출과 구분합니다.'))
+        for id,title,fields,note in groups:
+            if not fields:continue
+            payload=business_payload(key,cohort)
+            metrics={field:[field] for field in fields}
+            if key=='apple' and '_total' in cohort['facts']:metrics['_total']=['_total']
+            rows=parse_facts(payload,COMPANIES[key],today(),metrics)
+            if key=='apple':rows=reconcile_apple_products(rows,cohort['facts'])
+            annual=parse_annual(payload,COMPANIES[key],today(),metrics)
+            # Every fiscal quarter between first and last is explicit, even if null.
+            lookup={(r['year'],r['quarter']):r['date'] for r in rows}
+            bydate={r['date']:r for r in rows}
+            axis=set(bydate)
+            for year in range(rows[0]['year'],rows[-1]['year']+1):
+                for q in range(1,5):
+                    if (year,q) in lookup or not (rows[0]['year'],rows[0]['quarter'])<(year,q)<(rows[-1]['year'],rows[-1]['quarter']):continue
+                    m=((COMPANIES[key]['fiscal_start']-1+q*3-1)%12)+1
+                    y=year-(COMPANIES[key]['fiscal_start']!=1 and m>=COMPANIES[key]['fiscal_start'])
+                    axis.add((dt.date(y+(m==12),m%12+1,1)-dt.timedelta(days=1)).isoformat())
+            refs={}
+            for r in rows:
+                sources={}
+                for field in fields:
+                    for ref in r['refs'].get(field,{}).get('components',[]):sources[ref['url'],ref['start'],ref['end']]=ref
+                if sources:
+                    refs[r['date']]=dict(url=next(iter(sources))[0],label=f"FY{r['year']} Q{r['quarter']}",
+                        supporting_sources=[dict(url=ref['url'],label=ref['start']+' ~ '+ref['end']) for ref in sources.values()],source_separator=' / ')
+            doc=dict(id=id,name=COMPANIES[key]['name']+' · '+title,unit='USD 백만',frequency='quarterly',
+                frequency_label='분기 · SEC 사업·제품 공시',quarter_labels=True,
+                period_labels={r['date']:f"FY{r['year']} Q{r['quarter']}" for r in rows},
+                updated=rows[-1]['date'],fetched=cohort['fetched'],source='SEC · 사업·제품별 공식 공시',source_url=refs[rows[-1]['date']]['url'],
+                description=note,series={label:[[date,bydate.get(date,{}).get(field)] for date in sorted(axis)] for field,label in fields.items()},
+                default_series=[label for field,label in fields.items() if field not in ('other_products','ipod','accessories')],
+                point_sources=refs,span_gaps=False,change_mode='none',table_limit=100,
+                basis_details=[dict(label='수집 범위',value='공시 원문의 사업·제품별 항목을 직접 수집합니다. 표준 API에서 빠진 세부 항목과 과거 주석 표를 포함합니다. 연간과 9개월 누적이 있는 경우 같은 회계연도 차분으로 4분기를 계산합니다.'),
+                    dict(label='사업·제품 분류',value='보고서의 부문 재편·재분류를 반영한 비교 수치입니다. Apple 과거 iPod·Accessories·Other Products는 별도 시리즈로 남기며 현재 Wearables 분류와 이어 붙이지 않습니다.')])
+            if not cohort['ok']:doc['collection_status']=dict(ok=False,checked=cohort['checked'],message='일부 과거 원문 확인 실패 · 확보된 공시 이력을 유지합니다.')
+            docs[id]=add_period_views(doc,annual_view(annual,fields,note))
+    return docs
+
+
 def collect(offline=False):
     asof=today()
     state=load(OUT/'cpu_state.json',dict(companies={}))
@@ -240,7 +399,8 @@ def collect(offline=False):
                 rows=parse_facts(response.json(),company,asof)
                 if prior.get('rows') and rows[-1]['date'] < prior['rows'][-1]['date']:
                     raise ValueError('Source regressed')
-                state['companies'][key]=dict(rows=rows,checked=asof,fetched=asof,ok=True)
+                annual=parse_annual(response.json(),company,asof)
+                state['companies'][key]=dict(rows=rows,annual=annual,checked=asof,fetched=asof,ok=True)
                 (CACHE/(key+'_facts.json')).write_bytes(response.content)
                 print(key,len(rows),'quarters',rows[0]['date'],'to',rows[-1]['date'])
             except Exception as error:
@@ -249,10 +409,11 @@ def collect(offline=False):
                 state['companies'][key]=dict(prior,checked=asof,ok=False)
                 print(key,'retained previous data:',type(error).__name__)
             time.sleep(.4)
+        state['business']=collect_business(COMPANIES,state.get('business',{}),CACHE/'business',asof)
     docs={}
     for key in COMPANIES:
         docs.update(build_company(key,state['companies'][key]))
-    docs.update(build_segments(load(ROOT/'manual/cpu_segments.json',{})))
+    docs.update(build_business_history(state['business'],load(ROOT/'manual/cpu_segments.json',{})))
     save(OUT/'cpu_state.json',state)
     for id,doc in docs.items():
         save(OUT/(id+'.json'),doc)

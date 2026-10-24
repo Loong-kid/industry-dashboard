@@ -49,6 +49,18 @@ class CpuCompanies(unittest.TestCase):
         with self.assertRaises(ValueError):
             cpu.parse_facts(payload,cpu.COMPANIES['intel'],'2026-10-25')
 
+    def test_reported_annual_uses_latest_filing_and_excludes_partial_year(self):
+        payload=fixture()
+        for meta in payload['facts']['us-gaap'].values():
+            meta['units']['USD']=[
+                fact('2025-01-01','2025-12-31',40,filed='2026-01-25',form='10-K'),
+                fact('2025-01-01','2025-12-31',42,filed='2026-03-25',form='10-K/A'),
+                fact('2026-01-01','2026-09-30',35,filed='2026-10-25'),
+                fact('2026-01-01','2026-12-31',99,filed='2027-01-25',form='10-K')]
+        rows=cpu.parse_annual(payload,cpu.COMPANIES['intel'],'2026-10-25')
+        self.assertEqual([(r['year'],r['revenue']) for r in rows],[(2025,42)])
+        self.assertEqual(rows[0]['refs']['revenue']['filed'],'2026-03-25')
+
     def test_wrong_entity_and_future_filing_are_rejected(self):
         payload=fixture()
         with self.assertRaises(ValueError):cpu.parse_facts(payload,cpu.COMPANIES['amd'],'2026-10-25')
@@ -78,9 +90,9 @@ class CpuCompanies(unittest.TestCase):
         linked={id for section in semicon['sections'] if section.get('tab')=='cpu' for id in section['indicators']}
         docs={}
         for key,cohort in self.state['companies'].items():docs.update(cpu.build_company(key,cohort))
-        docs.update(cpu.build_segments(cpu.load(ROOT/'manual/cpu_segments.json',{})))
+        docs.update(cpu.build_business_history(self.state['business'],cpu.load(ROOT/'manual/cpu_segments.json',{})))
         self.assertEqual(set(docs),linked)
-        self.assertEqual(len(docs),20)
+        self.assertEqual(len(docs),21)
         for id,doc in docs.items():
             self.assertEqual(doc,cpu.load(ROOT/f'data/semicon/{id}.json',{}))
             self.assertFalse(doc['span_gaps'])
@@ -88,12 +100,12 @@ class CpuCompanies(unittest.TestCase):
         self.assertEqual(arm['period_labels']['2026-06-30'],'FY2027 Q1')
         self.assertEqual(arm['comparison_dates']['2026-06-30']['quarter_ago'],'2026-03-31')
         self.assertIn('GPU',docs['company_amd_business']['description'])
-        self.assertTrue(any(v is None for d,v in docs['company_intel_business']['series']['CCPG · 클라이언트·Physical AI']))
+        self.assertTrue(all(v is not None for d,v in docs['company_intel_business']['series']['CCPG · 클라이언트·Physical AI']))
         apple=docs['company_apple_revenue']
         self.assertEqual(apple['period_labels']['2025-12-27'],'FY2026 Q1')
         self.assertEqual(apple['comparison_dates']['2025-12-27']['quarter_ago'],'2025-09-27')
         self.assertIn('Apple Silicon 별도 실적 미공개',apple['description'])
-        self.assertIn('완제품',docs['company_apple_business']['description'])
+        self.assertIn('Apple Silicon 칩의 별도',docs['company_apple_business']['description'])
         self.assertIn('회사 공시 CAPEX',docs['company_qualcomm_capex']['series'])
         self.assertIn('PC용 Snapdragon 매출로 해석하지 않습니다',docs['company_qualcomm_business']['description'])
 
@@ -110,6 +122,7 @@ class CpuCompanies(unittest.TestCase):
         self.assertTrue(all(r['refs']['capex']['tag']=='us-gaap:PaymentsToAcquireProductiveAssets' for r in rows))
 
     def test_failure_isolated_and_success_date_retained(self):
+        real_parse,real_annual=cpu.parse_facts,cpu.parse_annual
         class Response:
             content=b'{}'
             def raise_for_status(self):pass
@@ -117,16 +130,21 @@ class CpuCompanies(unittest.TestCase):
         class Session:
             headers={}
             def get(self,*args,**kwargs):return Response()
-        def parsed(payload,company,asof):
+        def parsed(payload,company,asof,tags_by_metric=None):
+            if tags_by_metric:return real_parse(payload,company,asof,tags_by_metric)
             if company['cik']==2488:raise ValueError('changed source')
             key=next(key for key,meta in cpu.COMPANIES.items() if meta['cik']==company['cik'])
             return copy.deepcopy(self.state['companies'][key]['rows'])
+        def annual(payload,company,asof,tags_by_metric=None):
+            if tags_by_metric:return real_annual(payload,company,asof,tags_by_metric)
+            key=next(key for key,meta in cpu.COMPANIES.items() if meta['cik']==company['cik'])
+            return copy.deepcopy(self.state['companies'][key]['annual'])
         with tempfile.TemporaryDirectory() as folder:
             out=Path(folder)/'output'
             prior=copy.deepcopy(self.state)
             prior['companies']['amd']['fetched']='2026-10-24'
             cpu.save(out/'cpu_state.json',prior)
-            with patch.object(cpu,'OUT',out),patch.object(cpu,'CACHE',Path(folder)/'cache'),patch.object(cpu,'today',return_value='2026-10-25'),patch.object(cpu.requests,'Session',Session),patch.object(cpu,'parse_facts',side_effect=parsed),patch.object(cpu.time,'sleep'):
+            with patch.object(cpu,'OUT',out),patch.object(cpu,'CACHE',Path(folder)/'cache'),patch.object(cpu,'today',return_value='2026-10-25'),patch.object(cpu.requests,'Session',Session),patch.object(cpu,'parse_facts',side_effect=parsed),patch.object(cpu,'parse_annual',side_effect=annual),patch.object(cpu,'collect_business',return_value=self.state['business']),patch.object(cpu.time,'sleep'):
                 cpu.collect()
             result=cpu.load(out/'cpu_state.json',{})
             self.assertFalse(result['companies']['amd']['ok'])

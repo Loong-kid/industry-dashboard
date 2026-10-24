@@ -17,13 +17,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests
+      - run: pip install requests beautifulsoup4
       - name: Validate CPU fiscal periods and accounting definitions
-        run: python -m unittest discover -s scripts -p test_cpu_companies.py -v
+        run: |
+          python -m unittest discover -s scripts -p 'test_cpu*.py' -v
+          python -m unittest discover -s scripts -p test_company_period_views.py -v
       - name: Refresh public SEC company accounts
         run: python scripts/fetch_cpu_companies.py
       - name: Validate published CPU history
-        run: python -m unittest discover -s scripts -p test_cpu_companies.py -v
+        run: |
+          python -m unittest discover -s scripts -p 'test_cpu*.py' -v
+          python -m unittest discover -s scripts -p test_company_period_views.py -v
       - name: Commit CPU data only
         run: |
           git config user.name "github-actions[bot]"

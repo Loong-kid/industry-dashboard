@@ -7,6 +7,7 @@ import datetime as dt
 import json
 import math
 from pathlib import Path
+from company_period_views import add_period_views
 
 ROOT = Path(__file__).resolve().parents[1]
 MANUAL = ROOT / 'manual/semicon_companies.json'
@@ -131,7 +132,7 @@ def build(snapshot):
                 doc.setdefault('basis_details',[]).append(dict(label=group['name'],value=group['description']))
             if meta.get('history_notes',{}).get(metric):
                 doc['description'] += ' '+meta['history_notes'][metric]
-    return docs
+    return {id:add_period_views(doc) for id,doc in docs.items()}
 
 
 def main():

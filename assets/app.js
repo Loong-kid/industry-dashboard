@@ -818,7 +818,7 @@ function renderCard(doc, indicatorId) {
   // 없으면 아무것도 안 그리므로 기존 카드에는 영향 없음.
   if (doc.description || doc.note) {
     const info = document.createElement("div");
-    info.style.cssText = "font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px";
+    info.style.cssText = "font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px;overflow-wrap:anywhere";
     const parts = [];
     if (doc.description) parts.push(escapeHtml(doc.description));
     if (doc.note) parts.push(`<span style="opacity:.85">※ ${escapeHtml(doc.note)}</span>`);

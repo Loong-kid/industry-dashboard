@@ -728,5 +728,418 @@
   "table_limit": 100,
   "company_kpi": true,
   "quarterly_revenue_summary": false,
-  "quarterly_profit_summary": true
+  "quarterly_profit_summary": true,
+  "default_view": "quarter",
+  "series_views": {
+    "quarter": {
+      "label": "분기"
+    },
+    "annual": {
+      "label": "연간",
+      "frequency": "yearly",
+      "frequency_label": "연간 · 회사 회계연도",
+      "quarter_labels": false,
+      "year_labels": true,
+      "annual_axis": true,
+      "quarterly_revenue_summary": false,
+      "quarterly_profit_summary": false,
+      "comparison_dates": {},
+      "change_mode": "none",
+      "series": {
+        "연결 영업이익": [
+          [
+            "2014-12-31",
+            5.109
+          ],
+          [
+            "2015-12-31",
+            5.336
+          ],
+          [
+            "2016-12-31",
+            3.277
+          ],
+          [
+            "2017-12-31",
+            13.722000000000001
+          ],
+          [
+            "2018-12-31",
+            20.843
+          ],
+          [
+            "2019-12-31",
+            2.713
+          ],
+          [
+            "2020-12-31",
+            4.0520000000000005
+          ],
+          [
+            "2021-12-31",
+            12.411
+          ],
+          [
+            "2022-12-31",
+            6.811
+          ],
+          [
+            "2023-12-31",
+            -7.73
+          ],
+          [
+            "2024-12-31",
+            23.468
+          ],
+          [
+            "2025-12-31",
+            47.207
+          ]
+        ]
+      },
+      "period_labels": {
+        "2014-12-31": "FY2014",
+        "2015-12-31": "FY2015",
+        "2016-12-31": "FY2016",
+        "2017-12-31": "FY2017",
+        "2018-12-31": "FY2018",
+        "2019-12-31": "FY2019",
+        "2020-12-31": "FY2020",
+        "2021-12-31": "FY2021",
+        "2022-12-31": "FY2022",
+        "2023-12-31": "FY2023",
+        "2024-12-31": "FY2024",
+        "2025-12-31": "FY2025"
+      },
+      "point_sources": {
+        "2014-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679244520841752.pdf",
+          "label": "FY2014 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4678958595011618.pdf",
+              "label": "2014 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679067098449982.pdf",
+              "label": "2014 Q2",
+              "pdf_page": 2
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679150122756069.pdf",
+              "label": "2014 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679244520841752.pdf",
+              "label": "2014 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2015-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/6703026104415372.pdf",
+          "label": "FY2015 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679363977413106.pdf",
+              "label": "2015 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4679457014933035.pdf",
+              "label": "2015 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/1963127302079705.pdf",
+              "label": "2015 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/6703026104415372.pdf",
+              "label": "2015 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2016-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/13837366719520532.pdf",
+          "label": "FY2016 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4130667051041126.pdf",
+              "label": "2016 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/11993982920956834.pdf",
+              "label": "2016 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4824994351515485.pdf",
+              "label": "2016 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/13837366719520532.pdf",
+              "label": "2016 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2017-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4383603618992379.pdf",
+          "label": "FY2017 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3612965138885248.pdf",
+              "label": "2017 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/595060024676387.pdf",
+              "label": "2017 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3619599386183211.pdf",
+              "label": "2017 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4383603618992379.pdf",
+              "label": "2017 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2018-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/10958663385996626.pdf",
+          "label": "FY2018 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3442825892207149.pdf",
+              "label": "2018 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4220230707889475.pdf",
+              "label": "2018 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3096783810190286.pdf",
+              "label": "2018 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/10958663385996626.pdf",
+              "label": "2018 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2019-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/11133586214958018.pdf",
+          "label": "FY2019 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4664405615596862.pdf",
+              "label": "2019 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/11133204797233657.pdf",
+              "label": "2019 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/11133541650387289.pdf",
+              "label": "2019 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/11133586214958018.pdf",
+              "label": "2019 Q4",
+              "pdf_page": 4
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2020-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4322951995425300.pdf",
+          "label": "FY2020 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/9519079513568522.pdf",
+              "label": "2020 Q1",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/10873716960439820.pdf",
+              "label": "2020 Q2",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/19891220327578851.pdf",
+              "label": "2020 Q3",
+              "pdf_page": 4
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/4322951995425300.pdf",
+              "label": "2020 Q4",
+              "pdf_page": 3
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2021-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/7604341504857107.pdf",
+          "label": "FY2021 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/7585763256709093.pdf",
+              "label": "2021 Q1",
+              "pdf_page": 16
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/7585812176834789.pdf",
+              "label": "2021 Q2",
+              "pdf_page": 15
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/7585901605977905.pdf",
+              "label": "2021 Q3",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/7604341504857107.pdf",
+              "label": "2021 Q4",
+              "pdf_page": 23
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2022-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/24434428074035670.pdf",
+          "label": "FY2022 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/1231150849532441.pdf",
+              "label": "2022 Q1",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3019171149111090.pdf",
+              "label": "2022 Q2",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/766106284610273.pdf",
+              "label": "2022 Q3",
+              "pdf_page": 14
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/24434428074035670.pdf",
+              "label": "2022 Q4",
+              "pdf_page": 16
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2023-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/53459886915120783.pdf",
+          "label": "FY2023 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/29911794722201356.pdf",
+              "label": "2023 Q1",
+              "pdf_page": 20
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/34468093604369739.pdf",
+              "label": "2023 Q2",
+              "pdf_page": 20
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/32304484452409020.pdf",
+              "label": "2023 Q3",
+              "pdf_page": 20
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/53459886915120783.pdf",
+              "label": "2023 Q4",
+              "pdf_page": 21
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2024-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/81727201766385339.pdf",
+          "label": "FY2024 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/61321621157035970.pdf",
+              "label": "2024 Q1",
+              "pdf_page": 20
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/66003067237742062.pdf",
+              "label": "2024 Q2",
+              "pdf_page": 19
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/77045741902433810.pdf",
+              "label": "2024 Q3",
+              "pdf_page": 18
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/81727201766385339.pdf",
+              "label": "2024 Q4",
+              "pdf_page": 23
+            }
+          ],
+          "source_separator": " + "
+        },
+        "2025-12-31": {
+          "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/116964051831620258.pdf",
+          "label": "FY2025 · 4개 분기 합계",
+          "supporting_sources": [
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/5001632852769028.pdf",
+              "label": "2025 Q1",
+              "pdf_page": 18
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/40103454849895488.pdf",
+              "label": "2025 Q2",
+              "pdf_page": 18
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/3127648149034921.pdf",
+              "label": "2025 Q3",
+              "pdf_page": 18
+            },
+            {
+              "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/116964051831620258.pdf",
+              "label": "2025 Q4",
+              "pdf_page": 21
+            }
+          ],
+          "source_separator": " + "
+        }
+      },
+      "source_url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/116964051831620258.pdf",
+      "updated": "2025-12-31",
+      "description": "12월 결산. 회사 전체 연결 영업이익입니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+    }
+  }
 }
