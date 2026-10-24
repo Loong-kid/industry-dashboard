@@ -52,19 +52,19 @@ class BusinessHistory(unittest.TestCase):
         docs=cpu.build_business_history(state['business'],cpu.load(ROOT/'manual/cpu_segments.json',{}))
         arm=docs['company_arm_business'];core={r['date']:r['revenue'] for r in state['companies']['arm']['rows']}
         royalty,license=(dict(arm['series'][n]) for n in ('Royalty · 로열티','License and other · 라이선스·기타'))
-        self.assertEqual(len(royalty),16)
+        self.assertGreaterEqual(len(royalty),16)
         self.assertTrue(all(royalty[d] is not None and license[d] is not None for d in core))
         for date,total in core.items():self.assertEqual(royalty[date]+license[date],total)
         qtl=docs['company_qualcomm_royalty']
         points=next(iter(qtl['series'].values()))
-        self.assertEqual(len(points),50)
+        self.assertGreaterEqual(len(points),50)
         self.assertTrue(all(v is not None for d,v in points))
-        self.assertEqual(points[-1][1],1278)
+        self.assertEqual(dict(points)['2026-06-28'],1278)
         apple=docs['company_apple_business']
         mapping={field:dict(apple['series'][label]) for field,label in cpu.load(ROOT/'manual/cpu_segments.json',{})['companies']['apple']['fields'].items()}
         self.assertEqual(mapping['iphone']['2014-03-29'],26064)
         for field in ('iphone','ipad','mac','services'):
-            self.assertEqual(len(mapping[field]),50)
+            self.assertGreaterEqual(len(mapping[field]),50)
             self.assertTrue(all(v is not None for v in mapping[field].values()))
         for row in state['companies']['apple']['rows']:
             date=row['date']

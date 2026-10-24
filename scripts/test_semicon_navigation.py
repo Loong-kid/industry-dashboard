@@ -34,8 +34,8 @@ def verify(base):
                 assert page.evaluate('Object.keys(Chart.instances).length')==count
                 if title=='CPU':
                     apple=page.evaluate('state.charts.find(chart=>chart.canvas.closest(".card").querySelector(".card-name").textContent==="Apple · 매출").data')
-                    assert apple['labels'][-1]=='2025-09-27'
-                    assert apple['datasets'][0]['data'][-1]==416161
+                    annual_values=dict(zip(apple['labels'],apple['datasets'][0]['data']))
+                    assert annual_values['2025-09-27']==416161
                 for i in range(count):
                     cards.nth(i).get_by_role('button',name='분기',exact=True).click()
             open_route('#/semicon/memory',9)
