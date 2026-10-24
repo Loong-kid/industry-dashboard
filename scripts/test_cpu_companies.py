@@ -57,12 +57,15 @@ class CpuCompanies(unittest.TestCase):
     def test_real_issuer_financial_anchors_and_history(self):
         expected={'intel':(50,'2014-03-29',16128,1796,2556),
                   'amd':(50,'2014-03-29',11536,1990,808),
-                  'arm':(16,'2022-09-30',1289,91,197)}
+                  'arm':(16,'2022-09-30',1289,91,197),
+                  'qualcomm':(50,'2014-03-30',9947,1626,496),
+                  'apple':(50,'2014-03-29',109417,35695,2455)}
         for key,(count,first,revenue,profit,capex) in expected.items():
             rows=self.state['companies'][key]['rows']
             self.assertGreaterEqual(len(rows),count)
             self.assertEqual(rows[0]['date'],first)
-            anchor=next(r for r in rows if r['date']==('2026-06-30' if key=='arm' else '2026-06-27'))
+            end={'arm':'2026-06-30','qualcomm':'2026-06-28'}.get(key,'2026-06-27')
+            anchor=next(r for r in rows if r['date']==end)
             self.assertEqual((anchor['revenue'],anchor['profit'],anchor['capex']),(revenue,profit,capex))
             self.assertEqual(len(rows),len({(r['year'],r['quarter']) for r in rows}))
         intel=next(r for r in self.state['companies']['intel']['rows'] if r['date']=='2016-12-31')
@@ -77,7 +80,7 @@ class CpuCompanies(unittest.TestCase):
         for key,cohort in self.state['companies'].items():docs.update(cpu.build_company(key,cohort))
         docs.update(cpu.build_segments(cpu.load(ROOT/'manual/cpu_segments.json',{})))
         self.assertEqual(set(docs),linked)
-        self.assertEqual(len(docs),12)
+        self.assertEqual(len(docs),20)
         for id,doc in docs.items():
             self.assertEqual(doc,cpu.load(ROOT/f'data/semicon/{id}.json',{}))
             self.assertFalse(doc['span_gaps'])
@@ -86,6 +89,25 @@ class CpuCompanies(unittest.TestCase):
         self.assertEqual(arm['comparison_dates']['2026-06-30']['quarter_ago'],'2026-03-31')
         self.assertIn('GPU',docs['company_amd_business']['description'])
         self.assertTrue(any(v is None for d,v in docs['company_intel_business']['series']['CCPG · 클라이언트·Physical AI']))
+        apple=docs['company_apple_revenue']
+        self.assertEqual(apple['period_labels']['2025-12-27'],'FY2026 Q1')
+        self.assertEqual(apple['comparison_dates']['2025-12-27']['quarter_ago'],'2025-09-27')
+        self.assertIn('Apple Silicon 별도 실적 미공개',apple['description'])
+        self.assertIn('완제품',docs['company_apple_business']['description'])
+        self.assertIn('회사 공시 CAPEX',docs['company_qualcomm_capex']['series'])
+        self.assertIn('PC용 Snapdragon 매출로 해석하지 않습니다',docs['company_qualcomm_business']['description'])
+
+    def test_qualcomm_uses_issuer_capex_tag_instead_of_unrelated_ppe(self):
+        payload=fixture();payload['cik']=804328
+        for meta in payload['facts']['us-gaap'].values():
+            for i,r in enumerate(meta['units']['USD']):
+                r['start']='2025-09-29'
+                r['end']='2025-12-28' if i==0 else '2026-03-29'
+        payload['facts']['us-gaap']['PaymentsToAcquireProductiveAssets']=dict(units={'USD':[
+            fact('2025-09-29','2025-12-28',1),fact('2025-09-29','2026-03-29',3)]})
+        rows=cpu.parse_facts(payload,cpu.COMPANIES['qualcomm'],'2026-10-25')
+        self.assertEqual([r['capex'] for r in rows],[1,2])
+        self.assertTrue(all(r['refs']['capex']['tag']=='us-gaap:PaymentsToAcquireProductiveAssets' for r in rows))
 
     def test_failure_isolated_and_success_date_retained(self):
         class Response:
@@ -97,7 +119,7 @@ class CpuCompanies(unittest.TestCase):
             def get(self,*args,**kwargs):return Response()
         def parsed(payload,company,asof):
             if company['cik']==2488:raise ValueError('changed source')
-            key='intel' if company['cik']==50863 else 'arm'
+            key=next(key for key,meta in cpu.COMPANIES.items() if meta['cik']==company['cik'])
             return copy.deepcopy(self.state['companies'][key]['rows'])
         with tempfile.TemporaryDirectory() as folder:
             out=Path(folder)/'output'

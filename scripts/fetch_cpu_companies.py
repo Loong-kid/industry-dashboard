@@ -26,6 +26,14 @@ COMPANIES = {
     'arm': dict(name='Arm', cik=1973239, fiscal_start=4,
                 scope='현재 상장 법인 연결 · IP·로열티 등 포함',
                 note='현재 상장 Arm Holdings plc의 공개 분기 실적입니다. 3월 결산이며 FY는 종료 연도입니다. IP 라이선스·로열티를 포함한 연결 실적으로 실제 CPU 판매액이나 출하량이 아닙니다. 구 상장 법인과 SoftBank 비상장 시기의 연간 실적은 분기 이력에 이어 붙이지 않습니다. CAPEX는 유형자산 현금취득이며 무형자산 취득은 제외합니다.'),
+    'qualcomm': dict(name='Qualcomm', cik=804328, fiscal_start=10,
+                scope='전사 연결 · Snapdragon·통신칩·특허 라이선스 포함',
+                tags={'capex':['PaymentsToAcquireProductiveAssets']},capex_label='회사 공시 CAPEX',
+                capex_description='회사 현금흐름표에 공시된 Capital expenditures입니다. 타사의 유형자산 취득 항목과 범위가 다를 수 있습니다.',
+                note='Qualcomm 전사 연결 기준이며 Snapdragon CPU 단독 실적이 아닙니다. QCT 반도체 사업과 QTL 특허 라이선스를 포함합니다. 9월 결산의 실제 52/53주 종료일을 사용합니다. CAPEX는 현금흐름표의 Capital expenditures이며 외주 파운드리 투자를 포함하지 않습니다. Snapdragon PC 매출·이익은 별도로 추정하지 않습니다.'),
+    'apple': dict(name='Apple', cik=320193, fiscal_start=10,
+                scope='Apple 전사 연결 · Apple Silicon 별도 실적 미공개',
+                note='Apple Silicon은 별도 공시 사업부가 아닙니다. 매출·GAAP 영업이익·CAPEX는 Apple 전사 연결 실적이며 iPhone·Mac·iPad·서비스 등을 포함합니다. 2014년부터의 전사 이력에는 Mac용 Apple Silicon 전환 이전도 포함됩니다. 9월 결산의 실제 52/53주 종료일을 보존합니다. CAPEX는 전사 유형자산 현금취득으로 Apple Silicon 설계·생산 전용 투자액이 아닙니다. Mac·iPad 제품 매출을 칩 매출로 환산하지 않습니다.'),
 }
 TAGS = {
     'revenue': ['RevenueFromContractWithCustomerExcludingAssessedTax', 'Revenues', 'SalesRevenueNet'],
@@ -64,6 +72,7 @@ def parse_facts(payload, company, asof):
         raise ValueError('SEC company mismatch')
     selected, all_facts = {}, {}
     for metric, tags in TAGS.items():
+        tags=company.get('tags',{}).get(metric,tags)
         values, facts = {}, []
         for priority, tag in enumerate(tags):
             for fact in payload['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get('USD', []):
@@ -159,7 +168,7 @@ def build_company(key, cohort):
     docs = {}
     for metric,title in [('revenue','매출'),('profit','영업이익'),('capex','CAPEX')]:
         indicator = f'company_{key}_{metric}'
-        series_label = '연결 GAAP 영업이익' if metric=='profit' else '유형자산 현금취득' if metric=='capex' else '연결 매출'
+        series_label = '연결 GAAP 영업이익' if metric=='profit' else company.get('capex_label','유형자산 현금취득') if metric=='capex' else '연결 매출'
         refs = {r['date']:dict(url=r['refs'][metric]['url'], label=labels[r['date']],
             supporting_sources=[dict(url=ref['url'],label=ref['start']+' ~ '+ref['end']) for ref in r['refs'][metric]['components']],
             source_separator=' − ' if len(r['refs'][metric]['components'])==2 else ' / ') for r in rows if metric in r['refs']}
@@ -170,7 +179,7 @@ def build_company(key, cohort):
             source_url=latest['refs'][metric]['url'],description=company['scope']+'. '+{
                 'revenue':'회사 전체 연결 매출이며 CPU 단독 매출이 아닙니다. 인수·매각 등 연결 범위 변경을 포함합니다.',
                 'profit':'회사 전체 연결 GAAP 영업이익입니다. 조정 영업이익과 구분합니다.',
-                'capex':'현금흐름표의 유형자산 취득 현금지출입니다. 발표자료의 총·순 CAPEX와 기준이 다를 수 있습니다.'}[metric],
+                'capex':company.get('capex_description','현금흐름표의 유형자산 취득 현금지출입니다. 발표자료의 총·순 CAPEX와 기준이 다를 수 있습니다.')}[metric],
             series={series_label:[[date,by_date.get(date,{}).get(metric)] for date in sorted(axis)]},
             default_series=[series_label],span_gaps=False,point_sources=refs,table_limit=100,company_kpi=True,
             quarterly_revenue_summary=metric!='profit',quarterly_profit_summary=metric=='profit',
