@@ -162,7 +162,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "shipbuilding", "shipping"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
   ];
@@ -208,8 +208,8 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -324,7 +324,12 @@ async function renderIndustry(options = {}) {
     content.appendChild(h);
 
     if (section.type === "table") {
-      const renderer = section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
+      const renderer = section.table_kind === "offshore_overview" ? renderOffshoreOverview
+        : section.table_kind === "offshore_market" ? renderOffshoreMarket
+        : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
+        : section.table_kind === "offshore_contracts" ? doc => renderOffshoreFleet(doc, true)
+        : section.table_kind === "offshore_financials" ? renderOffshoreFinancials
+        : section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
         : section.table_kind === "dc_facilities" ? renderKoreaDataCenters
         : section.table_kind === "dc_changes" ? renderKoreaDataCenterChanges
         : section.table_kind === "korea_mineral_trade" ? renderKoreaMineralTrade

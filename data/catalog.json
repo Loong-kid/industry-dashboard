@@ -2318,6 +2318,91 @@
       "name": "PPI",
       "icon": "📊",
       "sections": []
+    },
+    {
+      "id": "offshore",
+      "name": "해양 시추",
+      "icon": "",
+      "default_range": "all",
+      "cadence": "주요 6개 운영사 공개 선대·SEC 재무를 매일 확인. 선대는 주로 분기, 실적은 분기·반기 공표 후 갱신합니다. Noble FSR 대조 입력·JV/소유관계·비GAAP 보완·Westwood 초기 관측치는 원문 검토 자료입니다. 새 보고서 감지·접근 실패는 표시하고 이전 성공 자료를 유지합니다. 실시간 AIS 위치가 아닙니다.",
+      "tabs": [
+        {
+          "id": "market",
+          "name": "시장·수급",
+          "description": "세계 드릴십·반잠수식·잭업 수급과 공개 계약 요율. 전세계 통계와 6개사 추적 선대의 범위를 구분합니다."
+        },
+        {
+          "id": "fleet",
+          "name": "글로벌 리그",
+          "description": "리그별 소유 그룹·운영사·작업 해역·계약. 공시 기준 상태와 실시간 위치를 구분하고, 매각·퇴역은 이력으로 보존합니다."
+        },
+        {
+          "id": "contracts",
+          "name": "계약 일정",
+          "description": "2026~2029 확정 계약과 선택권·조건부·정비 일정. 월·분기 단위 공시는 기간 범위로 표시합니다."
+        },
+        {
+          "id": "financials",
+          "name": "운영사 실적",
+          "description": "주요 6개사의 분기 매출·손익·현금흐름과 회사 공시 EBITDA·요율·효율. 단위는 USD 백만이며 연결·지표 정의 차이를 함께 확인합니다."
+        }
+      ],
+      "sections": [
+        {
+          "title": "추적 범위·주요 변경",
+          "tab": "market",
+          "type": "table",
+          "table_kind": "offshore_overview",
+          "indicators": [
+            "offshore_fleet"
+          ]
+        },
+        {
+          "title": "글로벌 시장 수급",
+          "tab": "market",
+          "type": "table",
+          "table_kind": "offshore_market",
+          "indicators": [
+            "offshore_market"
+          ]
+        },
+        {
+          "title": "유형별 수급 추이",
+          "tab": "market",
+          "indicators": [
+            "offshore_utilization",
+            "offshore_supply",
+            "offshore_backlog"
+          ]
+        },
+        {
+          "title": "선대·소유·배치",
+          "tab": "fleet",
+          "type": "table",
+          "table_kind": "offshore_fleet",
+          "indicators": [
+            "offshore_fleet"
+          ]
+        },
+        {
+          "title": "공개 계약 일정표",
+          "tab": "contracts",
+          "type": "table",
+          "table_kind": "offshore_contracts",
+          "indicators": [
+            "offshore_fleet"
+          ]
+        },
+        {
+          "title": "분기 실적 비교",
+          "tab": "financials",
+          "type": "table",
+          "table_kind": "offshore_financials",
+          "indicators": [
+            "offshore_financials"
+          ]
+        }
+      ]
     }
   ]
 }

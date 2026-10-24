@@ -8,6 +8,7 @@ class Element {
   set innerHTML(value) { this.children = []; }
   appendChild(child) { this.children.push(child); }
   setAttribute() {}
+  querySelector() { return null; }
   remove() {}
 }
 const elements = new Map();
@@ -19,9 +20,9 @@ const loaded = [];
 const renderCode = source.slice(source.indexOf('let renderSeq = 0;'), source.indexOf('\nfunction renderFootStatus'));
 const routeCode = source.slice(source.indexOf('function route()'), source.indexOf('\nfunction setRange'));
 const api = new Function('state', 'document', 'window', 'location', 'loadDoc', 'renderCard', 'staleDays',
-  'renderFootStatus', 'setRange', 'renderMineralSupply', 'renderKoreaMineralTrade', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
+  'renderFootStatus', 'setRange', 'renderMineralSupply', 'renderKoreaMineralTrade', 'renderCopperMines', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
   state, document, {}, location, async (industry, id) => {loaded.push(id); return {name:id, updated:'2026-10-01'};},
-  () => new Element(), () => null, () => {}, () => {}, () => new Element(), () => new Element());
+  () => new Element(), () => null, () => {}, () => {}, () => new Element(), () => new Element(), () => new Element());
 (async () => {
   api.route();
   await api.renderIndustry();

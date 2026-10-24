@@ -13,7 +13,7 @@ def verify(base):
    page.goto(base+'#/semicon/materials/snstech')
    page.wait_for_function('typeof state!=="undefined" && state.charts.length===73 && !document.querySelector(".page-loading")')
    links=page.locator('#nav a');names=links.all_text_contents()
-   assert len(names)==len(set(names))==12
+   assert len(names)==len(set(names))==len(json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))['industries'])
    assert page.locator('#nav .nav-group').count()==3
    assert not re.search(r'[\U0001f300-\U0001faff]',page.locator('.sidebar').inner_text())
    assert page.locator('#nav [aria-current="page"]').inner_text()=='반도체'

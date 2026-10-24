@@ -1,0 +1,36 @@
+name: update-offshore
+on:
+  schedule:
+    - cron: "10 23 * * *" # KST 08:10, issuer data changes mainly quarterly
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  offshore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Validate offshore data rules and UI contracts
+        run: |
+          python -m unittest discover -s scripts -p test_offshore_drilling.py -v
+          node scripts/test_offshore_drilling.cjs
+      - name: Refresh public issuer reports and SEC financials
+        run: python scripts/fetch_offshore_drilling.py
+      - name: Validate refreshed cohorts
+        run: python -m unittest discover -s scripts -p test_offshore_drilling.py -v
+      - name: Commit offshore data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/offshore/
+          git diff --cached --quiet || git commit -m "chore: refresh offshore drilling evidence"
+          git pull --rebase
+          git push
