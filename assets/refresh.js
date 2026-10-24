@@ -16,6 +16,7 @@ const REFRESH_TARGETS = {
   semicon: { file: "data/semicon/semicon_import_ttm.json", label: "무역통계 갱신" },
   ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
   offshore: { file: "data/offshore/offshore_fleet.json", label: "시추 지표 갱신", workflow: "update-offshore.yml" },
+  games: { file: "data/games/mobile.json", label: "게임 데이터 갱신", workflow: "update-games.yml" },
 };
 const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
 function currentTarget() {

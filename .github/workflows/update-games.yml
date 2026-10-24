@@ -1,0 +1,36 @@
+name: update-games
+on:
+  schedule:
+    - cron: '20 22 * * *' # KST 07:20, public chart and listing observations
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests 'beautifulsoup4>=4.12,<5'
+      - name: Validate calendar and observation rules
+        run: |
+          python -m unittest discover -s scripts -p test_games.py
+          node scripts/test_games.cjs
+      - name: Collect free public observations
+        run: python -u scripts/fetch_games.py
+      - name: Validate collected snapshots
+        run: node scripts/test_games.cjs
+      - name: Commit public snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/games/
+          git diff --cached --quiet || git commit -m "chore: refresh free game market observations"
+          git pull --rebase
+          git push
