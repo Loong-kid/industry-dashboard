@@ -12,6 +12,7 @@ from pathlib import Path
 from datetime import date, datetime, timezone, timedelta
 import xml.etree.ElementTree as ET
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
@@ -170,7 +171,8 @@ def dart_company(session, key, corp, company, asof, prior, full=False):
     failures = []
     # Bootstrap history once; routine refresh revisits two fiscal years.
     first = 2020 if full or not any(r.get('source')=='OpenDART' for r in prior) else int(asof[:4])-1
-    for year in range(first, int(asof[:4])+1):
+    consecutive_failures=0
+    for year in range(int(asof[:4]), first-1, -1):
         year_rows = {}
         for q, code in [(1,'11013'),(2,'11012'),(3,'11014'),(4,'11011')]:
             end = f'{year}-{q*3:02d}-{calendar.monthrange(year,q*3)[1]}'
@@ -182,6 +184,7 @@ def dart_company(session, key, corp, company, asof, prior, full=False):
                 response.raise_for_status()
                 doc=response.json()
                 if doc.get('status')=='013':
+                    consecutive_failures=0
                     continue
                 if doc.get('status')!='000':
                     raise ValueError('OpenDART status '+str(doc.get('status')))
@@ -189,11 +192,15 @@ def dart_company(session, key, corp, company, asof, prior, full=False):
                 if any(ref['filed'] > asof for ref in row['refs'].values()):
                     continue
                 row['source']='OpenDART'
+                consecutive_failures=0
                 year_rows[q]=(row,ytd)
                 rows[row['kind'],end]=row
             except Exception as exc:
                 # URLs can contain the secret: never print exception text.
                 failures.append(f'{year} Q{q}: {type(exc).__name__}')
+                consecutive_failures+=1
+                if consecutive_failures>=3:
+                    return sorted(rows.values(),key=lambda r:(r['date'],r['kind'])),failures
         if 4 in year_rows and 3 in year_rows:
             annual,_=year_rows[4]; nine,cumulative=year_rows[3]
             q4=dict(kind='quarter',start=f'{year}-10-01',date=f'{year}-12-31',period=f'FY{year} Q4',source='OpenDART',refs={})
@@ -227,8 +234,8 @@ def main():
             corp_codes={c.findtext('stock_code','').strip():c.findtext('corp_code') for c in xml.findall('list')}
         except Exception as exc:
             print('OpenDART company index: '+type(exc).__name__,flush=True)
-    companies=[]
-    for spec in COMPANIES + [c for c in manual['companies'] if c['id'] not in {s['id'] for s in COMPANIES}]:
+    def collect_company(spec):
+        company_session=requests.Session();company_session.headers['User-Agent']=UA
         cid=spec['id'];prior=old.get(cid,{});seed=seeds.get(cid,{})
         company={k:v for k,v in spec.items() if k not in ('rows','checked','status')}
         existing={(r['kind'],r['date']):r for r in prior.get('rows',[])}
@@ -244,20 +251,31 @@ def main():
                 if args.sec_cache:
                     doc=load(args.sec_cache/f'{cid}-facts.json', {})
                 else:
-                    r=session.get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{spec["cik"]:010d}.json',timeout=45);r.raise_for_status();doc=r.json()
+                    r=company_session.get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{spec["cik"]:010d}.json',timeout=45);r.raise_for_status();doc=r.json()
                 rows=parse_sec(doc,spec,today);status='ok';fetched=today
             elif spec.get('stock'):
                 if not key or spec['stock'] not in corp_codes:
                     status='OpenDART key/index unavailable · previous observations retained'
                 else:
-                    rows,failures=dart_company(session,key,corp_codes[spec['stock']],spec,today,rows,args.full_history)
+                    before=rows
+                    rows,failures=dart_company(company_session,key,corp_codes[spec['stock']],spec,today,rows,args.full_history)
                     status='ok' if not failures else '; '.join(failures)
-                    fetched=today
+                    has_accounts=any(r.get('source')=='OpenDART' for r in rows)
+                    if not has_accounts:
+                        status='No consolidated OpenDART observations · previous observations retained'
+                    if has_accounts and (rows!=before or not failures):
+                        fetched=today
         except Exception as exc:
             status=type(exc).__name__+' · previous observations retained'
         company.update(rows=sorted(rows,key=lambda r:(r['date'],r['kind'])),checked=today,fetched=fetched,status=status)
-        companies.append(company)
+        company_session.close()
         print(f'{cid}: {len(rows)} periods · {status}',flush=True)
+        return company
+    specs=COMPANIES+[c for c in manual['companies'] if c['id'] not in {s['id'] for s in COMPANIES}]
+    # Each worker owns its HTTP session. At most three company requests run at
+    # once; SEC has only six requests in total, below its 10 requests/sec limit.
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        companies=list(pool.map(collect_company,specs))
     save(OUT/'companies.json',dict(checked=today,unit='original currency millions',companies=companies))
     # Reviewed report dates are never rewritten by the scheduled collection.
     revenue=load(MANUAL/'revenue-reports.json', {})

@@ -76,6 +76,18 @@ class FinancialRules(unittest.TestCase):
         self.assertTrue(failures)
         self.assertFalse(any('key' in e or 'https://' in e for e in failures))
 
+    def test_repeated_transport_failure_stops_and_retains_rows(self):
+        class Session:
+            calls=0
+            def get(self,*args,**kwargs):
+                self.calls+=1
+                raise TimeoutError('secret URL must never be published')
+        session=Session();prior=[dict(kind='quarter',date='2025-06-30',revenue=123,source='OpenDART')]
+        rows,errors=dart_company(session,'not-a-real-key','12345678',{},'2026-10-25',prior,True)
+        self.assertEqual(session.calls,3)
+        self.assertEqual(rows,prior)
+        self.assertEqual(len(errors),3)
+
 
 if __name__=='__main__':
     unittest.main()
