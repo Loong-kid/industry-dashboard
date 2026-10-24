@@ -24,6 +24,44 @@ const fs = require('node:fs');
   const catalog=JSON.parse(fs.readFileSync('data/catalog.json'));
   assert.equal(catalog.industries.filter(i=>i.id==='games').length,1);
   const read=name=>JSON.parse(fs.readFileSync(`data/games/${name}.json`));
+  assert.equal(catalog.industries.find(i=>i.id==='games').tabs.find(t=>t.id==='mobile').name,'Google Play');
+  assert(catalog.industries.find(i=>i.id==='games').tabs.some(t=>t.id==='revenue'));
+  if(fs.existsSync('data/games/revenue.json')){
+    const revenue=read('revenue');
+    for(const report of revenue.reports){
+      assert(report.month<report.published && report.published<=report.reviewed);
+      for(const store of ['combined','ios','google_play']){
+        const rows=m.revenueRows(revenue,report.month,store);
+        assert.equal(rows.length,10);
+        assert.equal(new Set(rows.map(r=>r.id)).size,rows.length);
+        assert(rows.every(r=>r.name&&r.publisher&&r.usd_millions>0));
+        assert.deepEqual(rows.map(r=>r.rank),rows.map((_,i)=>i+1));
+        assert(Math.abs(m.publisherRevenue(rows).reduce((a,r)=>a+r.value,0)-rows.reduce((a,r)=>a+r.usd_millions,0))<1e-8);
+      }
+    }
+    assert.equal(m.revenueRows(revenue,'2026-07','google_play').length,0);
+    assert.equal(m.revenueChange(revenue,'roblox','2026-08','google_play',1),null);
+    assert.equal(m.revenueChange(revenue,'roblox','2026-08','combined',12),null); // unranked is not zero
+    assert(Math.abs(m.revenueChange(revenue,'roblox','2026-08','google_play',12)-(44/52-1)*100)<1e-8);
+    const mixed=[...m.revenueRows(revenue,'2026-08','ios'),...m.revenueRows(revenue,'2026-08','combined')];
+    const tencent=m.publisherRevenue(mixed).filter(r=>r.publisher==='Tencent');
+    assert.equal(tencent.length,2); // never sum overlapping store scopes
+    const companies=read('companies').companies;
+    assert.equal(new Set(companies.map(c=>c.id)).size,companies.length);
+    for(const c of companies){
+      assert(['USD','KRW','CNY','JPY'].includes(c.currency));
+      assert.equal(new Set(c.rows.map(r=>r.kind+r.date)).size,c.rows.length);
+      for(const r of c.rows){
+        assert(r.date<=c.checked && r.start<=r.date);
+        assert(r.revenue>0 && r.refs.revenue.url.startsWith('https://'));
+        assert(r.refs.revenue.filed<=c.checked);
+      }
+    }
+    assert.equal(m.companyGrowth([{kind:'quarter',date:'2025-06-30',revenue:-5}],{kind:'quarter',date:'2026-06-30',revenue:10}),null);
+    const sparse=m.companySeries([{kind:'quarter',date:'2025-03-31',revenue:1},{kind:'quarter',date:'2026-03-31',revenue:2}],'quarter');
+    assert.equal(sparse.length,5);
+    assert.equal(sparse[1].row,undefined); // missing quarters must break the chart
+  }
   if(fs.existsSync('data/games/steam.json')){
     const steam=read('steam');
     assert(steam.games.length>=40);
