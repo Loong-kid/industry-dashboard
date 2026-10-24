@@ -5,13 +5,10 @@ Failures retain successful company snapshots, with a separate check status.
 """
 import argparse
 import calendar
-import io
 import json
 import os
 from pathlib import Path
 from datetime import date, datetime, timezone, timedelta
-import xml.etree.ElementTree as ET
-import zipfile
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
@@ -27,11 +24,13 @@ COMPANIES = [
     dict(id='playtika', name='Playtika', currency='USD', cik=1828016, fiscal_start=1, brands='Slotomania · Bingo Blitz'),
     dict(id='netease', name='NetEase', currency='CNY', cik=1110646, fiscal_start=1, brands='게임·교육·음악 등 연결 전체'),
     dict(id='gravity', name='Gravity', currency='KRW', cik=1313310, fiscal_start=1, brands='Ragnarok IP · SEC 구조화 공시가 최신 IR보다 늦을 수 있음'),
-    dict(id='krafton', name='크래프톤', currency='KRW', stock='259960', fiscal_start=1, brands='PUBG · inZOI · Subnautica'),
-    dict(id='netmarble', name='넷마블', currency='KRW', stock='251270', fiscal_start=1, brands='Seven Knights · Solo Leveling · Kabam'),
-    dict(id='ncsoft', name='NC', currency='KRW', stock='036570', fiscal_start=1, brands='Lineage · AION · Guild Wars'),
-    dict(id='pearl_abyss', name='펄어비스', currency='KRW', stock='263750', fiscal_start=1, brands='Black Desert · EVE'),
-    dict(id='com2us', name='컴투스', currency='KRW', stock='078340', fiscal_start=1, brands='Summoners War · 야구 게임'),
+    # Public IDs verified against official company profiles, not fuzzy names:
+    # https://englishdart.fss.or.kr/dsbc001/selectPopup.ax?selectKey=<corp_code>
+    dict(id='krafton', name='크래프톤', currency='KRW', stock='259960', corp_code='00760971', fiscal_start=1, brands='PUBG · inZOI · Subnautica'),
+    dict(id='netmarble', name='넷마블', currency='KRW', stock='251270', corp_code='00904672', fiscal_start=1, brands='Seven Knights · Solo Leveling · Kabam'),
+    dict(id='ncsoft', name='NC', currency='KRW', stock='036570', corp_code='00261443', fiscal_start=1, brands='Lineage · AION · Guild Wars'),
+    dict(id='pearl_abyss', name='펄어비스', currency='KRW', stock='263750', corp_code='01152470', fiscal_start=1, brands='Black Desert · Crimson Desert · CCP 매각 전 EVE 포함'),
+    dict(id='com2us', name='컴투스', currency='KRW', stock='078340', corp_code='00476498', fiscal_start=1, brands='Summoners War · 야구 게임'),
 ]
 SEC_TAGS = {
     'revenue': [('us-gaap', 'RevenueFromContractWithCustomerExcludingAssessedTax'), ('us-gaap', 'Revenues'), ('us-gaap', 'SalesRevenueNet'), ('ifrs-full', 'RevenueFromContractsWithCustomers'), ('ifrs-full', 'Revenue')],
@@ -188,6 +187,8 @@ def dart_company(session, key, corp, company, asof, prior, full=False):
                     continue
                 if doc.get('status')!='000':
                     raise ValueError('OpenDART status '+str(doc.get('status')))
+                if any(r.get('corp_code',corp)!=corp for r in doc['list']):
+                    raise ValueError('OpenDART entity mismatch')
                 row, ytd = parse_dart(doc['list'],year,q)
                 if any(ref['filed'] > asof for ref in row['refs'].values()):
                     continue
@@ -223,17 +224,7 @@ def main():
     manual=load(MANUAL/'company-financials.json', {'companies':[]})
     old={c['id']:c for c in previous['companies']}
     seeds={c['id']:c for c in manual['companies']}
-    session=requests.Session();session.headers['User-Agent']=UA
     key=os.environ.get('DART_API_KEY')
-    corp_codes={}
-    if key:
-        try:
-            r=session.get('https://opendart.fss.or.kr/api/corpCode.xml', params={'crtfc_key':key},timeout=45);r.raise_for_status()
-            with zipfile.ZipFile(io.BytesIO(r.content)) as archive:
-                xml=ET.fromstring(archive.read('CORPCODE.xml'))
-            corp_codes={c.findtext('stock_code','').strip():c.findtext('corp_code') for c in xml.findall('list')}
-        except Exception as exc:
-            print('OpenDART company index: '+type(exc).__name__,flush=True)
     def collect_company(spec):
         company_session=requests.Session();company_session.headers['User-Agent']=UA
         cid=spec['id'];prior=old.get(cid,{});seed=seeds.get(cid,{})
@@ -254,11 +245,11 @@ def main():
                     r=company_session.get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{spec["cik"]:010d}.json',timeout=45);r.raise_for_status();doc=r.json()
                 rows=parse_sec(doc,spec,today);status='ok';fetched=today
             elif spec.get('stock'):
-                if not key or spec['stock'] not in corp_codes:
+                if not key or not spec.get('corp_code'):
                     status='OpenDART key/index unavailable · previous observations retained'
                 else:
                     before=rows
-                    rows,failures=dart_company(company_session,key,corp_codes[spec['stock']],spec,today,rows,args.full_history)
+                    rows,failures=dart_company(company_session,key,spec['corp_code'],spec,today,rows,args.full_history)
                     status='ok' if not failures else '; '.join(failures)
                     has_accounts=any(r.get('source')=='OpenDART' for r in rows)
                     if not has_accounts:

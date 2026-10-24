@@ -24,6 +24,8 @@
 
 게임사 수집은 회사별 독립 세션으로 최대 3개 요청을 동시에 처리한다. 국내 최초 이력은 최신 회계연도부터 확인하고, 3회 연속 오류가 나면 해당 회사의 조회를 중단해 기존 자료를 보존한다. 요청 실패로 값이 유지되었을 때 마지막 성공 수집일을 새 날짜로 바꾸지 않는다.
 
+국내 5개사의 고유번호는 DART 공식 기업정보 팝업의 회사명·종목코드와 대조해 고정하고(`https://englishdart.fss.or.kr/dsbc001/selectPopup.ax?selectKey=<고유번호>`), 응답의 회사 고유번호도 검증한다. 대형 전체 회사목록 ZIP 다운로드에 매일 의존하지 않는다. 펄어비스는 2026년 CCP 매각 전후 연결 범위가 다르므로 브랜드 안내에도 해당 사실을 표시한다.
+
 ```powershell
 python scripts/fetch_games.py
 python scripts/fetch_game_financials.py
