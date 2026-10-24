@@ -27,6 +27,17 @@ def verify(base):
                 assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','SSD','소부장']
                 assert page.locator('#page-tabs .commodity-tabs').count()==1
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
+                cards=page.locator('#content .card')
+                for i in range(count):
+                    cards.nth(i).get_by_role('button',name='연간',exact=True).click()
+                assert page.evaluate('state.charts.every(chart=>chart.data.datasets.some((dataset,i)=>chart.isDatasetVisible(i) && dataset.data.some(value=>value!==null)))'),route
+                assert page.evaluate('Object.keys(Chart.instances).length')==count
+                if title=='CPU':
+                    apple=page.evaluate('state.charts.find(chart=>chart.canvas.closest(".card").querySelector(".card-name").textContent==="Apple · 매출").data')
+                    assert apple['labels'][-1]=='2025-09-27'
+                    assert apple['datasets'][0]['data'][-1]==416161
+                for i in range(count):
+                    cards.nth(i).get_by_role('button',name='분기',exact=True).click()
             open_route('#/semicon/memory',9)
             assert page.locator('.section-title').all_text_contents()==['삼성전자 · 실적','SK하이닉스 · 실적','Micron · 실적']
             # Three-column financial groups are shorter on wide screens.

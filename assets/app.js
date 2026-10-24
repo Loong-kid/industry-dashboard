@@ -1441,7 +1441,11 @@ function drawChart(canvas, doc, filtered) {
   if (doc.annual_axis && labels.length) {
     const firstYear = Number(labels[0].slice(0, 4));
     const lastYear = Number(labels.at(-1).slice(0, 4));
-    labels = Array.from({length: lastYear - firstYear + 1}, (_, i) => `${firstYear + i}-12-31`);
+    // Fiscal-year disclosures retain their actual closing date (including
+    // 52/53-week years). Only unobserved years need a placeholder date.
+    const observedDates = new Map(labels.map(date => [Number(date.slice(0, 4)), date]));
+    labels = Array.from({length: lastYear - firstYear + 1}, (_, i) =>
+      observedDates.get(firstYear + i) || `${firstYear + i}-12-31`);
   }
   if (doc.monthly_axis && labels.length) {
     const offset = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1;
