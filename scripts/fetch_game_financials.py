@@ -10,6 +10,8 @@ import os
 from pathlib import Path
 from datetime import date, datetime, timezone, timedelta
 from concurrent.futures import ThreadPoolExecutor
+from threading import Lock
+import time
 
 import requests
 
@@ -17,6 +19,18 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/games'
 MANUAL = ROOT / 'manual/games'
 UA = 'industry-dashboard personal research wkorotk@gmail.com'
+SEC_LOCK = Lock()
+SEC_LAST_START = 0.0
+
+
+def sec_request(session, url):
+    global SEC_LAST_START
+    with SEC_LOCK:
+        time.sleep(max(0, .35 - (time.monotonic()-SEC_LAST_START)))
+        SEC_LAST_START=time.monotonic()
+    return session.get(url,timeout=45)
+
+
 COMPANIES = [
     dict(id='ea', name='Electronic Arts', currency='USD', cik=712515, fiscal_start=4, brands='EA Sports · The Sims · Apex Legends'),
     dict(id='take_two', name='Take-Two', currency='USD', cik=946581, fiscal_start=4, brands='Rockstar · 2K · Zynga'),
@@ -24,6 +38,10 @@ COMPANIES = [
     dict(id='playtika', name='Playtika', currency='USD', cik=1828016, fiscal_start=1, brands='Slotomania · Bingo Blitz'),
     dict(id='netease', name='NetEase', currency='CNY', cik=1110646, fiscal_start=1, brands='게임·교육·음악 등 연결 전체'),
     dict(id='gravity', name='Gravity', currency='KRW', cik=1313310, fiscal_start=1, brands='Ragnarok IP · SEC 구조화 공시가 최신 IR보다 늦을 수 있음'),
+    dict(id='unity', name='Unity', currency='USD', cik=1810806, fiscal_start=1, brands='Unity Engine · Unity Ads · 엔진·광고 연결 전체'),
+    dict(id='applovin', name='AppLovin', currency='USD', cik=1751008, fiscal_start=1, derive_quarters=False, annual_since='2023-01-01', quarter_since='2025-01-01', brands='AppLovin · MAX · Adjust · 광고·수익화'),
+    dict(id='microsoft', name='Microsoft', currency='USD', cik=789019, fiscal_start=7, brands='Xbox · Activision Blizzard · 전사 클라우드·Office 포함'),
+    dict(id='sea', name='Sea', currency='USD', cik=1703399, fiscal_start=1, brands='Garena · Free Fire · Shopee·금융 등 전사 연결'),
     # Public IDs verified against official company profiles, not fuzzy names:
     # https://englishdart.fss.or.kr/dsbc001/selectPopup.ax?selectKey=<corp_code>
     dict(id='krafton', name='크래프톤', currency='KRW', stock='259960', corp_code='00760971', fiscal_start=1, brands='PUBG · inZOI · Subnautica'),
@@ -105,7 +123,7 @@ def parse_sec(doc, company, asof):
                 if direct:
                     fact = max(direct, key=lambda v:v['rank'])
                     value, sources, quarter_start = fact['val'], [sec_ref(fact, company['cik'])], fact['start']
-                elif (start, e) in vals and q > 1:
+                elif (start, e) in vals and q > 1 and company.get('derive_quarters',True):
                     previous = [v for (s, ee), v in vals.items() if s == start and ee < e and abs(length(start,ee) - (q-1)*91.25) <= 15]
                     if not previous:
                         continue
@@ -122,7 +140,7 @@ def parse_sec(doc, company, asof):
                 row = rows.setdefault(('quarter',e), dict(kind='quarter', date=e, start=quarter_start, period=f'FY{fy} Q{q}', refs={}))
                 row[metric] = value / 1e6
                 row['refs'][metric] = dict(sources[0], calculation='reported quarter' if len(sources)==1 else 'YTD minus previous YTD', components=sources)
-    result = sorted(rows.values(), key=lambda r:(r['date'],r['kind']))
+    result = sorted((r for r in rows.values() if r['start']>=company.get('annual_since' if r['kind']=='annual' else 'quarter_since','0000-01-01')), key=lambda r:(r['date'],r['kind']))
     if not any(r.get('revenue',0)>0 for r in result):
         raise ValueError('No valid revenue facts')
     return result
@@ -218,10 +236,13 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--sec-cache', type=Path, help='Use already downloaded original SEC responses')
     parser.add_argument('--full-history', action='store_true')
+    parser.add_argument('--company', action='append', help='Refresh only these IDs; retain other companies and their dates')
     args=parser.parse_args()
     today=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
     previous=load(OUT/'companies.json', {'companies':[]})
     manual=load(MANUAL/'company-financials.json', {'companies':[]})
+    manual['companies']+=load(MANUAL/'global-financials.json',{'companies':[]})['companies']
+    directory=load(MANUAL/'company-directory.json',{'companies':{}})['companies']
     old={c['id']:c for c in previous['companies']}
     seeds={c['id']:c for c in manual['companies']}
     key=os.environ.get('DART_API_KEY')
@@ -229,6 +250,8 @@ def main():
         company_session=requests.Session();company_session.headers['User-Agent']=UA
         cid=spec['id'];prior=old.get(cid,{});seed=seeds.get(cid,{})
         company={k:v for k,v in spec.items() if k not in ('rows','checked','status')}
+        company.update(directory.get(cid,{}))
+        should_fetch=not args.company or cid in args.company
         existing={(r['kind'],r['date']):r for r in prior.get('rows',[])}
         for row in seed.get('rows',[]):
             key_row=row['kind'],row['date']
@@ -236,15 +259,15 @@ def main():
             # retain the more precise automated OpenDART accounts when present.
             if existing.get(key_row,{}).get('source')!='OpenDART':
                 existing[key_row]=row
-        rows=list(existing.values());status='reviewed public IR · manual updates';fetched=max(filter(None,[prior.get('fetched'),seed.get('reviewed')]),default=None)
+        rows=list(existing.values());status=prior.get('status','reviewed public IR · manual updates');fetched=max(filter(None,[prior.get('fetched'),seed.get('reviewed')]),default=None)
         try:
-            if spec.get('cik'):
+            if spec.get('cik') and should_fetch:
                 if args.sec_cache:
                     doc=load(args.sec_cache/f'{cid}-facts.json', {})
                 else:
-                    r=company_session.get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{spec["cik"]:010d}.json',timeout=45);r.raise_for_status();doc=r.json()
+                    r=sec_request(company_session,f'https://data.sec.gov/api/xbrl/companyfacts/CIK{spec["cik"]:010d}.json');r.raise_for_status();doc=r.json()
                 rows=parse_sec(doc,spec,today);status='ok';fetched=today
-            elif spec.get('stock'):
+            elif spec.get('stock') and should_fetch:
                 if not key or not spec.get('corp_code'):
                     status='OpenDART key/index unavailable · previous observations retained'
                 else:
@@ -258,13 +281,12 @@ def main():
                         fetched=today
         except Exception as exc:
             status=type(exc).__name__+' · previous observations retained'
-        company.update(rows=sorted(rows,key=lambda r:(r['date'],r['kind'])),checked=today,fetched=fetched,status=status)
+        company.update(rows=sorted(rows,key=lambda r:(r['date'],r['kind'])),checked=today if should_fetch else prior.get('checked',today),fetched=fetched,status=status)
         company_session.close()
         print(f'{cid}: {len(rows)} periods · {status}',flush=True)
         return company
     specs=COMPANIES+[c for c in manual['companies'] if c['id'] not in {s['id'] for s in COMPANIES}]
-    # Each worker owns its HTTP session. At most three company requests run at
-    # once; SEC has only six requests in total, below its 10 requests/sec limit.
+    # Each worker owns its HTTP session. Keep SEC request starts at most 3/sec.
     with ThreadPoolExecutor(max_workers=3) as pool:
         companies=list(pool.map(collect_company,specs))
     save(OUT/'companies.json',dict(checked=today,unit='original currency millions',companies=companies))

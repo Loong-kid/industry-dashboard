@@ -14,6 +14,10 @@
 .gm-panel .gm-stats dd { font-size: clamp(19px,2vw,27px); }
 .gm-root .gm-company-pick { padding: 3px 7px; min-height: 32px; cursor: pointer; color: var(--accent); }
 .gm-company-pick[aria-pressed=true] { border-color: var(--accent); font-weight: 650; }
+.gm-platform-pick { cursor: pointer; text-align: left; }
+.gm-platform-pick[aria-pressed=true] { border-color: var(--accent); color: var(--accent); }
+#gm-platform-financial { margin-left: 8px; cursor: pointer; }
+#gm-financial-comparison, #gm-platform-detail { scroll-margin-top: 22px; }
 .gm-table td:first-child small { white-space: normal; max-width: 380px; min-width: 170px; line-height: 1.6; }
 .gm-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 28px; align-items: start; }
 .gm-panel { min-width: 0; padding-top: 17px; margin-bottom: 30px; border-top: 2px solid var(--grid); }

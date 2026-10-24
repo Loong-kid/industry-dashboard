@@ -28,6 +28,13 @@ class FinancialRules(unittest.TestCase):
         rows=parse_sec(self.document(facts),dict(cik=1,currency='USD',fiscal_start=1),'2026-10-25')
         self.assertEqual([r['kind'] for r in rows],['annual'])
 
+    def test_restatement_sensitive_issuer_uses_only_reported_quarters(self):
+        # A divestiture can recast annual revenue without recasting old YTD.
+        facts=[self.fact('2025-01-01','2025-09-30',90e6),self.fact('2025-01-01','2025-12-31',50e6),
+               self.fact('2025-01-01','2025-03-31',30e6)]
+        rows=parse_sec(self.document(facts),dict(cik=1,currency='USD',fiscal_start=1,derive_quarters=False),'2026-10-25')
+        self.assertEqual([r['revenue'] for r in rows if r['kind']=='quarter'],[30])
+
     def test_currency_restated_value_and_direct_quarter_preference(self):
         facts=[self.fact('2025-01-01','2025-03-31',10e6),self.fact('2025-01-01','2025-03-31',12e6,filed='2026-06-01'),
                self.fact('2025-01-01','2025-06-30',30e6),self.fact('2025-04-01','2025-06-30',17e6)]

@@ -1,6 +1,6 @@
 # 게임 시장 관측
 
-경로: `#/games` — 시장 규모 / Steam 장르 / Google Play / App Store 차트 / 게임별 매출 / 게임사 실적 / 출처·범위. 기존 `#/games/mobile` 주소는 Google Play 화면으로 유지한다.
+경로: `#/games` — 시장 규모 / Steam 장르 / Google Play / App Store 차트 / 게임별 매출 / 게임사 실적 / 게임 플랫폼 / 출처·범위. 기존 `#/games/mobile` 주소는 Google Play 화면으로 유지한다.
 
 ## 화면 설계
 
@@ -29,10 +29,12 @@
 ```powershell
 python scripts/fetch_games.py
 python scripts/fetch_game_financials.py
+python scripts/fetch_game_platforms.py
 # 신규 Google Play 공개 표본 발견은 필요할 때만 실행
 python scripts/fetch_games.py --source mobile --discover
 python -m unittest discover -s scripts -p test_games.py
 python -m unittest discover -s scripts -p test_game_financials.py
+python -m unittest discover -s scripts -p test_game_platforms.py
 node scripts/test_games.cjs
 ```
 
@@ -47,3 +49,21 @@ node scripts/test_games.cjs
 게임사 화면은 같은 통화·기간 유형·실제 결산일의 값만 비교한다. 다른 통화를 합산·환산하거나 회사별 서로 다른 최신 분기를 같은 분기처럼 순위 매기지 않는다. EA·Take-Two의 3월 결산 FY는 실제 날짜에 따라 표시한다. 3개월 공시 우선, 누적 차감은 같은 회계연도 시작과 같은 회계 체계일 때만 허용한다. 연간÷4 금지. Q4는 연간−9개월이 가능한 경우에만 생성한다. 회사 연결 매출과 게임 스토어 수수료 차감 후 추정 매출, 개발사 로열티, 게임 순이익은 각각 다르다. 비상장사의 전체 손익은 공개 자료가 없으면 미확보다.
 
 시장 매출은 시장 규모 추정치이지 잠재적 최대 수요(TAM)의 실측값이 아니다. 스토어 다운로드 표본으로 세계 매출, 광고·외부 결제 매출 또는 고유 이용자 수를 복원하지 않는다.
+
+## 해외 업체와 플랫폼
+
+2026-10-25 확장 기준 27개 업체(해외 21개, 7개 국가)를 다룬다. 재무 이력이 있는 회사·사업부는 25곳이며 비상장 Epic·Valve는 공식 사업 지표를 연결한다. 지역은 업체의 본사·사업 근거지/상장 법인에 따른 탐색 분류이며 매출 발생 국가가 아니다. `manual/games/company-directory.json`의 지역·사업·소유 상태·비교 범위·검색 별칭을 모든 회사 데이터에 결합한다. 전 세계 전체 목록을 통화 필터 앞에 두고 기본 통화를 USD로 변경해 해외 업체가 KRW 필터에 가려지지 않도록 했다.
+
+기존 색상 파랑 `#2a78d6`, 초록 `#1baf7a`, 노랑 `#eda100`, 보라 `#4a3aa7`, 적색 `#e34948`과 시스템 글꼴을 유지한다. 전체 업체 목록 → 같은 통화의 공시 비교 → 개별 회사 추이로 읽는다. 플랫폼은 사업 모델을 비교하는 표와 선택 업체의 실제 지표를 배치한다. 금액·분모·관측일을 함께 표시하며 통화가 다른 행을 금액순으로 정렬하지 않는다. Microsoft·Sea·Tencent는 게임 외 대형 사업을 포함하므로 기본 공시 비교에서 제외하고 선택 시 포함할 수 있다. 전체 목록에는 항상 남으며 해당 업체의 ‘실적 보기’는 자동으로 포함 설정을 켠다.
+
+- **SEC 추가:** Unity, AppLovin, Microsoft, Sea. 공시 원통화 USD, 백만 단위. Microsoft의 7월 회계연도 시작을 반영한다. 최대 3개 동시 요청과 SEC 요청 시작 간격 0.35초를 적용한다. `--company <id>`를 반복 지정하면 해당 회사만 조회하고 나머지의 값·날짜·상태를 유지한다.
+- **공식 해외 IR 추가:** Nintendo, Sony G&NS, Bandai Namco, SEGA SAMMY, Square Enix, Konami, Capcom, CD PROJEKT. `manual/games/global-financials.json`에 원문 URL·실제 기간·공시일·PDF 실제 페이지(표지 포함)·금액 단위·순이익 기준을 저장했다. 직접 공개한 분기·연간 값만 입력하고 빈 분기는 생성하지 않았다. 일본 업체의 지배기업 소유주 귀속 이익, Sony 사업부의 순이익 미공개, CD PROJEKT의 계속영업 재표시·중단영업 포함 순이익을 표시한다. [CD PROJEKT 원문](https://www.cdprojekt.com/en/investors/financial-summary-report/)의 PLN 천 단위를 백만 단위로 변환했다. 화면 FY는 결산연도 기준이므로 Sony의 원문 FY2025(2026년 3월 종료)는 화면 FY2026이다.
+- **AppLovin 재표시:** [2026년 2분기 공식 발표](https://investors.applovin.com/news/news-details/2026/AppLovin-Announces-Second-Quarter-2026-Financial-Results/default.aspx)의 계속영업과 전체 순이익이 구분된다. 게임 사업 중단영업 재표시로 최신 연간과 오래된 누적 분기의 범위가 다를 수 있어 Q4 누적 차감을 사용하지 않는다. 비교 가능한 재표시 연간은 2023년부터, 공시된 단독 분기는 2025년부터 제공한다. 해당 기간 밖을 0으로 채우지 않는다.
+- **EA 비상장 전환:** [2026-08-04 EA 공식 발표](https://www.ea.com/ea-studios/ea-sports/news/ea-announces-completion-of-acquisition)에 따라 비상장으로 표시하고 인수 전 SEC 실적은 보존한다. 이후 정기 공시가 계속 나온다고 가정하지 않는다.
+- **Epic Games / Unreal Engine:** [EGS 2024](https://store.epicgames.com/en-US/news/epic-games-store-2024-year-in-review), [EGS 2025](https://store.epicgames.com/en-US/news/epic-games-store-2025-year-in-review) 공식 보고서에서 PC 스토어 지출·서드파티 지출·연평균 MAU·연중 최고 MAU·누적 이용자·계정을 기록했다. [Fab 2025](https://www.unrealengine.com/news/fab-2025-year-in-review)는 창작자 수익·판매자·등록 상품을 제공한다. EGS 이용자 지출은 거래 규모이며 Epic/Unreal 매출·이익이 아니다. 자체 결제로 발생한 서드파티 지출은 EGS 결제 지표에서 제외된다. ‘초과’ 하한을 보존한다.
+- **Valve / Steam:** [공식 온라인 통계](https://store.steampowered.com/stats/?l=english)를 매일 조회해 동시 온라인과 화면의 최고값을 누적한다. 게임 미실행 계정 포함이며 MAU·월간 다운로드·매출로 환산하지 않는다. 화면의 `PEAK ONLINE` 집계창을 임의로 일간·월간·역대 최고라고 명명하지 않는다. 관측 시각은 UTC 원본과 KST 표시를 제공하고 최근 35일 이후에는 월별 마지막 실제 관측을 유지한다. 파싱·접근 실패 시 이전 관측값·수집 시각을 보존한다.
+- **PlayStation·Nintendo·Xbox:** Sony의 PlayStation MAU/PS5 보급, Nintendo의 하드웨어 판매/디지털 매출, [Microsoft 연차보고서](https://www.microsoft.com/investor/reports/ar26/index.html)의 Xbox 제품·서비스 매출을 별도 지표로 기록했다. Microsoft 전사 매출·순이익을 Xbox 단독 값으로 표시하지 않는다.
+
+`manual/games/platforms.json`은 8개 플랫폼의 사업 모델·기업 관계·공개 지표 원본이다. 스토어 거래액, 회계 매출, 창작자 수익, 누적 계정, 활성 이용, 동시 온라인, 하드웨어 대수를 서로 합산하지 않는다. 같은 지표·단위·정의의 이력만 차트로 연결하며 Steam 관측은 점으로만 표시한다. 수기 자료는 원문 확인 날짜를 보존한다. 유료 API·체험판·로그인 후 프리미엄 자료는 사용하지 않는다.
+
+각 화면은 필요한 JSON만 내려받는다. 시장 개요는 시장 자료만, 플랫폼은 회사·플랫폼 자료만 읽으며 모든 소스의 현황을 읽는 것은 출처 화면뿐이다. 갱신 표시도 로드한 소스의 조회일·발표일·원문 대조일을 구분한다.

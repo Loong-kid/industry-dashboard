@@ -22,6 +22,7 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p test_games.py
           python -m unittest discover -s scripts -p test_game_financials.py
+          python -m unittest discover -s scripts -p test_game_platforms.py
           node scripts/test_games.cjs
       - name: Collect free public observations
         run: python -u scripts/fetch_games.py
@@ -30,7 +31,9 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python -u scripts/fetch_game_financials.py
       - name: Validate collected snapshots
-        run: node scripts/test_games.cjs
+        run: |
+          python -u scripts/fetch_game_platforms.py
+          node scripts/test_games.cjs
       - name: Commit public snapshots
         run: |
           git config user.name "github-actions[bot]"

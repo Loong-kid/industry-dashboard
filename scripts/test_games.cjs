@@ -49,7 +49,7 @@ const fs = require('node:fs');
     const companies=read('companies').companies;
     assert.equal(new Set(companies.map(c=>c.id)).size,companies.length);
     for(const c of companies){
-      assert(['USD','KRW','CNY','JPY'].includes(c.currency));
+      assert(['USD','KRW','CNY','JPY','PLN'].includes(c.currency));
       assert.equal(new Set(c.rows.map(r=>r.kind+r.date)).size,c.rows.length);
       for(const r of c.rows){
         assert(r.date<=c.checked && r.start<=r.date);
@@ -61,6 +61,22 @@ const fs = require('node:fs');
     const sparse=m.companySeries([{kind:'quarter',date:'2025-03-31',revenue:1},{kind:'quarter',date:'2026-03-31',revenue:2}],'quarter');
     assert.equal(sparse.length,5);
     assert.equal(sparse[1].row,undefined); // missing quarters must break the chart
+    assert(companies.length>=25);
+    assert(companies.every(c=>c.region&&c.country&&c.roles?.length&&c.scope));
+    assert(m.directoryRows(companies,{region:'日本'}).length===0); // filters are explicit, not fuzzy currency inference
+    assert(m.directoryRows(companies,{region:'일본'}).some(c=>c.id==='nintendo'));
+    assert(m.directoryRows(companies,{query:'Steam'}).some(c=>c.id==='valve'));
+    assert(m.directoryRows(companies,{query:'스팀'}).some(c=>c.id==='valve'));
+    assert(m.directoryRows(companies,{query:'언리얼'}).some(c=>c.id==='epic'));
+    assert(m.directoryRows(companies,{role:'engine'}).some(c=>c.id==='epic'));
+    assert(!m.directoryRows(companies,{role:'engine'}).some(c=>c.id==='netmarble'));
+    assert(companies.filter(c=>['epic','valve'].includes(c.id)).every(c=>c.listing==='private'&&c.rows.length===0));
+    assert.equal(companies.find(c=>c.id==='ea').listing,'private');
+    const platforms=read('platforms');
+    assert.equal(m.platformMetrics(platforms,'epic').find(r=>r.id==='store_spend').kind,'spend');
+    assert.equal(m.platformMetrics(platforms,'steam').filter(r=>r.id==='online_now').length,platforms.steam.observations.length);
+    assert(m.platformMetrics(platforms,'steam').every(r=>r.kind==='concurrency'&&r.unit==='계정'));
+    assert.equal(m.platformMetrics(platforms,'does-not-exist').length,0);
   }
   if(fs.existsSync('data/games/steam.json')){
     const steam=read('steam');
