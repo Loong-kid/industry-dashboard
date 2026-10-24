@@ -186,33 +186,39 @@ function renderOffshoreFinancials(doc) {
   }
   wrap.appendChild(table);card.appendChild(wrap);
   ofNote(card,'단위: USD 백만. ¹ Odfjell은 공시 EBITDA, 나머지는 조정 EBITDA입니다. ² 회사 공시 FCF와 계산 FCF를 구분합니다. ³ 회사 정의의 순부채·계약잔고이며 일괄 합산하지 않습니다. Borr 잔고는 Dayrate Equivalent 기준입니다.');
-  const controls=ofEl('div','of-controls'),chartHost=ofEl('div','of-financial-chart'),notes=ofEl('div','of-financial-notes');panel.append(controls,chartHost,notes);
+  const controls=ofEl('div','of-controls'),chartHost=ofEl('div','grid of-financial-charts'),notes=ofEl('div','of-financial-notes');panel.append(controls,chartHost,notes);
   const metrics={revenue:'매출',operating_profit:'영업이익',net_income:'순이익',ebitda:'EBITDA / 조정 EBITDA',operating_cash:'영업현금흐름',capex:'유형자산 현금취득',fcf:'잉여현금흐름',dayrate:'평균 계약 일당',efficiency_pct:'매출 효율 / 경제적 가동률'};
   const saved=ofStorage('offshore-financial-view-v1',{});
-  let companyId=doc.companies.some(c=>c.id===saved?.companyId)?saved.companyId:'',metric=metrics[saved?.metric]?saved.metric:'revenue',ownedCharts=[];
+  let companyId=doc.companies.some(c=>c.id===saved?.companyId)?saved.companyId:'',ownedCharts=[];
   ofSelect(controls,'실적 비교 대상',[['','6개사 비교'],...doc.companies.map(c=>[c.id,c.name])],companyId,v=>{companyId=v;render();});
-  ofSelect(controls,'실적 지표',Object.entries(metrics),metric,v=>{metric=v;render();});
   function render() {
-    ofSave('offshore-financial-view-v1',{companyId,metric});
+    ofSave('offshore-financial-view-v1',{companyId});
     for(const c of ownedCharts)c.destroy();if(typeof state!=='undefined')state.charts=state.charts.filter(c=>!ownedCharts.includes(c));ownedCharts=[];
     chartHost.replaceChildren();notes.replaceChildren();const selected=doc.companies.filter(c=>!companyId||c.id===companyId);
     const dates=[...new Set(selected.flatMap(c=>c.quarters.map(q=>q.date)))].sort();
-    const series={};for(const c of selected) {if(c.quarters.some(q=>q[metric]!=null))series[c.name]=dates.map(date=>[date,c.quarters.find(q=>q.date===date)?.[metric]??null]);}
-    if(!Object.keys(series).length){ofNote(chartHost,'선택한 지표의 공시 수치를 아직 확보하지 못했습니다. 다른 지표를 선택해 주세요.');return;}
-    const unit=metric==='dayrate'?'USD/일':metric==='efficiency_pct'?'%':'USD 백만';
-    const synthetic={id:'offshore-financial-'+metric,name:metrics[metric],unit,frequency:'quarterly',quarter_labels:true,series,default_series:Object.keys(series),span_gaps:false,change_mode:'none',
-      source:'SEC·기업 공식 분기 실적',source_url:selected[0]?.status?.source_url || selected[0]?.index,
-      updated:dates.at(-1),description:'확보한 분기만 표시하며 누락 분기는 선을 끊습니다. 인수합병·연결 범위 변화가 포함됩니다. EBITDA·가동률은 아래 회사별 정의를 함께 확인하세요.'};
-    const before=typeof state!=='undefined'?state.charts.length:0;chartHost.appendChild(renderCard(synthetic,synthetic.id));if(typeof state!=='undefined')ownedCharts=state.charts.slice(before);
+    for(const [metric,label] of Object.entries(metrics)) {
+      const series={};for(const c of selected) {if(c.quarters.some(q=>q[metric]!=null))series[c.name]=dates.map(date=>[date,c.quarters.find(q=>q.date===date)?.[metric]??null]);}
+      if(!Object.keys(series).length){const empty=ofCard(label);ofNote(empty,'해당 기업의 공시 수치를 아직 확보하지 못했습니다.');chartHost.appendChild(empty);continue;}
+      const unit=metric==='dayrate'?'USD/일':metric==='efficiency_pct'?'%':'USD 백만';
+      const synthetic={id:'offshore-financial-'+metric,name:label,unit,frequency:'quarterly',quarter_labels:true,series,default_series:Object.keys(series),span_gaps:false,change_mode:'none',
+        source:'SEC·기업 공식 분기 실적',source_url:selected[0]?.status?.source_url || selected[0]?.index,
+        updated:dates.at(-1),description:'확보한 분기만 표시하며 누락 분기는 선을 끊습니다. 인수합병·연결 범위 변화가 포함됩니다. EBITDA·가동률은 아래 회사별 정의를 함께 확인하세요.'};
+      const before=typeof state!=='undefined'?state.charts.length:0;chartHost.appendChild(renderCard(synthetic,synthetic.id));if(typeof state!=='undefined')ownedCharts.push(...state.charts.slice(before));
+    }
     for(const c of selected) {
       const detail=ofEl('details','of-company-note');detail.appendChild(ofEl('summary','',`${c.name} · 수치·공시 확인`));
-      const last=[...c.quarters].reverse().find(q=>q[metric]!=null);
+      const last=[...c.quarters].reverse().find(q=>q.revenue!=null);
       if(last?.note)ofNote(detail,last.note);
-      if(metric==='efficiency_pct')ofNote(detail,`${last?.efficiency_label || '미확보'} · 계약 확보율·작업 가동률과 다른 지표입니다.`);
-      if(metric==='dayrate')ofNote(detail,'회사 공시 평균 계약 일당입니다. 유형·연결 선대 범위가 달라 글로벌 시장 요율 평균으로 합산하지 않습니다.');
+      const efficiency=[...c.quarters].reverse().find(q=>q.efficiency_pct!=null);
+      if(efficiency)ofNote(detail,`${efficiency.efficiency_label || '회사 공시 효율'} · 계약 확보율·작업 가동률과 다른 지표입니다.`);
+      if(c.quarters.some(q=>q.dayrate!=null))ofNote(detail,'평균 계약 일당은 회사 공시 기준입니다. 유형·연결 선대 범위가 달라 글로벌 시장 요율 평균으로 합산하지 않습니다.');
       if(last?.source)ofSource(detail,last.source);if(c.status?.source_url){const line=ofEl('p','of-source');line.appendChild(ofLink(c.status.source_url,'SEC 공시 재무 데이터'));detail.appendChild(line);}
       if(c.status?.ok===false)ofNote(detail,'재무 원문 확인·추출 일부 실패: 마지막 성공 자료와 확보 분기를 유지합니다.',true);
-      detail.appendChild(ofEl('p','of-note',`확보 분기 ${c.quarters.filter(q=>q[metric]!=null).length}개 · ${last?.date || '미확보'} 기준`));notes.appendChild(detail);
+      for(const [metric,label] of Object.entries(metrics)) {
+        const available=c.quarters.filter(q=>q[metric]!=null);
+        ofNote(detail,`${label}: ${available.length}개 분기 · ${available.at(-1)?.date || '미확보'} 기준`);
+      }
+      notes.appendChild(detail);
     }
   }
   render();return panel;

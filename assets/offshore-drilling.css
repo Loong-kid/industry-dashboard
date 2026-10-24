@@ -15,8 +15,11 @@
 .of-scroll thead th { position:sticky; top:0; z-index:3; border-bottom-color:var(--baseline); }
 .of-scroll tbody tr:last-child>td,.of-scroll tbody tr:last-child>th { border-bottom:0; }
 .of-scroll .of-number { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
-.of-market-table { min-width:620px; }
-.of-market-table th:first-child { width:22%; }
+.of-market-table { min-width:620px; table-layout:fixed; }
+.of-market-table th:first-child { width:24%; }
+.of-scroll :is(.of-market-table,.of-coverage-table,.of-financial-table) thead th:not(:first-child) { text-align:right; }
+.of-market-table tbody td:last-child { position:relative; }
+.of-market-table .of-meter { position:absolute; right:12px; bottom:5px; margin:0; }
 .of-meter { margin:6px 0 0 auto; width:100px; height:4px; background:var(--grid); }
 .of-meter span { display:block; height:100%; background:var(--accent); }
 .of-subhead { font-size:14px; margin:28px 0 8px; }
@@ -26,7 +29,8 @@
 .of-fixture:last-child { border-right:0; }
 .of-fixture:nth-child(2n) { border-right:0; }
 .of-fixture:nth-child(2n+1) { padding-left:0; }
-.of-coverage-table { min-width:650px; }
+.of-coverage-table { min-width:650px; table-layout:fixed; }
+.of-coverage-table th:first-child { width:28%; }
 .of-open-end { background:var(--surface); color:var(--accent); border:1px dotted var(--accent); }
 .of-fixture-rate { margin-top:12px; font-size:17px; font-variant-numeric:tabular-nums; }
 .of-fixture a { margin-top:8px; }
@@ -89,8 +93,8 @@
 .of-financial-table { min-width:950px; }
 .of-financial-table th:first-child { min-width:180px; }
 .of-financials { min-width:0; }
-.of-financial-chart { margin-top:16px; }
-.of-financial-chart .chart-wrap { height:360px; }
+.of-financial-charts { margin-top:16px; grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr)); }
+.of-financial-charts .card { min-width:0; }
 .of-financial-notes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 24px; margin:16px 0; }
 .of-company-note { border-top:1px solid var(--border); padding:8px 0; font-size:12px; }
 @media (max-width:700px) {
@@ -109,5 +113,4 @@
  .of-event>.of-secondary:last-child { grid-column:1; }
  .of-financial-notes { grid-template-columns:1fr; }
  .of-scope-line { font-size:18px; }
- .of-financial-chart .chart-wrap { height:300px; }
 }
