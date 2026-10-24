@@ -1,0 +1,45 @@
+# CPU·SoC 사양과 Geekbench 표
+
+CPU 화면의 첫 번째 표는 사용자 Google Sheets의 `CPU` 탭을 읽어 만든다.
+원본 파일 ID는 `1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g`,
+탭 ID는 `1226864737`이다. 다른 탭의 밸류에이션·개인 자료는 가져오지 않는다.
+
+2026-10-25에 메타데이터와 헤더를 확인하고, `A1:AS65`, `C66:C1181`의
+제품명 확인 후 `A66:AS180`, `A181:AS301`을 읽었다. 실제 기재 범위는
+`A1:AK301`이며 제품 292개, 회사 9개, 열 37개다. 중간 빈 행은 표에서
+생략하지만 원본 행 번호·제품 순서·모든 기재값은 보존한다.
+벤치마크 영역 `Y1:AK301`의 링크·메모도 확인했으며, 원본 점수 셀에는
+실측 링크가 없고 마지막 열의 링크는 제품 사양에 관한 것이다.
+
+- `cpu_specs_sheet.json`: 표시값을 그대로 담은 읽기 전용 원본 스냅샷.
+- `cpu_specs_supplements.json`: 제조사·제품명, 행·열 좌표, 보완값, 출처, 확인일·측정 조건.
+- `scripts/aggregate_cpu_specs.py`: 원본 값을 유지하고 빈 셀의 보완값을 별도로
+  묶어 `data/semicon/cpu_specs.json`을 만든다. 기재된 셀을 덮어쓰는 보완이나
+  중복 좌표·제품 행 변경은 오류로 처리하므로 시트 재수집 후 충돌은 원문 검토가 필요하다.
+
+현재 보완은 81개 제품의 226개 셀이다. Geekbench 7 공식 Processor Benchmark
+Chart의 평균 점수 150개(75개 제품의 Single/Multi 쌍), 필요한 대표 SKU 설명,
+M3 Ultra 32코어 Geekbench 6 개별 실측 2개, AWS Graviton·NVIDIA Grace·Microsoft
+Cobalt의 공식 사양 23개를 포함한다. 원래 Google 시트는 수정하지 않았다.
+
+Geekbench 7 차트는 사용자 제출 결과가 5개 이상인 CPU의 집계값이다. 이름이
+정확하게 일치하는 제품만 연결하고, Snapdragon X 계열은 명시한 대표 SKU로
+한정했다. 18코어 X2 결과를 12코어 모델에 대입하지 않는다. 원본에 있던
+점수·기준 설명은 새 차트 수치로 치환하지 않는다. 별도 버전 간 환산이나
+상위 모델을 이용한 추정은 하지 않는다. M3 Ultra의 보완 GB6 값은 평균이
+아닌 2025-07-26 업로드된 macOS 15.5 / 512 GB / Geekbench 6.4.0 실측이다.
+
+클라우드 CPU의 물리 코어와 VM vCPU, 소켓당·NUMA당 캐시, 기기별 최대 메모리
+조건은 구분한다. Graviton의 터보 미지원은 공식 기술 가이드 기준이며,
+Grace의 캐시는 코어당 L1·L2만 보완했다. 공식 문서 안에서도 기준이 다른
+L3 수치는 임의로 선택하지 않았다. 미공개·미확인 항목은 빈 셀로 유지한다.
+
+재생성: `python scripts/aggregate_cpu_specs.py`
+
+검증: `python -m unittest discover -s scripts -p test_cpu_specs.py -v`
+
+화면 검증: `python scripts/verify_cpu_specs_ui.py --url http://127.0.0.1:8792/`
+
+시트는 연결된 Google Drive 도구로 다시 읽고 원본 스냅샷을 갱신한다. 현재
+시트·벤치마크 표는 원문 검토 후 갱신하며, 매일 실행되는 CPU 재무 수집과
+분리되어 있다. 비공개 시트 접근 자격 증명을 프런트엔드나 공개 JSON에 넣지 않는다.

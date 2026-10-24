@@ -1,0 +1,51 @@
+.cpu-specs { min-width: 0; }
+.cpu-specs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cpu-specs-head p, .cpu-specs-head small { display: block; font-size: 12px; color: var(--muted); margin-top: 5px; }
+.cpu-specs a { color: var(--accent); text-underline-offset: 3px; }
+.cpu-specs-head > div:last-child { font-size: 12px; }
+.cpu-specs-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; padding: 12px 0; border-block: 1px solid var(--border); }
+.cpu-specs-controls label { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: var(--ink-2); min-width: 0; }
+.cpu-specs-controls select, .cpu-specs-controls input[type="search"], .cpu-specs-reset { font: inherit; font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; max-width: 100%; min-width: 0; }
+.cpu-specs-controls select { max-width: 220px; }
+.cpu-specs-search { flex: 1; min-width: 190px !important; }
+.cpu-specs-controls .cpu-specs-only { flex-direction: row; align-items: center; align-self: center; font-size: 12px; cursor: pointer; }
+.cpu-specs-only input { accent-color: var(--accent); }
+.cpu-specs-only:has(input:disabled) { color: var(--muted); }
+.cpu-specs-reset { cursor: pointer; }
+.cpu-specs-reset:hover { border-color: var(--accent); }
+.cpu-specs-status { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; color: var(--muted); font-size: 11px; }
+.cpu-specs-status [role="status"] { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.cpu-specs-scroll { max-height: 680px; border: 1px solid var(--border); border-radius: 6px; overscroll-behavior: contain; }
+.cpu-specs-scroll table { width: max-content; min-width: 100%; border-collapse: separate; border-spacing: 0; }
+.cpu-specs-scroll caption { text-align: left; font-size: 11px; padding: 8px 10px; color: var(--muted); }
+.cpu-specs-scroll td, .cpu-specs-scroll th { font-size: 12px; line-height: 1.55; padding: 8px 10px; min-width: 125px; max-width: 280px; white-space: normal; overflow-wrap: anywhere; vertical-align: top; border-right: 1px solid var(--border); }
+.cpu-specs-scroll thead th { top: 0; z-index: 3; color: var(--ink-2); background: var(--surface); }
+.cpu-specs-scroll thead button { border: 0; background: none; color: inherit; font: inherit; font-weight: 600; text-align: inherit; width: 100%; cursor: pointer; }
+.cpu-specs-scroll thead button:hover { color: var(--accent); }
+.cpu-specs-scroll tbody th { top: auto; color: var(--ink); font-weight: 600; cursor: auto; user-select: auto; }
+.cpu-specs-scroll [data-column="A"] { width: 90px; min-width: 90px; max-width: 90px; }
+.cpu-specs-scroll [data-column="B"] { width: 150px; min-width: 150px; max-width: 150px; }
+.cpu-specs-scroll .cpu-specs-name { width: 220px; min-width: 220px; max-width: 220px; position: sticky; left: 0; z-index: 2; background: var(--surface); box-shadow: 1px 0 var(--border); }
+.cpu-specs-scroll thead .cpu-specs-name { z-index: 5; }
+.cpu-specs-scroll .cpu-specs-number { min-width: 120px; max-width: 160px; text-align: right; font-variant-numeric: tabular-nums; }
+.cpu-specs-scroll .cpu-specs-note, .cpu-specs-scroll .cpu-specs-basis { min-width: 270px; max-width: 330px; }
+.cpu-specs-added { background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+.cpu-specs-added a { display: block; font-size: 10px; white-space: nowrap; margin-top: 2px; }
+.cpu-specs-evidence { font-size: 12px; line-height: 1.7; }
+.cpu-specs-evidence summary { color: var(--ink-2); cursor: pointer; }
+.cpu-specs-evidence p { padding-top: 9px; max-width: 80ch; }
+.cpu-specs-evidence small { display: block; color: var(--muted); }
+@media (min-width: 1024px) {
+  .cpu-specs-scroll [data-column="A"], .cpu-specs-scroll [data-column="B"] { position: sticky; left: 0; z-index: 2; background: var(--surface); }
+  .cpu-specs-scroll [data-column="B"] { left: 90px; }
+  .cpu-specs-scroll .cpu-specs-name { left: 240px; }
+  .cpu-specs-scroll thead [data-column="A"], .cpu-specs-scroll thead [data-column="B"] { z-index: 5; }
+}
+@media (max-width: 600px) {
+  .cpu-specs-controls { gap: 10px; }
+  .cpu-specs-controls label:not(.cpu-specs-only) { flex: 1 1 110px; }
+  .cpu-specs-controls .cpu-specs-search { flex-basis: 100% !important; }
+  .cpu-specs-controls select { width: 100%; }
+  .cpu-specs-scroll { max-height: 580px; }
+  .cpu-specs-scroll .cpu-specs-name { width: clamp(100px, 32vw, 170px); min-width: clamp(100px, 32vw, 170px); max-width: clamp(100px, 32vw, 170px); }
+}

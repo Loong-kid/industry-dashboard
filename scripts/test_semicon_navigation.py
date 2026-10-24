@@ -27,7 +27,7 @@ def verify(base):
                 assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','SSD','소부장']
                 assert page.locator('#page-tabs .commodity-tabs').count()==1
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
-                cards=page.locator('#content .card')
+                cards=page.locator('#content .card.ir-chart')
                 for i in range(count):
                     cards.nth(i).get_by_role('button',name='연간',exact=True).click()
                 assert page.evaluate('state.charts.every(chart=>chart.data.datasets.some((dataset,i)=>chart.isDatasetVisible(i) && dataset.data.some(value=>value!==null)))'),route

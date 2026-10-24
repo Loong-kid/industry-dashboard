@@ -1,5 +1,8 @@
 # CPU 기업 지표
 
+화면 상단의 CPU·SoC 사양 및 Geekbench 표는 [CPU_SPEC_SOURCES.md](CPU_SPEC_SOURCES.md)의
+Google 시트 원본과 별도 보완 자료를 사용한다.
+
 `#/semicon/cpu`는 메모리·파운드리와 같은 회사별 매출 / 영업이익 / CAPEX
 세 열을 제공한다. Intel·AMD는 2014년 1분기, 현재 상장 Arm은 확보 가능한
 2022년 9월 종료 분기(FY2023 Q2)부터 시작한다. Qualcomm·Apple은 2014년

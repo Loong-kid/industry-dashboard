@@ -87,7 +87,7 @@ class CpuCompanies(unittest.TestCase):
         catalog=cpu.load(ROOT/'data/catalog.json',{})
         semicon=next(i for i in catalog['industries'] if i['id']=='semicon')
         self.assertEqual([g['id'] for g in semicon['groups']],['memory','foundry','cpu','ssd','materials'])
-        linked={id for section in semicon['sections'] if section.get('tab')=='cpu' for id in section['indicators']}
+        linked={id for section in semicon['sections'] if section.get('tab')=='cpu' and section.get('type')!='table' for id in section['indicators']}
         docs={}
         for key,cohort in self.state['companies'].items():docs.update(cpu.build_company(key,cohort))
         docs.update(cpu.build_business_history(self.state['business'],cpu.load(ROOT/'manual/cpu_segments.json',{})))

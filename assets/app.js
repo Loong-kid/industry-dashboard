@@ -342,6 +342,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
         : section.table_kind === "offshore_contracts" ? doc => renderOffshoreFleet(doc, true)
         : section.table_kind === "offshore_financials" ? renderOffshoreFinancials
+        : section.table_kind === "cpu_specs" ? renderCPUSpecs
         : section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
         : section.table_kind === "dc_facilities" ? renderKoreaDataCenters
         : section.table_kind === "dc_changes" ? renderKoreaDataCenterChanges

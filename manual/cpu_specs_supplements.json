@@ -1,0 +1,2071 @@
+{
+ "reviewed": "2026-10-25",
+ "sources": {
+  "geekbench7_processors": {
+   "title": "Primate Labs · Geekbench 7 Processor Benchmark Chart",
+   "url": "https://browser.geekbench.com/processor-benchmarks",
+   "checked": "2026-10-25",
+   "note": "사용자 제출 결과가 5개 이상인 CPU의 공식 차트 평균. 개별 기기·OS는 집계에 혼합됩니다. 제품군은 명시한 대표 SKU에만 해당합니다."
+  },
+  "aws_guide": {
+   "title": "AWS · Graviton Technical Guide",
+   "url": "https://aws.github.io/graviton/",
+   "checked": "2026-10-25",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다."
+  },
+  "nvidia_grace": {
+   "title": "NVIDIA · Grace Performance Tuning Guide",
+   "url": "https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html",
+   "checked": "2026-10-25",
+   "note": "CPU Superchip은 Grace CPU 2개 구성. L1·L2는 코어당 사양입니다."
+  },
+  "microsoft_cobalt": {
+   "title": "Microsoft · Announcing Cobalt 200",
+   "url": "https://techcommunity.microsoft.com/blog/azureinfrastructureblog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807",
+   "checked": "2026-10-25",
+   "note": "SoC당 132 active cores 및 코어당 L2 3 MB."
+  },
+  "m3_ultra_gb6": {
+   "title": "Primate Labs · M3 Ultra 32-core · Geekbench 6 개별 실측",
+   "url": "https://browser.geekbench.com/v6/cpu/13028083",
+   "checked": "2026-10-25",
+   "note": "평균이 아닌 개별 결과. Geekbench 6.4.0, Mac Studio 2025, 32코어, macOS 15.5, 512 GB, 2025-07-26 업로드."
+  }
+ },
+ "cells": [
+  {
+   "row": 56,
+   "column": 34,
+   "value": "3393",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite Extreme X2E-96-100 · 4.5 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite Extreme"
+  },
+  {
+   "row": 56,
+   "column": 35,
+   "value": "26632",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite Extreme X2E-96-100 · 4.5 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite Extreme"
+  },
+  {
+   "row": 56,
+   "column": 36,
+   "value": "Snapdragon X2 Elite Extreme X2E-96-100 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite Extreme X2E-96-100 · 4.5 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite Extreme"
+  },
+  {
+   "row": 57,
+   "column": 34,
+   "value": "3322",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite X2E-90-100 · 4.0 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite (18-core)"
+  },
+  {
+   "row": 57,
+   "column": 35,
+   "value": "21658",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite X2E-90-100 · 4.0 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite (18-core)"
+  },
+  {
+   "row": 57,
+   "column": 36,
+   "value": "Snapdragon X2 Elite X2E-90-100 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X2 Elite X2E-90-100 · 4.0 GHz (18 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X2 Elite (18-core)"
+  },
+  {
+   "row": 59,
+   "column": 34,
+   "value": "1761",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X X1-26-100 · 3.0 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X"
+  },
+  {
+   "row": 59,
+   "column": 35,
+   "value": "10194",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X X1-26-100 · 3.0 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X"
+  },
+  {
+   "row": 59,
+   "column": 36,
+   "value": "Snapdragon X X1-26-100 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X X1-26-100 · 3.0 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X"
+  },
+  {
+   "row": 60,
+   "column": 34,
+   "value": "2116",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Plus X1P-64-100 · 3.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Plus (10-core)"
+  },
+  {
+   "row": 60,
+   "column": 35,
+   "value": "13657",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Plus X1P-64-100 · 3.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Plus (10-core)"
+  },
+  {
+   "row": 60,
+   "column": 36,
+   "value": "Snapdragon X Plus X1P-64-100 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Plus X1P-64-100 · 3.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Plus (10-core)"
+  },
+  {
+   "row": 61,
+   "column": 34,
+   "value": "2607",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Elite X1E-84-100 · 3.8 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Elite"
+  },
+  {
+   "row": 61,
+   "column": 35,
+   "value": "16678",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Elite X1E-84-100 · 3.8 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Elite"
+  },
+  {
+   "row": 61,
+   "column": 36,
+   "value": "Snapdragon X Elite X1E-84-100 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Snapdragon X Elite X1E-84-100 · 3.8 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Qualcomm",
+   "product": "Snapdragon X Elite"
+  },
+  {
+   "row": 73,
+   "column": 34,
+   "value": "2807",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285K · 3.7 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285K"
+  },
+  {
+   "row": 73,
+   "column": 35,
+   "value": "25621",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285K · 3.7 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285K"
+  },
+  {
+   "row": 73,
+   "column": 36,
+   "value": "Intel Core Ultra 9 285K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285K · 3.7 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285K"
+  },
+  {
+   "row": 75,
+   "column": 34,
+   "value": "2654",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-14900K · 3.2 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-14900K"
+  },
+  {
+   "row": 75,
+   "column": 35,
+   "value": "21984",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-14900K · 3.2 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-14900K"
+  },
+  {
+   "row": 75,
+   "column": 36,
+   "value": "Intel Core i9-14900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-14900K · 3.2 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-14900K"
+  },
+  {
+   "row": 77,
+   "column": 34,
+   "value": "2614",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-13900K · 3.0 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-13900K"
+  },
+  {
+   "row": 77,
+   "column": 35,
+   "value": "22795",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-13900K · 3.0 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-13900K"
+  },
+  {
+   "row": 77,
+   "column": 36,
+   "value": "Intel Core i9-13900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-13900K · 3.0 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-13900K"
+  },
+  {
+   "row": 79,
+   "column": 34,
+   "value": "2269",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-12900K · 3.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-12900K"
+  },
+  {
+   "row": 79,
+   "column": 35,
+   "value": "16813",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-12900K · 3.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-12900K"
+  },
+  {
+   "row": 79,
+   "column": 36,
+   "value": "Intel Core i9-12900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-12900K · 3.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-12900K"
+  },
+  {
+   "row": 81,
+   "column": 34,
+   "value": "2251",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-11900K · 3.5 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-11900K"
+  },
+  {
+   "row": 81,
+   "column": 35,
+   "value": "13395",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-11900K · 3.5 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-11900K"
+  },
+  {
+   "row": 81,
+   "column": 36,
+   "value": "Intel Core i9-11900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-11900K · 3.5 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-11900K"
+  },
+  {
+   "row": 83,
+   "column": 34,
+   "value": "1736",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-10900K · 3.7 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-10900K"
+  },
+  {
+   "row": 83,
+   "column": 35,
+   "value": "10733",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-10900K · 3.7 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-10900K"
+  },
+  {
+   "row": 83,
+   "column": 36,
+   "value": "Intel Core i9-10900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-10900K · 3.7 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-10900K"
+  },
+  {
+   "row": 85,
+   "column": 34,
+   "value": "1667",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-9900K · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-9900K"
+  },
+  {
+   "row": 85,
+   "column": 35,
+   "value": "9106",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-9900K · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-9900K"
+  },
+  {
+   "row": 85,
+   "column": 36,
+   "value": "Intel Core i9-9900K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-9900K · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-9900K"
+  },
+  {
+   "row": 87,
+   "column": 34,
+   "value": "1589",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-8700K · 3.7 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-8700K"
+  },
+  {
+   "row": 87,
+   "column": 35,
+   "value": "7279",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-8700K · 3.7 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-8700K"
+  },
+  {
+   "row": 87,
+   "column": 36,
+   "value": "Intel Core i7-8700K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-8700K · 3.7 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-8700K"
+  },
+  {
+   "row": 88,
+   "column": 34,
+   "value": "1475",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-7600K · 3.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-7600K"
+  },
+  {
+   "row": 88,
+   "column": 35,
+   "value": "4357",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-7600K · 3.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-7600K"
+  },
+  {
+   "row": 88,
+   "column": 36,
+   "value": "Intel Core i5-7600K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-7600K · 3.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-7600K"
+  },
+  {
+   "row": 89,
+   "column": 34,
+   "value": "1576",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-7700K · 4.2 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-7700K"
+  },
+  {
+   "row": 89,
+   "column": 35,
+   "value": "5520",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-7700K · 4.2 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-7700K"
+  },
+  {
+   "row": 89,
+   "column": 36,
+   "value": "Intel Core i7-7700K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-7700K · 4.2 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-7700K"
+  },
+  {
+   "row": 90,
+   "column": 34,
+   "value": "1348",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-6600K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-6600K"
+  },
+  {
+   "row": 90,
+   "column": 35,
+   "value": "3974",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-6600K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-6600K"
+  },
+  {
+   "row": 90,
+   "column": 36,
+   "value": "Intel Core i5-6600K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-6600K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-6600K"
+  },
+  {
+   "row": 91,
+   "column": 34,
+   "value": "1441",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-6700K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-6700K"
+  },
+  {
+   "row": 91,
+   "column": 35,
+   "value": "4981",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-6700K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-6700K"
+  },
+  {
+   "row": 91,
+   "column": 36,
+   "value": "Intel Core i7-6700K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-6700K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-6700K"
+  },
+  {
+   "row": 92,
+   "column": 34,
+   "value": "1359",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4790K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4790K"
+  },
+  {
+   "row": 92,
+   "column": 35,
+   "value": "4548",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4790K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4790K"
+  },
+  {
+   "row": 92,
+   "column": 36,
+   "value": "Intel Core i7-4790K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4790K · 4.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4790K"
+  },
+  {
+   "row": 93,
+   "column": 34,
+   "value": "1199",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-4670K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-4670K"
+  },
+  {
+   "row": 93,
+   "column": 35,
+   "value": "3421",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-4670K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-4670K"
+  },
+  {
+   "row": 93,
+   "column": 36,
+   "value": "Intel Core i5-4670K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-4670K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-4670K"
+  },
+  {
+   "row": 94,
+   "column": 34,
+   "value": "1217",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4770K"
+  },
+  {
+   "row": 94,
+   "column": 35,
+   "value": "4190",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4770K"
+  },
+  {
+   "row": 94,
+   "column": 36,
+   "value": "Intel Core i7-4770K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4770K"
+  },
+  {
+   "row": 96,
+   "column": 34,
+   "value": "844",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-3770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-3770K"
+  },
+  {
+   "row": 96,
+   "column": 35,
+   "value": "3011",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-3770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-3770K"
+  },
+  {
+   "row": 96,
+   "column": 36,
+   "value": "Intel Core i7-3770K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-3770K · 3.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-3770K"
+  },
+  {
+   "row": 98,
+   "column": 34,
+   "value": "783",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-2600K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-2600K"
+  },
+  {
+   "row": 98,
+   "column": 35,
+   "value": "2663",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-2600K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-2600K"
+  },
+  {
+   "row": 98,
+   "column": 36,
+   "value": "Intel Core i7-2600K · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-2600K · 3.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-2600K"
+  },
+  {
+   "row": 99,
+   "column": 34,
+   "value": "658",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-980X · 3.3 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-980X"
+  },
+  {
+   "row": 99,
+   "column": 35,
+   "value": "3230",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-980X · 3.3 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-980X"
+  },
+  {
+   "row": 99,
+   "column": 36,
+   "value": "Intel Core i7-980X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-980X · 3.3 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-980X"
+  },
+  {
+   "row": 100,
+   "column": 34,
+   "value": "492",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-750 · 2.7 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-750"
+  },
+  {
+   "row": 100,
+   "column": 35,
+   "value": "1348",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-750 · 2.7 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-750"
+  },
+  {
+   "row": 100,
+   "column": 36,
+   "value": "Intel Core i5-750 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-750 · 2.7 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-750"
+  },
+  {
+   "row": 101,
+   "column": 34,
+   "value": "553",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-870 · 2.9 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-870"
+  },
+  {
+   "row": 101,
+   "column": 35,
+   "value": "1720",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-870 · 2.9 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-870"
+  },
+  {
+   "row": 101,
+   "column": 36,
+   "value": "Intel Core i7-870 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-870 · 2.9 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-870"
+  },
+  {
+   "row": 106,
+   "column": 34,
+   "value": "429",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Duo E8400 · 3.0 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Duo E8400"
+  },
+  {
+   "row": 106,
+   "column": 35,
+   "value": "633",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Duo E8400 · 3.0 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Duo E8400"
+  },
+  {
+   "row": 106,
+   "column": 36,
+   "value": "Intel Core 2 Duo E8400 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Duo E8400 · 3.0 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Duo E8400"
+  },
+  {
+   "row": 107,
+   "column": 34,
+   "value": "404",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Quad Q9550 · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Quad Q9550"
+  },
+  {
+   "row": 107,
+   "column": 35,
+   "value": "1085",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Quad Q9550 · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Quad Q9550"
+  },
+  {
+   "row": 107,
+   "column": 36,
+   "value": "Intel Core 2 Quad Q9550 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 2 Quad Q9550 · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 2 Quad Q9550"
+  },
+  {
+   "row": 148,
+   "column": 34,
+   "value": "2272",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 7 255H · 2.0 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 7 255H"
+  },
+  {
+   "row": 148,
+   "column": 35,
+   "value": "13654",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 7 255H · 2.0 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 7 255H"
+  },
+  {
+   "row": 150,
+   "column": 34,
+   "value": "2227",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285H · 2.9 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285H"
+  },
+  {
+   "row": 150,
+   "column": 35,
+   "value": "14904",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285H · 2.9 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285H"
+  },
+  {
+   "row": 150,
+   "column": 36,
+   "value": "Intel Core Ultra 9 285H · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 285H · 2.9 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 285H"
+  },
+  {
+   "row": 152,
+   "column": 34,
+   "value": "2021",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-14500HX · 2.6 GHz (14 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-14500HX"
+  },
+  {
+   "row": 152,
+   "column": 35,
+   "value": "11415",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-14500HX · 2.6 GHz (14 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-14500HX"
+  },
+  {
+   "row": 153,
+   "column": 34,
+   "value": "2139",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-14650HX · 2.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-14650HX"
+  },
+  {
+   "row": 153,
+   "column": 35,
+   "value": "13839",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-14650HX · 2.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-14650HX"
+  },
+  {
+   "row": 154,
+   "column": 34,
+   "value": "2154",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-14700HX · 2.1 GHz (20 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-14700HX"
+  },
+  {
+   "row": 154,
+   "column": 35,
+   "value": "14401",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-14700HX · 2.1 GHz (20 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-14700HX"
+  },
+  {
+   "row": 155,
+   "column": 34,
+   "value": "2307",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-14900HX · 2.2 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-14900HX"
+  },
+  {
+   "row": 155,
+   "column": 35,
+   "value": "16983",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i9-14900HX · 2.2 GHz (24 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i9-14900HX"
+  },
+  {
+   "row": 158,
+   "column": 34,
+   "value": "1850",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 185H · 2.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 185H"
+  },
+  {
+   "row": 158,
+   "column": 35,
+   "value": "11557",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 185H · 2.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 185H"
+  },
+  {
+   "row": 158,
+   "column": 36,
+   "value": "Intel Core Ultra 9 185H · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 9 185H · 2.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 9 185H"
+  },
+  {
+   "row": 175,
+   "column": 34,
+   "value": "1694",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-11800H · 2.3 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-11800H"
+  },
+  {
+   "row": 175,
+   "column": 35,
+   "value": "8113",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-11800H · 2.3 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-11800H"
+  },
+  {
+   "row": 176,
+   "column": 34,
+   "value": "1415",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-10750H · 2.6 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-10750H"
+  },
+  {
+   "row": 176,
+   "column": 35,
+   "value": "5496",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-10750H · 2.6 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-10750H"
+  },
+  {
+   "row": 177,
+   "column": 34,
+   "value": "1337",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-9750H · 2.6 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-9750H"
+  },
+  {
+   "row": 177,
+   "column": 35,
+   "value": "5224",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-9750H · 2.6 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-9750H"
+  },
+  {
+   "row": 178,
+   "column": 34,
+   "value": "1325",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-8750H · 2.2 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-8750H"
+  },
+  {
+   "row": 178,
+   "column": 35,
+   "value": "4996",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-8750H · 2.2 GHz (6 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-8750H"
+  },
+  {
+   "row": 179,
+   "column": 34,
+   "value": "1158",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-7700HQ · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-7700HQ"
+  },
+  {
+   "row": 179,
+   "column": 35,
+   "value": "3780",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-7700HQ · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-7700HQ"
+  },
+  {
+   "row": 180,
+   "column": 34,
+   "value": "1129",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-6700HQ · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-6700HQ"
+  },
+  {
+   "row": 180,
+   "column": 35,
+   "value": "3752",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-6700HQ · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-6700HQ"
+  },
+  {
+   "row": 182,
+   "column": 34,
+   "value": "934",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4700HQ · 2.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4700HQ"
+  },
+  {
+   "row": 182,
+   "column": 35,
+   "value": "3174",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4700HQ · 2.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4700HQ"
+  },
+  {
+   "row": 183,
+   "column": 34,
+   "value": "724",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-3720QM · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-3720QM"
+  },
+  {
+   "row": 183,
+   "column": 35,
+   "value": "2466",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-3720QM · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-3720QM"
+  },
+  {
+   "row": 186,
+   "column": 34,
+   "value": "385",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-720QM · 1.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-720QM"
+  },
+  {
+   "row": 186,
+   "column": 35,
+   "value": "1038",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-720QM · 1.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-720QM"
+  },
+  {
+   "row": 186,
+   "column": 36,
+   "value": "Intel Core i7-720QM · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-720QM · 1.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-720QM"
+  },
+  {
+   "row": 200,
+   "column": 34,
+   "value": "1783",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 5 120U · 1.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 5 120U"
+  },
+  {
+   "row": 200,
+   "column": 35,
+   "value": "6218",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 5 120U · 1.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 5 120U"
+  },
+  {
+   "row": 200,
+   "column": 36,
+   "value": "Intel Core 5 120U · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 5 120U · 1.4 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 5 120U"
+  },
+  {
+   "row": 201,
+   "column": 34,
+   "value": "1852",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 7 150U · 1.8 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 7 150U"
+  },
+  {
+   "row": 201,
+   "column": 35,
+   "value": "6499",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 7 150U · 1.8 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 7 150U"
+  },
+  {
+   "row": 201,
+   "column": 36,
+   "value": "Intel Core 7 150U · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core 7 150U · 1.8 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core 7 150U"
+  },
+  {
+   "row": 202,
+   "column": 34,
+   "value": "1623",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 7 165U · 1.7 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 7 165U"
+  },
+  {
+   "row": 202,
+   "column": 35,
+   "value": "7185",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core Ultra 7 165U · 1.7 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core Ultra 7 165U"
+  },
+  {
+   "row": 206,
+   "column": 34,
+   "value": "1555",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1235U · 1.3 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1235U"
+  },
+  {
+   "row": 206,
+   "column": 35,
+   "value": "5139",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1235U · 1.3 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1235U"
+  },
+  {
+   "row": 206,
+   "column": 36,
+   "value": "Intel Core i5-1235U · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1235U · 1.3 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1235U"
+  },
+  {
+   "row": 208,
+   "column": 34,
+   "value": "1602",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1265U · 1.8 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1265U"
+  },
+  {
+   "row": 208,
+   "column": 35,
+   "value": "5457",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1265U · 1.8 GHz (10 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1265U"
+  },
+  {
+   "row": 209,
+   "column": 34,
+   "value": "1425",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1155G7 · 2.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1155G7"
+  },
+  {
+   "row": 209,
+   "column": 35,
+   "value": "3825",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1155G7 · 2.5 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1155G7"
+  },
+  {
+   "row": 210,
+   "column": 34,
+   "value": "1551",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1195G7 · 2.9 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1195G7"
+  },
+  {
+   "row": 210,
+   "column": 35,
+   "value": "4290",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1195G7 · 2.9 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1195G7"
+  },
+  {
+   "row": 211,
+   "column": 34,
+   "value": "1453",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1145G7 · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1145G7"
+  },
+  {
+   "row": 211,
+   "column": 35,
+   "value": "4078",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1145G7 · 2.6 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1145G7"
+  },
+  {
+   "row": 212,
+   "column": 34,
+   "value": "1355",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i3-1115G4 · 3.0 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i3-1115G4"
+  },
+  {
+   "row": 212,
+   "column": 35,
+   "value": "2475",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i3-1115G4 · 3.0 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i3-1115G4"
+  },
+  {
+   "row": 213,
+   "column": 34,
+   "value": "1406",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1135G7 · 2.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1135G7"
+  },
+  {
+   "row": 213,
+   "column": 35,
+   "value": "4003",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i5-1135G7 · 2.4 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i5-1135G7"
+  },
+  {
+   "row": 214,
+   "column": 34,
+   "value": "1511",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1165G7 · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1165G7"
+  },
+  {
+   "row": 214,
+   "column": 35,
+   "value": "4325",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1165G7 · 2.8 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1165G7"
+  },
+  {
+   "row": 215,
+   "column": 34,
+   "value": "1562",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1185G7 · 3.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1185G7"
+  },
+  {
+   "row": 215,
+   "column": 35,
+   "value": "4668",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-1185G7 · 3.0 GHz (4 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-1185G7"
+  },
+  {
+   "row": 222,
+   "column": 34,
+   "value": "824",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-5500U · 2.4 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-5500U"
+  },
+  {
+   "row": 222,
+   "column": 35,
+   "value": "1504",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-5500U · 2.4 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-5500U"
+  },
+  {
+   "row": 223,
+   "column": 34,
+   "value": "735",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4500U · 1.8 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4500U"
+  },
+  {
+   "row": 223,
+   "column": 35,
+   "value": "1391",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Core i7-4500U · 1.8 GHz (2 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Core i7-4500U"
+  },
+  {
+   "row": 230,
+   "column": 34,
+   "value": "1015",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2699 v4 · 2.2 GHz (22 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2699 v4"
+  },
+  {
+   "row": 230,
+   "column": 35,
+   "value": "10725",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2699 v4 · 2.2 GHz (22 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2699 v4"
+  },
+  {
+   "row": 230,
+   "column": 36,
+   "value": "Intel Xeon E5-2699 v4 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2699 v4 · 2.2 GHz (22 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2699 v4"
+  },
+  {
+   "row": 231,
+   "column": 34,
+   "value": "1036",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 v3 · 2.6 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690 v3"
+  },
+  {
+   "row": 231,
+   "column": 35,
+   "value": "8039",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 v3 · 2.6 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690 v3"
+  },
+  {
+   "row": 231,
+   "column": 36,
+   "value": "Intel Xeon E5-2690 v3 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 v3 · 2.6 GHz (12 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690 v3"
+  },
+  {
+   "row": 233,
+   "column": 34,
+   "value": "676",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 · 2.9 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690"
+  },
+  {
+   "row": 233,
+   "column": 35,
+   "value": "4410",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 · 2.9 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690"
+  },
+  {
+   "row": 233,
+   "column": 36,
+   "value": "Intel Xeon E5-2690 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · Intel Xeon E5-2690 · 2.9 GHz (8 cores) · 2026-10-25 확인",
+   "company": "Intel",
+   "product": "Xeon E5-2690"
+  },
+  {
+   "row": 244,
+   "column": 34,
+   "value": "3130",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 9850X3D · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 9850X3D"
+  },
+  {
+   "row": 244,
+   "column": 35,
+   "value": "19491",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 9850X3D · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 9850X3D"
+  },
+  {
+   "row": 244,
+   "column": 36,
+   "value": "AMD Ryzen 7 9850X3D · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 9850X3D · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 9850X3D"
+  },
+  {
+   "row": 245,
+   "column": 34,
+   "value": "3067",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 9950X · 4.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 9950X"
+  },
+  {
+   "row": 245,
+   "column": 35,
+   "value": "26154",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 9950X · 4.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 9950X"
+  },
+  {
+   "row": 245,
+   "column": 36,
+   "value": "AMD Ryzen 9 9950X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 9950X · 4.3 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 9950X"
+  },
+  {
+   "row": 246,
+   "column": 34,
+   "value": "2532",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X3D · 4.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X3D"
+  },
+  {
+   "row": 246,
+   "column": 35,
+   "value": "22256",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X3D · 4.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X3D"
+  },
+  {
+   "row": 246,
+   "column": 36,
+   "value": "AMD Ryzen 9 7950X3D · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X3D · 4.2 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X3D"
+  },
+  {
+   "row": 247,
+   "column": 34,
+   "value": "2600",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X · 4.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X"
+  },
+  {
+   "row": 247,
+   "column": 35,
+   "value": "22468",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X · 4.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X"
+  },
+  {
+   "row": 247,
+   "column": 36,
+   "value": "AMD Ryzen 9 7950X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 7950X · 4.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 7950X"
+  },
+  {
+   "row": 248,
+   "column": 34,
+   "value": "2012",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 5800X3D · 3.4 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 5800X3D"
+  },
+  {
+   "row": 248,
+   "column": 35,
+   "value": "11795",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 5800X3D · 3.4 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 5800X3D"
+  },
+  {
+   "row": 248,
+   "column": 36,
+   "value": "AMD Ryzen 7 5800X3D · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 5800X3D · 3.4 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 5800X3D"
+  },
+  {
+   "row": 249,
+   "column": 34,
+   "value": "2086",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 5950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 5950X"
+  },
+  {
+   "row": 249,
+   "column": 35,
+   "value": "15314",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 5950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 5950X"
+  },
+  {
+   "row": 249,
+   "column": 36,
+   "value": "AMD Ryzen 9 5950X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 5950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 5950X"
+  },
+  {
+   "row": 250,
+   "column": 34,
+   "value": "1576",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 3950X · 3.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 3950X"
+  },
+  {
+   "row": 250,
+   "column": 35,
+   "value": "12519",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 3950X · 3.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 3950X"
+  },
+  {
+   "row": 250,
+   "column": 36,
+   "value": "AMD Ryzen 9 3950X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 9 3950X · 3.5 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 9 3950X"
+  },
+  {
+   "row": 251,
+   "column": 34,
+   "value": "1277",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 2700X · 3.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 2700X"
+  },
+  {
+   "row": 251,
+   "column": 35,
+   "value": "7426",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 2700X · 3.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 2700X"
+  },
+  {
+   "row": 251,
+   "column": 36,
+   "value": "AMD Ryzen 7 2700X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 2700X · 3.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 2700X"
+  },
+  {
+   "row": 252,
+   "column": 34,
+   "value": "1126",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 1800X · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 1800X"
+  },
+  {
+   "row": 252,
+   "column": 35,
+   "value": "6671",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 1800X · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 1800X"
+  },
+  {
+   "row": 252,
+   "column": 36,
+   "value": "AMD Ryzen 7 1800X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen 7 1800X · 3.6 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen 7 1800X"
+  },
+  {
+   "row": 253,
+   "column": 34,
+   "value": "650",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD FX-9590 · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "FX-9590"
+  },
+  {
+   "row": 253,
+   "column": 35,
+   "value": "3014",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD FX-9590 · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "FX-9590"
+  },
+  {
+   "row": 253,
+   "column": 36,
+   "value": "AMD FX-9590 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD FX-9590 · 4.7 GHz (8 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "FX-9590"
+  },
+  {
+   "row": 272,
+   "column": 34,
+   "value": "2350",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI 9 HX 370 · 2.0 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI 9 HX 370"
+  },
+  {
+   "row": 272,
+   "column": 35,
+   "value": "15016",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI 9 HX 370 · 2.0 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI 9 HX 370"
+  },
+  {
+   "row": 272,
+   "column": 36,
+   "value": "AMD Ryzen AI 9 HX 370 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI 9 HX 370 · 2.0 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI 9 HX 370"
+  },
+  {
+   "row": 273,
+   "column": 34,
+   "value": "2470",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 392 · 3.2 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 392"
+  },
+  {
+   "row": 273,
+   "column": 35,
+   "value": "20027",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 392 · 3.2 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 392"
+  },
+  {
+   "row": 273,
+   "column": 36,
+   "value": "AMD Ryzen AI Max+ 392 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 392 · 3.2 GHz (12 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 392"
+  },
+  {
+   "row": 274,
+   "column": 34,
+   "value": "2424",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 395 · 3.0 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 395"
+  },
+  {
+   "row": 274,
+   "column": 35,
+   "value": "20810",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 395 · 3.0 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 395"
+  },
+  {
+   "row": 274,
+   "column": 36,
+   "value": "AMD Ryzen AI Max+ 395 · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen AI Max+ 395 · 3.0 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen AI Max+ 395"
+  },
+  {
+   "row": 285,
+   "column": 34,
+   "value": "1492",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 3990X · 2.9 GHz (64 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 3990X"
+  },
+  {
+   "row": 285,
+   "column": 35,
+   "value": "20624",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 3990X · 2.9 GHz (64 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 3990X"
+  },
+  {
+   "row": 285,
+   "column": 36,
+   "value": "AMD Ryzen Threadripper 3990X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 3990X · 2.9 GHz (64 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 3990X"
+  },
+  {
+   "row": 286,
+   "column": 34,
+   "value": "1169",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 1950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 1950X"
+  },
+  {
+   "row": 286,
+   "column": 35,
+   "value": "10854",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 1950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 1950X"
+  },
+  {
+   "row": 286,
+   "column": 36,
+   "value": "AMD Ryzen Threadripper 1950X · Processor 평균 (≥5 results)",
+   "source": "geekbench7_processors",
+   "note": "Geekbench 7 공식 CPU 차트 평균 · AMD Ryzen Threadripper 1950X · 3.4 GHz (16 cores) · 2026-10-25 확인",
+   "company": "AMD",
+   "product": "Ryzen Threadripper 1950X"
+  },
+  {
+   "row": 8,
+   "column": 32,
+   "value": "3156",
+   "source": "m3_ultra_gb6",
+   "note": "평균이 아닌 개별 결과. Geekbench 6.4.0, Mac Studio 2025, 32코어, macOS 15.5, 512 GB, 2025-07-26 업로드.",
+   "company": "Apple",
+   "product": "M3 Ultra"
+  },
+  {
+   "row": 8,
+   "column": 33,
+   "value": "27515",
+   "source": "m3_ultra_gb6",
+   "note": "평균이 아닌 개별 결과. Geekbench 6.4.0, Mac Studio 2025, 32코어, macOS 15.5, 512 GB, 2025-07-26 업로드.",
+   "company": "Apple",
+   "product": "M3 Ultra"
+  },
+  {
+   "row": 298,
+   "column": 9,
+   "value": "64코어",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 10,
+   "value": "2.60 GHz",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 11,
+   "value": "터보 없음",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 13,
+   "value": "Neoverse V1",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 18,
+   "value": "8",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 19,
+   "value": "코어당 64 KB I + 64 KB D",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 20,
+   "value": "코어당 1 MB",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 298,
+   "column": 21,
+   "value": "32 MB 공유",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton3"
+  },
+  {
+   "row": 297,
+   "column": 10,
+   "value": "2.80 GHz (48xlarge 2.70 GHz)",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton4"
+  },
+  {
+   "row": 297,
+   "column": 11,
+   "value": "터보 없음",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton4"
+  },
+  {
+   "row": 297,
+   "column": 19,
+   "value": "코어당 64 KB I + 64 KB D",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton4"
+  },
+  {
+   "row": 297,
+   "column": 21,
+   "value": "소켓당 36 MB 공유",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton4"
+  },
+  {
+   "row": 296,
+   "column": 10,
+   "value": "3.30 GHz",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 11,
+   "value": "터보 없음",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 13,
+   "value": "Neoverse V3",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 18,
+   "value": "12",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 19,
+   "value": "코어당 64 KB I + 64 KB D",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 20,
+   "value": "코어당 2 MB",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 296,
+   "column": 21,
+   "value": "NUMA당 48 MB (≤16xlarge) / 96 MB (24xlarge·48xlarge)",
+   "source": "aws_guide",
+   "note": "물리 코어 및 소켓·NUMA별 캐시·메모리 채널. VM vCPU와 칩 물리 코어를 구분합니다.",
+   "company": "Amazon AWS",
+   "product": "Graviton5"
+  },
+  {
+   "row": 290,
+   "column": 19,
+   "value": "코어당 64 KB I + 64 KB D",
+   "source": "nvidia_grace",
+   "note": "CPU Superchip은 Grace CPU 2개 구성. L1·L2는 코어당 사양입니다.",
+   "company": "NVIDIA",
+   "product": "Grace CPU Superchip"
+  },
+  {
+   "row": 290,
+   "column": 20,
+   "value": "코어당 1 MB",
+   "source": "nvidia_grace",
+   "note": "CPU Superchip은 Grace CPU 2개 구성. L1·L2는 코어당 사양입니다.",
+   "company": "NVIDIA",
+   "product": "Grace CPU Superchip"
+  },
+  {
+   "row": 293,
+   "column": 9,
+   "value": "132 active cores",
+   "source": "microsoft_cobalt",
+   "note": "SoC당 132 active cores 및 코어당 L2 3 MB.",
+   "company": "Microsoft",
+   "product": "Azure Cobalt 200"
+  },
+  {
+   "row": 293,
+   "column": 20,
+   "value": "코어당 3 MB",
+   "source": "microsoft_cobalt",
+   "note": "SoC당 132 active cores 및 코어당 L2 3 MB.",
+   "company": "Microsoft",
+   "product": "Azure Cobalt 200"
+  }
+ ]
+}
