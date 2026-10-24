@@ -1,9 +1,22 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
 
-from fetch_games import compact_history, parse_apple, parse_play, parse_steam
+from fetch_games import STEAM, collect_steam, compact_history, parse_apple, parse_play, parse_steam
 
 
 class GameParsingTests(unittest.TestCase):
+    def test_failed_requests_do_not_refresh_old_snapshot_dates(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)
+            original=json.dumps({"fetched":"2026-10-24","games":[{"id":str(g[0]),"fetched":"2026-10-24"} for g in STEAM]})
+            (out/"steam.json").write_text(original,encoding="utf-8")
+            with patch("fetch_games.OUT",out),patch("fetch_games.get",side_effect=RuntimeError("blocked")):
+                with self.assertRaises(RuntimeError): collect_steam("2026-10-24")
+            self.assertEqual((out/"steam.json").read_text(encoding="utf-8"),original)
+
     def test_old_history_keeps_real_monthly_endpoints_and_recent_days(self):
         rows=[{"date":date,"id":"one"} for date in ["2026-01-01","2026-01-29","2026-02-03","2026-10-01","2026-10-02"]]
         actual=compact_history(rows,["id"],"2026-10-24")

@@ -162,7 +162,8 @@ def collect_steam(today):
             return prior.get(str(appid))
     with ThreadPoolExecutor(max_workers=3) as pool:
         games = [g for g in pool.map(fetch_game, STEAM) if g]
-    if len(games) < len(STEAM)*0.8: raise RuntimeError("Steam coverage below 80%; published snapshot preserved")
+    if len(games) < len(STEAM)*0.8 or len(errors) > len(STEAM)*0.2:
+        raise RuntimeError("Steam successful fetch coverage below 80%; published snapshot preserved")
     save(OUT/"steam.json", {"source":"SteamCharts","fetched":today,"panel_size":len(STEAM),"errors":errors,"games":games})
     return len(games)
 
@@ -192,7 +193,9 @@ def collect_mobile(today, discover):
             return prior.get(package)
     with ThreadPoolExecutor(max_workers=3) as pool:
         games = [g for g in pool.map(fetch_game, sorted(packages)) if g]
-    if len(games) < 15: raise RuntimeError("Google Play coverage too low; published snapshot preserved")
+    request_errors = sum(e["id"] in packages for e in errors)
+    if len(games) < 15 or request_errors > len(packages)*0.2:
+        raise RuntimeError("Google Play successful fetch coverage too low; published snapshot preserved")
     observations = { (p["date"],p["id"]):p for p in old.get("observations",[])}
     for game in games:
         if game["fetched"] == today:
@@ -232,7 +235,8 @@ def collect_apple(today):
             return previous.get((country,kind))
     specs = [(c,k) for c in ["kr","us","jp","cn"] for k in ["topfreeapplications","toppaidapplications"]]
     with ThreadPoolExecutor(max_workers=3) as pool: charts = [c for c in pool.map(one,specs) if c]
-    if len(charts) < 4: raise RuntimeError("Apple coverage too low; published snapshot preserved")
+    if len(charts) < 4 or len(errors) > 4:
+        raise RuntimeError("Apple successful fetch coverage too low; published snapshot preserved")
     history = {(h["date"],h["country"],h["kind"]):h for h in old.get("history",[])}
     for c in charts:
         if c["fetched"] == today:

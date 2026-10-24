@@ -37,7 +37,7 @@ const fs = require('node:fs');
     assert(estimates.observations.every(g=>g.source_updated<=g.observed_at && g.downloads_30d<=g.total_estimate && !g.genre.includes('?')));
     const rows=m.mobileRows(mobile,estimates);
     const candy=rows.find(g=>g.id==='com.king.candycrushsaga');
-    assert.equal(candy.source_updated,'2026-10-21');
+    assert.equal(candy.source_updated,estimates.observations.find(g=>g.id===candy.id).source_updated);
     assert.equal(candy.fetched,mobile.games.find(g=>g.id===candy.id).fetched);
     assert.notEqual(candy.estimate_url,candy.url);
     for(const chart of read('apple').charts){
