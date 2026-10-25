@@ -1,0 +1,3355 @@
+{
+ "id": "nvidia_ai_specs",
+ "name": "NVIDIA AI 가속기 · GPU와 시스템 사양",
+ "manual": true,
+ "frequency": "irregular",
+ "updated": "2026-10-25",
+ "fetched": "2026-10-25",
+ "source": "사용자 Google Sheets · GPU(Nvidia)",
+ "source_url": "https://docs.google.com/spreadsheets/d/1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g/edit#gid=0",
+ "source_range": "GPU(Nvidia)!A1:AE50",
+ "note": "기본은 GPU 모듈 비교입니다. 슈퍼칩·DGX 서버·랙·아키텍처 최대·네트워크는 제품 단위 필터로 나눕니다. FP4·FP8·FP16의 두 수치는 Dense / Sparse 순서이며 실측 벤치마크가 아닌 제조사 이론 성능입니다. Rubin 학습과 추론은 조건이 다릅니다. HBM·NVLink·전력은 선택한 프로파일과 제품 단위 기준이며 미확인 원본 값에는 검증 출처 표시가 없습니다.",
+ "update_note": "원본 시트와 공개 자료를 검토해 갱신하는 스냅샷입니다. 표에 표시된 확인일 기준이며 자동 실시간 수집은 아닙니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "제품 / 프로파일",
+   "width": 210
+  },
+  {
+   "id": "architecture",
+   "label": "아키텍처",
+   "width": 115
+  },
+  {
+   "id": "configuration",
+   "label": "GPU·CPU 구성",
+   "width": 165
+  },
+  {
+   "id": "memory",
+   "label": "GPU 메모리",
+   "width": 145
+  },
+  {
+   "id": "bandwidth",
+   "label": "HBM 대역폭",
+   "width": 125
+  },
+  {
+   "id": "power",
+   "label": "전력 · 단위 확인",
+   "width": 145
+  },
+  {
+   "id": "nvlink",
+   "label": "NVLink 대역폭",
+   "width": 140
+  },
+  {
+   "id": "fp4",
+   "label": "FP4 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp8",
+   "label": "FP8 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp16",
+   "label": "FP16/BF16 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp32",
+   "label": "FP32",
+   "width": 110
+  },
+  {
+   "id": "process",
+   "label": "제조 공정",
+   "width": 115
+  },
+  {
+   "id": "sm",
+   "label": "SM 수",
+   "width": 75
+  },
+  {
+   "id": "cores",
+   "label": "CUDA 코어",
+   "width": 100
+  },
+  {
+   "id": "cache",
+   "label": "L2 캐시",
+   "width": 100
+  },
+  {
+   "id": "transistors",
+   "label": "트랜지스터",
+   "width": 130
+  },
+  {
+   "id": "die_size",
+   "label": "GPU Die 면적",
+   "width": 110
+  },
+  {
+   "id": "interface",
+   "label": "메모리 인터페이스",
+   "width": 120
+  },
+  {
+   "id": "cpu",
+   "label": "CPU·시스템 메모리",
+   "width": 240
+  },
+  {
+   "id": "c2c",
+   "label": "NVLink-C2C",
+   "width": 130
+  },
+  {
+   "id": "network",
+   "label": "네트워크 대역폭",
+   "width": 140
+  },
+  {
+   "id": "released",
+   "label": "시트 발표/출시일",
+   "width": 110
+  },
+  {
+   "id": "scope_note",
+   "label": "비교 기준·확인 사항",
+   "width": 280
+  }
+ ],
+ "rows": [
+  {
+   "id": "ai-sheet-5",
+   "sheet_row": 5,
+   "source_values": [
+    "Kepler",
+    "GK180",
+    "2013-11-18",
+    "",
+    "235W",
+    "",
+    "15",
+    "",
+    "",
+    "",
+    "5 TFLOPS",
+    "2,880",
+    "7,100,000,000",
+    "28nm",
+    "12GB GDDR5",
+    "",
+    "384 Bit",
+    "551",
+    "",
+    "1536KB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GK180",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "GK180",
+    "architecture": "Kepler",
+    "released": "2013-11-18",
+    "configuration": "",
+    "power": "235W",
+    "nvlink": "",
+    "sm": "15",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "5 TFLOPS",
+    "cores": "2,880",
+    "transistors": "7,100,000,000",
+    "process": "28nm",
+    "memory": "12GB GDDR5",
+    "bandwidth": "",
+    "interface": "384 Bit",
+    "die_size": "551",
+    "cache": "1536KB",
+    "scope_note": "시트의 칩명 · 보드 SKU 미확인. 제품별 실측·메모리 구성으로 일반화하지 않음."
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-6",
+   "sheet_row": 6,
+   "source_values": [
+    "Maxwell",
+    "GM200",
+    "2015-11-10",
+    "",
+    "250W",
+    "",
+    "24",
+    "",
+    "",
+    "",
+    "6.8 TFLOPS",
+    "3,072",
+    "8,000,000,000",
+    "28nm",
+    "24GB GDDR5",
+    "",
+    "384 Bit",
+    "601",
+    "",
+    "3072KB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GM200",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "GM200",
+    "architecture": "Maxwell",
+    "released": "2015-11-10",
+    "configuration": "",
+    "power": "250W",
+    "nvlink": "",
+    "sm": "24",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "6.8 TFLOPS",
+    "cores": "3,072",
+    "transistors": "8,000,000,000",
+    "process": "28nm",
+    "memory": "24GB GDDR5",
+    "bandwidth": "",
+    "interface": "384 Bit",
+    "die_size": "601",
+    "cache": "3072KB",
+    "scope_note": "시트의 칩명 · 보드 SKU 미확인. 제품별 실측·메모리 구성으로 일반화하지 않음."
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-7",
+   "sheet_row": 7,
+   "source_values": [
+    "Pascal",
+    "GP100",
+    "2016-04-05",
+    "",
+    "300W",
+    "",
+    "56",
+    "",
+    "",
+    "",
+    "10.6 TFLOPS",
+    "3,584",
+    "15,300,000,000",
+    "16nm FinFET+",
+    "16GB HBM2",
+    "720GB/s",
+    "4096 Bit",
+    "610",
+    "",
+    "4096KB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GP100",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "GP100",
+    "architecture": "Pascal",
+    "released": "2016-04-05",
+    "configuration": "",
+    "power": "300W",
+    "nvlink": "",
+    "sm": "56",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "10.6 TFLOPS",
+    "cores": "3,584",
+    "transistors": "15,300,000,000",
+    "process": "16nm FinFET+",
+    "memory": "16GB HBM2",
+    "bandwidth": "720GB/s",
+    "interface": "4096 Bit",
+    "die_size": "610",
+    "cache": "4096KB",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "Tesla P100 SXM2 16GB",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "architecture": {
+     "value": "Pascal",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "memory": {
+     "value": "16 GB HBM2",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "bandwidth": {
+     "value": "732 GB/s",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "power": {
+     "value": "300 W",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "fp32": {
+     "value": "10.6 TFLOPS",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "fp16": {
+     "value": "21.2 TFLOPS · 비 Tensor",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "configuration": {
+     "value": "1 GPU · SXM2",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    },
+    "cores": {
+     "value": "3584 CUDA",
+     "source": "p100",
+     "note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+    }
+   },
+   "review_note": "시트 GP100 행을 데이터시트의 P100 SXM2 16GB 프로파일로 명시. 초기 발표720GB/s와 데이터시트732GB/s의 차이를 보존."
+  },
+  {
+   "id": "ai-sheet-8",
+   "sheet_row": 8,
+   "source_values": [
+    "Volta",
+    "GV100",
+    "2017-05-10",
+    "",
+    "300W",
+    "",
+    "80",
+    "",
+    "",
+    "",
+    "15.7 TFLOPS",
+    "5,120",
+    "21,100,000,000",
+    "12nm FFN",
+    "16GB HBM2",
+    "900GB/s",
+    "4096 Bit",
+    "815",
+    "",
+    "6144KB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GV100",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "GV100",
+    "architecture": "Volta",
+    "released": "2017-05-10",
+    "configuration": "",
+    "power": "300W",
+    "nvlink": "",
+    "sm": "80",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "15.7 TFLOPS",
+    "cores": "5,120",
+    "transistors": "21,100,000,000",
+    "process": "12nm FFN",
+    "memory": "16GB HBM2",
+    "bandwidth": "900GB/s",
+    "interface": "4096 Bit",
+    "die_size": "815",
+    "cache": "6144KB",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-9",
+   "sheet_row": 9,
+   "source_values": [
+    "Ampere",
+    "A100",
+    "2020-05-14",
+    "GPU 1",
+    "400W",
+    "600GB/s",
+    "108",
+    "x",
+    "",
+    "",
+    "",
+    "6,912",
+    "54,200,000,000",
+    "TSMC N7",
+    "80GB HBM2E",
+    "2.039TB/s",
+    "5120 Bit",
+    "826",
+    "",
+    "40MB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "A100",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "A100",
+    "architecture": "Ampere",
+    "released": "2020-05-14",
+    "configuration": "시트 Die 표기: GPU 1",
+    "power": "400W",
+    "nvlink": "600GB/s",
+    "sm": "108",
+    "fp4": "x",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "6,912",
+    "transistors": "54,200,000,000",
+    "process": "TSMC N7",
+    "memory": "80GB HBM2E",
+    "bandwidth": "2.039TB/s",
+    "interface": "5120 Bit",
+    "die_size": "826",
+    "cache": "40MB",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "A100 SXM",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "architecture": {
+     "value": "Ampere",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "configuration": {
+     "value": "1 GPU · SXM",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "memory": {
+     "value": "80 GB HBM2E",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "bandwidth": {
+     "value": "2.039 TB/s",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "power": {
+     "value": "400 W",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "nvlink": {
+     "value": "600 GB/s",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp32": {
+     "value": "19.5 TFLOPS",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp4": {
+     "value": "미지원",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp8": {
+     "value": "미지원",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp16": {
+     "value": "312 / 624 TFLOPS",
+     "source": "a100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    }
+   },
+   "review_note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+  },
+  {
+   "id": "ai-sheet-10",
+   "sheet_row": 10,
+   "source_values": [
+    "Hopper",
+    "H100",
+    "2022-03-22",
+    "GPU 1",
+    "700W",
+    "900GB/s",
+    "132",
+    "x",
+    "3958 TFLOPS",
+    "",
+    "67 TFLOPS",
+    "16,896",
+    "80,000,000,000",
+    "TSMC N4",
+    "80GB HBM3",
+    "3.35TB/s",
+    "5120 Bit",
+    "814",
+    "",
+    "50MB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "H100",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "H100",
+    "architecture": "Hopper",
+    "released": "2022-03-22",
+    "configuration": "시트 Die 표기: GPU 1",
+    "power": "700W",
+    "nvlink": "900GB/s",
+    "sm": "132",
+    "fp4": "x",
+    "fp8": "3958 TFLOPS",
+    "fp16": "",
+    "fp32": "67 TFLOPS",
+    "cores": "16,896",
+    "transistors": "80,000,000,000",
+    "process": "TSMC N4",
+    "memory": "80GB HBM3",
+    "bandwidth": "3.35TB/s",
+    "interface": "5120 Bit",
+    "die_size": "814",
+    "cache": "50MB",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "H100 SXM",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "architecture": {
+     "value": "Hopper",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "configuration": {
+     "value": "1 GPU · 1 die",
+     "source": "ultra_arch",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "memory": {
+     "value": "80 GB HBM3",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "bandwidth": {
+     "value": "3.35 TB/s",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "power": {
+     "value": "최대 700 W",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "nvlink": {
+     "value": "900 GB/s",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp32": {
+     "value": "67 TFLOPS",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp4": {
+     "value": "미지원",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp8": {
+     "value": "1979 / 3958 TFLOPS",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp16": {
+     "value": "989.5 / 1979 TFLOPS",
+     "source": "h100",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    }
+   },
+   "review_note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+  },
+  {
+   "id": "ai-sheet-11",
+   "sheet_row": 11,
+   "source_values": [
+    "",
+    "H200",
+    "",
+    "GPU 1",
+    "700W",
+    "900GB/s",
+    "",
+    "x",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "141GB",
+    "4.8GB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "H200",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "H200",
+    "architecture": "",
+    "released": "",
+    "configuration": "시트 Die 표기: GPU 1",
+    "power": "700W",
+    "nvlink": "900GB/s",
+    "sm": "",
+    "fp4": "x",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "141GB",
+    "bandwidth": "4.8GB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "H200 SXM",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "architecture": {
+     "value": "Hopper",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "configuration": {
+     "value": "1 GPU · 1 die",
+     "source": "ultra_arch",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "memory": {
+     "value": "141 GB HBM3E",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "bandwidth": {
+     "value": "4.8 TB/s",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "power": {
+     "value": "최대 700 W",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "nvlink": {
+     "value": "900 GB/s",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp32": {
+     "value": "67 TFLOPS",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp4": {
+     "value": "미지원",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp8": {
+     "value": "1979 / 3958 TFLOPS",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    },
+    "fp16": {
+     "value": "989.5 / 1979 TFLOPS",
+     "source": "h200",
+     "note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+    }
+   },
+   "review_note": "SXM 프로파일. Tensor 성능의 표기 순서는 Dense / Sparse. H100/H200 Dense 수치는 공식 Sparse 수치÷2. H200 원본의 4.8GB/s는 4.8TB/s로 정정."
+  },
+  {
+   "id": "ai-sheet-12",
+   "sheet_row": 12,
+   "source_values": [
+    "Blackwell",
+    "B100",
+    "2024-03-18",
+    "GPU 2",
+    "700W",
+    "1.8TB/s",
+    "",
+    "7 PFLOPS",
+    "3.5 PFLOPS",
+    "1.75 PFLOPS",
+    "",
+    "",
+    "",
+    "",
+    "180GB",
+    "8TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "B100",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "B100",
+    "architecture": "Blackwell",
+    "released": "2024-03-18",
+    "configuration": "시트 Die 표기: GPU 2",
+    "power": "700W",
+    "nvlink": "1.8TB/s",
+    "sm": "",
+    "fp4": "7 PFLOPS",
+    "fp8": "3.5 PFLOPS",
+    "fp16": "1.75 PFLOPS",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "180GB",
+    "bandwidth": "8TB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-13",
+   "sheet_row": 13,
+   "source_values": [
+    "",
+    "B200",
+    "",
+    "GPU 2",
+    "1kW",
+    "1.8TB/s",
+    "148",
+    "9/18 PFLOPS",
+    "4.5/9 PFLOPS",
+    "2.25 PFLOPS",
+    "75 TFLOPS",
+    "",
+    "208,000,000,000",
+    "TSMC N4+",
+    "192GB HBM3E",
+    "8TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "B200",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "B200",
+    "architecture": "",
+    "released": "",
+    "configuration": "시트 Die 표기: GPU 2",
+    "power": "1kW",
+    "nvlink": "1.8TB/s",
+    "sm": "148",
+    "fp4": "9/18 PFLOPS",
+    "fp8": "4.5/9 PFLOPS",
+    "fp16": "2.25 PFLOPS",
+    "fp32": "75 TFLOPS",
+    "cores": "",
+    "transistors": "208,000,000,000",
+    "process": "TSMC N4+",
+    "memory": "192GB HBM3E",
+    "bandwidth": "8TB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "B200 · HGX/DGX 프로파일",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "configuration": {
+     "value": "1 GPU · 2 dies",
+     "source": "ultra_arch",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "memory": {
+     "value": "180 GB HBM3E",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "bandwidth": {
+     "value": "8 TB/s",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "nvlink": {
+     "value": "1.8 TB/s",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "fp4": {
+     "value": "9 / 18 PFLOPS",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "fp8": {
+     "value": "4.5 / 9 PFLOPS",
+     "source": "dgxb",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "fp16": {
+     "value": "2.25 / 4.5 PFLOPS",
+     "source": "hgx",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    },
+    "fp32": {
+     "value": "75 TFLOPS",
+     "source": "hgx",
+     "note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+    }
+   },
+   "review_note": "DGX B200 8GPU 사양의 메모리1440GB·대역폭64TB/s·FP4 Dense72/Sparse144·FP8 Sparse72를8로 나눈 단일 GPU 프로파일. FP16은 HGX B200 Sparse36PFLOPS÷8, Dense는 절반. 192GB 아키텍처 최대치와 구분."
+  },
+  {
+   "id": "ai-sheet-14",
+   "sheet_row": 14,
+   "source_values": [
+    "",
+    "Full B200",
+    "",
+    "GPU 2",
+    "1.2kW",
+    "1.8TB/s",
+    "",
+    "10 PFLOPS",
+    "5 PFLOPS",
+    "2.5 PFLOPS",
+    "",
+    "",
+    "",
+    "",
+    "192GB",
+    "8TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Full B200",
+   "company": "NVIDIA",
+   "group": "아키텍처 최대",
+   "original": {
+    "name": "Full B200",
+    "architecture": "",
+    "released": "",
+    "configuration": "시트 Die 표기: GPU 2",
+    "power": "1.2kW",
+    "nvlink": "1.8TB/s",
+    "sm": "",
+    "fp4": "10 PFLOPS",
+    "fp8": "5 PFLOPS",
+    "fp16": "2.5 PFLOPS",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "192GB",
+    "bandwidth": "8TB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "Blackwell 최대 · 원본 Full B200",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "configuration": {
+     "value": "1 GPU · 2 dies",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "memory": {
+     "value": "최대 192 GB HBM3E",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "bandwidth": {
+     "value": "최대 8 TB/s",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "power": {
+     "value": "최대 1200 W",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "nvlink": {
+     "value": "1.8 TB/s",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "fp4": {
+     "value": "10 / 20 PFLOPS",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "fp8": {
+     "value": "5 / 10 PFLOPS",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    },
+    "process": {
+     "value": "TSMC 4NP",
+     "source": "ultra_arch",
+     "note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+    }
+   },
+   "review_note": "NVIDIA 아키텍처 최대치 기준. Full B200은 공식 판매 SKU 명칭으로 확인되지 않았으므로 HGX B200과 별도 분류."
+  },
+  {
+   "id": "ai-sheet-15",
+   "sheet_row": 15,
+   "source_values": [
+    "Ultra",
+    "B300",
+    "",
+    "",
+    "1.1kW",
+    "1.8TB/s",
+    "",
+    "14/18 PF",
+    "4.5/9 PFLOPS",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "279GB",
+    "8TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "B300",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "B300",
+    "architecture": "Ultra",
+    "released": "",
+    "configuration": "",
+    "power": "1.1kW",
+    "nvlink": "1.8TB/s",
+    "sm": "",
+    "fp4": "14/18 PF",
+    "fp8": "4.5/9 PFLOPS",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "279GB",
+    "bandwidth": "8TB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "B300 · HGX 프로파일",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "architecture": {
+     "value": "Blackwell Ultra",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "configuration": {
+     "value": "1 GPU · 2 dies",
+     "source": "ultra_arch",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "memory": {
+     "value": "270 GB HBM3E",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "bandwidth": {
+     "value": "7.7 TB/s",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "power": {
+     "value": "최대 1100 W",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "nvlink": {
+     "value": "1.8 TB/s",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "fp4": {
+     "value": "14 / 18 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "fp8": {
+     "value": "4.5 / 9 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "fp16": {
+     "value": "2.25 / 4.5 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    },
+    "fp32": {
+     "value": "75 TFLOPS",
+     "source": "ultra_datasheet",
+     "note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+    }
+   },
+   "review_note": "HGX B300 단일 GPU 열 기준. 원본의279GB는 GB300 프로파일과 혼합되어 있어270GB로 구분. FP4 Dense14는 데이터시트 반올림값이며 HGX 시스템 총합108/8과 자릿수가 다름."
+  },
+  {
+   "id": "ai-sheet-16",
+   "sheet_row": 16,
+   "source_values": [
+    "Vera Rubin",
+    "Rubin GPU",
+    "2026-01-05",
+    "",
+    "",
+    "3.6TB/s",
+    "",
+    "50 PFLOPS(NVFP4, inference), 35(Training)",
+    "",
+    "",
+    "130 TFLOPS",
+    "",
+    "336,000,000,000",
+    "",
+    "288GB HBM4",
+    "22TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Rubin GPU",
+   "company": "NVIDIA",
+   "group": "GPU 모듈",
+   "original": {
+    "name": "Rubin GPU",
+    "architecture": "Vera Rubin",
+    "released": "2026-01-05",
+    "configuration": "",
+    "power": "",
+    "nvlink": "3.6TB/s",
+    "sm": "",
+    "fp4": "50 PFLOPS(NVFP4, inference), 35(Training)",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "130 TFLOPS",
+    "cores": "",
+    "transistors": "336,000,000,000",
+    "process": "",
+    "memory": "288GB HBM4",
+    "bandwidth": "22TB/s",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "Rubin GPU · NVL72 제품",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "architecture": {
+     "value": "Rubin",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "configuration": {
+     "value": "1 GPU",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "memory": {
+     "value": "288 GB HBM4",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "bandwidth": {
+     "value": "19.2 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "nvlink": {
+     "value": "3 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp4": {
+     "value": "25 / 50 PFLOPS · 추론",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp8": {
+     "value": "17.5 PFLOPS · Dense 학습",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp16": {
+     "value": "4 PFLOPS · Dense",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp32": {
+     "value": "130 TFLOPS",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "cpu": {
+     "value": "—",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    }
+   },
+   "review_note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+  },
+  {
+   "id": "ai-sheet-19",
+   "sheet_row": 19,
+   "source_values": [
+    "",
+    "DGX-1",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DGX-1",
+   "company": "NVIDIA",
+   "group": "DGX 서버",
+   "original": {
+    "name": "DGX-1",
+    "architecture": "",
+    "released": "",
+    "configuration": "",
+    "power": "",
+    "nvlink": "",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "",
+    "bandwidth": "",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "DGX-1은 P100/V100 모델이 있어 원본만으로 변형을 특정하지 않음."
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-20",
+   "sheet_row": 20,
+   "source_values": [
+    "Ampere",
+    "DGX A100",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DGX A100",
+   "company": "NVIDIA",
+   "group": "DGX 서버",
+   "original": {
+    "name": "DGX A100",
+    "architecture": "Ampere",
+    "released": "",
+    "configuration": "",
+    "power": "",
+    "nvlink": "",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "",
+    "bandwidth": "",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "DGX A100 · 640GB",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "architecture": {
+     "value": "Ampere",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "configuration": {
+     "value": "8 A100 GPUs",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "memory": {
+     "value": "640 GB HBM2E",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "power": {
+     "value": "최대 6.5 kW · 시스템",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "cpu": {
+     "value": "2 AMD EPYC 7742 ·128코어 ·2TB 시스템 메모리",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    },
+    "nvlink": {
+     "value": "600 GB/s · GPU 간",
+     "source": "dgxa",
+     "note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+    }
+   },
+   "review_note": "8GPU 640GB 서버 프로파일. 320GB 모델과 구분. GPU TDP합과 시스템 전력은 별개."
+  },
+  {
+   "id": "ai-sheet-21",
+   "sheet_row": 21,
+   "source_values": [
+    "Hopper",
+    "DGX H100",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DGX H100",
+   "company": "NVIDIA",
+   "group": "DGX 서버",
+   "original": {
+    "name": "DGX H100",
+    "architecture": "Hopper",
+    "released": "",
+    "configuration": "",
+    "power": "",
+    "nvlink": "",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "",
+    "bandwidth": "",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "architecture": {
+     "value": "Hopper",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "configuration": {
+     "value": "8 H100 GPUs",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "memory": {
+     "value": "640 GB HBM3",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "power": {
+     "value": "최대 10.2 kW · 시스템",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "cpu": {
+     "value": "2 Intel Xeon 8480C ·112코어 ·2TB 시스템 메모리",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "nvlink": {
+     "value": "900 GB/s · GPU 간",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    }
+   },
+   "review_note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+  },
+  {
+   "id": "ai-sheet-22",
+   "sheet_row": 22,
+   "source_values": [
+    "",
+    "DGX H200",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DGX H200",
+   "company": "NVIDIA",
+   "group": "DGX 서버",
+   "original": {
+    "name": "DGX H200",
+    "architecture": "",
+    "released": "",
+    "configuration": "",
+    "power": "",
+    "nvlink": "",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "",
+    "bandwidth": "",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "architecture": {
+     "value": "Hopper",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "configuration": {
+     "value": "8 H200 GPUs",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "memory": {
+     "value": "1128 GB HBM3E",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "power": {
+     "value": "최대 10.2 kW · 시스템",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "cpu": {
+     "value": "2 Intel Xeon 8480C ·112코어 ·2TB 시스템 메모리",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    },
+    "nvlink": {
+     "value": "900 GB/s · GPU 간",
+     "source": "dgxh",
+     "note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+    }
+   },
+   "review_note": "공식 사용자 가이드의8GPU 서버 전체 사양.6개 PSU정격 합계를 소비전력으로 사용하지 않음."
+  },
+  {
+   "id": "ai-sheet-23",
+   "sheet_row": 23,
+   "source_values": [
+    "Blackwell",
+    "DGX GB200",
+    "",
+    "",
+    "",
+    "1.8TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DGX GB200",
+   "company": "NVIDIA",
+   "group": "랙",
+   "original": {
+    "name": "DGX GB200",
+    "architecture": "Blackwell",
+    "released": "",
+    "configuration": "",
+    "power": "",
+    "nvlink": "1.8TB/s",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "",
+    "bandwidth": "",
+    "interface": "",
+    "die_size": "",
+    "cache": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "DGX GB200 · NVL72 계열",
+     "source": "gb200",
+     "note": "원본의멀티칩항목에있지만GB200 NVL72는72GPU랙규모임. 동일제품중복합산을막기위해NVL72행을참조하며수치복제하지않음."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "gb200",
+     "note": "원본의멀티칩항목에있지만GB200 NVL72는72GPU랙규모임. 동일제품중복합산을막기위해NVL72행을참조하며수치복제하지않음."
+    },
+    "configuration": {
+     "value": "36 Grace CPUs +72 Blackwell GPUs",
+     "source": "gb200",
+     "note": "원본의멀티칩항목에있지만GB200 NVL72는72GPU랙규모임. 동일제품중복합산을막기위해NVL72행을참조하며수치복제하지않음."
+    }
+   },
+   "review_note": "원본의멀티칩항목에있지만GB200 NVL72는72GPU랙규모임. 동일제품중복합산을막기위해NVL72행을참조하며수치복제하지않음."
+  },
+  {
+   "id": "ai-sheet-27",
+   "sheet_row": 27,
+   "source_values": [
+    "",
+    "GH200",
+    "",
+    "Grace CPU 1 +  Hopper GPU 1",
+    "1kW",
+    "900GB/s",
+    "",
+    "x",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "96GB(HBM3), 144GB(HBM3E)",
+    "4TB/s, 4.9TB/s",
+    "Grace CPU",
+    "72",
+    "0.5 TB",
+    "900GB/s",
+    "X",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GH200",
+   "company": "NVIDIA",
+   "group": "슈퍼칩",
+   "original": {
+    "name": "GH200",
+    "architecture": "",
+    "released": "",
+    "configuration": "Grace CPU 1 +  Hopper GPU 1",
+    "power": "1kW",
+    "nvlink": "900GB/s",
+    "sm": "",
+    "fp4": "x",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "",
+    "process": "",
+    "memory": "96GB(HBM3), 144GB(HBM3E)",
+    "bandwidth": "4TB/s, 4.9TB/s",
+    "cpu": "Grace CPU · 72 · 0.5 TB",
+    "c2c": "900GB/s",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "GH200 · HBM3 96GB",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "architecture": {
+     "value": "Grace Hopper",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "configuration": {
+     "value": "1 Grace CPU + 1 Hopper GPU",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "memory": {
+     "value": "96 GB HBM3",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "bandwidth": {
+     "value": "최대 4 TB/s",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "cpu": {
+     "value": "72코어 Grace ·최대480GB LPDDR5X",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    },
+    "c2c": {
+     "value": "900 GB/s",
+     "source": "grace",
+     "note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+    }
+   },
+   "review_note": "원본의96GB/144GB를두메모리프로파일로나눔. 144GB·4.9TB/s HBM3E모델은별도행."
+  },
+  {
+   "id": "ai-sheet-28",
+   "sheet_row": 28,
+   "source_values": [
+    "",
+    "GB200",
+    "",
+    "Grace CPU 1+ Blackwell GPU 2",
+    "2.7kW",
+    "3.6TB/s",
+    "",
+    "20 PFLOPS",
+    "10PFLOPS",
+    "5PFLOPS",
+    "",
+    "",
+    "228,000,000,000",
+    "",
+    "384GB",
+    "16TB/s",
+    "Grace CPU",
+    "72",
+    "0.5 TB",
+    "450GB/s",
+    "300GB/s (GB200 Compute Tray)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GB200",
+   "company": "NVIDIA",
+   "group": "슈퍼칩",
+   "original": {
+    "name": "GB200",
+    "architecture": "",
+    "released": "",
+    "configuration": "Grace CPU 1+ Blackwell GPU 2",
+    "power": "2.7kW",
+    "nvlink": "3.6TB/s",
+    "sm": "",
+    "fp4": "20 PFLOPS",
+    "fp8": "10PFLOPS",
+    "fp16": "5PFLOPS",
+    "fp32": "",
+    "cores": "",
+    "transistors": "228,000,000,000",
+    "process": "",
+    "memory": "384GB",
+    "bandwidth": "16TB/s",
+    "cpu": "Grace CPU · 72 · 0.5 TB",
+    "c2c": "450GB/s",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "GB200",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "configuration": {
+     "value": "1 Grace CPU + 2 Blackwell GPUs",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "memory": {
+     "value": "372 GB HBM3E",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "bandwidth": {
+     "value": "16 TB/s",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "nvlink": {
+     "value": "3.6 TB/s",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp4": {
+     "value": "20 / 40 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp8": {
+     "value": "10 / 20 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp16": {
+     "value": "5 / 10 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp32": {
+     "value": "160 TFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "cpu": {
+     "value": "72코어 Grace ·최대480GB LPDDR5X",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    }
+   },
+   "review_note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+  },
+  {
+   "id": "ai-sheet-29",
+   "sheet_row": 29,
+   "source_values": [
+    "",
+    "GB300",
+    "",
+    "Grace CPU 1+ Blackwell Ultra GPU 2",
+    "",
+    "3.6TB/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "228,000,000,000",
+    "",
+    "",
+    "16TB/s",
+    "Grace CPU",
+    "72",
+    "LPDDR5 0.5 TB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GB300",
+   "company": "NVIDIA",
+   "group": "슈퍼칩",
+   "original": {
+    "name": "GB300",
+    "architecture": "",
+    "released": "",
+    "configuration": "Grace CPU 1+ Blackwell Ultra GPU 2",
+    "power": "",
+    "nvlink": "3.6TB/s",
+    "sm": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "228,000,000,000",
+    "process": "",
+    "memory": "",
+    "bandwidth": "16TB/s",
+    "cpu": "Grace CPU · 72 · LPDDR5 0.5 TB",
+    "c2c": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "GB300 Grace Blackwell Ultra Superchip",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "architecture": {
+     "value": "Blackwell Ultra",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "configuration": {
+     "value": "1 Grace CPU +2 Blackwell Ultra GPUs",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "memory": {
+     "value": "558 GB HBM3E",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "bandwidth": {
+     "value": "16 TB/s",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "nvlink": {
+     "value": "3.6 TB/s",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "fp4": {
+     "value": "30 / 40 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "fp8": {
+     "value": "10 / 20 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "fp16": {
+     "value": "5 / 10 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    },
+    "cpu": {
+     "value": "72코어 Grace",
+     "source": "ultra_datasheet",
+     "note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+    }
+   },
+   "review_note": "GB300단일GPU279GB·8TB/s·FP4Dense15/Sparse20의2GPU합계로명시산출. 원본2280억트랜지스터는CPU포함여부가모호해검증치로사용하지않음."
+  },
+  {
+   "id": "ai-sheet-30",
+   "sheet_row": 30,
+   "source_values": [
+    "",
+    "Vera Rubin Superchip",
+    "",
+    "Vera CPU 1 + Rubin GPU 2",
+    "",
+    "7.2TB/s",
+    "",
+    "100 PFLOPS(NVFP4, inference), 70(Training)",
+    "",
+    "",
+    "",
+    "",
+    "336,000,000,000",
+    "",
+    "576GB",
+    "44TB/s",
+    "Vera CPU",
+    "88(176스레드)",
+    "LPDDR5 1.5 TB ",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Vera Rubin Superchip",
+   "company": "NVIDIA",
+   "group": "슈퍼칩",
+   "original": {
+    "name": "Vera Rubin Superchip",
+    "architecture": "",
+    "released": "",
+    "configuration": "Vera CPU 1 + Rubin GPU 2",
+    "power": "",
+    "nvlink": "7.2TB/s",
+    "sm": "",
+    "fp4": "100 PFLOPS(NVFP4, inference), 70(Training)",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "cores": "",
+    "transistors": "336,000,000,000",
+    "process": "",
+    "memory": "576GB",
+    "bandwidth": "44TB/s",
+    "cpu": "Vera CPU · 88(176스레드) · LPDDR5 1.5 TB ",
+    "c2c": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "Vera Rubin Superchip",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "architecture": {
+     "value": "Rubin",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "configuration": {
+     "value": "1 Vera CPU + 2 Rubin GPUs",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "memory": {
+     "value": "576 GB HBM4",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "bandwidth": {
+     "value": "38.5 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "nvlink": {
+     "value": "6 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp4": {
+     "value": "50 / 100 PFLOPS · 추론",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp8": {
+     "value": "35 PFLOPS · Dense 학습",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp16": {
+     "value": "8 PFLOPS · Dense",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp32": {
+     "value": "260 TFLOPS",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "cpu": {
+     "value": "88코어 /176스레드 · 최대1.5TB LPDDR5X",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    }
+   },
+   "review_note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+  },
+  {
+   "id": "ai-sheet-37",
+   "sheet_row": 37,
+   "source_values": [
+    "Rack Scale",
+    "GB200 NVL72",
+    "",
+    "GB200 36",
+    "120kW",
+    "9",
+    "",
+    "Tray 당 28.8Tb/s NVSwitch5 ASIC 2개",
+    "",
+    "",
+    "130 TB/s",
+    "",
+    "",
+    "",
+    "18",
+    "720/1440 PFLOPS",
+    "360/720 PFLOPS",
+    "180/360 PFLOPS",
+    "90/180 PFLOPS",
+    "HBM3E",
+    "13.5 TB",
+    "576 TB/s(up to)",
+    "31 TB(up to)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GB200 NVL72",
+   "company": "NVIDIA",
+   "group": "랙",
+   "original": {
+    "name": "GB200 NVL72",
+    "configuration": "GB200 36",
+    "power": "120kW",
+    "nvlink": "130 TB/s",
+    "fp4": "720/1440 PFLOPS",
+    "fp8": "360/720 PFLOPS",
+    "fp16": "180/360 PFLOPS",
+    "fp32": "90/180 PFLOPS",
+    "memory": "13.5 TB HBM3E",
+    "bandwidth": "576 TB/s(up to)",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "GB200 NVL72",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "configuration": {
+     "value": "36 Grace CPUs +72 Blackwell GPUs",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "memory": {
+     "value": "13.4 TB HBM3E",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "bandwidth": {
+     "value": "576 TB/s",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "nvlink": {
+     "value": "130 TB/s",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp4": {
+     "value": "720 / 1440 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp8": {
+     "value": "360 / 720 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp16": {
+     "value": "180 / 360 PFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "fp32": {
+     "value": "5760 TFLOPS",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    },
+    "cpu": {
+     "value": "2592코어 Grace ·17TB LPDDR5X",
+     "source": "gb200",
+     "note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+    }
+   },
+   "review_note": "공식 제품 표의단위기준. FP4는Dense/Sparse순서로재배열; FP8/FP16 Dense는Sparse의절반. 원본384GB·13.5TB와공식372GB·13.4TB를구분."
+  },
+  {
+   "id": "ai-sheet-38",
+   "sheet_row": 38,
+   "source_values": [
+    "",
+    "GB200 NVL36 * 2",
+    "",
+    "GB200 36",
+    "132kW",
+    "18(2Rack)",
+    "",
+    "Tray 당 28.8Tb/s NVSwitch5 ASIC 2개",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "2unit size 9 * 2",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GB200 NVL36 * 2",
+   "company": "NVIDIA",
+   "group": "랙",
+   "original": {
+    "name": "GB200 NVL36 * 2",
+    "configuration": "GB200 36",
+    "power": "132kW",
+    "nvlink": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "memory": "",
+    "bandwidth": "",
+    "scope_note": "사용자 구성: NVL36 2랙 묶음. 표준 NVL72 단일 랙과 전력·대역폭을 합산 비교하지 않음."
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-39",
+   "sheet_row": 39,
+   "source_values": [
+    "",
+    "GB300 NVL72",
+    "",
+    "GB300 36",
+    "",
+    "9",
+    "",
+    "",
+    "GPU당 ConnectX-8",
+    "BlueField-3",
+    "130 TB/s",
+    "",
+    "",
+    "",
+    "",
+    "1080/1440 PFLOPS",
+    "360/720 PFLOPS",
+    "180/360 PFLOPS",
+    "90/180 PFLOPS",
+    "HBM3E",
+    "20 TB",
+    "576 TB/s",
+    "37 TB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "GB300 NVL72",
+   "company": "NVIDIA",
+   "group": "랙",
+   "original": {
+    "name": "GB300 NVL72",
+    "configuration": "GB300 36",
+    "power": "",
+    "nvlink": "130 TB/s",
+    "fp4": "1080/1440 PFLOPS",
+    "fp8": "360/720 PFLOPS",
+    "fp16": "180/360 PFLOPS",
+    "fp32": "90/180 PFLOPS",
+    "memory": "20 TB HBM3E",
+    "bandwidth": "576 TB/s",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "GB300 NVL72",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "architecture": {
+     "value": "Blackwell Ultra",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "configuration": {
+     "value": "36 Grace CPUs +72 Blackwell Ultra GPUs",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "memory": {
+     "value": "20 TB HBM3E",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "bandwidth": {
+     "value": "최대 576 TB/s",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "nvlink": {
+     "value": "130 TB/s",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "fp4": {
+     "value": "1080 / 1440 PFLOPS",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "fp8": {
+     "value": "360 / 720 PFLOPS",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "fp16": {
+     "value": "180 / 360 PFLOPS",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "fp32": {
+     "value": "6 PFLOPS",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    },
+    "cpu": {
+     "value": "2592코어 Grace ·17TB LPDDR5X",
+     "source": "gb300",
+     "note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+    }
+   },
+   "review_note": "랙전체사양. Fast Memory37TB는GPU HBM20TB와CPU LPDDR5X17TB의합계이며HBM용량으로쓰지않음."
+  },
+  {
+   "id": "ai-sheet-40",
+   "sheet_row": 40,
+   "source_values": [
+    "",
+    "Vera Rubin NVL72",
+    "",
+    "Vera Rubin Superchip 36",
+    "",
+    "",
+    "",
+    "",
+    "ConnectX-9",
+    "BlueField-4",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "HBM4",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Vera Rubin NVL72",
+   "company": "NVIDIA",
+   "group": "랙",
+   "original": {
+    "name": "Vera Rubin NVL72",
+    "configuration": "Vera Rubin Superchip 36",
+    "power": "",
+    "nvlink": "",
+    "fp4": "",
+    "fp8": "",
+    "fp16": "",
+    "fp32": "",
+    "memory": " HBM4",
+    "bandwidth": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {
+    "name": {
+     "value": "Vera Rubin NVL72",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "architecture": {
+     "value": "Rubin",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "configuration": {
+     "value": "36 Vera CPUs + 72 Rubin GPUs",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "memory": {
+     "value": "20.7 TB HBM4",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "bandwidth": {
+     "value": "1400 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "nvlink": {
+     "value": "216 TB/s",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp4": {
+     "value": "1800 / 3600 PFLOPS · 추론",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp8": {
+     "value": "1260 PFLOPS · Dense 학습",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp16": {
+     "value": "288 PFLOPS · Dense",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "fp32": {
+     "value": "9360 TFLOPS",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    },
+    "cpu": {
+     "value": "3168코어 /6336스레드 · 최대54TB LPDDR5X",
+     "source": "rubin",
+     "note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+    }
+   },
+   "review_note": "NVL72 현재 제품 표 기준. NVFP4 추론은 Sparse 공시값의 절반을 Dense로 명시 계산. NVFP4 학습은 GPU35/슈퍼칩70/랙2520PFLOPS Dense이며 추론과 혼합하지 않음. HGX/아키텍처 최대22TB/s·NVLink3.6TB/s와 별도 프로파일."
+  },
+  {
+   "id": "ai-sheet-43",
+   "sheet_row": 43,
+   "source_values": [
+    "",
+    "ConnectX-7",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "ConnectX-7",
+   "company": "NVIDIA",
+   "group": "네트워크",
+   "original": {
+    "name": "ConnectX-7",
+    "network": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-44",
+   "sheet_row": 44,
+   "source_values": [
+    "",
+    "ConnectX-8 Super NIC",
+    "",
+    "",
+    "800Gb/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "ConnectX-8 Super NIC",
+   "company": "NVIDIA",
+   "group": "네트워크",
+   "original": {
+    "name": "ConnectX-8 Super NIC",
+    "network": "800Gb/s",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-45",
+   "sheet_row": 45,
+   "source_values": [
+    "",
+    "ConnectX-9 Super NIC",
+    "",
+    "",
+    "1600Gb/s",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "ConnectX-9 Super NIC",
+   "company": "NVIDIA",
+   "group": "네트워크",
+   "original": {
+    "name": "ConnectX-9 Super NIC",
+    "network": "1600Gb/s",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-47",
+   "sheet_row": 47,
+   "source_values": [
+    "",
+    "Bluefield-3",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Bluefield-3",
+   "company": "NVIDIA",
+   "group": "네트워크",
+   "original": {
+    "name": "Bluefield-3",
+    "network": "",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-sheet-48",
+   "sheet_row": 48,
+   "source_values": [
+    "",
+    "Bluefield-4",
+    "",
+    "",
+    "800G",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Bluefield-4",
+   "company": "NVIDIA",
+   "group": "네트워크",
+   "original": {
+    "name": "Bluefield-4",
+    "network": "800G",
+    "scope_note": "시트 기재값 · 공식 SKU·측정 조건 미검증"
+   },
+   "reviews": {}
+  },
+  {
+   "id": "ai-extra-b300-nvl72-profile",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "B300 NVL72 profile",
+   "company": "NVIDIA",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "Blackwell Ultra · GB300 프로파일",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "architecture": {
+     "value": "Blackwell Ultra",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "configuration": {
+     "value": "1 GPU · 2 dies",
+     "source": "ultra_arch",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "memory": {
+     "value": "279 GB HBM3E",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "bandwidth": {
+     "value": "8 TB/s",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "power": {
+     "value": "최대 1400 W",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "nvlink": {
+     "value": "1.8 TB/s",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "fp4": {
+     "value": "15 / 20 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "fp8": {
+     "value": "5 / 10 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "fp16": {
+     "value": "2.5 / 5 PFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    },
+    "fp32": {
+     "value": "80 TFLOPS",
+     "source": "ultra_datasheet",
+     "note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+    }
+   },
+   "group": "GPU 모듈",
+   "review_note": "GB300 NVL72의 단일 GPU 열 기준. 288GB는 아키텍처 최대 메모리이며 데이터시트 제품 열의279GB와 구분."
+  },
+  {
+   "id": "ai-extra-rubin-architectural-maximum",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "Rubin architectural maximum",
+   "company": "NVIDIA",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "Rubin GPU · HGX/아키텍처 최대",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "architecture": {
+     "value": "Rubin",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "memory": {
+     "value": "288 GB HBM4",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "bandwidth": {
+     "value": "22 TB/s",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "nvlink": {
+     "value": "3.6 TB/s",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "fp4": {
+     "value": "25 / 50 PFLOPS · 추론",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "fp8": {
+     "value": "17.5 PFLOPS · Dense 학습",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "fp16": {
+     "value": "4 PFLOPS · Dense",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    },
+    "fp32": {
+     "value": "130 TFLOPS",
+     "source": "rubin_arch",
+     "note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+    }
+   },
+   "group": "아키텍처 최대",
+   "review_note": "HGX Individual GPU Specifications의 최대값. 현재 NVL72 제품 표의19.2TB/s·NVLink3TB/s와 구분하며 수치를 섞지 않음."
+  },
+  {
+   "id": "ai-extra-dgx-b200",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DGX B200",
+   "company": "NVIDIA",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DGX B200",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "architecture": {
+     "value": "Blackwell",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "configuration": {
+     "value": "8 Blackwell GPUs",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "memory": {
+     "value": "1440 GB HBM3E",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "bandwidth": {
+     "value": "64 TB/s · 합계",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "power": {
+     "value": "최대 약14.3 kW · 시스템",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "nvlink": {
+     "value": "14.4 TB/s · 합계",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "fp4": {
+     "value": "72 / 144 PFLOPS",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "fp8": {
+     "value": "36 / 72 PFLOPS",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    },
+    "cpu": {
+     "value": "2 Xeon Platinum 8570 ·112코어 ·2TB(최대4TB)",
+     "source": "dgxb",
+     "note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+    }
+   },
+   "group": "DGX 서버",
+   "review_note": "공식8GPU 서버 사양. FP8 Dense는Sparse의절반, FP4는제조사Dense/Sparse공시. GPU단품과직접비교하지않음."
+  },
+  {
+   "id": "ai-extra-gh200-hbm3e",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "GH200 HBM3E",
+   "company": "NVIDIA",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "GH200 · HBM3E 144GB",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "architecture": {
+     "value": "Grace Hopper",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "configuration": {
+     "value": "1 Grace CPU + 1 Hopper GPU",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "memory": {
+     "value": "144 GB HBM3E",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "bandwidth": {
+     "value": "최대 4.9 TB/s",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "cpu": {
+     "value": "72코어 Grace ·최대480GB LPDDR5X",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    },
+    "c2c": {
+     "value": "900 GB/s",
+     "source": "grace",
+     "note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+    }
+   },
+   "group": "슈퍼칩",
+   "review_note": "GH200 HBM3E 프로파일. HBM3 96GB모델과용량·대역폭을섞지않음."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "GPU 모듈",
+ "default_view": "overview",
+ "sources": {
+  "a100": {
+   "title": "NVIDIA A100 · 80GB SXM 공식 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/a100/",
+   "checked": "2026-10-25",
+   "note": "80GB SXM 기준. PCIe·40GB와 구분. Tensor Core 표는 Dense | Sparse 순서."
+  },
+  "h100": {
+   "title": "NVIDIA H100 · SXM 공식 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/h100/",
+   "checked": "2026-10-25",
+   "note": "SXM 80GB 기준. 별표 Tensor 성능은 Sparse이며 Dense는 절반."
+  },
+  "h200": {
+   "title": "NVIDIA H200 · SXM 공식 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/h200/",
+   "checked": "2026-10-25",
+   "note": "141GB SXM 기준. 대역폭 단위는 TB/s. Tensor 성능은 Sparse."
+  },
+  "hgx": {
+   "title": "NVIDIA HGX · B200/B300 시스템 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/hgx/",
+   "checked": "2026-10-25",
+   "note": "8 GPU 시스템의 FP4는 Sparse | Dense. 단일 GPU 환산은 별도 계산 표기."
+  },
+  "ultra_datasheet": {
+   "title": "NVIDIA Blackwell Ultra 공식 데이터시트",
+   "url": "https://resources.nvidia.com/en-us-gpu-resources/blackwell-ultra-datasheet",
+   "checked": "2026-10-25",
+   "note": "단일 GPU의 GB300 NVL72 구성과 HGX B300 구성을 별도 열로 공시. FP4 Sparse | Dense; FP8/FP16은 Sparse, Dense는 절반."
+  },
+  "ultra_arch": {
+   "title": "NVIDIA Blackwell Ultra · 아키텍처 공식 해설",
+   "url": "https://developer.nvidia.com/blog/inside-nvidia-blackwell-ultra-the-chip-powering-the-ai-factory-era/",
+   "checked": "2026-10-25",
+   "note": "Blackwell/Ultra의 아키텍처 최대치. 192/288GB 최대치와 실제 시스템의 사용 가능 메모리는 다를 수 있음."
+  },
+  "gb200": {
+   "title": "NVIDIA GB200 NVL72 · 공식 제품 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+   "checked": "2026-10-25",
+   "note": "랙 전체와 1 Grace+2 Blackwell 슈퍼칩을 구분. FP4 Sparse | Dense; FP8/FP16 Sparse."
+  },
+  "gb300": {
+   "title": "NVIDIA GB300 NVL72 · 공식 제품 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+   "checked": "2026-10-25",
+   "note": "랙 72GPU·36CPU 총합. FP4 1440 Sparse / 1080 Dense, HBM 20TB와 CPU 메모리 17TB 구분."
+  },
+  "rubin": {
+   "title": "NVIDIA Vera Rubin NVL72 · 현재 제품 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/",
+   "checked": "2026-10-25",
+   "note": "현재 NVL72 제품 표는 GPU당 19.2TB/s·NVLink 3TB/s. HGX/아키텍처 최대 사양 22TB/s·3.6TB/s와 구분. NVFP4 추론은 Sparse, 학습은 Dense."
+  },
+  "rubin_arch": {
+   "title": "NVIDIA HGX · Rubin GPU 아키텍처 최대 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/hgx/",
+   "checked": "2026-10-25",
+   "note": "Individual GPU Specifications: 288GB HBM4, 22TB/s, NVLink 3.6TB/s. NVL72 현재 제품 프로파일과 별도 표시."
+  },
+  "dgxh": {
+   "title": "NVIDIA DGX H100/H200 공식 사용자 가이드",
+   "url": "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html",
+   "checked": "2026-10-25",
+   "note": "8GPU 서버. H100 640GB / H200 1128GB, 시스템 최대 전력 10.2kW. PSU 정격의 합을 소비전력으로 쓰지 않음."
+  },
+  "dgxa": {
+   "title": "NVIDIA DGX A100 공식 사용자 가이드",
+   "url": "https://docs.nvidia.com/dgx/dgxa100-user-guide/introduction-to-dgxa100.html",
+   "checked": "2026-10-25",
+   "note": "640GB 8GPU 모델과 320GB 모델 구분. 시스템 최대 전력 6.5kW."
+  },
+  "dgxb": {
+   "title": "NVIDIA DGX B200 공식 제품 사양",
+   "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+   "checked": "2026-10-25",
+   "note": "8GPU·1440GB·64TB/s, 최대 시스템 전력 약14.3kW. 1GPU 수치는 총합/8로 명시 계산."
+  },
+  "grace": {
+   "title": "NVIDIA Grace 성능 튜닝 가이드 · GH200",
+   "url": "https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html",
+   "checked": "2026-10-25",
+   "note": "GH200 HBM3 96GB/4TB/s와 HBM3E 144GB/4.9TB/s 분리. CPU 최대480GB,72코어."
+  },
+  "p100": {
+   "title": "NVIDIA Tesla P100 공식 데이터시트",
+   "url": "https://images.nvidia.com/content/tesla/pdf/nvidia-tesla-p100-datasheet.pdf",
+   "checked": "2026-10-25",
+   "note": "SXM2 16GB: 732GB/s, FP32 10.6TFLOPS, FP16 21.2TFLOPS,300W. 시트720GB/s는 발표 초기치와 차이."
+  }
+ },
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "memory",
+    "bandwidth",
+    "power",
+    "nvlink",
+    "fp4",
+    "fp8",
+    "fp16",
+    "fp32",
+    "configuration",
+    "architecture",
+    "process",
+    "sm",
+    "cores",
+    "cache",
+    "cpu"
+   ]
+  },
+  {
+   "id": "all",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "architecture",
+    "configuration",
+    "memory",
+    "bandwidth",
+    "power",
+    "nvlink",
+    "fp4",
+    "fp8",
+    "fp16",
+    "fp32",
+    "process",
+    "sm",
+    "cores",
+    "cache",
+    "transistors",
+    "die_size",
+    "interface",
+    "cpu",
+    "c2c",
+    "network",
+    "released",
+    "scope_note"
+   ]
+  },
+  {
+   "id": "memory",
+   "label": "메모리·연결·전력",
+   "keys": [
+    "name",
+    "configuration",
+    "memory",
+    "bandwidth",
+    "nvlink",
+    "c2c",
+    "power",
+    "cpu",
+    "network"
+   ]
+  },
+  {
+   "id": "compute",
+   "label": "연산 성능",
+   "keys": [
+    "name",
+    "configuration",
+    "fp4",
+    "fp8",
+    "fp16",
+    "fp32",
+    "architecture",
+    "sm",
+    "cores"
+   ]
+  }
+ ],
+ "original_columns": [
+  {
+   "id": "name",
+   "label": "제품 / 프로파일",
+   "width": 210
+  },
+  {
+   "id": "architecture",
+   "label": "아키텍처",
+   "width": 115
+  },
+  {
+   "id": "configuration",
+   "label": "GPU·CPU 구성",
+   "width": 165
+  },
+  {
+   "id": "memory",
+   "label": "GPU 메모리",
+   "width": 145
+  },
+  {
+   "id": "bandwidth",
+   "label": "HBM 대역폭",
+   "width": 125
+  },
+  {
+   "id": "power",
+   "label": "전력 · 단위 확인",
+   "width": 145
+  },
+  {
+   "id": "nvlink",
+   "label": "NVLink 대역폭",
+   "width": 140
+  },
+  {
+   "id": "fp4",
+   "label": "FP4 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp8",
+   "label": "FP8 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp16",
+   "label": "FP16/BF16 · Dense / Sparse",
+   "width": 180
+  },
+  {
+   "id": "fp32",
+   "label": "FP32",
+   "width": 110
+  },
+  {
+   "id": "process",
+   "label": "제조 공정",
+   "width": 115
+  },
+  {
+   "id": "sm",
+   "label": "SM 수",
+   "width": 75
+  },
+  {
+   "id": "cores",
+   "label": "CUDA 코어",
+   "width": 100
+  },
+  {
+   "id": "cache",
+   "label": "L2 캐시",
+   "width": 100
+  },
+  {
+   "id": "transistors",
+   "label": "트랜지스터",
+   "width": 130
+  },
+  {
+   "id": "die_size",
+   "label": "GPU Die 면적",
+   "width": 110
+  },
+  {
+   "id": "interface",
+   "label": "메모리 인터페이스",
+   "width": 120
+  },
+  {
+   "id": "cpu",
+   "label": "CPU·시스템 메모리",
+   "width": 240
+  },
+  {
+   "id": "c2c",
+   "label": "NVLink-C2C",
+   "width": 130
+  },
+  {
+   "id": "network",
+   "label": "네트워크 대역폭",
+   "width": 140
+  },
+  {
+   "id": "released",
+   "label": "시트 발표/출시일",
+   "width": 110
+  },
+  {
+   "id": "scope_note",
+   "label": "비교 기준·확인 사항",
+   "width": 280
+  }
+ ],
+ "evidence_summary": "원본 30개 항목 · 23개 프로파일 검토·추가",
+ "scroll_hint": "단일 GPU와 서버·랙 총합 구분 · 오른쪽으로 구성·캐시·CPU 확인"
+}

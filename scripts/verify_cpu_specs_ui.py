@@ -16,11 +16,16 @@ def verify(base):
             errors=[]
             page.on('pageerror',lambda error:errors.append(str(error)))
             page.goto(base+'#/semicon/cpu',wait_until='networkidle')
-            page.wait_for_function('typeof state!=="undefined" && state.charts.length===21 && !document.querySelector(".page-loading")')
+            try:
+                page.wait_for_function('typeof state!=="undefined" && state.charts.length===21 && !document.querySelector(".page-loading")')
+            except Exception:
+                print('CPU boot diagnostics:',page.evaluate('({title:document.title,route:location.hash,charts:typeof state!=="undefined"?state.charts.length:null,subtab:typeof state!=="undefined"?state.subtab:null,loading:document.querySelector(".page-loading")?.textContent,errors:[...document.querySelectorAll(".is-error")].map(el=>el.textContent)})'),errors,flush=True)
+                raise
             table=page.locator('.cpu-specs')
             expect(table).to_be_visible()
             assert table.locator('tbody tr').count()==292
             assert table.locator('thead th').count()==14
+            assert table.locator('thead th').last.get_attribute('data-column')=='detail'
             assert table.get_by_label('CPU 사양 열 보기',exact=True).input_value()=='overview'
             assert table.locator('.cpu-specs-scroll').evaluate('el=>el.scrollWidth>el.clientWidth')
             def fixed_rows():
@@ -57,8 +62,10 @@ def verify(base):
                 assert abs(sticky['x']-region.bounding_box()['x']-1)<2
             if width>=768:
                 page.mouse.move(0,0)
+                memo_cell=sample_row.locator('[data-column="l3"] .cpu-specs-cell')
+                memo_cell.scroll_into_view_if_needed()
                 page.evaluate('()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
-                sample_row.locator('[data-column="l3"] .cpu-specs-cell').hover()
+                memo_cell.hover(position=dict(x=12,y=18))
                 expect(table.locator('[role="tooltip"]')).to_be_visible()
                 assert sample['values'][20] in table.locator('[role="tooltip"]').inner_text()
                 page.keyboard.press('Escape')
@@ -75,9 +82,10 @@ def verify(base):
             table.get_by_label('CPU 사양 열 보기',exact=True).select_option('all')
             fixed_rows()
             assert table.locator('.cpu-specs-added').count()==0
-            actual=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].map(cell=>cell.dataset.column==="AK"?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
+            actual=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].filter(cell=>cell.dataset.column!=="detail").map(cell=>cell.dataset.column==="AK"?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
             expected=[[(r['values'][i] or '—') if i!=36 else r['values'][i] for i in doc['display_indices']] for r in doc['rows']]
             assert actual==expected
+            assert table.locator('thead th').last.get_attribute('data-column')=='detail'
             assert not any(f'Geekbench {version}' in label for label in table.locator('thead th').all_text_contents() for version in (2,3,4,5))
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('enriched')
             assert table.locator('.cpu-specs-added').count()==226
@@ -86,7 +94,7 @@ def verify(base):
             table.get_by_label('CPU 사양 검색',exact=True).fill('Ryzen 9 9950X')
             assert table.locator('tbody tr').count()==1
             table.get_by_label('CPU 사양 열 보기',exact=True).select_option('gb7')
-            assert table.locator('thead th').count()==8
+            assert table.locator('thead th').count()==9
             assert table.locator('tbody [data-column="AH"] .cpu-specs-value').inner_text()=='3067'
             assert table.locator('tbody [data-column="AH"] a').get_attribute('href')=='https://browser.geekbench.com/processor-benchmarks'
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('original')

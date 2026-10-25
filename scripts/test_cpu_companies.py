@@ -86,7 +86,7 @@ class CpuCompanies(unittest.TestCase):
     def test_documents_and_navigation_preserve_scope_and_fiscal_labels(self):
         catalog=cpu.load(ROOT/'data/catalog.json',{})
         semicon=next(i for i in catalog['industries'] if i['id']=='semicon')
-        self.assertEqual([g['id'] for g in semicon['groups']],['memory','foundry','cpu','ssd','materials'])
+        self.assertEqual([g['id'] for g in semicon['groups']],['memory','foundry','cpu','gpu','ssd','materials'])
         linked={id for section in semicon['sections'] if section.get('tab')=='cpu' and section.get('type')!='table' for id in section['indicators']}
         docs={}
         for key,cohort in self.state['companies'].items():docs.update(cpu.build_company(key,cohort))

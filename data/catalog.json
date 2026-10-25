@@ -1850,6 +1850,20 @@
           "indicators": ["cpu_specs"]
         },
         {
+          "title": "일반 GPU · 사양과 벤치마크",
+          "tab": "gpu",
+          "type": "table",
+          "table_kind": "gpu_specs",
+          "indicators": ["gpu_specs"]
+        },
+        {
+          "title": "NVIDIA AI 가속기 · GPU와 시스템 사양",
+          "tab": "gpu",
+          "type": "table",
+          "table_kind": "gpu_specs",
+          "indicators": ["nvidia_ai_specs"]
+        },
+        {
           "title": "Intel · 실적",
           "tab": "cpu",
           "indicators": [
@@ -2376,6 +2390,11 @@
           "id": "cpu",
           "name": "CPU",
           "description": "Intel·AMD·Arm·Qualcomm·Apple의 분기 매출·GAAP 영업이익·CAPEX를 나란히 봅니다. Arm은 2022년 9월부터, 나머지 회사는 2014년부터 제공합니다. Apple Silicon은 별도 사업부 실적이 없어 Apple 전사 재무와 Mac·iPad·iPhone 완제품 매출로 구분해 추적합니다. 전사 실적·CPU 관련 사업·제품 매출을 칩 단독 매출로 해석하지 않습니다. 회계 결산일과 CAPEX 정의는 회사별 카드에 표시합니다. 각 그래프에서 분기·연간을 선택할 수 있으며 연간은 회사 회계연도 기준입니다."
+        },
+        {
+          "id": "gpu",
+          "name": "GPU",
+          "description": "일반 GPU는 사양·Time Spy·Geekbench 7 OpenCL/Vulkan을 비교합니다. NVIDIA AI 가속기는 HBM·연산 정밀도·NVLink·전력을 별도 표에서 봅니다. 단일 GPU·슈퍼칩·DGX·랙의 제품 단위를 구분하며, 보완·검토 출처와 시트 원본 값을 함께 확인할 수 있습니다."
         },
         {
           "id": "ssd",

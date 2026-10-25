@@ -53,15 +53,15 @@ function renderCPUSpecs(doc) {
     {key:'bandwidth',label:'메모리 대역폭',indices:[15],sort:15,width:96},
     {key:'gb6',label:'GB6 · 싱글 / 멀티',indices:[31,32],sort:32,width:116,numeric:true},
     {key:'gb7',label:'GB7 · 싱글 / 멀티',indices:[33,34],sort:34,width:116,numeric:true},
-    {key:'detail',label:'상세',indices:[],width:48},
     {key:'composition',label:'CPU 구성',indices:[8],sort:8,width:200},
     {key:'architecture',label:'아키텍처 / 코드명',indices:[12],sort:12,width:150},
     {key:'l1',label:'L1 캐시',indices:[18],sort:18,width:120},
     {key:'l2',label:'L2 캐시',indices:[19],sort:19,width:140},
-    {key:'l3',label:'L3 캐시',indices:[20],sort:20,width:140}
+    {key:'l3',label:'L3 캐시',indices:[20],sort:20,width:140},
+    {key:'detail',label:'상세',indices:[],width:48}
   ];
   const cell=(row,col,compact)=>{
-    if(col.key==='detail')return `<td><div class="cpu-specs-cell">${detailButton(row)}</div></td>`;
+    if(col.key==='detail')return `<td data-column="detail"><div class="cpu-specs-cell">${detailButton(row)}</div></td>`;
     const index=col.indices[0],extra=evidence(row,index),source=extra&&doc.sources[extra.source],id=row.id+':'+col.key;
     memoItems.set(id,{row,label:col.label,indices:col.indices});
     let body;
@@ -72,18 +72,18 @@ function renderCPUSpecs(doc) {
     const mark=extra?`<a class="cpu-specs-ref" href="${esc(source.url)}" target="_blank" rel="noopener" aria-label="${esc(row.values[2]+' '+col.label+' 보완 출처')}">↗</a>`:'';
     const isName=compact?col.key==='chip':index===2;
     const classes=[isName?'cpu-specs-name':'',col.numeric?'cpu-specs-number':'',extra?(index===7&&row.foundry?'cpu-specs-reviewed':'cpu-specs-added'):''].join(' ');
-    return `<${isName?'th scope="row"':'td'} class="${classes}" data-column="${compact?col.key:doc.columns[index].id}"><div class="cpu-specs-cell" data-memo="${id}"><span class="cpu-specs-value">${body}</span>${mark}${!compact&&isName?detailButton(row):''}</div></${isName?'th':'td'}>`;
+    return `<${isName?'th scope="row"':'td'} class="${classes}" data-column="${compact?col.key:doc.columns[index].id}"><div class="cpu-specs-cell" data-memo="${id}"><span class="cpu-specs-value">${body}</span>${mark}</div></${isName?'th':'td'}>`;
   };
   const draw=()=>{
     hideMemo();memoItems=new Map();
     const view=doc.column_views.find(v=>v.id===columns.value),compact=view.id==='overview';
-    const visible=compact?overview:view.indices.map(i=>({key:String(i),indices:[i],sort:i,label:doc.columns[i].label,width:i===2?190:i===0?80:i===1?110:doc.columns[i].numeric?100:i===22||i===35?170:115,numeric:doc.columns[i].numeric}));
+    const visible=compact?overview:[...view.indices.map(i=>({key:String(i),indices:[i],sort:i,label:doc.columns[i].label,width:i===2?190:i===0?80:i===1?110:doc.columns[i].numeric?100:i===22||i===35?170:115,numeric:doc.columns[i].numeric})),{key:'detail',label:'상세',indices:[],width:48}];
     const query=search.value.trim().toLocaleLowerCase();
     const rows=doc.rows.filter(row=>(company.value==='all'||row.values[0]===company.value)&&(use.value==='all'||row.values[1]===use.value)&&(!only.checked||Object.keys(row.supplements).length)&&(!query||displayIndices.some(i=>String(value(row,i)).toLocaleLowerCase().includes(query))));
     if(sortIndex!==null)rows.sort((a,b)=>{const av=value(a,sortIndex),bv=value(b,sortIndex);if(!av||!bv)return av?-1:bv?1:a.sheet_row-b.sheet_row;const result=doc.columns[sortIndex].numeric?Number(av)-Number(bv):String(av).localeCompare(String(bv),'ko',{numeric:true});return result*sortDirection||a.sheet_row-b.sheet_row;});
     table.classList.toggle('cpu-specs-overview',compact);table.style.width=visible.reduce((sum,c)=>sum+c.width,0)+'px';
     table.querySelector('colgroup').innerHTML=visible.map(c=>`<col class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-col-name':''}" style="width:${c.width}px">`).join('');
-    table.querySelector('thead').innerHTML=`<tr>${visible.map(c=>`<th scope="col" class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-name ':''}${c.numeric?'cpu-specs-number':''}" data-column="${compact?c.key:doc.columns[c.indices[0]].id}" aria-sort="${sortIndex===c.sort?(sortDirection===1?'ascending':'descending'):'none'}">${c.sort==null?esc(c.label):`<button type="button" data-sort="${c.sort}" title="${esc(c.label)}">${esc(c.label)}<span aria-hidden="true">${sortIndex===c.sort?(sortDirection===1?' ▲':' ▼'):' ↕'}</span></button>`}</th>`).join('')}</tr>`;
+    table.querySelector('thead').innerHTML=`<tr>${visible.map(c=>`<th scope="col" class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-name ':''}${c.numeric?'cpu-specs-number':''}" data-column="${compact||c.key==='detail'?c.key:doc.columns[c.indices[0]].id}" aria-sort="${sortIndex===c.sort?(sortDirection===1?'ascending':'descending'):'none'}">${c.sort==null?esc(c.label):`<button type="button" data-sort="${c.sort}" title="${esc(c.label)}">${esc(c.label)}<span aria-hidden="true">${sortIndex===c.sort?(sortDirection===1?' ▲':' ▼'):' ↕'}</span></button>`}</th>`).join('')}</tr>`;
     table.querySelector('tbody').innerHTML=rows.length?rows.map(row=>`<tr data-sheet-row="${row.sheet_row}">${visible.map(c=>cell(row,c,compact)).join('')}</tr>`).join(''):`<tr><td colspan="${visible.length}"><div class="cpu-specs-cell">조건에 맞는 CPU가 없습니다. 검색어나 필터를 변경해 주세요.</div></td></tr>`;
     card.querySelector('[role="status"]').textContent=`${rows.length} / ${doc.rows.length}개 CPU · ${compact?'요약·구성·캐시 ':''}${visible.length}개 열 · ${mode.value==='enriched'?'보완 포함':'시트 원본'}`;
   };
