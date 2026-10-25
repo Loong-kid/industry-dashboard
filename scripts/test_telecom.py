@@ -25,6 +25,15 @@ class TelecomTests(unittest.TestCase):
         self.assertEqual(fields['capex']['ytd'],.00015)
         with self.assertRaises(ValueError):dart_report([item('x','x','1','CF')],2026,2,'other')
 
+    def test_dart_kt_investing_tag_and_exclusions(self):
+        items=[dict(account_id=tag,account_nm=name,thstrm_amount='1000000',sj_div=div,rcept_no='20260814000001') for tag,name,div in [
+            ('ifrs-full_Revenue','매출액','IS'),('dart_OperatingIncomeLoss','영업이익','IS'),
+            ('custom_wrong','무형자산의취득','CF'),
+            ('ifrs-full_PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities','유형자산취득의지출','CF')]]
+        report=dart_report(items,2026,2,'corp')
+        self.assertEqual(report['fields']['capex']['ytd'],1)
+        self.assertIn('ClassifiedAsInvestingActivities',report['fields']['capex']['tag'])
+
     def test_cf_quarter_differences_and_missing_not_zero(self):
         reports=[]
         for q,amount in [(1,10),(2,30),(4,100)]:

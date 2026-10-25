@@ -50,7 +50,11 @@ def dart_report(items,year,quarter,corp):
         ('revenue',('ifrs-full_Revenue','ifrs-full_RevenueFromContractsWithCustomers'),('매출액','영업수익','수익(매출액)','매출'),('IS','CIS')),
         ('profit',('dart_OperatingIncomeLoss','ifrs-full_ProfitLossFromOperatingActivities'),('영업이익','영업이익(손실)','영업손익'),('IS','CIS')),
         ('capex',('ifrs-full_PurchaseOfPropertyPlantAndEquipment','ifrs-full_PaymentsToAcquirePropertyPlantAndEquipment'),('유형자산의취득','유형자산취득','유형자산의취득으로인한현금유출','유형자산의취득으로인한현금유출액'),('CF',))]:
-        candidates=[r for r in items if r.get('sj_div') in divs and (r.get('account_id') in tags or r.get('account_nm','').replace(' ','') in names)]
+        def capex_match(r):
+            tag=r.get('account_id','').lower()
+            name=r.get('account_nm','').replace(' ','')
+            return key=='capex' and (re.search(r'(?:purchaseof|paymentstoacquire)propertyplantandequipment(?:classifiedasinvestingactivities)?$',tag) or (name.startswith('유형자산') and any(t in name for t in ['취득','구입','매입']) and not any(t in name for t in ['무형','처분','미지급','상각','보조금','사용권'])))
+        candidates=[r for r in items if r.get('sj_div') in divs and (r.get('account_id') in tags or r.get('account_nm','').replace(' ','') in names or capex_match(r))]
         if not candidates:continue
         item=min(candidates,key=lambda r:0 if r.get('account_id') in tags else 1)
         value=number(item.get('thstrm_amount'))
@@ -58,7 +62,7 @@ def dart_report(items,year,quarter,corp):
         if key=='capex':value=abs(value) if value is not None else None;ytd=value
         acc=item['rcept_no']
         fields[key]=dict(value=value/1e6 if value is not None else None,ytd=ytd/1e6 if ytd is not None else None,
-                         url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={acc}',filed=f'{acc[:4]}-{acc[4:6]}-{acc[6:8]}',tag=item['account_id'])
+                         url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={acc}',filed=f'{acc[:4]}-{acc[4:6]}-{acc[6:8]}',tag=item['account_id'],start=f'{year}-01-01',end=reporting_period(year,quarter)['date'])
     if not all(k in fields for k in ('revenue','profit')):raise ValueError('missing consolidated income statement')
     return dict(year=year,quarter=quarter,fields=fields)
 
@@ -76,7 +80,7 @@ def dart_accounts(reports,asof):
         for key,f in report['fields'].items():
             if f['filed']>asof:continue
             if q!=4 and key!='capex' and f['value'] is not None:
-                row[key]=f['value'];row['refs'][key]=dict(f,calculation='reported quarter');continue
+                row[key]=f['value'];row['refs'][key]=dict(f,start=row['start'],end=row['date'],calculation='reported quarter');continue
             previous=index.get((year,q-1),{}).get('fields',{}).get(key)
             if q==1 and f['ytd'] is not None:
                 row[key]=f['ytd'];row['refs'][key]=dict(f,calculation='reported quarter')
@@ -94,7 +98,7 @@ def workbook(raw):
 
 def columns(sheet, header, year_row):
     """Only actual Q1..Q4/full-year columns. Forecast columns never form a group."""
-    starts=[c.column for c in sheet[header] if re.search(r'(?:^|\W)(?:1Q|Q1)(?:\W|$)',str(c.value or '').strip())]
+    starts=[c.column for c in sheet[header] if re.search(r'(?:^|\W)(?:1Q|Q1)(?:\W|$)|Three Months Ended\s+June 30',str(c.value or '').strip(),re.I)]
     result=[]
     for col in starts:
         candidates=[c.value for row in sheet.iter_rows(min_row=year_row,max_row=year_row,min_col=col,max_col=min(col+4,sheet.max_column)) for c in row if re.fullmatch(r'FY\s?\d{2,4}',str(c.value or '').strip())]
@@ -104,7 +108,7 @@ def columns(sheet, header, year_row):
             if col+offset>sheet.max_column:continue
             label=str(sheet.cell(header,col+offset).value or '')
             if 'forecast' in label.lower() or '予想' in label:continue
-            if offset==4 and not any(t in label.lower() for t in ['full year','results','通期']):continue
+            if offset==4 and not any(t in label.lower() for t in ['full year','results','通期','year ended']):continue
             result.append((col+offset,fiscal+1,q))  # issuer FY is starting-year basis
     return result
 
@@ -140,7 +144,7 @@ def parse_softbank(raw,url,asof):
     w=workbook(raw);rows={}
     income=w['Consolidated_R&OP_1'];cash=w['Consolidated_R&OP_3']
     for s,key,term,absolute in [(income,'revenue','売上高\nRevenue',False),(income,'profit','営業利益\nOperating income',False),(cash,'capex','設備支出 (C)\nCapital expenditures',True)]:
-        found=[r for r in s if any(str(c.value).strip()==term for c in r[:5])]
+        found=[r for r in s if any(str(c.value).strip() in ({term, '設備支出\nCapital expenditures'} if key=='capex' else {term}) for c in r[:5])]
         if len(found)!=1:raise ValueError(f'SoftBank {key} row changed')
         r=found[0]
         for col,year,q in columns(s,6,5):merge_value(rows,reporting_period(year,q,4),key,number(r[col-1].value),url,f'{s.title}!{r[col-1].coordinate}',asof,absolute=absolute)
