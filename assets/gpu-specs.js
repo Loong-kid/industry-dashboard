@@ -1,23 +1,23 @@
-/* GPU and AI comparisons share the dashboard's compact, fixed-height table. */
+/* GPU, AI and memory comparisons share the compact, fixed-height table. */
 "use strict";
 function renderGPUSpecs(doc) {
-  const card=document.createElement('div');card.className='card cpu-specs gpu-specs';
+  const card=document.createElement('div');card.className='card cpu-specs '+(doc?.table_family==='memory'?'memory-specs':'gpu-specs');
   if(!doc)return card;
-  card.dataset.gpuSpecs=doc.id;
+  card.dataset[doc.table_family==='memory'?'memorySpecs':'gpuSpecs']=doc.id;
   const esc=escapeHtml,byId=new Map(doc.rows.map(r=>[r.id,r])),columns=new Map(doc.columns.map(c=>[c.id,c]));
   const options=items=>items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
   const link=(url,label)=>/^https:\/\//.test(url)?`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`:esc(label);
-  const ai=doc.id==='nvidia_ai_specs',prefix=ai?'AI 가속기':'GPU';
+  const ai=doc.id==='nvidia_ai_specs',memory=doc.table_family==='memory',prefix=memory?doc.short_name:ai?'AI 가속기':'GPU';
   card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${esc(doc.evidence_summary)}</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)} · 공개 자료 확인 ${esc(doc.updated)}</small></div></div>
     <div class="cpu-specs-controls">
       <label>기업<select aria-label="${prefix} 기업"><option value="all">전체 기업</option>${options([...new Set(doc.rows.map(r=>r.company))])}</select></label>
-      <label>${ai?'제품 단위':'형태·용도'}<select aria-label="${prefix} 제품 단위"><option value="all">전체 단위</option>${options([...new Set(doc.rows.map(r=>r.group))])}</select></label>
-      <label class="cpu-specs-search">검색<input type="search" aria-label="${prefix} 검색" placeholder="${ai?'제품·HBM·프로파일':'GPU 이름·아키텍처·메모리'}"></label>
+      <label>${doc.group_label||(ai?'제품 단위':'형태·용도')}<select aria-label="${prefix} 제품 단위"><option value="all">전체 단위</option>${options([...new Set(doc.rows.map(r=>r.group))])}</select></label>
+      <label class="cpu-specs-search">검색<input type="search" aria-label="${prefix} 검색" placeholder="${esc(doc.search_placeholder||(ai?'제품·HBM·프로파일':'GPU 이름·아키텍처·메모리'))}"></label>
       <label>열 보기<select aria-label="${prefix} 열 보기">${doc.views.map(v=>`<option value="${esc(v.id)}">${esc(v.label)}</option>`).join('')}</select></label>
       <label>값 표시<select aria-label="${prefix} 값 표시"><option value="reviewed">보완·검토 포함</option><option value="original">시트 원본</option></select></label>
       <button type="button" class="cpu-specs-reset">초기화</button>
     </div><div class="cpu-specs-status"><span role="status" aria-live="polite"></span><span>${esc(doc.scroll_hint)}</span></div>
-    <div class="order-table-wrap cpu-specs-scroll" role="region" tabindex="0" aria-label="${prefix} 비교표 · 가로·세로 스크롤"><table><caption>${ai?'Dense / Sparse 순서 · 제조사 이론 성능 · GPU·시스템·랙 단위 확인':'Geekbench 7 · API별 비교 · Time Spy는 원본 대표값'} · 빈칸은 —</caption><colgroup></colgroup><thead></thead><tbody></tbody></table></div>
+    <div class="order-table-wrap cpu-specs-scroll" role="region" tabindex="0" aria-label="${prefix} 비교표 · 가로·세로 스크롤"><table><caption>${esc(doc.caption||(ai?'Dense / Sparse 순서 · 제조사 이론 성능 · GPU·시스템·랙 단위 확인':'Geekbench 7 · API별 비교 · Time Spy는 원본 대표값'))} · 빈칸은 —</caption><colgroup></colgroup><thead></thead><tbody></tbody></table></div>
     <p class="ir-scope-note">${esc(doc.note)}${doc.date_definition?'<br>'+esc(doc.date_definition)+' ‘안내’는 제조사 출시 예정 시기, 연도만 표기한 값은 최초 판매 월·일 미확인입니다.':''}</p>
     <details class="cpu-specs-evidence"><summary>출처와 보완·검토 기준</summary><p>원본 기재값은 보존합니다. 색이 있는 셀의 ↗는 해당 보완·검토값의 근거입니다. 출처 표시가 없는 원본 값은 이번에 개별 검증한 값이 아닙니다. ‘시트 원본’을 선택하면 추가 프로파일을 제외한 원본 기재값을 확인할 수 있습니다.</p>${Object.values(doc.sources).map(s=>`<p>${link(s.url,s.title+' ↗')}<small>${esc(s.note)} 확인 ${esc(s.checked)}</small></p>`).join('')}<p>${esc(doc.update_note)}</p></details>
     <div class="cpu-specs-memo" role="tooltip" hidden></div>
@@ -34,6 +34,7 @@ function renderGPUSpecs(doc) {
     const v=String(value(row,c.id));if(!v)return null;
     // Partial dates sort by the beginning of their period without inventing a displayed day.
     if(c.date){const match=v.match(/^(\d{4})(?:-(Q[1-4]|\d{2})(?:-(\d{2}))?)?$/);if(!match)return null;const month=match[2]?.startsWith('Q')?(Number(match[2][1])-1)*3+1:Number(match[2]||1);return Number(match[1])*10000+month*100+Number(match[3]||1);}
+    if(c.measure){const match=v.replaceAll(',','').match(/\d+(?:\.\d+)?/);return match?Number(match[0]):null;}
     if(c.numeric)return Number(v.replaceAll(',',''));
     if(!ai&&c.id==='N')return Number(v.match(/[\d.]+/)?.[0])||null;
     if(ai&&['fp4','fp8','fp16','fp32','power','memory','bandwidth','nvlink'].includes(c.id)){
@@ -71,7 +72,7 @@ function renderGPUSpecs(doc) {
     table.querySelector('colgroup').innerHTML=visible.map(c=>`<col class="${c.id===doc.name_key?'cpu-specs-col-name':''}" style="width:${c.width}px">`).join('')+'<col style="width:48px">';
     table.querySelector('thead').innerHTML='<tr>'+visible.map(c=>`<th scope="col" data-column="${esc(c.id)}" class="${c.id===doc.name_key?'cpu-specs-name ':''}${c.numeric?'cpu-specs-number':''}" aria-sort="${sortKey===c.id?(direction===1?'ascending':'descending'):'none'}"><button type="button" data-sort="${esc(c.id)}" title="${esc(c.label)}">${esc(c.label)} ${sortKey===c.id?(direction===1?'▲':'▼'):'↕'}</button></th>`).join('')+'<th scope="col" data-column="detail">상세</th></tr>';
     table.querySelector('tbody').innerHTML=rows.length?rows.map(row=>`<tr data-row-id="${esc(row.id)}">${visible.map(c=>{const extra=evidence(row,c.id),isName=c.id===doc.name_key;return `<${isName?'th scope="row"':'td'} data-column="${esc(c.id)}" class="${isName?'cpu-specs-name ':''}${c.numeric?'cpu-specs-number ':''}${extra?'cpu-specs-added':''}"><div class="cpu-specs-cell" data-row="${esc(row.id)}" data-field="${esc(c.id)}"><span class="cpu-specs-value">${isName?`<span class="cpu-specs-identity"><b>${esc(name(row))}</b><small>${esc(row.company+' · '+row.group)}</small></span>`:c.url&&value(row,c.id)?link(value(row,c.id),'원문 ↗'):esc(format(row,c))}</span>${extra?`<a class="cpu-specs-ref" href="${esc(doc.sources[extra.source].url)}" target="_blank" rel="noopener" aria-label="${esc(name(row)+' '+c.label+' 검토 출처')}">↗</a>`:''}</div></${isName?'th':'td'}>`;}).join('')}<td><div class="cpu-specs-cell">${detailButton(row)}</div></td></tr>`).join(''):`<tr><td colspan="${visible.length+1}"><div class="cpu-specs-cell">조건에 맞는 제품이 없습니다. 검색어나 필터를 변경해 주세요.</div></td></tr>`;
-    card.querySelector('[role="status"]').textContent=`${rows.length}개 ${ai?'프로파일':'GPU'} · ${group.value==='all'?'전체 단위':group.value} · ${reviewed()?'보완·검토 포함':'시트 원본'}`;
+    card.querySelector('[role="status"]').textContent=`${rows.length}개 ${doc.item_label||(ai?'프로파일':'GPU')} · ${group.value==='all'?'전체 단위':group.value} · ${reviewed()?'보완·검토 포함':'시트 원본'}`;
   };
   const reset=()=>{company.value='all';group.value=doc.default_group;view.value=doc.default_view;mode.value='reviewed';search.value='';sortKey=null;draw();region.scrollLeft=region.scrollTop=0;};
   card.querySelector('.cpu-specs-reset').addEventListener('click',reset);
@@ -80,7 +81,7 @@ function renderGPUSpecs(doc) {
   table.addEventListener('click',event=>{
     const sort=event.target.closest('[data-sort]'),detail=event.target.closest('[data-detail]');
     if(sort){direction=sortKey===sort.dataset.sort?-direction:columns.get(sort.dataset.sort).numeric?-1:1;sortKey=sort.dataset.sort;draw();}
-    if(detail){hideMemo();const row=byId.get(detail.dataset.detail);dialog.querySelector('h2').textContent=name(row);dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.company+' · '+row.group)} · ${row.sheet_row?'시트 '+row.sheet_row+'행':'공식 자료 추가 프로파일'}</p>${reviewed()&&row.review_note?`<p>${esc(row.review_note)}</p>`:''}<dl>${doc.columns.map(c=>fieldHTML(row,c.id)).join('')}</dl>${ai&&row.sheet_row?`<details><summary>시트 원본 행 · 셀 좌표</summary><dl>${row.source_values.map((v,i)=>v?`<div><dt>${String.fromCharCode(65+Math.floor(i/26)-1).replace('@','')}${String.fromCharCode(65+i%26)}${row.sheet_row}</dt><dd>${esc(v)}</dd></div>`:'').join('')}</dl></details>`:''}`;dialog.showModal();}
+    if(detail){hideMemo();const row=byId.get(detail.dataset.detail);dialog.querySelector('h2').textContent=name(row);dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.company+' · '+row.group)}${row.context?' · 인접 세대 '+esc(row.context):''} · ${row.sheet_row?'시트 '+row.sheet_row+'행':'공식 자료 추가 프로파일'}</p>${row.review_note&&(reviewed()||memory)?`<p>${esc(row.review_note)}</p>`:''}<dl>${doc.columns.map(c=>fieldHTML(row,c.id)).join('')}</dl>${(ai||memory)&&row.sheet_row?`<details class="specs-raw-row"><summary>시트 원본 행 · 셀 좌표</summary><dl>${row.source_values.map((v,i)=>v?`<div><dt>${String.fromCharCode(65+Math.floor(i/26)-1).replace('@','')}${String.fromCharCode(65+i%26)}${row.sheet_row}</dt><dd>${esc(v)}</dd></div>`:'').join('')}</dl></details>`:''}`;dialog.showModal();}
   });
   dialog.querySelector('button').addEventListener('click',()=>dialog.close());
   table.addEventListener('pointerover',event=>{if(event.pointerType!=='touch'){const target=event.target.closest('[data-field]');if(target)showMemo(target);}});

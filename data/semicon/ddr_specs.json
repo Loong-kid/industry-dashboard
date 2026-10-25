@@ -1,0 +1,1272 @@
+{
+ "id": "ddr_specs",
+ "name": "DDR · 세대별 사양과 공정 메모",
+ "table_family": "memory",
+ "short_name": "DDR",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "사용자 Google Sheets · DRAM",
+ "source_url": "https://docs.google.com/spreadsheets/d/1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g/edit#gid=121507289",
+ "source_range": "DRAM!A1:T39",
+ "updated": "2026-10-25",
+ "fetched": "2026-10-25",
+ "update_note": "시트 원본과 공식 자료의 확인일 기준 스냅샷입니다. 시트 수정·새 제품 발표 후 검토하여 갱신하며 자동 실시간 수집은 아닙니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "세대 / 공정",
+   "width": 170
+  },
+  {
+   "id": "sheet_year",
+   "label": "시트 출시연도",
+   "width": 100
+  },
+  {
+   "id": "data_rate",
+   "label": "데이터 속도 · MT/s",
+   "width": 120,
+   "measure": true
+  },
+  {
+   "id": "bandwidth",
+   "label": "64-bit 환산 · GB/s",
+   "width": 125,
+   "measure": true
+  },
+  {
+   "id": "voltage",
+   "label": "전압 · V",
+   "width": 90
+  },
+  {
+   "id": "capacity",
+   "label": "용량 · 시트 기준",
+   "width": 140
+  },
+  {
+   "id": "prefetch",
+   "label": "Prefetch",
+   "width": 85
+  },
+  {
+   "id": "bus",
+   "label": "비교 데이터 폭",
+   "width": 120
+  },
+  {
+   "id": "die_density",
+   "label": "Die 용량 · Gb",
+   "width": 130
+  },
+  {
+   "id": "process",
+   "label": "공정 코드",
+   "width": 95
+  },
+  {
+   "id": "process_nm",
+   "label": "공정 치수",
+   "width": 100
+  },
+  {
+   "id": "company",
+   "label": "회사 · 시트 기준",
+   "width": 120
+  },
+  {
+   "id": "net_die",
+   "label": "Net die · 원본",
+   "width": 110
+  },
+  {
+   "id": "mesh1",
+   "label": "Mesh 1 · 원본",
+   "width": 110
+  },
+  {
+   "id": "mesh2",
+   "label": "Mesh 2 · 원본",
+   "width": 110
+  },
+  {
+   "id": "cell_height",
+   "label": "Cell 높이 · 원본",
+   "width": 120
+  },
+  {
+   "id": "dielectrics",
+   "label": "High-k 재료 · 원본",
+   "width": 220
+  },
+  {
+   "id": "extra",
+   "label": "시트 추가 메모",
+   "width": 150
+  }
+ ],
+ "rows": [
+  {
+   "id": "ddr-sheet-2",
+   "sheet_row": 2,
+   "source_values": [
+    "SDRAM",
+    "",
+    "1988",
+    "",
+    "",
+    "100~166",
+    "0.8~1.3",
+    "3.3",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "SDRAM",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "SDRAM",
+   "original": {
+    "name": "SDRAM",
+    "process": "",
+    "sheet_year": "1988",
+    "company": "",
+    "extra": "",
+    "data_rate": "100~166",
+    "bandwidth": "0.8~1.3",
+    "voltage": "3.3",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-3",
+   "sheet_row": 3,
+   "source_values": [
+    "DDR",
+    "",
+    "2000",
+    "",
+    "",
+    "266~400",
+    "2.1~3.2",
+    "2.5~2.6",
+    "32MB~2GB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DDR",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "DDR",
+   "original": {
+    "name": "DDR",
+    "process": "",
+    "sheet_year": "2000",
+    "company": "",
+    "extra": "",
+    "data_rate": "266~400",
+    "bandwidth": "2.1~3.2",
+    "voltage": "2.5~2.6",
+    "capacity": "32MB~2GB",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {
+    "die_density": {
+     "value": "256Mb · 예",
+     "source": "micron_ddr1",
+     "note": "대표 부품 예시이며 전체 DDR 모듈 용량·전체 Die 범위가 아닙니다."
+    }
+   },
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-4",
+   "sheet_row": 4,
+   "source_values": [
+    "DDR2",
+    "",
+    "2003",
+    "",
+    "",
+    "533~800",
+    "4.2~6.4",
+    "1.8",
+    "128M~4G",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DDR2",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "DDR2",
+   "original": {
+    "name": "DDR2",
+    "process": "",
+    "sheet_year": "2003",
+    "company": "",
+    "extra": "",
+    "data_rate": "533~800",
+    "bandwidth": "4.2~6.4",
+    "voltage": "1.8",
+    "capacity": "128M~4G",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {
+    "die_density": {
+     "value": "512Mb / 1Gb / 2Gb",
+     "source": "micron_ddr2",
+     "note": "제조사 제품군 Die 밀도 예시. 모듈 GB와 구분합니다."
+    }
+   },
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-5",
+   "sheet_row": 5,
+   "source_values": [
+    "DDR3",
+    "",
+    "2007",
+    "",
+    "",
+    "1,066~1,600",
+    "8.5~14.9",
+    "1.35~1.5",
+    "512M~8G",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DDR3",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "DDR3",
+   "original": {
+    "name": "DDR3",
+    "process": "",
+    "sheet_year": "2007",
+    "company": "",
+    "extra": "",
+    "data_rate": "1,066~1,600",
+    "bandwidth": "8.5~14.9",
+    "voltage": "1.35~1.5",
+    "capacity": "512M~8G",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {
+    "prefetch": {
+     "value": "8n",
+     "source": "micron_faq",
+     "note": "DDR3의 8n Prefetch와 Die 밀도 범위. DDR3L 전압은 1.35 V, DDR3은 1.5 V입니다."
+    },
+    "die_density": {
+     "value": "1 / 2 / 4 / 8Gb",
+     "source": "micron_faq",
+     "note": "DDR3의 8n Prefetch와 Die 밀도 범위. DDR3L 전압은 1.35 V, DDR3은 1.5 V입니다."
+    },
+    "bandwidth": {
+     "value": "8.528~12.8",
+     "source": "kingston_ddr5",
+     "note": "계산값: 시트 1066~1600 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000 = 8.528~12.8 GB/s. 시트 14.9와 계산이 달라 검토값으로 분리했습니다. 실제 모듈 검증값은 아닙니다."
+    }
+   },
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-6",
+   "sheet_row": 6,
+   "source_values": [
+    "",
+    "D3x",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D3x",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D3x",
+    "process": "D3x",
+    "sheet_year": "",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-7",
+   "sheet_row": 7,
+   "source_values": [
+    "",
+    "D3y",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D3y",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D3y",
+    "process": "D3y",
+    "sheet_year": "",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-8",
+   "sheet_row": 8,
+   "source_values": [
+    "",
+    "D3z",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D3z",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D3z",
+    "process": "D3z",
+    "sheet_year": "",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-9",
+   "sheet_row": 9,
+   "source_values": [
+    "",
+    "D2x",
+    "",
+    "Hynix",
+    "26nm",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D2x",
+   "company": "Hynix",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D2x",
+    "process": "D2x",
+    "sheet_year": "",
+    "company": "Hynix",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": "",
+    "process_nm": "26nm"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다. 원본 E열의 nm 값을 공정 치수로 표시했습니다. 데이터 전송 속도가 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-10",
+   "sheet_row": 10,
+   "source_values": [
+    "",
+    "D2y",
+    "",
+    "Hynix",
+    "20nm",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D2y",
+   "company": "Hynix",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D2y",
+    "process": "D2y",
+    "sheet_year": "",
+    "company": "Hynix",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": "",
+    "process_nm": "20nm"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다. 원본 E열의 nm 값을 공정 치수로 표시했습니다. 데이터 전송 속도가 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-11",
+   "sheet_row": 11,
+   "source_values": [
+    "",
+    "D2z",
+    "2014.02",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "<1500",
+    "32nm",
+    "109nm",
+    "1.22um",
+    "TE/ZrAlO/ZrO/BE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D2z",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR3",
+   "original": {
+    "name": "D2z",
+    "process": "D2z",
+    "sheet_year": "2014.02",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "<1500",
+    "mesh1": "32nm",
+    "mesh2": "109nm",
+    "cell_height": "1.22um",
+    "dielectrics": "TE/ZrAlO/ZrO/BE"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-12",
+   "sheet_row": 12,
+   "source_values": [
+    "DDR4",
+    "",
+    "2014",
+    "",
+    "",
+    "2,133~5,100",
+    "17~25.6",
+    "1.2",
+    "2GB~8GB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DDR4",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "DDR4",
+   "original": {
+    "name": "DDR4",
+    "process": "",
+    "sheet_year": "2014",
+    "company": "",
+    "extra": "",
+    "data_rate": "2,133~5,100",
+    "bandwidth": "17~25.6",
+    "voltage": "1.2",
+    "capacity": "2GB~8GB",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {
+    "data_rate": {
+     "value": "1600~3200",
+     "source": "micron_ddr_wp",
+     "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+    },
+    "prefetch": {
+     "value": "8n",
+     "source": "micron_ddr_wp",
+     "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+    },
+    "bus": {
+     "value": "64-bit",
+     "source": "kingston_ddr5",
+     "note": "64-bit 합계 데이터 폭 기준. DDR5는 독립 32-bit 서브채널 2개 합계이며 DRAM 칩 자체 I/O 폭이 아닙니다."
+    },
+    "bandwidth": {
+     "value": "12.8~25.6",
+     "source": "micron_ddr_wp",
+     "note": "이론 계산: 1600~3200 MT/s × 64 bit ÷ 8 ÷ 1000. 표준화한 64-bit 데이터 폭 기준이며 실측 성능이 아닙니다. 시트 속도와 다른 백서 대표 구간으로 맞췄습니다."
+    },
+    "die_density": {
+     "value": "2~16Gb",
+     "source": "micron_ddr5",
+     "note": "Micron의 Die 밀도 비교 기준. 모듈 전체 용량이 아닙니다."
+    }
+   },
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-13",
+   "sheet_row": 13,
+   "source_values": [
+    "",
+    "D1x",
+    "2016",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "40nm",
+    "92nm",
+    "1.22um",
+    "TE/ZrAlO/ZrO/BE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1x",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR4",
+   "original": {
+    "name": "D1x",
+    "process": "D1x",
+    "sheet_year": "2016",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "40nm",
+    "mesh2": "92nm",
+    "cell_height": "1.22um",
+    "dielectrics": "TE/ZrAlO/ZrO/BE"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-14",
+   "sheet_row": 14,
+   "source_values": [
+    "",
+    "D1y",
+    "2017",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "18nm",
+    "110nm",
+    "1.22um",
+    "TE/ZrAlO/ZrO/BE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1y",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR4",
+   "original": {
+    "name": "D1y",
+    "process": "D1y",
+    "sheet_year": "2017",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "18nm",
+    "mesh2": "110nm",
+    "cell_height": "1.22um",
+    "dielectrics": "TE/ZrAlO/ZrO/BE"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-15",
+   "sheet_row": 15,
+   "source_values": [
+    "",
+    "D1z",
+    "2019",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "20nm",
+    "80nm",
+    "1.10um",
+    "TE/HfAlO/ZrAlO/HfO/BE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1z",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR4",
+   "original": {
+    "name": "D1z",
+    "process": "D1z",
+    "sheet_year": "2019",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "20nm",
+    "mesh2": "80nm",
+    "cell_height": "1.10um",
+    "dielectrics": "TE/HfAlO/ZrAlO/HfO/BE"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-16",
+   "sheet_row": 16,
+   "source_values": [
+    "DDR5",
+    "",
+    "2021",
+    "",
+    "",
+    "3,200~6,400",
+    "38.4~51.2",
+    "1.1",
+    "8GB~64GB",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "DDR5",
+   "company": "공통 / 미기재",
+   "group": "세대 비교",
+   "context": "DDR5",
+   "original": {
+    "name": "DDR5",
+    "process": "",
+    "sheet_year": "2021",
+    "company": "",
+    "extra": "",
+    "data_rate": "3,200~6,400",
+    "bandwidth": "38.4~51.2",
+    "voltage": "1.1",
+    "capacity": "8GB~64GB",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {
+    "data_rate": {
+     "value": "3200~6400",
+     "source": "micron_ddr_wp",
+     "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+    },
+    "prefetch": {
+     "value": "16n",
+     "source": "micron_ddr_wp",
+     "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+    },
+    "bus": {
+     "value": "64-bit · 32×2",
+     "source": "kingston_ddr5",
+     "note": "64-bit 합계 데이터 폭 기준. DDR5는 독립 32-bit 서브채널 2개 합계이며 DRAM 칩 자체 I/O 폭이 아닙니다."
+    },
+    "bandwidth": {
+     "value": "25.6~51.2",
+     "source": "micron_ddr_wp",
+     "note": "이론 계산: 3200~6400 MT/s × 64 bit ÷ 8 ÷ 1000. 표준화한 64-bit 데이터 폭 기준이며 실측 성능이 아닙니다. 시트 속도와 다른 백서 대표 구간으로 맞췄습니다."
+    },
+    "die_density": {
+     "value": "16 / 24 / 32Gb",
+     "source": "micron_ddr5",
+     "note": "Micron의 Die 밀도 비교 기준. 16/24/32Gb Die이며 모듈 전체 GB 용량이 아닙니다."
+    }
+   },
+   "review_note": "세대 비교의 용량은 시트의 모듈 범위이며 Die 용량과 다릅니다."
+  },
+  {
+   "id": "ddr-sheet-17",
+   "sheet_row": 17,
+   "source_values": [
+    "",
+    "D1a",
+    "2022",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "<2600",
+    "18nm",
+    "60nm",
+    "1.10um",
+    "TE/ZrHfO/ZrAlO/ZrHfAlO/BE",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1a",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR5",
+   "original": {
+    "name": "D1a",
+    "process": "D1a",
+    "sheet_year": "2022",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "<2600",
+    "mesh1": "18nm",
+    "mesh2": "60nm",
+    "cell_height": "1.10um",
+    "dielectrics": "TE/ZrHfO/ZrAlO/ZrHfAlO/BE"
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-18",
+   "sheet_row": 18,
+   "source_values": [
+    "",
+    "D1b",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "<3500",
+    "",
+    "",
+    "1.10um",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1b",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR5",
+   "original": {
+    "name": "D1b",
+    "process": "D1b",
+    "sheet_year": "",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "<3500",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "1.10um",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-sheet-19",
+   "sheet_row": 19,
+   "source_values": [
+    "",
+    "D1c",
+    "2025",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "D1c",
+   "company": "공통 / 미기재",
+   "group": "공정 메모",
+   "context": "DDR5",
+   "original": {
+    "name": "D1c",
+    "process": "D1c",
+    "sheet_year": "2025",
+    "company": "",
+    "extra": "",
+    "data_rate": "",
+    "bandwidth": "",
+    "voltage": "",
+    "capacity": "",
+    "net_die": "",
+    "mesh1": "",
+    "mesh2": "",
+    "cell_height": "",
+    "dielectrics": ""
+   },
+   "reviews": {},
+   "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "세대 비교",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "sheet_year",
+    "data_rate",
+    "bandwidth",
+    "voltage",
+    "prefetch",
+    "capacity",
+    "die_density",
+    "bus"
+   ]
+  },
+  {
+   "id": "process",
+   "label": "공정·셀 구조",
+   "keys": [
+    "name",
+    "process",
+    "process_nm",
+    "sheet_year",
+    "company",
+    "net_die",
+    "mesh1",
+    "mesh2",
+    "cell_height",
+    "dielectrics",
+    "extra"
+   ]
+  },
+  {
+   "id": "all",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "sheet_year",
+    "data_rate",
+    "bandwidth",
+    "voltage",
+    "capacity",
+    "prefetch",
+    "bus",
+    "die_density",
+    "process",
+    "process_nm",
+    "company",
+    "net_die",
+    "mesh1",
+    "mesh2",
+    "cell_height",
+    "dielectrics",
+    "extra"
+   ]
+  }
+ ],
+ "sources": {
+  "micron_ddr_wp": {
+   "title": "Micron · DDR4/DDR5 기술 백서",
+   "url": "https://www.micron.com/content/dam/micron/global/public/products/white-paper/ddr5-more-than-a-generational-update-wp.pdf",
+   "checked": "2026-10-25",
+   "note": "세대 대표 비교: DDR4 1600~3200 MT/s·1.2 V·8n, DDR5 3200~6400 MT/s·1.1 V·16n. 최신 모든 제품의 최대값을 뜻하지 않습니다."
+  },
+  "micron_ddr5": {
+   "title": "Micron · DDR5 제품 비교",
+   "url": "https://www.micron.com/products/memory/dram-components/ddr5-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR4·DDR5의 전압·Prefetch·Die 밀도 비교. Die Gb와 모듈 GB 용량을 구분합니다."
+  },
+  "micron_faq": {
+   "title": "Micron · DRAM 기술 FAQ",
+   "url": "https://www.micron.com/sales-support/sales/faqs",
+   "checked": "2026-10-25",
+   "note": "DDR3·DDR4 8n prefetch, DDR3 Die 용량과 DDR3L 1.35 V/DDR3 1.5 V 차이를 확인합니다."
+  },
+  "micron_ddr2": {
+   "title": "Micron · DDR2 제품 사양",
+   "url": "https://in.micron.com/products/memory/dram-components/ddr2-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR2의 대표 Die 밀도와 1.8 V. 부품 사양을 모듈 용량으로 변환하지 않습니다."
+  },
+  "micron_ddr1": {
+   "title": "Micron · DDR 제품 사양",
+   "url": "https://in.micron.com/products/memory/dram-components/ddr-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR 대표 부품은 256Mb, 2.5 V입니다. 모든 DDR 부품의 범위가 아닙니다."
+  },
+  "kingston_ddr5": {
+   "title": "Kingston · DDR5 구조와 데이터 폭",
+   "url": "https://media.kingston.com/kingston/articles/MKF_954-DDR5-Collateral_us.pdf",
+   "checked": "2026-10-25",
+   "note": "DDR5 모듈은 32-bit 서브채널 2개로 구성되며 합계 데이터 폭 64-bit를 유지합니다. 이 표의 이론 대역폭은 ECC 비트를 제외한 64-bit로 통일합니다."
+  }
+ },
+ "note": "기본은 SDRAM·DDR~DDR5 세대 비교입니다. 64-bit 데이터 폭의 이론 대역폭이며 DDR5는 32-bit 서브채널 2개 합계로 환산합니다. Die 용량(Gb)과 모듈 용량(GB)은 다른 단위입니다. DDR4·DDR5 보완 속도는 Micron 백서의 대표 기준이며 전체 최신 제품의 최대 속도는 아닙니다. 출시연도와 공정 구조·재료는 시트 기재 메모로, 표준 제정일·양산일 또는 검증된 제조사 공정으로 해석하지 않습니다.",
+ "caption": "DDR 대역폭: 64-bit 데이터 폭 기준 · 공정 메모는 표준 세대 사양과 구분",
+ "search_placeholder": "세대·공정·제품·회사 검색",
+ "group_label": "행 구분",
+ "item_label": "항목",
+ "evidence_summary": "원본 18개 행 · 15개 값 보완·검토",
+ "scroll_hint": "행 높이 40px · 긴 값은 마우스 메모 · 상세는 맨 오른쪽",
+ "original_columns": [
+  {
+   "id": "name",
+   "label": "세대 / 공정",
+   "width": 170
+  },
+  {
+   "id": "sheet_year",
+   "label": "시트 출시연도",
+   "width": 100
+  },
+  {
+   "id": "data_rate",
+   "label": "데이터 속도 · MT/s",
+   "width": 120,
+   "measure": true
+  },
+  {
+   "id": "bandwidth",
+   "label": "64-bit 환산 · GB/s",
+   "width": 125,
+   "measure": true
+  },
+  {
+   "id": "voltage",
+   "label": "전압 · V",
+   "width": 90
+  },
+  {
+   "id": "capacity",
+   "label": "용량 · 시트 기준",
+   "width": 140
+  },
+  {
+   "id": "prefetch",
+   "label": "Prefetch",
+   "width": 85
+  },
+  {
+   "id": "bus",
+   "label": "비교 데이터 폭",
+   "width": 120
+  },
+  {
+   "id": "die_density",
+   "label": "Die 용량 · Gb",
+   "width": 130
+  },
+  {
+   "id": "process",
+   "label": "공정 코드",
+   "width": 95
+  },
+  {
+   "id": "process_nm",
+   "label": "공정 치수",
+   "width": 100
+  },
+  {
+   "id": "company",
+   "label": "회사 · 시트 기준",
+   "width": 120
+  },
+  {
+   "id": "net_die",
+   "label": "Net die · 원본",
+   "width": 110
+  },
+  {
+   "id": "mesh1",
+   "label": "Mesh 1 · 원본",
+   "width": 110
+  },
+  {
+   "id": "mesh2",
+   "label": "Mesh 2 · 원본",
+   "width": 110
+  },
+  {
+   "id": "cell_height",
+   "label": "Cell 높이 · 원본",
+   "width": 120
+  },
+  {
+   "id": "dielectrics",
+   "label": "High-k 재료 · 원본",
+   "width": 220
+  },
+  {
+   "id": "extra",
+   "label": "시트 추가 메모",
+   "width": 150
+  }
+ ],
+ "raw_headers": [
+  "Generation",
+  "공정",
+  "출시일",
+  "회사",
+  "",
+  "데이터속도(MT/s)",
+  "전송 속도(GB/s)",
+  "전압(V)",
+  "용량",
+  "Net die",
+  "Mesh Thickness(1st)",
+  "Mesh Thickness(2nd)",
+  "Cell Cap Hieght",
+  "High-k Dieelectrics"
+ ]
+}

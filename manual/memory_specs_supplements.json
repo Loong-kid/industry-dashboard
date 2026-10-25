@@ -1,0 +1,1249 @@
+{
+ "reviewed": "2026-10-25",
+ "sources": {
+  "sheet_context": {
+   "title": "DRAM 시트 · 원본 구성",
+   "url": "https://docs.google.com/spreadsheets/d/1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g/edit#gid=121507289",
+   "checked": "2026-10-25",
+   "note": "행 이름의 적층 수와 인접 회사 구간을 표시하는 문맥 보완입니다. 제조사 공식 제품 인증 근거는 아닙니다."
+  },
+  "micron_ddr_wp": {
+   "title": "Micron · DDR4/DDR5 기술 백서",
+   "url": "https://www.micron.com/content/dam/micron/global/public/products/white-paper/ddr5-more-than-a-generational-update-wp.pdf",
+   "checked": "2026-10-25",
+   "note": "세대 대표 비교: DDR4 1600~3200 MT/s·1.2 V·8n, DDR5 3200~6400 MT/s·1.1 V·16n. 최신 모든 제품의 최대값을 뜻하지 않습니다."
+  },
+  "micron_ddr5": {
+   "title": "Micron · DDR5 제품 비교",
+   "url": "https://www.micron.com/products/memory/dram-components/ddr5-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR4·DDR5의 전압·Prefetch·Die 밀도 비교. Die Gb와 모듈 GB 용량을 구분합니다."
+  },
+  "micron_faq": {
+   "title": "Micron · DRAM 기술 FAQ",
+   "url": "https://www.micron.com/sales-support/sales/faqs",
+   "checked": "2026-10-25",
+   "note": "DDR3·DDR4 8n prefetch, DDR3 Die 용량과 DDR3L 1.35 V/DDR3 1.5 V 차이를 확인합니다."
+  },
+  "micron_ddr2": {
+   "title": "Micron · DDR2 제품 사양",
+   "url": "https://in.micron.com/products/memory/dram-components/ddr2-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR2의 대표 Die 밀도와 1.8 V. 부품 사양을 모듈 용량으로 변환하지 않습니다."
+  },
+  "micron_ddr1": {
+   "title": "Micron · DDR 제품 사양",
+   "url": "https://in.micron.com/products/memory/dram-components/ddr-sdram",
+   "checked": "2026-10-25",
+   "note": "DDR 대표 부품은 256Mb, 2.5 V입니다. 모든 DDR 부품의 범위가 아닙니다."
+  },
+  "kingston_ddr5": {
+   "title": "Kingston · DDR5 구조와 데이터 폭",
+   "url": "https://media.kingston.com/kingston/articles/MKF_954-DDR5-Collateral_us.pdf",
+   "checked": "2026-10-25",
+   "note": "DDR5 모듈은 32-bit 서브채널 2개로 구성되며 합계 데이터 폭 64-bit를 유지합니다. 이 표의 이론 대역폭은 ECC 비트를 제외한 64-bit로 통일합니다."
+  },
+  "sk_hbm1": {
+   "title": "SK하이닉스 · 최초 HBM 개발 발표",
+   "url": "https://news.skhynix.co.kr/developed-the-first-tsv-based-high-speed-memory/",
+   "checked": "2026-10-25",
+   "note": "2013-12-26 개발 발표. 1 Gb/s/pin·1024 I/O·128 GB/s·1.2 V. 개발일과 시트 연도는 별개입니다."
+  },
+  "sk_hbm2e": {
+   "title": "SK하이닉스 · HBM2E 개발 발표",
+   "url": "https://news.skhynix.com/en/sk-hynix-develops-worlds-fastest-high-bandwidth-memory-hbm2e/",
+   "checked": "2026-10-25",
+   "note": "2019-08-12 개발 발표: 3.6 Gb/s/pin·1024 I/O·460 GB/s 초과·16GB 8H·16Gb Die. 양산은 별도 이정표입니다."
+  },
+  "sk_hbm2e_mp": {
+   "title": "SK하이닉스 · HBM2E 양산 발표",
+   "url": "https://news.skhynix.com/en/sk-hynix-starts-mass-production-of-high-speed-dram-hbm2e/",
+   "checked": "2026-10-25",
+   "note": "2020-07-02 양산 발표. 개발 발표와 구분합니다."
+  },
+  "sk_hbm3": {
+   "title": "SK하이닉스 · HBM3 개발 발표",
+   "url": "https://news.skhynix.com/en/sk-hynix-announces-development-of-hbm3-dram/",
+   "checked": "2026-10-25",
+   "note": "2021-10-20 개발 발표: 819 GB/s, 16GB/24GB. 24GB는 12층이며 Die 두께 약 30µm 설명은 이 제품에 한합니다."
+  },
+  "sk_hbm3_history": {
+   "title": "SK하이닉스 · HBM 개발 연혁",
+   "url": "https://news.skhynix.com/en/the-story-of-sk-hynixs-hbm-development/",
+   "checked": "2026-10-25",
+   "note": "HBM3 양산은 2022년 6월. 시트의 2021년 개발 연도와 구분합니다."
+  },
+  "sk_hbm3e_8": {
+   "title": "SK하이닉스 · HBM3E 양산 발표",
+   "url": "https://news.skhynix.com/en/sk-hynix-begins-volume-production-of-industry-first-hbm3e/",
+   "checked": "2026-10-25",
+   "note": "2024-03-19 양산 시작 공지. 8단 초기 제품의 약 1.18 TB/s 성능과 후속 12단 프로파일을 구분합니다."
+  },
+  "sk_hbm3e_12": {
+   "title": "SK하이닉스 · 12단 HBM3E 양산 발표",
+   "url": "https://news.skhynix.com/en/sk-hynix-begins-volume-production-of-the-world-first-12-layer-hbm3e/",
+   "checked": "2026-10-25",
+   "note": "2024-09-26 양산 발표: 36GB 12H·3GB Die·9.6 Gb/s·Advanced MR-MUF. 이전 8단은 24GB입니다."
+  },
+  "sk_hbm4_sample": {
+   "title": "SK하이닉스 · 12단 HBM4 샘플",
+   "url": "https://news.skhynix.com/en/sk-hynix-ships-world-first-12-layer-hbm4-samples-to-customers/",
+   "checked": "2026-10-25",
+   "note": "2025-03-19 고객 샘플: 36GB 12H·스택 1개 대역폭 2 TB/s 초과·Advanced MR-MUF. 샘플 발표를 판매일로 쓰지 않습니다."
+  },
+  "sk_hbm4_ready": {
+   "title": "SK하이닉스 · HBM4 개발·양산 준비",
+   "url": "https://news.skhynix.com/en/sk-hynix-completes-worlds-first-hbm4-development-and-readies-mass-production/",
+   "checked": "2026-10-25",
+   "note": "2025-09-12 개발 완료·양산 준비 발표: 10 Gb/s 초과·2048 I/O·1b DRAM·Advanced MR-MUF. 실제 고객 출하와 구분합니다."
+  },
+  "samsung_aqua": {
+   "title": "삼성전자 · Aquabolt HBM2 양산",
+   "url": "https://news.samsung.com/global/samsung-starts-producing-8-gigabyte-high-bandwidth-memory-2-with-highest-data-transmission-speed",
+   "checked": "2026-10-25",
+   "note": "2018-01-11: 8GB 8H·8Gb Die·2.4 Gb/s·307.2 GB/s·1024-bit. 초기 2016 HBM2와 다른 Aquabolt 제품 프로파일입니다."
+  },
+  "samsung_flash": {
+   "title": "삼성전자 · Flashbolt HBM2E 공개",
+   "url": "https://news.samsung.com/global/samsung-to-advance-high-performance-computing-systems-with-launch-of-industrys-first-3rd-generation-16gb-hbm2e",
+   "checked": "2026-10-25",
+   "note": "2020-02-04: 16GB 8H·1y 16Gb Die·3.2 Gb/s·410 GB/s. 4.2 Gb/s·538 GB/s는 당시 시험 최대치로 기본값에 사용하지 않습니다."
+  },
+  "samsung_ice": {
+   "title": "삼성전자 · HBM3 Icebolt 사양",
+   "url": "https://semiconductor.samsung.com/dram/hbm/hbm3/",
+   "checked": "2026-10-25",
+   "note": "16GB/24GB와 8H/12H, 최대 6.4 Gb/s·819 GB/s·1024 I/O. 12H는 16Gb Die 12개로 24GB입니다."
+  },
+  "samsung_shine": {
+   "title": "삼성전자 · Shinebolt 공개",
+   "url": "https://news.samsung.com/global/samsung-electronics-holds-memory-tech-day-2023-unveiling-new-innovations-to-lead-the-hyperscale-ai-era",
+   "checked": "2026-10-25",
+   "note": "2023-10-21 보도자료: Shinebolt 샘플 제공, 최대 9.8 Gb/s·1.2 TB/s 초과. HBM3 8H/12H는 당시 양산 중. 최고 개발 성능과 양산 SKU를 구분합니다."
+  },
+  "samsung_3e12": {
+   "title": "삼성전자 · 36GB HBM3E 12H 개발",
+   "url": "https://semiconductor.samsung.com/news-events/news/samsung-develops-industry-first-36gb-hbm3e-12h-dram/",
+   "checked": "2026-10-25",
+   "note": "2024-02-27 개발 발표: 36GB·12H·최대 1280 GB/s·Advanced TC NCF. 샘플 공급·양산 계획을 양산 완료로 해석하지 않습니다."
+  },
+  "samsung_hbm4": {
+   "title": "삼성전자 · HBM4 양산·출하",
+   "url": "https://news.samsung.com/global/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing",
+   "checked": "2026-10-25",
+   "note": "2026-02-12 양산·상용 출하 발표: 1c DRAM·4nm logic, 11.7 Gb/s 및 최대 13 Gb/s, 최대 3.3 TB/s. 12H는 24~36GB이며 48GB 16H는 별도 확장 계획입니다."
+  },
+  "samsung_hbm4_io": {
+   "title": "삼성전자 · HBM4 인터페이스",
+   "url": "https://news.samsungsemiconductor.com/global/video-the-hbm4-infographic-key-specs-and-performance-leap/",
+   "checked": "2026-10-25",
+   "note": "HBM4 I/O는 2048-bit입니다. 이전 HBM3E의 1024-bit와 구분합니다."
+  },
+  "samsung_hbm_current": {
+   "title": "삼성전자 · HBM 제품군 공개 사양",
+   "url": "https://semiconductor.samsung.com/dram/hbm/",
+   "checked": "2026-10-25",
+   "note": "확인일 현재 제품 페이지: HBM3E는 24/36GB·8H/12H·최대9.2 Gb/s·최대1180 GB/s·1024 I/O. HBM4E는 최대64GB·최대16H·최대16 Gb/s·2048 I/O. 페이지에 최초 공개일·고객 출하일은 명시하지 않아 날짜를 추정하지 않습니다."
+  }
+ },
+ "cells": [
+  {
+   "table": "ddr",
+   "row": 3,
+   "product": "DDR",
+   "column": "die_density",
+   "value": "256Mb · 예",
+   "source": "micron_ddr1",
+   "note": "대표 부품 예시이며 전체 DDR 모듈 용량·전체 Die 범위가 아닙니다."
+  },
+  {
+   "table": "ddr",
+   "row": 4,
+   "product": "DDR2",
+   "column": "die_density",
+   "value": "512Mb / 1Gb / 2Gb",
+   "source": "micron_ddr2",
+   "note": "제조사 제품군 Die 밀도 예시. 모듈 GB와 구분합니다."
+  },
+  {
+   "table": "ddr",
+   "row": 5,
+   "product": "DDR3",
+   "column": "prefetch",
+   "value": "8n",
+   "source": "micron_faq",
+   "note": "DDR3의 8n Prefetch와 Die 밀도 범위. DDR3L 전압은 1.35 V, DDR3은 1.5 V입니다."
+  },
+  {
+   "table": "ddr",
+   "row": 5,
+   "product": "DDR3",
+   "column": "die_density",
+   "value": "1 / 2 / 4 / 8Gb",
+   "source": "micron_faq",
+   "note": "DDR3의 8n Prefetch와 Die 밀도 범위. DDR3L 전압은 1.35 V, DDR3은 1.5 V입니다."
+  },
+  {
+   "table": "ddr",
+   "row": 12,
+   "product": "DDR4",
+   "column": "data_rate",
+   "value": "1600~3200",
+   "source": "micron_ddr_wp",
+   "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 12,
+   "product": "DDR4",
+   "column": "prefetch",
+   "value": "8n",
+   "source": "micron_ddr_wp",
+   "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 12,
+   "product": "DDR4",
+   "column": "bus",
+   "value": "64-bit",
+   "source": "kingston_ddr5",
+   "note": "64-bit 합계 데이터 폭 기준. DDR5는 독립 32-bit 서브채널 2개 합계이며 DRAM 칩 자체 I/O 폭이 아닙니다."
+  },
+  {
+   "table": "ddr",
+   "row": 12,
+   "product": "DDR4",
+   "column": "bandwidth",
+   "value": "12.8~25.6",
+   "source": "micron_ddr_wp",
+   "note": "이론 계산: 1600~3200 MT/s × 64 bit ÷ 8 ÷ 1000. 표준화한 64-bit 데이터 폭 기준이며 실측 성능이 아닙니다. 시트 속도와 다른 백서 대표 구간으로 맞췄습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 16,
+   "product": "DDR5",
+   "column": "data_rate",
+   "value": "3200~6400",
+   "source": "micron_ddr_wp",
+   "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 16,
+   "product": "DDR5",
+   "column": "prefetch",
+   "value": "16n",
+   "source": "micron_ddr_wp",
+   "note": "Micron 백서의 대표 세대 비교 기준. OC 제품·최신 전체 제품 속도 범위를 뜻하지 않습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 16,
+   "product": "DDR5",
+   "column": "bus",
+   "value": "64-bit · 32×2",
+   "source": "kingston_ddr5",
+   "note": "64-bit 합계 데이터 폭 기준. DDR5는 독립 32-bit 서브채널 2개 합계이며 DRAM 칩 자체 I/O 폭이 아닙니다."
+  },
+  {
+   "table": "ddr",
+   "row": 16,
+   "product": "DDR5",
+   "column": "bandwidth",
+   "value": "25.6~51.2",
+   "source": "micron_ddr_wp",
+   "note": "이론 계산: 3200~6400 MT/s × 64 bit ÷ 8 ÷ 1000. 표준화한 64-bit 데이터 폭 기준이며 실측 성능이 아닙니다. 시트 속도와 다른 백서 대표 구간으로 맞췄습니다."
+  },
+  {
+   "table": "ddr",
+   "row": 12,
+   "product": "DDR4",
+   "column": "die_density",
+   "value": "2~16Gb",
+   "source": "micron_ddr5",
+   "note": "Micron의 Die 밀도 비교 기준. 모듈 전체 용량이 아닙니다."
+  },
+  {
+   "table": "ddr",
+   "row": 16,
+   "product": "DDR5",
+   "column": "die_density",
+   "value": "16 / 24 / 32Gb",
+   "source": "micron_ddr5",
+   "note": "Micron의 Die 밀도 비교 기준. 16/24/32Gb Die이며 모듈 전체 GB 용량이 아닙니다."
+  },
+  {
+   "table": "ddr",
+   "row": 5,
+   "product": "DDR3",
+   "column": "bandwidth",
+   "value": "8.528~12.8",
+   "source": "kingston_ddr5",
+   "note": "계산값: 시트 1066~1600 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000 = 8.528~12.8 GB/s. 시트 14.9와 계산이 달라 검토값으로 분리했습니다. 실제 모듈 검증값은 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 22,
+   "product": "HBM",
+   "column": "voltage",
+   "value": "1.2",
+   "source": "sk_hbm1",
+   "note": "2013년 개발 발표 기준. 시트 연도 2014를 판매일로 바꾸지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 22,
+   "product": "HBM",
+   "column": "milestone_date",
+   "value": "2013-12-26",
+   "source": "sk_hbm1",
+   "note": "2013년 개발 발표 기준. 시트 연도 2014를 판매일로 바꾸지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 22,
+   "product": "HBM",
+   "column": "milestone",
+   "value": "개발 발표",
+   "source": "sk_hbm1",
+   "note": "2013년 개발 발표 기준. 시트 연도 2014를 판매일로 바꾸지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 22,
+   "product": "HBM",
+   "column": "layers",
+   "value": "4H · 시트",
+   "source": "sheet_context",
+   "note": "원본 1GB(4H)에서 적층 수를 분리한 값이며 공식 추가 검증은 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "capacity",
+   "value": "16 · 8H",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "layers",
+   "value": "8H",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "data_rate",
+   "value": "3.6",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "bandwidth",
+   "value": ">460",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "io",
+   "value": "1024",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "die_density",
+   "value": "16Gb",
+   "source": "sk_hbm2e",
+   "note": "2019 개발 프로파일: 16Gb × 8 = 16GB. 시트의 4H~8H 혼합 표기를 공식 8H 프로파일로 나눠 읽습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "milestone_date",
+   "value": "2020-07-02",
+   "source": "sk_hbm2e_mp",
+   "note": "양산 시작 공지일. 시트의 2019는 개발 발표 연도입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 24,
+   "product": "HBM2E",
+   "column": "milestone",
+   "value": "양산 시작 공지",
+   "source": "sk_hbm2e_mp",
+   "note": "양산 시작 공지일. 시트의 2019는 개발 발표 연도입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 25,
+   "product": "HBM3",
+   "column": "capacity",
+   "value": "16 / 24",
+   "source": "sk_hbm3",
+   "note": "2021 개발 발표의 16GB/24GB 프로파일. 24GB는 12단이며 용량과 대역폭은 스택 1개 기준입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 25,
+   "product": "HBM3",
+   "column": "layers",
+   "value": "8H / 12H",
+   "source": "sk_hbm3",
+   "note": "2021 개발 발표의 16GB/24GB 프로파일. 24GB는 12단이며 용량과 대역폭은 스택 1개 기준입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 25,
+   "product": "HBM3",
+   "column": "bandwidth",
+   "value": "819",
+   "source": "sk_hbm3",
+   "note": "2021 개발 발표의 16GB/24GB 프로파일. 24GB는 12단이며 용량과 대역폭은 스택 1개 기준입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 25,
+   "product": "HBM3",
+   "column": "milestone_date",
+   "value": "2021-10-20",
+   "source": "sk_hbm3",
+   "note": "2021 개발 발표의 16GB/24GB 프로파일. 24GB는 12단이며 용량과 대역폭은 스택 1개 기준입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 25,
+   "product": "HBM3",
+   "column": "milestone",
+   "value": "개발 발표",
+   "source": "sk_hbm3",
+   "note": "2021 개발 발표의 16GB/24GB 프로파일. 24GB는 12단이며 용량과 대역폭은 스택 1개 기준입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "capacity",
+   "value": "36 · 12H",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "layers",
+   "value": "12H",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "data_rate",
+   "value": "9.6",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "die_density",
+   "value": "24Gb",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "gap_fill",
+   "value": "Advanced MR-MUF",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "milestone_date",
+   "value": "2024-09-26",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "milestone",
+   "value": "12H 양산 공지",
+   "source": "sk_hbm3e_12",
+   "note": "2024-09-26의 36GB 12H 프로파일 기준. 3GB × 12 = 36GB이며 3GB Die는 24Gb입니다. 시트의 16H 확장 표현은 이 프로파일에 적용하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 26,
+   "product": "HBM3E",
+   "column": "bandwidth",
+   "value": "1228.8 · 계산",
+   "source": "sk_hbm3e_12",
+   "note": "이론 계산: 발표 속도 9.6 Gb/s × 시트 1024 I/O ÷ 8 = 1228.8 GB/s. 실제 GPU 채택 속도·실측 대역폭과 다릅니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "capacity",
+   "value": "36 · 12H",
+   "source": "sk_hbm4_sample",
+   "note": "2025-03 고객 샘플의 36GB 12H·스택 대역폭 2TB/s 초과 프로파일. 원본 165 GB/s와 달라 검토값으로 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "layers",
+   "value": "12H",
+   "source": "sk_hbm4_sample",
+   "note": "2025-03 고객 샘플의 36GB 12H·스택 대역폭 2TB/s 초과 프로파일. 원본 165 GB/s와 달라 검토값으로 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "bandwidth",
+   "value": ">2000",
+   "source": "sk_hbm4_sample",
+   "note": "2025-03 고객 샘플의 36GB 12H·스택 대역폭 2TB/s 초과 프로파일. 원본 165 GB/s와 달라 검토값으로 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "data_rate",
+   "value": ">10",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "io",
+   "value": "2048",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "dram_process",
+   "value": "1b",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "gap_fill",
+   "value": "Advanced MR-MUF",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "milestone_date",
+   "value": "2025-09-12",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 27,
+   "product": "HBM4",
+   "column": "milestone",
+   "value": "개발·양산 준비",
+   "source": "sk_hbm4_ready",
+   "note": "2025-09 개발 완료·양산 준비 공지. 고객 양산 출하 완료와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "capacity",
+   "value": "8 · 8H",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "layers",
+   "value": "8H",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "data_rate",
+   "value": "2.4",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "bandwidth",
+   "value": "307.2",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "die_density",
+   "value": "8Gb",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "milestone_date",
+   "value": "2018-01-11",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 30,
+   "product": "HBM2",
+   "column": "milestone",
+   "value": "Aquabolt 양산",
+   "source": "samsung_aqua",
+   "note": "2018 Aquabolt 8GB 8H 양산 프로파일. 초기 HBM2·4H 제품과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 31,
+   "product": "HBM2E_4H",
+   "column": "layers",
+   "value": "4H · 시트",
+   "source": "sheet_context",
+   "note": "원본 행 이름의 4H 표기를 분리했습니다. 아래 계산은 4H 제품의 공식 판매 사양을 확인한 값이 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 31,
+   "product": "HBM2E_4H",
+   "column": "capacity",
+   "value": "8 · 구성 계산",
+   "source": "samsung_flash",
+   "note": "계산 가정: Flashbolt 발표의 16Gb Die × 시트 4H ÷ 8 = 8GB. 해당 4H SKU·공급 여부 미확인으로 실제 제품 사양과 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "capacity",
+   "value": "16 · 8H",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "layers",
+   "value": "8H",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "data_rate",
+   "value": "3.2",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "bandwidth",
+   "value": "410",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "die_density",
+   "value": "16Gb",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "dram_process",
+   "value": "1y",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "codename",
+   "value": "Flashbolt",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "milestone_date",
+   "value": "2020-02-04",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "milestone",
+   "value": "제품 공개 · 양산 예정",
+   "source": "samsung_flash",
+   "note": "공식 Flashbolt 발표는 16GB 8H·16Gb Die·1y 공정 기준. 4.2 Gb/s는 시험 최대치이므로 기본 속도에 사용하지 않았습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "capacity",
+   "value": "16 · 8H",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "layers",
+   "value": "8H",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "data_rate",
+   "value": "6.4",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "bandwidth",
+   "value": "819",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "die_density",
+   "value": "16Gb",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "milestone_date",
+   "value": "2023-10-21",
+   "source": "samsung_shine",
+   "note": "2023-10-21 공지에서 HBM3 8H와 12H의 양산 상태를 확인했습니다. 최초 양산일을 뜻하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 33,
+   "product": "HBM3_8H",
+   "column": "milestone",
+   "value": "양산 상태 확인",
+   "source": "samsung_shine",
+   "note": "2023-10-21 공지에서 HBM3 8H와 12H의 양산 상태를 확인했습니다. 최초 양산일을 뜻하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "capacity",
+   "value": "24 · 12H",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "layers",
+   "value": "12H",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "data_rate",
+   "value": "6.4",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "bandwidth",
+   "value": "819",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "die_density",
+   "value": "16Gb",
+   "source": "samsung_ice",
+   "note": "Samsung HBM3 제품군에서 해당 적층·용량 변형을 구분합니다. 원본 Die 용량 숫자와 다른 16Gb Die이며 스택 GB 용량으로 읽지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "codename",
+   "value": "Icebolt",
+   "source": "samsung_ice",
+   "note": "HBM3 제품 페이지의 Icebolt 제품군 명칭입니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "milestone_date",
+   "value": "2023-10-21",
+   "source": "samsung_shine",
+   "note": "2023-10-21 공지에서 HBM3 8H와 12H의 양산 상태를 확인했습니다. 최초 양산일을 뜻하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "milestone",
+   "value": "양산 상태 확인",
+   "source": "samsung_shine",
+   "note": "2023-10-21 공지에서 HBM3 8H와 12H의 양산 상태를 확인했습니다. 최초 양산일을 뜻하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "milestone_date",
+   "value": "2023-10-21",
+   "source": "samsung_shine",
+   "note": "2023 Shinebolt 개발·샘플 공지일. 당시 9.8 Gb/s 개발 최대치와 현재 제품 페이지의 최대9.2 Gb/s를 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "milestone",
+   "value": "제품군 샘플 공지",
+   "source": "samsung_shine",
+   "note": "2023 Shinebolt 개발·샘플 공지일. 당시 9.8 Gb/s 개발 최대치와 현재 제품 페이지의 최대9.2 Gb/s를 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "layers",
+   "value": "8H",
+   "source": "samsung_hbm_current",
+   "note": "현재 공식 제품군의 24GB 8H 변형. 최대9.2 Gb/s·1180 GB/s는 제조사 반올림 사양이며 과거 개발 최대치와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "capacity",
+   "value": "24 · 8H",
+   "source": "samsung_hbm_current",
+   "note": "현재 공식 제품군의 24GB 8H 변형. 최대9.2 Gb/s·1180 GB/s는 제조사 반올림 사양이며 과거 개발 최대치와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "data_rate",
+   "value": "최대9.2",
+   "source": "samsung_hbm_current",
+   "note": "현재 공식 제품군의 24GB 8H 변형. 최대9.2 Gb/s·1180 GB/s는 제조사 반올림 사양이며 과거 개발 최대치와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "bandwidth",
+   "value": "최대1180",
+   "source": "samsung_hbm_current",
+   "note": "현재 공식 제품군의 24GB 8H 변형. 최대9.2 Gb/s·1180 GB/s는 제조사 반올림 사양이며 과거 개발 최대치와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_hbm_current",
+   "note": "현재 공식 제품군의 24GB 8H 변형. 최대9.2 Gb/s·1180 GB/s는 제조사 반올림 사양이며 과거 개발 최대치와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 35,
+   "product": "HBM3E_8H",
+   "column": "die_density",
+   "value": "24Gb · 계산",
+   "source": "samsung_hbm_current",
+   "note": "용량 역산: 공식 스택 24GB × 8 ÷ 8 DRAM층 = 24Gb/Die. 개별 Die 데이터시트 측정값은 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "capacity",
+   "value": "36 · 12H",
+   "source": "samsung_3e12",
+   "note": "2024년 개발 발표 프로파일은 36GB 12H·최대1280 GB/s·Advanced TC NCF입니다. 현재 제품 페이지 대역폭과 구분하며 시트 J열 36을 36Gb로 간주하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "layers",
+   "value": "12H",
+   "source": "samsung_3e12",
+   "note": "2024년 개발 발표 프로파일은 36GB 12H·최대1280 GB/s·Advanced TC NCF입니다. 현재 제품 페이지 대역폭과 구분하며 시트 J열 36을 36Gb로 간주하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "gap_fill",
+   "value": "Advanced TC NCF",
+   "source": "samsung_3e12",
+   "note": "2024년 개발 발표 프로파일은 36GB 12H·최대1280 GB/s·Advanced TC NCF입니다. 현재 제품 페이지 대역폭과 구분하며 시트 J열 36을 36Gb로 간주하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "milestone_date",
+   "value": "2024-02-27",
+   "source": "samsung_3e12",
+   "note": "2024년 개발 발표 프로파일은 36GB 12H·최대1280 GB/s·Advanced TC NCF입니다. 현재 제품 페이지 대역폭과 구분하며 시트 J열 36을 36Gb로 간주하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "milestone",
+   "value": "12H 개발·샘플",
+   "source": "samsung_3e12",
+   "note": "2024년 개발 발표 프로파일은 36GB 12H·최대1280 GB/s·Advanced TC NCF입니다. 현재 제품 페이지 대역폭과 구분하며 시트 J열 36을 36Gb로 간주하지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "data_rate",
+   "value": "최대9.2",
+   "source": "samsung_hbm_current",
+   "note": "현재 HBM3E 공식 제품 페이지의 최대9.2 Gb/s·1180 GB/s·1024 I/O 기준. 2024년 개발 발표의 최대1280 GB/s와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "bandwidth",
+   "value": "최대1180",
+   "source": "samsung_hbm_current",
+   "note": "현재 HBM3E 공식 제품 페이지의 최대9.2 Gb/s·1180 GB/s·1024 I/O 기준. 2024년 개발 발표의 최대1280 GB/s와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "io",
+   "value": "1024",
+   "source": "samsung_hbm_current",
+   "note": "현재 HBM3E 공식 제품 페이지의 최대9.2 Gb/s·1180 GB/s·1024 I/O 기준. 2024년 개발 발표의 최대1280 GB/s와 구분합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "die_density",
+   "value": "24Gb · 계산",
+   "source": "samsung_3e12",
+   "note": "용량 역산: 공식 스택 36GB × 8 ÷ 12 DRAM층 = 24Gb/Die. 개별 Die 데이터시트 측정값은 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "capacity",
+   "value": "24~36 · 12H",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "layers",
+   "value": "12H",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "data_rate",
+   "value": "11.7 · 최대13",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "bandwidth",
+   "value": "최대3300",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "dram_process",
+   "value": "1c",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "base_die",
+   "value": "4nm logic",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "milestone_date",
+   "value": "2026-02-12",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "milestone",
+   "value": "양산·상용 출하",
+   "source": "samsung_hbm4",
+   "note": "2026 양산·상용 출하 프로파일: 12H는 24~36GB, DRAM 1c와 Logic 4nm. 16H 48GB 확장 계획은 12H 용량에 섞지 않습니다."
+  },
+  {
+   "table": "hbm",
+   "row": 38,
+   "product": "HBM4_12H",
+   "column": "io",
+   "value": "2048",
+   "source": "samsung_hbm4_io",
+   "note": "HBM4의 2048-bit 인터페이스. 최대3300 GB/s는 최대13 Gb/s 조건의 제조사 반올림 값이며 11.7 Gb/s 조건과 동시에 동일한 값은 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "capacity",
+   "value": "최대64 · 제품군",
+   "source": "samsung_hbm_current",
+   "note": "공식 HBM4E 제품군의 공개 최대 사양입니다. 시트 코드명 flamebolt·개별 SKU·고객 출하 여부는 이 페이지로 확인하지 않았습니다. 최대값이 모든 구성에서 동시에 보장되는 의미는 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "layers",
+   "value": "최대16H",
+   "source": "samsung_hbm_current",
+   "note": "공식 HBM4E 제품군의 공개 최대 사양입니다. 시트 코드명 flamebolt·개별 SKU·고객 출하 여부는 이 페이지로 확인하지 않았습니다. 최대값이 모든 구성에서 동시에 보장되는 의미는 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "data_rate",
+   "value": "최대16",
+   "source": "samsung_hbm_current",
+   "note": "공식 HBM4E 제품군의 공개 최대 사양입니다. 시트 코드명 flamebolt·개별 SKU·고객 출하 여부는 이 페이지로 확인하지 않았습니다. 최대값이 모든 구성에서 동시에 보장되는 의미는 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "io",
+   "value": "2048",
+   "source": "samsung_hbm_current",
+   "note": "공식 HBM4E 제품군의 공개 최대 사양입니다. 시트 코드명 flamebolt·개별 SKU·고객 출하 여부는 이 페이지로 확인하지 않았습니다. 최대값이 모든 구성에서 동시에 보장되는 의미는 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "milestone",
+   "value": "제품군 공개 · 출하 미확인",
+   "source": "samsung_hbm_current",
+   "note": "공식 HBM4E 제품군의 공개 최대 사양입니다. 시트 코드명 flamebolt·개별 SKU·고객 출하 여부는 이 페이지로 확인하지 않았습니다. 최대값이 모든 구성에서 동시에 보장되는 의미는 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "bandwidth",
+   "value": "4096 · 계산 최대",
+   "source": "samsung_hbm_current",
+   "note": "이론 계산: 제품군 최대16 Gb/s × 2048 I/O ÷ 8 = 4096 GB/s. 개발·공개 최대 사양 기준이며 양산 제품 실측값이 아닙니다."
+  },
+  {
+   "table": "hbm",
+   "row": 32,
+   "product": "HBM2E_8H",
+   "column": "company",
+   "value": "삼성전자",
+   "source": "sheet_context",
+   "note": "시트에서 회사가 생략된 후속 행을 앞선 Samsung 회사 구간으로 읽었습니다. 원본 D열 공란은 별도로 보존합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 34,
+   "product": "HBM3_12H",
+   "column": "company",
+   "value": "삼성전자",
+   "source": "sheet_context",
+   "note": "시트에서 회사가 생략된 후속 행을 앞선 Samsung 회사 구간으로 읽었습니다. 원본 D열 공란은 별도로 보존합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 36,
+   "product": "HBM3E_12H",
+   "column": "company",
+   "value": "삼성전자",
+   "source": "sheet_context",
+   "note": "시트에서 회사가 생략된 후속 행을 앞선 Samsung 회사 구간으로 읽었습니다. 원본 D열 공란은 별도로 보존합니다."
+  },
+  {
+   "table": "hbm",
+   "row": 39,
+   "product": "HBM4E",
+   "column": "company",
+   "value": "삼성전자",
+   "source": "sheet_context",
+   "note": "시트에서 회사가 생략된 후속 행을 앞선 Samsung 회사 구간으로 읽었습니다. 원본 D열 공란은 별도로 보존합니다."
+  }
+ ]
+}
