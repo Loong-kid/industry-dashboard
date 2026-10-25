@@ -29,7 +29,7 @@ def collect(full=False):
         for kind,url in [('facts',f'https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json'),('sub',f'https://data.sec.gov/submissions/CIK{cik:010d}.json')]:
             response=session.get(url,timeout=45);response.raise_for_status()
             (CACHE/f'{key}-{kind}.json').write_bytes(response.content);time.sleep(.25)
-        if key not in ['aroc','kgs','usac']:continue
+        if key not in ['aroc','kgs','usac','trgp']:continue
         sub=json.loads((CACHE/f'{key}-sub.json').read_bytes())
         groups=[sub['filings']['recent']]
         for archive in sub['filings'].get('files',[]):
