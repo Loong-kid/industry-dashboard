@@ -8,7 +8,7 @@
  "source": "사용자 Google Sheets · CPU",
  "source_url": "https://docs.google.com/spreadsheets/d/1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g/edit#gid=1226864737",
  "source_range": "CPU!A1:AK301",
- "description": "CPU 시트의 열 순서와 기재값을 보존했습니다. 추가로 확인한 값은 빈칸에만 표시하며 원문 링크를 붙였습니다.",
+ "description": "기본은 핵심 사양과 Geekbench를 모은 요약 보기입니다. 긴 값에 마우스를 올리거나 상세를 누르면 전체 내용과 출처를 확인할 수 있습니다.",
  "note": "Geekbench 버전 간 점수는 직접 비교하지 않습니다. 평균과 개별 실측, 대표 SKU·기기의 조건을 함께 확인하세요. 시트 기재 점수의 실측 링크는 원본에 포함되지 않았으며 공식 출처 열은 제품 사양의 출처입니다.",
  "update_note": "시트 원본과 보완값은 원문 검토 후 갱신하는 스냅샷입니다. CPU 실적 갱신 버튼은 기업 재무 공시를 갱신합니다.",
  "columns": [
@@ -285,7 +285,14 @@
     "대표 실측: Mac mini 2026 / M6 12-core",
     "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N2",
+    "process_nm": 2,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-4",
@@ -329,7 +336,14 @@
     "대표 실측: Mac Studio 2026 / M5 Ultra 36-core",
     "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3P",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-5",
@@ -373,7 +387,14 @@
     "대표 실측: MacBook Pro 2026 / M5 Pro 18-core",
     "https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3P",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-6",
@@ -417,7 +438,14 @@
     "대표 실측: MacBook Pro 16-inch 2026 / M5 Max 18-core",
     "https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3P",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-7",
@@ -461,7 +489,14 @@
     "Mac 평균: MacBook Pro 14-inch 2025 / M5 10-core",
     "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3P",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-8",
@@ -516,6 +551,13 @@
      "source": "m3_ultra_gb6",
      "note": "평균이 아닌 개별 결과. Geekbench 6.4.0, Mac Studio 2025, 32코어, macOS 15.5, 512 GB, 2025-07-26 업로드."
     }
+   },
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3B",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
    }
   },
   {
@@ -560,7 +602,14 @@
     "Mac 평균: MacBook Pro 14-inch 2024 / M4 Pro 14-core",
     "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3E",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-10",
@@ -604,7 +653,14 @@
     "Mac 평균: MacBook Pro 14-inch 2024 / M4 Max 16-core",
     "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3E",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-11",
@@ -648,7 +704,14 @@
     "Mac 평균: MacBook Pro 14-inch 2024 / M4 10-core",
     "https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3E",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-12",
@@ -692,7 +755,14 @@
     "Mac 평균: MacBook Pro 14-inch 2023 / M3 8-core",
     "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3B",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-13",
@@ -736,7 +806,14 @@
     "Mac 평균: MacBook Pro 16-inch 2023 / M3 Pro 12-core",
     "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3B",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-14",
@@ -780,7 +857,14 @@
     "Mac 평균: MacBook Pro 16-inch 2023 / M3 Max 16-core",
     "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N3B",
+    "process_nm": 3,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-15",
@@ -824,7 +908,14 @@
     "Mac 평균: Mac Pro 2023 / M2 Ultra 24-core",
     "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5P",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-16",
@@ -868,7 +959,14 @@
     "Mac 평균: MacBook Pro 16-inch 2023 / M2 Pro 12-core",
     "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5P",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-17",
@@ -912,7 +1010,14 @@
     "Mac 평균: MacBook Pro 16-inch 2023 / M2 Max 12-core",
     "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5P",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-18",
@@ -956,7 +1061,14 @@
     "Mac 평균: MacBook Pro 13-inch 2022 / M2 8-core",
     "https://www.apple.com/newsroom/2022/06/apple-unveils-m2-with-breakthrough-performance-and-capabilities/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5P",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-19",
@@ -1000,7 +1112,14 @@
     "Mac 평균: Mac Studio / M1 Ultra 20-core",
     "https://www.apple.com/newsroom/2022/03/apple-unveils-m1-ultra-the-worlds-most-powerful-chip-for-a-personal-computer/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-20",
@@ -1044,7 +1163,14 @@
     "Mac 평균: MacBook Pro 14-inch 2021 / M1 Pro 10-core",
     "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-21",
@@ -1088,7 +1214,14 @@
     "Mac 평균: MacBook Pro 14-inch 2021 / M1 Max 10-core",
     "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-22",
@@ -1132,7 +1265,14 @@
     "Mac 평균: MacBook Pro 13-inch 2020 / M1 8-core",
     "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
    ],
-   "supplements": {}
+   "supplements": {},
+   "foundry": {
+    "foundry": "TSMC",
+    "node": "N5",
+    "process_nm": 5,
+    "source": "apple_m_foundry",
+    "note": "Apple은 칩 설계사, TSMC는 이 제품의 웨이퍼 제조사입니다. 표의 공정 표기에 제조사를 함께 표시합니다."
+   }
   },
   {
    "id": "cpu-sheet-23",
@@ -14259,7 +14399,24 @@
    "supplements": {}
   }
  ],
+ "default_view": "overview",
  "column_views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "indices": [
+    2,
+    7,
+    23,
+    10,
+    16,
+    15,
+    31,
+    32,
+    33,
+    34
+   ]
+  },
   {
    "id": "all",
    "label": "전체 열 · 원본 순서",
@@ -14434,8 +14591,15 @@
    "url": "https://browser.geekbench.com/v6/cpu/13028083",
    "checked": "2026-10-25",
    "note": "평균이 아닌 개별 결과. Geekbench 6.4.0, Mac Studio 2025, 32코어, macOS 15.5, 512 GB, 2025-07-26 업로드."
+  },
+  "apple_m_foundry": {
+   "title": "High Yield · Apple Silicon M-series 공정 데이터베이스",
+   "url": "https://www.high-yield.net/m-series",
+   "checked": "2026-10-25",
+   "note": "반도체 분석자가 공개한 제품별 파운드리·공정 분류. Apple 제품 발표의 공정 세대와 대조하며 H2·R1에는 확대 적용하지 않습니다."
   }
  },
+ "foundry_review_count": 20,
  "supplement_count": 226,
  "supplemented_products": 81
 }

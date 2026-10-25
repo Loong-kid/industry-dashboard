@@ -13,6 +13,7 @@ CPU 화면의 첫 번째 표는 사용자 Google Sheets의 `CPU` 탭을 읽어 �
 
 - `cpu_specs_sheet.json`: 표시값을 그대로 담은 읽기 전용 원본 스냅샷.
 - `cpu_specs_supplements.json`: 제조사·제품명, 행·열 좌표, 보완값, 출처, 확인일·측정 조건.
+- `cpu_foundries.json`: 제품별 파운드리와 공정 표기의 별도 검토 자료.
 - `scripts/aggregate_cpu_specs.py`: 원본 값을 유지하고 빈 셀의 보완값을 별도로
   묶어 `data/semicon/cpu_specs.json`을 만든다. 기재된 셀을 덮어쓰는 보완이나
   중복 좌표·제품 행 변경은 오류로 처리하므로 시트 재수집 후 충돌은 원문 검토가 필요하다.
@@ -21,6 +22,18 @@ CPU 화면의 첫 번째 표는 사용자 Google Sheets의 `CPU` 탭을 읽어 �
 Chart의 평균 점수 150개(75개 제품의 Single/Multi 쌍), 필요한 대표 SKU 설명,
 M3 Ultra 32코어 Geekbench 6 개별 실측 2개, AWS Graviton·NVIDIA Grace·Microsoft
 Cobalt의 공식 사양 23개를 포함한다. 원래 Google 시트는 수정하지 않았다.
+
+Apple M 시리즈 20개 제품은 High Yield의 제품별 공정 데이터베이스에서
+TSMC와 N5·N5P·N3B·N3E·N3P·N2 노드를 확인했다. 보완 보기의 공정 열에는
+`TSMC N3E · 3 nm`처럼 설계사와 제조사를 구분해 표시하며 원본 셀은 유지한다.
+H2·R1은 이 M 시리즈 근거로 제조사를 추정하지 않는다. Apple이 과거에 삼성
+파운드리를 사용하지 않았다는 의미는 아니며, A9 등 과거 A 시리즈 사례와 구분한다.
+
+기본 화면은 핵심 9열의 ‘한눈에 보기’다. 제조사·용도는 CPU 이름 아래에,
+각 Geekbench 버전의 싱글·멀티는 같은 칸에 모으고 점수의 버전은 섞지 않는다.
+모든 보기에서 본문 행은 40px로 고정한다. 긴 값은 말줄임하고 마우스 메모에
+원문·보완 출처를 표시한다. 키보드·터치 사용자는 행의 ‘상세’로 전체 37개
+항목을 확인할 수 있다. 원본 37열·CPU 사양·메모리·벤치마크 보기도 유지한다.
 
 Geekbench 7 차트는 사용자 제출 결과가 5개 이상인 CPU의 집계값이다. 이름이
 정확하게 일치하는 제품만 연결하고, Snapdragon X 계열은 명시한 대표 SKU로

@@ -14,7 +14,8 @@ class CPUSpecs(unittest.TestCase):
         read=lambda path:json.loads((ROOT/path).read_text(encoding='utf8'))
         cls.raw=read('manual/cpu_specs_sheet.json')
         cls.extra=read('manual/cpu_specs_supplements.json')
-        cls.doc=specs.build(cls.raw,cls.extra)
+        cls.foundries=read('manual/cpu_foundries.json')
+        cls.doc=specs.build(cls.raw,cls.extra,cls.foundries)
 
     def test_entire_sheet_values_and_order_preserved(self):
         self.assertEqual([c['label'] for c in self.doc['columns']],self.raw['values'][0])
@@ -33,10 +34,20 @@ class CPUSpecs(unittest.TestCase):
                 self.assertTrue(cell['note'])
         extra=copy.deepcopy(self.extra)
         extra['cells'][0]['column']=3
-        with self.assertRaises(ValueError):specs.build(self.raw,extra)
+        with self.assertRaises(ValueError):specs.build(self.raw,extra,self.foundries)
         moved=copy.deepcopy(self.raw)
         moved['values'][self.extra['cells'][0]['row']-1][2]='Another CPU'
-        with self.assertRaises(ValueError):specs.build(moved,self.extra)
+        with self.assertRaises(ValueError):specs.build(moved,self.extra,self.foundries)
+
+    def test_foundry_is_reviewed_by_product_without_replacing_source_cells(self):
+        apple=[row for row in self.doc['rows'] if row['values'][0]=='Apple']
+        mseries=[row for row in apple if row['values'][2].startswith('M')]
+        self.assertEqual(len(mseries),20)
+        self.assertTrue(all(row['foundry']['foundry']=='TSMC' for row in mseries))
+        self.assertEqual(next(row for row in mseries if row['values'][2]=='M4')['foundry']['node'],'N3E')
+        self.assertEqual(next(row for row in mseries if row['values'][2]=='M6')['foundry']['process_nm'],2)
+        self.assertTrue(all('foundry' not in row for row in apple if row['values'][2] in ('H2','R1')))
+        self.assertEqual(self.doc['default_view'],'overview')
 
     def test_version_and_device_scope_are_not_combined(self):
         rows={r['values'][2]:r for r in self.doc['rows']}
