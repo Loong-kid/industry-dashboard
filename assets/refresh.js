@@ -23,7 +23,7 @@ function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};
-  if (id === "semicon" && subtab === "equipment_summary") return {file: "data/semicon/company_lam_revenue.json", label: "장비 3사 실적 갱신", workflow: "update-equipment.yml"};
+  if (id === "semicon" && subtab?.startsWith("equipment_")) return {file: "data/semicon/company_lam_revenue.json", label: "장비 실적 확인", workflow: "update-equipment.yml"};
   if (id === "semicon" && subtab === "wafer") return {file: "data/semicon/wafer_globalwafers_monthly.json", label: "월 매출 갱신"};
   if (id === "institution" && subtab === "us_managers") return {file: "data/institution/us_managers.json", label: "미국 운용사 갱신"};
   if (id === "institution" && subtab === "hedge_funds") return {file: "data/institution/hf_returns_composite.json", label: "헤지펀드 지표 갱신"};

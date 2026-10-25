@@ -1,0 +1,148 @@
+{
+ "id": "equipment_besi_orders",
+ "name": "Besi · 신규 수주액",
+ "unit": "EUR 백만",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 공식 IR",
+ "quarter_labels": true,
+ "year_labels": false,
+ "period_labels": {
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3"
+ },
+ "updated": "2026-09-30",
+ "fetched": "2026-10-25",
+ "source": "Besi 공식 분기 실적",
+ "source_url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+ "description": "공식 부속 표의 신규 수주액으로 백만 유로 반올림 수치입니다. 매출 인식액·수주잔고와 구분하며 취소·이연 가능성이 있습니다.",
+ "series": {
+  "분기 신규 수주액": [
+   [
+    "2025-03-31",
+    131.9
+   ],
+   [
+    "2025-06-30",
+    128.0
+   ],
+   [
+    "2025-09-30",
+    174.7
+   ],
+   [
+    "2025-12-31",
+    250.4
+   ],
+   [
+    "2026-03-31",
+    269.7
+   ],
+   [
+    "2026-06-30",
+    292.9
+   ],
+   [
+    "2026-09-30",
+    342.6
+   ]
+  ]
+ },
+ "default_series": [
+  "분기 신규 수주액"
+ ],
+ "point_sources": {
+  "2025-03-31": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2025 Q1"
+  },
+  "2025-06-30": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2025 Q2"
+  },
+  "2025-09-30": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2025 Q3"
+  },
+  "2025-12-31": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2025 Q4"
+  },
+  "2026-03-31": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2026 Q1"
+  },
+  "2026-06-30": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2026 Q2"
+  },
+  "2026-09-30": {
+   "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "label": "FY2026 Q3"
+  }
+ },
+ "span_gaps": false,
+ "change_mode": "none",
+ "table_limit": 100,
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "분기 신규 수주액": [
+     [
+      "2025-12-31",
+      685.0
+     ]
+    ]
+   },
+   "period_labels": {
+    "2025-12-31": "FY2025"
+   },
+   "point_sources": {
+    "2025-12-31": {
+     "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+     "label": "FY2025 · 4개 분기 합계",
+     "supporting_sources": [
+      {
+       "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+       "label": "FY2025 Q1"
+      },
+      {
+       "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+       "label": "FY2025 Q2"
+      },
+      {
+       "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+       "label": "FY2025 Q3"
+      },
+      {
+       "url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+       "label": "FY2025 Q4"
+      }
+     ],
+     "source_separator": " + "
+    }
+   },
+   "source_url": "https://www.besi.com/fileadmin/user_upload/PR_Q3-2026.pdf",
+   "updated": "2025-12-31",
+   "description": "공식 부속 표의 신규 수주액으로 백만 유로 반올림 수치입니다. 매출 인식액·수주잔고와 구분하며 취소·이연 가능성이 있습니다. 연간은 동일한 회사 회계연도의 4개 분기를 모두 확보한 항목만 합산합니다. 미완료·미확보 연도는 연환산하거나 0으로 채우지 않습니다."
+  }
+ }
+}

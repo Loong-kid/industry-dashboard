@@ -20,15 +20,23 @@ jobs:
       - run: pip install requests beautifulsoup4
       - name: Validate financial definitions and fiscal periods
         run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
-      - name: Refresh public SEC company accounts
-        run: python scripts/fetch_equipment_companies.py
+      - name: Refresh public SEC and DART company accounts
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: |
+          python scripts/fetch_equipment_hanmi.py
+          python scripts/fetch_equipment_companies.py
       - name: Validate published equipment history
         run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
       - name: Commit equipment accounts only
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/semicon/equipment_state.json data/semicon/company_lam_*.json data/semicon/company_amat_*.json data/semicon/company_kla_*.json
+          git add manual/equipment_hanmi.json data/semicon/equipment_state.json
+          for company in lam amat kla teradyne asml tel asm screen disco besi hanmi camtek advantest; do
+            git add data/semicon/company_${company}_revenue.json data/semicon/company_${company}_profit.json data/semicon/company_${company}_capex.json
+          done
+          git add data/semicon/equipment_asml_revenue_mix.json data/semicon/equipment_screen_spe.json data/semicon/equipment_disco_shipments.json data/semicon/equipment_besi_orders.json
           git diff --cached --quiet || git commit -m "chore: refresh equipment company accounts"
           git pull --rebase
           git push

@@ -80,7 +80,7 @@ def parse_facts(payload, company, asof, tags_by_metric=None):
         tags=company.get('tags',{}).get(metric,tags)
         values, facts = {}, []
         for priority, tag in enumerate(tags):
-            for fact in payload['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get('USD', []):
+            for fact in payload['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get(company.get('currency','USD'), []):
                 if (not fact.get('start') or fact['end'] > asof or fact['filed'] > asof
                     or fact.get('form') not in ('10-K', '10-K/A', '10-Q', '10-Q/A', '20-F', '20-F/A', '6-K')
                     or not isinstance(fact['val'], (int,float)) or not math.isfinite(fact['val'])):
@@ -187,7 +187,7 @@ def parse_annual(payload,company,asof,tags_by_metric=None):
         tags=company.get('tags',{}).get(metric,tags)
         candidates={}
         for priority,tag in enumerate(tags):
-            for fact in payload['facts'].get('us-gaap',{}).get(tag,{}).get('units',{}).get('USD',[]):
+            for fact in payload['facts'].get('us-gaap',{}).get(tag,{}).get('units',{}).get(company.get('currency','USD'),[]):
                 if not fact.get('start') or fact['end']<'2014-01-01' or fact['end']>asof or fact['filed']>asof:continue
                 if not 350<=days(fact['start'],fact['end'])<=380 or fact.get('form') not in ('10-K','10-K/A','20-F','20-F/A','6-K'):continue
                 rank=fact['filed'],-priority,fact['accn']

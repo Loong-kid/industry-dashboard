@@ -130,7 +130,7 @@ function route() {
       const categories = state.industry.material_categories;
       const oldLeaf = state.industry.tabs.find(tab => tab.id === (legacy ? requestedTab : requestedView));
       const category = categories.find(item => item.id === oldLeaf?.category || item.id === requestedView) || categories[0];
-      const leaf = oldLeaf || state.industry.tabs.find(tab => tab.category === category.id && tab.id === requestedDetail);
+      const leaf = oldLeaf || (requestedDetail && state.industry.tabs.find(tab => tab.category === category.id && (tab.id === requestedDetail || tab.route === requestedDetail)));
       state.materialCategory = category.id;
       state.subtab = leaf?.id || category.default_tab;
       const panel = legacy ? requestedView : oldLeaf ? requestedDetail : requestedPanel;
@@ -223,7 +223,7 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || (ind.id === "semicon" && ["cpu", "equipment_summary"].includes(state.subtab)) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -292,11 +292,11 @@ async function renderIndustry(options = {}) {
     const tabs = document.createElement("nav");
     tabs.className = ind.groups ? "commodity-tabs semicon-material-tabs" : "commodity-tabs";
     tabs.setAttribute("aria-label", `${ind.name} 세부 분류`);
-    for (const tab of ind.tabs.filter(tab => !selectedCategory || tab.category === selectedCategory.id)) {
+    for (const tab of ind.tabs.filter(tab => !selectedCategory || (tab.category === selectedCategory.id && !tab.parent_tab))) {
       const link = document.createElement("a");
-      link.href = ind.groups ? `#/semicon/materials/${tab.category}/${tab.id}` : `#/${ind.id}/${tab.id}`;
+      link.href = ind.groups ? `#/semicon/materials/${tab.category}/${tab.route || tab.id}` : `#/${ind.id}/${tab.id}`;
       link.textContent = tab.name;
-      if (tab.id === state.subtab) {
+      if (tab.id === state.subtab || tab.id === selectedTab?.parent_tab) {
         link.className = "active";
         link.setAttribute("aria-current", "page");
       }
@@ -311,6 +311,18 @@ async function renderIndustry(options = {}) {
       row.append(label, tabs);
       pageTabs.appendChild(row);
     } else pageTabs.appendChild(tabs);
+  }
+
+  if (selectedCategory?.id === "equipment" && ["equipment_frontend", "mocvd"].includes(state.subtab)) {
+    const views = document.createElement("nav");
+    views.className = "commodity-tabs semicon-equipment-views";
+    views.setAttribute("aria-label", "전공정 보기");
+    for (const [id, label, slug] of [["equipment_frontend", "장비사 실적", "frontend"], ["mocvd", "MOCVD · 수요·공급", "mocvd"]]) {
+      const link = document.createElement("a"); link.href = `#/semicon/materials/equipment/${slug}`; link.textContent = label;
+      if (state.subtab === id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
+      views.appendChild(link);
+    }
+    pageTabs.appendChild(views);
   }
 
   if (selectedTab?.description) {

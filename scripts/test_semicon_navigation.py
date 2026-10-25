@@ -66,7 +66,7 @@ def verify(base):
                 assert '소부장' in page.locator('#page-title').inner_text()
                 assert ('블랭크마스크' if leaf=='포토마스크' else leaf) in page.locator('#page-title').inner_text()
                 assert page.locator('.semicon-groups .active').inner_text()=='소부장'
-                assert page.locator('#page-tabs .commodity-tabs').count()==3
+                assert page.locator('#page-tabs .commodity-tabs').count()==(4 if leaf=='MOCVD' else 3)
             for route in ['#/semicon/materials/snstech/ir','#/semicon/snstech/ir']:
                 page.goto(base+route)
                 page.wait_for_selector('.pm-translation-body[aria-busy="false"]')
