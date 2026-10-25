@@ -1,6 +1,6 @@
 {
  "id": "ddr_specs",
- "name": "DDR · 세대별 사양과 공정 메모",
+ "name": "DDR · 회사별 제품과 공정 사양",
  "table_family": "memory",
  "short_name": "DDR",
  "manual": true,
@@ -14,8 +14,8 @@
  "columns": [
   {
    "id": "name",
-   "label": "세대 / 공정",
-   "width": 170
+   "label": "제품 / 세대 / 공정",
+   "width": 190
   },
   {
    "id": "sheet_year",
@@ -71,8 +71,8 @@
   },
   {
    "id": "company",
-   "label": "회사 · 시트 기준",
-   "width": 120
+   "label": "회사",
+   "width": 105
   },
   {
    "id": "net_die",
@@ -103,6 +103,43 @@
    "id": "extra",
    "label": "시트 추가 메모",
    "width": 150
+  },
+  {
+   "id": "generation",
+   "label": "DDR 규격",
+   "width": 85
+  },
+  {
+   "id": "io_width",
+   "label": "칩 I/O 폭",
+   "width": 110
+  },
+  {
+   "id": "chip_bandwidth",
+   "label": "칩 대역폭 · GB/s",
+   "width": 130,
+   "measure": true
+  },
+  {
+   "id": "part_number",
+   "label": "부품 번호 / 제품군",
+   "width": 210
+  },
+  {
+   "id": "profile_kind",
+   "label": "자료 범위",
+   "width": 150
+  },
+  {
+   "id": "milestone_date",
+   "label": "공식 이정표일",
+   "width": 110,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 170
   }
  ],
  "rows": [
@@ -496,7 +533,7 @@
     ""
    ],
    "name": "D2x",
-   "company": "Hynix",
+   "company": "SK하이닉스",
    "group": "공정 메모",
    "context": "DDR3",
    "original": {
@@ -545,7 +582,7 @@
     ""
    ],
    "name": "D2y",
-   "company": "Hynix",
+   "company": "SK하이닉스",
    "group": "공정 메모",
    "context": "DDR3",
    "original": {
@@ -1051,15 +1088,1291 @@
    },
    "reviews": {},
    "review_note": "시트에 적힌 공정 메모입니다. 인접 세대명은 행 배치 문맥이며 해당 DDR 규격 전용 공정임을 검증한 것은 아닙니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr3-4gb-20nm",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR3 4Gb · 20nm",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR3 4Gb · 20nm",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "generation": {
+     "value": "DDR3",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "die_density": {
+     "value": "4Gb",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "process": {
+     "value": "20nm",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "milestone_date": {
+     "value": "2014-03-11",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_3",
+     "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+    }
+   },
+   "review_note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr4-8gb-20nm",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 8Gb · 20nm",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 8Gb · 20nm",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "process": {
+     "value": "20nm",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "data_rate": {
+     "value": "최대2400",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "voltage": {
+     "value": "1.2",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "칩·탑재 모듈 발표",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_4_20",
+     "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "최대19.2 · 환산",
+     "source": "ddr_sam_4_20",
+     "note": "계산: 공개 속도 최대2400 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr4-8gb-1x",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 8Gb · 1x",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 8Gb · 1x",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "process": {
+     "value": "1x · 10nm급",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "data_rate": {
+     "value": "3200",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2016-04-05",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_4_1x",
+     "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "25.6 · 환산",
+     "source": "ddr_sam_4_1x",
+     "note": "계산: 공개 속도 3200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr4-8gb-1y",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 8Gb · 1y",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 8Gb · 1y",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "process": {
+     "value": "1y · 10nm급",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "data_rate": {
+     "value": "최대3600",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2017-12-20",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_4_1y",
+     "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "최대28.8 · 환산",
+     "source": "ddr_sam_4_1y",
+     "note": "계산: 공개 속도 최대3600 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr5-14nm",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 · 14nm 제품군",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 · 14nm 제품군",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "process": {
+     "value": "14nm · EUV 5층",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "data_rate": {
+     "value": "최대7200",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품군",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2021-10-12",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_5_14",
+     "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+    },
+    "bandwidth": {
+     "value": "최대57.6 · 환산",
+     "source": "ddr_sam_5_14",
+     "note": "계산: 공개 속도 최대7200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr5-16gb-12nm",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16Gb · 12nm",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16Gb · 12nm",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "process": {
+     "value": "12nm급 · EUV",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "data_rate": {
+     "value": "최대7200",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "milestone_date": {
+     "value": "2023-05-18",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "milestone": {
+     "value": "양산 공지",
+     "source": "ddr_sam_5_16",
+     "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+    },
+    "bandwidth": {
+     "value": "최대57.6 · 환산",
+     "source": "ddr_sam_5_16",
+     "note": "계산: 공개 속도 최대7200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-samsung-ddr5-32gb-12nm",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 32Gb · 12nm",
+   "company": "삼성전자",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 32Gb · 12nm",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "company": {
+     "value": "삼성전자",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "die_density": {
+     "value": "32Gb",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "process": {
+     "value": "12nm급",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2023-09-01",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    },
+    "milestone": {
+     "value": "개발 · 양산 계획",
+     "source": "ddr_sam_5_32",
+     "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+    }
+   },
+   "review_note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr4-8gb-1y",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 8Gb · 1y",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 8Gb · 1y",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "process": {
+     "value": "1y",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "data_rate": {
+     "value": "최대3200",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "milestone_date": {
+     "value": "2018-11-12",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "milestone": {
+     "value": "개발 · 공급 계획",
+     "source": "ddr_sk_4_1y",
+     "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+    },
+    "bandwidth": {
+     "value": "최대25.6 · 환산",
+     "source": "ddr_sk_4_1y",
+     "note": "계산: 공개 속도 최대3200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr4-16gb-1z",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 16Gb · 1z",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 16Gb · 1z",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "process": {
+     "value": "1z · 비 EUV",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "data_rate": {
+     "value": "최대3200",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "milestone_date": {
+     "value": "2019-10-21",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "milestone": {
+     "value": "개발 · 양산 계획",
+     "source": "ddr_sk_4_1z",
+     "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+    },
+    "bandwidth": {
+     "value": "최대25.6 · 환산",
+     "source": "ddr_sk_4_1z",
+     "note": "계산: 공개 속도 최대3200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr5-16gb-1y",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16Gb · 1y",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16Gb · 1y",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "process": {
+     "value": "1y",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "data_rate": {
+     "value": "5200",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "voltage": {
+     "value": "1.1",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2018-11-15",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "milestone": {
+     "value": "개발 · 양산 계획",
+     "source": "ddr_sk_5_1y",
+     "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "41.6 · 환산",
+     "source": "ddr_sk_5_1y",
+     "note": "계산: 공개 속도 5200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr5-24gb-1a",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 24Gb · 1a",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 24Gb · 1a",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "die_density": {
+     "value": "24Gb",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "process": {
+     "value": "1a · EUV",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2021-12-15",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    },
+    "milestone": {
+     "value": "샘플 출하",
+     "source": "ddr_sk_5_24",
+     "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+    }
+   },
+   "review_note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr5-1b-validation",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 · 1b 검증 제품",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 · 1b 검증 제품",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "process": {
+     "value": "1b · HKMG",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "data_rate": {
+     "value": "6400",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2023-05-30",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "milestone": {
+     "value": "호환성 검증 공지",
+     "source": "ddr_sk_5_1b",
+     "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+    },
+    "bandwidth": {
+     "value": "51.2 · 환산",
+     "source": "ddr_sk_5_1b",
+     "note": "계산: 공개 속도 6400 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr5-16gb-1c",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16Gb · 1c",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16Gb · 1c",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "process": {
+     "value": "1c · EUV",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "data_rate": {
+     "value": "8000",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "milestone_date": {
+     "value": "2024-08-29",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "milestone": {
+     "value": "개발 · 공급 계획",
+     "source": "ddr_sk_5_1c",
+     "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+    },
+    "bandwidth": {
+     "value": "64 · 환산",
+     "source": "ddr_sk_5_1c",
+     "note": "계산: 공개 속도 8000 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-hynix-ddr5-32gb-1b",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 32Gb · 1b",
+   "company": "SK하이닉스",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 32Gb · 1b",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "company": {
+     "value": "SK하이닉스",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "die_density": {
+     "value": "32Gb",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "process": {
+     "value": "1b",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "profile_kind": {
+     "value": "탑재 RDIMM 인증",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "milestone_date": {
+     "value": "2025-12-18",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    },
+    "milestone": {
+     "value": "256GB RDIMM 인증",
+     "source": "ddr_sk_5_32",
+     "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+    }
+   },
+   "review_note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-cxmt-ddr4-8gb",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 8Gb · CXDQ3A8AM",
+   "company": "CXMT",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 8Gb · CXDQ3A8AM",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "company": {
+     "value": "CXMT",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 연혁·실물 분석",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "milestone": {
+     "value": "2019-09 양산 / 11 판매",
+     "source": "ddr_cx_4",
+     "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+    },
+    "part_number": {
+     "value": "CXDQ3A8AM-CG",
+     "source": "ddr_cx_4_analysis",
+     "note": "분석 기관이 직접 조사한 CXDQ3A8AM-CG, 8Gb DDR4, 2x(22nm) 공정에 대한 공개 초록입니다. 제조사 공시가 아닌 독립 실물 분석이며 보고서 공개일 2020-07-14를 제품 출시일로 쓰지 않습니다."
+    },
+    "process": {
+     "value": "2x(22nm) · 분석값",
+     "source": "ddr_cx_4_analysis",
+     "note": "분석 기관이 직접 조사한 CXDQ3A8AM-CG, 8Gb DDR4, 2x(22nm) 공정에 대한 공개 초록입니다. 제조사 공시가 아닌 독립 실물 분석이며 보고서 공개일 2020-07-14를 제품 출시일로 쓰지 않습니다."
+    }
+   },
+   "review_note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-cxmt-ddr5-16-24gb",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16/24Gb · 제품군",
+   "company": "CXMT",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16/24Gb · 제품군",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "company": {
+     "value": "CXMT",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "die_density": {
+     "value": "16 / 24Gb",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "data_rate": {
+     "value": "최대8000",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품군",
+     "source": "ddr_cx_5",
+     "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+    },
+    "milestone_date": {
+     "value": "2025-11-23",
+     "source": "ddr_cx_5_ann",
+     "note": "2025-11-23 제품군 전시·공개. 고객 양산 출하 또는 최초 판매일로 표시하지 않습니다."
+    },
+    "milestone": {
+     "value": "제품군 전시·공개",
+     "source": "ddr_cx_5_ann",
+     "note": "2025-11-23 제품군 전시·공개. 고객 양산 출하 또는 최초 판매일로 표시하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "최대64 · 환산",
+     "source": "ddr_cx_5",
+     "note": "계산: 공개 속도 최대8000 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-micron-ddr3l-8gb-x16",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR3L 8Gb · x16 -125",
+   "company": "Micron",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR3L 8Gb · x16 -125",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "company": {
+     "value": "Micron",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "generation": {
+     "value": "DDR3L",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "die_density": {
+     "value": "8Gb",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "data_rate": {
+     "value": "1600",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "voltage": {
+     "value": "1.35 / 1.5 호환",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "io_width": {
+     "value": "x16",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "prefetch": {
+     "value": "8n",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "part_number": {
+     "value": "MT41K512M16HA-125",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "profile_kind": {
+     "value": "부품군 데이터시트",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "milestone": {
+     "value": "문서 사양 · 출시일 미확인",
+     "source": "ddr_mu_3",
+     "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+    },
+    "bandwidth": {
+     "value": "12.8 · 환산",
+     "source": "ddr_mu_3",
+     "note": "계산: 공개 속도 1600 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    },
+    "chip_bandwidth": {
+     "value": "3.2 · 계산",
+     "source": "ddr_mu_3",
+     "note": "계산: 1600 MT/s × 칩 x16 I/O ÷ 8 ÷ 1000. 64-bit 환산 대역폭과 구분한 칩 이론값입니다."
+    }
+   },
+   "review_note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-micron-ddr4-16gb",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 16Gb · -062E 제품군",
+   "company": "Micron",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 16Gb · -062E 제품군",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "company": {
+     "value": "Micron",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "data_rate": {
+     "value": "3200",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "voltage": {
+     "value": "1.2",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "io_width": {
+     "value": "x4 / x8 / x16",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "prefetch": {
+     "value": "8n",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "part_number": {
+     "value": "MT40A4G4 / MT40A2G8 / MT40A1G16",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "부품군 데이터시트",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "milestone": {
+     "value": "문서 사양 · 출시일 미확인",
+     "source": "ddr_mu_4",
+     "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+    },
+    "bandwidth": {
+     "value": "25.6 · 환산",
+     "source": "ddr_mu_4",
+     "note": "계산: 공개 속도 3200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-micron-ddr4-alpha",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR4 · 1α 제품군",
+   "company": "Micron",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR4 · 1α 제품군",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "company": {
+     "value": "Micron",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR4",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "process": {
+     "value": "1α · 1-alpha",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "die_density": {
+     "value": "8~16Gb · 노드 지원",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 노드·제품군",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2021-01-26",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    },
+    "milestone": {
+     "value": "DDR4 양산 출하",
+     "source": "ddr_mu_4_alpha",
+     "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+    }
+   },
+   "review_note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-micron-ddr5-family",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16/24/32Gb · 제품군",
+   "company": "Micron",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16/24/32Gb · 제품군",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "company": {
+     "value": "Micron",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "die_density": {
+     "value": "16 / 24 / 32Gb",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "data_rate": {
+     "value": "4800~8800",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "voltage": {
+     "value": "1.1",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "prefetch": {
+     "value": "16n",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품군",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "milestone": {
+     "value": "공개 제품군 · 날짜 미기재",
+     "source": "ddr_mu_5",
+     "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+    },
+    "bandwidth": {
+     "value": "38.4~70.4 · 환산",
+     "source": "ddr_mu_5",
+     "note": "계산: 공개 속도 4800~8800 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다. 공개 자료에 없는 값은 비워 두었습니다."
+  },
+  {
+   "id": "ddr-product-micron-ddr5-16gb-gamma",
+   "sheet_row": null,
+   "source_values": [],
+   "name": "DDR5 16Gb · 1γ",
+   "company": "Micron",
+   "group": "회사별 제품",
+   "original": {},
+   "reviews": {
+    "name": {
+     "value": "DDR5 16Gb · 1γ",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "company": {
+     "value": "Micron",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "generation": {
+     "value": "DDR5",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "die_density": {
+     "value": "16Gb",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "process": {
+     "value": "1γ · EUV / HKMG",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "data_rate": {
+     "value": "최대9200",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "profile_kind": {
+     "value": "공식 제품 발표",
+     "source": "ddr_mu_gamma",
+     "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+    },
+    "milestone_date": {
+     "value": "2025-02-25",
+     "source": "ddr_mu_gamma_ann",
+     "note": "2025-02-25 1γ 16Gb DDR5 샘플 출하 공지. 날짜는 당시 샘플 이정표이며 양산 판매일은 아닙니다."
+    },
+    "milestone": {
+     "value": "샘플 출하 공지",
+     "source": "ddr_mu_gamma_ann",
+     "note": "2025-02-25 1γ 16Gb DDR5 샘플 출하 공지. 날짜는 당시 샘플 이정표이며 양산 판매일은 아닙니다."
+    },
+    "bandwidth": {
+     "value": "최대73.6 · 환산",
+     "source": "ddr_mu_gamma",
+     "note": "계산: 공개 속도 최대9200 MT/s × 가정한 64-bit 데이터 폭 ÷ 8 ÷ 1000. DDR5는 32-bit 서브채널 2개 합계 기준입니다. 실제 칩 I/O·모듈 구성 또는 실측 대역폭을 확인한 값이 아닙니다."
+    }
+   },
+   "review_note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다. 공개 자료에 없는 값은 비워 두었습니다."
   }
  ],
  "name_key": "name",
- "default_group": "세대 비교",
+ "default_group": "회사별 제품",
  "default_view": "overview",
  "views": [
   {
    "id": "overview",
-   "label": "한눈에 보기",
+   "label": "회사별 제품 비교",
+   "keys": [
+    "name",
+    "company",
+    "generation",
+    "process",
+    "die_density",
+    "data_rate",
+    "voltage",
+    "bandwidth",
+    "milestone_date",
+    "milestone",
+    "io_width",
+    "chip_bandwidth",
+    "profile_kind"
+   ]
+  },
+  {
+   "id": "reference",
+   "label": "세대 비교 · 시트",
    "keys": [
     "name",
     "sheet_year",
@@ -1090,6 +2403,19 @@
    ]
   },
   {
+   "id": "dates",
+   "label": "제품 발표·양산",
+   "keys": [
+    "name",
+    "company",
+    "generation",
+    "milestone_date",
+    "milestone",
+    "part_number",
+    "profile_kind"
+   ]
+  },
+  {
    "id": "all",
    "label": "전체 사양",
    "keys": [
@@ -1110,7 +2436,14 @@
     "mesh2",
     "cell_height",
     "dielectrics",
-    "extra"
+    "extra",
+    "generation",
+    "io_width",
+    "chip_bandwidth",
+    "part_number",
+    "profile_kind",
+    "milestone_date",
+    "milestone"
    ]
   }
  ],
@@ -1150,20 +2483,164 @@
    "url": "https://media.kingston.com/kingston/articles/MKF_954-DDR5-Collateral_us.pdf",
    "checked": "2026-10-25",
    "note": "DDR5 모듈은 32-bit 서브채널 2개로 구성되며 합계 데이터 폭 64-bit를 유지합니다. 이 표의 이론 대역폭은 ECC 비트를 제외한 64-bit로 통일합니다."
+  },
+  "ddr_sam_3": {
+   "title": "삼성 · 20nm 4Gb DDR3 양산",
+   "url": "https://news.samsung.com/global/samsung-now-mass-producing-industrys-most-advanced-4gb-ddr3-using-20-nanometer-process-technology",
+   "checked": "2026-10-25",
+   "note": "2014-03-11 양산 공지의 4Gb·20nm. 이 공지에서 속도·전압·부품 번호는 확인하지 않았습니다."
+  },
+  "ddr_sam_4_20": {
+   "title": "삼성 · 20nm 8Gb DDR4 양산",
+   "url": "https://news.samsung.com/global/samsung-electronics-starts-mass-production-of-industrys-first-8-gigabit-ddr4-based-on-20-nanometer-process-technology",
+   "checked": "2026-10-25",
+   "note": "8Gb 칩과 이 칩을 이용한 32GB RDIMM의 핀당 최대2400 Mbps·1.2 V. 모듈 GB를 Die Gb로 사용하지 않습니다."
+  },
+  "ddr_sam_4_1x": {
+   "title": "삼성 · 1x 8Gb DDR4 양산",
+   "url": "https://news.samsung.com/global/samsung-starts-mass-producing-industrys-first-10-nanometer-class-dram",
+   "checked": "2026-10-25",
+   "note": "2016-04-05 양산 공지. 1x, 8Gb, 3200 Mbps. 1x를 특정 nm 치수로 환산하지 않습니다."
+  },
+  "ddr_sam_4_1y": {
+   "title": "삼성 · 1y 8Gb DDR4 양산",
+   "url": "https://news.samsung.com/global/samsung-now-mass-producing-industrys-first-2nd-generation-10-nanometer-class-dram",
+   "checked": "2026-10-25",
+   "note": "2017-12-20 양산 공지. 1y, 8Gb, 3600 Mbps. 동일 명칭의 타사 공정과 절대 치수를 같다고 가정하지 않습니다."
+  },
+  "ddr_sam_5_14": {
+   "title": "삼성 · 14nm DDR5 양산",
+   "url": "https://news.samsung.com/global/samsung-starts-mass-production-of-most-advanced-14nm-euv-ddr5-dram",
+   "checked": "2026-10-25",
+   "note": "2021-10-12 양산 공지의 14nm EUV 제품군·최대7200 Mbps. 24Gb는 향후 확장 계획이므로 현재 Die 용량으로 넣지 않습니다."
+  },
+  "ddr_sam_5_16": {
+   "title": "삼성 · 12nm 16Gb DDR5 양산",
+   "url": "https://news.samsung.com/global/samsung-electronics-announces-most-advanced-12nm-class-ddr5-dram-has-started-mass-production",
+   "checked": "2026-10-25",
+   "note": "2023-05-18 양산 공지. 12nm급 16Gb DDR5이며 최대7200 Mbps 성능을 발표했습니다."
+  },
+  "ddr_sam_5_32": {
+   "title": "삼성 · 12nm 32Gb DDR5 개발",
+   "url": "https://news.samsung.com/global/samsung-electronics-unveils-industrys-first-and-highest-capacity-12nm-class-32gb-ddr5-dram-ideal-for-the-ai-era",
+   "checked": "2026-10-25",
+   "note": "2023-09-01 개발 공지. 32Gb·12nm급. 16Gb 제품의 속도를 32Gb에 복사하지 않습니다."
+  },
+  "ddr_sk_4_1y": {
+   "title": "SK하이닉스 · 1y 8Gb DDR4 개발",
+   "url": "https://news.skhynix.com/en/sk-hynix-inc-develops-1ynm-8gb-ddr4-dram/",
+   "checked": "2026-10-25",
+   "note": "2018-11-12 개발 공지. 1y, 8Gb, 최대3200 Mbps. 다음 해 공급 계획과 공지일을 구분합니다."
+  },
+  "ddr_sk_4_1z": {
+   "title": "SK하이닉스 · 1z 16Gb DDR4 개발",
+   "url": "https://news.skhynix.com/en/sk-hynix-develops-1znm-16gb-ddr4-dram/",
+   "checked": "2026-10-25",
+   "note": "2019-10-21 개발 공지. 1z, 16Gb, 최대3200 Mbps. 당시 양산·공급은 다음 해 계획이었습니다."
+  },
+  "ddr_sk_5_1y": {
+   "title": "SK하이닉스 · 1y 16Gb DDR5 개발",
+   "url": "https://news.skhynix.com/en/sk-hynix-inc-announces-1ynm-16gb-ddr5-dram-2/",
+   "checked": "2026-10-25",
+   "note": "2018-11-15 개발 공지. 1y, 16Gb, 5200 Mbps, 1.1 V. 발표 날짜를 소매 판매일로 사용하지 않습니다."
+  },
+  "ddr_sk_5_24": {
+   "title": "SK하이닉스 · 1a 24Gb DDR5 샘플",
+   "url": "https://news.skhynix.com/en/sk-hynix-becomes-the-industrys-first-to-ship-24gb-ddr5-samples/",
+   "checked": "2026-10-25",
+   "note": "2021-12-15 샘플 공지. 1a EUV, 24Gb. 속도 개선율만으로 절대 MT/s를 역산하지 않습니다."
+  },
+  "ddr_sk_5_1b": {
+   "title": "SK하이닉스 · 1b DDR5 호환성 검증",
+   "url": "https://news.skhynix.co.kr/skhynix-1b-ddr5-certification/",
+   "checked": "2026-10-25",
+   "note": "2023-05-30 공지의 1b DDR5, 6.4 Gb/s. 이 공지는 Die 용량을 특정하지 않아 임의로 16Gb를 붙이지 않습니다."
+  },
+  "ddr_sk_5_1c": {
+   "title": "SK하이닉스 · 1c 16Gb DDR5 개발",
+   "url": "https://news.skhynix.com/en/sk-hynix-develops-industry-first-1c-ddr5/",
+   "checked": "2026-10-25",
+   "note": "2024-08-29 개발 공지. 1c, 16Gb, 8 Gb/s. 당시 발표 성능과 향후 공급 계획을 구분합니다."
+  },
+  "ddr_sk_5_32": {
+   "title": "SK하이닉스 · 1b 32Gb 기반 서버 인증",
+   "url": "https://news.skhynix.co.kr/32gb-256gb-ddr5-intel/",
+   "checked": "2026-10-25",
+   "note": "2025-12-18 인증 공지. 1b 32Gb Die를 사용한 256GB RDIMM. 256GB를 Die 용량에 넣지 않으며 속도·전압 미공개 항목은 비웁니다."
+  },
+  "ddr_cx_4": {
+   "title": "CXMT · DDR4 공식 연혁",
+   "url": "https://www.cxmt.com/en/about.html",
+   "checked": "2026-10-25",
+   "note": "공식 연혁은 8Gb DDR4의 2019년 9월 양산 발표·11월 판매 개시를 명시합니다. 일 단위 날짜·속도·전압은 특정하지 않습니다."
+  },
+  "ddr_cx_4_analysis": {
+   "title": "TechInsights · CXMT DDR4 실물 분석",
+   "url": "https://www.techinsights.com/products/mdp-2006-801",
+   "checked": "2026-10-25",
+   "note": "분석 기관이 직접 조사한 CXDQ3A8AM-CG, 8Gb DDR4, 2x(22nm) 공정에 대한 공개 초록입니다. 제조사 공시가 아닌 독립 실물 분석이며 보고서 공개일 2020-07-14를 제품 출시일로 쓰지 않습니다."
+  },
+  "ddr_cx_5": {
+   "title": "CXMT · DDR5 제품군 사양",
+   "url": "https://www.cxmt.com/en/product.html",
+   "checked": "2026-10-25",
+   "note": "DDR5 제품군의 최대8000 Mbps와 16Gb/24Gb Die를 공개했습니다. 모든 용량·SKU에서 동일 속도를 보장한다는 뜻이 아니며 공정·전압·부품 번호는 공개 페이지로 확인하지 않았습니다."
+  },
+  "ddr_cx_5_ann": {
+   "title": "CXMT · IC China DDR5 공개",
+   "url": "https://www.cxmt.com/en/news/info_20.html",
+   "checked": "2026-10-25",
+   "note": "2025-11-23 제품군 전시·공개. 고객 양산 출하 또는 최초 판매일로 표시하지 않습니다."
+  },
+  "ddr_mu_3": {
+   "title": "Micron · 8Gb DDR3L 데이터시트",
+   "url": "https://www.alliancememory.com/wp-content/uploads/Micron_8Gb_DDR3_SDRAM_PartNo.MT41K512M16HA-107_125.pdf",
+   "checked": "2026-10-25",
+   "note": "Micron 작성 8Gb monolithic DDR3L 데이터시트(Alliance Memory 공개 사본). x16·-125 변형의 1600 MT/s·1.35 V·8n. 같은 MT41K512M16 접두어의 2×4Gb TwinDie 문서와 구분합니다."
+  },
+  "ddr_mu_4": {
+   "title": "Micron · 16Gb DDR4 데이터시트",
+   "url": "https://device.report/m/ff30a8601532e6a73519fdb22c9a926500e1e771c7be86fe3e5c02c1c8565c66",
+   "checked": "2026-10-25",
+   "note": "Micron 작성 16Gb x4/x8/x16 DDR4 데이터시트 공개 사본. -062E 속도 등급은 3200 MT/s. 부품군 내 변형이며 공정 노드는 이 문서에서 특정하지 않습니다."
+  },
+  "ddr_mu_4_alpha": {
+   "title": "Micron · 1α DDR4 양산 출하",
+   "url": "https://investors.micron.com/news/press-release/2021/Micron-Delivers-Industrys-First-1-DRAM-Technology-01-26-2021/default.aspx",
+   "checked": "2026-10-25",
+   "note": "2021-01-26 1α DDR4 양산 출하와 8~16Gb 노드 지원 밀도 범위를 발표했습니다. 특정 SKU의 최고 속도·전압을 복사하지 않습니다."
+  },
+  "ddr_mu_5": {
+   "title": "Micron · DDR5 제품군 비교",
+   "url": "https://www.micron.com/products/memory/dram-components/ddr5-sdram",
+   "checked": "2026-10-25",
+   "note": "제품군 표의 16/24/32Gb·4800~8800 MT/s·1.1 V·16n. 개별 용량×속도 조합이나 공정 노드의 동시 보장 사양은 아닙니다. 1γ 16Gb 9200은 별도 프로파일로 표시합니다."
+  },
+  "ddr_mu_gamma": {
+   "title": "Micron · 1γ 16Gb DDR5 기술 자료",
+   "url": "https://www.micron.com/content/dam/micron/global/public/products/technical-marketing-brief/1-gamma-technology-brief.pdf",
+   "checked": "2026-10-25",
+   "note": "1γ EUV·16Gb DDR5·최대9200 MT/s. 1γ 공정의 절대 nm 치수를 추정하지 않습니다."
+  },
+  "ddr_mu_gamma_ann": {
+   "title": "Micron · 1γ DDR5 샘플 출하",
+   "url": "https://micron.gcs-web.com/news-releases/news-release-details/micron-announces-shipment-1g-1-gamma-dram-pioneering-memory",
+   "checked": "2026-10-25",
+   "note": "2025-02-25 1γ 16Gb DDR5 샘플 출하 공지. 날짜는 당시 샘플 이정표이며 양산 판매일은 아닙니다."
   }
  },
- "note": "기본은 SDRAM·DDR~DDR5 세대 비교입니다. 64-bit 데이터 폭의 이론 대역폭이며 DDR5는 32-bit 서브채널 2개 합계로 환산합니다. Die 용량(Gb)과 모듈 용량(GB)은 다른 단위입니다. DDR4·DDR5 보완 속도는 Micron 백서의 대표 기준이며 전체 최신 제품의 최대 속도는 아닙니다. 출시연도와 공정 구조·재료는 시트 기재 메모로, 표준 제정일·양산일 또는 검증된 제조사 공정으로 해석하지 않습니다.",
+ "note": "기본은 삼성전자·SK하이닉스·CXMT·Micron의 DDR 제품·제품군 비교입니다. 각 행은 근거 자료에 나온 시점의 프로파일이며 전 제품 목록·현재 양산 목록이 아닙니다. 제품군의 최대 속도가 모든 용량·SKU에서 동시에 보장되는 것은 아닙니다. Die 용량(Gb), 패키지·모듈 용량(GB), 칩 I/O 폭을 구분합니다. 64-bit 환산은 비교를 위한 가정값이며 칩 자체 대역폭이 아닙니다. 공정 명칭은 회사별 표기이고 같은 1a·1b·1c를 동일한 nm로 취급하지 않습니다. CXMT DDR4의 22nm는 독립 실물 분석값입니다. 공식 이정표는 개발·샘플·양산·인증 당시 공지를 구분하며 최신 공급 상태나 판매일이 아닙니다. 기존 시트는 세대 비교·공정 메모에서 확인합니다.",
  "caption": "DDR 대역폭: 64-bit 데이터 폭 기준 · 공정 메모는 표준 세대 사양과 구분",
  "search_placeholder": "세대·공정·제품·회사 검색",
  "group_label": "행 구분",
  "item_label": "항목",
- "evidence_summary": "원본 18개 행 · 15개 값 보완·검토",
+ "evidence_summary": "회사별 21개 제품·프로파일 · 시트 원본 18개 행 · 개별 셀 출처 확인",
  "scroll_hint": "행 높이 40px · 긴 값은 마우스 메모 · 상세는 맨 오른쪽",
  "original_columns": [
   {
    "id": "name",
-   "label": "세대 / 공정",
-   "width": 170
+   "label": "제품 / 세대 / 공정",
+   "width": 190
   },
   {
    "id": "sheet_year",
@@ -1219,8 +2696,8 @@
   },
   {
    "id": "company",
-   "label": "회사 · 시트 기준",
-   "width": 120
+   "label": "회사",
+   "width": 105
   },
   {
    "id": "net_die",
@@ -1251,6 +2728,43 @@
    "id": "extra",
    "label": "시트 추가 메모",
    "width": 150
+  },
+  {
+   "id": "generation",
+   "label": "DDR 규격",
+   "width": 85
+  },
+  {
+   "id": "io_width",
+   "label": "칩 I/O 폭",
+   "width": 110
+  },
+  {
+   "id": "chip_bandwidth",
+   "label": "칩 대역폭 · GB/s",
+   "width": 130,
+   "measure": true
+  },
+  {
+   "id": "part_number",
+   "label": "부품 번호 / 제품군",
+   "width": 210
+  },
+  {
+   "id": "profile_kind",
+   "label": "자료 범위",
+   "width": 150
+  },
+  {
+   "id": "milestone_date",
+   "label": "공식 이정표일",
+   "width": 110,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 170
   }
  ],
  "raw_headers": [
@@ -1268,5 +2782,20 @@
   "Mesh Thickness(2nd)",
   "Cell Cap Hieght",
   "High-k Dieelectrics"
- ]
+ ],
+ "original_group": "all",
+ "original_view": "reference",
+ "company_order": [
+  "삼성전자",
+  "SK하이닉스",
+  "CXMT",
+  "Micron",
+  "공통 / 미기재"
+ ],
+ "view_groups": {
+  "overview": "회사별 제품",
+  "reference": "세대 비교",
+  "process": "공정 메모",
+  "dates": "회사별 제품"
+ }
 }

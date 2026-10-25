@@ -17,11 +17,28 @@ def verify(base):
             page.goto(base+'#/semicon/memory',wait_until='networkidle')
             page.wait_for_function('typeof state!=="undefined" && state.charts.length===9 && !document.querySelector(".page-loading")')
             ddr=page.locator('[data-memory-specs="ddr_specs"]');hbm=page.locator('[data-memory-specs="hbm_specs"]')
-            assert ddr.locator('tbody tr').count()==6
+            assert ddr.locator('tbody tr').count()==21
+            assert ddr.get_by_label('DDR 제품 단위',exact=True).input_value()=='회사별 제품'
+            for company,count in [('삼성전자',7),('SK하이닉스',7),('CXMT',2),('Micron',5)]:
+                ddr.get_by_label('DDR 기업',exact=True).select_option(company)
+                assert ddr.locator('tbody tr').count()==count
+                assert ddr.locator('tbody [data-column="company"] .cpu-specs-value').all_text_contents()==[company]*count
+            ddr.get_by_role('button',name='초기화',exact=True).click()
+            gamma=ddr.locator('[data-row-id="ddr-product-micron-ddr5-16gb-gamma"]')
+            assert gamma.locator('[data-column="bandwidth"] .cpu-specs-value').inner_text()=='최대73.6 · 환산'
+            ddr.get_by_label('DDR 기업',exact=True).select_option('CXMT')
+            cxmt=ddr.locator('[data-row-id="ddr-product-cxmt-ddr5-16-24gb"]')
+            assert cxmt.locator('[data-column="process"] .cpu-specs-value').inner_text()=='—'
+            assert cxmt.locator('[data-column="voltage"] .cpu-specs-value').inner_text()=='—'
+            ddr.get_by_role('button',name='DDR5 16/24Gb · 제품군 상세 사양',exact=True).click()
+            assert '모든 용량' in ddr.locator('dialog').inner_text()
+            assert ddr.locator('dialog a[href="https://www.cxmt.com/en/product.html"]').count()>0
+            assert not ddr.locator('dialog .specs-raw-row').count()
+            ddr.get_by_role('button',name='DDR 상세 닫기',exact=True).click()
+            ddr.get_by_role('button',name='초기화',exact=True).click()
             assert hbm.locator('tbody tr').count()==15
             assert not hbm.locator('[data-row-id="hbm-sheet-29"]').count()
             assert hbm.locator('[data-row-id="hbm-sheet-39"]').count()==1
-            assert ddr.locator('[data-row-id="ddr-sheet-16"] [data-column="bandwidth"] .cpu-specs-value').inner_text()=='25.6~51.2'
             def fixed(card):
                 heights=card.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.getBoundingClientRect().height)')
                 assert all(abs(v-40)<.1 for v in heights),heights
@@ -29,6 +46,10 @@ def verify(base):
             fixed(ddr);fixed(hbm)
             out=ROOT/'tmp/memory-specs-20261025';out.mkdir(parents=True,exist_ok=True)
             ddr.screenshot(path=str(out/f'ddr-{width}.png'));hbm.screenshot(path=str(out/f'hbm-{width}.png'))
+            ddr.get_by_label('DDR 열 보기',exact=True).select_option('reference')
+            assert ddr.get_by_label('DDR 제품 단위',exact=True).input_value()=='세대 비교'
+            assert ddr.locator('tbody tr').count()==6
+            assert ddr.locator('[data-row-id="ddr-sheet-16"] [data-column="bandwidth"] .cpu-specs-value').inner_text()=='25.6~51.2'
             ddr.get_by_label('DDR 제품 단위',exact=True).select_option('공정 메모')
             ddr.get_by_label('DDR 열 보기',exact=True).select_option('process')
             assert ddr.locator('tbody tr').count()==12
@@ -65,10 +86,10 @@ def verify(base):
                 card.get_by_label(f'{key.upper()} 제품 단위',exact=True).select_option('all')
                 card.get_by_label(f'{key.upper()} 열 보기',exact=True).select_option('all')
                 card.get_by_label(f'{key.upper()} 값 표시',exact=True).select_option('original')
-                assert card.locator('tbody tr').count()==len(docs[key]['rows'])
+                assert card.locator('tbody tr').count()==sum(r['sheet_row'] is not None for r in docs[key]['rows'])
                 assert card.locator('.cpu-specs-added').count()==0
                 actual=card.locator('tbody tr').evaluate_all('rows=>rows.map(row=>Object.fromEntries([...row.cells].filter(c=>c.dataset.column&&c.dataset.column!=="detail").map(c=>[c.dataset.column,c.dataset.column==="name"?c.querySelector("b").textContent:c.querySelector(".cpu-specs-value").textContent])))')
-                expected=[{c['id']:r['original'].get(c['id']) or '—' for c in docs[key]['columns']} for r in docs[key]['rows']]
+                expected=[{c['id']:r['original'].get(c['id']) or '—' for c in docs[key]['columns']} for r in docs[key]['rows'] if r['sheet_row'] is not None]
                 assert actual==expected
                 region=card.locator('.cpu-specs-scroll');region.evaluate('el=>{el.scrollLeft=900;el.scrollTop=80}')
                 box=region.bounding_box();sticky=card.locator('thead .cpu-specs-name').bounding_box()

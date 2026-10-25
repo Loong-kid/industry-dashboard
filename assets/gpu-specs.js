@@ -10,7 +10,7 @@ function renderGPUSpecs(doc) {
   const ai=doc.id==='nvidia_ai_specs',memory=doc.table_family==='memory',prefix=memory?doc.short_name:ai?'AI 가속기':'GPU';
   card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${esc(doc.evidence_summary)}</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)} · 공개 자료 확인 ${esc(doc.updated)}</small></div></div>
     <div class="cpu-specs-controls">
-      <label>기업<select aria-label="${prefix} 기업"><option value="all">전체 기업</option>${options([...new Set(doc.rows.map(r=>r.company))])}</select></label>
+      <label>기업<select aria-label="${prefix} 기업"><option value="all">전체 기업</option>${options(doc.company_order||[...new Set(doc.rows.map(r=>r.company))])}</select></label>
       <label>${doc.group_label||(ai?'제품 단위':'형태·용도')}<select aria-label="${prefix} 제품 단위"><option value="all">전체 단위</option>${options([...new Set(doc.rows.map(r=>r.group))])}</select></label>
       <label class="cpu-specs-search">검색<input type="search" aria-label="${prefix} 검색" placeholder="${esc(doc.search_placeholder||(ai?'제품·HBM·프로파일':'GPU 이름·아키텍처·메모리'))}"></label>
       <label>열 보기<select aria-label="${prefix} 열 보기">${doc.views.map(v=>`<option value="${esc(v.id)}">${esc(v.label)}</option>`).join('')}</select></label>
@@ -76,7 +76,11 @@ function renderGPUSpecs(doc) {
   };
   const reset=()=>{company.value='all';group.value=doc.default_group;view.value=doc.default_view;mode.value='reviewed';search.value='';sortKey=null;draw();region.scrollLeft=region.scrollTop=0;};
   card.querySelector('.cpu-specs-reset').addEventListener('click',reset);
-  [company,group,view,mode].forEach(control=>control.addEventListener('change',()=>{draw();region.scrollTop=0;if(control===view||control===group)region.scrollLeft=0;}));
+  [company,group,view,mode].forEach(control=>control.addEventListener('change',()=>{
+    if(control===view&&doc.view_groups?.[view.value]){group.value=doc.view_groups[view.value];if(group.value!==doc.default_group)company.value='all';}
+    if(control===mode&&doc.original_group){group.value=reviewed()?doc.default_group:doc.original_group;company.value='all';search.value='';if(view.value===doc.default_view&&!reviewed())view.value=doc.original_view;else if(view.value===doc.original_view&&reviewed())view.value=doc.default_view;}
+    draw();region.scrollTop=0;if(control===view||control===group||control===mode)region.scrollLeft=0;
+  }));
   search.addEventListener('input',()=>{draw();region.scrollTop=0;});
   table.addEventListener('click',event=>{
     const sort=event.target.closest('[data-sort]'),detail=event.target.closest('[data-detail]');

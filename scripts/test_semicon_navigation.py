@@ -39,7 +39,7 @@ def verify(base):
                 for i in range(count):
                     cards.nth(i).get_by_role('button',name='분기',exact=True).click()
             open_route('#/semicon/memory',9)
-            assert page.locator('.section-title').all_text_contents()==['DDR · 세대별 사양과 공정 메모','HBM · 회사별 스택 사양','삼성전자 · 실적','SK하이닉스 · 실적','Micron · 실적']
+            assert page.locator('.section-title').all_text_contents()==['DDR · 회사별 제품과 공정 사양','HBM · 회사별 스택 사양','삼성전자 · 실적','SK하이닉스 · 실적','Micron · 실적']
             # Three-column financial groups are shorter on wide screens.
             # Exercise the sticky header away from the document's bottom clamp.
             page.evaluate('window.scrollTo(0,Math.min(800,(document.documentElement.scrollHeight-innerHeight)/2))')
