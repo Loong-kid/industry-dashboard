@@ -76,6 +76,9 @@ class PublishedHistoryTests(unittest.TestCase):
         self.assertNotIn('available',row)
         row=next(r for r in self.state['kgs']['hp'] if r['date']=='2023-03-31')
         self.assertEqual((row['available'],row['operating']),(3175.006,3169.301))
+        row=next(r for r in self.state['kgs']['hp'] if r['date']=='2024-03-31')
+        self.assertEqual((row['available'],row['operating']),(3290.971,3285.592))
+        self.assertEqual(row['refs']['available']['pdf_page'],3)
 
     def test_30_documents_and_route(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))

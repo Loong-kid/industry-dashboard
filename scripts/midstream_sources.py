@@ -18,7 +18,7 @@ SPECS={
 
 HP_NOTES={
  'aroc':'Total available HP는 기말 가용 마력, Total operating HP는 기말 고객 현장에서 가동 중인 마력입니다. 원문 단위가 thousand HP이므로 그대로 표시합니다. 분할 이전 국제 사업 총량·Exterran Partners 별도 수치를 혼합하거나 합산하지 않습니다.',
- 'kgs':'가용 마력은 Fleet horsepower(2026 Q2부터 Compression Infrastructure의 Fleet capacity), 대응 지표는 Revenue-generating horsepower입니다. 2024 Q3부터 계약·확약 후 배치 가능한 장비도 수익 발생 마력에 포함되므로 실제 가동 마력과 완전히 같지 않습니다. 비시장성·노후 마력 제외 등 정의 변경과 CSI 인수를 고려하세요. 2026 Q2 전력 사업 MW는 HP에 합산하지 않습니다. 미공시 가용 HP는 가동률로 역산하지 않습니다.',
+ 'kgs':'가용 마력은 Fleet horsepower(2026 Q2부터 Compression Infrastructure의 Fleet capacity), 대응 지표는 Revenue-generating horsepower입니다. 2024 Q1·Q3 등 일부 공시는 계약·확약 후 배치 가능한 장비도 수익 발생 마력에 포함하므로 실제 가동 마력과 완전히 같지 않습니다. 공시별 정의 차이, 비시장성·노후 마력 제외와 CSI 인수를 고려하세요. 2026 Q2 전력 사업 MW는 HP에 합산하지 않습니다. 미공시 가용 HP는 가동률로 역산하지 않습니다.',
  'usac':'Total available HP에는 현 보유 장비 외 계약된 주문·미인도 장비가 포함될 수 있습니다. 대응 지표는 기말 Revenue-generating HP입니다. 회사의 공표 가동률은 계약 대기·수리 중 장비를 조정하므로 단순 revenue-generating HP / total available HP와 다릅니다. 회사 공표 가동률을 별도 시리즈로 표시합니다.',
 }
 

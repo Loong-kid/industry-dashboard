@@ -85,7 +85,7 @@ def hp_documents(key,cohort):
         if not refs:continue
         id=f'compressor_{key}_{suffix}'
         docs[id]=dict(id=id,name=SPECS[key]['name']+' · '+title,unit=unit,frequency='quarterly',frequency_label='분기 말 잔량 · 합산하지 않음',quarter_labels=True,period_labels=labels,
-            fetched=cohort['fetched'],updated=max(refs),source='SEC 정기보고서 · IPO 원문',source_url=refs[max(refs)]['url'],
+            fetched=cohort['fetched'],updated=max(refs),source='SEC 정기보고서 · 기업 원문',source_url=refs[max(refs)]['url'],
             description=HP_NOTES[key],series={label:[[d,bydate.get(d,{}).get(field)] for d in sorted(axis)] for field,label in fields.items()},default_series=list(fields.values()),
             point_sources=refs,span_gaps=False,change_mode='none',table_limit=100,
             basis_details=[dict(label='지표 정의',value=HP_NOTES[key]),dict(label='분기·단위',value='기말 시점의 잔량입니다. 연간 합산·분기 평균·완제품 출하량이 아닙니다. 1천 HP = 1,000 horsepower. 미공개 값은 0으로 채우거나 반올림 가동률로 역산하지 않습니다.')])
@@ -141,7 +141,9 @@ def collect(offline=False,full=False):
             issues=list({(item['year'],item['metric']):item for item in issues+scope_issues}.values())
             if prior.get('rows') and rows[-1]['date']<prior['rows'][-1]['date']:raise ValueError('Regressing source')
             cohort=dict(rows=rows,annual=annual,fetched=asof,checked=asof,ok=not failed,issues=issues)
-            if key in HP_NOTES:cohort['hp']=merge_hp([] if full else prior.get('hp',[]),hp_updates,asof)
+            if key in HP_NOTES:
+                hp_updates+=load(ROOT/'manual/midstream_hp_supplement.json',{}).get('companies',{}).get(key,[])
+                cohort['hp']=merge_hp([] if full else prior.get('hp',[]),hp_updates,asof)
             if key=='aroc':cohort['operating_facts']=operating
             if key=='kgs':cohort['ipo_rows']=list({r['date']:r for r in ipo}.values())
         except Exception as error:

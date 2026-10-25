@@ -87,9 +87,12 @@ no annual-sum switch. No available capacity is back-solved from rounded rates.
 - KGS: Fleet horsepower / Revenue-generating horsepower, divided by 1,000.
   Active HP from 2021 Q1, with available HP only where directly disclosed.
   IPO tables distinguish quarterly March dates from annual December dates;
-  missing capacity in 2021 Q1–Q3 is not inferred. From 2024 Q3 the definition
-  includes contracted/firmly committed deployable units; it is not identical
-  to AROC's physically operating HP. 2026 Q2 uses the compression infrastructure
+  missing capacity in 2021 Q1–Q3 is not inferred. The 2024 Q1/Q3 definitions
+  and other individual disclosures include contracted/firmly committed deployable units; it is not identical
+  to AROC's physically operating HP. Q1 2024's 10-Q abbreviates HP without a clear
+  scale label; the issuer's original earnings PDF, page 3, supplies exact HP
+  in the reviewed `manual/midstream_hp_supplement.json`, filling that quarter.
+  The published series has 22 quarter ends from 2021 Q1 to 2026 Q2. 2026 Q2 uses the compression infrastructure
   HP columns, never the separately reported power infrastructure MW columns.
 - USAC: Total available / Revenue-generating HP, divided by 1,000, 2014 Q1–
   2026 Q2 (50 quarter ends). Available HP may include contracted on-order units,
