@@ -1,0 +1,1267 @@
+{
+ "id": "company_aroc_profit",
+ "name": "Archrock · AROC · 영업손익(계산)",
+ "unit": "USD 백만",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · SEC 공시",
+ "quarter_labels": true,
+ "period_labels": {
+  "2014-03-31": "FY2014 Q1",
+  "2014-06-30": "FY2014 Q2",
+  "2014-09-30": "FY2014 Q3",
+  "2014-12-31": "FY2014 Q4",
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2014-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": "2016-12-31",
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "updated": "2026-06-30",
+ "fetched": "2026-10-26",
+ "source": "SEC · Archrock · AROC 공식 공시",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000028/aroc-20260630x10q.htm",
+ "description": "미국 압축기 계약 운영·애프터마켓 연결 전체. 2015년 Exterran 분할 전후 및 인수에 따른 범위 변경에 주의. 회사에 공표 영업이익 소계가 없어 매출에서 원가·판관비·감가상각·손상·구조조정·재작성·거래 비용을 차감한 계산 영업손익입니다. 자산매각손익·기타손익·금융손익은 제외합니다. 공표 GAAP 영업이익 또는 조정 EBITDA로 표시하지 않습니다.",
+ "series": {
+  "계산 영업손익": [
+   [
+    "2014-03-31",
+    null
+   ],
+   [
+    "2014-06-30",
+    null
+   ],
+   [
+    "2014-09-30",
+    null
+   ],
+   [
+    "2014-12-31",
+    null
+   ],
+   [
+    "2015-03-31",
+    31.683
+   ],
+   [
+    "2015-06-30",
+    28.398
+   ],
+   [
+    "2015-09-30",
+    14.569
+   ],
+   [
+    "2015-12-31",
+    -66.096
+   ],
+   [
+    "2016-03-31",
+    8.251
+   ],
+   [
+    "2016-06-30",
+    14.138
+   ],
+   [
+    "2016-09-30",
+    3.979
+   ],
+   [
+    "2016-12-31",
+    -40.48
+   ],
+   [
+    "2017-03-31",
+    7.228
+   ],
+   [
+    "2017-06-30",
+    15.926
+   ],
+   [
+    "2017-09-30",
+    2.752
+   ],
+   [
+    "2017-12-31",
+    14.608000000000004
+   ],
+   [
+    "2018-03-31",
+    23.825
+   ],
+   [
+    "2018-06-30",
+    26.725
+   ],
+   [
+    "2018-09-30",
+    35.958
+   ],
+   [
+    "2018-12-31",
+    38.74900000000001
+   ],
+   [
+    "2019-03-31",
+    40.734
+   ],
+   [
+    "2019-06-30",
+    40.211
+   ],
+   [
+    "2019-09-30",
+    41.446
+   ],
+   [
+    "2019-12-31",
+    27.724000000000004
+   ],
+   [
+    "2020-03-31",
+    -52.146
+   ],
+   [
+    "2020-06-30",
+    -6.972
+   ],
+   [
+    "2020-09-30",
+    39.891
+   ],
+   [
+    "2020-12-31",
+    30.93
+   ],
+   [
+    "2021-03-31",
+    29.517
+   ],
+   [
+    "2021-06-30",
+    32.765
+   ],
+   [
+    "2021-09-30",
+    23.681
+   ],
+   [
+    "2021-12-31",
+    26.168000000000006
+   ],
+   [
+    "2022-03-31",
+    25.834
+   ],
+   [
+    "2022-06-30",
+    32.069
+   ],
+   [
+    "2022-09-30",
+    31.534
+   ],
+   [
+    "2022-12-31",
+    33.762
+   ],
+   [
+    "2023-03-31",
+    46.222
+   ],
+   [
+    "2023-06-30",
+    63.501
+   ],
+   [
+    "2023-09-30",
+    67.179
+   ],
+   [
+    "2023-12-31",
+    67.72000000000003
+   ],
+   [
+    "2024-03-31",
+    78.677
+   ],
+   [
+    "2024-06-30",
+    74.891
+   ],
+   [
+    "2024-09-30",
+    83.791
+   ],
+   [
+    "2024-12-31",
+    105.48600000000002
+   ],
+   [
+    "2025-03-31",
+    121.708
+   ],
+   [
+    "2025-06-30",
+    120.613
+   ],
+   [
+    "2025-09-30",
+    140.668
+   ],
+   [
+    "2025-12-31",
+    160.23700000000002
+   ],
+   [
+    "2026-03-31",
+    126.467
+   ],
+   [
+    "2026-06-30",
+    128.059
+   ]
+  ]
+ },
+ "default_series": [
+  "계산 영업손익"
+ ],
+ "span_gaps": false,
+ "point_sources": {
+  "2015-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000016/a2016q110qaroc.htm",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000016/a2016q110qaroc.htm",
+     "label": "2015-01-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000017/a2016q210qaroc.htm",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000017/a2016q210qaroc.htm",
+     "label": "2015-04-01 ~ 2015-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000018/a2016q310qaroc.htm",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000018/a2016q310qaroc.htm",
+     "label": "2015-07-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000006/a201710karoc.htm",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000006/a201710karoc.htm",
+     "label": "2015-01-01 ~ 2015-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000018/a2016q310qaroc.htm",
+     "label": "2015-01-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2016-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000066/a2017q110qaroc.htm",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000066/a2017q110qaroc.htm",
+     "label": "2016-01-01 ~ 2016-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000073/a2017q210qaroc.htm",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000073/a2017q210qaroc.htm",
+     "label": "2016-04-01 ~ 2016-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000086/a2017q310qaroc.htm",
+   "label": "FY2016 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000086/a2017q310qaroc.htm",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000021/a201810karoc.htm",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000021/a201810karoc.htm",
+     "label": "2016-01-01 ~ 2016-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000086/a2017q310qaroc.htm",
+     "label": "2016-01-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2017-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000032/a2018q110qaroc.htm",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000032/a2018q110qaroc.htm",
+     "label": "2017-01-01 ~ 2017-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000052/a2018q210qaroc.htm",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000052/a2018q210qaroc.htm",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000067/a2018q310qaroc.htm",
+   "label": "FY2017 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000067/a2018q310qaroc.htm",
+     "label": "2017-07-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000028/a201910karoc.htm",
+   "label": "FY2017 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000028/a201910karoc.htm",
+     "label": "2017-01-01 ~ 2017-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000067/a2018q310qaroc.htm",
+     "label": "2017-01-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000043/a2019q110qaroc.htm",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000043/a2019q110qaroc.htm",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000053/a2019q210qaroc.htm",
+   "label": "FY2018 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000053/a2019q210qaroc.htm",
+     "label": "2018-04-01 ~ 2018-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000079/a2019q310qaroc.htm",
+   "label": "FY2018 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000079/a2019q310qaroc.htm",
+     "label": "2018-07-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000011/aroc-20201231x10k.htm",
+   "label": "FY2018 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000011/aroc-20201231x10k.htm",
+     "label": "2018-01-01 ~ 2018-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000079/a2019q310qaroc.htm",
+     "label": "2018-01-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000054/aroc-20200331x10q.htm",
+   "label": "FY2019 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000054/aroc-20200331x10q.htm",
+     "label": "2019-01-01 ~ 2019-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000073/aroc-20200630x10q.htm",
+   "label": "FY2019 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000073/aroc-20200630x10q.htm",
+     "label": "2019-04-01 ~ 2019-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000085/aroc-20200930x10q.htm",
+   "label": "FY2019 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000085/aroc-20200930x10q.htm",
+     "label": "2019-07-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000007/aroc-20211231x10k.htm",
+   "label": "FY2019 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000007/aroc-20211231x10k.htm",
+     "label": "2019-01-01 ~ 2019-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000085/aroc-20200930x10q.htm",
+     "label": "2019-01-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2020-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000026/aroc-20210331x10q.htm",
+   "label": "FY2020 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000026/aroc-20210331x10q.htm",
+     "label": "2020-01-01 ~ 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000040/aroc-20210630x10q.htm",
+   "label": "FY2020 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000040/aroc-20210630x10q.htm",
+     "label": "2020-04-01 ~ 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000048/aroc-20210930x10q.htm",
+   "label": "FY2020 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000048/aroc-20210930x10q.htm",
+     "label": "2020-07-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000013/aroc-20221231x10k.htm",
+   "label": "FY2020 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000013/aroc-20221231x10k.htm",
+     "label": "2020-01-01 ~ 2020-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000048/aroc-20210930x10q.htm",
+     "label": "2020-01-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2021-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000020/aroc-20220331x10q.htm",
+   "label": "FY2021 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000020/aroc-20220331x10q.htm",
+     "label": "2021-01-01 ~ 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000155837022011829/aroc-20220630x10q.htm",
+   "label": "FY2021 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000155837022011829/aroc-20220630x10q.htm",
+     "label": "2021-04-01 ~ 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000155837022016230/aroc-20220930x10q.htm",
+   "label": "FY2021 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000155837022016230/aroc-20220930x10q.htm",
+     "label": "2021-07-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000007/aroc-20231231x10k.htm",
+   "label": "FY2021 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000007/aroc-20231231x10k.htm",
+     "label": "2021-01-01 ~ 2021-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000155837022016230/aroc-20220930x10q.htm",
+     "label": "2021-01-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000022/aroc-20230331x10q.htm",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000022/aroc-20230331x10q.htm",
+     "label": "2022-01-01 ~ 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000038/aroc-20230630x10q.htm",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000038/aroc-20230630x10q.htm",
+     "label": "2022-04-01 ~ 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000052/aroc-20230930x10q.htm",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000052/aroc-20230930x10q.htm",
+     "label": "2022-07-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000009/aroc-20241231x10k.htm",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000009/aroc-20241231x10k.htm",
+     "label": "2022-01-01 ~ 2022-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000052/aroc-20230930x10q.htm",
+     "label": "2022-01-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000025/aroc-20240331x10q.htm",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000025/aroc-20240331x10q.htm",
+     "label": "2023-01-01 ~ 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000035/aroc-20240630x10q.htm",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000035/aroc-20240630x10q.htm",
+     "label": "2023-04-01 ~ 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000041/aroc-20240930x10q.htm",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000041/aroc-20240930x10q.htm",
+     "label": "2023-07-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "2023-01-01 ~ 2023-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000041/aroc-20240930x10q.htm",
+     "label": "2023-01-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000019/aroc-20250331x10q.htm",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000019/aroc-20250331x10q.htm",
+     "label": "2024-01-01 ~ 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000030/aroc-20250630x10q.htm",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000030/aroc-20250630x10q.htm",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "2024-01-01 ~ 2024-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+     "label": "2024-01-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000019/aroc-20260331x10q.htm",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000019/aroc-20260331x10q.htm",
+     "label": "2025-01-01 ~ 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000028/aroc-20260630x10q.htm",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000028/aroc-20260630x10q.htm",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "2025-01-01 ~ 2025-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000038/aroc-20250930x10q.htm",
+     "label": "2025-01-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000019/aroc-20260331x10q.htm",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000019/aroc-20260331x10q.htm",
+     "label": "2026-01-01 ~ 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000028/aroc-20260630x10q.htm",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000028/aroc-20260630x10q.htm",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "table_limit": 100,
+ "company_kpi": true,
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": true,
+ "basis_details": [
+  {
+   "label": "회사별 범위·CAPEX 정의",
+   "value": "미국 압축기 계약 운영·애프터마켓 연결 전체. 2015년 Exterran 분할 전후 및 인수에 따른 범위 변경에 주의. 현금흐름표의 자본적 지출(유형·생산자산 취득)입니다. 기업 인수 대금·JV 투자·순매각대금·비현금 리스는 별도이며 회사 발표의 growth / sustaining / net CAPEX와 다를 수 있습니다."
+  },
+  {
+   "label": "회계 분기·차분 기준",
+   "value": "공표 연간과 분기를 각각 보존합니다. Q4는 앞선 3개 분기가 공표 9개월 누적과 일치할 때만 연간 − 9개월로 계산합니다. 비교 범위가 맞지 않는 과거 분기는 공백으로 남기며 카드 아래에 보류 연도를 표시합니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-26 · 정상"
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "계산 영업손익": [
+     [
+      "2014-12-31",
+      61.619
+     ],
+     [
+      "2015-12-31",
+      8.554
+     ],
+     [
+      "2016-12-31",
+      -14.112
+     ],
+     [
+      "2017-12-31",
+      40.514
+     ],
+     [
+      "2018-12-31",
+      125.257
+     ],
+     [
+      "2019-12-31",
+      150.115
+     ],
+     [
+      "2020-12-31",
+      11.703
+     ],
+     [
+      "2021-12-31",
+      112.131
+     ],
+     [
+      "2022-12-31",
+      123.199
+     ],
+     [
+      "2023-12-31",
+      244.622
+     ],
+     [
+      "2024-12-31",
+      342.845
+     ],
+     [
+      "2025-12-31",
+      543.226
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000028/a201610karoc.htm",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905017000028/a201610karoc.htm",
+       "label": "FY2014"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000006/a201710karoc.htm",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905018000006/a201710karoc.htm",
+       "label": "FY2015"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000021/a201810karoc.htm",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905019000021/a201810karoc.htm",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000028/a201910karoc.htm",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905020000028/a201910karoc.htm",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000011/aroc-20201231x10k.htm",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905021000011/aroc-20201231x10k.htm",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000007/aroc-20211231x10k.htm",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905022000007/aroc-20211231x10k.htm",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000013/aroc-20221231x10k.htm",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905023000013/aroc-20221231x10k.htm",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000007/aroc-20231231x10k.htm",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905024000007/aroc-20231231x10k.htm",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000009/aroc-20241231x10k.htm",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905025000009/aroc-20241231x10k.htm",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1389050/000138905026000009/aroc-20251231x10k.htm",
+   "updated": "2025-12-31",
+   "description": "미국 압축기 계약 운영·애프터마켓 연결 전체. 2015년 Exterran 분할 전후 및 인수에 따른 범위 변경에 주의. 회사에 공표 영업이익 소계가 없어 매출에서 원가·판관비·감가상각·손상·구조조정·재작성·거래 비용을 차감한 계산 영업손익입니다. 자산매각손익·기타손익·금융손익은 제외합니다. 공표 GAAP 영업이익 또는 조정 EBITDA로 표시하지 않습니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ },
+ "note": "분기 자료 보류: 2014, 2015년. 합계·누적·연간의 공시 범위가 일치하지 않아 분기를 표시하지 않습니다. 연간 버튼에서 공표 실적을 볼 수 있습니다."
+}

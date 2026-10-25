@@ -1639,27 +1639,30 @@
       "name": "천연가스",
       "icon": "⛽",
       "default_range": "3y",
-      "cadence": "천연가스 가격·선물·LNG 주가·비료는 Yahoo/FRED로 매일 자동. 유럽·아시아 장기(IMF)는 월 1회. 미국 LNG 프로젝트는 EIA 워크북(원본이 2025-06-30 이후 멈춤). 전세계 액화 프로젝트·LNG선 선단은 GEM 트래커(폼 수동 다운로드, 반기~분기) — 새 판을 manual/gem/에 넣으면 갱신된다. FLNG 선단은 수기 CSV.",
+      "cadence": "가격·미드스트림 공시는 독립 update-natgas 작업에서 매일 08:55(KST) 확인합니다. 현물은 FRED/EIA, 선물은 Yahoo 공개 일봉이며 거래·공표 지연을 시리즈별 관측일로 표시합니다. 미국 미드스트림·압축기 8사 실적은 SEC, HP는 정기보고서·IPO 원문에서 확인합니다. HP는 분기 말 잔량이며 회사별 정의가 달라 합산하지 않습니다. 미국 LNG 프로젝트는 EIA 워크북, 전세계 액화 프로젝트·선단은 GEM 수동 다운로드, FLNG는 수기 자료입니다.",
       "sections": [
         {
           "title": "가격",
           "indicators": [
             "ng_prices",
             "ng_long"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "선물 커브 · 월물",
           "indicators": [
             "ng_curve",
             "ng_months"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "지역 간 가격차 · LNG 차익",
           "indicators": [
             "ng_spread"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 운임 · 선복 공급",
@@ -1667,7 +1670,8 @@
             "lng_freight",
             "lng_carrier_deliveries",
             "lng_fleet_supply"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG선 발주잔량 — 조선소별 (GEM)",
@@ -1675,7 +1679,8 @@
           "table_kind": "power_fleet",
           "indicators": [
             "lng_orderbook_by_builder"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG선 발주잔량 — 선박 목록 (GEM)",
@@ -1683,21 +1688,24 @@
           "table_kind": "power_fleet",
           "indicators": [
             "lng_carrier_orderbook"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 공급 — 미국 액화용량",
           "indicators": [
             "lng_capacity_timeline",
             "lng_capacity_cumulative"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 공급 — 전세계 액화용량 (GEM)",
           "indicators": [
             "lng_global_timeline",
             "lng_global_cumulative"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 공급 — 미국 프로젝트 목록",
@@ -1705,7 +1713,8 @@
           "table_kind": "power_fleet",
           "indicators": [
             "lng_projects"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "전세계 액화 프로젝트 — FID·지연 (GEM)",
@@ -1713,13 +1722,15 @@
           "table_kind": "power_fleet",
           "indicators": [
             "lng_global"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 공급 — FLNG 선단",
           "indicators": [
             "flng_capacity"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "FLNG 선단 목록",
@@ -1727,19 +1738,148 @@
           "table_kind": "power_fleet",
           "indicators": [
             "flng_fleet"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "LNG 해운 (운임 평가치 대체)",
           "indicators": [
             "lng_equities"
-          ]
+          ],
+          "tab": "overview"
         },
         {
           "title": "전방 수요 (가스가 원료)",
           "indicators": [
             "fertilizer"
+          ],
+          "tab": "overview"
+        },
+        {
+          "tab": "midstream",
+          "title": "Kinder Morgan · KMI · 미드스트림 실적",
+          "layout": "financial",
+          "supply_note": "천연가스 수송·저장, 제품 파이프라인·터미널·CO₂ 등을 포함한 연결 전체",
+          "indicators": [
+            "company_kmi_revenue",
+            "company_kmi_profit",
+            "company_kmi_capex"
           ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Williams · WMB · 미드스트림 실적",
+          "layout": "financial",
+          "supply_note": "Transco 등 천연가스 수송·저장·집하·처리·마케팅을 포함한 연결 전체",
+          "indicators": [
+            "company_wmb_revenue",
+            "company_wmb_profit",
+            "company_wmb_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Energy Transfer · ET · 미드스트림 실적",
+          "layout": "financial",
+          "supply_note": "천연가스·NGL·원유·제품·소매 등 연결 전체. USAC를 연결하므로 두 회사 실적을 합산하지 않습니다",
+          "indicators": [
+            "company_et_revenue",
+            "company_et_profit",
+            "company_et_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Enterprise Products · EPD · 미드스트림 실적",
+          "layout": "financial",
+          "supply_note": "천연가스·NGL·원유·석유화학 파이프라인, 처리·분별·수출 등을 포함한 연결 전체",
+          "indicators": [
+            "company_epd_revenue",
+            "company_epd_profit",
+            "company_epd_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Targa Resources · TRGP · 미드스트림 실적",
+          "layout": "financial",
+          "supply_note": "천연가스 집하·처리와 NGL 분별·물류·수출 등을 포함한 연결 전체",
+          "indicators": [
+            "company_trgp_revenue",
+            "company_trgp_profit",
+            "company_trgp_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Archrock · AROC · 압축기 서비스 실적",
+          "layout": "financial",
+          "supply_note": "미국 압축기 계약 운영·애프터마켓 연결 전체. 2015년 Exterran 분할 전후 및 인수에 따른 범위 변경에 주의",
+          "indicators": [
+            "company_aroc_revenue",
+            "company_aroc_profit",
+            "company_aroc_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Archrock · AROC · 압축기 운영 지표",
+          "indicators": [
+            "compressor_aroc_horsepower",
+            "compressor_aroc_utilization"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Kodiak Gas Services · KGS · 압축기 서비스 실적",
+          "layout": "financial",
+          "supply_note": "압축기 계약 서비스·기타 서비스 등 연결 전체. 2026년부터 전력 인프라도 포함. 2023년 상장 전 공개 이력은 제한적",
+          "indicators": [
+            "company_kgs_revenue",
+            "company_kgs_profit",
+            "company_kgs_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "Kodiak Gas Services · KGS · 압축기 운영 지표",
+          "indicators": [
+            "compressor_kgs_horsepower",
+            "compressor_kgs_utilization"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "USA Compression · USAC · 압축기 서비스 실적",
+          "layout": "financial",
+          "supply_note": "압축기 계약 서비스 등 연결 전체. 2018년 CDM·2026년 J-W 인수로 자산·마력 범위가 확대됨",
+          "indicators": [
+            "company_usac_revenue",
+            "company_usac_profit",
+            "company_usac_capex"
+          ]
+        },
+        {
+          "tab": "midstream",
+          "title": "USA Compression · USAC · 압축기 운영 지표",
+          "indicators": [
+            "compressor_usac_horsepower",
+            "compressor_usac_utilization"
+          ]
+        }
+      ],
+      "auto_collect_time": "08:55",
+      "tabs": [
+        {
+          "id": "overview",
+          "name": "가격·LNG",
+          "default_range": "3y"
+        },
+        {
+          "id": "midstream",
+          "name": "미드스트림",
+          "default_range": "all",
+          "description": "미드스트림 5사와 압축기 서비스 3사의 연결 매출·영업이익·현금 CAPEX를 분기·연간으로 봅니다. 연간은 2014년부터(Kodiak은 공개된 2021년부터), 단위는 백만 USD입니다. 상품 매매·NGL·원유 등 사업 범위와 인수·분할을 고려하세요. Energy Transfer는 USAC를 연결하므로 두 회사를 합산하지 않습니다. 압축기 마력은 분기 말 잔량이며, Kodiak·USAC의 Revenue-generating HP는 Archrock의 Operating HP와 정의가 다릅니다."
         }
       ]
     },

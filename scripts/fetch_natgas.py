@@ -10,15 +10,19 @@
     FRED_API_KEY=... python scripts/fetch_natgas.py
 """
 import datetime as dt
+import bisect
+import io
 import json
+import os
 import sys
+import time
 from pathlib import Path
 
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_commodities import fetch_yahoo  # noqa: E402
-from fetch_fred import fetch_series as fetch_fred_series  # noqa: E402
+from fetch_commodities import fetch_yahoo as yahoo_source, YH, P1  # noqa: E402
+from fetch_fred import fetch_series as fred_source  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "data" / "natgas"  # 탭 id=natgas
@@ -30,6 +34,55 @@ MWH_PER_MMBTU = 3.412
 # 선물 월물 코드(1~12월). Yahoo 티커는 NG{코드}{연2자리}.NYM 꼴이다(NGX26.NYM = 26년 11월물).
 MONTH_CODES = "FGHJKMNQUVXZ"
 HIST_CONTRACTS = 8  # 월물 추이 카드에 담을 월물 수(전부 담으면 1.2MB — 앞쪽만으로 충분)
+ERRORS = {}
+EIA_SPOT = 'https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls'
+
+
+def today():
+    return dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date()
+
+
+def validate_points(points):
+    import math
+    result = {d: float(v) for d, v in points if d <= today().isoformat() and isinstance(v, (int, float)) and math.isfinite(v)}
+    if not result:
+        raise ValueError('No actual observations')
+    return [[d, v] for d, v in sorted(result.items())]
+
+
+def fetch_yahoo(session, ticker):
+    try:
+        return validate_points(yahoo_source(session, ticker))
+    except Exception as error:
+        ERRORS[ticker] = type(error).__name__
+        print(f'    {ticker}: unavailable; other sources continue')
+        return []
+
+
+def eia_spot(raw):
+    import pandas as pd
+    frame = pd.read_excel(io.BytesIO(raw), sheet_name='Data 1', header=2)
+    if 'Henry Hub' not in str(frame.columns[1]) or 'Million Btu' not in str(frame.columns[1]):
+        raise ValueError('EIA spot definition changed')
+    return validate_points([[d.date().isoformat(), float(v)] for d, v in frame.iloc[:, :2].itertuples(index=False, name=None) if pd.notna(d) and pd.notna(v)])
+
+
+def fetch_fred_series(session, series_id, transform, start):
+    try:
+        if not os.environ.get('FRED_API_KEY'):
+            raise ValueError('FRED API key not configured')
+        return validate_points(fred_source(session, series_id, transform, start))
+    except Exception as error:
+        if series_id == 'DHHNGSP':
+            try:
+                response = session.get(EIA_SPOT, timeout=(5, 40))
+                response.raise_for_status()
+                return eia_spot(response.content)
+            except Exception as fallback_error:
+                error = fallback_error
+        ERRORS[series_id] = type(error).__name__
+        print(f'    {series_id}: unavailable; existing series retained')
+        return []
 
 # LNG 운임 평가치(Baltic·Spark)가 유료라, 시장이 매긴 대체 지표로 선사·수출업체 주가를 쓴다.
 LNG_EQUITIES = [
@@ -44,7 +97,12 @@ LNG_EQUITIES = [
 def try_yahoo(session, ticker):
     """월물은 상장 범위 밖이면 404다(TTF는 먼 달이 비는 경우가 잦다). 없는 계약은 조용히 건너뛴다."""
     try:
-        return fetch_yahoo(session, ticker)
+        # Unlisted distant contracts normally return 404. Do not perform the
+        # shared five-attempt retry used for the liquid front-month series.
+        response=session.get(YH.format(t=ticker),params={'period1':P1,'period2':int(time.time()),'interval':'1d'},timeout=(5,20))
+        response.raise_for_status()
+        result=response.json()['chart']['result'][0]
+        return validate_points([[dt.datetime.fromtimestamp(stamp,dt.timezone.utc).date().isoformat(),round(value,3)] for stamp,value in zip(result['timestamp'],result['indicators']['quote'][0]['close']) if value is not None])
     except Exception:  # noqa
         print(f"    (없음: {ticker})")
         return []
@@ -52,8 +110,8 @@ def try_yahoo(session, ticker):
 
 def next_contracts(n):
     """다음 달부터 n개월치 (라벨, 만기월 1일, 티커코드) 목록. 당월물은 만기가 코앞이라 건너뛴다."""
-    today = dt.date.today()
-    y, m = today.year, today.month
+    current = today()
+    y, m = current.year, current.month
     out = []
     for _ in range(n):
         m += 1
@@ -82,11 +140,12 @@ def to_map(points):
 def convert_ttf(ttf_eur, eurusd):
     """TTF(EUR/MWh) → USD/MMBtu. 환율이 없는 날(휴장)은 직전 환율을 쓴다."""
     fx = to_map(eurusd)
-    out, last = [], None
+    dates = sorted(fx)
+    out = []
     for d, v in ttf_eur:
-        last = fx.get(d, last)
-        if last:
-            out.append([d, round(v / MWH_PER_MMBTU * last, 3)])
+        i = bisect.bisect_right(dates, d) - 1
+        if i >= 0 and (dt.date.fromisoformat(d)-dt.date.fromisoformat(dates[i])).days <= 7:
+            out.append([d, round(v / MWH_PER_MMBTU * fx[dates[i]], 3)])
     return out
 
 
@@ -105,12 +164,23 @@ def monthly_avg(points):
 
 
 def save(cid, name, unit, freq, series, source, default=None, description=None, note=None, updated=None):
-    last = updated or max((p[-1][0] for p in series.values() if p), default="")
+    path = OUT_DIR / f'{cid}.json'
+    prior = json.loads(path.read_text(encoding='utf8')) if path.exists() else {}
+    fresh = {label: points for label, points in series.items() if points}
+    failures = [label for label, points in series.items() if not points]
+    if cid != 'ng_curve':
+        # Preserve successful history and failed peers independently. Never stamp
+        # an old observation with today's observation date or fabricate a price.
+        for label, points in prior.get('series', {}).items():
+            series[label] = [[d, v] for d, v in sorted({**dict(points), **dict(series.get(label, []))}.items())]
+    else:
+        series = fresh or prior.get('series', {})
+    last = (updated or prior.get('updated','')) if cid=='ng_curve' else updated or max((p[-1][0] for p in series.values() if p), default="")
     doc = {
         "id": cid, "name": name, "unit": unit, "frequency": freq,
         "source": source, "source_url": "",
-        "updated": last or dt.date.today().isoformat(),
-        "fetched": dt.date.today().isoformat(),
+        "updated": last or prior.get('updated', ''),
+        "fetched": today().isoformat() if fresh else prior.get('fetched', ''),
         "default_series": default or list(series)[:2],
         "series": series,
     }
@@ -118,6 +188,10 @@ def save(cid, name, unit, freq, series, source, default=None, description=None, 
         doc["description"] = description
     if note:
         doc["note"] = note
+    doc['source_last_dates'] = {label: last if cid=='ng_curve' else points[-1][0] for label, points in series.items() if points}
+    doc['collection_status'] = dict(ok=bool(fresh) and not failures, checked=today().isoformat(),
+                                  message='미확보 시리즈의 기존 이력 유지: '+', '.join(failures) if failures else '공개 가격 확인')
+    doc['note'] = (doc.get('note', '') + ' 시리즈별 마지막 관측일: ' + ' · '.join(f'{label} {date}' for label, date in doc['source_last_dates'].items())).strip()
     (OUT_DIR / f"{cid}.json").write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  {cid}: {len(series)}시리즈 {sum(len(v) for v in series.values()):,}점 (~{last})")
 
@@ -136,7 +210,7 @@ def run():
     save("ng_prices", "천연가스 가격 (3대 지역)", "$/MMBtu", "daily",
          {"헨리허브 현물": hh_spot, "헨리허브 선물(프론트)": hh_front,
           "TTF 유럽(프론트)": ttf, "JKM 아시아(프론트)": jkm},
-         "FRED(DHHNGSP) · Yahoo Finance(NG=F/TTF=F/JKM=F)",
+         "EIA 헨리허브 현물(FRED DHHNGSP 또는 EIA 원본) · Yahoo Finance(NG=F/TTF=F/JKM=F)",
          default=["헨리허브 현물", "TTF 유럽(프론트)", "JKM 아시아(프론트)"],
          description=(
              "미국(헨리허브)·유럽(TTF)·아시아(JKM) 천연가스 가격을 같은 단위($/MMBtu)로 모은 카드. "
@@ -180,7 +254,8 @@ def run():
     # ── 선물 커브 · 월물 추이 ───────────────────────────────────
     # Yahoo에 월물 개별 계약(NGX26.NYM 등)이 2021년부터 붙어 있다 → 스냅샷 누적 없이 과거까지 그린다.
     months = next_contracts(18)
-    fx_last = fetch_yahoo(session, "EURUSD=X")[-1][1]
+    exchange = fetch_yahoo(session, "EURUSD=X")
+    fx_last = exchange[-1][1] if exchange else None
     raw = {}  # code → (라벨, 만기월, HH 시계열, TTF 시계열)
     for label, expiry, code in months:
         raw[code] = (label, expiry, try_yahoo(session, f"NG{code}.NYM"), try_yahoo(session, f"TTF{code}.NYM"))
@@ -197,7 +272,7 @@ def run():
                 skipped.append(f"HH {label}({hh[-1][0]})")
             if len(hh_hist) < HIST_CONTRACTS:
                 hh_hist[f"HH {label}"] = hh
-        if tt:  # EUR/MWh → $/MMBtu (커브는 최신 환율 하나로 통일)
+        if tt and fx_last:  # EUR/MWh → $/MMBtu (커브는 최신 환율 하나로 통일)
             if tt[-1][0] == asof:
                 ttf_curve.append([expiry, round(tt[-1][1] / MWH_PER_MMBTU * fx_last, 3)])
             else:
@@ -210,7 +285,7 @@ def run():
     save("ng_curve", f"선물 커브 ({asof} 종가 기준)", "$/MMBtu", "daily",
          {"헨리허브": hh_curve, "TTF 유럽": ttf_curve},
          "Yahoo Finance (NYMEX·ICE 월물)",
-         updated=dt.date.today().isoformat(),
+         updated=asof,
          # 유럽은 $26, 미국은 $3 수준이라 같이 켜면 HH 커브 모양이 바닥에 눌려 안 보인다.
          # Chart.js는 꺼진 시리즈를 눈금 계산에서 빼므로 기본은 HH만 켜고 TTF는 칩으로 켜게 둔다.
          default=["헨리허브"],

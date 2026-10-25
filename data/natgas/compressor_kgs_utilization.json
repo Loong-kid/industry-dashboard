@@ -1,0 +1,326 @@
+{
+ "id": "compressor_kgs_utilization",
+ "name": "Kodiak Gas Services · KGS · 압축기 가동률",
+ "unit": "%",
+ "frequency": "quarterly",
+ "frequency_label": "분기 말 잔량 · 합산하지 않음",
+ "quarter_labels": true,
+ "period_labels": {
+  "2021-03-31": "2021 Q1 · 기말",
+  "2021-06-30": "2021 Q2 · 기말",
+  "2021-09-30": "2021 Q3 · 기말",
+  "2021-12-31": "2021 Q4 · 기말",
+  "2022-03-31": "2022 Q1 · 기말",
+  "2022-06-30": "2022 Q2 · 기말",
+  "2022-09-30": "2022 Q3 · 기말",
+  "2022-12-31": "2022 Q4 · 기말",
+  "2023-03-31": "2023 Q1 · 기말",
+  "2023-06-30": "2023 Q2 · 기말",
+  "2023-09-30": "2023 Q3 · 기말",
+  "2023-12-31": "2023 Q4 · 기말",
+  "2024-06-30": "2024 Q2 · 기말",
+  "2024-09-30": "2024 Q3 · 기말",
+  "2024-12-31": "2024 Q4 · 기말",
+  "2025-03-31": "2025 Q1 · 기말",
+  "2025-06-30": "2025 Q2 · 기말",
+  "2025-09-30": "2025 Q3 · 기말",
+  "2025-12-31": "2025 Q4 · 기말",
+  "2026-03-31": "2026 Q1 · 기말",
+  "2026-06-30": "2026 Q2 · 기말"
+ },
+ "fetched": "2026-10-26",
+ "updated": "2026-06-30",
+ "source": "SEC 정기보고서 · IPO 원문",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000055/kgs-20260630.htm",
+ "description": "가용 마력은 Fleet horsepower(2026 Q2부터 Compression Infrastructure의 Fleet capacity), 대응 지표는 Revenue-generating horsepower입니다. 2024 Q3부터 계약·확약 후 배치 가능한 장비도 수익 발생 마력에 포함되므로 실제 가동 마력과 완전히 같지 않습니다. 비시장성·노후 마력 제외 등 정의 변경과 CSI 인수를 고려하세요. 2026 Q2 전력 사업 MW는 HP에 합산하지 않습니다. 미공시 가용 HP는 가동률로 역산하지 않습니다.",
+ "series": {
+  "회사 공표 기말 가동률": [
+   [
+    "2021-03-31",
+    null
+   ],
+   [
+    "2021-06-30",
+    null
+   ],
+   [
+    "2021-09-30",
+    null
+   ],
+   [
+    "2021-12-31",
+    99.9
+   ],
+   [
+    "2022-03-31",
+    99.9
+   ],
+   [
+    "2022-06-30",
+    99.7
+   ],
+   [
+    "2022-09-30",
+    99.7
+   ],
+   [
+    "2022-12-31",
+    99.9
+   ],
+   [
+    "2023-03-31",
+    99.8
+   ],
+   [
+    "2023-06-30",
+    99.9
+   ],
+   [
+    "2023-09-30",
+    99.9
+   ],
+   [
+    "2023-12-31",
+    99.9
+   ],
+   [
+    "2024-03-31",
+    null
+   ],
+   [
+    "2024-06-30",
+    94.3
+   ],
+   [
+    "2024-09-30",
+    96.4
+   ],
+   [
+    "2024-12-31",
+    96.5
+   ],
+   [
+    "2025-03-31",
+    96.9
+   ],
+   [
+    "2025-06-30",
+    97.2
+   ],
+   [
+    "2025-09-30",
+    97.6
+   ],
+   [
+    "2025-12-31",
+    97.7
+   ],
+   [
+    "2026-03-31",
+    98.0
+   ],
+   [
+    "2026-06-30",
+    98.2
+   ]
+  ]
+ },
+ "default_series": [
+  "회사 공표 기말 가동률"
+ ],
+ "point_sources": {
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+   "label": "2021 Q4 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+     "label": "Fleet horsepower(1) / Revenue-generating horsepower(2)"
+    }
+   ]
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+   "label": "2022 Q1 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+     "label": "Fleet horsepower(1) / Revenue-generating horsepower(2)"
+    }
+   ]
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523209096/d507024d10q.htm",
+   "label": "2022 Q2 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523209096/d507024d10q.htm",
+     "label": "Fleet horsepower(1) / Revenue-generating horsepower(2)"
+    }
+   ]
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704223000010/kgs-20230930.htm",
+   "label": "2022 Q3 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704223000010/kgs-20230930.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000011/kgs-20231231.htm",
+   "label": "2022 Q4 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000011/kgs-20231231.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+   "label": "2023 Q1 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000119312523175964/d495641ds1a.htm",
+     "label": "Fleet horsepower(1) / Revenue-generating horsepower(2)"
+    }
+   ]
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000056/kgs-20240630.htm",
+   "label": "2023 Q2 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000056/kgs-20240630.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000063/kgs-20240930.htm",
+   "label": "2023 Q3 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704224000063/kgs-20240930.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000010/kgs-20241231.htm",
+   "label": "2023 Q4 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000010/kgs-20241231.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000045/kgs-20250630.htm",
+   "label": "2024 Q2 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000045/kgs-20250630.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000080/kgs-20250930.htm",
+   "label": "2024 Q3 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000080/kgs-20250930.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000012/kgs-20251231.htm",
+   "label": "2024 Q4 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000012/kgs-20251231.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000043/kgs-20260331.htm",
+   "label": "2025 Q1 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000043/kgs-20260331.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000055/kgs-20260630.htm",
+   "label": "2025 Q2 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000055/kgs-20260630.htm",
+     "label": "Fleet capacity (hp / MW) (1) / Revenue-generating (hp / MW) (2)"
+    }
+   ]
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000080/kgs-20250930.htm",
+   "label": "2025 Q3 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704225000080/kgs-20250930.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000012/kgs-20251231.htm",
+   "label": "2025 Q4 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000012/kgs-20251231.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000043/kgs-20260331.htm",
+   "label": "2026 Q1 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000043/kgs-20260331.htm",
+     "label": "Fleet horsepower (1) / Revenue-generating horsepower (2)"
+    }
+   ]
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000055/kgs-20260630.htm",
+   "label": "2026 Q2 · 기말",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1767042/000176704226000055/kgs-20260630.htm",
+     "label": "Fleet capacity (hp / MW) (1) / Revenue-generating (hp / MW) (2)"
+    }
+   ]
+  }
+ },
+ "span_gaps": false,
+ "change_mode": "none",
+ "table_limit": 100,
+ "basis_details": [
+  {
+   "label": "지표 정의",
+   "value": "가용 마력은 Fleet horsepower(2026 Q2부터 Compression Infrastructure의 Fleet capacity), 대응 지표는 Revenue-generating horsepower입니다. 2024 Q3부터 계약·확약 후 배치 가능한 장비도 수익 발생 마력에 포함되므로 실제 가동 마력과 완전히 같지 않습니다. 비시장성·노후 마력 제외 등 정의 변경과 CSI 인수를 고려하세요. 2026 Q2 전력 사업 MW는 HP에 합산하지 않습니다. 미공시 가용 HP는 가동률로 역산하지 않습니다."
+  },
+  {
+   "label": "분기·단위",
+   "value": "기말 시점의 잔량입니다. 연간 합산·분기 평균·완제품 출하량이 아닙니다. 1천 HP = 1,000 horsepower. 미공개 값은 0으로 채우거나 반올림 가동률로 역산하지 않습니다."
+  }
+ ]
+}

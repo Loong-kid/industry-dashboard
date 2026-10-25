@@ -17,11 +17,13 @@ const REFRESH_TARGETS = {
   ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
   offshore: { file: "data/offshore/offshore_fleet.json", label: "시추 지표 갱신", workflow: "update-offshore.yml" },
   games: { file: "data/games/mobile.json", label: "게임 데이터 갱신", workflow: "update-games.yml" },
+  natgas: { file: "data/natgas/ng_prices.json", label: "천연가스 갱신", workflow: "update-natgas.yml" },
 };
 const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "데이터 갱신" };
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
+  if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};
   if (id === "semicon" && subtab?.startsWith("equipment_")) return {file: "data/semicon/company_lam_revenue.json", label: "장비 실적 확인", workflow: "update-equipment.yml"};
   if (id === "semicon" && subtab === "wafer") return {file: "data/semicon/wafer_globalwafers_monthly.json", label: "월 매출 갱신"};

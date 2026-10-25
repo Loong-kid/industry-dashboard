@@ -1,0 +1,57 @@
+name: update-natgas
+on:
+  schedule:
+    - cron: '55 23 * * *' # 매일 KST 08:55
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests pandas xlrd beautifulsoup4
+      - name: Validate price conversion and failure isolation
+        run: python -m unittest discover -s scripts -p test_natgas_prices.py
+      - name: Check gas prices independently of other industries
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python -u scripts/fetch_natgas.py
+      - name: Commit gas price observations only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/natgas/ng_*.json data/natgas/lng_equities.json data/natgas/fertilizer.json
+          git diff --cached --quiet || git commit -m "chore: refresh natural gas prices"
+          git pull --rebase
+          git push
+  midstream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate fiscal flows and horsepower definitions
+        run: python -m unittest discover -s scripts -p test_midstream.py
+      - name: Check SEC accounts and original operating-data tables
+        run: python -u scripts/fetch_midstream.py
+      - name: Validate collected histories
+        run: python -m unittest discover -s scripts -p test_midstream.py
+      - name: Commit midstream accounts and operating data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/natgas/midstream_state.json data/natgas/company_*.json data/natgas/compressor_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh gas midstream and compressor accounts"
+          git pull --rebase
+          git push
