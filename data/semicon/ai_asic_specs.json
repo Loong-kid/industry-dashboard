@@ -1,0 +1,2244 @@
+{
+ "id": "ai_asic_specs",
+ "name": "AI ASIC · 빅테크 자체 칩과 설계 협력사",
+ "manual": true,
+ "frequency": "irregular",
+ "updated": "2026-10-25",
+ "fetched": "2026-10-25",
+ "source": "사용자 Google Sheets · Chip",
+ "source_url": "https://docs.google.com/spreadsheets/d/1HfRSGqOSv8YwbU23eRbY214kKhyf5P3tJh65bxuzN0g/edit#gid=34595042",
+ "source_range": "Chip!A1:AA67",
+ "note": "Chip 탭의 ASICs 33개 행을 옮겼습니다. NVIDIA·AMD 등 GPU 구간은 GPU 탭에서 봅니다. 설계 협력사와 제조 파운드리는 별도이며 미확인 파운드리는 비워 둡니다. 출시·발표 열은 날짜 기준과 함께 읽습니다. F는 시트의 과거 전망으로, 일정이 지나도 실제 출시로 간주하지 않습니다. 출처가 없는 공정·협력사·메모리 사양은 원본 기재값입니다. 연산 성능은 정밀도·희소성·칩/시스템 단위가 달라 단일 순위로 비교하지 않습니다. 원본 용량은 H열 헤더 기준 GB이며 칩 단위는 미검증입니다. 보완값의 GB·GiB·대역폭 단위를 그대로 유지합니다.",
+ "update_note": "원본 시트와 공개 자료를 검토해 갱신하는 스냅샷입니다. 표에 표시된 확인일 기준이며 자동 실시간 수집은 아닙니다.",
+ "table_family": "asic",
+ "short_name": "AI ASIC",
+ "columns": [
+  {
+   "id": "name",
+   "label": "칩 / 제품",
+   "width": 190
+  },
+  {
+   "id": "date",
+   "label": "출시·발표 / 시트 시점",
+   "width": 150
+  },
+  {
+   "id": "date_basis",
+   "label": "날짜 기준",
+   "width": 155
+  },
+  {
+   "id": "company",
+   "label": "공급사 / 빅테크",
+   "width": 125
+  },
+  {
+   "id": "partner",
+   "label": "설계 협력사 · 시트",
+   "width": 175
+  },
+  {
+   "id": "foundry",
+   "label": "제조 파운드리",
+   "width": 120
+  },
+  {
+   "id": "node",
+   "label": "공정",
+   "width": 95
+  },
+  {
+   "id": "memory",
+   "label": "메모리 종류",
+   "width": 150
+  },
+  {
+   "id": "capacity",
+   "label": "메모리 용량",
+   "width": 130
+  },
+  {
+   "id": "bandwidth",
+   "label": "메모리 대역폭",
+   "width": 140
+  },
+  {
+   "id": "compute",
+   "label": "연산 · 정밀도·조건별",
+   "width": 270
+  },
+  {
+   "id": "scope",
+   "label": "사양 단위",
+   "width": 135
+  },
+  {
+   "id": "usage",
+   "label": "주 용도",
+   "width": 160
+  },
+  {
+   "id": "power",
+   "label": "전력",
+   "width": 100
+  },
+  {
+   "id": "clock",
+   "label": "클럭",
+   "width": 100
+  },
+  {
+   "id": "status",
+   "label": "확인 범위",
+   "width": 200
+  }
+ ],
+ "rows": [
+  {
+   "id": "asic-sheet-37",
+   "sheet_row": 37,
+   "source_values": [
+    "",
+    "Google",
+    "TPU v3",
+    "Broadcom",
+    "2018",
+    "16nm",
+    "HBM2",
+    "8/32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v3",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v3",
+    "date": "2018",
+    "company": "Google",
+    "partner": "Broadcom",
+    "node": "16nm",
+    "memory": "HBM2",
+    "capacity": "8/32"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-38",
+   "sheet_row": 38,
+   "source_values": [
+    "",
+    "",
+    "TPU v4",
+    "Broadcom",
+    "2021",
+    "7nm",
+    "HBM2",
+    "8/32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v4",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v4",
+    "date": "2021",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "7nm",
+    "memory": "HBM2",
+    "capacity": "8/32"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-39",
+   "sheet_row": 39,
+   "source_values": [
+    "",
+    "",
+    "TPU v5",
+    "Broadcom",
+    "2023",
+    "5nm",
+    "HBM3e 8 High",
+    "16/96",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v5",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v5",
+    "date": "2023",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "5nm",
+    "memory": "HBM3e 8 High",
+    "capacity": "16/96"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다. TPU v5는 v5e/v5p가 합쳐진 원본 행입니다. 16/96 값을 한 칩의 용량 범위로 비교하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-40",
+   "sheet_row": 40,
+   "source_values": [
+    "",
+    "",
+    "TPU v6e (Trillium)",
+    "Broadcom",
+    "2024",
+    "4nm",
+    "HBM3e 8 High",
+    "32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v6e (Trillium)",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v6e (Trillium)",
+    "date": "2024",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "4nm",
+    "memory": "HBM3e 8 High",
+    "capacity": "32"
+   },
+   "reviews": {
+    "memory": {
+     "value": "HBM",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    },
+    "capacity": {
+     "value": "32 GB",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    },
+    "bandwidth": {
+     "value": "1,638 GB/s",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    },
+    "compute": {
+     "value": "BF16 918 TFLOPS · 칩당",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    },
+    "usage": {
+     "value": "학습·미세조정·서빙",
+     "source": "trillium",
+     "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-41",
+   "sheet_row": 41,
+   "source_values": [
+    "",
+    "",
+    "TPU v6p (Ironwood/Hammer)",
+    "Broadcom",
+    "2025",
+    "3nm",
+    "HBM3e",
+    "192",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v6p (Ironwood/Hammer)",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v6p (Ironwood/Hammer)",
+    "date": "2025",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "3nm",
+    "memory": "HBM3e",
+    "capacity": "192"
+   },
+   "reviews": {
+    "name": {
+     "value": "TPU7x (Ironwood)",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "memory": {
+     "value": "HBM",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "capacity": {
+     "value": "192 GiB",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "bandwidth": {
+     "value": "7,380 GB/s",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "compute": {
+     "value": "BF16 2,307 / FP8 4,614 TFLOPS · 칩당",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    },
+    "usage": {
+     "value": "대규모 AI 학습·추론",
+     "source": "google",
+     "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-42",
+   "sheet_row": 42,
+   "source_values": [
+    "",
+    "",
+    "TPU v7p (Alceste)",
+    "Broadcom",
+    "2026",
+    "3nm",
+    "HBM3e",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v7p (Alceste)",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v7p (Alceste)",
+    "date": "2026",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "3nm",
+    "memory": "HBM3e",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-43",
+   "sheet_row": 43,
+   "source_values": [
+    "",
+    "",
+    "TPU v7e (A6921)",
+    "Mediatek",
+    "2026",
+    "3nm",
+    "HBM3e",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v7e (A6921)",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v7e (A6921)",
+    "date": "2026",
+    "company": "",
+    "partner": "Mediatek",
+    "node": "3nm",
+    "memory": "HBM3e",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-44",
+   "sheet_row": 44,
+   "source_values": [
+    "",
+    "",
+    "TPU v8p",
+    "Broadcom",
+    "2028",
+    "2nm",
+    "TBC",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v8p",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v8p",
+    "date": "2028",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "2nm",
+    "memory": "TBC",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-45",
+   "sheet_row": 45,
+   "source_values": [
+    "",
+    "",
+    "TPU v8e",
+    "Mediatek",
+    "2028",
+    "2nm",
+    "TBC",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "TPU v8e",
+   "company": "Google",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "TPU v8e",
+    "date": "2028",
+    "company": "",
+    "partner": "Mediatek",
+    "node": "2nm",
+    "memory": "TBC",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Google",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-46",
+   "sheet_row": 46,
+   "source_values": [
+    "",
+    "AWS",
+    "Trainium 1",
+    "Alchip",
+    "2022",
+    "7nm",
+    "HBM2e 8 High",
+    "32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Trainium 1",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Trainium 1",
+    "date": "2022",
+    "company": "AWS",
+    "partner": "Alchip",
+    "node": "7nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "32"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-47",
+   "sheet_row": 47,
+   "source_values": [
+    "",
+    "",
+    "Trainium 2",
+    "Marvell",
+    "2024",
+    "5nm",
+    "HBM3 8 High",
+    "96",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Trainium 2",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Trainium 2",
+    "date": "2024",
+    "company": "",
+    "partner": "Marvell",
+    "node": "5nm",
+    "memory": "HBM3 8 High",
+    "capacity": "96"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-48",
+   "sheet_row": 48,
+   "source_values": [
+    "",
+    "",
+    "Trainium 2 Ultra",
+    "Marvell",
+    "2025",
+    "5nm",
+    "HBM3e 12 High",
+    "144",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Trainium 2 Ultra",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Trainium 2 Ultra",
+    "date": "2025",
+    "company": "",
+    "partner": "Marvell",
+    "node": "5nm",
+    "memory": "HBM3e 12 High",
+    "capacity": "144"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-49",
+   "sheet_row": 49,
+   "source_values": [
+    "",
+    "",
+    "Trainium 3",
+    "Alchip",
+    "2026",
+    "3nm",
+    "HBM3e 12 High",
+    "216",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Trainium 3",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Trainium 3",
+    "date": "2026",
+    "company": "",
+    "partner": "Alchip",
+    "node": "3nm",
+    "memory": "HBM3e 12 High",
+    "capacity": "216"
+   },
+   "reviews": {
+    "date": {
+     "value": "2025-12-02",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "date_basis": {
+     "value": "EC2 Trn3 정식 제공",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "node": {
+     "value": "3nm",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "memory": {
+     "value": "HBM3e",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "capacity": {
+     "value": "144 GB",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "bandwidth": {
+     "value": "4.9 TB/s",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "compute": {
+     "value": "FP8 2.52 PFLOPS · 칩당",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    },
+    "usage": {
+     "value": "생성형 AI 학습·추론",
+     "source": "trn3",
+     "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-50",
+   "sheet_row": 50,
+   "source_values": [
+    "",
+    "",
+    "Trainium 4",
+    "Alchip, Marvell, Broadcom",
+    "2028",
+    "2nm",
+    "NA",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Trainium 4",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Trainium 4",
+    "date": "2028",
+    "company": "",
+    "partner": "Alchip, Marvell, Broadcom",
+    "node": "2nm",
+    "memory": "NA",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-51",
+   "sheet_row": 51,
+   "source_values": [
+    "",
+    "",
+    "Inferentia 1",
+    "Alchip",
+    "2023",
+    "7nm",
+    "DDR4",
+    "8",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Inferentia 1",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Inferentia 1",
+    "date": "2023",
+    "company": "",
+    "partner": "Alchip",
+    "node": "7nm",
+    "memory": "DDR4",
+    "capacity": "8"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-52",
+   "sheet_row": 52,
+   "source_values": [
+    "",
+    "",
+    "Inferentia 2",
+    "Marvell",
+    "2023",
+    "5nm",
+    "",
+    "32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Inferentia 2",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Inferentia 2",
+    "date": "2023",
+    "company": "",
+    "partner": "Marvell",
+    "node": "5nm",
+    "memory": "",
+    "capacity": "32"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-53",
+   "sheet_row": 53,
+   "source_values": [
+    "",
+    "",
+    "Inferentia 2.5",
+    "Marvell",
+    "2H25F",
+    "3nm",
+    "HBM3 8 High",
+    "48",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Inferentia 2.5",
+   "company": "AWS",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Inferentia 2.5",
+    "date": "2H25F",
+    "company": "",
+    "partner": "Marvell",
+    "node": "3nm",
+    "memory": "HBM3 8 High",
+    "capacity": "48"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "AWS",
+    "date_basis": "시트 전망 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-54",
+   "sheet_row": 54,
+   "source_values": [
+    "",
+    "Meta",
+    "MTIA v1",
+    "Broadcom",
+    "2024",
+    "7nm",
+    "LPDDR5",
+    "128",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "MTIA v1",
+   "company": "Meta",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "MTIA v1",
+    "date": "2024",
+    "company": "Meta",
+    "partner": "Broadcom",
+    "node": "7nm",
+    "memory": "LPDDR5",
+    "capacity": "128"
+   },
+   "reviews": {
+    "date": {
+     "value": "2023-05-18",
+     "source": "meta1",
+     "note": "공식 첫 공개일. 시트 출시연도와 구분."
+    },
+    "date_basis": {
+     "value": "공식 공개일",
+     "source": "meta1",
+     "note": "공식 첫 공개일. 시트 출시연도와 구분."
+    },
+    "foundry": {
+     "value": "TSMC",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "node": {
+     "value": "7nm",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "memory": {
+     "value": "LPDDR5",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "capacity": {
+     "value": "64 GB",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "bandwidth": {
+     "value": "176 GB/s",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "compute": {
+     "value": "FP16/BF16 51.2 TFLOPS · GEMM",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "usage": {
+     "value": "추천·랭킹 추론",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "power": {
+     "value": "25 W",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    },
+    "clock": {
+     "value": "800 MHz",
+     "source": "meta2",
+     "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Meta",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-55",
+   "sheet_row": 55,
+   "source_values": [
+    "",
+    "",
+    "MTIA v2",
+    "Broadcom",
+    "2025",
+    "5nm",
+    "LPDDR5",
+    "128",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "MTIA v2",
+   "company": "Meta",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "MTIA v2",
+    "date": "2025",
+    "company": "",
+    "partner": "Broadcom",
+    "node": "5nm",
+    "memory": "LPDDR5",
+    "capacity": "128"
+   },
+   "reviews": {
+    "date": {
+     "value": "2024-04-10",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "date_basis": {
+     "value": "공식 공개일",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "foundry": {
+     "value": "TSMC",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "node": {
+     "value": "5nm",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "memory": {
+     "value": "LPDDR5",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "capacity": {
+     "value": "128 GB",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "bandwidth": {
+     "value": "204.8 GB/s",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "compute": {
+     "value": "FP16/BF16 177 TFLOPS · GEMM Dense",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "usage": {
+     "value": "추천·랭킹 추론",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "power": {
+     "value": "90 W",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    },
+    "clock": {
+     "value": "1.35 GHz",
+     "source": "meta2",
+     "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Meta",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-56",
+   "sheet_row": 56,
+   "source_values": [
+    "",
+    "",
+    "Maia 100",
+    "GUC",
+    "2024",
+    "5nm",
+    "HBM2e 8 High",
+    "64",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Maia 100",
+   "company": "Microsoft",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Maia 100",
+    "date": "2024",
+    "company": "",
+    "partner": "GUC",
+    "node": "5nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "64"
+   },
+   "reviews": {
+    "company": {
+     "value": "Microsoft",
+     "source": "maia100",
+     "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+    },
+    "date": {
+     "value": "2023-11-15",
+     "source": "maia100",
+     "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+    },
+    "date_basis": {
+     "value": "공식 발표일",
+     "source": "maia100",
+     "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+    },
+    "usage": {
+     "value": "LLM 학습·추론",
+     "source": "maia100",
+     "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다. B56은 공란이지만 제품명과 Microsoft 공식 발표로 소속을 교정했습니다.",
+   "display_original": {
+    "company": "Microsoft",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-57",
+   "sheet_row": 57,
+   "source_values": [
+    "",
+    "Microsoft",
+    "Maia 200",
+    "GUC",
+    "2026",
+    "3nm",
+    "HBM3e",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Maia 200",
+   "company": "Microsoft",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Maia 200",
+    "date": "2026",
+    "company": "Microsoft",
+    "partner": "GUC",
+    "node": "3nm",
+    "memory": "HBM3e",
+    "capacity": "NA"
+   },
+   "reviews": {
+    "date": {
+     "value": "2026-01-26",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "date_basis": {
+     "value": "공식 발표일",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "foundry": {
+     "value": "TSMC",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "node": {
+     "value": "3nm",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "memory": {
+     "value": "HBM3e",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "capacity": {
+     "value": "216 GB",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "bandwidth": {
+     "value": "7 TB/s",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "compute": {
+     "value": "FP4 >10 / FP8 >5 PFLOPS · 칩당",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "scope": {
+     "value": "칩 1개",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "usage": {
+     "value": "AI 추론",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    },
+    "power": {
+     "value": "750 W",
+     "source": "maia",
+     "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+    }
+   },
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Microsoft",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "일부 셀 공식 확인 · 나머지 원본 미검증"
+   }
+  },
+  {
+   "id": "asic-sheet-58",
+   "sheet_row": 58,
+   "source_values": [
+    "",
+    "",
+    "Maia 300",
+    "Marvell",
+    "2026",
+    "3nm",
+    "HBM3e",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Maia 300",
+   "company": "Microsoft",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Maia 300",
+    "date": "2026",
+    "company": "",
+    "partner": "Marvell",
+    "node": "3nm",
+    "memory": "HBM3e",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Microsoft",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-59",
+   "sheet_row": 59,
+   "source_values": [
+    "",
+    "",
+    "Maia 400",
+    "GUC/Marvell/Mediatek",
+    "2027",
+    "2nm",
+    "HBM4",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Maia 400",
+   "company": "Microsoft",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Maia 400",
+    "date": "2027",
+    "company": "",
+    "partner": "GUC/Marvell/Mediatek",
+    "node": "2nm",
+    "memory": "HBM4",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Microsoft",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-60",
+   "sheet_row": 60,
+   "source_values": [
+    "",
+    "Baidu",
+    "Kunlun 1",
+    "Internally designed",
+    "2020",
+    "14nm",
+    "HBM",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Kunlun 1",
+   "company": "Baidu",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Kunlun 1",
+    "date": "2020",
+    "company": "Baidu",
+    "partner": "Internally designed",
+    "node": "14nm",
+    "memory": "HBM",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Baidu",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-61",
+   "sheet_row": 61,
+   "source_values": [
+    "",
+    "",
+    "Kunlun 2",
+    "Internally designed",
+    "2021",
+    "7nm",
+    "GDDR6",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Kunlun 2",
+   "company": "Baidu",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Kunlun 2",
+    "date": "2021",
+    "company": "",
+    "partner": "Internally designed",
+    "node": "7nm",
+    "memory": "GDDR6",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Baidu",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-62",
+   "sheet_row": 62,
+   "source_values": [
+    "",
+    "",
+    "Kunlun 3",
+    "Internally designed",
+    "2025",
+    "NA",
+    "NA",
+    "NA",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Kunlun 3",
+   "company": "Baidu",
+   "group": "빅테크 자체 칩",
+   "original": {
+    "name": "Kunlun 3",
+    "date": "2025",
+    "company": "",
+    "partner": "Internally designed",
+    "node": "NA",
+    "memory": "NA",
+    "capacity": "NA"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Baidu",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-63",
+   "sheet_row": 63,
+   "source_values": [
+    "",
+    "Huawei",
+    "Ascend 910A",
+    "Hisilicon",
+    "2019",
+    "7nm",
+    "",
+    "32",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Ascend 910A",
+   "company": "Huawei",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Ascend 910A",
+    "date": "2019",
+    "company": "Huawei",
+    "partner": "Hisilicon",
+    "node": "7nm",
+    "memory": "",
+    "capacity": "32"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Huawei",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-64",
+   "sheet_row": 64,
+   "source_values": [
+    "",
+    "",
+    "Ascend 910B",
+    "Hisilicon",
+    "2023",
+    "7nm",
+    "HBM2e 8 High",
+    "64",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Ascend 910B",
+   "company": "Huawei",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Ascend 910B",
+    "date": "2023",
+    "company": "",
+    "partner": "Hisilicon",
+    "node": "7nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "64"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Huawei",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-65",
+   "sheet_row": 65,
+   "source_values": [
+    "",
+    "",
+    "Ascend 910C",
+    "Hisilicon",
+    "2025",
+    "7nm",
+    "HBM3",
+    "128",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Ascend 910C",
+   "company": "Huawei",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Ascend 910C",
+    "date": "2025",
+    "company": "",
+    "partner": "Hisilicon",
+    "node": "7nm",
+    "memory": "HBM3",
+    "capacity": "128"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Huawei",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-66",
+   "sheet_row": 66,
+   "source_values": [
+    "",
+    "",
+    "Ascend 950PR",
+    "Hisilicon",
+    "1Q26F",
+    "5/7nm",
+    "HBM2e 8 High",
+    "128",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Ascend 950PR",
+   "company": "Huawei",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Ascend 950PR",
+    "date": "1Q26F",
+    "company": "",
+    "partner": "Hisilicon",
+    "node": "5/7nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "128"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Huawei",
+    "date_basis": "시트 전망 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-67",
+   "sheet_row": 67,
+   "source_values": [
+    "",
+    "",
+    "Ascend 950D",
+    "Hisilicon",
+    "4Q26F",
+    "5nm",
+    "HBM3",
+    "144",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Ascend 950D",
+   "company": "Huawei",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Ascend 950D",
+    "date": "4Q26F",
+    "company": "",
+    "partner": "Hisilicon",
+    "node": "5nm",
+    "memory": "HBM3",
+    "capacity": "144"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Huawei",
+    "date_basis": "시트 전망 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-35",
+   "sheet_row": 35,
+   "source_values": [
+    "",
+    "Intel",
+    "Gaudi 2",
+    "In-House/ Alchip",
+    "2022",
+    "7nm",
+    "HBM2e 8 High",
+    "96",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Gaudi 2",
+   "company": "Intel",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Gaudi 2",
+    "date": "2022",
+    "company": "Intel",
+    "partner": "In-House/ Alchip",
+    "node": "7nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "96"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Intel",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  },
+  {
+   "id": "asic-sheet-36",
+   "sheet_row": 36,
+   "source_values": [
+    "",
+    "",
+    "Gaudi 3",
+    "In-House/ Alchip",
+    "2024",
+    "5nm",
+    "HBM2e 8 High",
+    "128",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "name": "Gaudi 3",
+   "company": "Intel",
+   "group": "기타 AI ASIC",
+   "original": {
+    "name": "Gaudi 3",
+    "date": "2024",
+    "company": "",
+    "partner": "In-House/ Alchip",
+    "node": "5nm",
+    "memory": "HBM2e 8 High",
+    "capacity": "128"
+   },
+   "reviews": {},
+   "review_note": "Chip 탭 ASICs 구간 원본입니다. NA·TBC·F와 범위값은 그대로 보존합니다. 헤더가 Capacity (GB)이더라도 칩·보드·시스템 범위가 확인되지 않은 원본은 단위를 확정하지 않습니다. 설계 협력사는 제조 파운드리를 뜻하지 않습니다.",
+   "display_original": {
+    "company": "Intel",
+    "date_basis": "시트 기재 시점 · 미검증",
+    "status": "시트 원본 · 개별 검증 전"
+   }
+  }
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "company_order": [
+  "Google",
+  "AWS",
+  "Meta",
+  "Microsoft",
+  "Baidu",
+  "Huawei",
+  "Intel"
+ ],
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "date",
+    "date_basis",
+    "partner",
+    "foundry",
+    "node",
+    "memory",
+    "capacity",
+    "status"
+   ]
+  },
+  {
+   "id": "performance",
+   "label": "메모리·연산 사양",
+   "keys": [
+    "name",
+    "date",
+    "memory",
+    "capacity",
+    "bandwidth",
+    "compute",
+    "scope",
+    "usage",
+    "power",
+    "clock"
+   ]
+  },
+  {
+   "id": "all",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "date",
+    "date_basis",
+    "company",
+    "partner",
+    "foundry",
+    "node",
+    "memory",
+    "capacity",
+    "bandwidth",
+    "compute",
+    "scope",
+    "usage",
+    "power",
+    "clock",
+    "status"
+   ]
+  }
+ ],
+ "sources": {
+  "google": {
+   "title": "Google TPU7x·세대별 비교",
+   "url": "https://docs.cloud.google.com/tpu/docs/tpu7x",
+   "note": "칩당 BF16·FP8, 메모리 용량·대역폭. 제조 파운드리와 설계 협력사는 이 문서에서 확인하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "trillium": {
+   "title": "Google Trillium 사양",
+   "url": "https://docs.cloud.google.com/tpu/docs/v6e",
+   "note": "칩당 사양. 공개 문서의 GB와 세대 비교표의 GiB 표기가 달라 이 문서의 단위를 유지.",
+   "checked": "2026-10-25"
+  },
+  "trn3": {
+   "title": "AWS Trainium3 정식 제공 공지",
+   "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/",
+   "note": "2025-12-02 EC2 Trn3 GA. 칩 1개와 144-chip UltraServer 합계를 구분.",
+   "checked": "2026-10-25"
+  },
+  "maia": {
+   "title": "Microsoft Maia 200 공개",
+   "url": "https://blogs.microsoft.com/blog/2026/01/26/maia-200-the-ai-accelerator-built-for-inference/",
+   "note": "공식 발표일과 칩 사양. 실제 판매일을 뜻하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "maia100": {
+   "title": "Microsoft Maia 100 공개",
+   "url": "https://news.microsoft.com/source/features/ai/in-house-chips-silicon-to-service-to-meet-ai-demand/",
+   "note": "2023-11-15 공개, 2024년 초 배포 계획. 원본 회사 공란을 앞선 Meta 구간으로 해석하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "meta1": {
+   "title": "Meta MTIA v1 공개",
+   "url": "https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/",
+   "note": "2023-05-18 공식 공개. 첫 세대 MTIA.",
+   "checked": "2026-10-25"
+  },
+  "meta2": {
+   "title": "Meta 차세대 MTIA 사양",
+   "url": "https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/",
+   "note": "2024-04-10 공개. 1세대/차세대 비교표. 온칩 SRAM과 외부 LPDDR5를 구분.",
+   "checked": "2026-10-25"
+  }
+ },
+ "group_label": "기업 구분",
+ "item_label": "프로파일",
+ "caption": "칩·시스템 단위와 정밀도 확인 · 설계 협력사 ≠ 제조 파운드리",
+ "search_placeholder": "TPU·Trainium·Maia·협력사 검색",
+ "evidence_summary": "Chip 탭 ASICs 33개 행 · 61개 값 공식 자료 확인 · 미확인·전망치는 원본 표시",
+ "scroll_hint": "제품명 고정 · 행 높이 40px · 긴 값은 마우스 메모 · 상세는 맨 오른쪽"
+}

@@ -33,6 +33,10 @@ class MemorySpecs(unittest.TestCase):
         self.assertEqual(sum(len(r['reviews']) for doc in (self.ddr,self.hbm) for r in doc['rows'] if r['sheet_row']),122)
 
     def test_ddr_generation_comparison_is_separate_from_process_notes(self):
+        for doc in (self.ddr,self.hbm):
+            for view in doc['views']:
+                if view['id'] in ('overview','dates','all'):
+                    self.assertEqual(view['keys'][:3],['name','milestone_date','milestone'])
         self.assertEqual(self.ddr['default_group'],'회사별 제품')
         self.assertEqual([r['name'] for r in self.ddr['rows'] if r['group']=='세대 비교'],['SDRAM','DDR','DDR2','DDR3','DDR4','DDR5'])
         rows={r['sheet_row']:r for r in self.ddr['rows']}

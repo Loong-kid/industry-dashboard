@@ -12,13 +12,20 @@ DDR_COLUMNS=[column('name','제품 / 세대 / 공정',190),column('sheet_year','
     column('company','회사',105),column('net_die','Net die · 원본',110),column('mesh1','Mesh 1 · 원본',110),column('mesh2','Mesh 2 · 원본',110),
     column('cell_height','Cell 높이 · 원본',120),column('dielectrics','High-k 재료 · 원본',220),column('extra','시트 추가 메모',150),
     column('generation','DDR 규격',85),column('io_width','칩 I/O 폭',110),column('chip_bandwidth','칩 대역폭 · GB/s',130,measure=True),
-    column('part_number','부품 번호 / 제품군',210),column('profile_kind','자료 범위',150),column('milestone_date','공식 이정표일',110,date=True),column('milestone','발표·양산 구분',170)]
+    column('part_number','부품 번호 / 제품군',210),column('profile_kind','자료 범위',150),column('milestone_date','출시·발표일',115,date=True),column('milestone','발표·양산 구분',170)]
 HBM_COLUMNS=[column('name','제품 / 적층',170),column('company','회사',110),column('capacity','스택 용량 · GB',150),column('layers','DRAM 적층',95),
     column('data_rate','핀 속도 · Gb/s',120,measure=True),column('bandwidth','스택 대역폭 · GB/s',140,measure=True),column('io','I/O · bit',90,measure=True),column('voltage','전압 · V',85),
     column('die_density','Die 용량 · Gb',145),column('codename','코드명',110),column('dram_process','DRAM 공정',115),column('base_die','Base die',140),
-    column('gap_fill','적층·Gap fill',160),column('milestone_date','공식 이정표일',110,date=True),column('milestone','발표·양산 구분',150),column('sheet_year','시트 출시연도',100),
+    column('gap_fill','적층·Gap fill',160),column('milestone_date','출시·발표일',115,date=True),column('milestone','발표·양산 구분',150),column('sheet_year','시트 출시연도',100),
     column('bump','Bump CD · 원본',110),column('tsv_diameter','TSV 직경 · 원본',110),column('tsv_depth','TSV 깊이 · 원본',110),column('chip_thickness','칩 두께 · 원본',115),
     column('package_thickness','패키지 두께 · 원본',130),column('package_size','패키지 치수 · 대상 미확인',160),column('die_raw','DRAM 용량 · 시트 J열',145),column('example','적용 예 · 시트 기준',180)]
+
+
+for _columns in (DDR_COLUMNS,HBM_COLUMNS):
+    _date=next(c for c in _columns if c['id']=='milestone_date')
+    _kind=next(c for c in _columns if c['id']=='milestone')
+    _columns.remove(_date);_columns.remove(_kind)
+    _columns[1:1]=[_date,_kind]
 
 
 def cell_values(raw,number):
@@ -103,17 +110,17 @@ def build(raw,extra,products):
     for identifier,label,rows,columns,group,note,views,caption in [
         ('ddr_specs','DDR · 회사별 제품과 공정 사양',ddr,DDR_COLUMNS,'회사별 제품',
          '기본은 삼성전자·SK하이닉스·CXMT·Micron의 DDR 제품·제품군 비교입니다. 각 행은 근거 자료에 나온 시점의 프로파일이며 전 제품 목록·현재 양산 목록이 아닙니다. 제품군의 최대 속도가 모든 용량·SKU에서 동시에 보장되는 것은 아닙니다. Die 용량(Gb), 패키지·모듈 용량(GB), 칩 I/O 폭을 구분합니다. 64-bit 환산은 비교를 위한 가정값이며 칩 자체 대역폭이 아닙니다. 공정 명칭은 회사별 표기이고 같은 1a·1b·1c를 동일한 nm로 취급하지 않습니다. CXMT DDR4의 22nm는 독립 실물 분석값입니다. 공식 이정표는 개발·샘플·양산·인증 당시 공지를 구분하며 최신 공급 상태나 판매일이 아닙니다. 기존 시트는 세대 비교·공정 메모에서 확인합니다.',
-         [dict(id='overview',label='회사별 제품 비교',keys=['name','company','generation','process','die_density','data_rate','voltage','bandwidth','milestone_date','milestone','io_width','chip_bandwidth','profile_kind']),
+         [dict(id='overview',label='회사별 제품 비교',keys=['name','milestone_date','milestone','company','generation','process','die_density','data_rate','voltage','bandwidth','io_width','chip_bandwidth','profile_kind']),
           dict(id='reference',label='세대 비교 · 시트',keys=['name','sheet_year','data_rate','bandwidth','voltage','prefetch','capacity','die_density','bus']),
           dict(id='process',label='공정·셀 구조',keys=['name','process','process_nm','sheet_year','company','net_die','mesh1','mesh2','cell_height','dielectrics','extra']),
-          dict(id='dates',label='제품 발표·양산',keys=['name','company','generation','milestone_date','milestone','part_number','profile_kind']),
+          dict(id='dates',label='제품 발표·양산',keys=['name','milestone_date','milestone','company','generation','part_number','profile_kind']),
           dict(id='all',label='전체 사양',keys=[c['id'] for c in DDR_COLUMNS])],
          'DDR 대역폭: 64-bit 데이터 폭 기준 · 공정 메모는 표준 세대 사양과 구분'),
         ('hbm_specs','HBM · 회사별 스택 사양',hbm,HBM_COLUMNS,'제품 비교',
          '대역폭·용량은 스택 1개 기준입니다. DDR 모듈이나 GPU 전체 HBM 합계와 직접 비교하지 않습니다. 핀 속도(Gb/s), 대역폭(GB/s), Die 용량(Gb), 스택 용량(GB)을 구분합니다. 각 셀은 출처에 표시된 발표 시점의 제품·개발 프로파일이며 서로 다른 시점의 최대값을 한 제품의 동시 보장 사양으로 간주하지 않습니다. 공식 이정표일은 개발·샘플·양산 공지를 구분하며 실제 판매일이 아닙니다. 미검증 패키지 치수·코드명은 원본 메모로 남깁니다. 범위·초과·최대값의 수치 정렬은 표기된 첫 숫자 기준입니다.',
-         [dict(id='overview',label='한눈에 보기',keys=['name','capacity','layers','data_rate','bandwidth','io','die_density','dram_process','base_die','gap_fill','milestone_date','milestone']),
+         [dict(id='overview',label='한눈에 보기',keys=['name','milestone_date','milestone','capacity','layers','data_rate','bandwidth','io','die_density','dram_process','base_die','gap_fill']),
           dict(id='packaging',label='적층·패키징',keys=['name','company','codename','layers','capacity','dram_process','base_die','gap_fill','bump','tsv_diameter','tsv_depth','chip_thickness','package_thickness','package_size']),
-          dict(id='dates',label='발표·양산',keys=['name','company','milestone_date','milestone','sheet_year','example']),
+          dict(id='dates',label='발표·양산',keys=['name','milestone_date','milestone','company','sheet_year','example']),
           dict(id='all',label='전체 사양',keys=[c['id'] for c in HBM_COLUMNS])],
          'HBM 스택 1개 기준 · Gb와 GB 구분 · 개발·샘플·양산 구분')]:
         used={cell['source'] for row in rows for cell in row['reviews'].values()}

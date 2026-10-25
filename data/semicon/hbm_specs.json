@@ -18,6 +18,17 @@
    "width": 170
   },
   {
+   "id": "milestone_date",
+   "label": "출시·발표일",
+   "width": 115,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 150
+  },
+  {
    "id": "company",
    "label": "회사",
    "width": 110
@@ -79,17 +90,6 @@
    "id": "gap_fill",
    "label": "적층·Gap fill",
    "width": 160
-  },
-  {
-   "id": "milestone_date",
-   "label": "공식 이정표일",
-   "width": 110,
-   "date": true
-  },
-  {
-   "id": "milestone",
-   "label": "발표·양산 구분",
-   "width": 150
   },
   {
    "id": "sheet_year",
@@ -1561,6 +1561,8 @@
    "label": "한눈에 보기",
    "keys": [
     "name",
+    "milestone_date",
+    "milestone",
     "capacity",
     "layers",
     "data_rate",
@@ -1569,9 +1571,7 @@
     "die_density",
     "dram_process",
     "base_die",
-    "gap_fill",
-    "milestone_date",
-    "milestone"
+    "gap_fill"
    ]
   },
   {
@@ -1599,9 +1599,9 @@
    "label": "발표·양산",
    "keys": [
     "name",
-    "company",
     "milestone_date",
     "milestone",
+    "company",
     "sheet_year",
     "example"
    ]
@@ -1611,6 +1611,8 @@
    "label": "전체 사양",
    "keys": [
     "name",
+    "milestone_date",
+    "milestone",
     "company",
     "capacity",
     "layers",
@@ -1623,8 +1625,6 @@
     "dram_process",
     "base_die",
     "gap_fill",
-    "milestone_date",
-    "milestone",
     "sheet_year",
     "bump",
     "tsv_diameter",
@@ -1749,6 +1749,17 @@
    "width": 170
   },
   {
+   "id": "milestone_date",
+   "label": "출시·발표일",
+   "width": 115,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 150
+  },
+  {
    "id": "company",
    "label": "회사",
    "width": 110
@@ -1810,17 +1821,6 @@
    "id": "gap_fill",
    "label": "적층·Gap fill",
    "width": 160
-  },
-  {
-   "id": "milestone_date",
-   "label": "공식 이정표일",
-   "width": 110,
-   "date": true
-  },
-  {
-   "id": "milestone",
-   "label": "발표·양산 구분",
-   "width": 150
   },
   {
    "id": "sheet_year",

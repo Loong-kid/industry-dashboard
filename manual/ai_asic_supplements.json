@@ -1,0 +1,537 @@
+{
+ "reviewed": "2026-10-25",
+ "sources": {
+  "google": {
+   "title": "Google TPU7x·세대별 비교",
+   "url": "https://docs.cloud.google.com/tpu/docs/tpu7x",
+   "note": "칩당 BF16·FP8, 메모리 용량·대역폭. 제조 파운드리와 설계 협력사는 이 문서에서 확인하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "trillium": {
+   "title": "Google Trillium 사양",
+   "url": "https://docs.cloud.google.com/tpu/docs/v6e",
+   "note": "칩당 사양. 공개 문서의 GB와 세대 비교표의 GiB 표기가 달라 이 문서의 단위를 유지.",
+   "checked": "2026-10-25"
+  },
+  "trn3": {
+   "title": "AWS Trainium3 정식 제공 공지",
+   "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/",
+   "note": "2025-12-02 EC2 Trn3 GA. 칩 1개와 144-chip UltraServer 합계를 구분.",
+   "checked": "2026-10-25"
+  },
+  "maia": {
+   "title": "Microsoft Maia 200 공개",
+   "url": "https://blogs.microsoft.com/blog/2026/01/26/maia-200-the-ai-accelerator-built-for-inference/",
+   "note": "공식 발표일과 칩 사양. 실제 판매일을 뜻하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "maia100": {
+   "title": "Microsoft Maia 100 공개",
+   "url": "https://news.microsoft.com/source/features/ai/in-house-chips-silicon-to-service-to-meet-ai-demand/",
+   "note": "2023-11-15 공개, 2024년 초 배포 계획. 원본 회사 공란을 앞선 Meta 구간으로 해석하지 않음.",
+   "checked": "2026-10-25"
+  },
+  "meta1": {
+   "title": "Meta MTIA v1 공개",
+   "url": "https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/",
+   "note": "2023-05-18 공식 공개. 첫 세대 MTIA.",
+   "checked": "2026-10-25"
+  },
+  "meta2": {
+   "title": "Meta 차세대 MTIA 사양",
+   "url": "https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/",
+   "note": "2024-04-10 공개. 1세대/차세대 비교표. 온칩 SRAM과 외부 LPDDR5를 구분.",
+   "checked": "2026-10-25"
+  }
+ },
+ "cells": [
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "memory",
+   "value": "HBM",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "capacity",
+   "value": "32 GB",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "bandwidth",
+   "value": "1,638 GB/s",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "compute",
+   "value": "BF16 918 TFLOPS · 칩당",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 40,
+   "product": "TPU v6e (Trillium)",
+   "column": "usage",
+   "value": "학습·미세조정·서빙",
+   "source": "trillium",
+   "note": "공식 v6e 문서의 칩당 값. 원본의 HBM3e 8 High는 이 자료에서 확인되지 않아 HBM으로 표시."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "name",
+   "value": "TPU7x (Ironwood)",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "memory",
+   "value": "HBM",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "capacity",
+   "value": "192 GiB",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "bandwidth",
+   "value": "7,380 GB/s",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "compute",
+   "value": "BF16 2,307 / FP8 4,614 TFLOPS · 칩당",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 41,
+   "product": "TPU v6p (Ironwood/Hammer)",
+   "column": "usage",
+   "value": "대규모 AI 학습·추론",
+   "source": "google",
+   "note": "Ironwood는 공식 TPU7x·7세대. 원본 v6p/Hammer 명칭과 구분. HBM 세부 규격·적층 수는 이 문서에서 확인하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "date",
+   "value": "2025-12-02",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "date_basis",
+   "value": "EC2 Trn3 정식 제공",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "node",
+   "value": "3nm",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "memory",
+   "value": "HBM3e",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "capacity",
+   "value": "144 GB",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "bandwidth",
+   "value": "4.9 TB/s",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "compute",
+   "value": "FP8 2.52 PFLOPS · 칩당",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 49,
+   "product": "Trainium 3",
+   "column": "usage",
+   "value": "생성형 AI 학습·추론",
+   "source": "trn3",
+   "note": "AWS GA 공지의 칩당 사양. 시트의 2026·216GB와 다름. 발표문은 GB, Neuron 문서는 GiB로 표기하므로 여기서는 발표문 단위를 유지. Sparse/Dense는 이 공지에서 단정하지 않음."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "date",
+   "value": "2023-05-18",
+   "source": "meta1",
+   "note": "공식 첫 공개일. 시트 출시연도와 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "date_basis",
+   "value": "공식 공개일",
+   "source": "meta1",
+   "note": "공식 첫 공개일. 시트 출시연도와 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "foundry",
+   "value": "TSMC",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "node",
+   "value": "7nm",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "memory",
+   "value": "LPDDR5",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "capacity",
+   "value": "64 GB",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "bandwidth",
+   "value": "176 GB/s",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "compute",
+   "value": "FP16/BF16 51.2 TFLOPS · GEMM",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "usage",
+   "value": "추천·랭킹 추론",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "power",
+   "value": "25 W",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 54,
+   "product": "MTIA v1",
+   "column": "clock",
+   "value": "800 MHz",
+   "source": "meta2",
+   "note": "공식 1세대 비교표. 메모리는 외부 LPDDR5이며 SRAM 용량과 구분."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "date",
+   "value": "2024-04-10",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "date_basis",
+   "value": "공식 공개일",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "foundry",
+   "value": "TSMC",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "node",
+   "value": "5nm",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "memory",
+   "value": "LPDDR5",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "capacity",
+   "value": "128 GB",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "bandwidth",
+   "value": "204.8 GB/s",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "compute",
+   "value": "FP16/BF16 177 TFLOPS · GEMM Dense",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "usage",
+   "value": "추천·랭킹 추론",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "power",
+   "value": "90 W",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 55,
+   "product": "MTIA v2",
+   "column": "clock",
+   "value": "1.35 GHz",
+   "source": "meta2",
+   "note": "공식 차세대 MTIA 공개일과 비교표. FP16/BF16 Sparse는 354 TFLOPS이며 본 셀은 비희소 값."
+  },
+  {
+   "row": 56,
+   "product": "Maia 100",
+   "column": "company",
+   "value": "Microsoft",
+   "source": "maia100",
+   "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+  },
+  {
+   "row": 56,
+   "product": "Maia 100",
+   "column": "date",
+   "value": "2023-11-15",
+   "source": "maia100",
+   "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+  },
+  {
+   "row": 56,
+   "product": "Maia 100",
+   "column": "date_basis",
+   "value": "공식 발표일",
+   "source": "maia100",
+   "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+  },
+  {
+   "row": 56,
+   "product": "Maia 100",
+   "column": "usage",
+   "value": "LLM 학습·추론",
+   "source": "maia100",
+   "note": "Maia 100은 Microsoft 제품. 원본 B56 회사 공란은 그대로 보존하며 앞선 Meta 소속으로 오인하지 않도록 교정."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "date",
+   "value": "2026-01-26",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "date_basis",
+   "value": "공식 발표일",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "foundry",
+   "value": "TSMC",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "node",
+   "value": "3nm",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "memory",
+   "value": "HBM3e",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "capacity",
+   "value": "216 GB",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "bandwidth",
+   "value": "7 TB/s",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "compute",
+   "value": "FP4 >10 / FP8 >5 PFLOPS · 칩당",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "scope",
+   "value": "칩 1개",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "usage",
+   "value": "AI 추론",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  },
+  {
+   "row": 57,
+   "product": "Maia 200",
+   "column": "power",
+   "value": "750 W",
+   "source": "maia",
+   "note": "공식 발표문 기준. TSMC 3nm와 216GB HBM3e 확인. 정밀도별 이론 성능이며 Sparse/Dense를 임의 추정하지 않음."
+  }
+ ]
+}

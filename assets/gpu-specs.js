@@ -1,13 +1,13 @@
 /* GPU, AI and memory comparisons share the compact, fixed-height table. */
 "use strict";
 function renderGPUSpecs(doc) {
-  const card=document.createElement('div');card.className='card cpu-specs '+(doc?.table_family==='memory'?'memory-specs':'gpu-specs');
+  const card=document.createElement('div');card.className='card cpu-specs '+(doc?.table_family==='memory'?'memory-specs':doc?.table_family==='asic'?'asic-specs':'gpu-specs');
   if(!doc)return card;
-  card.dataset[doc.table_family==='memory'?'memorySpecs':'gpuSpecs']=doc.id;
+  card.dataset[doc.table_family==='memory'?'memorySpecs':doc.table_family==='asic'?'asicSpecs':'gpuSpecs']=doc.id;
   const esc=escapeHtml,byId=new Map(doc.rows.map(r=>[r.id,r])),columns=new Map(doc.columns.map(c=>[c.id,c]));
   const options=items=>items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
   const link=(url,label)=>/^https:\/\//.test(url)?`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`:esc(label);
-  const ai=doc.id==='nvidia_ai_specs',memory=doc.table_family==='memory',prefix=memory?doc.short_name:ai?'AI 가속기':'GPU';
+  const ai=doc.id==='nvidia_ai_specs',memory=doc.table_family==='memory',asic=doc.table_family==='asic',prefix=memory||asic?doc.short_name:ai?'AI 가속기':'GPU';
   card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${esc(doc.evidence_summary)}</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)} · 공개 자료 확인 ${esc(doc.updated)}</small></div></div>
     <div class="cpu-specs-controls">
       <label>기업<select aria-label="${prefix} 기업"><option value="all">전체 기업</option>${options(doc.company_order||[...new Set(doc.rows.map(r=>r.company))])}</select></label>
@@ -27,7 +27,7 @@ function renderGPUSpecs(doc) {
   let sortKey=null,direction=1,memoTarget=null,hideTimer=null;
   const reviewed=()=>mode.value==='reviewed';
   const evidence=(row,key)=>reviewed()?row.reviews[key]:null;
-  const value=(row,key)=>evidence(row,key)?.value??row.original[key]??'';
+  const value=(row,key)=>evidence(row,key)?.value??(row.original[key]||(reviewed()?row.display_original?.[key]:null))??'';
   const name=row=>value(row,doc.name_key)||row.name;
   const format=(row,c)=>{const v=value(row,c.id);if(c.date&&evidence(row,c.id)?.status==='scheduled')return v+' 안내';if(ai&&['fp4','fp8','fp16'].includes(c.id)&&v&&!evidence(row,c.id))return v+' · 원본 D/S 미검증';return c.numeric&&/^\d+$/.test(v)?Number(v).toLocaleString('ko-KR'):v||'—';};
   const sortValue=(row,c)=>{
@@ -48,7 +48,7 @@ function renderGPUSpecs(doc) {
   };
   const fieldHTML=(row,key)=>{
     const c=columns.get(key),extra=evidence(row,key),source=extra&&doc.sources[extra.source];
-    return `<div><dt>${esc(c.label)}</dt><dd>${c.url&&value(row,key)?link(value(row,key),'원문 ↗'):esc(format(row,c))}${extra?`<small>${esc(extra.note)} ${link(source.url,source.title+' ↗')}${row.original[key]&&row.original[key]!==extra.value?`<br>시트 원본: ${esc(row.original[key])}`:''}</small>`:key==='announced'&&reviewed()&&row.date_note?`<small>${esc(row.date_note)}</small>`:value(row,key)?'<small>시트 기재값 · 이번 보완에서 개별 검증하지 않은 항목</small>':''}</dd></div>`;
+    return `<div><dt>${esc(c.label)}</dt><dd>${c.url&&value(row,key)?link(value(row,key),'원문 ↗'):esc(format(row,c))}${extra?`<small>${esc(extra.note)} ${link(source.url,source.title+' ↗')}${row.original[key]&&row.original[key]!==extra.value?`<br>시트 원본: ${esc(row.original[key])}`:''}</small>`:key==='announced'&&reviewed()&&row.date_note?`<small>${esc(row.date_note)}</small>`:value(row,key)?'<small>'+esc(row.display_original?.[key]&&!row.original[key]?'표시용 문맥·확인 범위 · 원본 셀과 구분':'시트 기재값 · 이번 보완에서 개별 검증하지 않은 항목')+'</small>':''}</dd></div>`;
   };
   const hideMemo=()=>{clearTimeout(hideTimer);memo.hidden=true;memoTarget=null;};
   const delayHide=()=>{clearTimeout(hideTimer);hideTimer=setTimeout(hideMemo,160);};
@@ -85,7 +85,7 @@ function renderGPUSpecs(doc) {
   table.addEventListener('click',event=>{
     const sort=event.target.closest('[data-sort]'),detail=event.target.closest('[data-detail]');
     if(sort){direction=sortKey===sort.dataset.sort?-direction:columns.get(sort.dataset.sort).numeric?-1:1;sortKey=sort.dataset.sort;draw();}
-    if(detail){hideMemo();const row=byId.get(detail.dataset.detail);dialog.querySelector('h2').textContent=name(row);dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.company+' · '+row.group)}${row.context?' · 인접 세대 '+esc(row.context):''} · ${row.sheet_row?'시트 '+row.sheet_row+'행':'공식 자료 추가 프로파일'}</p>${row.review_note&&(reviewed()||memory)?`<p>${esc(row.review_note)}</p>`:''}<dl>${doc.columns.map(c=>fieldHTML(row,c.id)).join('')}</dl>${(ai||memory)&&row.sheet_row?`<details class="specs-raw-row"><summary>시트 원본 행 · 셀 좌표</summary><dl>${row.source_values.map((v,i)=>v?`<div><dt>${String.fromCharCode(65+Math.floor(i/26)-1).replace('@','')}${String.fromCharCode(65+i%26)}${row.sheet_row}</dt><dd>${esc(v)}</dd></div>`:'').join('')}</dl></details>`:''}`;dialog.showModal();}
+    if(detail){hideMemo();const row=byId.get(detail.dataset.detail);dialog.querySelector('h2').textContent=name(row);dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.company+' · '+row.group)}${row.context?' · 인접 세대 '+esc(row.context):''} · ${row.sheet_row?'시트 '+row.sheet_row+'행':'공식 자료 추가 프로파일'}</p>${row.review_note&&(reviewed()||memory||asic)?`<p>${esc(row.review_note)}</p>`:''}<dl>${doc.columns.map(c=>fieldHTML(row,c.id)).join('')}</dl>${(ai||memory||asic)&&row.sheet_row?`<details class="specs-raw-row"><summary>시트 원본 행 · 셀 좌표</summary><dl>${row.source_values.map((v,i)=>v?`<div><dt>${String.fromCharCode(65+Math.floor(i/26)-1).replace('@','')}${String.fromCharCode(65+i%26)}${row.sheet_row}</dt><dd>${esc(v)}</dd></div>`:'').join('')}</dl></details>`:''}`;dialog.showModal();}
   });
   dialog.querySelector('button').addEventListener('click',()=>dialog.close());
   table.addEventListener('pointerover',event=>{if(event.pointerType!=='touch'){const target=event.target.closest('[data-field]');if(target)showMemo(target);}});

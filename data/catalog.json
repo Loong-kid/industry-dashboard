@@ -1882,6 +1882,13 @@
           "indicators": ["nvidia_ai_specs"]
         },
         {
+          "title": "AI ASIC · 빅테크 자체 칩과 설계 협력사",
+          "tab": "ai_asic",
+          "type": "table",
+          "table_kind": "asic_specs",
+          "indicators": ["ai_asic_specs"]
+        },
+        {
           "title": "Intel · 실적",
           "tab": "cpu",
           "indicators": [
@@ -2413,6 +2420,11 @@
           "id": "gpu",
           "name": "GPU",
           "description": "일반 GPU는 사양·Time Spy·Geekbench 7 OpenCL/Vulkan을 비교합니다. NVIDIA AI 가속기는 HBM·연산 정밀도·NVLink·전력을 별도 표에서 봅니다. 단일 GPU·슈퍼칩·DGX·랙의 제품 단위를 구분하며, 보완·검토 출처와 시트 원본 값을 함께 확인할 수 있습니다."
+        },
+        {
+          "id": "ai_asic",
+          "name": "AI ASIC",
+          "description": "Google TPU·AWS Trainium/Inferentia·Meta MTIA·Microsoft Maia 등 자체 AI 가속기와 설계 협력사를 봅니다. 제조 파운드리·공정·메모리를 구분하고 공식 확인값과 시트 원본·전망치를 함께 제공합니다. 일반 GPU와 NVIDIA AI 가속기는 GPU 탭에서 확인합니다."
         },
         {
           "id": "ssd",

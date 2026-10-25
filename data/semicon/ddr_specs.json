@@ -18,6 +18,17 @@
    "width": 190
   },
   {
+   "id": "milestone_date",
+   "label": "출시·발표일",
+   "width": 115,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 170
+  },
+  {
    "id": "sheet_year",
    "label": "시트 출시연도",
    "width": 100
@@ -129,17 +140,6 @@
    "id": "profile_kind",
    "label": "자료 범위",
    "width": 150
-  },
-  {
-   "id": "milestone_date",
-   "label": "공식 이정표일",
-   "width": 110,
-   "date": true
-  },
-  {
-   "id": "milestone",
-   "label": "발표·양산 구분",
-   "width": 170
   }
  ],
  "rows": [
@@ -2356,6 +2356,8 @@
    "label": "회사별 제품 비교",
    "keys": [
     "name",
+    "milestone_date",
+    "milestone",
     "company",
     "generation",
     "process",
@@ -2363,8 +2365,6 @@
     "data_rate",
     "voltage",
     "bandwidth",
-    "milestone_date",
-    "milestone",
     "io_width",
     "chip_bandwidth",
     "profile_kind"
@@ -2407,10 +2407,10 @@
    "label": "제품 발표·양산",
    "keys": [
     "name",
-    "company",
-    "generation",
     "milestone_date",
     "milestone",
+    "company",
+    "generation",
     "part_number",
     "profile_kind"
    ]
@@ -2420,6 +2420,8 @@
    "label": "전체 사양",
    "keys": [
     "name",
+    "milestone_date",
+    "milestone",
     "sheet_year",
     "data_rate",
     "bandwidth",
@@ -2441,9 +2443,7 @@
     "io_width",
     "chip_bandwidth",
     "part_number",
-    "profile_kind",
-    "milestone_date",
-    "milestone"
+    "profile_kind"
    ]
   }
  ],
@@ -2643,6 +2643,17 @@
    "width": 190
   },
   {
+   "id": "milestone_date",
+   "label": "출시·발표일",
+   "width": 115,
+   "date": true
+  },
+  {
+   "id": "milestone",
+   "label": "발표·양산 구분",
+   "width": 170
+  },
+  {
    "id": "sheet_year",
    "label": "시트 출시연도",
    "width": 100
@@ -2754,17 +2765,6 @@
    "id": "profile_kind",
    "label": "자료 범위",
    "width": 150
-  },
-  {
-   "id": "milestone_date",
-   "label": "공식 이정표일",
-   "width": 110,
-   "date": true
-  },
-  {
-   "id": "milestone",
-   "label": "발표·양산 구분",
-   "width": 170
   }
  ],
  "raw_headers": [

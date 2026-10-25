@@ -211,7 +211,7 @@ async function renderIndustry(options = {}) {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || (ind.id === "semicon" && state.subtab === "cpu") || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && state.subtab === "gpu") || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -345,6 +345,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "cpu_specs" ? renderCPUSpecs
         : section.table_kind === "gpu_specs" ? renderGPUSpecs
         : section.table_kind === "memory_specs" ? renderGPUSpecs
+        : section.table_kind === "asic_specs" ? renderGPUSpecs
         : section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
         : section.table_kind === "dc_facilities" ? renderKoreaDataCenters
         : section.table_kind === "dc_changes" ? renderKoreaDataCenterChanges

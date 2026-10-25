@@ -44,6 +44,9 @@ def verify(base):
                 assert all(abs(v-40)<.1 for v in heights),heights
                 assert card.locator('thead th').last.inner_text()=='상세'
             fixed(ddr);fixed(hbm)
+            for card in (ddr,hbm):
+                assert card.locator('thead th').nth(1).get_attribute('data-column')=='milestone_date'
+                assert card.locator('thead th').nth(2).get_attribute('data-column')=='milestone'
             out=ROOT/'tmp/memory-specs-20261025';out.mkdir(parents=True,exist_ok=True)
             ddr.screenshot(path=str(out/f'ddr-{width}.png'));hbm.screenshot(path=str(out/f'hbm-{width}.png'))
             ddr.get_by_label('DDR 열 보기',exact=True).select_option('reference')
