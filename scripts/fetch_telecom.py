@@ -53,7 +53,7 @@ def collect_dart(meta,prior,session,asof,full=False):
                 failures+=1
                 if failures>=3:raise ValueError('repeated DART source errors') from None
             time.sleep(.15)
-    return dict(reports=[r for _,r in sorted(reports.items())],rows=dart_accounts(list(reports.values()),asof))
+    return dict(reports=[r for _,r in sorted(reports.items())],rows=dart_accounts(list(reports.values()),asof,meta.get('quarter_exclusions')))
 
 
 def merge_rows(prior,updates):
@@ -172,7 +172,7 @@ def document(key,metric,meta,cohort,fx):
     return dict(id=f'company_{key}_{metric}',name=meta['name']+' · '+label,unit='백만 USD',company_kpi=True,span_gaps=False,zero_baseline=True,
                 fetched=cohort.get('fetched'),source='SEC 공시' if meta.get('cik') else 'OpenDART 연결 공시' if meta.get('corp_code') else '공식 IR·공시',
                 description=meta['scope']+('. '+meta['capex_basis'] if metric=='capex' else '. 연결 영업이익이며 EBITDA·조정 영업이익과 구분합니다.' if metric=='profit' else ''),
-                basis_details=[dict(label='CAPEX 범위',value=meta['capex_basis']),dict(label='환산·기간',value='USD 공시 금액은 그대로, 원화·엔화는 실제 실적 기간의 ECB 평균환율로 환산합니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 금액·차트에 마우스를 올리면 원통화를 확인할 수 있습니다. CAPEX에 통신망 외 건물·데이터센터·소프트웨어 등이 포함될 수 있어 통신장비 발주액과 같지 않습니다.'),dict(label='확보 범위',value=(min(coverage)+' ~ '+max(coverage)+' · ' if coverage else '')+source_note),dict(label='자료 확인',value=cohort.get('checked','미확보')+' · '+cohort.get('status','미확보'))],
+                basis_details=([dict(label='비교 가능성',value=meta['comparability_note'])] if meta.get('comparability_note') else [])+[dict(label='CAPEX 범위',value=meta['capex_basis']),dict(label='환산·기간',value='USD 공시 금액은 그대로, 원화·엔화는 실제 실적 기간의 ECB 평균환율로 환산합니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 금액·차트에 마우스를 올리면 원통화를 확인할 수 있습니다. CAPEX에 통신망 외 건물·데이터센터·소프트웨어 등이 포함될 수 있어 통신장비 발주액과 같지 않습니다.'),dict(label='확보 범위',value=(min(coverage)+' ~ '+max(coverage)+' · ' if coverage else '')+source_note),dict(label='자료 확인',value=cohort.get('checked','미확보')+' · '+cohort.get('status','미확보'))],
                 collection_status=dict(ok=cohort.get('status')=='ok',checked=cohort.get('checked',''),message=source_note if cohort.get('status')=='ok' else cohort.get('status','자료 미확보')),
                 default_view=default,series_views=views,**{k:v for k,v in views[default].items() if k!='label'})
 
@@ -195,7 +195,7 @@ def collect(offline=False,full=False):
             elif spec.get('corp_code'):
                 if offline:
                     if not prior.get('rows'):raise ValueError('no cached DART accounts')
-                    fresh=prior
+                    fresh=dict(prior,rows=dart_accounts(prior['reports'],asof,spec.get('quarter_exclusions')))
                 else:fresh=korean[key].result()
             else:fresh=collect_japan(key,session,asof,prior,offline)
             if not fresh.get('rows'):raise ValueError('no public accounts')

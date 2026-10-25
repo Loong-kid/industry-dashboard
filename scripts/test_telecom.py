@@ -2,7 +2,7 @@ import io
 import unittest
 import openpyxl
 
-from telecom_sources import columns, dart_accounts, dart_report, number, parse_ntt, reporting_period, softbank_link
+from telecom_sources import columns, dart_accounts, dart_report, number, parse_ntt, parse_softbank, reporting_period, softbank_link
 from fetch_telecom import document, merge_rows
 
 
@@ -43,6 +43,9 @@ class TelecomTests(unittest.TestCase):
         self.assertEqual(next(r for r in rows if r.get('quarter')==2)['capex'],20)
         self.assertFalse(any(r.get('quarter')==4 and 'capex' in r for r in rows))
         self.assertEqual(number('(1,234)'),-1234)
+        excluded=dart_accounts(reports,'2026-10-26',{'2025-06-30':['capex']})
+        self.assertFalse(any(r.get('quarter')==2 and 'capex' in r for r in excluded))
+        self.assertEqual(next(r for r in excluded if r['kind']=='annual')['capex'],100)
 
     def test_ntt_excludes_margin_and_forecasts(self):
         w=openpyxl.Workbook();s=w.active;s.title='1 '
@@ -57,6 +60,23 @@ class TelecomTests(unittest.TestCase):
         self.assertEqual(len(rows),1);self.assertEqual(rows[0]['revenue'],3000000)
         self.assertEqual(rows[0]['capex'],500000)
         self.assertFalse(any(col==21 for col,_,_ in columns(s,5,4)))
+
+    def test_old_ntt_actual_headers_and_softbank_cash_capex(self):
+        w=openpyxl.Workbook();s=w.active
+        s['J4']='FY2020';s['H5']='Three Months Ended June 30';s['L5']='Year Ended March 31'
+        self.assertEqual(columns(s,5,4),[(8,2021,1),(9,2021,2),(10,2021,3),(11,2021,4),(12,2021,None)])
+        s.title='Consolidated_R&OP_1';s['J5']='FY22'
+        for col,label in [('H','Q1'),('I','Q2'),('J','Q3'),('K','Q4'),('L','Full year')]:s[col+'6']=label
+        s['B7']='売上高\nRevenue';s['H7']=100
+        s['B8']='営業利益\nOperating income';s['H8']=10
+        cash=w.create_sheet('Consolidated_R&OP_3');cash['J5']='FY22'
+        for col,label in [('H','Q1'),('I','Q2'),('J','Q3'),('K','Q4'),('L','Full year')]:cash[col+'6']=label
+        cash['C9']='設備支出\nCapital expenditures';cash['H9']=-15
+        cash['B17']='設備投資額（検収ベース）\nCapital expenditures (acceptance basis)';cash['H17']=999
+        raw=io.BytesIO();w.save(raw)
+        rows=parse_softbank(raw.getvalue(),'https://issuer.test/old.xlsx','2026-10-26')
+        self.assertEqual(len(rows),1);self.assertEqual(rows[0]['capex'],15000)
+        self.assertEqual(rows[0]['date'],'2022-06-30')
 
     def test_usd_preserves_original_and_partial_updates(self):
         row=reporting_period(2026,1);row.update(revenue=150000,refs={'revenue':dict(url='https://issuer.test')})

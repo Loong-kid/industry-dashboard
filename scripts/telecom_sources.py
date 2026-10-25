@@ -62,12 +62,12 @@ def dart_report(items,year,quarter,corp):
         if key=='capex':value=abs(value) if value is not None else None;ytd=value
         acc=item['rcept_no']
         fields[key]=dict(value=value/1e6 if value is not None else None,ytd=ytd/1e6 if ytd is not None else None,
-                         url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={acc}',filed=f'{acc[:4]}-{acc[4:6]}-{acc[6:8]}',tag=item['account_id'],start=f'{year}-01-01',end=reporting_period(year,quarter)['date'])
+                         url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={acc}',filed=f'{acc[:4]}-{acc[4:6]}-{acc[6:8]}',tag=item['account_id'],account_name=item.get('account_nm',''),start=f'{year}-01-01',end=reporting_period(year,quarter)['date'])
     if not all(k in fields for k in ('revenue','profit')):raise ValueError('missing consolidated income statement')
     return dict(year=year,quarter=quarter,fields=fields)
 
 
-def dart_accounts(reports,asof):
+def dart_accounts(reports,asof,quarter_exclusions=None):
     index={(r['year'],r['quarter']):r for r in reports};rows=[]
     for (year,q),report in sorted(index.items()):
         if q==4:
@@ -89,6 +89,10 @@ def dart_accounts(reports,asof):
                 if key!='profit' and value<0:continue
                 row[key]=value;row['refs'][key]=dict(f,calculation='same fiscal-year YTD minus prior YTD',components=[f,previous])
         if row['date']<=asof and any(k in row for k in ('revenue','profit','capex')):rows.append(row)
+    for row in rows:
+        if row['kind']=='quarter':
+            for metric in (quarter_exclusions or {}).get(row['date'],[]):
+                row.pop(metric,None);row['refs'].pop(metric,None)
     return sorted(rows,key=lambda r:(r['date'],r['kind']))
 
 

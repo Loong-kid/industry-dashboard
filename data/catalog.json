@@ -2808,6 +2808,132 @@
       "sections": []
     },
     {
+      "id": "telecom",
+      "name": "통신",
+      "auto_collect_time": "08:50",
+      "icon": "📡",
+      "default_range": "all",
+      "cadence": "통신사 연결 실적: SEC·OpenDART·공식 IR 무료 자료. 자동 확인 매일 08:50(KST). 실제 분기·연간 실적은 공시 발표 후 갱신하며 원문 재검토 항목은 각 카드에 표시.",
+      "tabs": [
+        {
+          "id": "us",
+          "name": "미국 통신사",
+          "description": "회사별 매출·영업이익·CAPEX를 분기/연간으로 봅니다. 단위: 백만 USD. 금액에 마우스를 올리거나 누르면 원통화와 기간 평균환율을 확인할 수 있습니다. CAPEX는 회사별 자산·현금·검수 기준이 달라 각 카드의 집계 기준을 함께 확인하세요."
+        },
+        {
+          "id": "kr",
+          "name": "한국 통신사",
+          "description": "회사별 매출·영업이익·CAPEX를 분기/연간으로 봅니다. 단위: 백만 USD. 금액에 마우스를 올리거나 누르면 원통화와 기간 평균환율을 확인할 수 있습니다. CAPEX는 회사별 자산·현금·검수 기준이 달라 각 카드의 집계 기준을 함께 확인하세요."
+        },
+        {
+          "id": "jp",
+          "name": "일본 통신사",
+          "description": "회사별 매출·영업이익·CAPEX를 분기/연간으로 봅니다. 단위: 백만 USD. 금액에 마우스를 올리거나 누르면 원통화와 기간 평균환율을 확인할 수 있습니다. CAPEX는 회사별 자산·현금·검수 기준이 달라 각 카드의 집계 기준을 함께 확인하세요."
+        }
+      ],
+      "sections": [
+        {
+          "tab": "us",
+          "title": "AT&T · 실적",
+          "layout": "financial",
+          "supply_note": "AT&T 연결 전체 · 이동통신·광대역 등. WarnerMedia 분리·DirecTV 등 연결 범위 변경에 주의",
+          "indicators": [
+            "company_att_revenue",
+            "company_att_profit",
+            "company_att_capex"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "Verizon · 실적",
+          "layout": "financial",
+          "supply_note": "Verizon 연결 전체 · 무선·유선·기업 통신 등",
+          "indicators": [
+            "company_verizon_revenue",
+            "company_verizon_profit",
+            "company_verizon_capex"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "T-Mobile US · 실적",
+          "layout": "financial",
+          "supply_note": "T-Mobile US 연결 전체. Sprint·UScellular 등 인수 전후 연결 범위가 달라질 수 있음",
+          "indicators": [
+            "company_tmobile_revenue",
+            "company_tmobile_profit",
+            "company_tmobile_capex"
+          ]
+        },
+        {
+          "tab": "kr",
+          "title": "SK텔레콤 · 실적",
+          "layout": "financial",
+          "supply_note": "SK텔레콤 연결 전체 · SK브로드밴드 등 포함. 2021년 SK스퀘어 인적분할 전후 연결 범위에 주의",
+          "indicators": [
+            "company_skt_revenue",
+            "company_skt_profit",
+            "company_skt_capex"
+          ]
+        },
+        {
+          "tab": "kr",
+          "title": "KT · 실적",
+          "layout": "financial",
+          "supply_note": "KT 연결 전체 · 통신 및 연결 자회사 포함. 별도 KT 실적과 구분",
+          "indicators": [
+            "company_kt_revenue",
+            "company_kt_profit",
+            "company_kt_capex"
+          ]
+        },
+        {
+          "tab": "kr",
+          "title": "LG유플러스 · 실적",
+          "layout": "financial",
+          "supply_note": "LG유플러스 연결 전체 · 모바일·기업인프라·스마트홈 및 연결 자회사 포함",
+          "indicators": [
+            "company_lguplus_revenue",
+            "company_lguplus_profit",
+            "company_lguplus_capex"
+          ]
+        },
+        {
+          "tab": "jp",
+          "title": "NTT · 실적",
+          "layout": "financial",
+          "supply_note": "NTT 연결 전체 · NTT DOCOMO·지역통신·글로벌 솔루션·데이터센터 등 포함. 자회사 중복 합산 금지",
+          "indicators": [
+            "company_ntt_revenue",
+            "company_ntt_profit",
+            "company_ntt_capex"
+          ]
+        },
+        {
+          "tab": "jp",
+          "title": "KDDI · 실적",
+          "layout": "financial",
+          "supply_note": "KDDI 연결 전체 · au·UQ·기업 통신·금융·유통 등 포함. 특별조사 후 수정된 공식 이력 사용",
+          "indicators": [
+            "company_kddi_revenue",
+            "company_kddi_profit",
+            "company_kddi_capex"
+          ]
+        },
+        {
+          "tab": "jp",
+          "title": "SoftBank Corp. · 실적",
+          "layout": "financial",
+          "supply_note": "일본 통신법인 SoftBank Corp. 연결 · LY·PayPay 등 포함. 투자지주회사 SoftBank Group과 구분",
+          "indicators": [
+            "company_softbank_revenue",
+            "company_softbank_profit",
+            "company_softbank_capex"
+          ]
+        }
+      ]
+    },
+    {
       "id": "games",
       "name": "게임 시장",
       "icon": "🎮",

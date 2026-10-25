@@ -1,0 +1,9 @@
+.tc-root .financial-grid .card { min-width: 0; }
+.tc-root .card-stat { min-height: 78px; align-content: flex-start; }
+.tc-root .gm-money { font: inherit; color: inherit; background: transparent; border: 0; border-bottom: 1px dotted var(--muted); padding: 2px 0; border-radius: 0; cursor: help; }
+.tc-root .stat-value.gm-money { font-size: 26px; font-weight: 700; }
+.tc-root .gm-money:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.tc-root .gm-money:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tc-root .data-table { overflow: auto; max-height: 360px; }
+.tc-money-tooltip { position: fixed; z-index: 1000; max-width: min(360px,calc(100vw - 24px)); padding: 12px 15px; box-sizing: border-box; background: var(--page); border: 1px solid var(--baseline); border-radius: 6px; color: var(--ink); box-shadow: 0 4px 18px #0002; font-size: 12px; line-height: 1.75; white-space: pre-line; overflow-wrap: anywhere; pointer-events: none; }
+@media(max-width:600px) { .tc-root .financial-grid { grid-template-columns: minmax(0,1fr); } }
