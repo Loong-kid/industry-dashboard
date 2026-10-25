@@ -1,0 +1,30 @@
+name: backfill-equipment
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  hanmi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Backfill public consolidated Hanmi history
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/fetch_equipment_hanmi.py --full-history
+      - name: Save public financial observations only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add manual/equipment_hanmi.json
+          git diff --cached --quiet || git commit -m "chore: backfill public Hanmi equipment accounts"
+          git pull --rebase
+          git push
