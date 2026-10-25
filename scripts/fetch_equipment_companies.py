@@ -7,6 +7,7 @@ import requests
 from fetch_cpu_companies import ROOT, OUT, today, load, save, parse_facts, parse_annual, build_company
 from equipment_global_sources import METADATA,parse_hanmi,build_global_company,annualize
 from company_period_views import add_period_views
+from fetch_asml_history import merge_history
 
 CACHE=ROOT/'.cache/equipment'
 COMPANIES={
@@ -116,6 +117,7 @@ def collect(offline=False):
         if prior.get('annual') and prior.get('annual_checked','')>=seed['checked']:
             seed['annual']=prior['annual'];seed['annual_checked']=prior['annual_checked']
         if key=='hanmi':seed=parse_hanmi(load(ROOT/'manual/equipment_hanmi.json',{}))
+        if key=='asml':seed=merge_history(seed)
         if not offline and meta.get('cik'):
             try:
                 response=session.get(f'https://data.sec.gov/api/xbrl/companyfacts/CIK{meta["cik"]:010d}.json',timeout=40)

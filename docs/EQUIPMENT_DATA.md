@@ -41,9 +41,11 @@ python -m unittest discover -s scripts -p test_equipment_companies.py -v
 
 ASML/Camtek 재현에 필요한 SEC Company Facts JSON도 매니페스트에 포함한다. 한미반도체 원본은 `manual/equipment_hanmi.json`이다.
 
+ASML 과거 분기 원문은 `manual/asml_history_sources.json`의 SEC 6-K 12개 공시다. `python scripts/fetch_asml_history.py`로 다운로드·검증하고 `manual/asml_quarterly_history.json`을 만든다. 캐시 재현은 `--offline`을 사용한다. 이 이력과 최근 검토 분기를 합쳐 수집하므로 일상 갱신이나 IR import가 2014년 이후 이력을 삭제하지 않는다. `test_asml_history.py`에서 시작일·연속성·주요 공시 수치와 분기/누적 열 구분을 검증한다.
+
 ## 자료 범위와 주요 정의
 
-- [ASML 2026 Q3 US GAAP 재무표](https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/financial_statementsxusx.htm): 5개 실제 분기 종료일, 장비 시스템·서비스/필드 옵션 매출. IFRS와 혼합하지 않음.
+- ASML: [2014 Q4 US GAAP 재무표](https://www.sec.gov/Archives/edgar/data/937966/000119312515015629/d854985dex994.htm)부터 [2026 Q3 US GAAP 재무표](https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/financial_statementsxusx.htm)까지 2014 Q1–2026 Q3의 51개 실제 분기. 5개 분기 비교표의 매출·보고 영업이익·유형자산 현금취득·장비/서비스 매출을 직접 수집한다. 2016 Q1의 4월 3일, 2018 Q1의 4월 1일 등 52/53주 결산을 달력 분기와 혼동하지 않는다. IFRS와 혼합하지 않으며 2025 Q2 이미지형 원문도 별도 대조했다. 과거 분기는 당시 보고된 기준, 연간은 최신 SEC 비교 기준이므로 ASC 606·842 도입으로 재작성된 2016·2017년 등은 분기 합계와 연간이 다를 수 있다. 금액을 임의 보정하지 않는다. ASML 추가 검토일은 2026-10-26.
 - [TEL 데이터북](https://www.tel.com/ir/library/db/index.html)과 [결산자료](https://www.tel.com/ir/library/report/index.html/): FY2016–2026 연간, FY2022 이후 분기. CAPEX는 연간 CF의 유형자산 현금취득이므로 연간 기본 표시.
 - [ASM 결과 센터](https://www.asm.com/investors/results-center): 2022 Q1 이후 확보 분기. 2023 헤드라인의 Normalized profit 대신 부속 표 Operating result 사용. 예전 CF는 천 유로, 최근 CF는 백만 유로. CF 첫 두 열은 개별 분기, 뒤의 두 열은 누적. 미확보 2022/2024 Q4는 빈 값이며 불완전 연간은 생성하지 않음.
 - [SCREEN 재무 하이라이트](https://www.screen.co.jp/en/ir/finance): FY2022–2026 연간, SPE 부문은 십억 엔 반올림 값을 백만 엔으로 변환. 연간 CAPEX는 회사 공시 설비투자 정의. [최신 발행사 결산자료 보존본](https://financialfilings.com/filings/screen-holdings-co-ltd/earnings-release/2026/55965510/)의 FY2027 Q1 및 전년 동기 분기 손익을 추가. 분기 이력은 제한적임.

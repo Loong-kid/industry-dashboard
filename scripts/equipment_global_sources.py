@@ -6,7 +6,7 @@ from company_period_views import add_period_views
 CACHE=ROOT/'.cache/equipment'
 METADATA={
  'asml':dict(name='ASML',currency='EUR',fiscal_start=1,field='frontend',cik=937966,
-     source='SEC · ASML US GAAP 공시',note='US GAAP 연결 기준이며 IFRS 손익과 혼합하지 않습니다. 분기는 공식 Q3 2026 금융제표의 실제 52/53주 종료일입니다. 연간은 SEC 20-F에서 자동 갱신하고 이미지형 분기 공시는 검토 스냅샷으로 보완합니다.'),
+     source='SEC · ASML US GAAP 공시',note='US GAAP 연결 기준이며 IFRS 손익과 혼합하지 않습니다. 2014년 1분기부터 실제 52/53주 분기 종료일을 사용합니다. 과거 분기는 SEC 6-K의 5개 분기 비교표에서 직접 수집한 당시 보고 기준입니다. 연간은 SEC 20-F의 최신 비교 수치를 사용하므로 ASC 606·842 도입에 따라 재작성된 2016·2017년 등은 과거 분기 합계와 다를 수 있습니다. 최근 이미지형 분기 공시는 원문 대조 자료로 보완합니다.'),
  'tel':dict(name='Tokyo Electron · TEL',currency='JPY',fiscal_start=4,field='frontend',
      source='Tokyo Electron 공식 결산자료·데이터북',note='일본 회계기준 연결 실적이며 FY는 종료 연도입니다. 손익 누적을 같은 회계연도 안에서 차분합니다. CAPEX는 연간 현금흐름표 유형자산 취득으로 연간 기본 표시합니다.'),
  'asm':dict(name='ASM International',currency='EUR',fiscal_start=1,field='frontend',

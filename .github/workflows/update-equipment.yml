@@ -19,7 +19,9 @@ jobs:
           python-version: "3.12"
       - run: pip install requests beautifulsoup4
       - name: Validate financial definitions and fiscal periods
-        run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
+        run: |
+          python -m unittest discover -s scripts -p test_equipment_companies.py -v
+          python -m unittest discover -s scripts -p test_asml_history.py -v
       - name: Refresh public SEC and DART company accounts
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
@@ -27,7 +29,9 @@ jobs:
           python scripts/fetch_equipment_hanmi.py
           python scripts/fetch_equipment_companies.py
       - name: Validate published equipment history
-        run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
+        run: |
+          python -m unittest discover -s scripts -p test_equipment_companies.py -v
+          python -m unittest discover -s scripts -p test_asml_history.py -v
       - name: Commit equipment accounts only
         run: |
           git config user.name "github-actions[bot]"

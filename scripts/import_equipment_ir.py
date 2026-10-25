@@ -7,6 +7,7 @@ import argparse,hashlib,json,re
 import requests
 from equipment_global_sources import *
 from fetch_cpu_companies import load,save,parse_annual
+from fetch_asml_history import merge_history
 
 
 def import_sources(download=False):
@@ -65,6 +66,8 @@ def import_sources(download=False):
     result['hanmi']=parse_hanmi(load(ROOT/'manual/equipment_hanmi.json',{}))
     for key,cohort in result.items():
         cohort.update(checked=seeds['reviewed'],fetched=seeds['reviewed'],ok=True)
+        if key=='asml':
+            result[key]=cohort=merge_history(cohort)
         cohort['rows'].sort(key=lambda r:r['date']);cohort['annual'].sort(key=lambda r:r['date'])
         if key in ('asm','besi'):
             existing={r['year']:r for r in annualize(cohort['rows'])}
