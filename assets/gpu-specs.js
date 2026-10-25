@@ -18,7 +18,7 @@ function renderGPUSpecs(doc) {
       <button type="button" class="cpu-specs-reset">초기화</button>
     </div><div class="cpu-specs-status"><span role="status" aria-live="polite"></span><span>${esc(doc.scroll_hint)}</span></div>
     <div class="order-table-wrap cpu-specs-scroll" role="region" tabindex="0" aria-label="${prefix} 비교표 · 가로·세로 스크롤"><table><caption>${ai?'Dense / Sparse 순서 · 제조사 이론 성능 · GPU·시스템·랙 단위 확인':'Geekbench 7 · API별 비교 · Time Spy는 원본 대표값'} · 빈칸은 —</caption><colgroup></colgroup><thead></thead><tbody></tbody></table></div>
-    <p class="ir-scope-note">${esc(doc.note)}</p>
+    <p class="ir-scope-note">${esc(doc.note)}${doc.date_definition?'<br>'+esc(doc.date_definition)+' ‘안내’는 제조사 출시 예정 시기, 연도만 표기한 값은 최초 판매 월·일 미확인입니다.':''}</p>
     <details class="cpu-specs-evidence"><summary>출처와 보완·검토 기준</summary><p>원본 기재값은 보존합니다. 색이 있는 셀의 ↗는 해당 보완·검토값의 근거입니다. 출처 표시가 없는 원본 값은 이번에 개별 검증한 값이 아닙니다. ‘시트 원본’을 선택하면 추가 프로파일을 제외한 원본 기재값을 확인할 수 있습니다.</p>${Object.values(doc.sources).map(s=>`<p>${link(s.url,s.title+' ↗')}<small>${esc(s.note)} 확인 ${esc(s.checked)}</small></p>`).join('')}<p>${esc(doc.update_note)}</p></details>
     <div class="cpu-specs-memo" role="tooltip" hidden></div>
     <dialog class="cpu-specs-dialog" aria-label="${prefix} 상세 사양"><div class="cpu-specs-dialog-head"><h2></h2><button type="button" aria-label="${prefix} 상세 닫기">닫기</button></div><div class="cpu-specs-dialog-body"></div></dialog>`;
@@ -29,9 +29,11 @@ function renderGPUSpecs(doc) {
   const evidence=(row,key)=>reviewed()?row.reviews[key]:null;
   const value=(row,key)=>evidence(row,key)?.value??row.original[key]??'';
   const name=row=>value(row,doc.name_key)||row.name;
-  const format=(row,c)=>{const v=value(row,c.id);if(ai&&['fp4','fp8','fp16'].includes(c.id)&&v&&!evidence(row,c.id))return v+' · 원본 D/S 미검증';return c.numeric&&/^\d+$/.test(v)?Number(v).toLocaleString('ko-KR'):v||'—';};
+  const format=(row,c)=>{const v=value(row,c.id);if(c.date&&evidence(row,c.id)?.status==='scheduled')return v+' 안내';if(ai&&['fp4','fp8','fp16'].includes(c.id)&&v&&!evidence(row,c.id))return v+' · 원본 D/S 미검증';return c.numeric&&/^\d+$/.test(v)?Number(v).toLocaleString('ko-KR'):v||'—';};
   const sortValue=(row,c)=>{
     const v=String(value(row,c.id));if(!v)return null;
+    // Partial dates sort by the beginning of their period without inventing a displayed day.
+    if(c.date){const match=v.match(/^(\d{4})(?:-(Q[1-4]|\d{2})(?:-(\d{2}))?)?$/);if(!match)return null;const month=match[2]?.startsWith('Q')?(Number(match[2][1])-1)*3+1:Number(match[2]||1);return Number(match[1])*10000+month*100+Number(match[3]||1);}
     if(c.numeric)return Number(v.replaceAll(',',''));
     if(!ai&&c.id==='N')return Number(v.match(/[\d.]+/)?.[0])||null;
     if(ai&&['fp4','fp8','fp16','fp32','power','memory','bandwidth','nvlink'].includes(c.id)){
@@ -45,7 +47,7 @@ function renderGPUSpecs(doc) {
   };
   const fieldHTML=(row,key)=>{
     const c=columns.get(key),extra=evidence(row,key),source=extra&&doc.sources[extra.source];
-    return `<div><dt>${esc(c.label)}</dt><dd>${c.url&&value(row,key)?link(value(row,key),'원문 ↗'):esc(format(row,c))}${extra?`<small>${esc(extra.note)} ${link(source.url,source.title+' ↗')}${row.original[key]&&row.original[key]!==extra.value?`<br>시트 원본: ${esc(row.original[key])}`:''}</small>`:value(row,key)?'<small>시트 기재값 · 이번 보완에서 개별 검증하지 않은 항목</small>':''}</dd></div>`;
+    return `<div><dt>${esc(c.label)}</dt><dd>${c.url&&value(row,key)?link(value(row,key),'원문 ↗'):esc(format(row,c))}${extra?`<small>${esc(extra.note)} ${link(source.url,source.title+' ↗')}${row.original[key]&&row.original[key]!==extra.value?`<br>시트 원본: ${esc(row.original[key])}`:''}</small>`:key==='announced'&&reviewed()&&row.date_note?`<small>${esc(row.date_note)}</small>`:value(row,key)?'<small>시트 기재값 · 이번 보완에서 개별 검증하지 않은 항목</small>':''}</dd></div>`;
   };
   const hideMemo=()=>{clearTimeout(hideTimer);memo.hidden=true;memoTarget=null;};
   const delayHide=()=>{clearTimeout(hideTimer);hideTimer=setTimeout(hideMemo,160);};

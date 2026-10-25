@@ -47,7 +47,7 @@ def build(raw,supplements,foundries):
         update_note='시트 원본과 보완값은 원문 검토 후 갱신하는 스냅샷입니다. CPU 실적 갱신 버튼은 기업 재무 공시를 갱신합니다.',
         columns=[dict(id=column_name(i+1),label=label,numeric=24<=i<=34) for i,label in enumerate(headers)],rows=rows,
         default_view='overview',display_indices=list(range(24))+list(range(31,37)),
-        column_views=[dict(id='overview',label='한눈에 보기 · 구성·캐시',indices=[2,7,23,10,16,15,31,32,33,34,8,12,18,19,20]),
+        column_views=[dict(id='overview',label='한눈에 보기 · 구성·캐시',indices=[2,6,7,23,10,16,15,31,32,33,34,8,12,18,19,20]),
             dict(id='all',label='전체 사양 · Geekbench 6·7',indices=list(range(24))+list(range(31,37))),
             dict(id='specs',label='CPU 사양',indices=list(range(24))+[36]),
             dict(id='memory',label='메모리·캐시',indices=[0,1,2]+list(range(13,22))+[36]),

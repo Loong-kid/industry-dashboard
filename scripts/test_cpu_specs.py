@@ -69,7 +69,7 @@ class CPUSpecs(unittest.TestCase):
         for view in self.doc['column_views']:
             self.assertTrue(set(view['indices']).issubset(shown),view['id'])
         overview=self.doc['column_views'][0]['indices']
-        self.assertTrue({8,12,18,19,20,31,32,33,34}.issubset(overview))
+        self.assertTrue({6,8,12,18,19,20,31,32,33,34}.issubset(overview))
         self.assertTrue(any(row['values'][24:31]!=['']*7 for row in self.doc['rows']))
 
 

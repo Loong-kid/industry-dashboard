@@ -24,7 +24,9 @@ def verify(base):
             table=page.locator('.cpu-specs')
             expect(table).to_be_visible()
             assert table.locator('tbody tr').count()==292
-            assert table.locator('thead th').count()==14
+            assert table.locator('thead th').count()==15
+            assert table.locator('thead th').nth(1).get_attribute('data-column')=='released'
+            assert table.locator('tbody tr').first.locator('[data-column="released"] .cpu-specs-value').inner_text()==(doc['rows'][0]['values'][6] or '—')
             assert table.locator('thead th').last.get_attribute('data-column')=='detail'
             assert table.get_by_label('CPU 사양 열 보기',exact=True).input_value()=='overview'
             assert table.locator('.cpu-specs-scroll').evaluate('el=>el.scrollWidth>el.clientWidth')

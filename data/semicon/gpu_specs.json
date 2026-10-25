@@ -41,10 +41,11 @@
   },
   {
    "id": "E",
-   "label": "발표/출시일",
+   "label": "발표/출시일 · 시트 원본",
    "width": 110,
    "numeric": false,
-   "url": false
+   "url": false,
+   "source_label": "발표/출시일"
   },
   {
    "id": "F",
@@ -205,6 +206,18 @@
    "label": "GB7 · Vulkan",
    "width": 110,
    "numeric": true
+  },
+  {
+   "id": "announced",
+   "label": "발표일",
+   "width": 110,
+   "date": true
+  },
+  {
+   "id": "released",
+   "label": "출시일",
+   "width": 124,
+   "date": true
   }
  ],
  "rows": [
@@ -270,7 +283,25 @@
     "Y": "https://www.intel.com/content/www/us/en/products/sku/245532/intel-core-ultra-7-processor-356h-18m-cache-up-to-4-70-ghz/specifications.html",
     "Z": "https://www.notebookcheck.net/Intel-Graphics-4-Xe3-Panther-Lake-Benchmarks-and-Specs.1193658.0.html"
    },
-   "reviews": {}
+   "reviews": {
+    "announced": {
+     "value": "2026-01-05",
+     "source": "date_intel_ces26",
+     "note": "공식 제품·상용 출시 발표. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2026-01-27",
+     "source": "date_intel_ces26",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
+    }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-3",
@@ -344,8 +375,25 @@
      "value": "46292",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) B390 GPU. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2026-01-05",
+     "source": "date_intel_ces26",
+     "note": "공식 제품·상용 출시 발표. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2026-01-27",
+     "source": "date_intel_ces26",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-4",
@@ -419,8 +467,25 @@
      "value": "39728",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) B370 GPU. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2026-01-05",
+     "source": "date_intel_ces26",
+     "note": "공식 제품·상용 출시 발표. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2026-01-27",
+     "source": "date_intel_ces26",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Core Ultra Series 3 최초 시스템 일정. 이 행의 개별 CPU SKU·OEM 모델 판매일을 뜻하지 않습니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-5",
@@ -494,8 +559,25 @@
      "value": "28722",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) 140T GPU (16GB). 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음. 16GB 표기 장치명의 대표 집계이며 다른 공유 메모리 구성으로 일반화하지 않음."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_intel_ces25",
+     "note": "공식 제품·상용 출시 발표. Core Ultra 200H 탑재 시스템의 제조사 출시 안내월. 개별 모델 판매일 미확인.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-02",
+     "source": "date_intel_ces25",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Core Ultra 200H 탑재 시스템의 제조사 출시 안내월. 개별 모델 판매일 미확인.",
+     "precision": "month",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "scheduled"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-6",
@@ -569,8 +651,25 @@
      "value": "29038",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) 140V GPU (16GB). 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음. 16GB 표기 장치명의 대표 집계이며 다른 공유 메모리 구성으로 일반화하지 않음."
+    },
+    "announced": {
+     "value": "2024-09-03",
+     "source": "date_intel_200v",
+     "note": "공식 제품·상용 출시 발표. Core Ultra 200V 탑재 시스템 기준.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2024-09-24",
+     "source": "date_intel_200v",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Core Ultra 200V 탑재 시스템 기준.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-7",
@@ -634,7 +733,25 @@
     "Y": "https://www.intel.com/content/www/us/en/products/details/processors/core-ultra.html",
     "Z": "https://www.notebookcheck.net/Intel-Arc-8-Cores-iGPU-Benchmarks-and-Specs.782930.0.html"
    },
-   "reviews": {}
+   "reviews": {
+    "announced": {
+     "value": "2023-12-14",
+     "source": "date_intel_meteor",
+     "note": "공식 제품·상용 출시 발표. 최초 Meteor Lake 시스템 기준. 표에 함께 적힌 모든 CPU SKU의 판매일은 아닙니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-12-14",
+     "source": "date_intel_meteor",
+     "note": "출시 기준: 탑재 플랫폼 제품군. 최초 Meteor Lake 시스템 기준. 표에 함께 적힌 모든 CPU SKU의 판매일은 아닙니다.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
+    }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-8",
@@ -698,7 +815,25 @@
     "Y": "https://www.intel.com/content/www/us/en/products/sku/208921/intel-core-i71165g7-processor-12m-cache-up-to-4-70-ghz-with-ipu/specifications.html",
     "Z": "https://www.notebookcheck.net/Iris-Xe-G7-96EUs-vs-Graphics-4-Core_10364_12259.247598.0.html"
    },
-   "reviews": {}
+   "reviews": {
+    "announced": {
+     "value": "2020-09-02",
+     "source": "date_intel_tiger",
+     "note": "공식 제품·상용 출시 발표. 출시는 Intel 그래픽 지원표의 Launch date이며 실제 1165G7 노트북 첫 판매일은 아닙니다.",
+     "precision": "day",
+     "basis": "제조사 GPU 출시월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2020-10",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. 출시는 Intel 그래픽 지원표의 Launch date이며 실제 1165G7 노트북 첫 판매일은 아닙니다.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
+    }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-9",
@@ -762,7 +897,25 @@
     "Y": "https://www.intel.com/content/www/us/en/products/sku/196597/intel-core-i71065g7-processor-8m-cache-up-to-3-90-ghz/specifications.html",
     "Z": "https://www.notebookcheck.net/Iris-Plus-Graphics-G7-Ice-Lake-64-EU-vs-GeForce-GTX-1080-Desktop-vs-GeForce-GTX-1060-Desktop_9866_7311_7336.247598.0.html"
    },
-   "reviews": {}
+   "reviews": {
+    "announced": {
+     "value": "2019-08-01",
+     "source": "date_intel_ice",
+     "note": "공식 제품·상용 출시 발표. Ice Lake 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "day",
+     "basis": "제조사 GPU 출시월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2019-08",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. Ice Lake 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
+    }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-10",
@@ -836,8 +989,25 @@
      "value": "7763",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) UHD Graphics 770. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2021-10-27",
+     "source": "date_intel_alder",
+     "note": "공식 제품·상용 출시 발표. Alder Lake 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "day",
+     "basis": "제조사 GPU 출시월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2021-11",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. Alder Lake 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-11",
@@ -911,8 +1081,25 @@
      "value": "4208",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) UHD Graphics 630. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2017-09-24",
+     "source": "date_intel_coffee",
+     "note": "공식 제품·상용 출시 발표. Coffee Lake 데스크톱 시스템 기준.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2017-10-05",
+     "source": "date_intel_coffee",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Coffee Lake 데스크톱 시스템 기준.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-12",
@@ -986,8 +1173,25 @@
      "value": "3710",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) UHD Graphics 620. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2017-08-21",
+     "source": "date_intel_kabyr",
+     "note": "공식 제품·상용 출시 발표. 8세대 Core 플랫폼 발표 / 제조사 그래픽 출시월. 개별 노트북 판매일과 다릅니다.",
+     "precision": "day",
+     "basis": "제조사 GPU 출시월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2017-08",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. 8세대 Core 플랫폼 발표 / 제조사 그래픽 출시월. 개별 노트북 판매일과 다릅니다.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-13",
@@ -1061,8 +1265,17 @@
      "value": "3649",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Iris(R) Graphics 6100 (BDW GT3). 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "released": {
+     "value": "2015-01",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. 공식 그래픽 목록의 월 정밀도를 유지했습니다. 발표일은 별도 미확인.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": "제품 발표 날짜를 특정할 제조사 근거 미확인. 출시월을 발표일로 복제하지 않았습니다."
   },
   {
    "id": "gpu-sheet-14",
@@ -1136,8 +1349,17 @@
      "value": "2587",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) HD Graphics 4600 (HSW GT2). 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "released": {
+     "value": "2013-06",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. 공식 그래픽 목록의 월 정밀도를 유지했습니다. 발표일은 별도 미확인.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": "제품 발표 날짜를 특정할 제조사 근거 미확인. 출시월을 발표일로 복제하지 않았습니다."
   },
   {
    "id": "gpu-sheet-15",
@@ -1211,8 +1433,25 @@
      "value": "1081",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) HD Graphics 4000 (IVB GT2). 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2012-04-23",
+     "source": "date_intel_ivy",
+     "note": "공식 제품·상용 출시 발표. Ivy Bridge 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "day",
+     "basis": "제조사 GPU 출시월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2012-04",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. Ivy Bridge 플랫폼 발표 / 제조사 그래픽 출시월 기준.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-16",
@@ -1276,7 +1515,17 @@
     "Y": "",
     "Z": ""
    },
-   "reviews": {}
+   "reviews": {
+    "released": {
+     "value": "2011-01",
+     "source": "date_intel_launch_month",
+     "note": "출시 기준: 제조사 GPU 출시월. 공식 그래픽 목록의 월 정밀도를 유지했습니다. 발표일은 별도 미확인.",
+     "precision": "month",
+     "basis": "제조사 GPU 출시월",
+     "status": "vendor_launch"
+    }
+   },
+   "date_note": "제품 발표 날짜를 특정할 제조사 근거 미확인. 출시월을 발표일로 복제하지 않았습니다."
   },
   {
    "id": "gpu-sheet-17",
@@ -1350,8 +1599,25 @@
      "value": "110751",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) B580 Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2024-12-03",
+     "source": "date_intel_b",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2024-12-13",
+     "source": "date_intel_b",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-18",
@@ -1425,8 +1691,25 @@
      "value": "102523",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) B570 Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2024-12-03",
+     "source": "date_intel_b",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-01-16",
+     "source": "date_intel_b",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-19",
@@ -1500,8 +1783,25 @@
      "value": "89436",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) A770 Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음. 차트 이름에는 VRAM 용량이 없어 해당 칩 전체 집계이며 이 행의 메모리 용량만을 검증한 점수는 아님."
+    },
+    "announced": {
+     "value": "2022-09-29",
+     "source": "date_intel_a7",
+     "note": "공식 제품·상용 출시 발표. 발표는 A7 제품군 가격·출시 일정 공지 기준. 이전 티저·행사 공개와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-10-12",
+     "source": "date_intel_a7",
+     "note": "출시 기준: 제품. 발표는 A7 제품군 가격·출시 일정 공지 기준. 이전 티저·행사 공개와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-20",
@@ -1575,8 +1875,25 @@
      "value": "86951",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) A750 Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-09-29",
+     "source": "date_intel_a7",
+     "note": "공식 제품·상용 출시 발표. 발표는 A7 제품군 가격·출시 일정 공지 기준. 이전 티저·행사 공개와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-10-12",
+     "source": "date_intel_a7",
+     "note": "출시 기준: 제품. 발표는 A7 제품군 가격·출시 일정 공지 기준. 이전 티저·행사 공개와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-21",
@@ -1650,8 +1967,25 @@
      "value": "28720",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) A380 Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-06-14",
+     "source": "date_intel_a380",
+     "note": "공식 제품·상용 출시 발표. 중국 OEM 시스템부터 공급. 단품·글로벌 첫 판매일은 아닙니다.",
+     "precision": "day",
+     "basis": "중국 OEM 시스템 공급월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-06",
+     "source": "date_intel_a380",
+     "note": "출시 기준: 중국 OEM 시스템 공급월. 중국 OEM 시스템부터 공급. 단품·글로벌 첫 판매일은 아닙니다.",
+     "precision": "month",
+     "basis": "중국 OEM 시스템 공급월",
+     "status": "scheduled"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-22",
@@ -1725,8 +2059,25 @@
      "value": "76788",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: Intel(R) Arc(TM) A770M Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-03-30",
+     "source": "date_intel_am",
+     "note": "공식 제품·상용 출시 발표. 발표는 Arc Mobile 제품군 기준. 출시는 ARK 칩 출시 분기이며 예약·노트북 판매일이 아닙니다.",
+     "precision": "day",
+     "basis": "ARK 칩 출시 분기",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-Q2",
+     "source": "date_intel_a770m",
+     "note": "출시 기준: ARK 칩 출시 분기. 발표는 Arc Mobile 제품군 기준. 출시는 ARK 칩 출시 분기이며 예약·노트북 판매일이 아닙니다.",
+     "precision": "quarter",
+     "basis": "ARK 칩 출시 분기",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-23",
@@ -1795,8 +2146,25 @@
      "value": "23886",
      "source": "opencl",
      "note": "Geekbench 7 OPENCL 차트의 정확한 장치명: Intel(R) Arc(TM) A370M Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-03-30",
+     "source": "date_intel_am",
+     "note": "공식 제품·상용 출시 발표. 발표는 Arc Mobile 제품군 기준. 출시는 ARK 칩 출시 분기이며 예약·노트북 판매일이 아닙니다.",
+     "precision": "day",
+     "basis": "ARK 칩 출시 분기",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-Q1",
+     "source": "date_intel_a370m",
+     "note": "출시 기준: ARK 칩 출시 분기. 발표는 Arc Mobile 제품군 기준. 출시는 ARK 칩 출시 분기이며 예약·노트북 판매일이 아닙니다.",
+     "precision": "quarter",
+     "basis": "ARK 칩 출시 분기",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-24",
@@ -1870,8 +2238,25 @@
      "value": "373364",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: NVIDIA GeForce RTX 5090. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_nv50",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-01-30",
+     "source": "date_nv50",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-25",
@@ -1945,8 +2330,25 @@
      "value": "179111",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: NVIDIA GeForce RTX 5070. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_nv50",
+     "note": "공식 제품·상용 출시 발표. 초기 예정월이 아닌 보드 파트너 판매 시작일. Founders Edition 일정은 별도입니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-03-05",
+     "source": "date_nv5070",
+     "note": "출시 기준: 제품. 초기 예정월이 아닌 보드 파트너 판매 시작일. Founders Edition 일정은 별도입니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-26",
@@ -2020,8 +2422,25 @@
      "value": "311762",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: NVIDIA GeForce RTX 4090. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-09-20",
+     "source": "date_nv40",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-10-12",
+     "source": "date_nv40",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-27",
@@ -2095,8 +2514,25 @@
      "value": "87030",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: NVIDIA GeForce RTX 3060. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음. 차트 이름에는 VRAM 용량이 없어 해당 칩 전체 집계이며 이 행의 메모리 용량만을 검증한 점수는 아님."
+    },
+    "announced": {
+     "value": "2021-01-12",
+     "source": "date_nv3060_ann",
+     "note": "공식 제품·상용 출시 발표. 12GB 최초 제품 기준. 후속 8GB 변형과 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2021-02-25",
+     "source": "date_nv3060_rel",
+     "note": "출시 기준: 제품. 12GB 최초 제품 기준. 후속 8GB 변형과 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-28",
@@ -2170,8 +2606,25 @@
      "value": "17144",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: NVIDIA GeForce GTX 1060 6GB. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2016-07-07",
+     "source": "date_nv1060_ann",
+     "note": "공식 제품·상용 출시 발표. 6GB 최초 제품 기준. 후속 3GB 변형과 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2016-07-19",
+     "source": "date_nv1060_rel",
+     "note": "출시 기준: 제품. 6GB 최초 제품 기준. 후속 3GB 변형과 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-29",
@@ -2250,8 +2703,25 @@
      "value": "최대 45.34 · 이론 산출",
      "source": "laptop50",
      "note": "제조사 공시 CUDA 10496개 × 2 FLOP/FMA × 최대 부스트 2160MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_nv50",
+     "note": "공식 제품·상용 출시 발표. 노트북 판매 안내월. 사전 예약일은 사용하지 않았으며 OEM별 판매일은 다릅니다.",
+     "precision": "day",
+     "basis": "제조사 노트북 출시 안내월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-03",
+     "source": "date_nv50",
+     "note": "출시 기준: 제조사 노트북 출시 안내월. 노트북 판매 안내월. 사전 예약일은 사용하지 않았으며 OEM별 판매일은 다릅니다.",
+     "precision": "month",
+     "basis": "제조사 노트북 출시 안내월",
+     "status": "scheduled"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-30",
@@ -2330,8 +2800,25 @@
      "value": "최대 21.63 · 이론 산출",
      "source": "laptop50",
      "note": "제조사 공시 CUDA 4608개 × 2 FLOP/FMA × 최대 부스트 2347MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_nv50",
+     "note": "공식 제품·상용 출시 발표. 2025년 OEM 판매는 확인. 최초 판매 월·일 미확인으로 연도만 표시. CES 당시 4월 예정 안내를 실제 출시월로 사용하지 않았습니다.",
+     "precision": "day",
+     "basis": "OEM 판매 확인 연도",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025",
+     "source": "date_msi5070",
+     "note": "출시 기준: OEM 판매 확인 연도. 2025년 OEM 판매는 확인. 최초 판매 월·일 미확인으로 연도만 표시. CES 당시 4월 예정 안내를 실제 출시월로 사용하지 않았습니다.",
+     "precision": "year",
+     "basis": "OEM 판매 확인 연도",
+     "status": "year_only"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-31",
@@ -2410,8 +2897,25 @@
      "value": "최대 16.62 · 이론 산출",
      "source": "laptop50",
      "note": "제조사 공시 CUDA 3328개 × 2 FLOP/FMA × 최대 부스트 2497MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2025-04-15",
+     "source": "date_nv5060_ann",
+     "note": "공식 제품·상용 출시 발표. 노트북 판매 시작 공지 기준.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-05-19",
+     "source": "date_nv5060_rel",
+     "note": "출시 기준: 제품. 노트북 판매 시작 공지 기준.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-32",
@@ -2490,8 +2994,25 @@
      "value": "최대 39.69 · 이론 산출",
      "source": "laptop40",
      "note": "제조사 공시 CUDA 9728개 × 2 FLOP/FMA × 최대 부스트 2040MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2023-01-03",
+     "source": "date_nv40m_ann",
+     "note": "공식 제품·상용 출시 발표. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-02-08",
+     "source": "date_nv40m_rel",
+     "note": "출시 기준: 제품. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-33",
@@ -2570,8 +3091,25 @@
      "value": "최대 14.56 · 이론 산출",
      "source": "laptop40",
      "note": "제조사 공시 CUDA 3072개 × 2 FLOP/FMA × 최대 부스트 2370MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2023-01-03",
+     "source": "date_nv40m_ann",
+     "note": "공식 제품·상용 출시 발표. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-02-22",
+     "source": "date_nv40m_rel",
+     "note": "출시 기준: 제품. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-34",
@@ -2650,8 +3188,25 @@
      "value": "최대 12.13 · 이론 산출",
      "source": "laptop40",
      "note": "제조사 공시 CUDA 2560개 × 2 FLOP/FMA × 최대 부스트 2370MHz ÷ 1,000,000. 단위 TFLOPS. 일반 FP32 산술의 이론 상한이며 Tensor·AI TOPS·게임 FPS·Geekbench 점수가 아님. 노트북 TGP·온도·지속 클럭에 따라 달라짐."
+    },
+    "announced": {
+     "value": "2023-01-03",
+     "source": "date_nv40m_ann",
+     "note": "공식 제품·상용 출시 발표. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-02-22",
+     "source": "date_nv40m_rel",
+     "note": "출시 기준: 제품. 노트북 판매 일정. 2월 1일은 사전 예약일이므로 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-35",
@@ -2725,8 +3280,25 @@
      "value": "38681",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon(TM) 8060S Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2025-01-06",
+     "source": "date_amd_max",
+     "note": "공식 제품·상용 출시 발표. Ryzen AI Max 시스템의 제조사 출시 안내 분기. 개별 OEM 첫 판매일 미확인.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-Q1",
+     "source": "date_amd_max",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Ryzen AI Max 시스템의 제조사 출시 안내 분기. 개별 OEM 첫 판매일 미확인.",
+     "precision": "quarter",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "scheduled"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-36",
@@ -2800,8 +3372,25 @@
      "value": "18290",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon(TM) 890M Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2024-06-02",
+     "source": "date_amd_300",
+     "note": "공식 제품·상용 출시 발표. 발표는 Ryzen AI 300 제품군 / 출시는 HX 370 탑재 ASUS 시스템의 2024년 7월 판매 공지 기준. 독립 GPU 출시일은 아닙니다.",
+     "precision": "day",
+     "basis": "탑재 OEM 시스템 판매월",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2024-07",
+     "source": "date_asus_890m",
+     "note": "출시 기준: 탑재 OEM 시스템 판매월. 발표는 Ryzen AI 300 제품군 / 출시는 HX 370 탑재 ASUS 시스템의 2024년 7월 판매 공지 기준. 독립 GPU 출시일은 아닙니다.",
+     "precision": "month",
+     "basis": "탑재 OEM 시스템 판매월",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-37",
@@ -2875,8 +3464,25 @@
      "value": "15805",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon(TM) 780M Graphics. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2023-01-04",
+     "source": "date_amd_7040",
+     "note": "공식 제품·상용 출시 발표. 발표는 Ryzen 7040 제품군 / 출시는 시트 대표 탑재 CPU 7840U 기준. 최초 780M 탑재 시스템 판매일로 일반화하지 않습니다.",
+     "precision": "day",
+     "basis": "대표 탑재 CPU 출시일",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-05-03",
+     "source": "date_amd_7840u",
+     "note": "출시 기준: 대표 탑재 CPU 출시일. 발표는 Ryzen 7040 제품군 / 출시는 시트 대표 탑재 CPU 7840U 기준. 최초 780M 탑재 시스템 판매일로 일반화하지 않습니다.",
+     "precision": "day",
+     "basis": "대표 탑재 CPU 출시일",
+     "status": "vendor_launch"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-38",
@@ -2950,8 +3556,25 @@
      "value": "15786",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon(TM) 680M. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2022-01-04",
+     "source": "date_amd_6000",
+     "note": "공식 제품·상용 출시 발표. Ryzen 6000 탑재 시스템의 제조사 출시 안내월.",
+     "precision": "day",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2022-02",
+     "source": "date_amd_6000",
+     "note": "출시 기준: 탑재 플랫폼 제품군. Ryzen 6000 탑재 시스템의 제조사 출시 안내월.",
+     "precision": "month",
+     "basis": "탑재 플랫폼 제품군",
+     "status": "scheduled"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-39",
@@ -3025,8 +3648,25 @@
      "value": "85655",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon RX 9070 XT. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2025-02-28",
+     "source": "date_amd_9070",
+     "note": "공식 제품·상용 출시 발표. 발표는 상세 제품·가격·출시 일정 공지 기준. CES 아키텍처 예고와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2025-03-06",
+     "source": "date_amd_9070",
+     "note": "출시 기준: 제품. 발표는 상세 제품·가격·출시 일정 공지 기준. CES 아키텍처 예고와 구분합니다.",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-40",
@@ -3100,8 +3740,25 @@
      "value": "62879",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon RX 7800 XT. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2023-08-25",
+     "source": "date_amd_7800",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-09-06",
+     "source": "date_amd_7800",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   },
   {
    "id": "gpu-sheet-41",
@@ -3175,8 +3832,25 @@
      "value": "38378",
      "source": "vulkan",
      "note": "Geekbench 7 VULKAN 차트의 정확한 장치명: AMD Radeon RX 7600. 이 장치명 집계만 사용; 다른 드라이버명·상위 GPU·데스크톱/노트북 결과는 합치지 않음."
+    },
+    "announced": {
+     "value": "2023-05-24",
+     "source": "date_amd_7600",
+     "note": "공식 제품·상용 출시 발표. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "announcement"
+    },
+    "released": {
+     "value": "2023-05-25",
+     "source": "date_amd_7600",
+     "note": "출시 기준: 제품. ",
+     "precision": "day",
+     "basis": "제품",
+     "status": "availability"
     }
-   }
+   },
+   "date_note": ""
   }
  ],
  "name_key": "C",
@@ -3206,6 +3880,234 @@
    "url": "https://www.nvidia.com/en-us/geforce/laptops/50-series/",
    "checked": "2026-10-25",
    "note": "CUDA 코어 수와 부스트 클럭 상한의 공식 근거. FP32 TFLOPS는 코어 수×2(FMA)×GHz/1000로 산출한 이론 상한이며 실측값이 아님. TGP·온도에 따라 달성하지 못할 수 있음."
+  },
+  "date_intel_ces26": {
+   "title": "Intel · CES 2026 Core Ultra Series 3",
+   "url": "https://newsroom.intel.com/press-kit/press-kit-intel-at-ces-2026",
+   "checked": "2026-10-25",
+   "note": "2026-01-05 플랫폼 발표와 01-27 첫 시스템 판매 안내. 개별 SKU·OEM의 첫 판매일과는 구분합니다."
+  },
+  "date_intel_ces25": {
+   "title": "Intel · CES 2025 Core Ultra 200H",
+   "url": "https://newsroom.intel.com/client-computing/2025-ces-client-computing-news",
+   "checked": "2026-10-25",
+   "note": "2025-01-06 발표. H/U 탑재 시스템은 2월부터라는 제조사 안내이며 일 단위 날짜는 명시하지 않습니다."
+  },
+  "date_intel_200v": {
+   "title": "Intel · Core Ultra 200V 출시 행사",
+   "url": "https://download.intel.com/newsroom/archive/2025/en-us-2024-09-03-intel-core-ultra-launch-event-replay.pdf",
+   "checked": "2026-10-25",
+   "note": "2024-09-03 행사와 09-24 시스템 판매 시작 안내."
+  },
+  "date_intel_meteor": {
+   "title": "Intel · Core Ultra 출시",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/news/core-ultra-client-computing-news-1.htm",
+   "checked": "2026-10-25",
+   "note": "2023-12-14 플랫폼 공개와 판매 시작. 최초 Core Ultra 시스템 기준이며 후속 185H 등 모든 SKU의 개별 판매일은 아닙니다."
+  },
+  "date_intel_tiger": {
+   "title": "Intel · 11th Gen Tiger Lake 발표",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/news/11th-gen-tiger-lake-evo.html",
+   "checked": "2026-10-25",
+   "note": "2020-09-02 11세대 모바일 Core 플랫폼 발표."
+  },
+  "date_intel_ice": {
+   "title": "Intel · 10th Gen Ice Lake 발표",
+   "url": "https://download.intel.com/newsroom/2021/archive/2019-08-01-news-intel-launches-first-10th-gen-intel-core-processors-redefining-next-era-laptop-experiences.pdf",
+   "checked": "2026-10-25",
+   "note": "2019-08-01 Ice Lake 프로세서 공개. 시스템 판매 시작일과 구분합니다."
+  },
+  "date_intel_launch_month": {
+   "title": "Intel · 그래픽 제품 공식 출시월 목록",
+   "url": "https://www.intel.com/content/www/us/en/support/articles/000005526/graphics.html",
+   "checked": "2026-10-25",
+   "note": "구형 내장 GPU는 Intel 지원표의 Launch date를 월 단위로 사용합니다. 발표일·최초 소매 판매일을 의미하지 않으며 임의로 1일을 붙이지 않습니다."
+  },
+  "date_intel_alder": {
+   "title": "Intel · 12th Gen Core 발표",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/resources/press-kit-12th-gen-core-procesors.html",
+   "checked": "2026-10-25",
+   "note": "2021-10-27 Alder Lake 데스크톱 플랫폼 발표."
+  },
+  "date_intel_coffee": {
+   "title": "Intel · 8th Gen Desktop 판매 시작",
+   "url": "https://download.intel.com/newsroom/2021/archive/2017-10-05-news-8th-gen-intel-core-desktop-processors-available-starting-today.pdf",
+   "checked": "2026-10-25",
+   "note": "2017-09-24 발표와 10-05 판매 시작을 별도로 명시합니다."
+  },
+  "date_intel_kabyr": {
+   "title": "Intel · 8th Gen Core 발표 행사",
+   "url": "https://download.intel.com/newsroom/2021/archive/2017-08-21-news-8th-generation-intel-core-processor-family-debuts-live-video.pdf",
+   "checked": "2026-10-25",
+   "note": "2017-08-21 8세대 모바일 Core 공개 행사."
+  },
+  "date_intel_ivy": {
+   "title": "Intel · 3rd Gen Core 제품 발표",
+   "url": "https://download.intel.com/newsroom/kits/core/3rdgen/pdfs/3rd_Generation_Intel_Core_Product_Information.pdf",
+   "checked": "2026-10-25",
+   "note": "2012-04-23 3세대 쿼드코어 Core 플랫폼 발표 자료."
+  },
+  "date_intel_b": {
+   "title": "Intel · Arc B-Series 출시 발표",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/news/intel-launches-arc-b-series-graphics-cards.html",
+   "checked": "2026-10-25",
+   "note": "2024-12-03 발표. B580은 12-13, B570은 2025-01-16 판매 시작으로 구분합니다."
+  },
+  "date_intel_a7": {
+   "title": "Intel · Arc A7 가격·출시 일정 발표",
+   "url": "https://game.intel.com/us/stories/intel-arc-graphics-a7series-perf-per-dollar/",
+   "checked": "2026-10-25",
+   "note": "2022-09-29 A750/A770 상용 제품군 가격·출시 일정 발표. 최초 티저 공개와는 구분합니다. 판매 시작은 10-12."
+  },
+  "date_intel_a380": {
+   "title": "Intel · Arc A380 중국 출시 발표",
+   "url": "https://download.intel.com/newsroom/archive/2025/de-de-2022-06-14-intel-arc-a380-graphics-available-in-china.pdf",
+   "checked": "2026-10-25",
+   "note": "2022-06-14 발표. 중국 OEM 시스템은 그달부터이며 단품·전 세계 동시 판매일을 뜻하지 않습니다."
+  },
+  "date_intel_am": {
+   "title": "Intel · Arc Mobile 발표 자료",
+   "url": "https://download.intel.com/newsroom/2022/client-computing/Intel-Arc-Fact-Sheet-033022.pdf",
+   "checked": "2026-10-25",
+   "note": "2022-03-30 Arc 모바일 제품군 공개. 예약 주문과 소매 판매 시작일을 구분합니다."
+  },
+  "date_intel_a770m": {
+   "title": "Intel ARK · Arc A770M",
+   "url": "https://www.intel.com/content/www/us/en/products/sku/228341/intel-arc-a770m-graphics/specifications.html",
+   "checked": "2026-10-25",
+   "note": "Launch Date Q2 2022는 칩 출시 분기입니다. 노트북 실판매일로 변환하지 않습니다."
+  },
+  "date_intel_a370m": {
+   "title": "Intel ARK · Arc A370M",
+   "url": "https://www.intel.com/content/www/us/en/products/sku/228342/intel-arc-a370m-graphics/specifications.html",
+   "checked": "2026-10-25",
+   "note": "Launch Date Q1 2022는 칩 출시 분기입니다. 노트북 실판매일로 변환하지 않습니다."
+  },
+  "date_nv50": {
+   "title": "NVIDIA · GeForce RTX 50 발표",
+   "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Blackwell-GeForce-RTX-50-Series-Opens-New-World-of-AI-Computer-Graphics/default.aspx",
+   "checked": "2026-10-25",
+   "note": "2025-01-06 데스크톱·노트북 제품군 발표. RTX 5090 데스크톱 판매는 01-30, 노트북 상위 제품군은 3월 안내. RTX 5070의 최초 예정 시기는 실제 출시일로 재사용하지 않습니다."
+  },
+  "date_nv5070": {
+   "title": "NVIDIA · RTX 5070 판매 시작",
+   "url": "https://www.nvidia.com/en-us/geforce/news/rtx-5070-out-now/",
+   "checked": "2026-10-25",
+   "note": "2025-03-05 보드 파트너 제품 판매 시작. Founders Edition의 별도 판매 일정과 구분합니다."
+  },
+  "date_nv40": {
+   "title": "NVIDIA · GeForce RTX 40 발표",
+   "url": "https://nvidianews.nvidia.com/news/nvidia-delivers-quantum-leap-in-performance-introduces-new-era-of-neural-rendering-with-geforce-rtx-40-series",
+   "checked": "2026-10-25",
+   "note": "2022-09-20 발표. RTX 4090 판매 시작일 10-12 명시."
+  },
+  "date_nv3060_ann": {
+   "title": "NVIDIA · Game On 2021 발표",
+   "url": "https://www.nvidia.com/en-us/geforce/news/nvidia-geforce-rtx-game-on-announcement-roundup/",
+   "checked": "2026-10-25",
+   "note": "2021-01-12 RTX 3060 12GB 발표."
+  },
+  "date_nv3060_rel": {
+   "title": "NVIDIA · RTX 3060 판매 시작",
+   "url": "https://www.nvidia.com/en-us/geforce/news/geforce-rtx-3060-out-now/",
+   "checked": "2026-10-25",
+   "note": "2021-02-25 RTX 3060 판매 시작."
+  },
+  "date_nv1060_ann": {
+   "title": "NVIDIA · GTX 1060 발표",
+   "url": "https://nvidianews.nvidia.com/news/a-quantum-leap-for-every-gamer%3A-nvidia-unveils-the-geforce-gtx-1060",
+   "checked": "2026-10-25",
+   "note": "2016-07-07 GTX 1060 발표와 07-19 판매 안내."
+  },
+  "date_nv1060_rel": {
+   "title": "NVIDIA · GTX 1060 판매 시작",
+   "url": "https://www.nvidia.com/en-us/geforce/news/nvidia-geforce-gtx-1060/",
+   "checked": "2026-10-25",
+   "note": "2016-07-19 6GB GTX 1060 판매 시작."
+  },
+  "date_msi5070": {
+   "title": "MSI · RTX 5070/5060/5050 노트북 판매 안내",
+   "url": "https://us.msi.com/news/detail/MSI-GeForce-RTX-5070-5060-5050-Laptops-Now-Ready-in-the-Market-146651",
+   "checked": "2026-10-25",
+   "note": "2025년 6월 OEM 안내로 RTX 5070 탑재 노트북의 2025년 판매는 확인됩니다. 전 세계 최초 판매 월·일은 확정하지 않아 연도만 표시합니다."
+  },
+  "date_nv5060_ann": {
+   "title": "NVIDIA · RTX 5060 제품군 발표",
+   "url": "https://nvidianews.nvidia.com/news/nvidia-blackwell-geforce-rtx-arrives-for-every-gamer-starting-at-299",
+   "checked": "2026-10-25",
+   "note": "2025-04-15 RTX 5060 Laptop GPU를 포함한 제품군 발표."
+  },
+  "date_nv5060_rel": {
+   "title": "NVIDIA · RTX 5060 노트북 판매 시작",
+   "url": "https://www.nvidia.com/en-us/geforce/news/rtx-5060-laptops-available-now/",
+   "checked": "2026-10-25",
+   "note": "2025-05-19 노트북 판매 시작. 데스크톱과 별도로 노트북 판매 공지를 확인했습니다."
+  },
+  "date_nv40m_ann": {
+   "title": "NVIDIA · CES 2023 노트북 발표",
+   "url": "https://blogs.nvidia.com/blog/gaming-creator-robotics-auto-ces/",
+   "checked": "2026-10-25",
+   "note": "2023-01-03 RTX 40 Laptop GPU 제품군 발표."
+  },
+  "date_nv40m_rel": {
+   "title": "NVIDIA · RTX 40 노트북 출시 일정",
+   "url": "https://www.nvidia.com/en-us/geforce/news/geforce-rtx-40-series-laptops-preorder-february-1/",
+   "checked": "2026-10-25",
+   "note": "RTX 4090/4080 노트북은 2023-02-08, RTX 4070/4060/4050 노트북은 02-22. 02-01 예약 주문과 구분합니다."
+  },
+  "date_amd_max": {
+   "title": "AMD · CES 2025 Ryzen AI Max 발표",
+   "url": "https://ir.amd.com/news-events/press-releases/detail/1232/amd-announces-expanded-consumer-and-commercial-ai-pc-portfolio-at-ces",
+   "checked": "2026-10-25",
+   "note": "2025-01-06 발표. 8060S 탑재 Ryzen AI Max 시스템은 Q1 2025 출시 안내이며 개별 OEM 판매일은 아닙니다."
+  },
+  "date_amd_300": {
+   "title": "AMD · Ryzen AI 300 발표",
+   "url": "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html",
+   "checked": "2026-10-25",
+   "note": "2024-06-02 Ryzen AI 300 플랫폼 발표. GPU 단독 제품의 소매 출시일은 없습니다."
+  },
+  "date_asus_890m": {
+   "title": "ASUS · Ryzen AI 300 노트북 판매 안내",
+   "url": "https://www.asus.com/us/news/c4t74rjrkcs9brzm/",
+   "checked": "2026-10-25",
+   "note": "2024-07-28 HX 370 탑재 시스템 판매 안내로 2024년 7월 판매를 확인합니다. GPU 독립 소매 출시일과 구분합니다. AMD 현재 사양 페이지의 2025년 표기는 이 공지와 맞지 않아 사용하지 않았습니다."
+  },
+  "date_amd_7040": {
+   "title": "AMD · Ryzen 7040 발표",
+   "url": "https://www.amd.com/en/newsroom/press-releases/2023-1-4-amd-extends-its-leadership-with-the-introduction-o.html",
+   "checked": "2026-10-25",
+   "note": "2023-01-04 Ryzen 7040 플랫폼 발표. 7840U 개별 SKU 발표일과는 구분합니다."
+  },
+  "date_amd_7840u": {
+   "title": "AMD · Ryzen 7 7840U 제품 사양",
+   "url": "https://www.amd.com/en/products/processors/laptop/ryzen/7000-series/amd-ryzen-7-7840u.html",
+   "checked": "2026-10-25",
+   "note": "Radeon 780M 탑재 대표 CPU Launch Date 2023-05-03. 모든 780M 탑재 시스템의 최초 판매일이 아닙니다."
+  },
+  "date_amd_6000": {
+   "title": "AMD · Ryzen 6000 발표",
+   "url": "https://www.amd.com/en/newsroom/press-releases/2022-1-4-amd-presents-latest-high-performance-computing-tec.html",
+   "checked": "2026-10-25",
+   "note": "2022-01-04 플랫폼 발표. Ryzen 6000 시스템은 2월부터라는 제조사 안내입니다."
+  },
+  "date_amd_9070": {
+   "title": "AMD · Radeon RX 9070 제품군 출시 발표",
+   "url": "https://newsroom.amd.com/news/amd-unveils-next-generation-amd-rdna-4-architectu/",
+   "checked": "2026-10-25",
+   "note": "2025-02-28 상세 제품·가격·출시 일정 공개. CES 아키텍처 예고와 구분하며 판매 시작은 03-06입니다."
+  },
+  "date_amd_7800": {
+   "title": "AMD · Radeon RX 7800 XT 발표",
+   "url": "https://ir.amd.com/news-events/press-releases/detail/1153/new-amd-radeon-rx-7800-xt-and-radeon-rx-7700-xt-graphics-cards-deliver-high-performance-visually-stunning-1440p-gaming-experiences-and-superior-performance-per-dollar",
+   "checked": "2026-10-25",
+   "note": "2023-08-25 발표와 09-06 판매 안내."
+  },
+  "date_amd_7600": {
+   "title": "AMD · Radeon RX 7600 발표",
+   "url": "https://www.amd.com/en/newsroom/press-releases/2023-5-24-amd-introduces-amd-radeon-rx-7600-graphics-card-f.html",
+   "checked": "2026-10-25",
+   "note": "2023-05-24 발표와 05-25 판매 안내."
   }
  },
  "views": [
@@ -3214,6 +4116,7 @@
    "label": "한눈에 보기",
    "keys": [
     "C",
+    "released",
     "F",
     "P",
     "S",
@@ -3237,6 +4140,8 @@
     "A",
     "B",
     "C",
+    "announced",
+    "released",
     "D",
     "E",
     "F",
@@ -3265,6 +4170,17 @@
    ]
   },
   {
+   "id": "dates",
+   "label": "발표·출시일",
+   "keys": [
+    "C",
+    "announced",
+    "released",
+    "H",
+    "E"
+   ]
+  },
+  {
    "id": "benchmarks",
    "label": "벤치마크",
    "keys": [
@@ -3290,7 +4206,8 @@
    ]
   }
  ],
- "evidence_summary": "원본 40개 GPU · Geekbench 69개 점수 · FP32 이론값 6개 보완",
+ "date_definition": "발표일은 공식 제품·상용 출시 발표 기준입니다. 제품군 공지·가격 공개 기준은 셀 메모에 표시하며 최초 아키텍처 예고와 다를 수 있습니다. 내장 GPU는 플랫폼 또는 대표 CPU 기준, 출시 안내와 실제 판매 공지를 구분합니다. 월·분기·연도 정밀도를 유지하며 원본 E열은 수정하지 않습니다.",
+ "evidence_summary": "원본 40개 GPU · 발표일 37개 · 출시 시기 40개 · Geekbench 69개 점수",
  "scroll_hint": "오른쪽으로 코어 구성·RT·AI 코어·클럭·공정 확인",
  "original_columns": [
   {
@@ -3323,10 +4240,11 @@
   },
   {
    "id": "E",
-   "label": "발표/출시일",
+   "label": "발표/출시일 · 시트 원본",
    "width": 110,
    "numeric": false,
-   "url": false
+   "url": false,
+   "source_label": "발표/출시일"
   },
   {
    "id": "F",

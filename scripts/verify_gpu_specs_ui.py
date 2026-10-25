@@ -22,6 +22,31 @@ def verify(base):
             assert not page.locator('.refresh-wrap').is_visible()
             general=page.locator('[data-gpu-specs="gpu_specs"]');ai=page.locator('[data-gpu-specs="nvidia_ai_specs"]')
             assert general.locator('tbody tr').count()==40
+            assert general.locator('thead th').nth(1).get_attribute('data-column')=='released'
+            assert general.locator('[data-row-id="gpu-sheet-17"] [data-column="released"] .cpu-specs-value').inner_text()=='2024-12-13'
+            out=ROOT/'tmp/gpu-specs-20261025';out.mkdir(parents=True,exist_ok=True)
+            general.screenshot(path=str(out/f'gpu-release-{width}.png'))
+            general.get_by_label('GPU 열 보기',exact=True).select_option('dates')
+            assert general.locator('[data-row-id="gpu-sheet-17"] [data-column="announced"] .cpu-specs-value').inner_text()=='2024-12-03'
+            assert general.locator('[data-row-id="gpu-sheet-22"] [data-column="released"] .cpu-specs-value').inner_text()=='2022-Q2'
+            assert general.locator('[data-row-id="gpu-sheet-35"] [data-column="released"] .cpu-specs-value').inner_text()=='2025-Q1 안내'
+            # Mixed month/quarter/year dates use calendar order; missing announcement dates stay last.
+            for field in ('released','announced'):
+                general.locator(f'thead [data-sort="{field}"]').click()
+                ordered=general.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.dataset.rowId)')
+                if field=='released':
+                    assert ordered.index('gpu-sheet-23')<ordered.index('gpu-sheet-22')<ordered.index('gpu-sheet-19')
+                else:
+                    assert set(ordered[-3:])=={'gpu-sheet-13','gpu-sheet-14','gpu-sheet-16'}
+                    general.locator(f'thead [data-sort="{field}"]').click()
+                    ordered=general.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.dataset.rowId)')
+                    assert set(ordered[-3:])=={'gpu-sheet-13','gpu-sheet-14','gpu-sheet-16'}
+            general.get_by_role('button',name='초기화',exact=True).click()
+            general.get_by_label('GPU 검색',exact=True).fill('Iris Graphics 6100')
+            general.get_by_role('button',name='Intel Iris Graphics 6100 상세 사양',exact=True).click()
+            assert '제품 발표 날짜를 특정할 제조사 근거 미확인' in general.locator('dialog').inner_text()
+            general.get_by_role('button',name='GPU 상세 닫기',exact=True).click()
+            general.get_by_role('button',name='초기화',exact=True).click()
             assert ai.get_by_label('AI 가속기 제품 단위',exact=True).input_value()=='GPU 모듈'
             def fixed_rows(card):
                 heights=card.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.getBoundingClientRect().height)')
@@ -52,7 +77,7 @@ def verify(base):
             general.get_by_role('button',name='초기화',exact=True).click()
             general.get_by_label('GPU 값 표시',exact=True).select_option('original')
             general.get_by_label('GPU 열 보기',exact=True).select_option('all')
-            actual=general.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].slice(0,26).map(cell=>cell.dataset.column==="C"?cell.querySelector("b").textContent:["Y","Z"].includes(cell.dataset.column)?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
+            actual=general.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].filter(cell=>/^[A-Z]$/.test(cell.dataset.column)).map(cell=>cell.dataset.column==="C"?cell.querySelector("b").textContent:["Y","Z"].includes(cell.dataset.column)?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
             expected=[[(v or '—') if i<24 else v for i,v in enumerate(row['source_values'])] for row in doc['rows']]
             assert actual==expected
             assert general.locator('.cpu-specs-added').count()==0

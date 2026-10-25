@@ -46,6 +46,7 @@ function renderCPUSpecs(doc) {
   const detailButton=row=>`<button type="button" class="cpu-row-details" data-row="${row.id}" aria-label="${esc(row.values[2])} 상세 사양">상세</button>`;
   const overview=[
     {key:'chip',label:'CPU · 제조사 / 용도',indices:[2,0,1,3,12],sort:2,width:184},
+    {key:'released',label:'출시일',indices:[6],sort:6,width:102},
     {key:'process',label:'파운드리·공정',indices:[7],sort:7,width:118},
     {key:'cores',label:'코어 / 스레드',indices:[23,8],sort:23,width:83},
     {key:'clock',label:'최대 클럭',indices:[10],sort:10,width:76},

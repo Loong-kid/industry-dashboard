@@ -1,6 +1,7 @@
 """Publish GPU comparisons without modifying the user's source-sheet values."""
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -22,14 +23,25 @@ def validate_sources(sources,reviewed):
             raise ValueError('Invalid GPU evidence')
 
 
-def build_gpu(raw,extra):
+def validate_date(cell):
+    value=cell['value']
+    precision=cell.get('precision')
+    patterns={'year':r'\d{4}','quarter':r'\d{4}-Q[1-4]','month':r'\d{4}-(?:0[1-9]|1[0-2])','day':r'\d{4}-\d{2}-\d{2}'}
+    if precision not in patterns or not re.fullmatch(patterns[precision],value):raise ValueError('Invalid GPU date precision')
+    if precision=='day':date.fromisoformat(value)
+    if not cell.get('basis') or cell.get('status') not in ('announcement','availability','vendor_launch','scheduled','year_only'):raise ValueError('Missing GPU date basis')
+
+
+def build_gpu(raw,extra,dates):
     headers=raw['values'][0]
     if len(headers)!=26 or headers[2]!='GPU 이름' or not headers[22].startswith('3DMark Time Spy'):
         raise ValueError('GPU source layout changed')
     keys=[chr(65+i) for i in range(26)]
     columns=[column(key,label,190 if i==2 else 170 if i in (7,8,23) else 110,numeric=i==22,url=i in (24,25)) for i,(key,label) in enumerate(zip(keys,headers))]
     columns[14].update(label='AI TOPS · 원본 정밀도 미검증',source_label=headers[14])
+    columns[4].update(label='발표/출시일 · 시트 원본',source_label=headers[4])
     columns += [column('gb7_opencl','GB7 · OpenCL',110,numeric=True),column('gb7_vulkan','GB7 · Vulkan',110,numeric=True)]
+    columns += [column('announced','발표일',110,date=True),column('released','출시일',124,date=True)]
     rows=[]
     for number,values in enumerate(raw['values'][1:],2):
         if not any(values):continue
@@ -45,14 +57,30 @@ def build_gpu(raw,extra):
         if cell['source'] not in extra['sources'] or not cell['note']:raise ValueError('Missing GPU evidence')
         if key.startswith('gb7_') and not re.fullmatch(r'\d+',cell['value']):raise ValueError('Invalid GPU score')
         row['reviews'][key]={k:cell[k] for k in ('value','source','note')}
+    validate_sources(dates['sources'],dates['reviewed'])
+    if set(dates['sources'])&set(extra['sources']):raise ValueError('Duplicate GPU source identifier')
+    seen=set()
+    for product in dates['products']:
+        row=byrow[product['row']]
+        if row['name']!=product['product'] or row['company']!=product['company'] or product['row'] in seen:raise ValueError('GPU date source row moved or duplicated')
+        seen.add(product['row'])
+        row['date_note']=product['unverified_announcement']
+        for key,cell in product['fields'].items():
+            if key not in ('announced','released') or cell['source'] not in dates['sources'] or not cell['note']:raise ValueError('Missing GPU date evidence')
+            validate_date(cell)
+            if (key=='announced')!=(cell['status']=='announcement'):raise ValueError('GPU date event mismatch')
+            row['reviews'][key]=cell
+    if seen!=set(byrow):raise ValueError('GPU date coverage changed')
     doc=base(raw,'gpu_specs','일반 GPU · 사양과 벤치마크',
         'Geekbench 7은 OpenCL·Vulkan을 각각 비교합니다. API·버전·드라이버가 다른 점수를 합치지 않습니다. Time Spy는 원본 시트의 대표·중앙값이며 재측정한 값이 아닙니다. 노트북 TGP·공유 메모리와 장치명별 집계 범위는 각 점수의 메모에서 확인하세요. 명확한 대응이 없는 점수는 빈칸입니다.')
-    doc.update(columns=columns,rows=rows,name_key='C',default_group='all',default_view='overview',sources=extra['sources'],updated=extra['reviewed'],
-        views=[dict(id='overview',label='한눈에 보기',keys=['C','F','P','S','T','W','gb7_opencl','gb7_vulkan','I','J','K','L','M','N','G']),
-               dict(id='all',label='전체 사양',keys=keys+['gb7_opencl','gb7_vulkan']),
+    doc.update(columns=columns,rows=rows,name_key='C',default_group='all',default_view='overview',sources={**extra['sources'],**dates['sources']},updated=max(extra['reviewed'],dates['reviewed']),
+        views=[dict(id='overview',label='한눈에 보기',keys=['C','released','F','P','S','T','W','gb7_opencl','gb7_vulkan','I','J','K','L','M','N','G']),
+               dict(id='all',label='전체 사양',keys=keys[:3]+['announced','released']+keys[3:]+['gb7_opencl','gb7_vulkan']),
+               dict(id='dates',label='발표·출시일',keys=['C','announced','released','H','E']),
                dict(id='benchmarks',label='벤치마크',keys=['C','B','W','gb7_opencl','gb7_vulkan','X']),
                dict(id='memory',label='메모리·전력',keys=['C','P','Q','R','S','T','H'])],
-        evidence_summary=f"원본 {len(rows)}개 GPU · Geekbench {sum(c['column'].startswith('gb7_') for c in extra['cells'])}개 점수 · FP32 이론값 {sum(c['column']=='N' for c in extra['cells'])}개 보완",
+        date_definition=dates['definition'],
+        evidence_summary=f"원본 {len(rows)}개 GPU · 발표일 {sum('announced' in r['reviews'] for r in rows)}개 · 출시 시기 {sum('released' in r['reviews'] for r in rows)}개 · Geekbench {sum(c['column'].startswith('gb7_') for c in extra['cells'])}개 점수",
         scroll_hint='오른쪽으로 코어 구성·RT·AI 코어·클럭·공정 확인',original_columns=columns[:26])
     return doc
 
@@ -123,7 +151,7 @@ def build_ai(raw,reviews):
 
 def main():
     read=lambda name:json.loads((ROOT/'manual'/name).read_text(encoding='utf8'))
-    for doc in [build_gpu(read('gpu_specs_sheet.json'),read('gpu_specs_supplements.json')),
+    for doc in [build_gpu(read('gpu_specs_sheet.json'),read('gpu_specs_supplements.json'),read('gpu_release_dates.json')),
                 build_ai(read('nvidia_ai_sheet.json'),read('nvidia_ai_reviews.json'))]:
         (ROOT/'data/semicon'/f"{doc['id']}.json").write_text(json.dumps(doc,ensure_ascii=False,indent=1)+'\n',encoding='utf8')
         print(doc['id'],len(doc['rows']),'products/profiles')
