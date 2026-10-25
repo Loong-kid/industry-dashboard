@@ -1,0 +1,34 @@
+name: update-equipment
+on:
+  schedule:
+    - cron: "30 23 * * *" # KST 08:30
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  equipment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - name: Validate financial definitions and fiscal periods
+        run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
+      - name: Refresh public SEC company accounts
+        run: python scripts/fetch_equipment_companies.py
+      - name: Validate published equipment history
+        run: python -m unittest discover -s scripts -p test_equipment_companies.py -v
+      - name: Commit equipment accounts only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/equipment_state.json data/semicon/company_lam_*.json data/semicon/company_amat_*.json data/semicon/company_kla_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh equipment company accounts"
+          git pull --rebase
+          git push

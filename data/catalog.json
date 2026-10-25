@@ -1748,30 +1748,76 @@
       "name": "반도체",
       "icon": "🔬",
       "default_range": "all",
-      "cadence": "CPU 5사(Intel·AMD·Arm·Qualcomm·Apple) 연결 매출·GAAP 영업이익·현금 CAPEX은 SEC 공개 구조화 공시를 매일 오전 8:20 확인하며 새 공시·정정을 반영합니다. CPU 사업·제품별 매출과 Qualcomm QTL은 SEC 공시 원문에서 이력을 수집하며 함께 자동 확인합니다. 기업별 그래프는 분기·연간을 선택할 수 있습니다. CPU 연간은 공시된 완결 회계연도, 메모리·파운드리·SSD 연간은 동일 기준 4개 분기를 모두 확보한 항목의 합계입니다. 메모리·파운드리·SSD 기업 실적은 공식 IR·공시에서 확인한 분기 스냅샷이며 새 발표 후 검토하여 수기 갱신한다. 회사별 결산일·통화·CAPEX 정의가 다르며 제품별 실적으로 분리되지 않는 항목은 연결 기준으로 표시한다. 한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 매출·영업이익·CAPEX는 2014년부터 DART 연결 재무제표를 검토한 분기 스냅샷이며 새 공시 후 갱신한다. 생산공시는 DART 정기보고서를 매일 확인하며 새 발표·정정을 반영한다. 생산실적은 장수·금액 공시 구간을 나누고, 생산능력의 연간·누적 기준을 구분한다. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다. AGC 전자부재 정리값·EUV 블랭크·DUV 기판 추정은 사용자 구글 시트에서 확인한 22개 분기를 반영하며, 시트 수정 후 요청 시 다시 반영한다. HOYA는 사용자 시트의 Electronics 공표 실적과 LSI·FPD·HDD 추정 매출을 실제 달력 분기에 맞춰 반영하며, LSI는 EUV·DUV를 포함한다.",
+      "cadence": "장비 3사(Lam Research·Applied Materials·KLA) 연결 매출·GAAP 기반 영업이익·CAPEX는 SEC 공개 구조화 공시를 매일 오전 8:30 확인합니다. Lam CAPEX는 무형자산을 포함하며 KLA 영업이익은 미공시 소계를 GAAP 항목으로 계산합니다. CPU 5사(Intel·AMD·Arm·Qualcomm·Apple) 연결 매출·GAAP 영업이익·현금 CAPEX은 SEC 공개 구조화 공시를 매일 오전 8:20 확인하며 새 공시·정정을 반영합니다. CPU 사업·제품별 매출과 Qualcomm QTL은 SEC 공시 원문에서 이력을 수집하며 함께 자동 확인합니다. 기업별 그래프는 분기·연간을 선택할 수 있습니다. CPU 연간은 공시된 완결 회계연도, 메모리·파운드리·SSD 연간은 동일 기준 4개 분기를 모두 확보한 항목의 합계입니다. 메모리·파운드리·SSD 기업 실적은 공식 IR·공시에서 확인한 분기 스냅샷이며 새 발표 후 검토하여 수기 갱신한다. 회사별 결산일·통화·CAPEX 정의가 다르며 제품별 실적으로 분리되지 않는 항목은 연결 기준으로 표시한다. 한국 관세청 무역통계는 전월분이 다음 달 12~15일경 확정된다. 일본 재무성 월별 품목·국가 상세통계는 다음 달 말경 공표되며, 2021년부터 월별 수출액·면적을 수집한다. 한국·일본 모두 매일 오전 7:30 자동 확인하며 새 발표·정정이 있으면 반영한다. 일본 HS는 반도체 전용이나 EUV 전용 분류가 아니며 금액은 엔화, 수량은 ㎡이다. 에스앤에스텍 매출·영업이익·CAPEX는 2014년부터 DART 연결 재무제표를 검토한 분기 스냅샷이며 새 공시 후 갱신한다. 생산공시는 DART 정기보고서를 매일 확인하며 새 발표·정정을 반영한다. 생산실적은 장수·금액 공시 구간을 나누고, 생산능력의 연간·누적 기준을 구분한다. ASML 노광기 판매 대수는 분기 실적(1·4·7·10월 중순) 발표자료에서 수기 추가(manual/asml_litho_units.csv). ASML 지역별 매출은 SEC 반기·연간보고서에서 자동 수집(새 보고서가 나오면 반영). 일본 3사 IR 지표는 분기 발표자료를 확인해 수기 갱신하며, HOYA LSI 성장률·AGC EUV 연간 금액과 상위 사업부 매출을 구분한다. AGC 전자부재 정리값·EUV 블랭크·DUV 기판 추정은 사용자 구글 시트에서 확인한 22개 분기를 반영하며, 시트 수정 후 요청 시 다시 반영한다. HOYA는 사용자 시트의 Electronics 공표 실적과 LSI·FPD·HDD 추정 매출을 실제 달력 분기에 맞춰 반영하며, LSI는 EUV·DUV를 포함한다.",
+      "material_categories": [
+        {"id": "equipment", "name": "장비", "default_tab": "equipment_summary"},
+        {"id": "components", "name": "부품", "default_tab": "snstech"},
+        {"id": "raw_materials", "name": "소재", "default_tab": "wafer"}
+      ],
       "tabs": [
         {
+          "id": "equipment_summary",
+          "name": "요약",
+          "category": "equipment",
+          "default_range": "all",
+          "description": "미국 장비 3사 Lam Research·Applied Materials·KLA의 연결 매출·영업이익·CAPEX를 나란히 봅니다. 2014년 이후 이력이며 그래프마다 분기·연간을 선택합니다. 회사별 회계 결산일을 유지하며, CAPEX는 장비 수주·고객 설비투자가 아닌 회사 자신의 투자 현금지출입니다. Lam은 무형자산을 포함하고, KLA의 미공시 영업이익 소계는 GAAP 매출·원가·영업비용으로 계산합니다. 매일 오전 8:30 새 SEC 공시·정정을 확인합니다."
+        },
+        {
           "id": "snstech",
-          "name": "포토마스크"
+          "name": "블랭크마스크",
+          "category": "components"
         },
         {
           "id": "esc",
-          "name": "정전척 ESC"
+          "name": "정전척 ESC",
+          "category": "components"
         },
         {
           "id": "mocvd",
           "name": "MOCVD",
+          "category": "equipment",
           "default_range": "all",
           "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → GaN 투자 → 공개된 발주·인도 기록 순서입니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다."
         },
         {
           "id": "wafer",
           "name": "실리콘 웨이퍼",
+          "category": "raw_materials",
           "default_range": "all",
           "description": "글로벌 출하 → 고객 재고 → 공급사 실적 → 증설·가동 흐름을 봅니다. 연간·분기·월간 주기와 현금/검수/발생 기준 CAPEX를 구분합니다."
         }
       ],
       "sections": [
+        {
+          "title": "Lam Research · LRCX · 실적",
+          "tab": "equipment_summary",
+          "layout": "financial",
+          "indicators": [
+            "company_lam_revenue",
+            "company_lam_profit",
+            "company_lam_capex"
+          ]
+        },
+        {
+          "title": "Applied Materials · AMAT · 실적",
+          "tab": "equipment_summary",
+          "layout": "financial",
+          "indicators": [
+            "company_amat_revenue",
+            "company_amat_profit",
+            "company_amat_capex"
+          ]
+        },
+        {
+          "title": "KLA · KLAC · 실적",
+          "tab": "equipment_summary",
+          "layout": "financial",
+          "indicators": [
+            "company_kla_revenue",
+            "company_kla_profit",
+            "company_kla_capex"
+          ]
+        },
         {
           "title": "DDR · 회사별 제품과 공정 사양",
           "tab": "memory",

@@ -126,6 +126,9 @@ html { scroll-padding-top: calc(var(--dashboard-header-height) + 16px); }
 .dashboard-header .semicon-groups { gap: 24px; border-bottom: 1px solid var(--border); }
 .dashboard-header .semicon-groups a { padding: 10px 2px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; font-size: 14px; }
 .dashboard-header .semicon-groups a.active { border-bottom-color: var(--accent); background: transparent; }
+.dashboard-header .semicon-categories { gap: 6px; }
+.dashboard-header .semicon-categories a { padding: 5px 18px; font-size: 13px; border: 1px solid transparent; }
+.dashboard-header .semicon-categories a.active { background: var(--surface); border-color: var(--border); color: var(--ink); }
 .semicon-material-row { display: flex; align-items: center; gap: 18px; padding: 8px 12px; background: var(--surface); border-left: 2px solid var(--border); min-width: 0; }
 .semicon-material-label { flex-shrink: 0; font-size: 11px; color: var(--muted); }
 @media (min-width: 1280px) {

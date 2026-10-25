@@ -2,7 +2,7 @@ name: publish-updated-data
 
 on:
   workflow_run:
-    workflows: [update-data, update-ppi, update-games, update-offshore, update-cpu]
+    workflows: [update-data, update-ppi, update-games, update-offshore, update-cpu, update-equipment]
     types: [completed]
     branches: [main]
   workflow_dispatch:

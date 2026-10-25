@@ -65,8 +65,10 @@ def save(path, value):
 
 def reference(fact, cik):
     accn = fact['accn']
-    return dict(url=fact.get('source_url') or f'https://www.sec.gov/Archives/edgar/data/{cik}/{accn.replace("-", "")}/{accn}-index.html',
+    ref=dict(url=fact.get('source_url') or f'https://www.sec.gov/Archives/edgar/data/{cik}/{accn.replace("-", "")}/{accn}-index.html',
                 filed=fact['filed'], start=fact['start'], end=fact['end'], tag=fact.get('source_tag',fact['tag']))
+    if fact.get('derivation'):ref.update(derivation=fact['derivation'],inputs=fact['inputs'])
+    return ref
 
 
 def parse_facts(payload, company, asof, tags_by_metric=None):
@@ -167,7 +169,7 @@ def parse_facts(payload, company, asof, tags_by_metric=None):
                     raise ValueError('Ambiguous fiscal quarter')
                 row[metric] = value/1e6
                 row['refs'][metric] = dict(refs[0], components=refs,
-                    calculation='reported quarter' if len(refs)==1 else 'same fiscal-year YTD minus prior YTD')
+                    calculation=('derived GAAP operating subtotal' if refs[0].get('derivation') else 'reported quarter') if len(refs)==1 else 'same fiscal-year YTD minus prior YTD'+(' · derived GAAP operating subtotals' if any(ref.get('derivation') for ref in refs) else ''))
     result = [r for _,r in sorted(rows.items()) if any(r.get(m) is not None for m in metrics)]
     if tags_by_metric is None:result=[r for r in result if r.get('revenue') is not None]
     if not result or (tags_by_metric is None and not all(any(r.get(m) is not None for r in result) for m in TAGS)):
@@ -194,7 +196,7 @@ def parse_annual(payload,company,asof,tags_by_metric=None):
         for end,fact in candidates.items():
             row=rows.setdefault(end,dict(date=end,year=int(end[:4]),refs={}))
             row[metric]=fact['val']/1e6
-            row['refs'][metric]=dict(reference(fact,company['cik']),components=[reference(fact,company['cik'])],calculation='reported annual')
+            row['refs'][metric]=dict(reference(fact,company['cik']),components=[reference(fact,company['cik'])],calculation='derived GAAP annual operating subtotal' if fact.get('derivation') else 'reported annual')
     return [r for _,r in sorted(rows.items())]
 
 
@@ -211,8 +213,8 @@ def annual_view(rows,fields,note):
                 updated=max(dates) if dates else '',description=note+' 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.')
 
 
-def build_company(key, cohort):
-    company = COMPANIES[key]
+def build_company(key, cohort, company=None):
+    company = company or COMPANIES[key]
     rows = cohort['rows']
     labels = {r['date']:f"FY{r['year']} Q{r['quarter']}" for r in rows}
     lookup = {(r['year'],r['quarter']):r['date'] for r in rows}
@@ -232,7 +234,7 @@ def build_company(key, cohort):
     docs = {}
     for metric,title in [('revenue','매출'),('profit','영업이익'),('capex','CAPEX')]:
         indicator = f'company_{key}_{metric}'
-        series_label = '연결 GAAP 영업이익' if metric=='profit' else company.get('capex_label','유형자산 현금취득') if metric=='capex' else '연결 매출'
+        series_label = company.get('profit_label','연결 GAAP 영업이익') if metric=='profit' else company.get('capex_label','유형자산 현금취득') if metric=='capex' else '연결 매출'
         refs = {r['date']:dict(url=r['refs'][metric]['url'], label=labels[r['date']],
             supporting_sources=[dict(url=ref['url'],label=ref['start']+' ~ '+ref['end']) for ref in r['refs'][metric]['components']],
             source_separator=' − ' if len(r['refs'][metric]['components'])==2 else ' / ') for r in rows if metric in r['refs']}
@@ -241,8 +243,8 @@ def build_company(key, cohort):
             frequency_label='분기 · SEC 공시',quarter_labels=True,period_labels=labels,comparison_dates=comparison,
             updated=latest['date'],fetched=cohort['fetched'],source='SEC · '+company['name']+' 공식 공시',
             source_url=latest['refs'][metric]['url'],description=company['scope']+'. '+{
-                'revenue':'회사 전체 연결 매출이며 CPU 단독 매출이 아닙니다. 인수·매각 등 연결 범위 변경을 포함합니다.',
-                'profit':'회사 전체 연결 GAAP 영업이익입니다. 조정 영업이익과 구분합니다.',
+                'revenue':company.get('revenue_description','회사 전체 연결 매출이며 CPU 단독 매출이 아닙니다. 인수·매각 등 연결 범위 변경을 포함합니다.'),
+                'profit':company.get('profit_description','회사 전체 연결 GAAP 영업이익입니다. 조정 영업이익과 구분합니다.'),
                 'capex':company.get('capex_description','현금흐름표의 유형자산 취득 현금지출입니다. 발표자료의 총·순 CAPEX와 기준이 다를 수 있습니다.')}[metric],
             series={series_label:[[date,by_date.get(date,{}).get(metric)] for date in sorted(axis)]},
             default_series=[series_label],span_gaps=False,point_sources=refs,table_limit=100,company_kpi=True,

@@ -64,15 +64,15 @@ def verify(base):
                                      ('#/semicon/materials/wafer',16,'실리콘 웨이퍼'),('#/semicon/wafer',16,'실리콘 웨이퍼')]:
                 open_route(route,count)
                 assert '소부장' in page.locator('#page-title').inner_text()
-                assert leaf in page.locator('#page-title').inner_text()
+                assert ('블랭크마스크' if leaf=='포토마스크' else leaf) in page.locator('#page-title').inner_text()
                 assert page.locator('.semicon-groups .active').inner_text()=='소부장'
-                assert page.locator('#page-tabs .commodity-tabs').count()==2
+                assert page.locator('#page-tabs .commodity-tabs').count()==3
             for route in ['#/semicon/materials/snstech/ir','#/semicon/snstech/ir']:
                 page.goto(base+route)
                 page.wait_for_selector('.pm-translation-body[aria-busy="false"]')
                 assert page.locator('.pm-periods button').count()==22
                 assert not page.locator('#range-picker').is_visible()
-                assert page.locator('.photomask-views [aria-current="page"]').get_attribute('href')=='#/semicon/materials/snstech/ir'
+                assert page.locator('.photomask-views [aria-current="page"]').get_attribute('href')=='#/semicon/materials/components/snstech/ir'
                 assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
                 assert page.locator('.dashboard-header').bounding_box()['height']<300
             assert not errors,errors
