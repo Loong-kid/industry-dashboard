@@ -75,6 +75,28 @@ const fs = require('node:fs');
       }
     }
     assert.equal(JSON.stringify(companies),beforeOriginals); // conversion never rewrites original amounts/provenance
+    for(const c of companies.filter(c=>c.rows.length))for(const key of ['revenue','operating_profit','net_income']){
+      const doc=m.companyMetricDocument(c,key,fx);
+      assert.equal(doc.unit,'백만 USD');
+      assert.equal(doc.span_gaps,false);
+      for(const kind of ['quarter','annual']){
+        const view=doc.series_views[kind],rows=c.rows.filter(r=>r.kind===kind);
+        for(const r of rows.filter(r=>Number.isFinite(r[key]))){
+          const point=Object.values(view.series).flat().find(p=>p[0]===r.date);
+          assert(point,`${c.id} ${key} ${kind} ${r.date}: omitted disclosure`);
+          assert.equal(point[1],m.usdAmount(r[key],c.currency,r,fx));
+          assert.equal(view.period_labels[r.date],r.period);
+          assert(view.point_notes[r.date].join(' ').includes(c.currency));
+          assert.equal(view.point_sources[r.date].url,r.refs[key].url);
+        }
+      }
+    }
+    assert.equal(m.companyMetricDocument(companies.find(c=>c.id==='netease'),'revenue',fx).default_view,'annual');
+    assert.deepEqual(m.companyMetricDocument(companies.find(c=>c.id==='sony_games'),'net_income',fx).series_views.annual.series,{});
+    const sparseDoc=m.companyMetricDocument({id:'sparse',name:'Sparse',currency:'USD',fiscal_start:4,rows:[{kind:'quarter',start:'2025-04-01',date:'2025-06-30',period:'FY2026 Q1',revenue:10},{kind:'quarter',start:'2025-10-01',date:'2025-12-31',period:'FY2026 Q3',revenue:20}]},'revenue',null);
+    assert.deepEqual(sparseDoc.series_views.quarter.series['매출'],[['2025-06-30',10],['2025-09-30',null],['2025-12-31',20]]);
+    assert.deepEqual(sparseDoc.series_views.annual.series,{}); // never fabricate annuals by summing/dividing available quarters
+    assert.equal(JSON.stringify(companies),beforeOriginals);
     const interval={kind:'quarter',start:'2026-01-01',date:'2026-03-31'},prior={...interval,start:'2025-01-01',date:'2025-03-31',revenue:140000};
     const fakeFx={periods:{'KRW|2026-01-01|2026-03-31':{currency:'KRW',start:interval.start,end:interval.date,local_per_usd:1500},'KRW|2025-01-01|2025-03-31':{currency:'KRW',start:prior.start,end:prior.date,local_per_usd:1400}}};
     assert.equal(m.usdAmount(-150000,'KRW',interval,fakeFx),-100); // losses retain their sign

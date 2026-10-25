@@ -2,6 +2,9 @@
 const palette = ["#2a78d6","#1baf7a","#eda100","#4a3aa7","#e34948","#008300","#e87ba4","#eb6834","#5597a5","#8b764e","#7c8a24","#795cb5"];
 const prefs = {grain:"month",metric:"share",from:"2020-01",to:"",steamGenre:"all",mobileGenre:"all",query:"",sort:"downloads_30d",country:"kr",kind:"topfreeapplications",appleDate:"",selected:"",paid:"all",page:0};
 const financePrefs = {month:"",store:"google_play",game:"",kind:"quarter",date:"",company:"",metric:"revenue",region:"all",role:"all",query:"",platform:"unity",platformMetric:"",complex:"exclude"};
+const companyCardViews=new Map();
+let companyPeriodChosen=false;
+const financialMetrics=[["revenue","매출"],["operating_profit","영업이익"],["net_income","순이익"]];
 const roleNames={game:"개발·퍼블리싱",engine:"엔진·개발 도구",store:"유통·스토어",ads:"광고·수익화",console:"콘솔",platform:"UGC 플랫폼"};
 const listingName=type=>({listed:"상장·공시 기업",private:"비상장",segment:"상장사 내 사업부"}[type]||"공개 자료 확인");
 const esc = v => String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -127,6 +130,33 @@ export function companySeries(rows,kind){
   for(let i=index(points[0]);i<=index(points.at(-1));i++)series.push({row:map.get(i),label:map.has(i)?`${map.get(i).period} (${map.get(i).date})`:kind==="annual"?`${i} (미확보)`:`${Math.floor(i/4)} Q${i%4+1} (미확보)`});
   return series;
 }
+// Adapt preserved original accounts to the common dashboard's financial cards.
+// Annuals always come from annual disclosures; incomplete quarters stay missing.
+export function companyMetricDocument(company,metric,fx){
+  const label=financialMetrics.find(([key])=>key===metric)?.[1]||metric;
+  const views={};
+  for(const kind of ["quarter","annual"]){
+    const rows=company.rows.filter(r=>r.kind===kind).sort((a,b)=>a.date.localeCompare(b.date));
+    const points=companySeries(rows,kind),dates=points.map(p=>{
+      if(p.row)return p.row.date;
+      const year=Number(p.label.slice(0,4)),month=kind==="annual"?((company.fiscal_start||1)+10)%12+1:Number(p.label.match(/Q(\d)/)?.[1]||1)*3;
+      return new Date(Date.UTC(year,month,0)).toISOString().slice(0,10);
+    });
+    const present=rows.some(r=>Number.isFinite(r[metric]));
+    const latest=rows.at(-1),ref=latest?.refs?.[metric]||latest?.refs?.revenue;
+    const period_labels=Object.fromEntries(points.map((p,i)=>[dates[i],p.row?.period||p.label]));
+    const point_notes=Object.fromEntries(rows.map(r=>[r.date,moneyMemo(r[metric],company.currency,r,fx)]));
+    const point_sources=Object.fromEntries(rows.filter(r=>r.refs?.[metric]).map(r=>[r.date,{url:r.refs[metric].url,label:`${r.period} · ${calculationName(r.refs[metric].calculation)}`} ]));
+    views[kind]={label:kind==="quarter"?"분기":"연간",frequency:kind==="quarter"?"quarterly":"yearly",frequency_label:kind==="quarter"?"분기 단독":"연간 · 회사 회계연도",quarter_labels:kind==="quarter",year_labels:kind==="annual",annual_axis:kind==="annual",updated:latest?.date||company.checked,
+      series:present?{[label]:points.map((p,i)=>[dates[i],usdAmount(p.row?.[metric],company.currency,p.row,fx)])}:{},period_labels,point_notes,point_sources,source_url:ref?.url||company.url,
+      comparison_dates:Object.fromEntries(rows.map(r=>{const i=dates.indexOf(r.date);return [r.date,{year_ago:rows.find(p=>p.date===`${Number(r.date.slice(0,4))-1}${r.date.slice(4)}`)?.date,quarter_ago:kind==="quarter"?dates[i-1]:null}];})),
+      quarterly_revenue_summary:kind==="quarter"&&metric==="revenue",quarterly_profit_summary:kind==="quarter"&&metric!=="revenue",change_mode:"none",
+      empty_message:`${company.name}의 ${kind==="quarter"?"분기 단독":"연간"} ${label} 공시 자료 미확보. ${company.rows.some(r=>r.kind!==kind&&Number.isFinite(r[metric]))?`${kind==="quarter"?"연간":"분기"} 탭에서 확보된 자료를 확인할 수 있습니다.`:"확보된 분기·연간 공시에서 이 지표의 금액을 확인하지 못했습니다."} 미확보 금액은 0으로 표시하지 않습니다.`};
+  }
+  return {id:`game-${company.id}-${metric}`,name:`${company.name} · ${label}`,unit:"백만 USD",full_range:true,company_kpi:true,span_gaps:false,zero_baseline:true,source:"공식 공시·IR",default_series:[label],series_colors:{[label]:palette[financialMetrics.findIndex(([key])=>key===metric)]},
+    description:metric==="net_income"?`순이익 기준: ${company.net_income_basis||"공시 계정 기준"}`:"USD 기준 · 금액에 마우스를 올리거나 누르면 원통화·평균환율 표시",
+    fetched:company.fetched||company.checked,table_limit:100,default_view:company.rows.some(r=>r.kind==="quarter")?"quarter":"annual",series_views:views};
+}
 export function directoryRows(companies,{region="all",role="all",query=""}={}){
   const text=query.trim().toLowerCase();
   return companies.filter(c=>(region==="all"||c.region===region)&&(role==="all"||c.roles?.includes(role))&&`${c.name} ${c.brands} ${(c.aliases||[]).join(" ")} ${c.country} ${c.scope}`.toLowerCase().includes(text));
@@ -143,9 +173,9 @@ export function platformMetrics(platforms,id){
 const financialStatus = c => c.status==="ok"?"자동 수집 정상":c.status?.startsWith("reviewed public IR")?"공개 IR 원문 대조 · 수기 갱신":c.status?.includes("OpenDART key/index unavailable")?"자동 수집 미완료 · 기존 자료 유지":"일부 요청 실패 · 기존 성공 자료 유지";
 const calculationName = text => ({"reported annual":"연간 공시","reported quarter":"분기 공시","YTD minus previous YTD":"누적 차감","annual minus nine months":"연간−9개월","reported quarter · rounded official IR":"공식 발표 반올림"}[text]||text||"");
 
-export function mount(root,{view="overview",tabsRoot}={}){
-  const abort=new AbortController();let renderEvents=new AbortController(),alive=true, charts=[],data=null;
-  const destroy=()=>{charts.forEach(c=>c.destroy());charts=[];};
+export function mount(root,{view="overview",tabsRoot,createFinancialCard}={}){
+  const abort=new AbortController();let renderEvents=new AbortController(),alive=true, charts=[],financialCards=[],data=null;
+  const destroy=()=>{financialCards.forEach(c=>c.destroy());financialCards=[];charts.forEach(c=>c.destroy());charts=[];};
   const on=(selector,event,fn)=>root.querySelector(selector)?.addEventListener(event,fn,{signal:renderEvents.signal});
   const select=(selector,key)=>on(selector,"change",e=>{prefs[key]=e.target.value;prefs.page=0;render();});
   const status=document.createElement("p");status.className="page-loading";status.textContent="게임 시장 공개 데이터 불러오는 중…";root.append(status);
@@ -180,14 +210,12 @@ export function mount(root,{view="overview",tabsRoot}={}){
     let active=null;
     const hide=()=>{active?.removeAttribute("aria-describedby");active=null;tip.hidden=true;};
     const show=button=>{hide();active=button;tip.textContent=button.dataset.moneyNote;tip.hidden=false;button.setAttribute("aria-describedby",tip.id);const r=button.getBoundingClientRect();tip.style.left=`${Math.max(12,Math.min(r.left,innerWidth-tip.offsetWidth-12))}px`;tip.style.top=`${Math.max(12,r.bottom+tip.offsetHeight+12>innerHeight?r.top-tip.offsetHeight-8:r.bottom+8)}px`;};
-    root.querySelectorAll(".gm-money").forEach(button=>{
-      const opts={signal:renderEvents.signal};
-      button.addEventListener("mouseenter",()=>show(button),opts);
-      button.addEventListener("mouseleave",()=>{if(document.activeElement!==button)hide();},opts);
-      button.addEventListener("focus",()=>show(button),opts);
-      button.addEventListener("blur",hide,opts);
-      button.addEventListener("click",()=>show(button),opts);
-    });
+    const opts={signal:renderEvents.signal};
+    root.addEventListener("mouseover",e=>{const button=e.target.closest(".gm-money");if(button&&!button.contains(e.relatedTarget))show(button);},opts);
+    root.addEventListener("mouseout",e=>{const button=e.target.closest(".gm-money");if(button&&!button.contains(e.relatedTarget)&&document.activeElement!==button)hide();},opts);
+    root.addEventListener("focusin",e=>{const button=e.target.closest(".gm-money");if(button)show(button);},opts);
+    root.addEventListener("focusout",e=>{if(e.target.closest(".gm-money"))hide();},opts);
+    root.addEventListener("click",e=>{const button=e.target.closest(".gm-money");if(button)show(button);},opts);
     root.addEventListener("keydown",e=>{if(e.key==="Escape")hide();},{signal:renderEvents.signal});
     document.addEventListener("pointerdown",e=>{if(!e.target.closest(".gm-money"))hide();},{signal:renderEvents.signal});
     window.addEventListener("scroll",()=>{if(!active)return;const r=active.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight||r.right<0||r.left>innerWidth)hide();else show(active);},{signal:renderEvents.signal,passive:true,capture:true});
@@ -301,52 +329,42 @@ export function mount(root,{view="overview",tabsRoot}={}){
   }
   function renderCompanies(){
     const financials=data.companies;if(!financials){root.innerHTML=missing("게임사 실적");return;}
-    const companies=financials.companies.filter(c=>c.rows.length&&(financePrefs.complex==="include"||c.compare_default!==false));
-    const dates=[...new Set(companies.flatMap(c=>c.rows.filter(r=>r.kind===financePrefs.kind).map(r=>r.date)))].sort().reverse();
+    const directory=directoryRows(financials.companies,financePrefs),companies=directory.filter(c=>c.rows.length),metrics=financialMetrics;
+    const regions=[...new Set(financials.companies.map(c=>c.region))].sort(),kind=financePrefs.kind;
+    const comparable=companies.filter(c=>financePrefs.complex==="include"||c.compare_default!==false);
+    const dates=[...new Set(comparable.flatMap(c=>c.rows.filter(r=>r.kind===kind).map(r=>r.date)))].sort().reverse();
     if(!dates.includes(financePrefs.date))financePrefs.date=dates[0]||"";
-    if(!companies.some(c=>c.id===financePrefs.company))financePrefs.company=companies.find(c=>c.rows.some(r=>r.kind===financePrefs.kind&&r.date===financePrefs.date))?.id||companies[0]?.id;
-    const {kind,date:chosenDate,company:chosenCompany,metric}=financePrefs;
-    const selected=companies.find(c=>c.id===chosenCompany);
-    const metrics=[["revenue","매출"],["operating_profit","영업이익"],["net_income","순이익"]],metricName=metrics.find(([id])=>id===metric)[1];
-    const value=(c,r,key)=>usdAmount(r?.[key],c.currency,r,data.fx);
-    const money=(c,r,key,suffix="")=>usdMoney(r?.[key],c?.currency,r,data.fx,suffix);
-    const ordered=companies.map(c=>({c,r:c.rows.find(r=>r.kind===kind&&r.date===chosenDate)})).sort((a,b)=>(value(b.c,b.r,metric)??-Infinity)-(value(a.c,a.r,metric)??-Infinity));
-    const measured=ordered.filter(p=>value(p.c,p.r,metric)!=null);
-    const history=selected?.rows.filter(r=>r.kind===kind)||[],series=companySeries(history,kind);
-    const unit="백만 USD",margin=r=>r?.operating_profit!=null&&r.revenue>0?r.operating_profit/r.revenue*100:null;
-    const detail=history.find(r=>r.date===chosenDate),ref=r=>r?.refs?.revenue||Object.values(r?.refs||{})[0];
-    const dateLabel=d=>kind==="annual"?`${d} 결산 연간`:`${d} 종료 분기`;
-    const directory=directoryRows(financials.companies,financePrefs),regions=[...new Set(financials.companies.map(c=>c.region))].sort();
+    const value=(c,r,key)=>usdAmount(r?.[key],c.currency,r,data.fx),money=(c,r,key)=>usdMoney(r?.[key],c.currency,r,data.fx);
+    const margin=r=>r?.operating_profit!=null&&r.revenue>0?r.operating_profit/r.revenue*100:null;
+    const ref=r=>r?.refs?.revenue||Object.values(r?.refs||{})[0];
     const latest=c=>c.rows.at(-1);
+    const ordered=comparable.map(c=>({c,r:c.rows.find(r=>r.kind===kind&&r.date===financePrefs.date)})).sort((a,b)=>(value(b.c,b.r,"revenue")??-Infinity)-(value(a.c,a.r,"revenue")??-Infinity));
     const growth=(c,r)=>{const usd=usdGrowth(c,r,data.fx),original=companyGrowth(c.rows,r);return usd==null?"—":memoValue(`${delta(usd)}%`,[`USD 기준 매출 YoY: ${delta(usd)}%`,`원통화 ${c.currency} 기준 YoY: ${original==null?"미확보":delta(original)+"%"}`,"각 비교 기간의 평균환율 적용 · 환율 변동 영향 포함"]);};
-    root.innerHTML=header("세계 게임사와 플랫폼의 실적","국내·해외 업체의 매출과 이익을 USD로 비교합니다. 원통화와 실제 실적 기간은 보존하며, 비상장사도 공개 지표가 있으면 목록에 포함합니다.")+
-      stats([["관측 업체",`${financials.companies.length}곳`,`${new Set(financials.companies.map(c=>c.country)).size}개 국가 · 공시 이력 ${financials.companies.filter(c=>c.rows.length).length}곳`],["해외 업체",`${financials.companies.filter(c=>c.country!=="한국").length}곳`,"미국·일본·중국·유럽·동남아 등"],["비상장 플랫폼",`${financials.companies.filter(c=>c.listing==="private"&&c.platform_id).length}곳`,"Epic Games · Valve/Steam 공개 사업 지표"]])+
-      panel("전체 업체 목록",`<div class="gm-toolbar"><label>지역<select id="gm-directory-region">${options([["all","전 세계"],...regions.map(r=>[r,r])],financePrefs.region)}</select></label><label>사업<select id="gm-directory-role">${options([["all","모든 사업"],...Object.entries(roleNames)],financePrefs.role)}</select></label><label>업체·IP 검색<input id="gm-directory-query" type="search" value="${esc(financePrefs.query)}" placeholder="Nintendo, Unity, Unreal, Steam…"></label></div>`+
-        note(`${directory.length}곳 표시 · 금액 단위: 백만 USD. 업체별 최근 보유 실적이므로 연간·분기와 결산일이 다를 수 있습니다. 금액에 마우스를 올리거나 누르면 원통화와 환산 근거가 나옵니다.`)+
-        table(["업체·지역","사업·공개 범위","최근 보유 실적","매출 (USD)","영업이익 (USD)","보기"],directory.map(c=>{const r=latest(c);return [
-          `${esc(c.name)}<small>${esc(c.country)} · ${listingName(c.listing)}${c.listing_url?` · ${link(c.listing_url,"전환 근거")}`:""}</small>`,`${esc(c.roles?.map(r=>roleNames[r]).join(" · ")||"")}<small>${esc(c.scope||c.brands)}</small>`,r?`${esc(r.period)}<small>${r.date} 종료 · ${r.kind==="annual"?"연간":"분기"}</small>`:"정기 손익 미확보",r?money(c,r,"revenue"):"미공개",r?money(c,r,"operating_profit"):"미공개",r?`<button data-company-open="${esc(c.id)}">실적 보기</button>`:c.platform_id?`<button data-platform-open="${esc(c.platform_id)}">공개 지표 보기</button>`:"미확보"
-        ];})))+
-      `<div id="gm-financial-comparison"></div>`+
-      `<div class="gm-toolbar"><label>기간<select id="gm-fin-kind">${options([["quarter","분기 단독"],["annual","회계연도 연간"]],kind)}</select></label><label>결산일<select id="gm-fin-date">${options(dates.map(d=>[d,dateLabel(d)]),chosenDate)}</select></label><label>비교 지표<select id="gm-fin-metric">${options(metrics,metric)}</select></label><label>복합기업<select id="gm-fin-complex">${options([["exclude","Microsoft·Sea·Tencent 제외"],["include","Microsoft·Sea·Tencent 포함"]],financePrefs.complex)}</select></label><button id="gm-export">CSV 내려받기</button></div>`+
-      note(`금액 단위: ${unit}. 결산일이 같은 분기·연간 실적을 실제 실적 기간의 평균환율로 환산합니다. USD 공시 금액은 그대로 사용합니다. EA·Take-Two 등은 3월 결산으로 FY와 달력 연도가 다릅니다. ${financials.companies.length}개 회사 추적 · 자동 자료 확인 ${esc(financials.checked)}.`)+
-      panel(`${chosenDate||"미확보"} · ${metricName} 비교`,`<div class="gm-chart"><canvas id="gm-company-compare" role="img" aria-label="USD 기준 같은 결산일의 게임사 실적 비교"></canvas></div>`+table(["게임사·주요 브랜드","매출 (USD)","영업이익 (USD)","순이익 (USD)","영업이익률","매출 YoY (USD)","기간·출처"],ordered.map(({c,r})=>[
-        `<button class="gm-company-pick" data-company="${esc(c.id)}" ${c.id===chosenCompany?'aria-pressed="true"':'aria-pressed="false"'}>${esc(c.name)}</button><small>${esc(c.brands)}</small>`,money(c,r,"revenue"),money(c,r,"operating_profit"),money(c,r,"net_income"),margin(r)==null?"—":`${num(margin(r),1)}%`,r?growth(c,r):"—",r?`${esc(r.period)}<small>${link(ref(r)?.url,`${ref(r)?.filed||""} 공시·발표`)}</small>`:`미확보<small>최근 보유: ${esc(c.rows.filter(p=>p.kind===kind).at(-1)?.date||"없음")}</small>`]))+note("YoY는 USD 기준으로 환율 영향이 포함됩니다. 증가율을 누르면 원통화 기준 YoY도 확인할 수 있습니다. 영업이익률은 원통화 비율과 같습니다. 미공개·수집 누락·환율 미확보는 0으로 채우지 않습니다. 인수·매각·회계 변경과 순이익 범위는 원문을 확인하세요."))+
-      panel(`${esc(selected?.name||"회사 선택")} · 실적 추이`,`<div class="gm-toolbar"><label>상세 회사<select id="gm-fin-company">${options(companies.map(c=>[c.id,c.name]),chosenCompany)}</select></label></div>`+
-        stats([["선택 기간 매출",money(selected,detail,"revenue"),`${chosenDate||"미확보"} · ${unit}`],["영업이익",money(selected,detail,"operating_profit"),`${unit} · 영업이익률 ${margin(detail)==null?"—":num(margin(detail),1)+"%"}`],["순이익",money(selected,detail,"net_income"),`${unit} · 회계상 이익`]])+
-        note(`${esc(selected?.scope||selected?.brands||"")} · 순이익 기준: ${esc(selected?.net_income_basis||"공시 계정 기준")} · ${history.length}개 ${kind==="quarter"?"분기":"연간"} 관측 · FY는 결산연도 기준입니다. ${esc(financialStatus(selected||{}))} ${selected?.fetched?`· 마지막 수집/원문 대조 ${esc(selected.fetched)}`:""}`)+
-        `<div class="gm-chart gm-chart-tall"><canvas id="gm-company-history" role="img" aria-label="선택 회사의 매출 영업이익 순이익 추이"></canvas></div>`+
-        table(["실적 기간","매출 (USD)","영업이익 (USD)","순이익 (USD)","영업이익률","계산·출처"],history.slice(-16).reverse().map(r=>[`${esc(r.period)}<small>${r.start} ~ ${r.date}</small>`,money(selected,r,"revenue"),money(selected,r,"operating_profit"),money(selected,r,"net_income"),margin(r)==null?"—":`${num(margin(r),1)}%`,`${esc(calculationName(ref(r)?.calculation))}<small>${link(ref(r)?.url,`${ref(r)?.filed||""} 원문`)}</small>`]))+note("단위: 백만 USD. 표는 최근 16개 기간, CSV는 비교 대상 업체의 선택 기간 유형 전체 이력입니다. 원통화 공시의 3개월 값을 우선 사용하고 필요한 경우 같은 FY의 연간−9개월로 분기를 계산한 뒤 환산합니다. 연간을 4로 나누지 않습니다."))+
-      panel("환산 기준",note(`${link(data.fx?.source_page||"https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html","ECB 공개 일별 기준환율")} · 각 실적 시작일~종료일의 고시일마다 원통화/EUR ÷ USD/EUR을 구하고, 그 일별 원통화/USD의 산술평균으로 원금액을 나눕니다. 주말·휴일은 추가하지 않습니다. 연간은 해당 회계연도 전체 고시일 평균이며 분기 평균을 단순 평균하지 않습니다. 원통화가 USD이면 재환산하지 않습니다. 환산액은 비교용이며 회사가 공시한 USD 실적과 차이가 날 수 있습니다. 연간 환산액과 각 분기 환산액의 합도 평균환율 차이로 일치하지 않을 수 있습니다.`)+note(`환율 조회: ${esc(data.fx?.fetched||"미확보")} · ${Object.keys(data.fx?.periods||{}).length}개 기간 · 미확보 ${data.fx?.missing?.length??"확인 필요"}개${data.fx?.status!=="ok"?" · 최근 수집 불완전: 기존 확보 기간을 유지하고 새 미확보 기간은 표시하지 않습니다.":""}`))+
-      panel("게임별 추정 매출과 함께 읽기",note(`비상장사와 비공개 타이틀의 매출·이익을 모두 확보할 수는 없습니다. ${link("#/games/revenue","게임별 매출")}에서 공개된 스토어 추정치와 공식 타이틀 매출을 확인하세요. 스토어 추정치의 퍼블리셔별 소계와 이 화면의 연결 매출은 범위와 인식 기준이 달라 합산하지 않습니다.`));
-    financeSelect("#gm-fin-kind","kind");financeSelect("#gm-fin-date","date");financeSelect("#gm-fin-metric","metric");financeSelect("#gm-fin-company","company");financeSelect("#gm-fin-complex","complex");
-    financeSelect("#gm-directory-region","region");financeSelect("#gm-directory-role","role");
+    root.innerHTML=header("세계 게임사와 플랫폼의 실적","기업별 매출·영업이익·순이익을 같은 카드 구성으로 봅니다. 각 그래프에서 분기/연간을 바꿀 수 있습니다.")+
+      `<div class="gm-toolbar"><label>지역<select id="gm-directory-region">${options([["all","전 세계"],...regions.map(r=>[r,r])],financePrefs.region)}</select></label><label>사업<select id="gm-directory-role">${options([["all","모든 사업"],...Object.entries(roleNames)],financePrefs.role)}</select></label><label>업체·IP 검색<input id="gm-directory-query" type="search" value="${esc(financePrefs.query)}" placeholder="Nintendo, Unity, Unreal, Steam…"></label><label>전체 차트 기간<select id="gm-fin-kind">${options([["quarter","분기"],["annual","연간"]],kind)}</select></label><button id="gm-export">CSV 내려받기</button></div>`+
+      note(`${directory.length}곳 표시 / 전체 ${financials.companies.length}곳 · 금액 단위: 백만 USD. 금액에 마우스를 올리거나 누르면 원통화·평균환율을 확인할 수 있습니다. ${!companyPeriodChosen?"처음에는 분기를 표시하며, 분기 자료가 없는 업체는 연간을 표시합니다. ":""}FY는 결산연도 기준이며 미확보 기간은 연결하거나 0으로 채우지 않습니다.`)+
+      `<div id="gm-company-cards">${directory.length?directory.map(c=>`<section class="gm-company-section" id="gm-company-${esc(c.id)}" data-company-id="${esc(c.id)}" aria-labelledby="gm-company-heading-${esc(c.id)}"><h3 class="section-title" id="gm-company-heading-${esc(c.id)}">${esc(c.name)} <span>${esc(c.country)} · ${listingName(c.listing)}</span></h3>${note(`${esc(c.scope||c.brands)}${c.listing_url?` · ${link(c.listing_url,"소유·상장 상태 근거")}`:""}${c.platform_id?` · <button class="gm-platform-link" data-platform-open="${esc(c.platform_id)}">플랫폼 공개 지표</button>`:""}`)}${c.rows.length?`<div class="grid financial-grid gm-company-grid" data-company-grid="${esc(c.id)}"></div>${note(`${esc(financialStatus(c))} · 마지막 수집/원문 대조 ${esc(c.fetched||c.checked)} · 각 카드의 ‘표 보기’에서 기간별 수치와 공시 원문을 확인할 수 있습니다.`)}`:note("정기 손익 자료 미확보. 플랫폼 공개 지표에서 확인 가능한 이용량·거래액 등을 볼 수 있습니다.")}</section>`).join(""):note("조건에 맞는 업체가 없습니다. 지역·사업 또는 검색어를 바꿔 주세요.")}</div>`+
+      `<details class="gm-financial-reference"><summary>업체 목록·최근 실적 표</summary>${note("업체별 최근 보유 기간이므로 분기·연간 및 결산일이 다를 수 있습니다. 금액 단위: 백만 USD.")}${table(["업체·지역","최근 보유 실적","매출 (USD)","영업이익 (USD)","순이익 (USD)","보기"],directory.map(c=>{const r=latest(c);return [`${esc(c.name)}<small>${esc(c.country)}</small>`,r?`${esc(r.period)}<small>${r.start} ~ ${r.date}</small>`:"정기 손익 미확보",r?money(c,r,"revenue"):"미확보",r?money(c,r,"operating_profit"):"미확보",r?money(c,r,"net_income"):"미확보",r?`<button data-company-open="${esc(c.id)}">그래프로 이동</button>`:c.platform_id?`<button data-platform-open="${esc(c.platform_id)}">공개 지표 보기</button>`:"미확보"];}))}</details>`+
+      `<details class="gm-financial-reference" id="gm-financial-comparison"><summary>같은 결산일의 실적 비교표</summary><div class="gm-toolbar"><label>결산일<select id="gm-fin-date">${options(dates.map(d=>[d,`${d} 종료 · ${kind==="quarter"?"분기":"연간"}`]),financePrefs.date)}</select></label><label>비교표의 복합기업<select id="gm-fin-complex">${options([["exclude","Microsoft·Sea·Tencent 제외"],["include","Microsoft·Sea·Tencent 포함"]],financePrefs.complex)}</select></label></div>`+
+      table(["게임사","매출 (USD)","영업이익 (USD)","순이익 (USD)","영업이익률","매출 YoY (USD)","기간·출처"],ordered.map(({c,r})=>[`<button class="gm-company-pick" data-company-open="${esc(c.id)}">${esc(c.name)}</button>`,money(c,r,"revenue"),money(c,r,"operating_profit"),money(c,r,"net_income"),margin(r)==null?"—":`${num(margin(r),1)}%`,r?growth(c,r):"—",r?`${esc(r.period)}<small>${link(ref(r)?.url,`${ref(r)?.filed||""} 공시·발표`)}</small>`:"미확보"]))+note("지역·사업·검색과 전체 차트 기간을 적용한 비교표입니다. USD 기준 YoY는 환율 변동 영향을 포함하며, 메모에 원통화 YoY도 함께 표시합니다. 복합기업 제외는 이 비교표에만 적용합니다.")+`</details>`+
+      `<details class="gm-financial-reference"><summary>USD 환산 기준·자료 범위</summary>`+
+      note(`${link(data.fx?.source_page||"https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html","ECB 공개 일별 기준환율")} · 각 분기·회계연도 실제 실적 기간의 일별 원통화/USD 평균으로 환산합니다. USD 공시 금액은 그대로 사용하며, 연간은 분기 평균을 단순 평균하지 않습니다. 환율 차이로 연간 환산액과 각 분기 환산액의 합은 다를 수 있습니다. 미확보 환율·실적은 0으로 채우지 않습니다.`)+
+      note(`환율 조회 ${esc(data.fx?.fetched||"미확보")} · ${Object.keys(data.fx?.periods||{}).length}개 기간 · 미확보 ${data.fx?.missing?.length??"확인 필요"}개. CSV는 현재 지역·사업·검색에 해당하는 업체의 선택 기간 유형 전체 이력을 원통화·USD·환산 근거와 함께 제공합니다. 공시된 3개월 값을 우선 사용하고 필요한 경우 같은 FY의 연간−9개월 등으로 분기를 계산한 뒤 환산합니다. 연간을 4로 나누지 않습니다.`)+`</details>`;
+    for(const c of companies){
+      const grid=root.querySelector(`[data-company-grid="${c.id}"]`);
+      for(const [metric] of metrics){
+        const doc=companyMetricDocument(c,metric,data.fx),id=doc.id;
+        const card=createFinancialCard(doc,id,{view:companyCardViews.get(id)||(companyPeriodChosen?kind:doc.default_view),onViewChange:value=>companyCardViews.set(id,value)});
+        card.element.dataset.companyMetric=metric;grid.append(card.element);financialCards.push(card);
+      }
+    }
+    on("#gm-fin-kind","change",e=>{financePrefs.kind=e.target.value;companyPeriodChosen=true;companyCardViews.clear();render();});
+    financeSelect("#gm-fin-date","date");financeSelect("#gm-fin-complex","complex");financeSelect("#gm-directory-region","region");financeSelect("#gm-directory-role","role");
     on("#gm-directory-query","input",e=>{const pos=e.target.selectionStart;financePrefs.query=e.target.value;render();const input=root.querySelector("#gm-directory-query");input.focus();input.setSelectionRange(pos,pos);});
-    root.querySelectorAll("[data-company-open]").forEach(button=>button.addEventListener("click",()=>{const c=financials.companies.find(c=>c.id===button.dataset.companyOpen),r=latest(c);Object.assign(financePrefs,{company:c.id,kind:r.kind,date:r.date,complex:c.compare_default===false?"include":financePrefs.complex});render();root.querySelector("#gm-financial-comparison").scrollIntoView({block:"start"});},{signal:renderEvents.signal}));
+    root.querySelectorAll("[data-company-open]").forEach(button=>button.addEventListener("click",()=>{const section=root.querySelector(`#gm-company-${button.dataset.companyOpen}`);section.scrollIntoView({block:"start"});section.querySelector("button")?.focus({preventScroll:true});},{signal:renderEvents.signal}));
     bindPlatformButtons();
-    root.querySelectorAll("[data-company]").forEach(button=>button.addEventListener("click",()=>{financePrefs.company=button.dataset.company;render();root.querySelector("#gm-fin-company").focus();},{signal:renderEvents.signal}));
     on("#gm-export","click",()=>download(`game-companies-USD-${kind}.csv`,["company","kind","period","start","end","revenue_usd_millions","operating_profit_usd_millions","net_income_usd_millions","original_currency","original_unit","original_revenue","original_operating_profit","original_net_income","operating_margin_pct","revenue_YoY_usd_pct","revenue_YoY_original_pct","fx_local_per_usd","fx_method","fx_observations","fx_first","fx_last","fx_fetched","fx_source","revenue_source","operating_profit_source","net_income_source","revenue_calculation","checked"],companies.flatMap(c=>c.rows.filter(r=>r.kind===kind).map(r=>{const q=fxQuote(data.fx,c.currency,r);return [c.name,r.kind,r.period,r.start,r.date,...metrics.map(([key])=>value(c,r,key)),c.currency,"millions",r.revenue,r.operating_profit,r.net_income,margin(r),usdGrowth(c,r,data.fx),companyGrowth(c.rows,r),q?.local_per_usd,q?.method,q?.observations,q?.first,q?.last,q?.fetched,q?.source,r.refs?.revenue?.url,r.refs?.operating_profit?.url,r.refs?.net_income?.url,r.refs?.revenue?.calculation,c.checked];}))));
-    chart("gm-company-compare","bar",measured.map(p=>p.c.name),[{label:`${metricName} (${unit})`,data:measured.map(p=>value(p.c,p.r,metric)),moneyNotes:measured.map(p=>moneyMemo(p.r[metric],p.c.currency,p.r,data.fx)),backgroundColor:measured.map(p=>p.r[metric]<0?palette[4]:palette[0])}],{signed:true,decimals:1});
-    chart("gm-company-history","line",series.map(p=>p.label),metrics.map(([key,label],i)=>({label:`${label} (${unit})`,data:series.map(p=>value(selected,p.row,key)),moneyNotes:series.map(p=>moneyMemo(p.row?.[key],selected?.currency,p.row,data.fx)),borderColor:palette[i],backgroundColor:palette[i],pointRadius:3,borderWidth:2,spanGaps:false})),{signed:true,decimals:1});
+    if(financePrefs.company){const id=financePrefs.company;financePrefs.company="";requestAnimationFrame(()=>{if(alive)root.querySelector(`#gm-company-${id}`)?.scrollIntoView({block:"start"});});}
   }
   function bindPlatformButtons(){
     root.querySelectorAll("[data-platform-open]").forEach(button=>button.addEventListener("click",()=>{financePrefs.platform=button.dataset.platformOpen;financePrefs.platformMetric="";location.hash="#/games/platforms";},{signal:renderEvents.signal}));
@@ -383,7 +401,7 @@ export function mount(root,{view="overview",tabsRoot}={}){
       note(`Steam 동시 온라인만 매일 조회해 누적합니다. 그 외 사업 지표는 공개 발표를 원문 대조한 자료입니다.${platforms.steam?.status!=="ok"?` Steam 최근 조회 실패: 이전 관측일과 값을 유지합니다.`:""} ${link("#/games/companies","전체 해외·국내 게임사 실적 보기")}`);
     financeSelect("#gm-platform-choice","platform");financeSelect("#gm-platform-metric","platformMetric");
     root.querySelectorAll("[data-platform-pick]").forEach(button=>button.addEventListener("click",()=>{financePrefs.platform=button.dataset.platformPick;financePrefs.platformMetric="";render();root.querySelector("#gm-platform-detail").scrollIntoView({block:"start"});},{signal:renderEvents.signal}));
-    on("#gm-platform-financial","click",()=>{Object.assign(financePrefs,{company:company.id,kind:financial.kind,date:financial.date,complex:company.compare_default===false?"include":financePrefs.complex});location.hash="#/games/companies";});
+    on("#gm-platform-financial","click",()=>{Object.assign(financePrefs,{company:company.id,kind:financial.kind,date:financial.date,region:"all",role:"all",query:""});companyPeriodChosen=true;companyCardViews.clear();location.hash="#/games/companies";});
     on("#gm-platform-export","click",()=>download(`game-platform-${profile.id}.csv`,["platform","operator","listing","metric","kind","value","unit","original_value","original_unit","fx_local_per_usd","fx_method","fx_observations","fx_fetched","fx_source","lower_bound_exclusive","period","start","end","scope","observed_at_UTC","published","reviewed","source"],rows.map(r=>{const q=monetaryMetric(r)?fxQuote(data.fx,metricCurrency(r),r):null;return [profile.name,profile.operator,listingName(profile.listing),r.label,r.kind,metricValue(r),metricUnit(r),r.value,r.unit,q?.local_per_usd,q?.method,q?.observations,q?.fetched,q?.source,!!r.lower_bound,r.period,r.start,r.date,r.scope,r.observed_at,r.published,r.reviewed,r.url];})));
     if(history.length)chart("gm-platform-metric-history","line",history.map(r=>r.period),[{label:`${metric.label} (${metricUnit(metric)})`,data:history.map(metricValue),moneyNotes:history.map(r=>monetaryMetric(r)?moneyMemo(r.value,metricCurrency(r),r,data.fx):[]),borderColor:palette[0],backgroundColor:palette[0],pointRadius:5,spanGaps:false,showLine:profile.id!=="steam"}],{decimals:2});
   }

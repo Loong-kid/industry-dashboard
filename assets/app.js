@@ -241,7 +241,7 @@ async function renderIndustry(options = {}) {
     try {
       const games = await import("./games.js");
       if (mySeq !== renderSeq) return;
-      loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", tabsRoot: pageTabs});
+      loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", tabsRoot: pageTabs, createFinancialCard});
     } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임 시장을 불러오지 못했습니다. 새로고침해 주세요."; }
     return;
   }
@@ -608,16 +608,16 @@ function buildTableRangePicker(current, onPick) {
 }
 
 // ── 지표 카드 ───────────────────────────────────────────────────
-function renderCard(doc, indicatorId) {
+function renderCard(doc, indicatorId, options = {}) {
   // Alternate views keep physical levels and growth rates on separate axes.
   if (doc?.series_views) {
     state.cardViews ??= {};
-    const key = state.cardViews[indicatorId] || doc.default_view || Object.keys(doc.series_views)[0];
+    const key = options.view || state.cardViews[indicatorId] || doc.default_view || Object.keys(doc.series_views)[0];
     const view = doc.series_views[key] || Object.values(doc.series_views)[0];
     const display = {...doc, ...view};
     delete display.series_views;
     const before = new Set(state.charts);
-    const card = renderCard(display, indicatorId);
+    const card = renderCard(display, indicatorId, options);
     const owned = state.charts.filter(chart => !before.has(chart));
     const controls = document.createElement("div");
     controls.className = "series-view-controls";
@@ -632,9 +632,10 @@ function renderCard(doc, indicatorId) {
       button.addEventListener("click", () => {
         if (value === key) return;
         state.cardViews[indicatorId] = value;
+        options.onViewChange?.(value);
         owned.forEach(chart => chart.destroy());
         state.charts = state.charts.filter(chart => !owned.includes(chart));
-        card.replaceWith(renderCard(doc, indicatorId));
+        card.replaceWith(renderCard(doc, indicatorId, {...options, view: value}));
       });
       controls.appendChild(button);
     }
@@ -659,8 +660,8 @@ function renderCard(doc, indicatorId) {
     const name = doc?.name || indicatorId;
     card.innerHTML = `
       <div class="card-head"><div class="card-name">${name}</div></div>
-      <div class="card-empty">아직 데이터가 없습니다.<br>
-      ${doc?.manual ? `<code>manual/</code> 폴더의 CSV에 값을 입력하면 표시됩니다.` : `페처 실행 후 표시됩니다.`}</div>`;
+      <div class="card-empty">${doc?.empty_message ? escapeHtml(doc.empty_message) : `아직 데이터가 없습니다.<br>
+      ${doc?.manual ? `<code>manual/</code> 폴더의 CSV에 값을 입력하면 표시됩니다.` : `페처 실행 후 표시됩니다.`}`}</div>`;
     return card;
   }
 
@@ -724,7 +725,7 @@ function renderCard(doc, indicatorId) {
   const stat = document.createElement("div");
   stat.className = "card-stat";
   card.appendChild(stat);
-  const setStat = (seriesName) => {
+  const setStatContent = (seriesName) => {
     const s = (seriesName && doc.series[seriesName]) || [];
     const last = s[s.length - 1];
     const prev = s[s.length - 2];
@@ -794,6 +795,18 @@ function renderCard(doc, indicatorId) {
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pointsChange ? "p · 전월 대비" : ""}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
       <span class="stat-date">${doc.cumulative_since ? `${doc.cumulative_since}년부터 누적 · ${last[0].slice(0, 7)}` : doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}${doc.point_annotations?.[last[0]] ? " · 추정" : ""}</span>
       ${doc.sample_counts ? `<span class="stat-unit">표본 ${new Map(doc.sample_counts[seriesName] || []).get(last[0]) ?? 0}건</span>` : ""}`;
+  };
+  const setStat = seriesName => {
+    setStatContent(seriesName);
+    const last = doc.series[seriesName]?.at(-1), memo = doc.point_notes?.[last?.[0]];
+    const value = stat.querySelector(".stat-value");
+    if (value && memo?.length) {
+      const button = document.createElement("button");
+      button.type = "button"; button.className = "stat-value gm-money";
+      button.textContent = value.textContent; button.dataset.moneyNote = memo.join("\n");
+      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. ${memo.join(". ")}`);
+      value.replaceWith(button);
+    }
   };
   setStat(mainName);
 
@@ -911,6 +924,20 @@ function renderCard(doc, indicatorId) {
     setStat(headline);
   });
   return card;
+}
+
+// Games use the same financial cards as the other industries. The wrapper owns
+// the currently mounted canvas, including replacements from per-card view changes.
+function createFinancialCard(doc, indicatorId, options) {
+  const element = document.createElement("div");
+  element.className = "gm-financial-card-slot";
+  element.appendChild(renderCard(doc, indicatorId, options));
+  return {element, destroy() {
+    const owned = new Set([...element.querySelectorAll("canvas")].map(canvas => Chart.getChart(canvas)).filter(Boolean));
+    owned.forEach(chart => chart.destroy());
+    state.charts = state.charts.filter(chart => !owned.has(chart));
+    delete state.cardViews?.[indicatorId];
+  }};
 }
 
 // 시리즈 토글 체크박스 칩 (Chart.js 기본 범례의 취소선 표기 대체)
@@ -1427,7 +1454,10 @@ function buildTable(doc, filtered) {
     const sourceCell = hasSources ? `<td>${sources.length ? sources.map(source => `<a href="${escapeHtml(source.url)}${source.pdf_page ? `#page=${source.pdf_page}` : ""}" target="_blank" rel="noopener">${source.pdf_page ? `PDF p.${source.pdf_page}` : source.label ? escapeHtml(source.label) : `${escapeHtml(source.issue)} 월보`} ↗</a>`).join(escapeHtml(ref.source_separator || " − ")) : "미확인"}</td>` : "";
     const forecastTag = doc.forecast_from && d >= doc.forecast_from ? ` <span class="forecast-tag">전망</span>` : "";
     const estimateTag = doc.point_annotations?.[d] ? ` <span title="${escapeHtml(doc.point_annotations[d])}">· 추정</span>` : "";
-    html += `<tr><td>${periodLabel(doc, d)}${doc.period_labels ? ` · ${escapeHtml(d)}` : ""}${forecastTag}${estimateTag}</td>${names.map((n) => `<td>${map[n][d] != null ? observationLabel(doc, d, map[n][d]) : ""}</td>`).join("")}${sourceCell}</tr>`;
+    html += `<tr><td>${periodLabel(doc, d)}${doc.period_labels ? ` · ${escapeHtml(d)}` : ""}${forecastTag}${estimateTag}</td>${names.map((n) => {
+      const value = map[n][d], memo = doc.point_notes?.[d];
+      return `<td>${value == null ? "" : memo?.length ? `<button type="button" class="gm-money" data-money-note="${escapeHtml(memo.join("\n"))}" aria-label="${escapeHtml(`${observationLabel(doc,d,value)} ${doc.unit}. ${memo.join(". ")}`)}">${observationLabel(doc,d,value)}</button>` : observationLabel(doc,d,value)}</td>`;
+    }).join("")}${sourceCell}</tr>`;
   }
   return html + "</tbody></table>";
 }
@@ -1572,6 +1602,7 @@ function drawChart(canvas, doc, filtered) {
             title: (items) => items.length ? periodLabel(doc, items[0].label)
               + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
             label: (c) => ` ${c.dataset.label}: ${observationLabel(doc, c.label, c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
+            afterLabel: c => doc.point_notes?.[c.label] || [],
             afterBody: (items) => {
               const dates = doc.source_dates?.[items[0]?.label];
               const report = doc.series_sources?.[items[0]?.dataset?.label]?.[items[0]?.label] || doc.period_sources?.[items[0]?.label];

@@ -55,4 +55,19 @@
 .gm-root .gm-money:hover { border-bottom-color: var(--accent); color: var(--accent); }
 .gm-root .gm-money:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .gm-money-tooltip { position: fixed; z-index: 1000; max-width: min(360px,calc(100vw - 24px)); box-sizing: border-box; padding: 12px 15px; border: 1px solid var(--baseline); border-radius: 6px; color: var(--ink); background: var(--page); box-shadow: 0 4px 18px #0002; font-size: 12px; line-height: 1.75; white-space: pre-line; overflow-wrap: anywhere; pointer-events: none; }
+.gm-company-section { margin-bottom: 32px; scroll-margin-top: 150px; }
+.gm-company-section > .section-title { font-size: 17px; color: var(--ink); letter-spacing: -.02em; text-transform: none; }
+.gm-company-section > .section-title span { margin-left: 10px; font-size: 12px; font-weight: 400; color: var(--muted); }
+.gm-company-section > .gm-note { margin: 8px 0 12px; }
+.gm-financial-card-slot { display: contents; }
+.gm-company-grid .card { min-width: 0; }
+.gm-company-grid .card-stat { min-height: 78px; align-content: flex-start; }
+.gm-root .stat-value.gm-money { font-size: 26px; font-weight: 700; }
+.gm-root .series-view-controls button { padding: 5px 9px; min-height: 30px; font-size: 12px; color: var(--muted); }
+.gm-root .series-view-controls button.active { color: var(--ink); }
+.gm-root .gm-platform-link { padding: 0; border: 0; min-height: 0; color: var(--accent); background: transparent; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.gm-financial-reference { border-top: 1px solid var(--border); margin: 20px 0; padding: 16px 0; }
+.gm-financial-reference > summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.gm-root .gm-company-grid .data-table { max-height: 360px; overflow: auto; }
+@media(max-width:600px) { .gm-company-grid { grid-template-columns: minmax(0,1fr); } .gm-company-section > .section-title span { display: block; margin: 6px 0 0; } }
 @media(max-width:800px) { .gm-grid { grid-template-columns: 1fr; gap: 0; } .gm-stats { grid-template-columns: 1fr; } .gm-stats>div { border-bottom: 1px solid var(--border); padding: 12px 0; } .gm-stats>div:last-child { border: 0; } .gm-stats dd { font-size: 27px; } .gm-chart { height: 290px; } .gm-chart-tall { height: 370px; } .gm-toolbar { gap: 10px; } .gm-toolbar label { flex: 1 1 130px; } .gm-toolbar input,.gm-toolbar select { width: 100%; min-width: 0; } .gm-toolbar input[type=search] { min-width: 0; } }
