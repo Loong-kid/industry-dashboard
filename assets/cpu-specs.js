@@ -5,9 +5,10 @@ function renderCPUSpecs(doc) {
   if(!doc)return card;
   card.dataset.cpuSpecs=doc.id;
   const esc=escapeHtml,companies=[...new Set(doc.rows.map(r=>r.values[0]))],uses=[...new Set(doc.rows.map(r=>r.values[1]))];
+  const displayIndices=doc.display_indices;
   const options=items=>items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
   const link=(url,label,title='')=>/^https:\/\//.test(url)?`<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(title)}">${esc(label)}</a>`:esc(label);
-  card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${doc.rows.length}개 CPU·SoC · ${companies.length}개 기업 · 요약 / 원본 ${doc.columns.length}개 열</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)}</small></div></div>
+  card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${doc.rows.length}개 CPU·SoC · ${companies.length}개 기업 · Geekbench 6·7 · 전체 사양 ${displayIndices.length}개 열</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)}</small></div></div>
     <div class="cpu-specs-controls">
       <label>기업<select aria-label="CPU 사양 기업"><option value="all">전체 기업</option>${options(companies)}</select></label>
       <label>제품군·용도<select aria-label="CPU 사양 용도"><option value="all">전체 용도</option>${options(uses)}</select></label>
@@ -15,11 +16,11 @@ function renderCPUSpecs(doc) {
       <label>열 보기<select aria-label="CPU 사양 열 보기">${doc.column_views.map(v=>`<option value="${esc(v.id)}">${esc(v.label)}</option>`).join('')}</select></label>
       <label>값 표시<select aria-label="CPU 사양 값 표시"><option value="enriched">보완 포함</option><option value="original">시트 원본</option></select></label>
       <label class="cpu-specs-only"><input type="checkbox" aria-label="보완한 CPU만">보완한 CPU만</label><button type="button" class="cpu-specs-reset">초기화</button>
-    </div><div class="cpu-specs-status"><span role="status" aria-live="polite"></span><span>40px 고정 행 · 긴 값은 마우스 메모 · 전체 내용은 상세</span></div>
+    </div><div class="cpu-specs-status"><span role="status" aria-live="polite"></span><span>오른쪽으로 CPU 구성·L1·L2·L3 캐시 → · 40px 고정 행 · 마우스 메모 / 상세</span></div>
     <div class="order-table-wrap cpu-specs-scroll" tabindex="0" role="region" aria-label="CPU 사양·Geekbench 표 · 가로·세로 스크롤"><table><caption>Geekbench는 같은 버전끼리 비교 · 싱글 / 멀티 순서 · 빈칸은 —</caption><colgroup></colgroup><thead></thead><tbody></tbody></table></div>
     <p class="ir-scope-note">${esc(doc.note)}</p>
     <details class="cpu-specs-evidence"><summary>출처와 보완 기준 · ${doc.supplement_count}개 값 / ${doc.supplemented_products}개 CPU · M 시리즈 공정 ${doc.foundry_review_count}개</summary>
-      <p>시트 기재값을 보존하고 보완값과 제품별 파운드리 확인을 따로 표시합니다. ‘시트 원본’과 ‘전체 열’을 선택하면 원본 표를 볼 수 있습니다. Apple M 시리즈는 설계사 Apple과 제조사 TSMC를 구분합니다. H2·R1은 제조사를 임의로 채우지 않았습니다.</p>
+      <p>시트 기재값을 보존하고 보완값과 제품별 파운드리 확인을 따로 표시합니다. ‘시트 원본’은 표시 중인 사양의 원래 값을 보여줍니다. Geekbench는 6·7만 표시하며 이전 버전은 원본 시트에서 확인할 수 있습니다. Apple M 시리즈는 설계사 Apple과 제조사 TSMC를 구분합니다. H2·R1은 제조사를 임의로 채우지 않았습니다.</p>
       ${Object.values(doc.sources).map(s=>`<p>${link(s.url,s.title+' ↗')}<small>${esc(s.note)} 확인 ${esc(s.checked)}</small></p>`).join('')}<p>${esc(doc.update_note)}</p></details>
     <div class="cpu-specs-memo" role="tooltip" hidden></div>
     <dialog class="cpu-specs-dialog" aria-label="CPU 상세 사양"><div class="cpu-specs-dialog-head"><h2></h2><button type="button" aria-label="CPU 상세 닫기">닫기</button></div><div class="cpu-specs-dialog-body"></div></dialog>`;
@@ -52,7 +53,12 @@ function renderCPUSpecs(doc) {
     {key:'bandwidth',label:'메모리 대역폭',indices:[15],sort:15,width:96},
     {key:'gb6',label:'GB6 · 싱글 / 멀티',indices:[31,32],sort:32,width:116,numeric:true},
     {key:'gb7',label:'GB7 · 싱글 / 멀티',indices:[33,34],sort:34,width:116,numeric:true},
-    {key:'detail',label:'상세',indices:[],width:48}
+    {key:'detail',label:'상세',indices:[],width:48},
+    {key:'composition',label:'CPU 구성',indices:[8],sort:8,width:200},
+    {key:'architecture',label:'아키텍처 / 코드명',indices:[12],sort:12,width:150},
+    {key:'l1',label:'L1 캐시',indices:[18],sort:18,width:120},
+    {key:'l2',label:'L2 캐시',indices:[19],sort:19,width:140},
+    {key:'l3',label:'L3 캐시',indices:[20],sort:20,width:140}
   ];
   const cell=(row,col,compact)=>{
     if(col.key==='detail')return `<td><div class="cpu-specs-cell">${detailButton(row)}</div></td>`;
@@ -73,19 +79,19 @@ function renderCPUSpecs(doc) {
     const view=doc.column_views.find(v=>v.id===columns.value),compact=view.id==='overview';
     const visible=compact?overview:view.indices.map(i=>({key:String(i),indices:[i],sort:i,label:doc.columns[i].label,width:i===2?190:i===0?80:i===1?110:doc.columns[i].numeric?100:i===22||i===35?170:115,numeric:doc.columns[i].numeric}));
     const query=search.value.trim().toLocaleLowerCase();
-    const rows=doc.rows.filter(row=>(company.value==='all'||row.values[0]===company.value)&&(use.value==='all'||row.values[1]===use.value)&&(!only.checked||Object.keys(row.supplements).length)&&(!query||doc.columns.some((_,i)=>String(value(row,i)).toLocaleLowerCase().includes(query))));
+    const rows=doc.rows.filter(row=>(company.value==='all'||row.values[0]===company.value)&&(use.value==='all'||row.values[1]===use.value)&&(!only.checked||Object.keys(row.supplements).length)&&(!query||displayIndices.some(i=>String(value(row,i)).toLocaleLowerCase().includes(query))));
     if(sortIndex!==null)rows.sort((a,b)=>{const av=value(a,sortIndex),bv=value(b,sortIndex);if(!av||!bv)return av?-1:bv?1:a.sheet_row-b.sheet_row;const result=doc.columns[sortIndex].numeric?Number(av)-Number(bv):String(av).localeCompare(String(bv),'ko',{numeric:true});return result*sortDirection||a.sheet_row-b.sheet_row;});
     table.classList.toggle('cpu-specs-overview',compact);table.style.width=visible.reduce((sum,c)=>sum+c.width,0)+'px';
     table.querySelector('colgroup').innerHTML=visible.map(c=>`<col class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-col-name':''}" style="width:${c.width}px">`).join('');
     table.querySelector('thead').innerHTML=`<tr>${visible.map(c=>`<th scope="col" class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-name ':''}${c.numeric?'cpu-specs-number':''}" data-column="${compact?c.key:doc.columns[c.indices[0]].id}" aria-sort="${sortIndex===c.sort?(sortDirection===1?'ascending':'descending'):'none'}">${c.sort==null?esc(c.label):`<button type="button" data-sort="${c.sort}" title="${esc(c.label)}">${esc(c.label)}<span aria-hidden="true">${sortIndex===c.sort?(sortDirection===1?' ▲':' ▼'):' ↕'}</span></button>`}</th>`).join('')}</tr>`;
     table.querySelector('tbody').innerHTML=rows.length?rows.map(row=>`<tr data-sheet-row="${row.sheet_row}">${visible.map(c=>cell(row,c,compact)).join('')}</tr>`).join(''):`<tr><td colspan="${visible.length}"><div class="cpu-specs-cell">조건에 맞는 CPU가 없습니다. 검색어나 필터를 변경해 주세요.</div></td></tr>`;
-    card.querySelector('[role="status"]').textContent=`${rows.length} / ${doc.rows.length}개 CPU · ${compact?'요약 9열':visible.length+'개 열'} · ${mode.value==='enriched'?'보완 포함':'시트 원본'}`;
+    card.querySelector('[role="status"]').textContent=`${rows.length} / ${doc.rows.length}개 CPU · ${compact?'요약·구성·캐시 ':''}${visible.length}개 열 · ${mode.value==='enriched'?'보완 포함':'시트 원본'}`;
   };
   const resetScroll=()=>{region.scrollLeft=columns.value!=='overview'&&innerWidth<=600?190:0;region.scrollTop=0;};
   table.addEventListener('click',event=>{
     const sort=event.target.closest('[data-sort]'),detail=event.target.closest('[data-row]');
     if(sort){const index=Number(sort.dataset.sort);sortDirection=sortIndex===index?-sortDirection:doc.columns[index].numeric?-1:1;sortIndex=index;draw();}
-    if(detail){hideMemo();const row=byId.get(detail.dataset.row);dialog.querySelector('h2').textContent=row.values[2];dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.values[0]+' · '+row.values[1])} · 시트 ${row.sheet_row}행</p><dl>${fieldsHTML(row,doc.columns.map((_,i)=>i))}</dl>`;dialog.showModal();}
+    if(detail){hideMemo();const row=byId.get(detail.dataset.row);dialog.querySelector('h2').textContent=row.values[2];dialog.querySelector('.cpu-specs-dialog-body').innerHTML=`<p>${esc(row.values[0]+' · '+row.values[1])} · 시트 ${row.sheet_row}행</p><dl>${fieldsHTML(row,displayIndices)}</dl>`;dialog.showModal();}
   });
   dialog.querySelector('button').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});

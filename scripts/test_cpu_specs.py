@@ -63,5 +63,14 @@ class CPUSpecs(unittest.TestCase):
         self.assertEqual(rows['Graviton3']['supplements']['8']['value'],'64코어')
         self.assertEqual(rows['Azure Cobalt 200']['supplements']['8']['value'],'132 active cores')
 
+    def test_display_keeps_cpu_composition_and_cache_with_only_geekbench_6_and_7(self):
+        shown=self.doc['display_indices']
+        self.assertEqual(shown,list(range(24))+list(range(31,37)))
+        for view in self.doc['column_views']:
+            self.assertTrue(set(view['indices']).issubset(shown),view['id'])
+        overview=self.doc['column_views'][0]['indices']
+        self.assertTrue({8,12,18,19,20,31,32,33,34}.issubset(overview))
+        self.assertTrue(any(row['values'][24:31]!=['']*7 for row in self.doc['rows']))
+
 
 if __name__=='__main__':unittest.main()

@@ -20,10 +20,9 @@ def verify(base):
             table=page.locator('.cpu-specs')
             expect(table).to_be_visible()
             assert table.locator('tbody tr').count()==292
-            assert table.locator('thead th').count()==9
+            assert table.locator('thead th').count()==14
             assert table.get_by_label('CPU 사양 열 보기',exact=True).input_value()=='overview'
-            if width>=1280:
-                assert table.locator('.cpu-specs-scroll').evaluate('el=>el.scrollWidth<=el.clientWidth+1')
+            assert table.locator('.cpu-specs-scroll').evaluate('el=>el.scrollWidth>el.clientWidth')
             def fixed_rows():
                 heights=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.getBoundingClientRect().height)')
                 assert max(heights)-min(heights)<.1,heights[:10]
@@ -39,19 +38,47 @@ def verify(base):
                 page.keyboard.press('Escape')
             m6.get_by_role('button',name='M6 상세 사양',exact=True).click()
             expect(table.get_by_role('dialog')).to_be_visible()
-            assert table.locator('dialog dt').count()==37
+            assert table.locator('dialog dt').count()==30
+            assert not any(f'Geekbench {version}' in label for label in table.locator('dialog dt').all_text_contents() for version in (2,3,4,5))
             assert 'TSMC N2' in table.locator('dialog').inner_text()
             table.get_by_role('button',name='CPU 상세 닫기',exact=True).click()
+            # Composition and all three caches are readable by scrolling the default view.
+            sample=next(row for row in doc['rows'] if all(row['values'][i] for i in (8,18,19,20)))
+            table.get_by_label('CPU 사양 검색',exact=True).fill(sample['values'][2])
+            sample_row=table.locator(f'tr[data-sheet-row="{sample["sheet_row"]}"]')
+            region=table.locator('.cpu-specs-scroll')
+            region.focus()
+            for key,index in (('composition',8),('architecture',12),('l1',18),('l2',19),('l3',20)):
+                target=sample_row.locator(f'[data-column="{key}"] .cpu-specs-value')
+                target.scroll_into_view_if_needed()
+                expect(target).to_be_visible()
+                assert target.inner_text()==(sample['values'][index] or '—')
+                sticky=table.locator('thead [data-column="chip"]').bounding_box()
+                assert abs(sticky['x']-region.bounding_box()['x']-1)<2
+            if width>=768:
+                page.mouse.move(0,0)
+                page.evaluate('()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+                sample_row.locator('[data-column="l3"] .cpu-specs-cell').hover()
+                expect(table.locator('[role="tooltip"]')).to_be_visible()
+                assert sample['values'][20] in table.locator('[role="tooltip"]').inner_text()
+                page.keyboard.press('Escape')
+            fixed_rows()
+            page.mouse.move(0,0)
+            out=ROOT/'tmp/cpu-cache-20261025'
+            out.mkdir(parents=True,exist_ok=True)
+            table.screenshot(path=str(out/f'cpu-cache-scroll-{width}.png'))
+            table.get_by_role('button',name='초기화',exact=True).click()
             assert table.locator('tbody tr').first.get_attribute('data-sheet-row')=='2'
             assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
-            # The source view retains all 292 rows and original cells exactly.
+            # All displayed source values remain exact; historical GB2–5 stay in JSON.
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('original')
             table.get_by_label('CPU 사양 열 보기',exact=True).select_option('all')
             fixed_rows()
             assert table.locator('.cpu-specs-added').count()==0
             actual=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].map(cell=>cell.dataset.column==="AK"?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
-            expected=[[v if v else '—' for v in r['values'][:36]]+[r['values'][36]] for r in doc['rows']]
+            expected=[[(r['values'][i] or '—') if i!=36 else r['values'][i] for i in doc['display_indices']] for r in doc['rows']]
             assert actual==expected
+            assert not any(f'Geekbench {version}' in label for label in table.locator('thead th').all_text_contents() for version in (2,3,4,5))
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('enriched')
             assert table.locator('.cpu-specs-added').count()==226
             table.get_by_label('CPU 사양 기업',exact=True).select_option('AMD')
@@ -94,7 +121,7 @@ def verify(base):
             table.get_by_role('button',name='초기화',exact=True).click()
             region.evaluate('element=>{element.scrollLeft=0;element.scrollTop=0}')
             table.scroll_into_view_if_needed()
-            out=ROOT/'tmp/cpu-compact-20261025'
+            out=ROOT/'tmp/cpu-cache-20261025'
             out.mkdir(parents=True,exist_ok=True)
             table.screenshot(path=str(out/f'cpu-specs-{width}.png'))
             financials=page.locator('#content .card.ir-chart')
@@ -103,7 +130,7 @@ def verify(base):
             assert page.evaluate('state.charts.every(c=>c.data.datasets.some((d,i)=>c.isDatasetVisible(i)&&d.data.some(v=>v!==null)))')
             assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
             assert not errors,errors
-            print(f'PASS {width}px: compact overview, fixed 40px rows, tooltip/detail, TSMC, 37 source columns, filters, financial charts')
+            print(f'PASS {width}px: horizontal CPU/cache comparisons, fixed 40px rows, tooltip/detail, TSMC, GB6/7 only, 30 source columns, financial charts')
             page.close()
         browser.close()
 
