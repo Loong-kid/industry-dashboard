@@ -1,0 +1,38 @@
+name: update-telecom
+on:
+  schedule:
+    - cron: '50 23 * * *' # KST 08:50
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+jobs:
+  telecom:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 openpyxl
+      - name: Validate fiscal periods, CF differences and original currencies
+        run: python -m unittest discover -s scripts -p test_telecom.py -v
+      - name: Refresh free SEC, OpenDART and issuer workbooks
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_telecom.py
+      - name: Validate nine carrier histories
+        run: |
+          python -m unittest discover -s scripts -p test_telecom.py -v
+          python scripts/validate_telecom.py
+      - name: Commit telecom data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/telecom/
+          git diff --cached --quiet || git commit -m "chore: refresh telecom carrier accounts"
+          git pull --rebase
+          git push

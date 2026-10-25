@@ -1,0 +1,102 @@
+{
+ "id": "company_kt_revenue",
+ "name": "KT · 매출",
+ "unit": "백만 USD",
+ "company_kpi": true,
+ "span_gaps": false,
+ "zero_baseline": true,
+ "fetched": null,
+ "source": "OpenDART 연결 공시",
+ "description": "KT 연결 전체 · 통신 및 연결 자회사 포함. 별도 KT 실적과 구분",
+ "basis_details": [
+  {
+   "label": "CAPEX 범위",
+   "value": "OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR의 KT 별도 설비투자와 연결 범위·인식 시점이 다르며 무형자산·주파수·출자금을 더하지 않습니다."
+  },
+  {
+   "label": "환산·기간",
+   "value": "USD 공시 금액은 그대로, 원화·엔화는 실제 실적 기간의 ECB 평균환율로 환산합니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 금액·차트에 마우스를 올리면 원통화를 확인할 수 있습니다. CAPEX에 통신망 외 건물·데이터센터·소프트웨어 등이 포함될 수 있어 통신장비 발주액과 같지 않습니다."
+  },
+  {
+   "label": "자료 확인",
+   "value": "2026-10-26 · 최신 조회 미완료 · 기존 성공 자료 유지 (ValueError)"
+  }
+ ],
+ "collection_status": {
+  "ok": false,
+  "checked": "2026-10-26",
+  "message": "최신 조회 미완료 · 기존 성공 자료 유지 (ValueError)"
+ },
+ "default_view": "annual",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 단독",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {},
+   "original_series": {
+    "매출": []
+   },
+   "original_currency": "KRW",
+   "original_unit": "millions",
+   "point_notes": {},
+   "point_sources": {},
+   "period_labels": {},
+   "updated": "",
+   "source_url": "",
+   "quarterly_revenue_summary": true,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "KT의 분기 단독 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {},
+   "original_series": {
+    "매출": []
+   },
+   "original_currency": "KRW",
+   "original_unit": "millions",
+   "point_notes": {},
+   "point_sources": {},
+   "period_labels": {},
+   "updated": "",
+   "source_url": "",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "KT의 연간 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+  }
+ },
+ "frequency": "yearly",
+ "frequency_label": "연간 · 회사 회계연도",
+ "quarter_labels": false,
+ "year_labels": true,
+ "annual_axis": true,
+ "series": {},
+ "original_series": {
+  "매출": []
+ },
+ "original_currency": "KRW",
+ "original_unit": "millions",
+ "point_notes": {},
+ "point_sources": {},
+ "period_labels": {},
+ "updated": "",
+ "source_url": "",
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": false,
+ "change_mode": "none",
+ "comparison_dates": {},
+ "empty_message": "KT의 연간 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+}

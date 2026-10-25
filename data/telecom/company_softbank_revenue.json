@@ -1,0 +1,637 @@
+{
+ "id": "company_softbank_revenue",
+ "name": "SoftBank Corp. · 매출",
+ "unit": "백만 USD",
+ "company_kpi": true,
+ "span_gaps": false,
+ "zero_baseline": true,
+ "fetched": "2026-10-26",
+ "source": "공식 IR·공시",
+ "description": "일본 통신법인 SoftBank Corp. 연결 · LY·PayPay 등 포함. 투자지주회사 SoftBank Group과 구분",
+ "basis_details": [
+  {
+   "label": "CAPEX 범위",
+   "value": "Data sheets의 연결 C/F summary 중 Capital expenditures 현금지출을 양수 표시. 검수 기준 설비투자(리스·렌탈 단말 등 포함 가능)와 다른 항목이며 주파수·기업 인수 등을 임의로 더하지 않습니다."
+  },
+  {
+   "label": "환산·기간",
+   "value": "USD 공시 금액은 그대로, 원화·엔화는 실제 실적 기간의 ECB 평균환율로 환산합니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 금액·차트에 마우스를 올리면 원통화를 확인할 수 있습니다. CAPEX에 통신망 외 건물·데이터센터·소프트웨어 등이 포함될 수 있어 통신장비 발주액과 같지 않습니다."
+  },
+  {
+   "label": "자료 확인",
+   "value": "2026-10-26 · ok"
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-26",
+  "message": "ok"
+ },
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 단독",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {
+    "매출": [
+     [
+      "2024-06-30",
+      9855.536875579737
+     ],
+     [
+      "2024-09-30",
+      10823.619171930146
+     ],
+     [
+      "2024-12-31",
+      10901.049650377785
+     ],
+     [
+      "2025-03-31",
+      11361.236349854255
+     ],
+     [
+      "2025-06-30",
+      11478.513911767262
+     ],
+     [
+      "2025-09-30",
+      11811.569757933376
+     ],
+     [
+      "2025-12-31",
+      11649.48456101824
+     ],
+     [
+      "2026-03-31",
+      11747.855626732273
+     ],
+     [
+      "2026-06-30",
+      11385.49520795172
+     ]
+    ]
+   },
+   "original_series": {
+    "매출": [
+     [
+      "2024-06-30",
+      1535700.0
+     ],
+     [
+      "2024-09-30",
+      1616400.0
+     ],
+     [
+      "2024-12-31",
+      1659400.0
+     ],
+     [
+      "2025-03-31",
+      1732900.0
+     ],
+     [
+      "2025-06-30",
+      1658600.0
+     ],
+     [
+      "2025-09-30",
+      1742200.0
+     ],
+     [
+      "2025-12-31",
+      1794600.0
+     ],
+     [
+      "2026-03-31",
+      1843300.0
+     ],
+     [
+      "2026-06-30",
+      1814700.0
+     ]
+    ]
+   },
+   "original_currency": "JPY",
+   "original_unit": "millions",
+   "point_notes": {
+    "2024-06-30": [
+     "원통화: 1,535,700 백만 JPY",
+     "실적 기간: 2024-04-01 ~ 2024-06-30",
+     "기간 평균: 1 USD = 155.821039 JPY",
+     "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2024-04-02 ~ 2024-06-28"
+    ],
+    "2024-09-30": [
+     "원통화: 1,616,400 백만 JPY",
+     "실적 기간: 2024-07-01 ~ 2024-09-30",
+     "기간 평균: 1 USD = 149.340066 JPY",
+     "ECB 일별 66개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2024-07-01 ~ 2024-09-30"
+    ],
+    "2024-12-31": [
+     "원통화: 1,659,400 백만 JPY",
+     "실적 기간: 2024-10-01 ~ 2024-12-31",
+     "기간 평균: 1 USD = 152.223873 JPY",
+     "ECB 일별 64개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2024-10-01 ~ 2024-12-31"
+    ],
+    "2025-03-31": [
+     "원통화: 1,732,900 백만 JPY",
+     "실적 기간: 2025-01-01 ~ 2025-03-31",
+     "기간 평균: 1 USD = 152.527414 JPY",
+     "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2025-01-02 ~ 2025-03-31"
+    ],
+    "2025-06-30": [
+     "원통화: 1,658,600 백만 JPY",
+     "실적 기간: 2025-04-01 ~ 2025-06-30",
+     "기간 평균: 1 USD = 144.496057 JPY",
+     "ECB 일별 62개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2025-04-01 ~ 2025-06-30"
+    ],
+    "2025-09-30": [
+     "원통화: 1,742,200 백만 JPY",
+     "실적 기간: 2025-07-01 ~ 2025-09-30",
+     "기간 평균: 1 USD = 147.499446 JPY",
+     "ECB 일별 66개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2025-07-01 ~ 2025-09-30"
+    ],
+    "2025-12-31": [
+     "원통화: 1,794,600 백만 JPY",
+     "실적 기간: 2025-10-01 ~ 2025-12-31",
+     "기간 평균: 1 USD = 154.049734 JPY",
+     "ECB 일별 64개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2025-10-01 ~ 2025-12-31"
+    ],
+    "2026-03-31": [
+     "원통화: 1,843,300 백만 JPY",
+     "실적 기간: 2026-01-01 ~ 2026-03-31",
+     "기간 평균: 1 USD = 156.905231 JPY",
+     "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2026-01-02 ~ 2026-03-31"
+    ],
+    "2026-06-30": [
+     "원통화: 1,814,700 백만 JPY",
+     "실적 기간: 2026-04-01 ~ 2026-06-30",
+     "기간 평균: 1 USD = 159.387007 JPY",
+     "ECB 일별 62개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2026-04-01 ~ 2026-06-30"
+    ]
+   },
+   "point_sources": {
+    "2024-06-30": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+     "label": "FY2025 Q1 · Consolidated_R&OP_1!F7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+     "label": "FY2025 Q2 · Consolidated_R&OP_1!G7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+     "label": "FY2025 Q3 · Consolidated_R&OP_1!H7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+     "label": "FY2025 Q4 · Consolidated_R&OP_1!I7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2026 Q1 · Consolidated_R&OP_1!F7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2026 Q2 · Consolidated_R&OP_1!G7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2026 Q3 · Consolidated_R&OP_1!H7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2026 Q4 · Consolidated_R&OP_1!I7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2027 Q1 · Consolidated_R&OP_1!L7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2024-06-30": "FY2025 Q1",
+    "2024-09-30": "FY2025 Q2",
+    "2024-12-31": "FY2025 Q3",
+    "2025-03-31": "FY2025 Q4",
+    "2025-06-30": "FY2026 Q1",
+    "2025-09-30": "FY2026 Q2",
+    "2025-12-31": "FY2026 Q3",
+    "2026-03-31": "FY2026 Q4",
+    "2026-06-30": "FY2027 Q1"
+   },
+   "updated": "2026-06-30",
+   "source_url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "quarterly_revenue_summary": true,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {
+    "2024-06-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "empty_message": "SoftBank Corp.의 분기 단독 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "매출": [
+     [
+      "2025-03-31",
+      42930.239962134416
+     ],
+     [
+      "2026-03-31",
+      46695.24161850782
+     ]
+    ]
+   },
+   "original_series": {
+    "매출": [
+     [
+      "2025-03-31",
+      6544300.0
+     ],
+     [
+      "2026-03-31",
+      7038700.0
+     ]
+    ]
+   },
+   "original_currency": "JPY",
+   "original_unit": "millions",
+   "point_notes": {
+    "2025-03-31": [
+     "원통화: 6,544,300 백만 JPY",
+     "실적 기간: 2024-04-01 ~ 2025-03-31",
+     "기간 평균: 1 USD = 152.440331 JPY",
+     "ECB 일별 256개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2024-04-02 ~ 2025-03-31"
+    ],
+    "2026-03-31": [
+     "원통화: 7,038,700 백만 JPY",
+     "실적 기간: 2025-04-01 ~ 2026-03-31",
+     "기간 평균: 1 USD = 150.736986 JPY",
+     "ECB 일별 255개 관측 평균 · 원통화 금액 ÷ 평균환율",
+     "환율 관측: 2025-04-01 ~ 2026-03-31"
+    ]
+   },
+   "point_sources": {
+    "2025-03-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+     "label": "FY2025 · Consolidated_R&OP_1!J7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+     "label": "FY2026 · Consolidated_R&OP_1!J7",
+     "supporting_sources": [],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2025-03-31": "FY2025",
+    "2026-03-31": "FY2026"
+   },
+   "updated": "2026-03-31",
+   "source_url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "SoftBank Corp.의 연간 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 단독",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "series": {
+  "매출": [
+   [
+    "2024-06-30",
+    9855.536875579737
+   ],
+   [
+    "2024-09-30",
+    10823.619171930146
+   ],
+   [
+    "2024-12-31",
+    10901.049650377785
+   ],
+   [
+    "2025-03-31",
+    11361.236349854255
+   ],
+   [
+    "2025-06-30",
+    11478.513911767262
+   ],
+   [
+    "2025-09-30",
+    11811.569757933376
+   ],
+   [
+    "2025-12-31",
+    11649.48456101824
+   ],
+   [
+    "2026-03-31",
+    11747.855626732273
+   ],
+   [
+    "2026-06-30",
+    11385.49520795172
+   ]
+  ]
+ },
+ "original_series": {
+  "매출": [
+   [
+    "2024-06-30",
+    1535700.0
+   ],
+   [
+    "2024-09-30",
+    1616400.0
+   ],
+   [
+    "2024-12-31",
+    1659400.0
+   ],
+   [
+    "2025-03-31",
+    1732900.0
+   ],
+   [
+    "2025-06-30",
+    1658600.0
+   ],
+   [
+    "2025-09-30",
+    1742200.0
+   ],
+   [
+    "2025-12-31",
+    1794600.0
+   ],
+   [
+    "2026-03-31",
+    1843300.0
+   ],
+   [
+    "2026-06-30",
+    1814700.0
+   ]
+  ]
+ },
+ "original_currency": "JPY",
+ "original_unit": "millions",
+ "point_notes": {
+  "2024-06-30": [
+   "원통화: 1,535,700 백만 JPY",
+   "실적 기간: 2024-04-01 ~ 2024-06-30",
+   "기간 평균: 1 USD = 155.821039 JPY",
+   "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2024-04-02 ~ 2024-06-28"
+  ],
+  "2024-09-30": [
+   "원통화: 1,616,400 백만 JPY",
+   "실적 기간: 2024-07-01 ~ 2024-09-30",
+   "기간 평균: 1 USD = 149.340066 JPY",
+   "ECB 일별 66개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2024-07-01 ~ 2024-09-30"
+  ],
+  "2024-12-31": [
+   "원통화: 1,659,400 백만 JPY",
+   "실적 기간: 2024-10-01 ~ 2024-12-31",
+   "기간 평균: 1 USD = 152.223873 JPY",
+   "ECB 일별 64개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2024-10-01 ~ 2024-12-31"
+  ],
+  "2025-03-31": [
+   "원통화: 1,732,900 백만 JPY",
+   "실적 기간: 2025-01-01 ~ 2025-03-31",
+   "기간 평균: 1 USD = 152.527414 JPY",
+   "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2025-01-02 ~ 2025-03-31"
+  ],
+  "2025-06-30": [
+   "원통화: 1,658,600 백만 JPY",
+   "실적 기간: 2025-04-01 ~ 2025-06-30",
+   "기간 평균: 1 USD = 144.496057 JPY",
+   "ECB 일별 62개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2025-04-01 ~ 2025-06-30"
+  ],
+  "2025-09-30": [
+   "원통화: 1,742,200 백만 JPY",
+   "실적 기간: 2025-07-01 ~ 2025-09-30",
+   "기간 평균: 1 USD = 147.499446 JPY",
+   "ECB 일별 66개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2025-07-01 ~ 2025-09-30"
+  ],
+  "2025-12-31": [
+   "원통화: 1,794,600 백만 JPY",
+   "실적 기간: 2025-10-01 ~ 2025-12-31",
+   "기간 평균: 1 USD = 154.049734 JPY",
+   "ECB 일별 64개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2025-10-01 ~ 2025-12-31"
+  ],
+  "2026-03-31": [
+   "원통화: 1,843,300 백만 JPY",
+   "실적 기간: 2026-01-01 ~ 2026-03-31",
+   "기간 평균: 1 USD = 156.905231 JPY",
+   "ECB 일별 63개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2026-01-02 ~ 2026-03-31"
+  ],
+  "2026-06-30": [
+   "원통화: 1,814,700 백만 JPY",
+   "실적 기간: 2026-04-01 ~ 2026-06-30",
+   "기간 평균: 1 USD = 159.387007 JPY",
+   "ECB 일별 62개 관측 평균 · 원통화 금액 ÷ 평균환율",
+   "환율 관측: 2026-04-01 ~ 2026-06-30"
+  ]
+ },
+ "point_sources": {
+  "2024-06-30": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+   "label": "FY2025 Q1 · Consolidated_R&OP_1!F7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+   "label": "FY2025 Q2 · Consolidated_R&OP_1!G7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+   "label": "FY2025 Q3 · Consolidated_R&OP_1!H7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2025/results/pdf/sbkk_earnings_datasheet_excel_20260511.xlsx?202605_01",
+   "label": "FY2025 Q4 · Consolidated_R&OP_1!I7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "label": "FY2026 Q1 · Consolidated_R&OP_1!F7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "label": "FY2026 Q2 · Consolidated_R&OP_1!G7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "label": "FY2026 Q3 · Consolidated_R&OP_1!H7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "label": "FY2026 Q4 · Consolidated_R&OP_1!I7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+   "label": "FY2027 Q1 · Consolidated_R&OP_1!L7",
+   "supporting_sources": [],
+   "source_separator": " / "
+  }
+ },
+ "period_labels": {
+  "2024-06-30": "FY2025 Q1",
+  "2024-09-30": "FY2025 Q2",
+  "2024-12-31": "FY2025 Q3",
+  "2025-03-31": "FY2025 Q4",
+  "2025-06-30": "FY2026 Q1",
+  "2025-09-30": "FY2026 Q2",
+  "2025-12-31": "FY2026 Q3",
+  "2026-03-31": "FY2026 Q4",
+  "2026-06-30": "FY2027 Q1"
+ },
+ "updated": "2026-06-30",
+ "source_url": "https://www.softbank.jp/corp/set/data/ir/documents/presentations/fy2026/results/pdf/sbkk_earnings_datasheet_excel_20260804.xlsx?202608_01",
+ "quarterly_revenue_summary": true,
+ "quarterly_profit_summary": false,
+ "change_mode": "none",
+ "comparison_dates": {
+  "2024-06-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "empty_message": "SoftBank Corp.의 분기 단독 매출 자료 미확보. 미확보 값은 0으로 채우거나 연간을 나누어 만들지 않습니다."
+}
