@@ -1,11 +1,112 @@
 {
- "att": {"name":"AT&T","country":"us","currency":"USD","cik":732717,"fiscal_start":1,"scope":"AT&T 연결 전체 · 이동통신·광대역 등. WarnerMedia 분리·DirecTV 등 연결 범위 변경에 주의","capex_basis":"현금흐름표 Capital expenditures. 벤더 금융 상환을 더한 Capital investment와 구분하며 주파수 라이선스 인수액을 더하지 않습니다.","tags":{"revenue":["Revenues","RevenueFromContractWithCustomerExcludingAssessedTax"],"capex":["PaymentsToAcquireProductiveAssets","PaymentsToAcquirePropertyPlantAndEquipment"]}},
- "verizon": {"name":"Verizon","country":"us","currency":"USD","cik":732712,"fiscal_start":1,"scope":"Verizon 연결 전체 · 무선·유선·기업 통신 등","capex_basis":"현금흐름표 Capital expenditures (capitalized software 포함). 주파수 라이선스 및 기업 인수대금은 별도이며 더하지 않습니다.","tags":{"revenue":["Revenues"],"capex":["PaymentsToAcquireOtherProductiveAssets","PaymentsToAcquireProductiveAssets"]}},
- "tmobile": {"name":"T-Mobile US","country":"us","currency":"USD","cik":1283699,"fiscal_start":1,"scope":"T-Mobile US 연결 전체. Sprint·UScellular 등 인수 전후 연결 범위가 달라질 수 있음","capex_basis":"현금흐름표 유형자산 취득 현금지출. 주파수 취득·비현금 리스 자산·인수대금은 별도이며 조정 현금 CAPEX와 다를 수 있습니다."},
- "skt": {"name":"SK텔레콤","country":"kr","currency":"KRW","corp_code":"00159023","stock":"017670","fiscal_start":1,"scope":"SK텔레콤 연결 전체 · SK브로드밴드 등 포함. 2021년 SK스퀘어 인적분할 전후 연결 범위에 주의","capex_basis":"OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR 발표의 검수 기준 CAPEX·무형자산·주파수·리스·출자금과 동일한 수치로 간주하지 않습니다."},
- "kt": {"name":"KT","country":"kr","currency":"KRW","corp_code":"00190321","stock":"030200","fiscal_start":1,"scope":"KT 연결 전체 · 통신 및 연결 자회사 포함. 별도 KT 실적과 구분","capex_basis":"OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR의 KT 별도 설비투자와 연결 범위·인식 시점이 다르며 무형자산·주파수·출자금을 더하지 않습니다."},
- "lguplus": {"name":"LG유플러스","country":"kr","currency":"KRW","corp_code":"00231363","stock":"032640","fiscal_start":1,"scope":"LG유플러스 연결 전체 · 모바일·기업인프라·스마트홈 및 연결 자회사 포함","capex_basis":"OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR 검수 기준 CAPEX와 구분하며 무형자산·주파수·리스·인수대금을 더하지 않습니다."},
- "ntt": {"name":"NTT","country":"jp","currency":"JPY","fiscal_start":4,"scope":"NTT 연결 전체 · NTT DOCOMO·지역통신·글로벌 솔루션·데이터센터 등 포함. 자회사 중복 합산 금지","capex_basis":"공식 Supplementary Data의 연결 Capital Investment (IFRS). 회사 공시 설비투자이며 현금흐름표 유형자산 취득액과 동일한 기준으로 간주하지 않습니다. 통신망 외 데이터센터 등 포함."},
- "kddi": {"name":"KDDI","country":"jp","currency":"JPY","fiscal_start":4,"scope":"KDDI 연결 전체 · au·UQ·기업 통신·금융·유통 등 포함. 특별조사 후 수정된 공식 이력 사용","capex_basis":"Financial Highlights의 Capex (cash flow basis). 연간 공개 이력 사용. FY2026.3부터 소비세 포함 기준으로 바뀌어 FY2025.3 연간·분기와 기준 차이가 있습니다. 분기 미확보는 연간을 나누어 채우지 않습니다."},
- "softbank": {"name":"SoftBank Corp.","country":"jp","currency":"JPY","fiscal_start":4,"scope":"일본 통신법인 SoftBank Corp. 연결 · LY·PayPay 등 포함. 투자지주회사 SoftBank Group과 구분","capex_basis":"Data sheets의 연결 C/F summary 중 Capital expenditures 현금지출을 양수 표시. 검수 기준 설비투자(리스·렌탈 단말 등 포함 가능)와 다른 항목이며 주파수·기업 인수 등을 임의로 더하지 않습니다."}
+ "att": {
+  "name": "AT&T",
+  "country": "us",
+  "currency": "USD",
+  "cik": 732717,
+  "fiscal_start": 1,
+  "scope": "AT&T 연결 전체 · 이동통신·광대역 등. WarnerMedia 분리·DirecTV 등 연결 범위 변경에 주의",
+  "capex_basis": "현금흐름표 Capital expenditures. 벤더 금융 상환을 더한 Capital investment와 구분하며 주파수 라이선스 인수액을 더하지 않습니다.",
+  "tags": {
+   "revenue": [
+    "Revenues",
+    "RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "capex": [
+    "PaymentsToAcquireProductiveAssets",
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ]
+  }
+ },
+ "verizon": {
+  "name": "Verizon",
+  "country": "us",
+  "currency": "USD",
+  "cik": 732712,
+  "fiscal_start": 1,
+  "scope": "Verizon 연결 전체 · 무선·유선·기업 통신 등",
+  "capex_basis": "현금흐름표 Capital expenditures (capitalized software 포함). 주파수 라이선스 및 기업 인수대금은 별도이며 더하지 않습니다.",
+  "tags": {
+   "revenue": [
+    "Revenues"
+   ],
+   "capex": [
+    "PaymentsToAcquireOtherProductiveAssets",
+    "PaymentsToAcquireProductiveAssets"
+   ]
+  }
+ },
+ "tmobile": {
+  "name": "T-Mobile US",
+  "country": "us",
+  "currency": "USD",
+  "cik": 1283699,
+  "fiscal_start": 1,
+  "scope": "T-Mobile US 연결 전체. Sprint·UScellular 등 인수 전후 연결 범위가 달라질 수 있음",
+  "capex_basis": "현금흐름표 유형자산 취득 현금지출. 주파수 취득·비현금 리스 자산·인수대금은 별도이며 조정 현금 CAPEX와 다를 수 있습니다."
+ },
+ "skt": {
+  "name": "SK텔레콤",
+  "country": "kr",
+  "currency": "KRW",
+  "corp_code": "00159023",
+  "stock": "017670",
+  "fiscal_start": 1,
+  "scope": "SK텔레콤 연결 전체 · SK브로드밴드 등 포함. 2021년 SK스퀘어 인적분할 전후 연결 범위에 주의",
+  "capex_basis": "OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR 발표의 검수 기준 CAPEX·무형자산·주파수·리스·출자금과 동일한 수치로 간주하지 않습니다.",
+  "quarter_exclusions": {
+   "2021-12-31": [
+    "revenue",
+    "profit"
+   ]
+  },
+  "comparability_note": "2021년 4분기 매출·영업이익은 인적분할 후 연간과 분할 전 9개월의 연결 범위가 달라 단순 차분하지 않고 결측으로 표시합니다. 연간 공시 및 원보고서 금액은 보존합니다."
+ },
+ "kt": {
+  "name": "KT",
+  "country": "kr",
+  "currency": "KRW",
+  "corp_code": "00190321",
+  "stock": "030200",
+  "fiscal_start": 1,
+  "scope": "KT 연결 전체 · 통신 및 연결 자회사 포함. 별도 KT 실적과 구분",
+  "capex_basis": "OpenDART 연결 현금흐름표의 유형자산 및 투자부동산 취득 현금지출. 원문이 두 자산을 합산 공시하므로 투자부동산을 임의로 분리하지 않습니다. IR의 KT 별도 설비투자와 연결 범위·인식 시점이 다르며 무형자산·주파수·출자금을 더하지 않습니다."
+ },
+ "lguplus": {
+  "name": "LG유플러스",
+  "country": "kr",
+  "currency": "KRW",
+  "corp_code": "00231363",
+  "stock": "032640",
+  "fiscal_start": 1,
+  "scope": "LG유플러스 연결 전체 · 모바일·기업인프라·스마트홈 및 연결 자회사 포함",
+  "capex_basis": "OpenDART 연결 현금흐름표의 유형자산 취득 현금지출. IR 검수 기준 CAPEX와 구분하며 무형자산·주파수·리스·인수대금을 더하지 않습니다."
+ },
+ "ntt": {
+  "name": "NTT",
+  "country": "jp",
+  "currency": "JPY",
+  "fiscal_start": 4,
+  "scope": "NTT 연결 전체 · NTT DOCOMO·지역통신·글로벌 솔루션·데이터센터 등 포함. 자회사 중복 합산 금지 · 공식 IR의 십억 엔 반올림 수치를 백만 엔으로 변환",
+  "capex_basis": "공식 Supplementary Data의 연결 Capital Investment (IFRS). 회사 공시 설비투자이며 현금흐름표 유형자산 취득액과 동일한 기준으로 간주하지 않습니다. 통신망 외 데이터센터 등 포함."
+ },
+ "kddi": {
+  "name": "KDDI",
+  "country": "jp",
+  "currency": "JPY",
+  "fiscal_start": 4,
+  "scope": "KDDI 연결 전체 · au·UQ·기업 통신·금융·유통 등 포함. 특별조사 후 수정된 공식 이력 사용",
+  "capex_basis": "연간은 Financial Highlights의 Capex (cash flow basis). 최신 분기는 공시 CF의 유형자산+무형자산 취득 현금지출 합계입니다. 원문 반올림으로 연간 합계와 소액 차이가 날 수 있습니다. FY2026.3부터 소비세 포함 기준으로 바뀌어 FY2025.3 연간·분기와 기준 차이가 있습니다. CAPEX는 연간으로 시작하며 분기 전환도 가능합니다.",
+  "default_views": {
+   "capex": "annual"
+  }
+ },
+ "softbank": {
+  "name": "SoftBank Corp.",
+  "country": "jp",
+  "currency": "JPY",
+  "fiscal_start": 4,
+  "scope": "일본 통신법인 SoftBank Corp. 연결 · LY·PayPay 등 포함. 투자지주회사 SoftBank Group과 구분 · 공식 IR의 십억 엔 반올림 수치를 백만 엔으로 변환",
+  "capex_basis": "Data sheets의 연결 C/F summary 중 Capital expenditures 현금지출을 양수 표시. 검수 기준 설비투자(리스·렌탈 단말 등 포함 가능)와 다른 항목이며 주파수·기업 인수 등을 임의로 더하지 않습니다."
+ }
 }

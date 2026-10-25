@@ -20,6 +20,7 @@ const state = {
   docs: new Map(), // indicator id → data json 캐시
   docErrors: new Map(), // indicator id → 불러오기 실패 사유. 404(아직 수집 전)는 여기 안 담김
 };
+let dismissFinancialMemo = () => {};
 
 // ── 수집 상태(stale) 판정 ────────────────────────────────────────
 // doc.fetched = 수집 스크립트가 실제로 돌아간 날(어느 스크립트든 항상 '오늘'로 기록).
@@ -52,6 +53,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 // ── 부트스트랩 ──────────────────────────────────────────────────
 async function boot() {
   observeDashboardHeader();
+  dismissFinancialMemo = installFinancialMemos();
   try {
     const res = await fetch("data/catalog.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -174,7 +176,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping", "games"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping", "telecom", "games"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
   ];
@@ -212,6 +214,7 @@ async function renderIndustry(options = {}) {
   const ind = state.industry;
   if (!ind) return;
   const mySeq = ++renderSeq;
+  dismissFinancialMemo();
   if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
   if (gamesCleanup) { gamesCleanup(); gamesCleanup = null; }
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
@@ -223,7 +226,7 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || ind.id === "telecom" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -231,6 +234,7 @@ async function renderIndustry(options = {}) {
 
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
+  content.classList.toggle("tc-root", ind.id === "telecom");
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
@@ -548,7 +552,7 @@ function renderFootStatus(latestUpdate, collected, ind) {
   cad.appendChild(sum);
   const body = document.createElement("div");
   body.innerHTML =
-    `<div>자동 수집: <b>매일 07:30</b>(KST) · GitHub Actions</div>` +
+    `<div>자동 수집: <b>매일 ${escapeHtml(ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
     (ind && ind.cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(ind.cadence)}</div>` : "");
   cad.appendChild(body);
   foot.appendChild(cad);
@@ -951,6 +955,33 @@ function createFinancialCard(doc, indicatorId, options) {
     state.charts = state.charts.filter(chart => !owned.has(chart));
     delete state.cardViews?.[indicatorId];
   }};
+}
+
+// Delegation also covers annual/quarter card replacements and newly opened tables.
+function installFinancialMemos() {
+  const tip = document.createElement("div");
+  tip.id = "financial-money-tooltip"; tip.className = "tc-money-tooltip";
+  tip.setAttribute("role", "tooltip"); tip.hidden = true; document.body.append(tip);
+  let active = null;
+  const buttonFor = target => target instanceof Element ? target.closest(".tc-root .gm-money") : null;
+  const hide = () => { active?.removeAttribute("aria-describedby"); active = null; tip.hidden = true; };
+  const position = () => {
+    if (!active?.isConnected) { hide(); return; }
+    const r = active.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight || r.right < 0 || r.left > innerWidth) { hide(); return; }
+    tip.style.left = `${Math.max(12, Math.min(r.left, innerWidth-tip.offsetWidth-12))}px`;
+    tip.style.top = `${Math.max(12, r.bottom+tip.offsetHeight+12>innerHeight ? r.top-tip.offsetHeight-8 : r.bottom+8)}px`;
+  };
+  const show = button => { hide(); active=button; tip.textContent=button.dataset.moneyNote; tip.hidden=false; button.setAttribute("aria-describedby",tip.id); position(); };
+  document.addEventListener("mouseover", e => { const b=buttonFor(e.target); if(b&&!b.contains(e.relatedTarget)) show(b); });
+  document.addEventListener("mouseout", e => { const b=buttonFor(e.target); if(b&&!b.contains(e.relatedTarget)&&document.activeElement!==b) hide(); });
+  document.addEventListener("focusin", e => { const b=buttonFor(e.target); if(b) show(b); });
+  document.addEventListener("focusout", e => { if(buttonFor(e.target)) hide(); });
+  document.addEventListener("click", e => { const b=buttonFor(e.target); if(b) show(b); else hide(); });
+  document.addEventListener("keydown", e => { if(e.key==="Escape") hide(); });
+  window.addEventListener("scroll", position, {passive:true,capture:true});
+  window.addEventListener("resize", hide, {passive:true});
+  return hide;
 }
 
 // 시리즈 토글 체크박스 칩 (Chart.js 기본 범례의 취소선 표기 대체)
