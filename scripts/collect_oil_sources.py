@@ -6,7 +6,7 @@ import time
 import requests
 import argparse
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin,urlparse,parse_qs
 
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/oil'
@@ -56,9 +56,11 @@ def collect(full=False):
                             if len(cells)<4 or not cells[3].get_text(strip=True).startswith('EX-99'):continue
                             link=cells[2].find('a',href=True)
                             if not link or not link['href'].endswith(('.htm','.html')):continue
-                            target=urljoin(index_url,link['href']);filename=target.rsplit('/',1)[-1]
+                            href=link['href']
+                            if '/ix?' in href:href=parse_qs(urlparse(href).query).get('doc',[href])[0]
+                            target=urljoin(index_url,href);filename=target.rsplit('/',1)[-1]
                             exhibit=CACHE/f'{key}-{acc}-{filename}'
-                            if not exhibit.exists():
+                            if not exhibit.exists() or exhibit.stat().st_size<1000:
                                 response=session.get(target,timeout=45);response.raise_for_status();exhibit.write_bytes(response.content);time.sleep(.25)
                             registry[acc+'-'+filename]=dict(url=target,form=form,filed=filed,date=report,path=exhibit.name,parent_accn=acc)
             (CACHE/f'{key}-filings.json').write_text(json.dumps(registry,indent=1),encoding='utf8')
@@ -66,7 +68,8 @@ def collect(full=False):
             print(key,len(registry),'originals',flush=True)
         except Exception as error:
             status[key]=dict(ok=False,checked=asof,error=type(error).__name__)
-            print(key,'unavailable',type(error).__name__,flush=True)
+            detail=(str(error.response.status_code)+' '+error.response.url) if isinstance(error,requests.HTTPError) and error.response is not None else type(error).__name__
+            print(key,'unavailable',detail,flush=True)
     (CACHE/'collection-status.json').write_text(json.dumps(status),encoding='utf8')
     return status
 
