@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import time
 import requests
+import argparse
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
@@ -11,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/oil'
 CIKS={'xom':34088,'xom_successor':2115436,'cvx':93410,'cop':1163165,'shell':1306965,'bp':313807,'tte':879764,'equinor':1140625}
 
-def collect():
+def collect(full=False):
     CACHE.mkdir(parents=True,exist_ok=True)
     session=requests.Session();session.headers['User-Agent']='industry-dashboard personal research wkorotk@gmail.com'
     asof=dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat();status={}
@@ -34,7 +35,8 @@ def collect():
                     # quarterly structured facts are fetched above in one request.
                     if form not in ['10-K','10-K/A','20-F','20-F/A','10-Q','8-K12B','6-K']:continue
                     if filed>asof or filed<'2014-01-01':continue
-                    if form=='6-K' and (not report or report[5:] not in ['03-31','06-30','09-30','12-31']):continue
+                    historical_shell=(full and key=='shell' and filed<'2019-01-01' and int(filed[5:7]) in [1,2,4,5,7,8,10,11] and (int(filed[8:])<=7 or int(filed[8:])>=24))
+                    if form=='6-K' and not historical_shell and (not report or report[5:] not in ['03-31','06-30','09-30','12-31']):continue
                     if form.startswith('10-K') or form.startswith('20-F'):
                         if report and report<'2014-12-31':continue
                     acc=group['accessionNumber'][i];doc=group['primaryDocument'][i]
@@ -68,4 +70,5 @@ def collect():
     (CACHE/'collection-status.json').write_text(json.dumps(status),encoding='utf8')
     return status
 
-if __name__=='__main__':collect()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--full',action='store_true');collect(parser.parse_args().full)
