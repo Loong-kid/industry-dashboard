@@ -1,0 +1,297 @@
+{
+ "id": "company_pasqal_netincome",
+ "name": "Pasqal · 순이익",
+ "unit": "백만 USD",
+ "company_kpi": true,
+ "span_gaps": false,
+ "zero_baseline": true,
+ "fetched": "2026-10-26",
+ "source": "SEC·공식 연결 공시",
+ "description": "중성원자 QPU·관련 서비스·크라이오스탯 등을 포함한 연결 실적.",
+ "basis_details": [
+  {
+   "label": "사업·매출 범위",
+   "value": "중성원자 QPU·관련 서비스·크라이오스탯 등을 포함한 연결 실적."
+  },
+  {
+   "label": "비교 가능성",
+   "value": "반기·연간 공시를 사용합니다. 보조금·기타 영업수익은 매출과 별도이며, 반기 값을 분기 값으로 나누지 않습니다."
+  },
+  {
+   "label": "손익 기준",
+   "value": "공시된 영업손익과 연결 전체 당기순손익입니다. 비지배지분을 포함하며, 조정 EBITDA·조정 순익·지배주주 귀속 순익과 구분합니다. 주식보상·파생상품 평가·상장 관련 일회성 비용이 손익에 반영될 수 있습니다."
+  },
+  {
+   "label": "환산·기간",
+   "value": "USD 공시는 그대로, EUR·SGD 원자료는 실제 분기·반기·연간 보고기간의 ECB 일별 평균환율로 USD 환산합니다. 원통화 금액·환율·기간은 금액과 표·차트의 메모에 보존합니다. 연간을 4등분하거나 반기를 2등분하지 않습니다."
+  },
+  {
+   "label": "확보 범위",
+   "value": "2024-12-31 ~ 2026-06-30 · 공시 확인 2026-10-26"
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-26",
+  "message": "공개 원문 조회 완료"
+ },
+ "default_view": "half",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 단독",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {},
+   "original_series": {
+    "순이익": []
+   },
+   "original_currency": "원통화",
+   "original_unit": "millions",
+   "point_notes": {},
+   "point_sources": {},
+   "period_labels": {},
+   "updated": "",
+   "source_url": "https://www.pasqal.com/",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": true,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "Pasqal 분기 순이익 원자료 미확보. 실제 확보한 반기·연간 공시는 해당 버튼에서 확인할 수 있습니다."
+  },
+  "half": {
+   "label": "반기",
+   "frequency": "semiannual",
+   "frequency_label": "반기 · 실제 공시 기간",
+   "quarter_labels": false,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {
+    "순이익": [
+     [
+      "2025-06-30",
+      -28.490365411190666
+     ],
+     [
+      "2025-12-31",
+      null
+     ],
+     [
+      "2026-06-30",
+      -62.097339085777996
+     ]
+    ]
+   },
+   "original_series": {
+    "순이익": [
+     [
+      "2025-06-30",
+      -26.118000000000002
+     ],
+     [
+      "2025-12-31",
+      null
+     ],
+     [
+      "2026-06-30",
+      -53.236000000000004
+     ]
+    ]
+   },
+   "original_currency": "EUR",
+   "original_unit": "millions",
+   "point_notes": {
+    "2025-06-30": [
+     "FY2025 H1 · 2025-01-01 ~ 2025-06-30",
+     "원자료: -26.118000 백만 EUR",
+     "기간 평균: 1 USD = 0.916731 EUR",
+     "ECB 일별 125개 관측 평균 · 원자료 ÷ 평균환율",
+     "환율 관측: 2025-01-02 ~ 2025-06-30",
+     "공시된 실제 기간 실적"
+    ],
+    "2026-06-30": [
+     "FY2026 H1 · 2026-01-01 ~ 2026-06-30",
+     "원자료: -53.236000 백만 EUR",
+     "기간 평균: 1 USD = 0.857299 EUR",
+     "ECB 일별 125개 관측 평균 · 원자료 ÷ 평균환율",
+     "환율 관측: 2026-01-02 ~ 2026-06-30",
+     "공시된 실제 기간 실적"
+    ]
+   },
+   "point_sources": {
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+     "label": "FY2025 H1 · 연결 손익계산서 · 실제 공시"
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+     "label": "FY2026 H1 · 연결 손익계산서 · 실제 공시"
+    }
+   },
+   "period_labels": {
+    "2025-06-30": "FY2025 H1",
+    "2026-06-30": "FY2026 H1"
+   },
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "Pasqal 반기 순이익 원자료 미확보. 실제 확보한 반기·연간 공시는 해당 버튼에서 확인할 수 있습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 실제 공시 기간",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "순이익": [
+     [
+      "2024-12-31",
+      -52.47975112906047
+     ],
+     [
+      "2025-12-31",
+      -104.15532785999231
+     ]
+    ]
+   },
+   "original_series": {
+    "순이익": [
+     [
+      "2024-12-31",
+      -48.498
+     ],
+     [
+      "2025-12-31",
+      -92.355
+     ]
+    ]
+   },
+   "original_currency": "EUR",
+   "original_unit": "millions",
+   "point_notes": {
+    "2024-12-31": [
+     "FY2024 · 2024-01-01 ~ 2024-12-31",
+     "원자료: -48.498000 백만 EUR",
+     "기간 평균: 1 USD = 0.924128 EUR",
+     "ECB 일별 256개 관측 평균 · 원자료 ÷ 평균환율",
+     "환율 관측: 2024-01-02 ~ 2024-12-31",
+     "공시된 실제 기간 실적"
+    ],
+    "2025-12-31": [
+     "FY2025 · 2025-01-01 ~ 2025-12-31",
+     "원자료: -92.355000 백만 EUR",
+     "기간 평균: 1 USD = 0.886705 EUR",
+     "ECB 일별 255개 관측 평균 · 원자료 ÷ 평균환율",
+     "환율 관측: 2025-01-02 ~ 2025-12-31",
+     "공시된 실제 기간 실적"
+    ]
+   },
+   "point_sources": {
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026098421/ea0304681-01.htm",
+     "label": "FY2024 · 연결 손익계산서 · 실제 공시"
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026098421/ea0304681-01.htm",
+     "label": "FY2025 · 연결 손익계산서 · 실제 공시"
+    }
+   },
+   "period_labels": {
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026098421/ea0304681-01.htm",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "Pasqal 연간 순이익 원자료 미확보. 실제 확보한 반기·연간 공시는 해당 버튼에서 확인할 수 있습니다."
+  }
+ },
+ "frequency": "semiannual",
+ "frequency_label": "반기 · 실제 공시 기간",
+ "quarter_labels": false,
+ "year_labels": false,
+ "annual_axis": false,
+ "series": {
+  "순이익": [
+   [
+    "2025-06-30",
+    -28.490365411190666
+   ],
+   [
+    "2025-12-31",
+    null
+   ],
+   [
+    "2026-06-30",
+    -62.097339085777996
+   ]
+  ]
+ },
+ "original_series": {
+  "순이익": [
+   [
+    "2025-06-30",
+    -26.118000000000002
+   ],
+   [
+    "2025-12-31",
+    null
+   ],
+   [
+    "2026-06-30",
+    -53.236000000000004
+   ]
+  ]
+ },
+ "original_currency": "EUR",
+ "original_unit": "millions",
+ "point_notes": {
+  "2025-06-30": [
+   "FY2025 H1 · 2025-01-01 ~ 2025-06-30",
+   "원자료: -26.118000 백만 EUR",
+   "기간 평균: 1 USD = 0.916731 EUR",
+   "ECB 일별 125개 관측 평균 · 원자료 ÷ 평균환율",
+   "환율 관측: 2025-01-02 ~ 2025-06-30",
+   "공시된 실제 기간 실적"
+  ],
+  "2026-06-30": [
+   "FY2026 H1 · 2026-01-01 ~ 2026-06-30",
+   "원자료: -53.236000 백만 EUR",
+   "기간 평균: 1 USD = 0.857299 EUR",
+   "ECB 일별 125개 관측 평균 · 원자료 ÷ 평균환율",
+   "환율 관측: 2026-01-02 ~ 2026-06-30",
+   "공시된 실제 기간 실적"
+  ]
+ },
+ "point_sources": {
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+   "label": "FY2025 H1 · 연결 손익계산서 · 실제 공시"
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+   "label": "FY2026 H1 · 연결 손익계산서 · 실제 공시"
+  }
+ },
+ "period_labels": {
+  "2025-06-30": "FY2025 H1",
+  "2026-06-30": "FY2026 H1"
+ },
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/2119292/000121390026102836/ea0306469-424b3_pasqal.htm",
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": false,
+ "change_mode": "none",
+ "comparison_dates": {},
+ "empty_message": "Pasqal 반기 순이익 원자료 미확보. 실제 확보한 반기·연간 공시는 해당 버튼에서 확인할 수 있습니다."
+}

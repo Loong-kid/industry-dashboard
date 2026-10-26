@@ -1,0 +1,22 @@
+.qt-overview { min-width: 0; }
+.qt-heading { margin: 24px 0 12px; font-size: 18px; font-weight: 650; }
+.qt-heading:first-child { margin-top: 0; }
+.qt-etfs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 20px 0 30px; }
+.qt-etf { padding: 22px; }
+.qt-etf h3 { margin: 9px 0; font-size: 24px; }
+.qt-etf p, .qt-exclusions p { line-height: 1.8; font-size: 13px; }
+.qt-overview a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.qt-market, .qt-note { color: var(--muted); font-size: 12px; }
+.qt-table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--baseline); border-radius: 6px; }
+.qt-table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.qt-table th, .qt-table td { text-align: left; padding: 15px 13px; vertical-align: top; border-bottom: 1px solid var(--baseline); line-height: 1.7; }
+.qt-table th { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.qt-table tbody tr:last-child td { border-bottom: 0; }
+.qt-table td:first-child { min-width: 130px; }
+.qt-table small { display: block; color: var(--muted); font-size: 11px; }
+.qt-table .qt-scope { min-width: 220px; max-width: 360px; }
+.qt-table .qt-weight { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.qt-coverage { min-width: 130px; }
+.qt-warn, .qt-table small.qt-warn { color: var(--warning, #a46b05); }
+.qt-exclusions { border-top: 1px solid var(--baseline); margin-top: 28px; }
+@media(max-width:700px) { .qt-etfs { grid-template-columns: minmax(0,1fr); } .qt-etf { padding: 18px; } }

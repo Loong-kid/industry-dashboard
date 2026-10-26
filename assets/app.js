@@ -179,7 +179,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping", "telecom", "games"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping", "telecom", "games", "quantum"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
   ];
@@ -230,15 +230,15 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || ind.id === "telecom" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "quantum" && state.subtab === "overview") || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
 
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
-  content.classList.toggle("tc-root", ind.id === "telecom");
+  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum");
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
@@ -320,7 +320,7 @@ async function renderIndustry(options = {}) {
       row.append(label, tabs);
       pageTabs.appendChild(row);
     } else pageTabs.appendChild(tabs);
-    if (ind.id === "telecom") {
+    if (ind.id === "telecom" || ind.id === "quantum") {
       tabs.classList.add("tc-tabs");
       requestAnimationFrame(revealTelecomTab);
     }
@@ -357,6 +357,22 @@ async function renderIndustry(options = {}) {
     intro.className = "tab-description";
     intro.textContent = gasView?.description || selectedTab.description;
     content.appendChild(intro);
+  }
+
+  if (ind.id === "quantum" && state.subtab === "overview") {
+    const loading = document.createElement("p");
+    loading.className = "page-loading"; loading.textContent = "ETF·추적 대상 불러오는 중…"; content.appendChild(loading);
+    try {
+      const [doc, quantum] = await Promise.all([loadDoc("quantum", "universe"), import("./quantum.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("universe");
+      content.appendChild(err ? errorCard("quantum", "universe", err) : quantum.renderOverview(doc));
+      loading.remove();
+      renderFootStatus(doc?.updated || "", doc ? [{name: doc.name, fetched: doc.fetched, stale: staleDays(doc)}] : [], ind);
+    } catch (e) {
+      if (mySeq === renderSeq) loading.textContent = "ETF·추적 대상을 불러오지 못했습니다. 새로고침해 주세요.";
+    }
+    return;
   }
 
   if (photomask && typeof renderPhotomaskViews === "function") {

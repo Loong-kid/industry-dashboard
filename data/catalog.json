@@ -3355,6 +3355,148 @@
           ]
         }
       ]
+    },
+    {
+      "id": "quantum",
+      "name": "양자컴퓨터",
+      "icon": "⚛️",
+      "default_range": "all",
+      "auto_collect_time": "09:10",
+      "cadence": "SEC 연결 공시는 매일 조회. 신규 해외 발행사 6-K·IPO 원문은 검토한 표를 갱신하고 새 재무 공시는 검토 필요로 표시. 기업별 분기·반기·연간 발표 후 반영. ETF 보유 내역은 공시 기준일 표시.",
+      "tabs": [
+        {
+          "id": "overview",
+          "name": "ETF·추적 대상",
+          "description": "양자 ETF의 실제 보유 종목에서 직접 관련 기업을 골라 추적합니다. 대기업 전체 매출은 양자 산업 매출로 사용하지 않습니다."
+        },
+        {
+          "id": "atom",
+          "name": "이온트랩·중성원자",
+          "description": "IonQ·Quantinuum·Infleqtion·Pasqal. 센서·보안·부품을 포함한 기업별 사업 범위를 함께 확인하세요."
+        },
+        {
+          "id": "superconducting",
+          "name": "초전도·어닐링",
+          "description": "Rigetti·D-Wave·IQM. 게이트형과 어닐링은 서로 다른 접근 방식입니다."
+        },
+        {
+          "id": "photonics",
+          "name": "광자·소프트웨어",
+          "description": "QCi·Xanadu·Horizon Quantum. 광자 부품·파운드리·소프트웨어 매출과 QPU 판매액은 구분해서 봅니다."
+        }
+      ],
+      "sections": [
+        {
+          "tab": "atom",
+          "title": "IonQ · IONQ · 이온트랩",
+          "layout": "financial",
+          "supply_note": "이온트랩 QPU·클라우드·네트워킹·보안·센싱 등을 포함한 연결 실적. 컴퓨팅 단독 매출과 구분합니다.",
+          "indicators": [
+            "company_ionq_revenue",
+            "company_ionq_profit",
+            "company_ionq_netincome"
+          ]
+        },
+        {
+          "tab": "superconducting",
+          "title": "Rigetti · RGTI · 초전도",
+          "layout": "financial",
+          "supply_note": "초전도 QPU·클라우드 접근·연구개발 계약 등을 포함한 연결 실적.",
+          "indicators": [
+            "company_rigetti_revenue",
+            "company_rigetti_profit",
+            "company_rigetti_netincome"
+          ]
+        },
+        {
+          "tab": "superconducting",
+          "title": "D-Wave · QBTS · 양자 어닐링·게이트",
+          "layout": "financial",
+          "supply_note": "양자 어닐링 시스템·클라우드·서비스 및 연결 자회사 실적.",
+          "indicators": [
+            "company_dwave_revenue",
+            "company_dwave_profit",
+            "company_dwave_netincome"
+          ]
+        },
+        {
+          "tab": "photonics",
+          "title": "Quantum Computing Inc. · QUBT · 광자·파운드리",
+          "layout": "financial",
+          "supply_note": "양자·광자 기술, 광학 부품·파운드리 등 연결 실적. 광자 부품 매출 전체가 양자 컴퓨터 판매액은 아닙니다.",
+          "indicators": [
+            "company_qci_revenue",
+            "company_qci_profit",
+            "company_qci_netincome"
+          ]
+        },
+        {
+          "tab": "atom",
+          "title": "Quantinuum · QNT · 이온트랩·소프트웨어",
+          "layout": "financial",
+          "supply_note": "이온트랩 하드웨어·양자 소프트웨어·사이버보안 등을 포함한 연결 실적.",
+          "indicators": [
+            "company_quantinuum_revenue",
+            "company_quantinuum_profit",
+            "company_quantinuum_netincome"
+          ]
+        },
+        {
+          "tab": "atom",
+          "title": "Infleqtion · INFQ · 중성원자·센서",
+          "layout": "financial",
+          "supply_note": "중성원자 컴퓨팅·양자 센싱·정밀 부품 등을 포함한 연결 실적. 컴퓨팅 매출 단독이 아닙니다.",
+          "indicators": [
+            "company_infleqtion_revenue",
+            "company_infleqtion_profit",
+            "company_infleqtion_netincome"
+          ]
+        },
+        {
+          "tab": "photonics",
+          "title": "Xanadu · XNDU · 광자·PennyLane",
+          "layout": "financial",
+          "supply_note": "광자 양자컴퓨팅·소프트웨어·연구 계약 등을 포함한 연결 실적.",
+          "indicators": [
+            "company_xanadu_revenue",
+            "company_xanadu_profit",
+            "company_xanadu_netincome"
+          ]
+        },
+        {
+          "tab": "atom",
+          "title": "Pasqal · PSQL · 중성원자",
+          "layout": "financial",
+          "supply_note": "중성원자 QPU·관련 서비스·크라이오스탯 등을 포함한 연결 실적.",
+          "indicators": [
+            "company_pasqal_revenue",
+            "company_pasqal_profit",
+            "company_pasqal_netincome"
+          ]
+        },
+        {
+          "tab": "superconducting",
+          "title": "IQM · IQMX · 초전도 시스템",
+          "layout": "financial",
+          "supply_note": "온프레미스 초전도 양자컴퓨터·클라우드·지원 등을 포함한 연결 실적.",
+          "indicators": [
+            "company_iqm_revenue",
+            "company_iqm_profit",
+            "company_iqm_netincome"
+          ]
+        },
+        {
+          "tab": "photonics",
+          "title": "Horizon Quantum · HQ · 소프트웨어·컴파일러",
+          "layout": "financial",
+          "supply_note": "양자 소프트웨어 인프라·컴파일러·테스트베드 등을 포함한 운영기업 연결 실적.",
+          "indicators": [
+            "company_horizon_revenue",
+            "company_horizon_profit",
+            "company_horizon_netincome"
+          ]
+        }
+      ]
     }
   ]
 }
