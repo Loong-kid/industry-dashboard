@@ -6,6 +6,7 @@ const end = source.indexOf('  const wrap = document.createElement("div");', star
 class Element {
   constructor() { this.children = []; this.innerHTML = ''; this.textContent = ''; }
   appendChild(child) { this.children.push(child); }
+  querySelector() { return null; }
 }
 const formatting = new Function('escapeHtml', source.slice(source.indexOf('function fmt('), source.indexOf('function koreaTradeChart('))
   + '\nreturn {periodLabel, observationLabel};')(String);

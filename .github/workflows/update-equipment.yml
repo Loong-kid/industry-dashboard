@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   equipment:
@@ -42,5 +42,8 @@ jobs:
           done
           git add data/semicon/equipment_asml_revenue_mix.json data/semicon/equipment_screen_spe.json data/semicon/equipment_disco_shipments.json data/semicon/equipment_besi_orders.json
           git diff --cached --quiet || git commit -m "chore: refresh equipment company accounts"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
