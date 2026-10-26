@@ -14,6 +14,7 @@ const state = {
   semiconGroup: null,
   materialCategory: null,
   photomaskView: "indicators",
+  natgasView: "summary",
   range: "1y",
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
   charts: [], // 렌더된 Chart 인스턴스 (재렌더 시 destroy)
@@ -145,6 +146,7 @@ function route() {
     state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   }
+  state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
   document.querySelectorAll("#nav a").forEach((a) => {
     const selected = a.dataset.id === state.industry.id;
     a.classList.toggle("active", selected);
@@ -220,9 +222,10 @@ async function renderIndustry(options = {}) {
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const selectedCategory = ind.material_categories?.find(category => category.id === state.materialCategory);
+  const gasView = ind.id === "natgas" && state.subtab === "midstream" ? selectedTab.views?.find(view => view.id === state.natgasView) : null;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
-  document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}`;
+  document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${gasView ? " · " + gasView.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
@@ -330,10 +333,24 @@ async function renderIndustry(options = {}) {
     pageTabs.appendChild(views);
   }
 
-  if (selectedTab?.description) {
+  if (gasView) {
+    const views = document.createElement("nav");
+    views.className = "commodity-tabs";
+    views.setAttribute("aria-label", "미드스트림 분류");
+    for (const view of selectedTab.views) {
+      const link = document.createElement("a");
+      link.href = `#/natgas/midstream/${view.id}`;
+      link.textContent = view.name;
+      if (view.id === gasView.id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
+      views.appendChild(link);
+    }
+    pageTabs.appendChild(views);
+  }
+
+  if (gasView?.description || selectedTab?.description) {
     const intro = document.createElement("p");
     intro.className = "tab-description";
-    intro.textContent = selectedTab.description;
+    intro.textContent = gasView?.description || selectedTab.description;
     content.appendChild(intro);
   }
 
@@ -373,6 +390,7 @@ async function renderIndustry(options = {}) {
   const collected = []; // 수집 상태 판정용 { name, fetched }
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
+    if (gasView && section.view !== gasView.id) continue;
     const dataIndustry = section.data_industry || ind.id;
     const h = document.createElement("div");
     h.className = "section-title";

@@ -1764,7 +1764,8 @@
             "company_kmi_revenue",
             "company_kmi_profit",
             "company_kmi_capex"
-          ]
+          ],
+          "view": "summary"
         },
         {
           "tab": "midstream",
@@ -1775,7 +1776,8 @@
             "company_wmb_revenue",
             "company_wmb_profit",
             "company_wmb_capex"
-          ]
+          ],
+          "view": "summary"
         },
         {
           "tab": "midstream",
@@ -1786,7 +1788,8 @@
             "company_et_revenue",
             "company_et_profit",
             "company_et_capex"
-          ]
+          ],
+          "view": "summary"
         },
         {
           "tab": "midstream",
@@ -1797,7 +1800,8 @@
             "company_epd_revenue",
             "company_epd_profit",
             "company_epd_capex"
-          ]
+          ],
+          "view": "summary"
         },
         {
           "tab": "midstream",
@@ -1808,7 +1812,8 @@
             "company_trgp_revenue",
             "company_trgp_profit",
             "company_trgp_capex"
-          ]
+          ],
+          "view": "summary"
         },
         {
           "tab": "midstream",
@@ -1819,7 +1824,8 @@
             "company_aroc_revenue",
             "company_aroc_profit",
             "company_aroc_capex"
-          ]
+          ],
+          "view": "compression"
         },
         {
           "tab": "midstream",
@@ -1827,7 +1833,8 @@
           "indicators": [
             "compressor_aroc_horsepower",
             "compressor_aroc_utilization"
-          ]
+          ],
+          "view": "compression"
         },
         {
           "tab": "midstream",
@@ -1838,7 +1845,8 @@
             "company_kgs_revenue",
             "company_kgs_profit",
             "company_kgs_capex"
-          ]
+          ],
+          "view": "compression"
         },
         {
           "tab": "midstream",
@@ -1846,7 +1854,8 @@
           "indicators": [
             "compressor_kgs_horsepower",
             "compressor_kgs_utilization"
-          ]
+          ],
+          "view": "compression"
         },
         {
           "tab": "midstream",
@@ -1857,7 +1866,8 @@
             "company_usac_revenue",
             "company_usac_profit",
             "company_usac_capex"
-          ]
+          ],
+          "view": "compression"
         },
         {
           "tab": "midstream",
@@ -1865,7 +1875,8 @@
           "indicators": [
             "compressor_usac_horsepower",
             "compressor_usac_utilization"
-          ]
+          ],
+          "view": "compression"
         }
       ],
       "auto_collect_time": "08:55",
@@ -1879,7 +1890,18 @@
           "id": "midstream",
           "name": "미드스트림",
           "default_range": "all",
-          "description": "미드스트림 5사와 압축기 서비스 3사의 연결 매출·영업이익·현금 CAPEX를 분기·연간으로 봅니다. 연간은 2014년부터(Kodiak은 공개된 2021년부터), 단위는 백만 USD입니다. 상품 매매·NGL·원유 등 사업 범위와 인수·분할을 고려하세요. Energy Transfer는 USAC를 연결하므로 두 회사를 합산하지 않습니다. 압축기 마력은 분기 말 잔량이며, Kodiak·USAC의 Revenue-generating HP는 Archrock의 Operating HP와 정의가 다릅니다."
+          "views": [
+            {
+              "id": "summary",
+              "name": "전체 요약",
+              "description": "KMI·Williams·Energy Transfer·Enterprise Products·Targa의 연결 매출·영업이익·현금 CAPEX를 분기·연간으로 봅니다. 연간은 2014년부터이며 단위는 백만 USD입니다. 천연가스 외 NGL·원유·상품 매매 등 사업 범위와 인수·분할을 함께 고려하세요. 압축기 서비스 3사와 마력 지표는 위의 압축기 화면에서 볼 수 있습니다."
+            },
+            {
+              "id": "compression",
+              "name": "압축기",
+              "description": "Archrock·Kodiak·USA Compression의 연결 매출·영업손익·현금 CAPEX와 분기 말 압축기 마력을 봅니다. 재무 단위는 백만 USD, 마력은 천 HP입니다. Kodiak은 2023년 6월 상장했으며 IPO 신고서에 포함된 2021·2022년 비교 재무제표와 공개 분기 자료를 반영해 2021년부터 표시합니다. 미확보 과거 실적은 추정하지 않습니다. Kodiak·USAC의 Revenue-generating HP는 Archrock의 Operating HP와 정의가 다릅니다. Energy Transfer는 USAC를 연결하므로 두 회사 실적을 합산하지 않습니다."
+            }
+          ]
         }
       ]
     },
