@@ -26,6 +26,7 @@ function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
   if (id === "oil" && subtab === "offshore") return REFRESH_TARGETS.offshore;
+  if (id === "oil" && subtab === "refining") return {file: "data/oil/refining_state.json", label: "정유 실적 확인", workflow: "update-refining.yml"};
   if (id === "natgas" && subtab === "midstream" && window.dashboard?.state?.natgasView === "compression") return {file: "data/natgas/company_aroc_revenue.json", label: "압축기 실적 확인", workflow: "update-natgas.yml"};
   if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};

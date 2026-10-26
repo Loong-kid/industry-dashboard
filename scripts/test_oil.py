@@ -97,7 +97,7 @@ class OilTests(unittest.TestCase):
     def test_nested_drilling_keeps_its_original_data_paths(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_bytes());oil=next(i for i in catalog['industries'] if i['id']=='oil')
         self.assertFalse(any(i['id']=='offshore' for i in catalog['industries']))
-        self.assertEqual([t['id'] for t in oil['tabs']],['majors','offshore'])
+        self.assertEqual([t['id'] for t in oil['tabs']],['majors','offshore','refining'])
         for section in oil['sections']:
             directory=section.get('data_industry','oil')
             for id in section['indicators']:self.assertTrue((ROOT/'data'/directory/(id+'.json')).exists())

@@ -3308,6 +3308,12 @@
               "description": "주요 6개사의 분기 매출·손익·현금흐름과 회사 공시 EBITDA·요율·효율. 단위는 USD 백만이며 연결·지표 정의 차이를 함께 확인합니다."
             }
           ]
+        },
+        {
+          "id": "refining",
+          "name": "정유",
+          "default_range": "all",
+          "description": "Valero·Marathon Petroleum·Phillips 66·S-Oil의 2014년부터 전사 연결 실적입니다. 정유 외 사업도 포함하며 미국 3사는 USD 백만, S-Oil은 KRW 백만입니다. Phillips 66 영업손익은 계산값이며 CAPEX·투자는 회사 공시 기준입니다. 차트별 기준·출처를 함께 확인하세요."
         }
       ],
       "sections": [
@@ -3446,6 +3452,46 @@
           ],
           "view": "financials",
           "data_industry": "offshore"
+        },
+        {
+          "tab": "refining",
+          "title": "Valero · VLO · 정유·재생연료",
+          "layout": "financial",
+          "indicators": [
+            "company_vlo_revenue",
+            "company_vlo_profit",
+            "company_vlo_capex"
+          ]
+        },
+        {
+          "tab": "refining",
+          "title": "Marathon Petroleum · MPC · 정유·MPLX",
+          "layout": "financial",
+          "indicators": [
+            "company_mpc_revenue",
+            "company_mpc_profit",
+            "company_mpc_capex"
+          ]
+        },
+        {
+          "tab": "refining",
+          "title": "Phillips 66 · PSX · 정유·미드스트림·화학",
+          "layout": "financial",
+          "indicators": [
+            "company_psx_revenue",
+            "company_psx_profit",
+            "company_psx_capex"
+          ]
+        },
+        {
+          "tab": "refining",
+          "title": "S-Oil · 010950 · 정유·석유화학·윤활",
+          "layout": "financial",
+          "indicators": [
+            "company_soil_revenue",
+            "company_soil_profit",
+            "company_soil_capex"
+          ]
         }
       ]
     }
