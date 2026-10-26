@@ -7,16 +7,20 @@ import requests
 import argparse
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin,urlparse,parse_qs
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/oil'
 CIKS={'xom':34088,'xom_successor':2115436,'cvx':93410,'cop':1163165,'shell':1306965,'bp':313807,'tte':879764,'equinor':1140625}
 
-def collect(full=False):
+def collect(full=False,only=None):
     CACHE.mkdir(parents=True,exist_ok=True)
     session=requests.Session();session.headers['User-Agent']='industry-dashboard personal research wkorotk@gmail.com'
+    session.mount('https://',HTTPAdapter(max_retries=Retry(total=2,backoff_factor=.5,status_forcelist=[500,502,503,504],allowed_methods=['GET'])))
     asof=dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat();status={}
     for key,cik in CIKS.items():
+        if only and key!=only:continue
         try:
             for kind,url in [('facts',f'https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json'),('sub',f'https://data.sec.gov/submissions/CIK{cik:010d}.json')]:
                 r=session.get(url,timeout=45);r.raise_for_status();(CACHE/f'{key}-{kind}.json').write_bytes(r.content);time.sleep(.25)
@@ -45,7 +49,7 @@ def collect(full=False):
                     if not path.exists():
                         r=session.get(url,timeout=45);r.raise_for_status();path.write_bytes(r.content);time.sleep(.25)
                     registry[acc]=dict(url=url,form=form,filed=filed,date=report,path=path.name)
-                    if key=='shell' and form=='6-K' and path.stat().st_size<60000:
+                    if key=='shell' and form=='6-K' and path.stat().st_size<60000 and 'exhibit' in BeautifulSoup(path.read_bytes(),'html.parser').get_text(' ',strip=True).lower():
                         # Many Shell 6-Ks have only a cover; the public exhibit
                         # contains the actual unaudited financial statements.
                         index_url=url.rsplit('/',1)[0]+'/'+acc+'-index.html'
@@ -74,4 +78,4 @@ def collect(full=False):
     return status
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--full',action='store_true');collect(parser.parse_args().full)
+    parser=argparse.ArgumentParser();parser.add_argument('--full',action='store_true');parser.add_argument('--company',choices=list(CIKS));args=parser.parse_args();collect(args.full,args.company)
