@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   telecom:

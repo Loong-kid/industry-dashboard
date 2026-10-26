@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   cpu:
@@ -34,5 +34,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/semicon/cpu_state.json data/semicon/company_intel_*.json data/semicon/company_amd_*.json data/semicon/company_arm_*.json data/semicon/company_qualcomm_*.json data/semicon/company_apple_*.json
           git diff --cached --quiet || git commit -m "chore: refresh CPU company accounts"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done

@@ -4,7 +4,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   hanmi:
@@ -26,5 +26,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add manual/equipment_hanmi.json
           git diff --cached --quiet || git commit -m "chore: backfill public Hanmi equipment accounts"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done

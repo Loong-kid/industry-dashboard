@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   prices:
@@ -30,8 +30,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/natgas/ng_*.json data/natgas/lng_equities.json data/natgas/fertilizer.json
           git diff --cached --quiet || git commit -m "chore: refresh natural gas prices"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
   midstream:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -53,5 +56,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/natgas/midstream_state.json data/natgas/company_*.json data/natgas/compressor_*.json
           git diff --cached --quiet || git commit -m "chore: refresh gas midstream and compressor accounts"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
