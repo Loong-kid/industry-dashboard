@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import time
 import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
 
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/oil'
@@ -41,6 +43,22 @@ def collect():
                     if not path.exists():
                         r=session.get(url,timeout=45);r.raise_for_status();path.write_bytes(r.content);time.sleep(.25)
                     registry[acc]=dict(url=url,form=form,filed=filed,date=report,path=path.name)
+                    if key=='shell' and form=='6-K' and path.stat().st_size<60000:
+                        # Many Shell 6-Ks have only a cover; the public exhibit
+                        # contains the actual unaudited financial statements.
+                        index_url=url.rsplit('/',1)[0]+'/'+acc+'-index.html'
+                        index=session.get(index_url,timeout=45);index.raise_for_status();time.sleep(.25)
+                        soup=BeautifulSoup(index.content,'html.parser')
+                        for row in soup.select('tr'):
+                            cells=row.find_all('td')
+                            if len(cells)<4 or not cells[3].get_text(strip=True).startswith('EX-99'):continue
+                            link=cells[2].find('a',href=True)
+                            if not link or not link['href'].endswith(('.htm','.html')):continue
+                            target=urljoin(index_url,link['href']);filename=target.rsplit('/',1)[-1]
+                            exhibit=CACHE/f'{key}-{acc}-{filename}'
+                            if not exhibit.exists():
+                                response=session.get(target,timeout=45);response.raise_for_status();exhibit.write_bytes(response.content);time.sleep(.25)
+                            registry[acc+'-'+filename]=dict(url=target,form=form,filed=filed,date=report,path=exhibit.name,parent_accn=acc)
             (CACHE/f'{key}-filings.json').write_text(json.dumps(registry,indent=1),encoding='utf8')
             status[key]=dict(ok=True,checked=asof)
             print(key,len(registry),'originals',flush=True)
