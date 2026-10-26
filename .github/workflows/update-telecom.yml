@@ -28,12 +28,19 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p test_telecom.py -v
           python scripts/validate_telecom.py
+      - name: Refresh telecom equipment public accounts
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_telecom_equipment.py
       - name: Preserve public source snapshots for diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: telecom-public-snapshots
-          path: data/telecom/
+          path: |
+            data/telecom/
+            .cache/telecom/equipment/
+          include-hidden-files: true
           retention-days: 3
       - name: Commit telecom data only
         run: |
