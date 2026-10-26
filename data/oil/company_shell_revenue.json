@@ -6,8 +6,10 @@
  "frequency_label": "분기 · 회사 연결 실적",
  "quarter_labels": true,
  "period_labels": {
+  "2017-06-30": "FY2017 Q2",
   "2017-09-30": "FY2017 Q3",
   "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
   "2018-06-30": "FY2018 Q2",
   "2018-09-30": "FY2018 Q3",
   "2018-12-31": "FY2018 Q4",
@@ -43,17 +45,25 @@
   "2026-06-30": "FY2026 Q2"
  },
  "comparison_dates": {
-  "2017-09-30": {
+  "2017-06-30": {
    "year_ago": null,
    "quarter_ago": null
+  },
+  "2017-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2017-06-30"
   },
   "2017-12-31": {
    "year_ago": null,
    "quarter_ago": "2017-09-30"
   },
-  "2018-06-30": {
+  "2018-03-31": {
    "year_ago": null,
-   "quarter_ago": null
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
   },
   "2018-09-30": {
    "year_ago": "2017-09-30",
@@ -64,7 +74,7 @@
    "quarter_ago": "2018-09-30"
   },
   "2019-03-31": {
-   "year_ago": null,
+   "year_ago": "2018-03-31",
    "quarter_ago": "2018-12-31"
   },
   "2019-06-30": {
@@ -188,9 +198,13 @@
  "fetched": "2026-10-27",
  "source": "기업 공식 재무제표 · SEC / IR",
  "source_url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
- "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 회사 전체 연결 매출입니다. 원유 채굴 매출 또는 정유 단독 매출이 아니며 회사 간 합산하지 않습니다. 분기는 2017-09-30부터 확인한 자료이며, 그 이전 실적은 연간 보기에서 확인할 수 있습니다.",
+ "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 회사 전체 연결 매출입니다. 원유 채굴 매출 또는 정유 단독 매출이 아니며 회사 간 합산하지 않습니다. 분기는 2017-06-30부터 확인한 자료이며, 그 이전 실적은 연간 보기에서 확인할 수 있습니다.",
  "series": {
   "연결 매출": [
+   [
+    "2017-06-30",
+    72131.0
+   ],
    [
     "2017-09-30",
     75830.0
@@ -201,7 +215,7 @@
    ],
    [
     "2018-03-31",
-    null
+    89235.0
    ],
    [
     "2018-06-30",
@@ -342,6 +356,17 @@
  ],
  "span_gaps": false,
  "point_sources": {
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
   "2017-09-30": {
    "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
    "label": "FY2017 Q3",
@@ -368,6 +393,17 @@
    ],
    "source_separator": " − "
   },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
   "2018-06-30": {
    "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019028411/0001564590-19-028411-index.html",
    "label": "FY2018 Q2",
@@ -391,11 +427,11 @@
    "source_separator": " / "
   },
   "2018-12-31": {
-   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
    "label": "FY2018 Q4",
    "supporting_sources": [
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
      "label": "2018-01-01 ~ 2018-12-31"
     },
     {
@@ -450,11 +486,11 @@
    "source_separator": " / "
   },
   "2020-03-31": {
-   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000032/q12021exhibit992.htm",
    "label": "FY2020 Q1",
    "supporting_sources": [
     {
-     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000032/q12021exhibit992.htm",
      "label": "2020-01-01 ~ 2020-03-31"
     }
    ],
@@ -472,22 +508,22 @@
    "source_separator": " / "
   },
   "2020-09-30": {
-   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000047/q32021exhibit992.htm",
    "label": "FY2020 Q3",
    "supporting_sources": [
     {
-     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000047/q32021exhibit992.htm",
      "label": "2020-07-01 ~ 2020-09-30"
     }
    ],
    "source_separator": " / "
   },
   "2020-12-31": {
-   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696522000007/q42021exhibit992.htm",
    "label": "FY2020 Q4",
    "supporting_sources": [
     {
-     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696522000007/q42021exhibit992.htm",
      "label": "2020-10-01 ~ 2020-12-31"
     }
    ],
@@ -743,7 +779,7 @@
  "basis_details": [
   {
    "label": "수록 기간",
-   "value": "분기 2017-09-30 ~ 2026-06-30 · 35개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
+   "value": "분기 2017-06-30 ~ 2026-06-30 · 37개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
   },
   {
    "label": "회사별 범위·CAPEX 정의",
