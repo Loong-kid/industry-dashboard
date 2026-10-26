@@ -980,7 +980,6 @@ function createFinancialCard(doc, indicatorId, options) {
   }};
 }
 
-// Delegation also covers annual/quarter card replacements and newly opened tables.
 function revealTelecomTab() {
   const tabs=document.querySelector("#page-tabs .tc-tabs");
   const active=tabs?.querySelector('[aria-current="page"]');
@@ -990,6 +989,7 @@ function revealTelecomTab() {
   else if (selected.right>bounds.right) tabs.scrollLeft+=selected.right-bounds.right;
 }
 
+// Delegation also covers annual/quarter card replacements and newly opened tables.
 function installFinancialMemos() {
   const tip = document.createElement("div");
   tip.id = "financial-money-tooltip"; tip.className = "tc-money-tooltip";

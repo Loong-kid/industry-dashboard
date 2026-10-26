@@ -2,11 +2,17 @@ import unittest
 import pymupdf
 
 from fetch_telecom import document
-from fetch_telecom_equipment import ifrs_annual
+from fetch_telecom_equipment import ifrs_annual, equipment_document
 from telecom_equipment_sources import parse_nokia_pdf, row_values
 
 
 class EquipmentTests(unittest.TestCase):
+    def test_unreviewed_new_source_is_visible_and_not_healthy(self):
+        meta=dict(name='Nokia',currency='EUR',scope='group',capex_basis='cash',investment_link='networks')
+        doc=equipment_document('nokia','revenue',meta,dict(rows=[],status='ok',source_errors=['New filing requires review']),{})
+        self.assertFalse(doc['collection_status']['ok'])
+        self.assertIn('New filing requires review',doc['basis_details'][-1]['value'])
+
     def test_52_week_quarters_do_not_gain_calendar_gaps(self):
         rows=[]
         for q,start,end in [(1,'2025-11-02','2026-01-31'),(2,'2026-02-01','2026-05-02'),(3,'2026-05-03','2026-08-01')]:

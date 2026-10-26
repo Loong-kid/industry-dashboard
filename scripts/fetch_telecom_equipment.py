@@ -134,6 +134,9 @@ def equipment_document(key,metric,meta,cohort,fx):
         if detail['label']=='환산·기간':detail['value']='USD 외 통화는 실제 실적 기간의 ECB 일별 평균환율로 환산합니다. 금액·차트·표에서 원통화를 확인할 수 있습니다. 장비사 자체 CAPEX는 공장·시험설비·소프트웨어 등 자체 투자로, 고객 통신사의 CAPEX·장비 주문액과 구분합니다.'
     if meta.get('source_review'):
         doc['basis_details'].append(dict(label='분기 원문 갱신',value=meta['source_review']))
+    if cohort.get('source_errors'):
+        doc['collection_status']=dict(ok=False,checked=cohort.get('checked',''),message='일부 원문 조회·검토 필요 · 확보한 실적만 표시')
+        doc['basis_details'].append(dict(label='조회·검토 상태',value=' / '.join(cohort['source_errors'])))
     return doc
 
 
