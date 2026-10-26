@@ -56,6 +56,18 @@ class OilTests(unittest.TestCase):
         self.assertAlmostEqual(c['rows'][0]['revenue'],27875.810,places=3)
         self.assertIn('.xlsx',c['rows'][0]['refs']['revenue']['url'])
 
+    def test_complete_quarters_reconcile_to_published_annual_accounts(self):
+        for key,c in self.state['companies'].items():
+            for annual in c['annual']:
+                quarters=[r for r in c['rows'] if r['year']==annual['year']]
+                if len(quarters)!=4:continue
+                for metric in ['revenue','profit','capex']:
+                    if metric not in annual or any(metric not in r for r in quarters):continue
+                    # Four individually rounded million-dollar observations may
+                    # differ slightly; mixed scopes/columns must not slip through.
+                    self.assertLessEqual(abs(sum(r[metric] for r in quarters)-annual[metric]),4,
+                        f"{key} {annual['year']} {metric}: statement vintage or column mismatch")
+
     def test_positioned_xhtml_uses_row_and_context_not_ambiguous_revenue_tag(self):
         raw=b'''<html><body><xbrli:context id="whole"><xbrli:period><xbrli:startDate>2019-01-01</xbrli:startDate><xbrli:endDate>2019-12-31</xbrli:endDate></xbrli:period></xbrli:context><div id="Page1"><div style="top:10px;left:20px">Sales and other operating revenues</div><div style="top:10px;left:300px"><ix:nonFraction name="us-gaap:Revenues" contextRef="whole" scale="6">32,567</ix:nonFraction></div><div style="top:30px;left:20px">Total revenues and other income</div><div style="top:30px;left:300px"><ix:nonFraction name="us-gaap:Revenues" contextRef="whole" scale="6">36,670</ix:nonFraction></div></div></body></html>'''
         facts,_=html_row(financial_soup(raw),r'^Sales and other operating revenues')
