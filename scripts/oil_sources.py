@@ -173,24 +173,37 @@ def shell_quarter_facts(content,meta):
     for table in soup.find_all('table'):
         text=norm(table.get_text(' ',strip=True))
         if len(text)>25000:continue
-        if income is None and 'Revenue' in text and 'Total expenditure' in text and re.search(r'Income.*before taxation',text):income=table
-        if cash is None and 'Capital expenditure' in text and re.search(r'Cash flow.*operating activities',text,re.I) and re.search(r'Cash flow.*financing activities',text,re.I):cash=table
+        if income is None and 'Revenue' in text and 'Interest expense' in text and re.search(r'Income.*before taxation',text):income=table
+        if cash is None and 'Capital expenditure' in text and re.search(r'cash.*operating activities',text,re.I) and re.search(r'cash.*financing activities',text,re.I):cash=table
     if income is None:return []
     header=norm(income.get_text(' ',strip=True))[:700]
     dates=[(int(y),int(q)) for q,y in re.findall(r'Q([1-4])\s+(20\d{2})',header)][:3]
     if len(dates)!=3:return []
-    fields={}
+    fields={};annual_capex=[]
     for field,table,pattern in [('revenue',income,r'\bRevenue\b'),('pbt',income,r'\bIncome(?:/\(loss\))? before taxation\b'),('interest',income,r'\bInterest expense\b'),('other',income,r'\bInterest and other income(?:/\(expenses\))?\b'),('capex',cash,r'\bCapital expenditure\b')]:
         if table is None:continue
         for row in table.find_all('tr'):
             text=norm(row.get_text(' ',strip=True));m=re.search(pattern,text,re.I)
+            text=re.sub(r'(?<=[A-Za-z)])\s+[1-9](?:,[1-9])+(?=\s)',' ',text)
+            m=re.search(pattern,text,re.I)
             if not m or len(text)>900:continue
             left=[number(v) for v in NUMBER.findall(text[:m.start()])]
             right=[number(v) for v in NUMBER.findall(text[m.end():])]
             expected=3 if dates[0][1]==1 else 5
-            values=left[:3] if len(left)>=3 else right[-expected:][:3] if len(right)>=expected else []
-            if len(values)==3:fields[field]=values;break
-    result=[]
+            if len(left)>=3:values=left[:3]
+            else:
+                # Old releases append a percentage-change column. It is not a
+                # fourth financial period. Footnote markers precede the values.
+                if len(right)>expected and 0<=right[0]<=9:right=right[1:]
+                values=right[:3] if len(right)>=3 else []
+            if len(values)==3:
+                fields[field]=values
+                if field=='capex' and dates[0][1]==4 and ((len(left)>=3 and len(right)>=2) or len(right)>=5):
+                    for i,value in enumerate(right[-2:]):
+                        year=dates[0][0]-i
+                        if year>=2014:annual_capex.append(dict(metric='capex',start=f'{year}-01-01',end=f'{year}-12-31',val=abs(value)*1e6,filed=meta['filed'],accn=meta.get('parent_accn',meta['accn']),form='6-K',source_url=meta['url'],source_tag='Shell original full-year cash flow comparative: Capital expenditure'))
+                break
+    result=annual_capex
     for i,(year,q) in enumerate(dates):
         if year<2014:continue
         start=f'{year}-{(q-1)*3+1:02d}-01';end=quarter_end(year,q)

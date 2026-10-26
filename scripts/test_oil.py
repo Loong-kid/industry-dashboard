@@ -3,7 +3,7 @@ import json
 import math
 from pathlib import Path
 import unittest
-from oil_sources import financial_soup,html_row
+from oil_sources import financial_soup,html_row,shell_quarter_facts
 from fetch_oil import merge_rows
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -38,6 +38,8 @@ class OilTests(unittest.TestCase):
         q=next(r for r in self.state['companies']['xom']['rows'] if r['date']=='2026-06-30')
         self.assertEqual(q['revenue'],114529)
         self.assertIn('/2115436/',q['refs']['revenue']['url'])
+        shell=next(r for r in self.state['companies']['shell']['annual'] if r['year']==2014)
+        self.assertEqual((shell['revenue'],shell['profit'],shell['capex']),(421105,25995,31676))
 
     def test_cash_capex_is_not_gross_additions_or_company_total_investment(self):
         expected={'xom':28358,'cvx':17347,'shell':18947,'bp':13221,'tte':16953,'cop':12553,'equinor':13994}
@@ -79,6 +81,18 @@ class OilTests(unittest.TestCase):
         self.assertEqual(merge_rows(old,[]),old)
         self.assertEqual(len(merge_rows(old,new)),1)
         self.assertEqual(merge_rows(old,new)[0]['revenue'],12)
+
+    def test_old_shell_percentage_column_is_not_a_financial_period(self):
+        content=b'''<table><tr><td>$ million Quarters Q1 2015 Q4 2014 Q1 2014 %</td></tr>
+        <tr><td>Revenue</td><td>65,706</td><td>92,374</td><td>109,658</td></tr>
+        <tr><td>Interest and other income</td><td>1,735</td><td>974</td><td>351</td></tr>
+        <tr><td>Interest expense</td><td>376</td><td>430</td><td>452</td></tr>
+        <tr><td>Income before taxation</td><td>5,839</td><td>2,528</td><td>8,545</td><td>-32</td></tr></table>'''
+        meta=dict(date='2015-03-31',filed='2015-04-30',accn='original',url='https://www.sec.gov/original')
+        facts=shell_quarter_facts(content,meta)
+        old={f['metric']:f['val']/1e6 for f in facts if f['end']=='2014-03-31'}
+        self.assertEqual(old['revenue'],109658)
+        self.assertEqual(old['profit'],8646)
 
     def test_nested_drilling_keeps_its_original_data_paths(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_bytes());oil=next(i for i in catalog['industries'] if i['id']=='oil')

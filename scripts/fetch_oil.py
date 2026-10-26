@@ -95,9 +95,19 @@ def classic_foreign_annual(key):
     patterns={'revenue':r'^Revenue\b','pbt':r'^Income (?:before taxation|before tax)\b','interest':r'^Interest expense\b','other':r'^Interest and other income\b','capex':r'^Capital expenditure\b'} if key=='shell' else {'revenue':r'^Sales and other operating revenues\b','profit':r'^Profit (?:\(loss\) )?before interest and tax(?:ation)?\b','capex':r'^(?:Expenditure on property, plant and equipment, intangible and other assets|Capital expenditure)\b'}
     for meta in load(CACHE/f'{key}-filings.json',{}).values():
         if meta['form'] not in ['20-F','20-F/A']:continue
+        if key=='shell' and meta['date']!='2014-12-31':continue # Later annuals are structured IFRS facts.
         y=int(meta['date'][:4]);soup=BeautifulSoup((CACHE/meta['path']).read_bytes(),'lxml');found={}
+        income=None;cash=None
+        if key=='shell':
+            for table in soup.find_all('table'):
+                text=' '.join(table.get_text(' ',strip=True).split())
+                if len(text)>18000:continue
+                if income is None and 'Revenue' in text and 'Interest expense' in text and 'Basic earnings per share' in text:income=table
+                if cash is None and 'Capital expenditure' in text and re.search(r'cash.*operating activities',text,re.I) and re.search(r'cash.*financing activities',text,re.I):cash=table
         for field,pattern in patterns.items():
-            inline,values=html_row(soup,pattern,3)
+            table=cash if field=='capex' else income
+            if key=='shell' and table is None:continue
+            inline,values=html_row(soup,pattern,3,table)
             if values is not None:found[field]=values
         for i in range(3):
             year=y-i

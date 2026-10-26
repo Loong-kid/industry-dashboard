@@ -13,7 +13,7 @@ def verify(base):
             page=browser.new_page(viewport=dict(width=width,height=1000),color_scheme='dark' if width==390 else 'light');errors=[]
             page.on('pageerror',lambda e:errors.append(str(e)))
             def wait(tab,view=None):
-                page.wait_for_function('([tab,view])=>typeof state!=="undefined" && state.industry.id==="oil" && state.subtab===tab && (!view||state.oilOffshoreView===view) && !document.querySelector(".page-loading")',arg=[tab,view])
+                page.wait_for_function('([tab,view])=>typeof state!=="undefined" && state.industry?.id==="oil" && state.subtab===tab && (!view||state.oilOffshoreView===view) && !document.querySelector(".page-loading")',arg=[tab,view])
                 assert page.locator('#content .is-error').count()==0
                 assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
             page.goto(base+'#/oil');wait('majors')

@@ -6,8 +6,23 @@
  "frequency_label": "분기 · 회사 연결 실적",
  "quarter_labels": true,
  "period_labels": {
+  "2014-03-31": "FY2014 Q1",
+  "2014-06-30": "FY2014 Q2",
+  "2014-09-30": "FY2014 Q3",
+  "2014-12-31": "FY2014 Q4",
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
   "2017-09-30": "FY2017 Q3",
   "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
   "2018-06-30": "FY2018 Q2",
   "2018-09-30": "FY2018 Q3",
   "2018-12-31": "FY2018 Q4",
@@ -43,17 +58,77 @@
   "2026-06-30": "FY2026 Q2"
  },
  "comparison_dates": {
-  "2017-09-30": {
+  "2014-03-31": {
    "year_ago": null,
    "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
   },
   "2017-12-31": {
-   "year_ago": null,
+   "year_ago": "2016-12-31",
    "quarter_ago": "2017-09-30"
   },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
   "2018-06-30": {
-   "year_ago": null,
-   "quarter_ago": null
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
   },
   "2018-09-30": {
    "year_ago": "2017-09-30",
@@ -64,7 +139,7 @@
    "quarter_ago": "2018-09-30"
   },
   "2019-03-31": {
-   "year_ago": null,
+   "year_ago": "2018-03-31",
    "quarter_ago": "2018-12-31"
   },
   "2019-06-30": {
@@ -188,9 +263,65 @@
  "fetched": "2026-10-27",
  "source": "기업 공식 재무제표 · SEC / IR",
  "source_url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
- "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 세전손익 + 이자비용 − Interest and other income으로 계산합니다. JV·관계사 손익은 포함하며, 이자 및 기타수익을 제외합니다. 회사 공시 Adjusted earnings·EBITDA가 아닙니다. 분기는 2017-09-30부터 확인한 자료이며, 그 이전 실적은 연간 보기에서 확인할 수 있습니다.",
+ "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 세전손익 + 이자비용 − Interest and other income으로 계산합니다. JV·관계사 손익은 포함하며, 이자 및 기타수익을 제외합니다. 회사 공시 Adjusted earnings·EBITDA가 아닙니다.",
  "series": {
   "계산 영업손익": [
+   [
+    "2014-03-31",
+    8646.0
+   ],
+   [
+    "2014-06-30",
+    7292.0
+   ],
+   [
+    "2014-09-30",
+    8073.0
+   ],
+   [
+    "2014-12-31",
+    1984.0
+   ],
+   [
+    "2015-03-31",
+    4480.0
+   ],
+   [
+    "2015-06-30",
+    5626.0
+   ],
+   [
+    "2015-09-30",
+    -8881.0
+   ],
+   [
+    "2015-12-31",
+    -959.0
+   ],
+   [
+    "2016-03-31",
+    -661.0
+   ],
+   [
+    "2016-06-30",
+    821.0
+   ],
+   [
+    "2016-09-30",
+    2552.0
+   ],
+   [
+    "2016-12-31",
+    3200.0
+   ],
+   [
+    "2017-03-31",
+    4165.0
+   ],
+   [
+    "2017-06-30",
+    3841.0
+   ],
    [
     "2017-09-30",
     5832.0
@@ -201,7 +332,7 @@
    ],
    [
     "2018-03-31",
-    null
+    8463.0
    ],
    [
     "2018-06-30",
@@ -342,6 +473,160 @@
  ],
  "span_gaps": false,
  "point_sources": {
+  "2014-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515159945/d919389dex992.htm",
+   "label": "FY2014 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515159945/d919389dex992.htm",
+     "label": "2014-01-01 ~ 2014-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515269426/d74562dex992.htm",
+   "label": "FY2014 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515269426/d74562dex992.htm",
+     "label": "2014-04-01 ~ 2014-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515357517/d31047dex992.htm",
+   "label": "FY2014 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515357517/d31047dex992.htm",
+     "label": "2014-07-01 ~ 2014-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516450121/d74542dex992.htm",
+   "label": "FY2014 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516450121/d74542dex992.htm",
+     "label": "2014-10-01 ~ 2014-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516576437/d163280dex992.htm",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516576437/d163280dex992.htm",
+     "label": "2015-01-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516661659/d234971dex992.htm",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516661659/d234971dex992.htm",
+     "label": "2015-04-01 ~ 2015-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516754811/d284676dex992.htm",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516754811/d284676dex992.htm",
+     "label": "2015-07-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517028501/d341242dex992.htm",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517028501/d341242dex992.htm",
+     "label": "2015-10-01 ~ 2015-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517157813/d392866dex992.htm",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517157813/d392866dex992.htm",
+     "label": "2016-01-01 ~ 2016-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517237776/d414222dex992.htm",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517237776/d414222dex992.htm",
+     "label": "2016-04-01 ~ 2016-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517330541/d486816dex992.htm",
+   "label": "FY2016 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517330541/d486816dex992.htm",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518028656/d532021dex992.htm",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518028656/d532021dex992.htm",
+     "label": "2016-10-01 ~ 2016-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+     "label": "2017-01-01 ~ 2017-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
   "2017-09-30": {
    "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
    "label": "FY2017 Q3",
@@ -354,19 +639,26 @@
    "source_separator": " / "
   },
   "2017-12-31": {
-   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
    "label": "FY2017 Q4",
    "supporting_sources": [
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
-     "label": "2017-01-01 ~ 2017-12-31"
-    },
-    {
-     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
-     "label": "2017-01-01 ~ 2017-09-30"
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+     "label": "2017-10-01 ~ 2017-12-31"
     }
    ],
-   "source_separator": " − "
+   "source_separator": " / "
+  },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
   },
   "2018-06-30": {
    "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019028411/0001564590-19-028411-index.html",
@@ -391,11 +683,11 @@
    "source_separator": " / "
   },
   "2018-12-31": {
-   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
    "label": "FY2018 Q4",
    "supporting_sources": [
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
      "label": "2018-01-01 ~ 2018-12-31"
     },
     {
@@ -743,7 +1035,7 @@
  "basis_details": [
   {
    "label": "수록 기간",
-   "value": "분기 2017-09-30 ~ 2026-06-30 · 35개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
+   "value": "분기 2014-03-31 ~ 2026-06-30 · 50개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
   },
   {
    "label": "회사별 범위·CAPEX 정의",
@@ -778,7 +1070,7 @@
     "계산 영업손익": [
      [
       "2014-12-31",
-      599.0
+      25995.0
      ],
      [
       "2015-12-31",
