@@ -50,7 +50,9 @@ for(const id of ids) {
   if(doc.cumulative) {
     const january=chart.data.labels.indexOf('2026-01-31');
     assert(january>=0&&chart.data.datasets.every(ds=>ds.data[january]===null));
-    assert(root.children[0].children.find(c=>c.className==='card-stat').innerHTML.includes('1~8월 누적'));
+    const latestDate=doc.series[Object.keys(doc.series)[0]].at(-1)[0];
+    const cumulativeLabel=`1~${Number(latestDate.slice(5,7))}월 누적`;
+    assert(root.children[0].children.find(c=>c.className==='card-stat').innerHTML.includes(cumulativeLabel),`Headline should describe the latest observed cumulative month: ${cumulativeLabel}`);
     const dataset=chart.data.datasets[0];
     const bridge={p0DataIndex:chart.data.labels.indexOf('2025-12-31'),p1DataIndex:chart.data.labels.indexOf('2026-02-28')};
     assert.equal(JSON.stringify(dataset.segment.borderDash(bridge)),JSON.stringify([5,4]));
@@ -87,7 +89,8 @@ for(const id of ids) {
         assert.equal(context.state.charts.length,baseline);
         const headline=root.children[0].children.find(c=>c.className==='card-stat').innerHTML;
         assert(headline.includes('천 호')&&!headline.includes('천 호/년'));
-        assert(headline.includes(key==='ytd'?'1~8월 누적':'1968년부터 누적'));
+        const latestDate=view.series[Object.keys(view.series)[0]].at(-1)[0];
+        assert(headline.includes(key==='ytd'?`1~${Number(latestDate.slice(5,7))}월 누적`:'1968년부터 누적'));
         const display={...doc,...view};
         assert(context.buildTable(display,view.series).includes(context.fmt(view.series[Object.keys(view.series)[0]].at(-1)[1])));
       }

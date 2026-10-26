@@ -1,0 +1,1274 @@
+{
+ "id": "company_shell_profit",
+ "name": "Shell · SHEL · 영업손익 (계산)",
+ "unit": "USD 백만",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 회사 연결 실적",
+ "quarter_labels": true,
+ "period_labels": {
+  "2014-03-31": "FY2014 Q1",
+  "2014-06-30": "FY2014 Q2",
+  "2014-09-30": "FY2014 Q3",
+  "2014-12-31": "FY2014 Q4",
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2014-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": "2016-12-31",
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "updated": "2026-06-30",
+ "fetched": "2026-10-27",
+ "source": "기업 공식 재무제표 · SEC / IR",
+ "source_url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+ "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 세전손익 + 이자비용 − Interest and other income으로 계산합니다. JV·관계사 손익은 포함하며, 이자 및 기타수익을 제외합니다. 회사 공시 Adjusted earnings·EBITDA가 아닙니다.",
+ "series": {
+  "계산 영업손익": [
+   [
+    "2014-03-31",
+    8646.0
+   ],
+   [
+    "2014-06-30",
+    7292.0
+   ],
+   [
+    "2014-09-30",
+    8073.0
+   ],
+   [
+    "2014-12-31",
+    1984.0
+   ],
+   [
+    "2015-03-31",
+    4480.0
+   ],
+   [
+    "2015-06-30",
+    5626.0
+   ],
+   [
+    "2015-09-30",
+    -8881.0
+   ],
+   [
+    "2015-12-31",
+    -959.0
+   ],
+   [
+    "2016-03-31",
+    -661.0
+   ],
+   [
+    "2016-06-30",
+    821.0
+   ],
+   [
+    "2016-09-30",
+    2552.0
+   ],
+   [
+    "2016-12-31",
+    3200.0
+   ],
+   [
+    "2017-03-31",
+    4165.0
+   ],
+   [
+    "2017-06-30",
+    3841.0
+   ],
+   [
+    "2017-09-30",
+    5832.0
+   ],
+   [
+    "2017-12-31",
+    5868.0
+   ],
+   [
+    "2018-03-31",
+    8463.0
+   ],
+   [
+    "2018-06-30",
+    8752.0
+   ],
+   [
+    "2018-09-30",
+    10249.0
+   ],
+   [
+    "2018-12-31",
+    7831.0
+   ],
+   [
+    "2019-03-31",
+    10122.0
+   ],
+   [
+    "2019-06-30",
+    5507.0
+   ],
+   [
+    "2019-09-30",
+    7353.0
+   ],
+   [
+    "2019-12-31",
+    3569.0
+   ],
+   [
+    "2020-03-31",
+    1665.0
+   ],
+   [
+    "2020-06-30",
+    -22985.0
+   ],
+   [
+    "2020-09-30",
+    1200.0
+   ],
+   [
+    "2020-12-31",
+    -3627.0
+   ],
+   [
+    "2021-03-31",
+    6674
+   ],
+   [
+    "2021-06-30",
+    4889
+   ],
+   [
+    "2021-09-30",
+    1555
+   ],
+   [
+    "2021-12-31",
+    13264
+   ],
+   [
+    "2022-03-31",
+    12224
+   ],
+   [
+    "2022-06-30",
+    25862
+   ],
+   [
+    "2022-09-30",
+    11671
+   ],
+   [
+    "2022-12-31",
+    17323
+   ],
+   [
+    "2023-03-31",
+    15038
+   ],
+   [
+    "2023-06-30",
+    5746
+   ],
+   [
+    "2023-09-30",
+    11509
+   ],
+   [
+    "2023-12-31",
+    2170
+   ],
+   [
+    "2024-03-31",
+    11301
+   ],
+   [
+    "2024-06-30",
+    8944
+   ],
+   [
+    "2024-09-30",
+    8004
+   ],
+   [
+    "2024-12-31",
+    4735
+   ],
+   [
+    "2025-03-31",
+    9777
+   ],
+   [
+    "2025-06-30",
+    6724
+   ],
+   [
+    "2025-09-30",
+    7457
+   ],
+   [
+    "2025-12-31",
+    5243
+   ],
+   [
+    "2026-03-31",
+    10266
+   ],
+   [
+    "2026-06-30",
+    15820
+   ]
+  ]
+ },
+ "default_series": [
+  "계산 영업손익"
+ ],
+ "span_gaps": false,
+ "point_sources": {
+  "2014-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515159945/d919389dex992.htm",
+   "label": "FY2014 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515159945/d919389dex992.htm",
+     "label": "2014-01-01 ~ 2014-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515269426/d74562dex992.htm",
+   "label": "FY2014 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515269426/d74562dex992.htm",
+     "label": "2014-04-01 ~ 2014-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515357517/d31047dex992.htm",
+   "label": "FY2014 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515357517/d31047dex992.htm",
+     "label": "2014-07-01 ~ 2014-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516450121/d74542dex992.htm",
+   "label": "FY2014 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516450121/d74542dex992.htm",
+     "label": "2014-10-01 ~ 2014-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516576437/d163280dex992.htm",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516576437/d163280dex992.htm",
+     "label": "2015-01-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516661659/d234971dex992.htm",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516661659/d234971dex992.htm",
+     "label": "2015-04-01 ~ 2015-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516754811/d284676dex992.htm",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312516754811/d284676dex992.htm",
+     "label": "2015-07-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517028501/d341242dex992.htm",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517028501/d341242dex992.htm",
+     "label": "2015-10-01 ~ 2015-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517157813/d392866dex992.htm",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517157813/d392866dex992.htm",
+     "label": "2016-01-01 ~ 2016-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517237776/d414222dex992.htm",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517237776/d414222dex992.htm",
+     "label": "2016-04-01 ~ 2016-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517330541/d486816dex992.htm",
+   "label": "FY2016 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312517330541/d486816dex992.htm",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518028656/d532021dex992.htm",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518028656/d532021dex992.htm",
+     "label": "2016-10-01 ~ 2016-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+     "label": "2017-01-01 ~ 2017-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
+   "label": "FY2017 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
+     "label": "2017-07-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+   "label": "FY2017 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518133274/d545995dex992.htm",
+     "label": "2017-10-01 ~ 2017-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518226958/d563726dex992.htm",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019028411/0001564590-19-028411-index.html",
+   "label": "FY2018 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019028411/0001564590-19-028411-index.html",
+     "label": "2018-04-01 ~ 2018-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
+   "label": "FY2018 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
+     "label": "2018-07-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
+   "label": "FY2018 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
+     "label": "2018-01-01 ~ 2018-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312518315511/0001193125-18-315511-index.html",
+     "label": "2018-01-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-03-31": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2019 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2019-01-01 ~ 2019-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-06-30": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2019 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2019-04-01 ~ 2019-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-09-30": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2019 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2019-07-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2019 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2019-10-01 ~ 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-03-31": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2020 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2020-01-01 ~ 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2020 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2020-04-01 ~ 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2020 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2020-07-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+   "label": "FY2020 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "2020-10-01 ~ 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2021 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2021-01-01 ~ 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2021 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2021-04-01 ~ 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2021 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2021-07-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2021 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2021-10-01 ~ 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2022-01-01 ~ 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2022-04-01 ~ 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2022-07-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2022-10-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2023-01-01 ~ 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2023-04-01 ~ 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2023-07-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2023-10-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2024-01-01 ~ 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2024-10-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2025-01-01 ~ 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2025-10-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2026-01-01 ~ 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "table_limit": 100,
+ "company_kpi": true,
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": true,
+ "basis_details": [
+  {
+   "label": "수록 기간",
+   "value": "분기 2014-03-31 ~ 2026-06-30 · 50개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
+  },
+  {
+   "label": "회사별 범위·CAPEX 정의",
+   "value": "Royal Dutch Shell에서 Shell plc로 이어지는 그룹 연결 실적입니다. 원유 단독 매출이 아니며 BG 인수 등 연결 범위 변화가 포함됩니다. 현금흐름표 Capital expenditure의 지출액입니다. JV·관계사·지분증권 투자 등을 더하는 Cash capital expenditure와 다릅니다."
+  },
+  {
+   "label": "회계 분기·차분 기준",
+   "value": "공표된 독립 분기를 우선하며, 누적만 있는 현금흐름표는 동일 회계연도 누적의 차이로 계산합니다. 연간은 공표된 완결 연도입니다. 미확인 분기는 빈칸으로 남기며 연간을 4등분하지 않습니다. 공시 시점·재분류·반올림으로 분기 합계와 재작성 연간에 차이가 있을 수 있습니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-27 · 정상"
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "계산 영업손익": [
+     [
+      "2014-12-31",
+      25995.0
+     ],
+     [
+      "2015-12-31",
+      266.0
+     ],
+     [
+      "2016-12-31",
+      5912.0
+     ],
+     [
+      "2017-12-31",
+      19706.0
+     ],
+     [
+      "2018-12-31",
+      35295.0
+     ],
+     [
+      "2019-12-31",
+      26550.0
+     ],
+     [
+      "2020-12-31",
+      -23747.0
+     ],
+     [
+      "2021-12-31",
+      26380
+     ],
+     [
+      "2022-12-31",
+      67081
+     ],
+     [
+      "2023-12-31",
+      34462
+     ],
+     [
+      "2024-12-31",
+      32985
+     ],
+     [
+      "2025-12-31",
+      29200
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515088212/d798573d20f.htm",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000119312515088212/d798573d20f.htm",
+       "label": "FY2014"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459018005735/0001564590-18-005735-index.html",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459018005735/0001564590-18-005735-index.html",
+       "label": "FY2015"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000156459019007740/0001564590-19-007740-index.html",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/content/experience-fragments/shell/corporate/quarterly/master/_jcr_content/root/tabs/tab_655927401/text_copy_copy_94812_959129162/links/item2.stream/1657216497936/27901ad286f7dac5d3bdb6860bfea5e74c486c1a/q4-2020-quarterly-databook-updated.pdf#page=2",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696521000025/0001306965-21-000025-index.html",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696522000012/0001306965-22-000012-index.html",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696522000012/0001306965-22-000012-index.html",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696523000007/0001306965-23-000007-index.html",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1306965/000130696523000007/0001306965-23-000007-index.html",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://www.shell.com/investors/results-and-reporting/data-supplements/_jcr_content/root/main/section/text_copy.multi.stream/1785372068656/4f3d5f6b9e47607df8218eabce15377ee3272b98/q2-2026-quarterly-databook.xlsx",
+   "updated": "2025-12-31",
+   "description": "전사 연결 · 석유·가스·LNG·정유·화학·전력. 세전손익 + 이자비용 − Interest and other income으로 계산합니다. JV·관계사 손익은 포함하며, 이자 및 기타수익을 제외합니다. 회사 공시 Adjusted earnings·EBITDA가 아닙니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ }
+}

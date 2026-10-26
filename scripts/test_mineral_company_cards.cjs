@@ -27,7 +27,7 @@ const catalog = JSON.parse(fs.readFileSync('data/catalog.json', 'utf8'));
 const sections = catalog.industries.find(i => i.id === 'commodities').sections;
 const companies = sections.flatMap(s => (s.companies || []).map(c => ({...c, tab: s.tab})));
 assert.equal(companies.length, 6);
-assert.deepEqual(companies.filter(c => c.tab === 'copper').map(c => c.id), ['fcx', 'scco']);
+assert.deepEqual(companies.filter(c => c.tab === 'copper').map(c => c.id), ['scco', 'fcx']);
 assert.deepEqual(companies.filter(c => c.tab === 'rare_earth').map(c => c.id), ['mp']);
 for (const company of companies) {
   assert.equal(company.indicators.length, 3);

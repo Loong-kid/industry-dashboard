@@ -2,14 +2,15 @@
  "source": "기준 정리자료 + 국토교통부 공개 건축통계",
  "source_url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
  "fetched": "2026-10-08",
- "updated": "2026-09-17",
+ "updated": "2026-10-20",
  "frequency": "yearly",
  "stale_days": 10,
  "note": "추적 목록의 허가·공사 단계 기준. 전국 전체 통계가 아니며, 이름으로만 추출한 후보·예정일·미확인 날짜는 집계에서 제외. 자료가 없는 연도는 0으로 채우지 않음. 당해 연도는 현재까지 확인된 자료만 포함.",
  "collection_status": {
-  "checked": "2026-10-08",
-  "ok": true,
-  "message": "공개 목록 확인 완료 · 동일 기준 자료의 월간 제공은 보장되지 않음"
+  "kind": "fetch_error",
+  "checked": "2026-10-27",
+  "ok": false,
+  "message": "수집 실패 · RuntimeError: 1905: ValueError · Permit dates disagree with export title; refusing snapshot"
  },
  "id": "dc_facilities",
  "name": "국내 데이터센터 · 센터·공사 단계별 현황",
@@ -235,10 +236,11 @@
      "precision": null
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260811",
+     "date": "2026-08-11",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "2025-10-28",
@@ -275,11 +277,27 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
     "41450-1000000000000000829406"
    ],
+   "original_dates": {
+    "start": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    }
+   },
    "research": {
     "checked": "2026-10-05",
     "result": "사업주체 확인 · 소유권 별도",
@@ -3207,6 +3225,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -3473,7 +3499,19 @@
    "cell_notes": {},
    "classification": "confirmed",
    "classification_reason": "기준자료 정리 목록",
-   "sources": []
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ],
+   "permit_ids": [
+    "31140-1000000000000000735780"
+   ]
   },
   {
    "id": "dc-60b4980ff49ee9d9",
@@ -3913,6 +3951,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6083,6 +6129,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6151,6 +6205,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6306,6 +6368,14 @@
      "kind": "starts",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6394,6 +6464,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6525,6 +6603,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "permit_ids": [
@@ -6593,9 +6679,19 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "44710-1000000000000000875882"
+   ],
    "research": {
     "checked": "2026-10-05",
     "result": "소유자 미확인",
@@ -6659,9 +6755,19 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "51150-1000000000000000881838"
+   ],
    "research": {
     "checked": "2026-10-05",
     "result": "소유자 미확인",
@@ -6686,10 +6792,11 @@
      "precision": null
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260612",
+     "date": "2026-06-12",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "2026-01-30",
@@ -6727,9 +6834,27 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "47110-1000000000000000883218"
+   ],
+   "original_dates": {
+    "start": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    }
+   },
    "research": {
     "checked": "2026-10-05",
     "result": "사업주체 확인 · 소유권 별도",
@@ -6821,9 +6946,19 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "41590-1000000000000000898577"
+   ],
    "research": {
     "checked": "2026-10-05",
     "result": "소유자 미확인",
@@ -6887,9 +7022,19 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "26440-1000000000000000904132"
+   ],
    "research": {
     "checked": "2026-10-05",
     "result": "소유자 미확인",
@@ -7019,9 +7164,19 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
-   "permit_ids": [],
+   "permit_ids": [
+    "48870-1000000000000000923286"
+   ],
    "research": {
     "checked": "2026-10-05",
     "result": "소유자 미확인",
@@ -8550,10 +8705,11 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20250514",
+     "date": "2025-05-14",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
     },
     "completion": {
      "text": "",
@@ -8568,12 +8724,12 @@
      "precision": null
     }
    },
-   "area": 85821.54,
+   "area": 85822.45,
    "area_variants": [
-    85821.54
+    85822.45
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8582,6 +8738,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [],
@@ -8619,16 +8783,18 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20250826",
+     "date": "2025-08-26",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
     },
     "completion": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20251224",
+     "date": "2025-12-24",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
     },
     "alteration": {
      "text": "",
@@ -8641,8 +8807,8 @@
    "area_variants": [
     26445.38
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8651,6 +8817,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -8688,16 +8862,18 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20251002",
+     "date": "2025-10-02",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
     },
     "completion": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260219",
+     "date": "2026-02-19",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "",
@@ -8706,12 +8882,12 @@
      "precision": null
     }
    },
-   "area": 39821.64,
+   "area": 39824.79,
    "area_variants": [
-    39821.64
+    39824.79
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8720,6 +8896,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -8757,17 +8941,18 @@
      "year": 2025
     },
     "start": {
-     "text": "2025-09-26",
+     "text": "20250926",
      "date": "2025-09-26",
      "kind": "confirmed",
      "precision": "day",
      "year": 2025
     },
     "completion": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260106",
+     "date": "2026-01-06",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "",
@@ -8780,8 +8965,8 @@
    "area_variants": [
     40450.13
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8790,6 +8975,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -8827,10 +9020,11 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260511",
+     "date": "2026-05-11",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "completion": {
      "text": "",
@@ -8849,8 +9043,8 @@
    "area_variants": [
     10736.22
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8859,6 +9053,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -8896,16 +9098,18 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20251120",
+     "date": "2025-11-20",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
     },
     "completion": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260209",
+     "date": "2026-02-09",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "",
@@ -8918,8 +9122,8 @@
    "area_variants": [
     36501.1
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8928,6 +9132,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -8965,10 +9177,11 @@
      "year": 2025
     },
     "start": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260921",
+     "date": "2026-09-21",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "completion": {
      "text": "",
@@ -8987,8 +9200,8 @@
    "area_variants": [
     10893.71
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -8997,6 +9210,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [],
@@ -9016,7 +9237,9 @@
   },
   {
    "id": "obs-5068ad432e45725a",
-   "permit_ids": [],
+   "permit_ids": [
+    "41280-1000000000000000905742"
+   ],
    "name": "향동동 585",
    "location": "경기도 고양시 덕양구 향동동 585-0",
    "address_key": "경기도고양시덕양구향동동585-0",
@@ -9037,10 +9260,11 @@
      "year": 2026
     },
     "completion": {
-     "text": "",
-     "date": null,
-     "kind": "missing",
-     "precision": null
+     "text": "20260707",
+     "date": "2026-07-07",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
     },
     "alteration": {
      "text": "",
@@ -9053,8 +9277,8 @@
    "area_variants": [
     21769.0
    ],
-   "classification": "candidate",
-   "classification_reason": "기준 정리 목록과 아직 연결되지 않은 Raw 행",
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
    "sources": [
     {
      "id": "baseline-permits",
@@ -9063,6 +9287,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [],
@@ -10933,6 +11165,14 @@
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -11277,6 +11517,14 @@
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -11365,6 +11613,14 @@
      "id": "1875",
      "title": "전국 건축물 허가 현황(2026년 5월~2026년 7월)_관리_동별_개요_PK 컬럼 포함 요청",
      "published": "2026-08-18",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
@@ -11459,6 +11715,14 @@
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -11540,6 +11804,14 @@
      "id": "1875",
      "title": "전국 건축물 허가 현황(2026년 5월~2026년 7월)_관리_동별_개요_PK 컬럼 포함 요청",
      "published": "2026-08-18",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
@@ -11997,6 +12269,14 @@
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -12078,6 +12358,14 @@
      "id": "1875",
      "title": "전국 건축물 허가 현황(2026년 5월~2026년 7월)_관리_동별_개요_PK 컬럼 포함 요청",
      "published": "2026-08-18",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
@@ -12233,6 +12521,14 @@
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ],
    "building_ids": [
@@ -12306,6 +12602,14 @@
      "id": "1875",
      "title": "전국 건축물 허가 현황(2026년 5월~2026년 7월)_관리_동별_개요_PK 컬럼 포함 요청",
      "published": "2026-08-18",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
@@ -12409,6 +12713,14 @@
      "id": "1875",
      "title": "전국 건축물 허가 현황(2026년 5월~2026년 7월)_관리_동별_개요_PK 컬럼 포함 요청",
      "published": "2026-08-18",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
@@ -12522,6 +12834,213 @@
    "building_ids": [],
    "building_names": [
     "데이터센터동"
+   ],
+   "origin": "official",
+   "capacity": null,
+   "capacity_text": "",
+   "it_load": "",
+   "owner": "",
+   "tenant": "",
+   "contractor": "",
+   "notes": "",
+   "url": "",
+   "cell_notes": {}
+  },
+  {
+   "id": "obs-c37629cc94029715",
+   "permit_ids": [
+    "41460-1000000000000000768718"
+   ],
+   "name": "신한은행 데이터센터",
+   "location": "경기도 용인시 수지구 죽전동 23-2",
+   "address_key": "경기도용인시수지구죽전동23-2",
+   "type": "대수선",
+   "dates": {
+    "permit": {
+     "text": "20250721",
+     "date": "2025-07-21",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
+    },
+    "start": {
+     "text": "20250901",
+     "date": "2025-09-01",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
+    },
+    "completion": {
+     "text": "20251205",
+     "date": "2025-12-05",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2025
+    },
+    "alteration": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    }
+   },
+   "area": 44676.67,
+   "area_variants": [
+    44676.67
+   ],
+   "classification": "candidate",
+   "classification_reason": "건물·동 명칭 키워드",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ],
+   "building_ids": [],
+   "building_names": [
+    "신한은행 데이터센터"
+   ],
+   "origin": "official",
+   "capacity": null,
+   "capacity_text": "",
+   "it_load": "",
+   "owner": "",
+   "tenant": "",
+   "contractor": "",
+   "notes": "",
+   "url": "",
+   "cell_notes": {}
+  },
+  {
+   "id": "obs-9f775c54c9bb2835",
+   "permit_ids": [
+    "51130-1000000000000000937668"
+   ],
+   "name": "원주 메가데이터센터",
+   "location": "강원특별자치도 원주시 단구동 산112-1",
+   "address_key": "강원도원주시단구동산112-1",
+   "type": "신축",
+   "dates": {
+    "permit": {
+     "text": "20260424",
+     "date": "2026-04-24",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
+    },
+    "start": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    },
+    "completion": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    },
+    "alteration": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    }
+   },
+   "area": 40723.33,
+   "area_variants": [
+    40723.33
+   ],
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ],
+   "building_ids": [],
+   "building_names": [
+    "데이터센터"
+   ],
+   "origin": "official",
+   "capacity": null,
+   "capacity_text": "",
+   "it_load": "",
+   "owner": "",
+   "tenant": "",
+   "contractor": "",
+   "notes": "",
+   "url": "",
+   "cell_notes": {}
+  },
+  {
+   "id": "obs-3ccf485b298e334d",
+   "permit_ids": [
+    "12790-1000000000000000941563"
+   ],
+   "name": "국가 AI컴퓨팅 센터",
+   "location": "전남광주통합특별시 해남군 산이면 대진리 1154-0",
+   "address_key": "전라남도광주통합특별시해남군산이면대진리1154-0",
+   "type": "신축",
+   "dates": {
+    "permit": {
+     "text": "20260430",
+     "date": "2026-04-30",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
+    },
+    "start": {
+     "text": "20260727",
+     "date": "2026-07-27",
+     "kind": "confirmed",
+     "precision": "day",
+     "year": 2026
+    },
+    "completion": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    },
+    "alteration": {
+     "text": "",
+     "date": null,
+     "kind": "missing",
+     "precision": null
+    }
+   },
+   "area": 33235.6,
+   "area_variants": [
+    33235.6
+   ],
+   "classification": "confirmed",
+   "classification_reason": "기타용도에 데이터센터 명시",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ],
+   "building_ids": [],
+   "building_names": [
+    "경비동",
+    "전산동",
+    "오수처리시설",
+    "운영동"
    ],
    "origin": "official",
    "capacity": null,
@@ -12892,12 +13411,12 @@
    ]
   },
   {
-   "id": "change-7b7c86655b51db01",
+   "id": "change-a90114410b486de8",
    "facility_id": "dc-7d1d0d5c0ab4eeac",
    "name": "파주 AIDC",
    "field": "area",
    "before": 45290.16,
-   "after": 45299.26,
+   "after": 111413.09,
    "applied": false,
    "action": "기존 면적 유지 · 범위 확인",
    "sources": [
@@ -12908,6 +13427,42 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ]
+  },
+  {
+   "id": "change-b1263557d6d3472b",
+   "facility_id": "dc-d9e950649cb2fd6d",
+   "name": "송정동 1711-4  데이터센터",
+   "field": "area",
+   "before": 42055.22,
+   "after": 42034.96,
+   "applied": false,
+   "action": "기존 면적 유지 · 범위 확인",
+   "sources": [
+    {
+     "id": "baseline-permits",
+     "title": "데이터센터 허가(Raw)",
+     "published": "2026-08-04",
+     "kind": "permits",
+     "url": "",
+     "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ]
   },
@@ -12956,6 +13511,14 @@
      "kind": "starts",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ]
   },
@@ -12982,6 +13545,42 @@
      "title": "건축물 착공 현황 요청 (26.03 ~ 26.08)",
      "published": "2026-09-17",
      "kind": "starts",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ]
+  },
+  {
+   "id": "change-8b4b6ddaed15f46c",
+   "facility_id": "dc-fba02649999065fb",
+   "name": "하남 AI 데이터센터 용도변경",
+   "field": "start",
+   "before": "미기재",
+   "after": "2026-08-11",
+   "applied": true,
+   "action": "공식 자료로 보완",
+   "sources": [
+    {
+     "id": "baseline-permits",
+     "title": "데이터센터 허가(Raw)",
+     "published": "2026-08-04",
+     "kind": "permits",
+     "url": "",
+     "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
      "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
      "provenance": "public_download"
     }
@@ -13018,12 +13617,12 @@
    "action": "기존 면적 유지 · 범위 확인",
    "sources": [
     {
-     "id": "baseline-permits",
-     "title": "데이터센터 허가(Raw)",
-     "published": "2026-08-04",
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
      "kind": "permits",
-     "url": "",
-     "provenance": "user_raw"
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ]
   },
@@ -13044,6 +13643,14 @@
      "kind": "permits",
      "url": "",
      "provenance": "user_raw"
+    },
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
     }
    ]
   },
@@ -13325,6 +13932,66 @@
      "provenance": "user_raw"
     }
    ]
+  },
+  {
+   "id": "change-b7ecff13e87635c1",
+   "facility_id": "dc-0e459af0c2f191dc",
+   "name": "포항 AI Factory 데이터센터",
+   "field": "start",
+   "before": "미기재",
+   "after": "2026-06-12",
+   "applied": true,
+   "action": "공식 자료로 보완",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ]
+  },
+  {
+   "id": "change-e6e58538e5b4a418",
+   "facility_id": "dc-0e459af0c2f191dc",
+   "name": "포항 AI Factory 데이터센터",
+   "field": "area",
+   "before": 17236.0,
+   "after": 37970.86,
+   "applied": false,
+   "action": "기존 면적 유지 · 범위 확인",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ]
+  },
+  {
+   "id": "change-84d5d494f2b68a28",
+   "facility_id": "dc-89cbe44c03ae6d72",
+   "name": "SK AI 데이터센터 (1차)",
+   "field": "area",
+   "before": 28836.61,
+   "after": 29082.08,
+   "applied": false,
+   "action": "기존 면적 유지 · 범위 확인",
+   "sources": [
+    {
+     "id": "1906",
+     "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+     "published": "2026-10-20",
+     "kind": "permits",
+     "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+     "provenance": "public_download"
+    }
+   ]
   }
  ],
  "manifest": [
@@ -13372,6 +14039,22 @@
    "date_max": "2026-08-27",
    "invalid_dates": 0,
    "declared_period": null
+  },
+  {
+   "id": "1906",
+   "title": "전국 건축물 허가 현황(2025년 1월~2026년 6월)",
+   "published": "2026-10-20",
+   "kind": "permits",
+   "url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
+   "rows": 193705,
+   "centres": 39,
+   "date_min": "2025-02-21",
+   "date_max": "2026-06-16",
+   "invalid_dates": 0,
+   "declared_period": [
+    "2025-01-01",
+    "2026-06-30"
+   ]
   }
  ],
  "research_summary": {
@@ -13379,7 +14062,7 @@
   "examined": 75,
   "stakeholders_found": 39,
   "status_updates": 19,
-  "unresolved_owner": 66
+  "unresolved_owner": 76
  },
  "baseline": {
   "label": "지엔씨_수전용량 · 데이터센터(정리)",
@@ -13388,10 +14071,10 @@
  },
  "summary": {
   "baseline_rows": 97,
-  "tracked_rows": 115,
-  "candidate_rows": 57,
-  "applied": 2,
-  "review": 36
+  "tracked_rows": 125,
+  "candidate_rows": 50,
+  "applied": 4,
+  "review": 39
  },
  "series": {}
 }

@@ -49,8 +49,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/datacenter/
           git diff --cached --quiet || git commit -m "chore: refresh Korean data centres"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
   construction:
     if: inputs.construction_only == true && inputs.shipping_only != true
     runs-on: ubuntu-latest
@@ -74,8 +77,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/commodities/comm_copper_cn_*.json data/commodities/comm_copper_us_*.json
           git diff --cached --quiet || git commit -m "chore: refresh copper construction indicators"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
   shipping:
     if: inputs.shipping_only == true
     runs-on: ubuntu-latest
@@ -95,7 +101,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash
           git add data/
-          git diff --cached --quiet || (git commit -m "chore: refresh shipping market data" && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: refresh shipping market data"
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
   update:
     if: inputs.shipping_only != true && inputs.construction_only != true && inputs.datacenter_only != true
     runs-on: ubuntu-latest
@@ -107,10 +119,13 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: 국내 데이터센터 수집기·표 검증
+        id: gate_korea_datacenter
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_korea_datacenter.py
           node scripts/test_korea_datacenter.cjs
       - name: 국내 데이터센터 공개 자료 확인
+        if: steps.gate_korea_datacenter.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 20
         run: python scripts/fetch_korea_datacenter.py
@@ -129,15 +144,21 @@ jobs:
 
       # 일간 TGA 마감 잔고·오버나이트 RRP (재무부 API·FRED 공개 CSV, 키 없음).
       - name: TGA·RRP 수집기 검증
+        id: gate_liquidity
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_liquidity.py
       - name: 미국 유동성 수집
+        if: steps.gate_liquidity.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_liquidity.py
 
       - name: 연준 지준 회계식 검증
+        id: gate_fed_reserves
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_fed_reserves.py
       - name: 연준 대차대조표·지원 창구·지준 수집
+        if: steps.gate_fed_reserves.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_fed_reserves.py
@@ -180,56 +201,77 @@ jobs:
         run: python scripts/fetch_mineral_prices.py
 
       - name: 광물 관련 기업 공시·기간·통화 검증
+        id: gate_mineral_companies
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_mineral_companies.py
           node scripts/test_mineral_company_cards.cjs
           node scripts/test_commodity_tabs.cjs
       - name: 광물 관련 6개 기업 주가·영업이익·생산량 수집
+        if: steps.gate_mineral_companies.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 12
         run: python scripts/fetch_mineral_companies.py
 
       - name: ESS 기업 공시·배치·수주 집계 검증
+        id: gate_ess_companies
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_ess_companies.py
           node scripts/test_ess_company_cards.cjs
       - name: ESS 기업 매출·배치·수주 공시 수집
+        if: steps.gate_ess_companies.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 12
         run: python scripts/fetch_ess_companies.py
 
       - name: ESS 공장 수동 검토 자료 검증·게시
+        id: gate_ess_factories
+        continue-on-error: true
         run: |
           python scripts/aggregate_ess_factories.py
           python -m unittest discover -s scripts -p test_ess_factories.py
 
       - name: ESS 제품 사양 수동 검토 자료 검증·게시
+        id: gate_ess_products
+        continue-on-error: true
         run: |
           python scripts/aggregate_ess_products.py
           python -m unittest discover -s scripts -p test_ess_products.py
 
       - name: ESS 배터리 셀·시스템 공시 자료 검증·게시
+        id: gate_ess_batteries
+        continue-on-error: true
         run: |
           python scripts/aggregate_ess_batteries.py
           python -m unittest discover -s scripts -p test_ess_batteries.py
           node scripts/test_ess_battery_cards.cjs
 
       - name: 광물 국가별 생산량·매장량 파서 검증
+        id: gate_mineral_supply
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_mineral_supply.py
       - name: 광물 국가별 생산량·매장량 수집
+        if: steps.gate_mineral_supply.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 6
         run: python scripts/fetch_mineral_supply.py
       - name: 구리 세계 전체 생산량·매장량 파서 검증
+        id: gate_copper_world_supply
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_copper_world_supply.py
       - name: 구리 세계 전체 생산량·매장량 수집
+        if: steps.gate_copper_world_supply.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_copper_world_supply.py
 
       - name: 한국 광물 수출입 기간·단위·전체 합계 검증
+        id: gate_korea_mineral_trade
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_korea_mineral_trade.py
       - name: 한국 광물 73종 수입·수출 수집
+        if: steps.gate_korea_mineral_trade.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 20
         run: python scripts/fetch_korea_mineral_trade.py --workers 4
@@ -272,8 +314,12 @@ jobs:
         timeout-minutes: 2
         run: python scripts/fetch_copper_tc.py
       - name: LME 이력 보존·양산 프리미엄 차이 계산
+        id: gate_derive_copper_market
+        continue-on-error: true
         run: python scripts/derive_copper_market.py
       - name: 구리 TC·워런트·프리미엄 차이 검증
+        id: gate_copper_market
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_copper_market.py
           node scripts/test_copper_card.cjs
@@ -296,6 +342,8 @@ jobs:
 
       # 광산별 공시 검토 명부: 검토일을 자동 갱신하지 않고 검증 후 변환한다.
       - name: 구리 광산 명부 검증·집계
+        id: gate_copper_mines
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_copper_mines.py
           node scripts/test_copper_mines.cjs
@@ -342,12 +390,17 @@ jobs:
         run: python scripts/aggregate_snstech.py
 
       - name: 에스앤에스텍 검토된 연결 재무 실적 집계
+        id: gate_aggregate_snstech_financials
+        continue-on-error: true
         run: python scripts/aggregate_snstech_financials.py
 
       # DART 공개 HTML. 최근 정기보고서·정정 접수번호를 확인하며 원문 누적값을 분기로 변환.
       - name: 에스앤에스텍 생산능력·생산실적 검증
+        id: gate_snstech_production
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_snstech_production.py
       - name: 에스앤에스텍 생산 공시 수집
+        if: steps.gate_snstech_production.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_snstech_production.py
@@ -364,25 +417,36 @@ jobs:
 
       # Photronics 공식 SEC 제품별 매출 + 검토된 Tekscend 비중 스냅샷. 키 불필요.
       - name: 포토마스크 패터닝 실적 검증
+        id: gate_mask_patterning
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_mask_patterning.py
       - name: 포토마스크 패터닝 실적 수집
+        if: steps.gate_mask_patterning.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_mask_patterning.py
 
       # JEOL 공식 Excel·Mycronic 공개 IR 원표 자동 수집. NuFlare·장비 대수는 검토 스냅샷.
       - name: 마스크 장비 실적 검증
+        id: gate_mask_equipment
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_mask_equipment.py
       - name: 마스크 장비 실적 수집
+        if: steps.gate_mask_equipment.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 5
         run: python scripts/fetch_mask_equipment.py
 
       - name: MOCVD 분기·누적·공시 범위 검증
+        id: gate_mocvd
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p 'test_mocvd*.py'
       - name: 실리콘 웨이퍼 통계·실적 검증
+        id: gate_silicon_wafer
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_silicon_wafer.py
       - name: 실리콘 웨이퍼 · GlobalWafers 월 매출 확인
+        if: steps.gate_silicon_wafer.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 3
         run: python scripts/fetch_silicon_wafer.py
@@ -415,10 +479,13 @@ jobs:
 
       # 기관 수급: DART 대량보유(5%) 시장 전체 증분 수집 + 집계
       - name: 헤지펀드 성과·자산·SEC RAUM 검증
+        id: gate_hedge_funds
+        continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_hedge_funds.py
           node scripts/test_hedge_fund_cards.cjs
       - name: 미국 운용사·헤지펀드 지표 수집
+        if: steps.gate_hedge_funds.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 8
         run: python scripts/fetch_hedge_funds.py
@@ -439,10 +506,15 @@ jobs:
 
       # 증여 계획은 소유상황 변동과 별도로 수집하며 완료로 추정하지 않는다.
       - name: 증여 계획 파서·정정·철회 검증
+        id: gate_gift_plans
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_gift_plans.py -v
       - name: 증여 계획 표·필터 검증
+        id: gate_gift_plans_cards
+        continue-on-error: true
         run: node scripts/test_gift_plans.cjs
       - name: 증여 거래계획 수집
+        if: steps.gate_gift_plans.outcome == 'success' && steps.gate_gift_plans_cards.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 15
         env:
@@ -485,4 +557,20 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash
           git add data/
-          git diff --cached --quiet || (git commit -m "chore: data update (market + DART orders)" && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: data update (market + DART orders)"
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
+
+      # 검증 단계는 실패해도 그 검증이 지키는 수집만 건너뛰고 나머지는 게시한다.
+      # 대신 여기서 실패한 검증을 모아 run을 실패로 끝내 알림이 가게 한다(id는 검증 단계에만 붙인다).
+      - name: 검증 실패 보고
+        if: contains(steps.*.outcome, 'failure')
+        env:
+          STEP_RESULTS: ${{ toJSON(steps) }}
+        run: |
+          python -c "import json,os; [print('::error::검증 실패 -', k) for k, v in json.loads(os.environ['STEP_RESULTS']).items() if v['outcome'] == 'failure']"
+          exit 1

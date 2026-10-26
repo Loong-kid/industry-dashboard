@@ -17,6 +17,7 @@ const REFRESH_TARGETS = {
   semicon: { file: "data/semicon/semicon_import_ttm.json", label: "무역통계 갱신" },
   ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
   offshore: { file: "data/offshore/offshore_fleet.json", label: "시추 지표 갱신", workflow: "update-offshore.yml" },
+  oil: { file: "data/oil/state.json", label: "원유 실적 확인", workflow: "update-oil.yml" },
   games: { file: "data/games/mobile.json", label: "게임 데이터 갱신", workflow: "update-games.yml" },
   natgas: { file: "data/natgas/ng_prices.json", label: "천연가스 갱신", workflow: "update-natgas.yml" },
   telecom: { file: "data/telecom/state.json", label: "통신 실적 갱신", workflow: "update-telecom.yml" },
@@ -25,6 +26,8 @@ const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "�
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
+  if (id === "oil" && subtab === "offshore") return REFRESH_TARGETS.offshore;
+  if (id === "oil" && subtab === "refining") return {file: "data/oil/refining_state.json", label: "정유 실적 확인", workflow: "update-refining.yml"};
   if (id === "natgas" && subtab === "midstream" && window.dashboard?.state?.natgasView === "compression") return {file: "data/natgas/company_aroc_revenue.json", label: "압축기 실적 확인", workflow: "update-natgas.yml"};
   if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};

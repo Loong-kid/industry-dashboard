@@ -1,6 +1,11 @@
 name: review-oil-sources
 on:
   workflow_dispatch:
+    inputs:
+      company:
+        description: 'Optional issuer key for a focused original-file review'
+        required: false
+        default: ''
 permissions:
   contents: read
 jobs:
@@ -12,8 +17,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install requests
-      - run: python -u scripts/collect_oil_sources.py
+      - run: pip install requests beautifulsoup4
+      - name: Collect original filings
+        env:
+          ISSUER: ${{ inputs.company }}
+        run: |
+          if [ -n "$ISSUER" ]; then
+            python -u scripts/collect_oil_sources.py --full --company "$ISSUER"
+          else
+            python -u scripts/collect_oil_sources.py --full
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

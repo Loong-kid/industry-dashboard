@@ -2,14 +2,15 @@
  "source": "기준 정리자료 + 국토교통부 공개 건축통계",
  "source_url": "https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do",
  "fetched": "2026-10-08",
- "updated": "2026-09-17",
+ "updated": "2026-10-20",
  "frequency": "yearly",
  "stale_days": 10,
  "note": "추적 목록의 허가·공사 단계 기준. 전국 전체 통계가 아니며, 이름으로만 추출한 후보·예정일·미확인 날짜는 집계에서 제외. 자료가 없는 연도는 0으로 채우지 않음. 당해 연도는 현재까지 확인된 자료만 포함.",
  "collection_status": {
-  "checked": "2026-10-08",
-  "ok": true,
-  "message": "공개 목록 확인 완료 · 동일 기준 자료의 월간 제공은 보장되지 않음"
+  "kind": "fetch_error",
+  "checked": "2026-10-27",
+  "ok": false,
+  "message": "수집 실패 · RuntimeError: 1905: ValueError · Permit dates disagree with export title; refusing snapshot"
  },
  "id": "dc_permits",
  "name": "연도별 확정 허가 · 추적 목록",
@@ -46,11 +47,11 @@
    ],
    [
     "2025-12-31",
-    11
+    13
    ],
    [
     "2026-12-31",
-    17
+    19
    ]
   ],
   "대수선": [
@@ -63,8 +64,12 @@
     1
    ],
    [
+    "2025-12-31",
+    4
+   ],
+   [
     "2026-12-31",
-    1
+    2
    ]
   ],
   "미분류": [
@@ -100,6 +105,10 @@
    ],
    [
     "2023-12-31",
+    1
+   ],
+   [
+    "2025-12-31",
     1
    ]
   ]

@@ -1,0 +1,36 @@
+name: ci-tests
+
+# 코드·카탈로그·수기 원장이 바뀐 push마다 모든 수집 워크플로의 검증 시험을 미리 돌린다.
+# 실패하면 다음 날 아침 수집 전에 push한 쪽(Claude·Codex 어느 세션이든)이 바로 알 수 있다.
+# 봇의 데이터 커밋(data/** JSON)만으로는 실행하지 않는다.
+on:
+  push:
+    paths:
+      - index.html
+      - assets/**
+      - scripts/**
+      - manual/**
+      - data/catalog.json
+      - requirements.txt
+      - .github/workflows/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt lxml
+      - name: 모든 워크플로 검증 시험
+        run: python scripts/run_ci_tests.py

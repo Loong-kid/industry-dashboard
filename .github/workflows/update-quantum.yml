@@ -15,7 +15,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   quantum:
@@ -28,10 +28,16 @@ jobs:
           python-version: '3.12'
       - run: pip install requests beautifulsoup4
       - name: Validate fiscal periods, SPAC exclusions and ETF position types
+        id: precheck
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_quantum.py -v
       - name: Collect free SEC accounts, reviewed issuer tables, ECB and ETF holdings
+        if: steps.precheck.outcome == 'success'
         run: python -u scripts/fetch_quantum.py
       - name: Validate public data and provenance
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
         run: python scripts/validate_quantum.py
       - name: Preserve public data for diagnostics
         if: always()
@@ -41,7 +47,7 @@ jobs:
           path: data/quantum/
           retention-days: 3
       - name: Commit quantum data only
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,3 +58,6 @@ jobs:
             if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
           done
           exit 1
+      - name: Report a quantum validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
