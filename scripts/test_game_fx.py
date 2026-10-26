@@ -20,6 +20,7 @@ class GameFxTests(unittest.TestCase):
         with zipfile.ZipFile(raw, "w") as z:
             z.writestr("eurofxref-hist.csv", csv_data)
         parsed = parse_rates(raw.getvalue())["2026-06-30"]
+        self.assertEqual(parsed["EUR"], .8)
         self.assertEqual(parsed["JPY"], 150)  # JPY per USD, NOT reciprocal
         self.assertEqual(parsed["KRW"], 1400)
         self.assertNotIn("CNY", parsed)

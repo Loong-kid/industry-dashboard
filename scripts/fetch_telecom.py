@@ -141,12 +141,13 @@ def document(key,metric,meta,cohort,fx):
     for kind in ['quarter','annual']:
         rows=[r for r in cohort.get('rows',[]) if r['kind']==kind]
         actual={r['date']:r for r in rows};axis=set(actual)
-        # Calendar quarter placeholders preserve real gaps without adding data.
+        # Fill missing fiscal periods, preserving actual 52/53-week endpoints.
         if rows:
+            observed={(r['year'],r.get('quarter')) for r in rows}
             for year in range(int(rows[0]['date'][:4]),int(rows[-1]['date'][:4])+1):
                 for q in range(1,5):
-                    d=reporting_period(year,q)['date']
-                    if rows[0]['date']<d<rows[-1]['date'] and kind=='quarter':axis.add(d)
+                    d=reporting_period(year,q,meta.get('fiscal_start',1))['date']
+                    if (year,q) not in observed and rows[0]['date']<d<rows[-1]['date'] and kind=='quarter':axis.add(d)
         native=[[d,actual.get(d,{}).get(metric)] for d in sorted(axis)]
         points=[[d,usd(v,currency,actual[d],fx) if v is not None else None] for d,v in native]
         last=next((r for r in reversed(rows) if r.get(metric) is not None),None)

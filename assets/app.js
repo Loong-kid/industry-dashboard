@@ -53,6 +53,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 // ── 부트스트랩 ──────────────────────────────────────────────────
 async function boot() {
   observeDashboardHeader();
+  window.addEventListener("resize", revealTelecomTab, {passive:true});
   dismissFinancialMemo = installFinancialMemos();
   try {
     const res = await fetch("data/catalog.json");
@@ -316,6 +317,10 @@ async function renderIndustry(options = {}) {
       row.append(label, tabs);
       pageTabs.appendChild(row);
     } else pageTabs.appendChild(tabs);
+    if (ind.id === "telecom") {
+      tabs.classList.add("tc-tabs");
+      requestAnimationFrame(revealTelecomTab);
+    }
   }
 
   if (selectedCategory?.id === "equipment" && ["equipment_frontend", "mocvd"].includes(state.subtab)) {
@@ -958,6 +963,15 @@ function createFinancialCard(doc, indicatorId, options) {
 }
 
 // Delegation also covers annual/quarter card replacements and newly opened tables.
+function revealTelecomTab() {
+  const tabs=document.querySelector("#page-tabs .tc-tabs");
+  const active=tabs?.querySelector('[aria-current="page"]');
+  if (!active || tabs.scrollWidth<=tabs.clientWidth) return;
+  const bounds=tabs.getBoundingClientRect(), selected=active.getBoundingClientRect();
+  if (selected.left<bounds.left) tabs.scrollLeft+=selected.left-bounds.left;
+  else if (selected.right>bounds.right) tabs.scrollLeft+=selected.right-bounds.right;
+}
+
 function installFinancialMemos() {
   const tip = document.createElement("div");
   tip.id = "financial-money-tooltip"; tip.className = "tc-money-tooltip";

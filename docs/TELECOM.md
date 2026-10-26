@@ -2,7 +2,7 @@
 
 `#/telecom/us`, `#/telecom/kr`, `#/telecom/jp`에서 미국·한국·일본 통신사를 구분한다. 회사마다 매출·영업이익·CAPEX를 기존 공통 재무 카드로 표시하고 분기/연간을 전환한다. 예측치·EBITDA·조정 영업이익을 실제 영업이익으로 섞지 않는다.
 
-첫 범위는 AT&T, Verizon, T-Mobile US, SK텔레콤, KT, LG유플러스, NTT, KDDI, SoftBank Corp. 9개 업체다. SoftBank Group 투자지주회사나 NTT의 연결 자회사를 별도 통신사로 중복 합산하지 않는다. 통신장비사는 이번 범위에 포함하지 않았으며 이후 별도 회사·사업 분류와 공급 관계로 추가할 수 있다.
+첫 범위는 AT&T, Verizon, T-Mobile US, SK텔레콤, KT, LG유플러스, NTT, KDDI, SoftBank Corp. 9개 업체다. SoftBank Group 투자지주회사나 NTT의 연결 자회사를 별도 통신사로 중복 합산하지 않는다. 통신장비 10개사는 `equipment_ran`(Ericsson·Nokia·ZTE), `equipment_optical`(Ciena·Cisco·HPE), `equipment_kr`(KMW·RFHIC·LIG아큐버/구 이노와이어리스·쏠리드) 탭으로 구분한다. 장비사의 CAPEX는 자체 투자이며 고객 통신사의 발주액과 구분한다. 선정·수집·원문 검토 기준은 [TELECOM_EQUIPMENT.md](TELECOM_EQUIPMENT.md)에 정리한다.
 
 ## 무료 원천과 갱신
 
