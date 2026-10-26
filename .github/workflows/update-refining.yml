@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: update-data
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
   accounts:
@@ -19,18 +19,31 @@ jobs:
           python-version: '3.12'
       - run: pip install requests beautifulsoup4 lxml openpyxl pymupdf
       - name: Validate historical accounts
+        id: precheck
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_refining.py
       - name: Check public SEC and DART statements
+        if: steps.precheck.outcome == 'success'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python -u scripts/fetch_refining.py
       - name: Validate refreshed accounts
+        if: steps.precheck.outcome == 'success'
+        id: postcheck
+        continue-on-error: true
         run: python -m unittest discover -s scripts -p test_refining.py
       - name: Commit refining data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/oil/refining_state.json data/oil/company_vlo_*.json data/oil/company_mpc_*.json data/oil/company_psx_*.json data/oil/company_soil_*.json
           git diff --cached --quiet || git commit -m "chore: refresh refining financial statements"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
+      - name: Report a refining validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
