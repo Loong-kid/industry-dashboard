@@ -39,7 +39,7 @@ def parse_rates(raw):
             continue
         if not math.isfinite(usd) or usd <= 0:
             continue
-        quotes = {}
+        quotes = {"EUR": 1 / usd}
         for currency, value in row.items():
             if not currency or len(currency) != 3:
                 continue

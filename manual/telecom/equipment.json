@@ -1,0 +1,138 @@
+{
+ "ericsson": {
+  "name": "Ericsson",
+  "role": "equipment",
+  "tab": "equipment_ran",
+  "country": "se",
+  "currency": "SEK",
+  "fiscal_start": 1,
+  "scope": "연결 전체 · 무선 RAN·코어·클라우드·기업 통신 포함. 영업이익은 보고 EBIT이며 EBITA·조정 EBITA와 구분",
+  "investment_link": "기지국 RAN 구축·교체, 5G 고도화 및 코어망 투자",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "cik": 717826,
+  "ifrs": true,
+  "source_review": "분기 단독 표는 현재 확보한 2025년 이후, 연간은 2020년 이후입니다. 공식 Cision 실적 공시에서 새 보고서를 확인합니다. 영업이익은 IFRS EBIT이며 조정 EBITA를 이어 붙이지 않습니다."
+ },
+ "nokia": {
+  "name": "Nokia",
+  "role": "equipment",
+  "tab": "equipment_ran",
+  "country": "fi",
+  "currency": "EUR",
+  "fiscal_start": 1,
+  "scope": "연결 전체 · 무선·유선·IP·광통신·특허 포함. Infinera는 2025-02-28부터 연결. 보고 영업이익 사용",
+  "investment_link": "무선망뿐 아니라 광전송·IP 라우팅·광대역 접속망까지 노출",
+  "capex_basis": "연결 CF의 유형·무형자산 취득 현금지출(보조금 차감 전). 회사의 net CAPEX 지표와 구분하며 고객 통신사의 발주액이 아닙니다.",
+  "cik": 924613,
+  "ifrs": true,
+  "comparability_note": "각 원문의 보고·수정 실적을 사용합니다. 2024년 해저망 사업 및 2026년 FWA CPE·Enterprise Campus Edge 중단영업 재분류, Infinera 인수로 연결 범위가 바뀌었습니다. 서로 다른 시점의 공시를 합산해 동일 범위로 추정하지 않습니다.",
+  "source_review": "분기는 현재 확보한 FY2024 Q4 이후, 연간은 2020년 이후입니다. SEC 신규 대형 6-K를 확인해 표 검토 필요 상태를 표시하며 검토 전 신규 분기를 추정하지 않습니다."
+ },
+ "zte": {
+  "name": "ZTE",
+  "role": "equipment",
+  "tab": "equipment_ran",
+  "country": "cn",
+  "currency": "CNY",
+  "fiscal_start": 1,
+  "scope": "중흥통신 연결 전체 · 통신사망·기업·단말 포함. PRC ASBEs 보고 영업이익에는 투자손익 등이 포함되어 IFRS·US GAAP와 범위 차이",
+  "investment_link": "무선 RAN·코어·광접속·전송망 투자. 국가별 규제·조달 시장이 달라 직접 수혜를 단정하지 않음",
+  "capex_basis": "PRC 연결 CF의 유형자산·무형자산·기타 장기자산 취득 현금지출. 자체 투자이며 통신사 발주액이 아닙니다.",
+  "source_review": "현재 확보한 분기는 2025·2026년 Q1~Q3, 연간은 2024·2025년입니다. 서로 다른 공시 시점의 연간과 9개월을 차분하지 않아 2025년 Q4는 공백입니다. 스캔된 Q1 2026 보고서는 연결 열을 직접 대조했습니다."
+ },
+ "ciena": {
+  "name": "Ciena",
+  "role": "equipment",
+  "tab": "equipment_optical",
+  "country": "us",
+  "currency": "USD",
+  "fiscal_start": 11,
+  "scope": "연결 전체 · 광전송·패킷 네트워크·소프트웨어 포함. 10월 결산의 실제 52/53주 종료일 보존",
+  "investment_link": "통신사 백본·메트로 광전송과 데이터센터 간 연결(DCI) 투자",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "cik": 936395,
+  "minimum_end": "2020-02-01",
+  "comparability_note": "초기 달력 말일과 52/53주 종료일로 중복 태깅된 과거 비교값을 섞지 않기 위해 2020-02-01 종료 분기부터 실제 주차 기준으로 표시합니다."
+ },
+ "cisco": {
+  "name": "Cisco",
+  "role": "equipment",
+  "tab": "equipment_optical",
+  "country": "us",
+  "currency": "USD",
+  "fiscal_start": 8,
+  "scope": "연결 전체 · 통신사·기업·데이터센터·보안·소프트웨어 포함. 통신사향 매출 단독 실적이 아님",
+  "investment_link": "통신사 IP 라우팅·전송과 기업·데이터센터 네트워크 투자",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "cik": 858877
+ },
+ "hpe": {
+  "name": "HPE",
+  "role": "equipment",
+  "tab": "equipment_optical",
+  "country": "us",
+  "currency": "USD",
+  "fiscal_start": 11,
+  "scope": "HPE 연결 전체 · 서버·스토리지·금융 등 포함. Juniper는 2025-07-02 인수 후 연결. Networking 사업부 단독 실적 아님",
+  "investment_link": "Juniper·Aruba 기반 라우팅·스위칭·네트워크. 전사 수치를 통신장비 TAM으로 합산하지 않음",
+  "capex_basis": "연결 현금흐름표의 Investment in property, plant and equipment(생산자산 취득) 현금지출. 전사 자체 투자이며 Networking 단독 설비투자·통신사 발주액과 다릅니다.",
+  "cik": 1645590,
+  "tags": {
+   "capex": [
+    "PaymentsToAcquireProductiveAssets"
+   ]
+  }
+ },
+ "kmw": {
+  "name": "KMW",
+  "role": "equipment",
+  "tab": "equipment_kr",
+  "country": "kr",
+  "currency": "KRW",
+  "fiscal_start": 1,
+  "scope": "케이엠더블유 연결 전체 · RF 장비·안테나·필터 등 포함",
+  "investment_link": "기지국 증설·교체에 쓰이는 RF 장비·안테나·필터. 장비 OEM과 통신사의 투자 시차 존재",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "corp_code": "00226352",
+  "stock": "032500"
+ },
+ "rfhic": {
+  "name": "RFHIC",
+  "role": "equipment",
+  "tab": "equipment_kr",
+  "country": "kr",
+  "currency": "KRW",
+  "fiscal_start": 1,
+  "scope": "알에프에이치아이씨 연결 전체 · GaN RF 반도체·전력증폭기. 방산·산업용 등 비통신 포함",
+  "investment_link": "무선 기지국 전력증폭기·GaN RF 부품. 전체 매출이 통신사 CAPEX에만 연동되지 않음",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "corp_code": "01078178",
+  "stock": "218410"
+ },
+ "innowireless": {
+  "name": "LIG아큐버 (구 이노와이어리스)",
+  "role": "equipment",
+  "tab": "equipment_kr",
+  "country": "kr",
+  "currency": "KRW",
+  "fiscal_start": 1,
+  "scope": "동일 상장 법인(073490)의 연결 실적 · 통신 시험·계측·스몰셀 등 포함",
+  "investment_link": "무선망 최적화·검증과 스몰셀 구축 투자. 제품 구성·인수·사명 변경에 유의",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "corp_code": "00462121",
+  "stock": "073490"
+ },
+ "solid": {
+  "name": "쏠리드",
+  "role": "equipment",
+  "tab": "equipment_kr",
+  "country": "kr",
+  "currency": "KRW",
+  "fiscal_start": 1,
+  "scope": "쏠리드 연결 전체 · DAS·중계기·광전송 등 포함",
+  "investment_link": "인빌딩·지하철 등 실내 커버리지 및 중계망 투자",
+  "capex_basis": "연결 현금흐름표의 유형자산 취득 현금지출. 장비사 자체 투자이며 고객 통신사의 CAPEX·주문액과 다릅니다.",
+  "corp_code": "00364403",
+  "stock": "050890"
+ }
+}

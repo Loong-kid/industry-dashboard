@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install requests beautifulsoup4 openpyxl
+      - run: pip install requests beautifulsoup4 openpyxl pymupdf
       - name: Validate fiscal periods, CF differences and original currencies
         run: python -m unittest discover -s scripts -p test_telecom.py -v
       - name: Refresh free SEC, OpenDART and issuer workbooks
@@ -28,6 +28,14 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p test_telecom.py -v
           python scripts/validate_telecom.py
+      - name: Refresh telecom equipment public accounts
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_telecom_equipment.py
+      - name: Validate equipment histories and reported financial statements
+        run: |
+          python -m unittest discover -s scripts -p test_telecom_equipment.py -v
+          python scripts/validate_telecom_equipment.py
       - name: Preserve public source snapshots for diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -40,6 +48,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/telecom/
-          git diff --cached --quiet || git commit -m "chore: refresh telecom carrier accounts"
-          git pull --rebase
-          git push
+          git diff --cached --quiet || git commit -m "chore: refresh telecom accounts"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1

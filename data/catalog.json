@@ -2975,7 +2975,7 @@
       "auto_collect_time": "08:50",
       "icon": "📡",
       "default_range": "all",
-      "cadence": "통신사 연결 실적: SEC·OpenDART·공식 IR 무료 자료. 자동 확인 매일 08:50(KST). 실제 분기·연간 실적은 공시 발표 후 갱신하며 원문 재검토 항목은 각 카드에 표시.",
+      "cadence": "통신사·장비사 연결 실적: SEC·OpenDART·공식 IR 무료 자료. 매일 08:50(KST) 확인하며 원문 대조가 필요한 분기는 카드의 확인 상태와 확보 범위를 표시합니다.",
       "tabs": [
         {
           "id": "us",
@@ -2991,6 +2991,21 @@
           "id": "jp",
           "name": "일본 통신사",
           "description": "회사별 매출·영업이익·CAPEX를 분기/연간으로 봅니다. 단위: 백만 USD. 금액에 마우스를 올리거나 누르면 원통화와 기간 평균환율을 확인할 수 있습니다. CAPEX는 회사별 자산·현금·검수 기준이 달라 각 카드의 집계 기준을 함께 확인하세요."
+        },
+        {
+          "id": "equipment_ran",
+          "name": "무선망 장비",
+          "description": "Ericsson·Nokia·ZTE의 연결 매출·영업이익·자체 CAPEX를 봅니다. Nokia는 광·IP 장비도 포함합니다. 단위: 백만 USD. 장비사 자체 CAPEX는 고객 통신사의 투자액·주문액과 다릅니다."
+        },
+        {
+          "id": "equipment_optical",
+          "name": "광·IP 네트워크",
+          "description": "Ciena·Cisco·HPE의 연결 매출·영업이익·자체 CAPEX입니다. 통신사 백본·메트로망과 데이터센터 투자에 함께 노출됩니다. Cisco·HPE 전사 실적에는 다른 사업도 포함됩니다. Infinera는 Nokia에, Juniper는 인수 후 HPE에 포함됩니다."
+        },
+        {
+          "id": "equipment_kr",
+          "name": "국내 장비·부품",
+          "description": "KMW·RFHIC·LIG아큐버(구 이노와이어리스)·쏠리드의 연결 실적입니다. RF 부품·시험계측·스몰셀·중계기 등 투자 연결 분야를 회사별로 표시합니다. 실제 고객별 공급 관계나 수주액을 추정한 값은 아닙니다. 단위: 백만 USD."
         }
       ],
       "sections": [
@@ -3092,9 +3107,120 @@
             "company_softbank_profit",
             "company_softbank_capex"
           ]
+        },
+        {
+          "tab": "equipment_ran",
+          "title": "Ericsson · 실적",
+          "layout": "financial",
+          "supply_note": "연결 전체 · 무선 RAN·코어·클라우드·기업 통신 포함. 영업이익은 보고 EBIT이며 EBITA·조정 EBITA와 구분\n투자 연결 분야: 기지국 RAN 구축·교체, 5G 고도화 및 코어망 투자",
+          "indicators": [
+            "company_ericsson_revenue",
+            "company_ericsson_profit",
+            "company_ericsson_capex"
+          ]
+        },
+        {
+          "tab": "equipment_ran",
+          "title": "Nokia · 실적",
+          "layout": "financial",
+          "supply_note": "연결 전체 · 무선·유선·IP·광통신·특허 포함. Infinera는 2025-02-28부터 연결. 보고 영업이익 사용\n투자 연결 분야: 무선망뿐 아니라 광전송·IP 라우팅·광대역 접속망까지 노출",
+          "indicators": [
+            "company_nokia_revenue",
+            "company_nokia_profit",
+            "company_nokia_capex"
+          ]
+        },
+        {
+          "tab": "equipment_ran",
+          "title": "ZTE · 실적",
+          "layout": "financial",
+          "supply_note": "중흥통신 연결 전체 · 통신사망·기업·단말 포함. PRC ASBEs 보고 영업이익에는 투자손익 등이 포함되어 IFRS·US GAAP와 범위 차이\n투자 연결 분야: 무선 RAN·코어·광접속·전송망 투자. 국가별 규제·조달 시장이 달라 직접 수혜를 단정하지 않음",
+          "indicators": [
+            "company_zte_revenue",
+            "company_zte_profit",
+            "company_zte_capex"
+          ]
+        },
+        {
+          "tab": "equipment_optical",
+          "title": "Ciena · 실적",
+          "layout": "financial",
+          "supply_note": "연결 전체 · 광전송·패킷 네트워크·소프트웨어 포함. 10월 결산의 실제 52/53주 종료일 보존\n투자 연결 분야: 통신사 백본·메트로 광전송과 데이터센터 간 연결(DCI) 투자",
+          "indicators": [
+            "company_ciena_revenue",
+            "company_ciena_profit",
+            "company_ciena_capex"
+          ]
+        },
+        {
+          "tab": "equipment_optical",
+          "title": "Cisco · 실적",
+          "layout": "financial",
+          "supply_note": "연결 전체 · 통신사·기업·데이터센터·보안·소프트웨어 포함. 통신사향 매출 단독 실적이 아님\n투자 연결 분야: 통신사 IP 라우팅·전송과 기업·데이터센터 네트워크 투자",
+          "indicators": [
+            "company_cisco_revenue",
+            "company_cisco_profit",
+            "company_cisco_capex"
+          ]
+        },
+        {
+          "tab": "equipment_optical",
+          "title": "HPE · 실적",
+          "layout": "financial",
+          "supply_note": "HPE 연결 전체 · 서버·스토리지·금융 등 포함. Juniper는 2025-07-02 인수 후 연결. Networking 사업부 단독 실적 아님\n투자 연결 분야: Juniper·Aruba 기반 라우팅·스위칭·네트워크. 전사 수치를 통신장비 TAM으로 합산하지 않음",
+          "indicators": [
+            "company_hpe_revenue",
+            "company_hpe_profit",
+            "company_hpe_capex"
+          ]
+        },
+        {
+          "tab": "equipment_kr",
+          "title": "KMW · 실적",
+          "layout": "financial",
+          "supply_note": "케이엠더블유 연결 전체 · RF 장비·안테나·필터 등 포함\n투자 연결 분야: 기지국 증설·교체에 쓰이는 RF 장비·안테나·필터. 장비 OEM과 통신사의 투자 시차 존재",
+          "indicators": [
+            "company_kmw_revenue",
+            "company_kmw_profit",
+            "company_kmw_capex"
+          ]
+        },
+        {
+          "tab": "equipment_kr",
+          "title": "RFHIC · 실적",
+          "layout": "financial",
+          "supply_note": "알에프에이치아이씨 연결 전체 · GaN RF 반도체·전력증폭기. 방산·산업용 등 비통신 포함\n투자 연결 분야: 무선 기지국 전력증폭기·GaN RF 부품. 전체 매출이 통신사 CAPEX에만 연동되지 않음",
+          "indicators": [
+            "company_rfhic_revenue",
+            "company_rfhic_profit",
+            "company_rfhic_capex"
+          ]
+        },
+        {
+          "tab": "equipment_kr",
+          "title": "LIG아큐버 (구 이노와이어리스) · 실적",
+          "layout": "financial",
+          "supply_note": "동일 상장 법인(073490)의 연결 실적 · 통신 시험·계측·스몰셀 등 포함\n투자 연결 분야: 무선망 최적화·검증과 스몰셀 구축 투자. 제품 구성·인수·사명 변경에 유의",
+          "indicators": [
+            "company_innowireless_revenue",
+            "company_innowireless_profit",
+            "company_innowireless_capex"
+          ]
+        },
+        {
+          "tab": "equipment_kr",
+          "title": "쏠리드 · 실적",
+          "layout": "financial",
+          "supply_note": "쏠리드 연결 전체 · DAS·중계기·광전송 등 포함\n투자 연결 분야: 인빌딩·지하철 등 실내 커버리지 및 중계망 투자",
+          "indicators": [
+            "company_solid_revenue",
+            "company_solid_profit",
+            "company_solid_capex"
+          ]
         }
       ]
     },
+
     {
       "id": "games",
       "name": "게임 시장",
