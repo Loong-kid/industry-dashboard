@@ -24,6 +24,7 @@ const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "�
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
+  if (id === "natgas" && subtab === "midstream" && window.dashboard?.state?.natgasView === "compression") return {file: "data/natgas/company_aroc_revenue.json", label: "압축기 실적 확인", workflow: "update-natgas.yml"};
   if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};
   if (id === "semicon" && subtab?.startsWith("equipment_")) return {file: "data/semicon/company_lam_revenue.json", label: "장비 실적 확인", workflow: "update-equipment.yml"};

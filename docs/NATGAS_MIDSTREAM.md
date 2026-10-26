@@ -1,8 +1,16 @@
 # Natural gas prices and midstream history
 
 Routes: `#/natgas` / `#/natgas/overview` retain the price and LNG dashboard;
-`#/natgas/midstream` adds 30 charts (24 financial, six compressor operating).
+`#/natgas/midstream` (or `/summary`) opens 전체 요약: 15 financial charts for
+KMI, WMB, ET, EPD and TRGP. `#/natgas/midstream/compression` opens 압축기:
+nine financial and six operating charts for AROC, KGS and USAC. These second
+level views retain the shared midstream parent and period controls.
 Initial source review: 2026-10-26.
+
+Kodiak listed in June 2023, not 2021. Its IPO prospectus includes audited
+2021/2022 comparatives, which is why the dashboard can begin before its IPO.
+The compression introduction explains that history without implying that all
+three quarterly financial metrics are available from 2021.
 
 ## Price outage and repair
 

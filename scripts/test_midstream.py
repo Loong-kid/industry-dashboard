@@ -86,6 +86,12 @@ class PublishedHistoryTests(unittest.TestCase):
         ids=[id for section in gas['sections'] if section['tab']=='midstream' for id in section['indicators']]
         self.assertEqual(len(ids),30)
         self.assertEqual(len(set(ids)),30)
+        views={view:[id for section in gas['sections'] if section.get('tab')=='midstream' and section.get('view')==view for id in section['indicators']] for view in ['summary','compression']}
+        self.assertEqual(len(views['summary']),15)
+        self.assertEqual(len(views['compression']),15)
+        self.assertTrue(all(id.startswith(('company_kmi_','company_wmb_','company_et_','company_epd_','company_trgp_')) for id in views['summary']))
+        self.assertTrue(all(id.startswith(('company_aroc_','company_kgs_','company_usac_','compressor_')) for id in views['compression']))
+        self.assertFalse(set(views['summary']) & set(views['compression']))
         for id in ids:
             doc=json.loads((ROOT/'data/natgas'/f'{id}.json').read_text(encoding='utf8'))
             self.assertEqual(doc['id'],id)
