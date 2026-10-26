@@ -30,9 +30,9 @@ def collect():
                     filed=group['filingDate'][i];report=group.get('reportDate',['']*len(group['form']))[i]
                     # Annual statements supply the original accounting definitions;
                     # quarterly structured facts are fetched above in one request.
-                    if form not in ['10-K','10-K/A','20-F','20-F/A','10-Q','8-K12B']:continue
-                    if filed>asof or filed<'2015-01-01':continue
-                    if form=='10-Q' and filed<'2025-01-01':continue
+                    if form not in ['10-K','10-K/A','20-F','20-F/A','10-Q','8-K12B','6-K']:continue
+                    if filed>asof or filed<'2014-01-01':continue
+                    if form=='6-K' and (not report or report[5:] not in ['03-31','06-30','09-30','12-31']):continue
                     if form.startswith('10-K') or form.startswith('20-F'):
                         if report and report<'2014-12-31':continue
                     acc=group['accessionNumber'][i];doc=group['primaryDocument'][i]
