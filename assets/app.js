@@ -119,7 +119,13 @@ function showBootError(e) {
 }
 
 function route() {
-  const [id, requestedTab, requestedView, requestedDetail, requestedPanel] = location.hash.replace("#/", "").split("/");
+  let [id, requestedTab, requestedView, requestedDetail, requestedPanel] = location.hash.replace("#/", "").split("/");
+  // Preserve old offshore bookmarks while making oil the sole sidebar parent.
+  if (id === "offshore") {
+    requestedView = requestedTab || "market";
+    id = "oil"; requestedTab = "offshore";
+    history.replaceState(null, "", `#/oil/offshore/${requestedView}`);
+  }
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
   const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
@@ -147,6 +153,7 @@ function route() {
     state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   }
+  state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
   document.querySelectorAll("#nav a").forEach((a) => {
     const selected = a.dataset.id === state.industry.id;
@@ -179,7 +186,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "offshore", "shipbuilding", "shipping", "telecom", "games"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
   ];
@@ -224,14 +231,16 @@ async function renderIndustry(options = {}) {
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const selectedCategory = ind.material_categories?.find(category => category.id === state.materialCategory);
   const gasView = ind.id === "natgas" && state.subtab === "midstream" ? selectedTab.views?.find(view => view.id === state.natgasView) : null;
+  const oilView = ind.id === "oil" && state.subtab === "offshore" ? selectedTab.views?.find(view => view.id === state.oilOffshoreView) : null;
+  const nestedView = gasView || oilView;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
-  document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${gasView ? " · " + gasView.name : ""}`;
+  document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${nestedView ? " · " + nestedView.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "offshore" || ind.id === "games" || ind.id === "telecom" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (ind.id === "offshore" && ["fleet", "contracts"].includes(state.subtab)) ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -338,24 +347,24 @@ async function renderIndustry(options = {}) {
     pageTabs.appendChild(views);
   }
 
-  if (gasView) {
+  if (nestedView) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs";
-    views.setAttribute("aria-label", "미드스트림 분류");
+    views.setAttribute("aria-label", oilView ? "해양 시추 분류" : "미드스트림 분류");
     for (const view of selectedTab.views) {
       const link = document.createElement("a");
-      link.href = `#/natgas/midstream/${view.id}`;
+      link.href = `#/${ind.id}/${state.subtab}/${view.id}`;
       link.textContent = view.name;
-      if (view.id === gasView.id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
+      if (view.id === nestedView.id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
       views.appendChild(link);
     }
     pageTabs.appendChild(views);
   }
 
-  if (gasView?.description || selectedTab?.description) {
+  if (nestedView?.description || selectedTab?.description) {
     const intro = document.createElement("p");
     intro.className = "tab-description";
-    intro.textContent = gasView?.description || selectedTab.description;
+    intro.textContent = nestedView?.description || selectedTab.description;
     content.appendChild(intro);
   }
 
@@ -395,7 +404,7 @@ async function renderIndustry(options = {}) {
   const collected = []; // 수집 상태 판정용 { name, fetched }
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
-    if (gasView && section.view !== gasView.id) continue;
+    if (nestedView && section.view !== nestedView.id) continue;
     const dataIndustry = section.data_industry || ind.id;
     const h = document.createElement("div");
     h.className = "section-title";

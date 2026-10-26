@@ -3272,87 +3272,180 @@
       ]
     },
     {
-      "id": "offshore",
-      "name": "해양 시추",
+      "id": "oil",
+      "name": "원유",
       "icon": "",
       "default_range": "all",
-      "cadence": "주요 6개 운영사 공개 선대·SEC 재무를 매일 확인. 선대는 주로 분기, 실적은 분기·반기 공표 후 갱신합니다. Noble FSR 대조 입력·JV/소유관계·비GAAP 보완·Westwood 초기 관측치는 원문 검토 자료입니다. 새 보고서 감지·접근 실패는 표시하고 이전 성공 자료를 유지합니다. 실시간 AIS 위치가 아닙니다.",
       "tabs": [
         {
-          "id": "market",
-          "name": "시장·수급",
-          "description": "세계 드릴십·반잠수식·잭업 수급과 공개 계약 요율. 전세계 통계와 6개사 추적 선대의 범위를 구분합니다."
+          "id": "majors",
+          "name": "원유 메이저",
+          "default_range": "all",
+          "description": "2014년부터의 연결 매출·영업이익·CAPEX를 기업별로 비교합니다. 원유 외 천연가스·정유·화학 등을 포함하며, 영업이익 계산식과 CAPEX 범위는 각 차트의 기준·출처에서 확인할 수 있습니다."
         },
         {
-          "id": "fleet",
-          "name": "글로벌 리그",
-          "description": "리그별 소유 그룹·운영사·작업 해역·계약. 공시 기준 상태와 실시간 위치를 구분하고, 매각·퇴역은 이력으로 보존합니다."
-        },
-        {
-          "id": "contracts",
-          "name": "계약 일정",
-          "description": "2026~2029 확정 계약과 선택권·조건부·정비 일정. 월·분기 단위 공시는 기간 범위로 표시합니다."
-        },
-        {
-          "id": "financials",
-          "name": "운영사 실적",
-          "description": "주요 6개사의 분기 매출·손익·현금흐름과 회사 공시 EBITDA·요율·효율. 단위는 USD 백만이며 연결·지표 정의 차이를 함께 확인합니다."
+          "id": "offshore",
+          "name": "해양 시추",
+          "views": [
+            {
+              "id": "market",
+              "name": "시장·수급",
+              "description": "세계 드릴십·반잠수식·잭업 수급과 공개 계약 요율. 전세계 통계와 6개사 추적 선대의 범위를 구분합니다."
+            },
+            {
+              "id": "fleet",
+              "name": "글로벌 리그",
+              "description": "리그별 소유 그룹·운영사·작업 해역·계약. 공시 기준 상태와 실시간 위치를 구분하고, 매각·퇴역은 이력으로 보존합니다."
+            },
+            {
+              "id": "contracts",
+              "name": "계약 일정",
+              "description": "2026~2029 확정 계약과 선택권·조건부·정비 일정. 월·분기 단위 공시는 기간 범위로 표시합니다."
+            },
+            {
+              "id": "financials",
+              "name": "운영사 실적",
+              "description": "주요 6개사의 분기 매출·손익·현금흐름과 회사 공시 EBITDA·요율·효율. 단위는 USD 백만이며 연결·지표 정의 차이를 함께 확인합니다."
+            }
+          ]
         }
       ],
       "sections": [
         {
+          "tab": "majors",
+          "title": "ExxonMobil · XOM · 통합 석유·가스",
+          "layout": "financial",
+          "indicators": [
+            "company_xom_revenue",
+            "company_xom_profit",
+            "company_xom_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "Chevron · CVX · 통합 석유·가스",
+          "layout": "financial",
+          "indicators": [
+            "company_cvx_revenue",
+            "company_cvx_profit",
+            "company_cvx_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "Shell · SHEL · 통합 석유·가스·LNG",
+          "layout": "financial",
+          "indicators": [
+            "company_shell_revenue",
+            "company_shell_profit",
+            "company_shell_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "BP · 통합 석유·가스",
+          "layout": "financial",
+          "indicators": [
+            "company_bp_revenue",
+            "company_bp_profit",
+            "company_bp_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "TotalEnergies · TTE · 통합 석유·가스·전력",
+          "layout": "financial",
+          "indicators": [
+            "company_tte_revenue",
+            "company_tte_profit",
+            "company_tte_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "ConocoPhillips · COP · 탐사·생산 중심",
+          "layout": "financial",
+          "indicators": [
+            "company_cop_revenue",
+            "company_cop_profit",
+            "company_cop_capex"
+          ]
+        },
+        {
+          "tab": "majors",
+          "title": "Equinor · EQNR · 탐사·생산·가스 중심",
+          "layout": "financial",
+          "indicators": [
+            "company_equinor_revenue",
+            "company_equinor_profit",
+            "company_equinor_capex"
+          ]
+        },
+        {
           "title": "추적 범위·주요 변경",
-          "tab": "market",
+          "tab": "offshore",
           "type": "table",
           "table_kind": "offshore_overview",
           "indicators": [
             "offshore_fleet"
-          ]
+          ],
+          "view": "market",
+          "data_industry": "offshore"
         },
         {
           "title": "글로벌 시장 수급",
-          "tab": "market",
+          "tab": "offshore",
           "type": "table",
           "table_kind": "offshore_market",
           "indicators": [
             "offshore_market"
-          ]
+          ],
+          "view": "market",
+          "data_industry": "offshore"
         },
         {
           "title": "유형별 수급 추이",
-          "tab": "market",
+          "tab": "offshore",
           "indicators": [
             "offshore_utilization",
             "offshore_supply",
             "offshore_backlog"
-          ]
+          ],
+          "view": "market",
+          "data_industry": "offshore"
         },
         {
           "title": "선대·소유·배치",
-          "tab": "fleet",
+          "tab": "offshore",
           "type": "table",
           "table_kind": "offshore_fleet",
           "indicators": [
             "offshore_fleet"
-          ]
+          ],
+          "view": "fleet",
+          "data_industry": "offshore"
         },
         {
           "title": "공개 계약 일정표",
-          "tab": "contracts",
+          "tab": "offshore",
           "type": "table",
           "table_kind": "offshore_contracts",
           "indicators": [
             "offshore_fleet"
-          ]
+          ],
+          "view": "contracts",
+          "data_industry": "offshore"
         },
         {
           "title": "분기 실적 비교",
-          "tab": "financials",
+          "tab": "offshore",
           "type": "table",
           "table_kind": "offshore_financials",
           "indicators": [
             "offshore_financials"
-          ]
+          ],
+          "view": "financials",
+          "data_industry": "offshore"
         }
       ]
     }

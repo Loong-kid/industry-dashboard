@@ -25,7 +25,7 @@ const market=JSON.parse(fs.readFileSync('data/offshore/offshore_market.json','ut
 assert(context.renderOffshoreMarket(market).children.length>5);
 assert(context.renderOffshoreOverview(doc).children.length>3);
 const source=fs.readFileSync('assets/app.js','utf8'),index=fs.readFileSync('index.html','utf8');
-assert(source.includes('"natgas", "offshore", "shipbuilding"'));
+assert(source.includes('"natgas", "oil", "shipbuilding"'));
 for(const renderer of ['renderOffshoreOverview','renderOffshoreMarket','renderOffshoreFleet','renderOffshoreFinancials'])assert(source.includes(renderer));
 assert(index.indexOf('assets/offshore-drilling.js')<index.indexOf('assets/app.js'));
 assert(index.includes('assets/offshore-drilling.css'));

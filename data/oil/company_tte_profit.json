@@ -1,0 +1,1270 @@
+{
+ "id": "company_tte_profit",
+ "name": "TotalEnergies · TTE · 영업손익 (계산)",
+ "unit": "USD 백만",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 회사 연결 실적",
+ "quarter_labels": true,
+ "period_labels": {
+  "2014-03-31": "FY2014 Q1",
+  "2014-06-30": "FY2014 Q2",
+  "2014-09-30": "FY2014 Q3",
+  "2014-12-31": "FY2014 Q4",
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2014-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": "2016-12-31",
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "updated": "2026-06-30",
+ "fetched": "2026-10-27",
+ "source": "기업 공식 재무제표 · SEC / IR",
+ "source_url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+ "description": "전사 연결 · 석유·가스·정유·화학·전력. 소비세 제외 매출 − 매입 − 기타 영업비용 − 탐사비 − 감가·손상 + 기타수익 − 기타비용으로 계산합니다. 금융손익·지분법손익·법인세는 제외하고, 처분·손상 등 원문 항목은 포함합니다. Adjusted net operating income과 다릅니다.",
+ "series": {
+  "계산 영업손익": [
+   [
+    "2014-03-31",
+    6746.0
+   ],
+   [
+    "2014-06-30",
+    5310.0
+   ],
+   [
+    "2014-09-30",
+    5640.0
+   ],
+   [
+    "2014-12-31",
+    -6999.0
+   ],
+   [
+    "2015-03-31",
+    3157.0
+   ],
+   [
+    "2015-06-30",
+    4028.0
+   ],
+   [
+    "2015-09-30",
+    1232.0
+   ],
+   [
+    "2015-12-31",
+    -3694.0
+   ],
+   [
+    "2016-03-31",
+    1303.0
+   ],
+   [
+    "2016-06-30",
+    1792.0
+   ],
+   [
+    "2016-09-30",
+    1862.0
+   ],
+   [
+    "2016-12-31",
+    774.0
+   ],
+   [
+    "2017-03-31",
+    3198.0
+   ],
+   [
+    "2017-06-30",
+    2445.0
+   ],
+   [
+    "2017-09-30",
+    3728.0
+   ],
+   [
+    "2017-12-31",
+    1161.0
+   ],
+   [
+    "2018-03-31",
+    4122.0
+   ],
+   [
+    "2018-06-30",
+    4988.0
+   ],
+   [
+    "2018-09-30",
+    5889.0
+   ],
+   [
+    "2018-12-31",
+    1583.0
+   ],
+   [
+    "2019-03-31",
+    4962.0
+   ],
+   [
+    "2019-06-30",
+    4035.0
+   ],
+   [
+    "2019-09-30",
+    3617.0
+   ],
+   [
+    "2019-12-31",
+    3614.0
+   ],
+   [
+    "2020-03-31",
+    -50.0
+   ],
+   [
+    "2020-06-30",
+    -8237.0
+   ],
+   [
+    "2020-09-30",
+    1266.0
+   ],
+   [
+    "2020-12-31",
+    1437.0
+   ],
+   [
+    "2021-03-31",
+    4562.0
+   ],
+   [
+    "2021-06-30",
+    4878.0
+   ],
+   [
+    "2021-09-30",
+    6381.0
+   ],
+   [
+    "2021-12-31",
+    7996.0
+   ],
+   [
+    "2022-03-31",
+    9992.0
+   ],
+   [
+    "2022-06-30",
+    12866.0
+   ],
+   [
+    "2022-09-30",
+    13155.0
+   ],
+   [
+    "2022-12-31",
+    10045.0
+   ],
+   [
+    "2023-03-31",
+    8984.0
+   ],
+   [
+    "2023-06-30",
+    6346.0
+   ],
+   [
+    "2023-09-30",
+    9482.0
+   ],
+   [
+    "2023-12-31",
+    8619.0
+   ],
+   [
+    "2024-03-31",
+    8873.0
+   ],
+   [
+    "2024-06-30",
+    6016.0
+   ],
+   [
+    "2024-09-30",
+    4442.0
+   ],
+   [
+    "2024-12-31",
+    6562.0
+   ],
+   [
+    "2025-03-31",
+    6357.0
+   ],
+   [
+    "2025-06-30",
+    4586.0
+   ],
+   [
+    "2025-09-30",
+    5968.0
+   ],
+   [
+    "2025-12-31",
+    4496.0
+   ],
+   [
+    "2026-03-31",
+    9401.0
+   ],
+   [
+    "2026-06-30",
+    7632.0
+   ]
+  ]
+ },
+ "default_series": [
+  "계산 영업손익"
+ ],
+ "span_gaps": false,
+ "point_sources": {
+  "2014-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q15-accounts.pdf#page=1",
+   "label": "FY2014 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q15-accounts.pdf#page=1",
+     "label": "2014-01-01 ~ 2014-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-06-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q15-accounts.pdf#page=1",
+   "label": "FY2014 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q15-accounts.pdf#page=1",
+     "label": "2014-04-01 ~ 2014-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-09-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q15-accounts.pdf#page=1",
+   "label": "FY2014 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q15-accounts.pdf#page=1",
+     "label": "2014-07-01 ~ 2014-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q15.pdf#page=1",
+   "label": "FY2014 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q15.pdf#page=1",
+     "label": "2014-10-01 ~ 2014-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q16-accounts.pdf#page=1",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q16-accounts.pdf#page=1",
+     "label": "2015-01-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts-2q16.pdf#page=1",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts-2q16.pdf#page=1",
+     "label": "2015-04-01 ~ 2015-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-09-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q16-accounts.pdf#page=1",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q16-accounts.pdf#page=1",
+     "label": "2015-07-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q16_0.pdf#page=1",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q16_0.pdf#page=1",
+     "label": "2015-10-01 ~ 2015-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q17_accounts_0.pdf#page=1",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q17_accounts_0.pdf#page=1",
+     "label": "2016-01-01 ~ 2016-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q-accounts.pdf#page=1",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q-accounts.pdf#page=1",
+     "label": "2016-04-01 ~ 2016-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-09-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q17_accounts.pdf#page=1",
+   "label": "FY2016 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q17_accounts.pdf#page=1",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q17_accounts.pdf#page=1",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q17_accounts.pdf#page=1",
+     "label": "2016-10-01 ~ 2016-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q18-accounts.pdf#page=1",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q18-accounts.pdf#page=1",
+     "label": "2017-01-01 ~ 2017-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q18-accounts.pdf#page=1",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q18-accounts.pdf#page=1",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-09-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q18_accounts.pdf#page=1",
+   "label": "FY2017 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q18_accounts.pdf#page=1",
+     "label": "2017-07-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q18-accounts.pdf#page=1",
+   "label": "FY2017 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q18-accounts.pdf#page=1",
+     "label": "2017-10-01 ~ 2017-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q19-accounts.pdf#page=1",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/1q19-accounts.pdf#page=1",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-06-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q19-accounts.pdf#page=1",
+   "label": "FY2018 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/2q19-accounts.pdf#page=1",
+     "label": "2018-04-01 ~ 2018-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-09-30": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q19_accounts.pdf#page=1",
+   "label": "FY2018 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/3q19_accounts.pdf#page=1",
+     "label": "2018-07-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2023-12/2019_4T_accounts_EN.pdf#page=1",
+   "label": "FY2018 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2023-12/2019_4T_accounts_EN.pdf#page=1",
+     "label": "2018-10-01 ~ 2018-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-03-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2020-06/1q20-accounts-en.pdf#page=1",
+   "label": "FY2019 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2020-06/1q20-accounts-en.pdf#page=1",
+     "label": "2019-01-01 ~ 2019-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/2020-07/etats-financiers-30-06-2020-en-complets.pdf#page=1",
+   "label": "FY2019 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2020-07/etats-financiers-30-06-2020-en-complets.pdf#page=1",
+     "label": "2019-04-01 ~ 2019-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/2020-10/Etats-financiers-30092020_EN_complets.pdf#page=1",
+   "label": "FY2019 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2020-10/Etats-financiers-30092020_EN_complets.pdf#page=1",
+     "label": "2019-07-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/2021-02/accounts_q4_2020.pdf#page=1",
+   "label": "FY2019 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2021-02/accounts_q4_2020.pdf#page=1",
+     "label": "2019-10-01 ~ 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/2021-04/financial-statements-q1-2021.pdf#page=1",
+   "label": "FY2020 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2021-04/financial-statements-q1-2021.pdf#page=1",
+     "label": "2020-01-01 ~ 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/2021-07/20210630_Etats_financiers_EN.pdf#page=1",
+   "label": "FY2020 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2021-07/20210630_Etats_financiers_EN.pdf#page=1",
+     "label": "2020-04-01 ~ 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/2021-10/etats_financiers_30-09-2021_EN.pdf#page=1",
+   "label": "FY2020 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2021-10/etats_financiers_30-09-2021_EN.pdf#page=1",
+     "label": "2020-07-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/2022-02/Etats-financiers-31122021_EN.pdf#page=1",
+   "label": "FY2020 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2022-02/Etats-financiers-31122021_EN.pdf#page=1",
+     "label": "2020-10-01 ~ 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/2022-04/Accounts_31_march_2022.pdf#page=1",
+   "label": "FY2021 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2022-04/Accounts_31_march_2022.pdf#page=1",
+     "label": "2021-01-01 ~ 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/2022-07/Accounts_30-06-2022_EN.pdf#page=1",
+   "label": "FY2021 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2022-07/Accounts_30-06-2022_EN.pdf#page=1",
+     "label": "2021-04-01 ~ 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/2022-10/accounts_30-09-2022_EN.pdf#page=1",
+   "label": "FY2021 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2022-10/accounts_30-09-2022_EN.pdf#page=1",
+     "label": "2021-07-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/2023-02/TotalEnergies_consolidated_statement_of_incomes_31122022.pdf#page=1",
+   "label": "FY2021 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2023-02/TotalEnergies_consolidated_statement_of_incomes_31122022.pdf#page=1",
+     "label": "2021-10-01 ~ 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/2023-04/totalenergies-consolidated-statement-of-income-q1-2023.pdf#page=1",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2023-04/totalenergies-consolidated-statement-of-income-q1-2023.pdf#page=1",
+     "label": "2022-01-01 ~ 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/2023-07/Accounts_Q2_2023.pdf#page=1",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2023-07/Accounts_Q2_2023.pdf#page=1",
+     "label": "2022-04-01 ~ 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/2023-10/Accounts_Q3_2023.pdf#page=1",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2023-10/Accounts_Q3_2023.pdf#page=1",
+     "label": "2022-07-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2024-02/2023_Q4_TotalEnergies_Financial_statements.pdf#page=1",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2024-02/2023_Q4_TotalEnergies_Financial_statements.pdf#page=1",
+     "label": "2022-10-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/2024-04/totalenergies_accounts-q1-2024_2024_en_pdf.pdf#page=1",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2024-04/totalenergies_accounts-q1-2024_2024_en_pdf.pdf#page=1",
+     "label": "2023-01-01 ~ 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/2024-07/totalenergies_2q-2024-financial-statements_2024_en_pdf.pdf#page=1",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/2024-07/totalenergies_2q-2024-financial-statements_2024_en_pdf.pdf#page=1",
+     "label": "2023-04-01 ~ 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q3-2024_2024_en_pdf.pdf#page=1",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q3-2024_2024_en_pdf.pdf#page=1",
+     "label": "2023-07-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2024_2025_en.pdf#page=1",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2024_2025_en.pdf#page=1",
+     "label": "2023-10-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_1q25-consolidated-statement-of-income_2025.pdf#page=1",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_1q25-consolidated-statement-of-income_2025.pdf#page=1",
+     "label": "2024-01-01 ~ 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_financial-statements-2Q25_2025_en.pdf#page=1",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_financial-statements-2Q25_2025_en.pdf#page=1",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf#page=1",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf#page=1",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=1",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=1",
+     "label": "2024-10-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf#page=1",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf#page=1",
+     "label": "2025-01-01 ~ 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=1",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=1",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf#page=1",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf#page=1",
+     "label": "2025-10-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+     "label": "2026-01-01 ~ 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf#page=1",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "table_limit": 100,
+ "company_kpi": true,
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": true,
+ "basis_details": [
+  {
+   "label": "수록 기간",
+   "value": "분기 2014-03-31 ~ 2026-06-30 · 50개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
+  },
+  {
+   "label": "회사별 범위·CAPEX 정의",
+   "value": "매출은 소비세를 뺀 Revenues from sales입니다. 연간·분기는 해당 시점 회사 Accounts 원문의 공표 실적이며 이후 재작성 비교값과 차이가 있을 수 있습니다. Intangible assets and property, plant and equipment additions의 현금 지출액입니다. Organic/Net investments 및 인수 대금과 구분합니다."
+  },
+  {
+   "label": "회계 분기·차분 기준",
+   "value": "공표된 독립 분기를 우선하며, 누적만 있는 현금흐름표는 동일 회계연도 누적의 차이로 계산합니다. 연간은 공표된 완결 연도입니다. 미확인 분기는 빈칸으로 남기며 연간을 4등분하지 않습니다. 공시 시점·재분류·반올림으로 분기 합계와 재작성 연간에 차이가 있을 수 있습니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-27 · 정상"
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "series": {
+    "계산 영업손익": [
+     [
+      "2014-12-31",
+      10697.0
+     ],
+     [
+      "2015-12-31",
+      4723.0
+     ],
+     [
+      "2016-12-31",
+      5731.0
+     ],
+     [
+      "2017-12-31",
+      10532.0
+     ],
+     [
+      "2018-12-31",
+      16582.0
+     ],
+     [
+      "2019-12-31",
+      16228.0
+     ],
+     [
+      "2020-12-31",
+      -5584.0
+     ],
+     [
+      "2021-12-31",
+      23817.0
+     ],
+     [
+      "2022-12-31",
+      46058.0
+     ],
+     [
+      "2023-12-31",
+      33431.0
+     ],
+     [
+      "2024-12-31",
+      25893.0
+     ],
+     [
+      "2025-12-31",
+      21407.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q15.pdf#page=3",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q15.pdf#page=3",
+       "label": "FY2014"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q16_0.pdf#page=3",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/accounts_4q16_0.pdf#page=3",
+       "label": "FY2015"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q17_accounts.pdf#page=3",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q17_accounts.pdf#page=3",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q18-accounts.pdf#page=3",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/atoms/files/4q18-accounts.pdf#page=3",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2023-12/2019_4T_accounts_EN.pdf#page=3",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2023-12/2019_4T_accounts_EN.pdf#page=3",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/2021-02/accounts_q4_2020.pdf#page=3",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/2021-02/accounts_q4_2020.pdf#page=3",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/2022-02/Etats-financiers-31122021_EN.pdf#page=3",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/2022-02/Etats-financiers-31122021_EN.pdf#page=3",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/2023-02/TotalEnergies_consolidated_statement_of_incomes_31122022.pdf#page=3",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/2023-02/TotalEnergies_consolidated_statement_of_incomes_31122022.pdf#page=3",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2024-02/2023_Q4_TotalEnergies_Financial_statements.pdf#page=3",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/sites/g/files/nytnzq121/files/documents/2024-02/2023_Q4_TotalEnergies_Financial_statements.pdf#page=3",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2024_2025_en.pdf#page=3",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2024_2025_en.pdf#page=3",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=3",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=3",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=3",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=3",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf#page=3",
+   "updated": "2025-12-31",
+   "description": "전사 연결 · 석유·가스·정유·화학·전력. 소비세 제외 매출 − 매입 − 기타 영업비용 − 탐사비 − 감가·손상 + 기타수익 − 기타비용으로 계산합니다. 금융손익·지분법손익·법인세는 제외하고, 처분·손상 등 원문 항목은 포함합니다. Adjusted net operating income과 다릅니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다."
+  }
+ }
+}
