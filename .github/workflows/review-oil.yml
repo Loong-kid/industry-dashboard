@@ -1,0 +1,23 @@
+name: review-oil-sources
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - run: python -u scripts/collect_oil_sources.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oil-public-originals
+          path: .cache/oil/
+          include-hidden-files: true
+          retention-days: 3
