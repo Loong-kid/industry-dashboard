@@ -1,0 +1,709 @@
+{
+ "id": "company_umac_revenue",
+ "name": "Unusual Machines · 매출",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "span_gaps": false,
+ "compact_ticks": true,
+ "source": "SEC · 연결 재무제표",
+ "fetched": "2026-10-27",
+ "description": "FPV 드론 부품·Fat Shark 영상장비·Rotor Riot 유통·관련 제조 사업의 연결 실적입니다.",
+ "basis_details": [
+  {
+   "label": "사업·연결 범위",
+   "value": "주력은 드론 부품·FPV 공급망이며 드론 완제품 판매 업체와 구분합니다. 2024년 인수 전 매출 없는 지주회사 기간을 장기 운영 이력에 이어 붙이지 않습니다."
+  },
+  {
+   "label": "손익·기간 기준",
+   "value": "매출·영업손익은 보고 연결 기준입니다. 순손익은 NetIncomeLoss(지배주주), AeroVironment는 보통주 귀속을 우선합니다. 해당 태그가 없는 기간은 ProfitLoss(비지배지분 포함) 공시를 사용하며 포인트 메모의 태그로 구분합니다. 조정 EBITDA로 대체하지 않습니다. Red Cat의 미공시 영업 소계는 동일 공시의 매출총이익−영업비용으로 계산합니다. 4분기 차분은 동일 회계연도·동일 태그 누적만 사용하고 연간을 4로 나누지 않습니다. 주식보상·인수 비용과 금융상품 평가 등 일회성 손익이 반영될 수 있습니다."
+  },
+  {
+   "label": "수집 확인",
+   "value": "2026-10-27"
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-27",
+  "message": "SEC 조회 완료"
+ },
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 실제 회사 결산일",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "series": {
+    "매출": [
+     [
+      "2024-03-31",
+      0.618915
+     ],
+     [
+      "2024-06-30",
+      1.411124
+     ],
+     [
+      "2024-09-30",
+      1.531264
+     ],
+     [
+      "2024-12-31",
+      2.004016
+     ],
+     [
+      "2025-03-31",
+      2.0423
+     ],
+     [
+      "2025-06-30",
+      2.12397
+     ],
+     [
+      "2025-09-30",
+      2.134588
+     ],
+     [
+      "2025-12-31",
+      4.89836
+     ],
+     [
+      "2026-03-31",
+      8.095836
+     ],
+     [
+      "2026-06-30",
+      16.722467
+     ]
+    ]
+   },
+   "point_sources": {
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825003285/0001683168-25-003285-index.html",
+     "label": "FY2024 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825003285/0001683168-25-003285-index.html",
+       "label": "2024-01-01 ~ 2024-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825006163/0001683168-25-006163-index.html",
+     "label": "FY2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825006163/0001683168-25-006163-index.html",
+       "label": "2024-04-01 ~ 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "FY2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+       "label": "2024-07-01 ~ 2024-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "FY2024 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+       "label": "2024-01-01 ~ 2024-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+     "label": "FY2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+       "label": "2025-01-01 ~ 2025-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+     "label": "FY2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+       "label": "2025-04-01 ~ 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "FY2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+       "label": "2025-07-01 ~ 2025-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "FY2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+       "label": "2025-01-01 ~ 2025-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+     "label": "FY2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+       "label": "2026-01-01 ~ 2026-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+     "label": "FY2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+       "label": "2026-04-01 ~ 2026-06-30"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2024-03-31": [
+     "FY2024 Q1",
+     "2024-01-01 ~ 2024-03-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2024-06-30": [
+     "FY2024 Q2",
+     "2024-04-01 ~ 2024-06-30",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2024-09-30": [
+     "FY2024 Q3",
+     "2024-07-01 ~ 2024-09-30",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2024-12-31": [
+     "FY2024 Q4",
+     "2024-10-01 ~ 2024-12-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2025-03-31": [
+     "FY2025 Q1",
+     "2025-01-01 ~ 2025-03-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2025-06-30": [
+     "FY2025 Q2",
+     "2025-04-01 ~ 2025-06-30",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2025-09-30": [
+     "FY2025 Q3",
+     "2025-07-01 ~ 2025-09-30",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2025-12-31": [
+     "FY2025 Q4",
+     "2025-10-01 ~ 2025-12-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2026-03-31": [
+     "FY2026 Q1",
+     "2026-01-01 ~ 2026-03-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ],
+    "2026-06-30": [
+     "FY2026 Q2",
+     "2026-04-01 ~ 2026-06-30",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported quarter"
+    ]
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+   "updated": "2026-06-30",
+   "quarterly_revenue_summary": true,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {
+    "2024-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "empty_message": "분기 매출 공시 이력이 아직 확보되지 않았습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 완결 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "series": {
+    "매출": [
+     [
+      "2024-12-31",
+      5.565319
+     ],
+     [
+      "2025-12-31",
+      11.199217
+     ]
+    ]
+   },
+   "point_sources": {
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2024-12-31": [
+     "FY2024",
+     "2024-01-01 ~ 2024-12-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported annual"
+    ],
+    "2025-12-31": [
+     "FY2025",
+     "2025-01-01 ~ 2025-12-31",
+     "공시 원통화: USD 백만",
+     "us-gaap:Revenues",
+     "reported annual"
+    ]
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+   "updated": "2025-12-31",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "empty_message": "연간 매출 공시 이력이 아직 확보되지 않았습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 실제 회사 결산일",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "series": {
+  "매출": [
+   [
+    "2024-03-31",
+    0.618915
+   ],
+   [
+    "2024-06-30",
+    1.411124
+   ],
+   [
+    "2024-09-30",
+    1.531264
+   ],
+   [
+    "2024-12-31",
+    2.004016
+   ],
+   [
+    "2025-03-31",
+    2.0423
+   ],
+   [
+    "2025-06-30",
+    2.12397
+   ],
+   [
+    "2025-09-30",
+    2.134588
+   ],
+   [
+    "2025-12-31",
+    4.89836
+   ],
+   [
+    "2026-03-31",
+    8.095836
+   ],
+   [
+    "2026-06-30",
+    16.722467
+   ]
+  ]
+ },
+ "point_sources": {
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825003285/0001683168-25-003285-index.html",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825003285/0001683168-25-003285-index.html",
+     "label": "2024-01-01 ~ 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825006163/0001683168-25-006163-index.html",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825006163/0001683168-25-006163-index.html",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "2024-01-01 ~ 2024-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "2024-01-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+     "label": "2025-01-01 ~ 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826001730/0001683168-26-001730-index.html",
+     "label": "2025-01-01 ~ 2025-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825008026/0001683168-25-008026-index.html",
+     "label": "2025-01-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826003923/0001683168-26-003923-index.html",
+     "label": "2026-01-01 ~ 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2024-03-31": [
+   "FY2024 Q1",
+   "2024-01-01 ~ 2024-03-31",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2024-06-30": [
+   "FY2024 Q2",
+   "2024-04-01 ~ 2024-06-30",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2024-09-30": [
+   "FY2024 Q3",
+   "2024-07-01 ~ 2024-09-30",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2024-12-31": [
+   "FY2024 Q4",
+   "2024-10-01 ~ 2024-12-31",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2025-03-31": [
+   "FY2025 Q1",
+   "2025-01-01 ~ 2025-03-31",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2025-06-30": [
+   "FY2025 Q2",
+   "2025-04-01 ~ 2025-06-30",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2025-09-30": [
+   "FY2025 Q3",
+   "2025-07-01 ~ 2025-09-30",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2025-12-31": [
+   "FY2025 Q4",
+   "2025-10-01 ~ 2025-12-31",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2026-03-31": [
+   "FY2026 Q1",
+   "2026-01-01 ~ 2026-03-31",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ],
+  "2026-06-30": [
+   "FY2026 Q2",
+   "2026-04-01 ~ 2026-06-30",
+   "공시 원통화: USD 백만",
+   "us-gaap:Revenues",
+   "reported quarter"
+  ]
+ },
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1956955/000168316826006016/0001683168-26-006016-index.html",
+ "updated": "2026-06-30",
+ "quarterly_revenue_summary": true,
+ "quarterly_profit_summary": false,
+ "change_mode": "none",
+ "comparison_dates": {
+  "2024-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "empty_message": "분기 매출 공시 이력이 아직 확보되지 않았습니다."
+}

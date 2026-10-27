@@ -3782,6 +3782,115 @@
           ]
         }
       ]
+    },
+    {
+      "id": "drone",
+      "name": "드론",
+      "icon": "🛩️",
+      "default_range": "all",
+      "cadence": "가격은 매일 KST 09:25에 완료된 미국 거래일 수정종가를 수집합니다. 기업 매출·영업손익·순손익은 SEC 연결 공시를 자동 갱신합니다. 드론 비행체·부품과 사업 범위가 넓어진 방산 업체를 구분합니다. 회계연도·전환기·인수 전후 연결 범위는 각 카드에서 확인합니다. 신규 상장 이전 가격이나 미공개 실적을 0으로 채우지 않습니다.",
+      "tabs": [
+        {
+          "id": "overview",
+          "name": "ETF·개요",
+          "description": "현재 거래 중인 드론 ETF와 등록 기업의 사업 범위를 확인합니다. DRNZ는 드론 테마, JEDI는 현대전 기술까지 포함합니다."
+        },
+        {
+          "id": "prices",
+          "name": "기업 주가",
+          "description": "공통 거래일=100 비교와 개별 기업의 수정종가·종가를 함께 봅니다. 드론 사업 전환 이전 티커 이력은 제외하며 비상장 기간은 생성하지 않습니다."
+        },
+        {
+          "id": "platforms",
+          "name": "드론·비행체",
+          "description": "드론 비행체·정찰 시스템 및 센서·소프트웨어를 주력으로 하는 업체의 실제 연결 실적입니다."
+        },
+        {
+          "id": "components",
+          "name": "부품·FPV",
+          "description": "드론 부품·영상 전송·FPV 공급망 업체를 비행체 판매 업체와 구분합니다."
+        },
+        {
+          "id": "expanded",
+          "name": "확장 방산·자율시스템",
+          "description": "드론 관련 기업 중 인수로 우주·사이버·대드론·지상 로봇 등으로 확대된 업체입니다. 연결 전체 실적을 드론 단독 매출로 해석하지 않습니다."
+        }
+      ],
+      "sections": [
+        {
+          "tab": "overview",
+          "title": "드론 ETF · 가격 흐름",
+          "layout": "financial",
+          "indicators": [
+            "etf_comparison",
+            "price_drnz",
+            "price_jedi"
+          ]
+        },
+        {
+          "tab": "prices",
+          "title": "드론 기업 · 주가 흐름",
+          "layout": "financial",
+          "indicators": [
+            "stock_comparison",
+            "price_rcat",
+            "price_uavs",
+            "price_umac",
+            "price_avav",
+            "price_onds"
+          ]
+        },
+        {
+          "tab": "platforms",
+          "title": "Red Cat Holdings · 연결 실적",
+          "layout": "financial",
+          "indicators": [
+            "company_rcat_revenue",
+            "company_rcat_profit",
+            "company_rcat_netincome"
+          ]
+        },
+        {
+          "tab": "platforms",
+          "title": "AgEagle Aerial Systems · 연결 실적",
+          "layout": "financial",
+          "indicators": [
+            "company_uavs_revenue",
+            "company_uavs_profit",
+            "company_uavs_netincome"
+          ]
+        },
+        {
+          "tab": "components",
+          "title": "Unusual Machines · 연결 실적",
+          "layout": "financial",
+          "indicators": [
+            "company_umac_revenue",
+            "company_umac_profit",
+            "company_umac_netincome"
+          ]
+        },
+        {
+          "tab": "expanded",
+          "title": "AeroVironment · 연결 실적",
+          "layout": "financial",
+          "indicators": [
+            "company_avav_revenue",
+            "company_avav_profit",
+            "company_avav_netincome"
+          ]
+        },
+        {
+          "tab": "expanded",
+          "title": "Ondas · 연결 실적",
+          "layout": "financial",
+          "indicators": [
+            "company_onds_revenue",
+            "company_onds_profit",
+            "company_onds_netincome"
+          ]
+        }
+      ]
     }
   ]
 }
