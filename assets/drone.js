@@ -9,7 +9,7 @@ export function renderOverview(doc){
  const funds=element('div','dr-funds');
  for(const etf of doc.etfs){
   const card=element('article','card dr-fund');
-  card.append(element('h3','',etf.ticker),link(etf.name,etf.source_url),element('p','',etf.scope),element('p','dr-note',etf.note),element('p','dr-note',`설정 ${etf.inception} · 총보수 연 ${etf.expense_ratio.toFixed(2)}% · 확인 ${doc.reviewed}`));funds.append(card);
+  card.append(element('h3','',etf.ticker),link(etf.name,etf.source_url),element('p','',etf.scope),element('p','dr-note',etf.note),element('p','dr-note',`가격 이력 시작 ${etf.inception} · 총보수 연 ${etf.expense_ratio.toFixed(2)}% · 확인 ${doc.reviewed}`));funds.append(card);
  }
  root.append(funds,element('h2','dr-heading',`실적 추적 ${doc.companies.length}개사`));
  const wrap=element('div','dr-table-wrap');wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','드론 기업별 사업 범위와 실적 · 가로 스크롤');
