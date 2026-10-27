@@ -1,0 +1,70 @@
+name: update-shipbuilding-equipment
+on:
+  schedule:
+    - cron: '30 0 * * *' # KST 09:30
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/*shipbuilding_equipment*.py'
+      - 'manual/shipbuilding-equipment/**'
+      - 'data/shipbuilding/equipment_*.json'
+      - '.github/workflows/update-shipbuilding-equipment.yml'
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate reporting basis, signed earnings and provisional statements
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_shipbuilding_equipment.py -v
+      - name: Collect official ship-engine, parts and aftermarket accounts
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_shipbuilding_equipment.py
+      - name: Validate seven issuer histories and USD conversion
+        id: postcheck
+        continue-on-error: true
+        if: steps.precheck.outcome == 'success'
+        run: python scripts/validate_shipbuilding_equipment.py
+      - name: Preserve public financial data for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shipbuilding-equipment-public-data
+          path: |
+            data/shipbuilding/equipment_*.json
+            data/shipbuilding/company_hanwha_engine_*.json
+            data/shipbuilding/company_hd_marine_engine_*.json
+            data/shipbuilding/company_stx_engine_*.json
+            data/shipbuilding/company_ksp_*.json
+            data/shipbuilding/company_cape_*.json
+            data/shipbuilding/company_inhwa_*.json
+            data/shipbuilding/company_hd_marine_solution_*.json
+          retention-days: 7
+      - name: Commit equipment financials only
+        if: github.event_name != 'pull_request' && steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/shipbuilding/equipment_*.json data/shipbuilding/company_hanwha_engine_*.json data/shipbuilding/company_hd_marine_engine_*.json data/shipbuilding/company_stx_engine_*.json data/shipbuilding/company_ksp_*.json data/shipbuilding/company_cape_*.json data/shipbuilding/company_inhwa_*.json data/shipbuilding/company_hd_marine_solution_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh shipbuilding equipment financials"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            sleep $((attempt * 10))
+          done
+          exit 1
+      - name: Report a validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
