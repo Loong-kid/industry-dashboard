@@ -85,7 +85,10 @@ class CellFacilityDataTests(unittest.TestCase):
         physical = next(i for i, s in enumerate(sections) if s.get("battery_view") == "physical")
         cells = next(i for i, s in enumerate(sections) if "ess_cell_factories" in s.get("indicators", []))
         financial = next(i for i, s in enumerate(sections) if s.get("companies"))
-        self.assertTrue(physical < cells < financial)
+        self.assertTrue(physical < cells)
+        self.assertEqual(sections[physical]['tab'],'batteries')
+        self.assertEqual(sections[cells]['tab'],'batteries')
+        self.assertEqual(sections[financial]['tab'],'systems')
 
 
 if __name__ == "__main__":
