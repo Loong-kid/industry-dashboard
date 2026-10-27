@@ -28,7 +28,7 @@ def end(year, q):
 
 
 def report(items, year, q, corp, fs):
-    fields={}
+    fields={};comparative_fields={1:{},2:{}}
     for metric,tags in TAGS.items():
         matches=[]
         for item in items:
@@ -52,7 +52,14 @@ def report(items, year, q, corp, fs):
             url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={receipt}',filed=f'{receipt[:4]}-{receipt[4:6]}-{receipt[6:8]}',
             tag=item['account_id'],account_name=item.get('account_nm'),fs_div=fs,location='연결 손익계산서' if fs=='CFS' else '별도 손익계산서',
             start=f'{year}-01-01',end=end(year,q))
-    return dict(year=year,quarter=q,fs_div=fs,fields=fields)
+        for lag in ([1,2] if q==4 else [1]):
+            val=number(item.get('frmtrm_amount' if lag==1 and q==4 else 'bfefrmtrm_amount' if lag==2 else 'frmtrm_q_amount'))
+            cumulative=val if q in (1,4) else number(item.get('frmtrm_add_amount'))
+            if val is not None or cumulative is not None:
+                comparative_fields[lag][metric]=dict(fields[metric],value=val/1e6 if val is not None else None,
+                    ytd=cumulative/1e6 if cumulative is not None else None,start=f'{year-lag}-01-01',end=end(year-lag,q),comparative=True)
+    comparatives=[dict(year=year-lag,quarter=q,fs_div=fs,fields=f) for lag,f in comparative_fields.items() if set(f)==set(TAGS) and year-lag>=2014]
+    return dict(year=year,quarter=q,fs_div=fs,fields=fields,comparatives=comparatives)
 
 
 def accounts(reports, asof):

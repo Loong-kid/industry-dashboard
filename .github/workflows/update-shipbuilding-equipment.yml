@@ -32,7 +32,7 @@ jobs:
         if: steps.precheck.outcome == 'success'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/fetch_shipbuilding_equipment.py
+        run: python -u scripts/fetch_shipbuilding_equipment.py ${{ github.event_name == 'pull_request' && '--full-history' || '' }}
       - name: Validate seven issuer histories and USD conversion
         id: postcheck
         continue-on-error: true
@@ -44,6 +44,7 @@ jobs:
         with:
           name: shipbuilding-equipment-public-data
           path: |
+            .cache/shipbuilding-equipment/*.json
             data/shipbuilding/equipment_*.json
             data/shipbuilding/company_hanwha_engine_*.json
             data/shipbuilding/company_hd_marine_engine_*.json
@@ -53,6 +54,7 @@ jobs:
             data/shipbuilding/company_inhwa_*.json
             data/shipbuilding/company_hd_marine_solution_*.json
           retention-days: 7
+          include-hidden-files: true
       - name: Commit equipment financials only
         if: github.event_name != 'pull_request' && steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
         run: |

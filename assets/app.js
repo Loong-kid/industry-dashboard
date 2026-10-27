@@ -247,7 +247,7 @@ async function renderIndustry(options = {}) {
 
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
-  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum");
+  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || (ind.id === "shipbuilding" && state.subtab !== "market"));
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
@@ -329,7 +329,7 @@ async function renderIndustry(options = {}) {
       row.append(label, tabs);
       pageTabs.appendChild(row);
     } else pageTabs.appendChild(tabs);
-    if (ind.id === "telecom" || ind.id === "quantum") {
+    if (ind.id === "telecom" || ind.id === "quantum" || ind.id === "shipbuilding") {
       tabs.classList.add("tc-tabs");
       requestAnimationFrame(revealTelecomTab);
     }
@@ -593,6 +593,8 @@ function renderFootStatus(latestUpdate, collected, ind) {
   // 갱신 주기 안내: 워크플로는 매일 돌지만 소스마다 '새 값이 생기는 주기'가 다르다.
   // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
   // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
+  const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab);
+  const cadence = cadenceTab?.cadence || ind?.cadence;
   const cad = document.createElement("details");
   cad.className = "foot-cadence";
   const sum = document.createElement("summary");
@@ -600,8 +602,8 @@ function renderFootStatus(latestUpdate, collected, ind) {
   cad.appendChild(sum);
   const body = document.createElement("div");
   body.innerHTML =
-    `<div>자동 수집: <b>매일 ${escapeHtml(ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
-    (ind && ind.cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(ind.cadence)}</div>` : "");
+    `<div>자동 수집: <b>매일 ${escapeHtml(cadenceTab?.auto_collect_time || ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
+    (cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(cadence)}</div>` : "");
   cad.appendChild(body);
   foot.appendChild(cad);
 }

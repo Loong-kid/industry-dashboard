@@ -1,6 +1,9 @@
 import unittest
+import json
+from pathlib import Path
 
 from shipbuilding_equipment_sources import report, accounts, provisional
+from fetch_shipbuilding_equipment import document
 
 
 def item(tag,name,value,ytd=None,fs='CFS',receipt='20260814000001'):
@@ -51,6 +54,30 @@ class EquipmentTests(unittest.TestCase):
         self.assertEqual((r['revenue'],r['profit'],r['netincome']),(650100,95700,32600))
         self.assertTrue(r['provisional'])
         with self.assertRaises(ValueError):provisional(raw,'20261026800212','OFS','2026-10-27')
+
+    def test_zero_native_amounts_are_preserved_with_basis_and_source(self):
+        items=self.items()
+        items[-1]['thstrm_amount']='0'
+        rows=accounts([report(items,2026,2,'00000001','CFS')],'2026-10-27')
+        fx={'periods':{'KRW|2026-04-01|2026-06-30':dict(local_per_usd=1400,observations=62,first='2026-04-01',last='2026-06-30')}}
+        m=dict(name='Company',scope='group',comparability_note='',ir_url='https://dart.fss.or.kr')
+        d=document('c','netincome',m,dict(rows=rows,status='ok'),fx)
+        self.assertEqual(d['series']['순이익'],[['2026-06-30',0]])
+        self.assertIn('재무제표: 연결',d['point_notes']['2026-06-30'])
+        self.assertNotIn('supporting_sources',d['point_sources']['2026-06-30'])
+
+    def test_shipbuilding_market_and_equipment_routes_coexist(self):
+        root=Path(__file__).resolve().parents[1]
+        catalog=json.loads((root/'data/catalog.json').read_text(encoding='utf8'))
+        ship=next(i for i in catalog['industries'] if i['id']=='shipbuilding')
+        self.assertEqual([t['id'] for t in ship['tabs']],['market','engines','engine_parts','aftermarket'])
+        market=[s for s in ship['sections'] if s['tab']=='market']
+        ids=[id for s in market for id in s['indicators']]
+        for original in ['clarksons_nb_index','korea_orders','asiasis_orders','korea_revenue_progress']:
+            self.assertIn(original,ids)
+        financial=[s for s in ship['sections'] if s['tab']!='market']
+        self.assertEqual(len(financial),7)
+        self.assertEqual(sum(len(s['indicators']) for s in financial),21)
 
 
 if __name__=='__main__':unittest.main()

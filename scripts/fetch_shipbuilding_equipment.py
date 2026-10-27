@@ -58,7 +58,14 @@ def entities(session, key, meta):
 
 def public_get(session,url):
     p=CACHE/(hashlib.sha256(url.encode()).hexdigest()[:18]+'.bin')
-    r=session.get(url,timeout=40);r.raise_for_status();p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(r.content)
+    try:r=session.get(url,timeout=40)
+    except requests.exceptions.SSLError:
+        # Keep certificate verification enabled; some public Korean sites use
+        # chains trusted by the OS bundle but absent from certifi's root set.
+        system_bundle=Path('/etc/ssl/certs/ca-certificates.crt')
+        if not system_bundle.exists():raise
+        r=session.get(url,timeout=40,verify=str(system_bundle))
+    r.raise_for_status();p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(r.content)
     return r.content
 
 
@@ -92,6 +99,7 @@ def collect_company(company,meta,entity,key,prior,asof,full):
             try:
                 for fs in ('CFS','OFS'):
                     payload=api(session,'fnlttSinglAcntAll.json',key,corp_code=entity['corp_code'],bsns_year=year,reprt_code=code,fs_div=fs).json()
+                    save(CACHE/f'{company}-{year}-q{q}-{fs}.json',dict(status=payload.get('status'),list=payload.get('list',[])))
                     if payload.get('status')=='013':continue
                     if payload.get('status')!='000':raise ValueError('OpenDART statement unavailable')
                     reports[year,q]=report(payload['list'],year,q,entity['corp_code'],fs);break
@@ -99,7 +107,13 @@ def collect_company(company,meta,entity,key,prior,asof,full):
                 errors.append(f'{year} Q{q} 정기 공시 조회·확인 필요 ({type(e).__name__})')
             time.sleep(.12)
         print(company,year,'checked',flush=True)
-    rows=accounts(list(reports.values()),asof)
+    expanded=dict(reports);filled=set()
+    for r in sorted(reports.values(),key=lambda r:(r['year'],r['quarter'])):
+        for comparative in r.get('comparatives',[]):
+            k=comparative['year'],comparative['quarter']
+            if k not in expanded:expanded[k]=comparative;filled.add(k)
+    errors=[e for e in errors if not any(e.startswith(f'{year} Q{q} ') for year,q in filled)]
+    rows=accounts(list(expanded.values()),asof)
     pending={r['date']:r for r in prior.get('provisional_rows',[])}
     try:
         fs=rows[-1]['fs_div'] if rows else 'CFS'
@@ -121,9 +135,9 @@ def document(company,metric,meta,cohort,fx):
         if detail['label']=='환산·기간':detail['value']='실제 실적 기간의 ECB 일별 원/USD 평균환율로 백만 USD 환산합니다. 원화 공시 금액·환율·관측 기간은 메모에 보존합니다. 4분기는 같은 연도·같은 연결/별도 기준의 연간 − 9개월 누적으로 계산하며, 연간을 4등분하지 않습니다. 잠정실적은 잠정 표시 후 정기 공시 확보 시 교체합니다.'
     for kind,view in doc['series_views'].items():
         relevant=[r for r in cohort.get('rows',[]) if r['kind']==kind and r.get(metric) is not None]
-        view['point_annotations']={r['date']:'잠정 · 외부감사/검토 전 공시' for r in relevant if r.get('provisional')}
         for r in relevant:
             view['point_notes'][r['date']].append('재무제표: '+('연결' if r['fs_div']=='CFS' else '별도'))
+            if r['refs'][metric].get('comparative'):view['point_notes'][r['date']].append('후속 정기 공시의 실제 비교기간 수치')
             if r.get('provisional'):view['point_notes'][r['date']].append('잠정실적 · 정기 공시에서 변경될 수 있음')
     doc.update({k:v for k,v in doc['series_views'][doc['default_view']].items() if k!='label'})
     return doc

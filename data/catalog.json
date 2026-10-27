@@ -12,20 +12,23 @@
             "clarksons_nb_index",
             "newbuild_prices",
             "cnpi"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "발주량",
           "indicators": [
             "newbuild_orders"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "중고선가",
           "indicators": [
             "secondhand_index",
             "secondhand_prices"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "선종별 척당 수주단가 (국내 4사)",
@@ -34,21 +37,24 @@
             "korea_price_lng",
             "korea_price_gas",
             "korea_price_container"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "예상 매출 (공시 수주 기준)",
           "indicators": [
             "korea_revenue_progress",
             "korea_revenue_delivery"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "국내 조선 수주 내역",
           "type": "table",
           "indicators": [
             "korea_orders"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "선종별 발주 · 인도 사이클 (글로벌 오더북)",
@@ -56,7 +62,8 @@
             "orderbook_orders_by_type",
             "orderbook_deliveries_by_type",
             "orderbook_orders_monthly"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "글로벌 신조프로젝트 오더북",
@@ -64,7 +71,117 @@
           "table_kind": "asiasis",
           "indicators": [
             "asiasis_orders"
+          ],
+          "tab": "market"
+        },
+        {
+          "tab": "engines",
+          "title": "한화엔진 · 082740",
+          "layout": "financial",
+          "supply_note": "선박용 저속·이중연료 엔진·발전·부품·서비스 등을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_hanwha_engine_revenue",
+            "company_hanwha_engine_profit",
+            "company_hanwha_engine_netincome"
           ]
+        },
+        {
+          "tab": "engines",
+          "title": "HD현대마린엔진 · 071970",
+          "layout": "financial",
+          "supply_note": "선박용 저속 엔진·엔진 부품·서비스 등을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_hd_marine_engine_revenue",
+            "company_hd_marine_engine_profit",
+            "company_hd_marine_engine_netincome"
+          ]
+        },
+        {
+          "tab": "engines",
+          "title": "STX엔진 · 077970",
+          "layout": "financial",
+          "supply_note": "선박·육상 발전용 민수 엔진 외 방산용 특수 엔진·전자통신을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_stx_engine_revenue",
+            "company_stx_engine_profit",
+            "company_stx_engine_netincome"
+          ]
+        },
+        {
+          "tab": "engine_parts",
+          "title": "케이에스피 · 073010",
+          "layout": "financial",
+          "supply_note": "선박 엔진용 밸브·형단조 등과 연결 종속기업을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_ksp_revenue",
+            "company_ksp_profit",
+            "company_ksp_netincome"
+          ]
+        },
+        {
+          "tab": "engine_parts",
+          "title": "케이프 · 064820",
+          "layout": "financial",
+          "supply_note": "실린더 라이너 등 엔진 부품과 해당 기간 연결 종속기업을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_cape_revenue",
+            "company_cape_profit",
+            "company_cape_netincome"
+          ]
+        },
+        {
+          "tab": "engine_parts",
+          "title": "인화정공 · 101930",
+          "layout": "financial",
+          "supply_note": "선박 엔진 구조부품·산업 부품 등과 연결 종속기업을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_inhwa_revenue",
+            "company_inhwa_profit",
+            "company_inhwa_netincome"
+          ]
+        },
+        {
+          "tab": "aftermarket",
+          "title": "HD현대마린솔루션 · 443060",
+          "layout": "financial",
+          "supply_note": "엔진·기자재 AM/MRO·벙커링·친환경 개조·디지털 솔루션 등을 포함한 회사 전체 실적.",
+          "indicators": [
+            "company_hd_marine_solution_revenue",
+            "company_hd_marine_solution_profit",
+            "company_hd_marine_solution_netincome"
+          ]
+        }
+      ],
+      "tabs": [
+        {
+          "id": "market",
+          "name": "시장·수주",
+          "default_range": "1y",
+          "description": "기존 조선 시장지표·국내 수주 내역·글로벌 오더북입니다."
+        },
+        {
+          "id": "engines",
+          "name": "엔진 제조사",
+          "default_range": "all",
+          "auto_collect_time": "09:30",
+          "cadence": "공개 정기 재무제표와 잠정 공시를 매일 확인합니다. 확정 실적은 분기·반기·사업보고서 발표 후, 잠정실적은 공정공시 후 반영합니다.",
+          "description": "한화엔진·HD현대마린엔진·STX엔진의 회사 전체 실적입니다. HD현대중공업 엔진기계는 별도 상장사가 아닌 사업부이므로, 중공업 전사 매출을 엔진 매출로 대신 표시하지 않습니다. 금액은 USD이며 원화 원자료·평균환율은 메모에 보존합니다."
+        },
+        {
+          "id": "engine_parts",
+          "name": "엔진 부품",
+          "default_range": "all",
+          "auto_collect_time": "09:30",
+          "cadence": "공개 정기 재무제표와 잠정 공시를 매일 확인합니다. 확정 실적은 분기·반기·사업보고서 발표 후, 잠정실적은 공정공시 후 반영합니다.",
+          "description": "케이에스피·케이프·인화정공. 금융투자·기타 산업 부품·종속기업 등을 포함할 수 있으므로 각 기업의 집계 기준을 확인하세요. 금액은 USD이며 원화 원자료·평균환율은 메모에 보존합니다."
+        },
+        {
+          "id": "aftermarket",
+          "name": "AM·현대마린솔루션",
+          "default_range": "all",
+          "auto_collect_time": "09:30",
+          "cadence": "공개 정기 재무제표와 잠정 공시를 매일 확인합니다. 확정 실적은 분기·반기·사업보고서 발표 후, 잠정실적은 공정공시 후 반영합니다.",
+          "description": "HD현대마린솔루션의 엔진·기자재 유지보수, 벙커링, 친환경 개조, 디지털 사업을 포함한 회사 전체 실적입니다. 엔진 제조사와 사업 모델을 구분해 봅니다. 금액은 USD이며 원화 원자료·평균환율은 메모에 보존합니다."
         }
       ]
     },
