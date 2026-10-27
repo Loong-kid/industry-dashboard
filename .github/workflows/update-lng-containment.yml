@@ -1,0 +1,66 @@
+name: update-lng-containment
+on:
+  schedule:
+    - cron: '40 0 * * *' # KST 09:40
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/*lng_containment*.py'
+      - 'manual/lng-containment/**'
+      - '.github/workflows/update-lng-containment.yml'
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  containment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pypdf
+      - name: Validate reporting periods and business KPI definitions
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_lng_containment.py
+      - name: Collect DART and GTT original reports
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_lng_containment.py
+      - name: Build business KPIs from reviewed source rows
+        if: steps.precheck.outcome == 'success'
+        run: python scripts/build_lng_containment_kpis.py
+      - name: Validate published histories
+        id: postcheck
+        continue-on-error: true
+        if: steps.precheck.outcome == 'success'
+        run: python scripts/validate_lng_containment.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lng-containment-public-sources
+          path: |
+            .cache/lng-containment/
+            data/natgas/containment_*.json
+          include-hidden-files: true
+          retention-days: 7
+      - name: Commit containment data only
+        if: github.event_name != 'pull_request' && steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/natgas/containment_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh LNG containment accounts and KPIs"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            sleep $((attempt * 10))
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
