@@ -6,6 +6,7 @@ import hashlib
 import io
 import os
 from pathlib import Path
+import re
 import zipfile
 
 import requests
@@ -21,6 +22,25 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/natgas'
 MANUAL=ROOT/'manual/lng-containment'
 CACHE=ROOT/'.cache/lng-containment'
+
+
+def is_business_document(raw):
+    title=re.search(rb'<DOCUMENT-NAME\b[^>]*>(.*?)</DOCUMENT-NAME>',raw,re.S)
+    if not title:return False
+    try:name=title[1].decode('utf8').strip()
+    except UnicodeDecodeError:name=title[1].decode('cp949').strip()
+    return name in ['사업보고서','분기보고서','반기보고서']
+
+
+def business_document(raw):
+    with zipfile.ZipFile(io.BytesIO(raw)) as z:
+        candidates=[z.read(n) for n in z.namelist() if n.lower().endswith('.xml')]
+        candidates=[r for r in candidates if is_business_document(r)]
+        if len(candidates)!=1:raise ValueError('business-report XML mapping changed')
+        raw=candidates[0]
+        try:text=raw.decode('utf8')
+        except UnicodeDecodeError:text=raw.decode('cp949')
+        return re.sub(r'encoding="[^"]+"','encoding="UTF-8"',text,count=1).encode('utf8')
 
 
 def collect_korean(company, meta, entity, key, previous, asof, full=False):
@@ -44,14 +64,11 @@ def collect_korean(company, meta, entity, key, previous, asof, full=False):
     receipts=sorted({f['url'].split('rcpNo=')[-1] for r in reports.values() if r['year']>=2022 for f in r['fields'].values()})
     for receipt in receipts:
         path=CACHE/f'{company}-{receipt}.xml'
-        if path.exists():continue
+        if path.exists() and is_business_document(path.read_bytes()):continue
         try:
             raw=api(session,'document.xml',key,rcept_no=receipt).content
-            with zipfile.ZipFile(io.BytesIO(raw)) as z:
-                names=[n for n in z.namelist() if n.lower().endswith('.xml')]
-                chosen=next((n for n in names if n.startswith(receipt)),names[0])
-                path.write_bytes(z.read(chosen))
-        except (ValueError,zipfile.BadZipFile,IndexError,KeyError):
+            path.write_bytes(business_document(raw))
+        except (ValueError,zipfile.BadZipFile,IndexError,KeyError,UnicodeError):
             print(company,receipt,'business XML unavailable',flush=True)
     return dict(entity=entity,reports=list(reports.values()),rows=rows,checked=asof,fetched=asof if rows else previous.get('fetched'),status='partial' if errors else 'ok',source_errors=errors)
 
@@ -100,6 +117,7 @@ def collect(offline=False,full=False,korean_only=False):
                 for item in doc['basis_details']:
                     if item['label']=='손익 기준':item['value']='영업이익은 IFRS 연결 손익계산서의 비경상 항목 포함 영업손익입니다. 회사 요약표의 EBIT·EBITDA를 대신 쓰지 않습니다. 순이익은 비지배지분 포함 연결 전체 당기순손익입니다.'
                     if item['label']=='환산·기간':item['value']='매출만 실제 분기별 공시 또는 같은 연도 누적 차감입니다. 손익은 공표된 H1과 FY−H1인 H2, 연간을 표시하며 분기 추정은 하지 않습니다. EUR 원금액·실제 보고기간의 ECB 평균환율을 메모에 보존합니다.'
+            doc['id']=f'containment_{c}_{metric}'
             save(OUT/f'containment_{c}_{metric}.json',doc)
     return state
 

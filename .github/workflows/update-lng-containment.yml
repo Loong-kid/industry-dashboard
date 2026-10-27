@@ -31,7 +31,7 @@ jobs:
         if: steps.precheck.outcome == 'success'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/fetch_lng_containment.py --korean-only
+        run: python -u scripts/fetch_lng_containment.py
       - name: Build business KPIs from reviewed source rows
         if: steps.precheck.outcome == 'success'
         run: python scripts/build_lng_containment_kpis.py

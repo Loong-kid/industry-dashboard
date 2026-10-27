@@ -1785,7 +1785,7 @@
       "name": "천연가스",
       "icon": "⛽",
       "default_range": "3y",
-      "cadence": "가격·미드스트림 공시는 독립 update-natgas 작업에서 매일 08:55(KST) 확인합니다. 현물은 FRED/EIA, 선물은 Yahoo 공개 일봉이며 거래·공표 지연을 시리즈별 관측일로 표시합니다. 미국 미드스트림·압축기 8사 실적은 SEC, HP는 정기보고서·IPO 원문에서 확인합니다. HP는 분기 말 잔량이며 회사별 정의가 달라 합산하지 않습니다. 미국 LNG 프로젝트는 EIA 워크북, 전세계 액화 프로젝트·선단은 GEM 수동 다운로드, FLNG는 수기 자료입니다.",
+      "cadence": "가격·미드스트림 공시는 독립 update-natgas 작업에서 매일 08:55(KST) 확인합니다. 현물은 FRED/EIA, 선물은 Yahoo 공개 일봉이며 거래·공표 지연을 시리즈별 관측일로 표시합니다. 미국 미드스트림·압축기 8사 실적은 SEC, HP는 정기보고서·IPO 원문에서 확인합니다. HP는 분기 말 잔량이며 회사별 정의가 달라 합산하지 않습니다. 미국 LNG 프로젝트는 EIA 워크북, 전세계 액화 프로젝트·선단은 GEM 수동 다운로드, FLNG는 수기 자료입니다. GTT·보냉재 실적·수주 KPI는 별도 작업에서 매일 09:40(KST) 확인합니다. GTT의 새 미검토 실적 공시는 상태에 표시하며 기존 검토 수치를 보존합니다.",
       "sections": [
         {
           "title": "가격",
@@ -2023,6 +2023,63 @@
             "compressor_usac_utilization"
           ],
           "view": "compression"
+        },
+        {
+          "tab": "containment",
+          "title": "GTT · GTT · Euronext Paris",
+          "layout": "financial",
+          "supply_note": "LNG·에탄 화물창 멤브레인 설계·라이선스와 운영 서비스, 해양 디지털·수소 사업 등을 포함한 연결 전체 실적. 보냉재 생산업체와 구분합니다. 매출은 분기, 손익은 실제 공시된 반기·연간으로 봅니다. 영업이익은 비경상 영업손익을 포함한 Current and non-current operating income이며, 회사 요약 지표 EBIT·EBITDA와 다릅니다. Elogen·Danelec 인수와 사업부 개편을 고려하세요.",
+          "indicators": [
+            "containment_gtt_revenue",
+            "containment_gtt_profit",
+            "containment_gtt_netincome"
+          ]
+        },
+        {
+          "tab": "containment",
+          "title": "동성화인텍 · 033500",
+          "layout": "financial",
+          "supply_note": "LNG선·탱크 초저온 보냉재, 산업용 소재·가스 등을 포함한 연결 전체 실적. 보냉재 부문 단독 매출·손익과 연결 전체를 구분합니다. 수주잔고는 기간 말 잔량이고, 신규 수주·납품·환율·계약 변경에 따라 달라집니다.",
+          "indicators": [
+            "containment_dongsung_finetec_revenue",
+            "containment_dongsung_finetec_profit",
+            "containment_dongsung_finetec_netincome"
+          ]
+        },
+        {
+          "tab": "containment",
+          "title": "한국카본 · 017960",
+          "layout": "financial",
+          "supply_note": "LNG 보냉재·복합소재·산업 소재 및 종속기업을 포함한 연결 전체 실적. LNG 사업 단독 실적이 아닙니다. 한국신소재 합병 등 연결 범위 변화와 생산설비 증설·복구 영향을 고려하세요. 수주 공시 합계는 취소·변경·납품을 조정한 수주잔고와 다릅니다.",
+          "indicators": [
+            "containment_hankuk_carbon_revenue",
+            "containment_hankuk_carbon_profit",
+            "containment_hankuk_carbon_netincome"
+          ]
+        },
+        {
+          "tab": "containment_kpis",
+          "title": "GTT · 설계·라이선스 사업의 수주",
+          "indicators": [
+            "containment_gtt_backlog",
+            "containment_gtt_orders"
+          ]
+        },
+        {
+          "tab": "containment_kpis",
+          "title": "동성화인텍 · 초저온 보냉재",
+          "indicators": [
+            "containment_dongsung_backlog",
+            "containment_dongsung_utilization"
+          ]
+        },
+        {
+          "tab": "containment_kpis",
+          "title": "한국카본 · 화물창 판넬·소재",
+          "indicators": [
+            "containment_hankuk_backlog",
+            "containment_hankuk_mix"
+          ]
         }
       ],
       "auto_collect_time": "08:55",
@@ -2048,6 +2105,20 @@
               "description": "Archrock·Kodiak·USA Compression의 연결 매출·영업손익·현금 CAPEX와 분기 말 압축기 마력을 봅니다. 재무 단위는 백만 USD, 마력은 천 HP입니다. Kodiak은 2023년 6월 상장했으며 IPO 신고서에 포함된 2021·2022년 비교 재무제표와 공개 분기 자료를 반영해 2021년부터 표시합니다. 미확보 과거 실적은 추정하지 않습니다. Kodiak·USAC의 Revenue-generating HP는 Archrock의 Operating HP와 정의가 다릅니다. Energy Transfer는 USAC를 연결하므로 두 회사 실적을 합산하지 않습니다."
             }
           ]
+        },
+        {
+          "id": "containment",
+          "name": "GTT·보냉재 실적",
+          "default_range": "all",
+          "auto_collect_time": "09:40",
+          "description": "GTT·동성화인텍·한국카본의 연결 전체 매출·영업이익·순이익입니다. USD로 비교하고 원통화와 기간 평균환율은 메모에서 확인합니다. 국내 두 회사는 분기·연간, GTT는 분기 매출과 반기·연간 손익을 표시합니다. GTT의 비경상 항목 포함 영업손익은 요약표의 EBIT·EBITDA와 다릅니다. 수주·가동률·사업 비중은 옆의 수주·운영 KPI 탭에서 봅니다."
+        },
+        {
+          "id": "containment_kpis",
+          "name": "수주·운영 KPI",
+          "default_range": "all",
+          "auto_collect_time": "09:40",
+          "description": "GTT의 핵심사업·LNG선·연료용 수주잔고와 신규 수주, 국내 두 회사의 보냉재 수주잔고를 봅니다. 잔고는 기말 잔량, 신규 수주는 연초 이후 누적(YTD)으로 구분합니다. 달러 잔고는 원문 USD 또는 기말 환율 기준입니다. 동성화인텍 가동률과 한국카본의 LNG 포함 산업재 비중은 서로 다른 지표입니다. 보냉재 생산능력은 회사별 금액·면적·품목 단위가 달라 합산하거나 LNG선 척수로 환산하지 않습니다."
         }
       ]
     },
