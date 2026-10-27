@@ -21,7 +21,7 @@ class EquipmentTests(unittest.TestCase):
     def test_total_net_income_not_parent_attribution_and_signed_losses(self):
         r=report(self.items(),2026,2,'00000001','CFS')
         self.assertEqual(r['fields']['netincome']['value'],-20)
-        row=accounts([r],'2026-10-27')[0]
+        row=next(x for x in accounts([r],'2026-10-27') if x['quarter']==2)
         self.assertEqual((row['revenue'],row['profit'],row['netincome']),(100,-10,-20))
 
     def test_q4_keeps_negative_net_income_and_same_basis_only(self):
@@ -39,9 +39,26 @@ class EquipmentTests(unittest.TestCase):
         a=report(self.items(receipt='20260320000001'),2025,4,'00000001','CFS')
         self.assertTrue(all(r['kind']=='annual' for r in accounts([a],'2026-10-27')))
 
+    def test_missing_q1_is_same_statement_h1_minus_actual_q2(self):
+        r=report(self.items(),2026,2,'00000001','CFS')
+        first=next(row for row in accounts([r],'2026-10-27') if row['quarter']==1)
+        self.assertEqual((first['revenue'],first['profit'],first['netincome']),(200,-20,-40))
+        self.assertIn('minus Q2',first['refs']['revenue']['calculation'])
+
     def test_issuer_and_reporting_basis_mismatches_fail(self):
         with self.assertRaises(ValueError):report(self.items(),2026,2,'00000002','CFS')
         with self.assertRaises(ValueError):report(self.items(),2026,2,'00000001','OFS')
+
+    def test_comparative_quarter_uses_quarter_column_not_prior_annual_amount(self):
+        items=self.items()
+        for i in items:
+            i.update(frmtrm_amount='9000000000',frmtrm_q_amount='50000000',frmtrm_add_amount='120000000')
+        r=report(items,2026,2,'00000001','CFS')
+        previous=r['comparatives'][0]
+        self.assertEqual(previous['year'],2025)
+        self.assertEqual(previous['fields']['revenue']['value'],50)
+        self.assertEqual(previous['fields']['revenue']['ytd'],120)
+        self.assertTrue(previous['fields']['revenue']['comparative'])
 
     def test_provisional_actual_quarter_excludes_ytd_and_parent_net(self):
         raw='''연결재무제표 기준 단위 : 억원<table>
@@ -62,7 +79,7 @@ class EquipmentTests(unittest.TestCase):
         fx={'periods':{'KRW|2026-04-01|2026-06-30':dict(local_per_usd=1400,observations=62,first='2026-04-01',last='2026-06-30')}}
         m=dict(name='Company',scope='group',comparability_note='',ir_url='https://dart.fss.or.kr')
         d=document('c','netincome',m,dict(rows=rows,status='ok'),fx)
-        self.assertEqual(d['series']['순이익'],[['2026-06-30',0]])
+        self.assertEqual(dict(d['series']['순이익'])['2026-06-30'],0)
         self.assertIn('재무제표: 연결',d['point_notes']['2026-06-30'])
         self.assertNotIn('supporting_sources',d['point_sources']['2026-06-30'])
 

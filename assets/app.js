@@ -247,6 +247,7 @@ async function renderIndustry(options = {}) {
 
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
+  content.classList.toggle("sb-root", ind.id === "shipbuilding");
   content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || (ind.id === "shipbuilding" && state.subtab !== "market"));
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";

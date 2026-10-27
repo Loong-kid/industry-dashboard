@@ -34,6 +34,7 @@ def report(items, year, q, corp, fs):
         for item in items:
             if item.get('corp_code',corp)!=corp or item.get('fs_div',fs)!=fs:
                 raise ValueError('issuer/reporting basis mismatch')
+            if (item.get('currency') or 'KRW')!='KRW':raise ValueError('unexpected source currency')
             if item.get('sj_div') not in ('IS','CIS'):continue
             name=item.get('account_nm','').replace(' ','')
             # Exclude parent attribution, comprehensive income, EPS and tax.
@@ -85,6 +86,21 @@ def accounts(reports, asof):
                 if metric=='revenue' and value<0:continue
                 row[metric]=value;row['refs'][metric]=dict(f,calculation='same fiscal-year YTD minus prior YTD',components=[f,p])
         if row['refs']:rows.append(row)
+    # A missing Q1 can be recovered from the same half-year statement's H1
+    # cumulative and actual Q2. Do not overwrite an existing reporting basis.
+    for (year,q),r in index.items():
+        if q!=2 or end(year,q)>asof:continue
+        existing=next((x for x in rows if x['kind']=='quarter' and x['year']==year and x['quarter']==1),None)
+        if existing and existing['fs_div']!=r['fs_div']:continue
+        first=existing or dict(period(f'{year}-01-01',f'{year}-03-31','KRW'),fs_div=r['fs_div'])
+        for metric,f in r['fields'].items():
+            if metric in first or f['filed']>asof or f.get('ytd') is None or f.get('value') is None:continue
+            value=f['ytd']-f['value']
+            if metric=='revenue' and value<0:continue
+            first[metric]=value
+            first['refs'][metric]=dict(f,calculation='same fiscal-year H1 minus Q2',
+                components=[dict(f,source_field='thstrm_add_amount'),dict(f,start=f'{year}-04-01',source_field='thstrm_amount')])
+        if not existing and first['refs']:rows.append(first)
     return sorted(rows,key=lambda r:(r['date'],r['kind']))
 
 

@@ -58,22 +58,22 @@ def entities(session, key, meta):
 
 def public_get(session,url):
     p=CACHE/(hashlib.sha256(url.encode()).hexdigest()[:18]+'.bin')
-    try:r=session.get(url,timeout=40)
+    try:r=session.get(url,timeout=(8,15))
     except requests.exceptions.SSLError:
         # Keep certificate verification enabled; some public Korean sites use
         # chains trusted by the OS bundle but absent from certifi's root set.
         system_bundle=Path('/etc/ssl/certs/ca-certificates.crt')
         if not system_bundle.exists():raise
-        r=session.get(url,timeout=40,verify=str(system_bundle))
+        r=session.get(url,timeout=(8,15),verify=str(system_bundle))
     r.raise_for_status();p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(r.content)
     return r.content
 
 
-def preliminaries(session,key,entity,meta,asof,fs):
+def preliminaries(session,key,entity,meta,asof,fs,after=''):
     payload=api(session,'list.json',key,corp_code=entity['corp_code'],bgn_de=asof[:4]+'0101',end_de=asof.replace('-',''),last_reprt_at='Y',page_count=100).json()
     if payload.get('status')=='013':return [],[]
     if payload.get('status')!='000':raise ValueError('provisional disclosure list unavailable')
-    candidates=[r for r in payload['list'] if '영업(잠정)실적' in r['report_nm'] and ('연결재무제표' in r['report_nm'])==(fs=='CFS')][:3]
+    candidates=[r for r in payload['list'] if r['rcept_dt']>after.replace('-','') and '영업(잠정)실적' in r['report_nm'] and ('연결재무제표' in r['report_nm'])==(fs=='CFS')][:3]
     rows=[];errors=[]
     for entry in candidates:
         receipt=entry['rcept_no']
@@ -88,6 +88,31 @@ def preliminaries(session,key,entity,meta,asof,fs):
         except (requests.RequestException,ValueError,UnicodeError) as e:
             errors.append('잠정 공시 수치 확인 필요: '+receipt+' ('+type(e).__name__+')')
     return rows,errors
+
+
+def expanded_accounts(reports,asof):
+    expanded={(r['year'],r['quarter']):r for r in reports};filled=set()
+    for r in sorted(reports,key=lambda r:(r['year'],r['quarter'])):
+        for comparative in r.get('comparatives',[]):
+            k=comparative['year'],comparative['quarter']
+            if k not in expanded:expanded[k]=comparative;filled.add(k)
+    return accounts(list(expanded.values()),asof),filled
+
+
+def with_preliminaries(company,prior_rows,regular,asof):
+    pending={r['date']:r for r in prior_rows}
+    reviewed=load(ROOT/'manual/shipbuilding-equipment/provisional-reviewed.json',{}).get(company,[])
+    for r in reviewed:
+        if r['date']<=asof and all(f['filed']<=asof for f in r['refs'].values()):pending.setdefault(r['date'],r)
+    regular_dates={r['date'] for r in regular if r['kind']=='quarter'}
+    return [r for d,r in sorted(pending.items()) if d not in regular_dates and d<=asof]
+
+
+def unresolved(errors,rows):
+    reviewed_receipts={f['url'].split('rcpNo=')[-1] for r in rows if r.get('reviewed') for f in r['refs'].values()}
+    derived_q1={f"{r['year']} Q1 " for r in rows if r['kind']=='quarter' and r['quarter']==1 and
+                all(m in r and 'minus Q2' in r['refs'][m].get('calculation','') for m in METRICS)}
+    return [e for e in errors if not any(receipt in e for receipt in reviewed_receipts) and not any(e.startswith(prefix) for prefix in derived_q1)]
 
 
 def collect_company(company,meta,entity,key,prior,asof,full):
@@ -107,23 +132,19 @@ def collect_company(company,meta,entity,key,prior,asof,full):
                 errors.append(f'{year} Q{q} 정기 공시 조회·확인 필요 ({type(e).__name__})')
             time.sleep(.12)
         print(company,year,'checked',flush=True)
-    expanded=dict(reports);filled=set()
-    for r in sorted(reports.values(),key=lambda r:(r['year'],r['quarter'])):
-        for comparative in r.get('comparatives',[]):
-            k=comparative['year'],comparative['quarter']
-            if k not in expanded:expanded[k]=comparative;filled.add(k)
+    rows,filled=expanded_accounts(list(reports.values()),asof)
     errors=[e for e in errors if not any(e.startswith(f'{year} Q{q} ') for year,q in filled)]
-    rows=accounts(list(expanded.values()),asof)
     pending={r['date']:r for r in prior.get('provisional_rows',[])}
     try:
         fs=rows[-1]['fs_div'] if rows else 'CFS'
-        fresh,issues=preliminaries(session,key,entity,meta,asof,fs);errors+=issues
+        latest_filed=max((f['filed'] for r in rows for f in r['refs'].values()),default='')
+        fresh,issues=preliminaries(session,key,entity,meta,asof,fs,latest_filed);errors+=issues
         for r in fresh:pending[r['date']]=r
     except (ValueError,KeyError) as e:errors.append('잠정실적 목록 확인 미완료 ('+type(e).__name__+')')
-    regular_dates={r['date'] for r in rows if r['kind']=='quarter'}
-    pending={d:r for d,r in pending.items() if d not in regular_dates and d<=asof}
-    rows=sorted(rows+list(pending.values()),key=lambda r:(r['date'],r['kind']))
-    return dict(entity=entity,reports=list(reports.values()),provisional_rows=list(pending.values()),rows=rows,
+    pending=with_preliminaries(company,list(pending.values()),rows,asof)
+    rows=sorted(rows+pending,key=lambda r:(r['date'],r['kind']))
+    errors=unresolved(errors,rows)
+    return dict(entity=entity,reports=list(reports.values()),provisional_rows=pending,rows=rows,
                 checked=asof,fetched=asof if rows else prior.get('fetched'),status='partial' if errors else 'ok',source_errors=errors)
 
 
@@ -158,7 +179,11 @@ def collect(offline=False,full=False):
             old=state['companies'].get(company,{})
             if offline:
                 if not old.get('rows'):raise ValueError('offline financial history unavailable')
-                cohort=old
+                regular,_=expanded_accounts(old.get('reports',[]),old.get('checked',asof))
+                pending=with_preliminaries(company,old.get('provisional_rows',[]),regular,old.get('checked',asof))
+                cohort=dict(old,rows=sorted(regular+pending,key=lambda r:(r['date'],r['kind'])),provisional_rows=pending)
+                errors=unresolved(old.get('source_errors',[]),cohort['rows'])
+                cohort.update(source_errors=errors,status='partial' if errors else 'ok')
             elif registry_error:cohort=dict(old,checked=asof,status='partial',source_errors=[registry_error])
             else:
                 try:cohort=jobs[company].result()
