@@ -8,9 +8,9 @@ from quantum_sources import period, METRICS
 
 
 TAGS = {
-    'revenue': ('ifrs-full_Revenue', 'ifrs-full_RevenueFromContractsWithCustomers'),
-    'profit': ('dart_OperatingIncomeLoss', 'ifrs-full_ProfitLossFromOperatingActivities'),
-    'netincome': ('ifrs-full_ProfitLoss',),
+    'revenue': ('ifrs-full_Revenue', 'ifrs-full_RevenueFromContractsWithCustomers', 'ifrs_Revenue'),
+    'profit': ('dart_OperatingIncomeLoss', 'ifrs-full_ProfitLossFromOperatingActivities', 'ifrs_ProfitLossFromOperatingActivities'),
+    'netincome': ('ifrs-full_ProfitLoss', 'ifrs_ProfitLoss'),
 }
 
 
@@ -36,7 +36,7 @@ def report(items, year, q, corp, fs):
                 raise ValueError('issuer/reporting basis mismatch')
             if (item.get('currency') or 'KRW')!='KRW':raise ValueError('unexpected source currency')
             if item.get('sj_div') not in ('IS','CIS'):continue
-            name=item.get('account_nm','').replace(' ','')
+            name=re.sub(r'^(?:[IVX]+|[Ⅰ-Ⅹ]+|\d+)[.．]','',item.get('account_nm','').replace(' ',''))
             # Exclude parent attribution, comprehensive income, EPS and tax.
             named=(name in ('매출액','영업수익','수익(매출액)','매출') if metric=='revenue' else
                    name in ('영업이익','영업이익(손실)','영업손실','영업손익') if metric=='profit' else
@@ -82,6 +82,7 @@ def accounts(reports, asof):
             elif q>1 and prior and prior['fs_div']==r['fs_div']:
                 p=prior['fields'].get(metric,{})
                 if p.get('ytd') is None or f.get('ytd') is None or p['filed']>f['filed']:continue
+                if bool(f.get('comparative'))!=bool(p.get('comparative')):continue
                 value=f['ytd']-p['ytd']
                 if metric=='revenue' and value<0:continue
                 row[metric]=value;row['refs'][metric]=dict(f,calculation='same fiscal-year YTD minus prior YTD',components=[f,p])

@@ -32,7 +32,7 @@ jobs:
         if: steps.precheck.outcome == 'success'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/fetch_shipbuilding_equipment.py ${{ github.event_name == 'pull_request' && '--full-history' || '' }}
+        run: python -u scripts/fetch_shipbuilding_equipment.py
       - name: Validate seven issuer histories and USD conversion
         id: postcheck
         continue-on-error: true

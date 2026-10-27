@@ -49,6 +49,13 @@ class EquipmentTests(unittest.TestCase):
         with self.assertRaises(ValueError):report(self.items(),2026,2,'00000002','CFS')
         with self.assertRaises(ValueError):report(self.items(),2026,2,'00000001','OFS')
 
+    def test_legacy_ifrs_namespace_and_numbered_rows_are_supported(self):
+        items=self.items()
+        items[0].update(account_id='ifrs_Revenue',account_nm='I.매출액')
+        items[-1].update(account_id='ifrs_ProfitLoss',account_nm='VI.당기순이익(손실)')
+        r=report(items,2016,4,'00000001','CFS')
+        self.assertEqual((r['fields']['revenue']['ytd'],r['fields']['netincome']['ytd']),(100,-20))
+
     def test_comparative_quarter_uses_quarter_column_not_prior_annual_amount(self):
         items=self.items()
         for i in items:
