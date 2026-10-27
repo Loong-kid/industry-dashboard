@@ -102,6 +102,9 @@ def card(key,name,unit,rows,fields,note,fx=None,native_currency=None):
         frequency='quarterly',frequency_label='보고기간 말 · 공시 시점',quarter_labels=True,zero_baseline=True,span_gaps=False,
         description=note,basis_details=[dict(label='정의·해석',value=note),dict(label='원문·시점',value='수치는 해당 보고기간 말 또는 공시된 실제 기간 기준입니다. 빈 기간을 0이나 추정치로 채우지 않습니다. 표의 출처를 눌러 원문을 확인할 수 있습니다.')])
     if native_currency:doc.update(original_series=native,original_currency=native_currency,original_unit='millions')
+    if key=='containment_gtt_orders':doc.update(change_mode='none',frequency_label='연초 이후 누적 · YTD')
+    elif unit=='%':doc.update(change_mode='none',frequency_label='보고기간 누적 · 공시 기준')
+    else:doc['frequency_label']='보고기간 말 잔량'
     return doc
 
 
