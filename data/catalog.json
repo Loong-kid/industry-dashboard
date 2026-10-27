@@ -259,7 +259,7 @@
       "name": "ESS",
       "icon": "🔋",
       "default_range": "all",
-      "cadence": "미국 유틸리티 규모 배터리 ESS · EIA-860M 월간 자료입니다. 전력 탭과 같은 원자료를 함께 표시하며, 공표에는 약 2개월 시차가 있습니다. GW는 출력, GWh는 저장 에너지입니다. 기업 지표는 공식 분기·반기·연간 공시 기준입니다. 출하·배치·누적 순증·수주·미계약 파이프라인을 구분하며 미공개는 0으로 채우지 않습니다. 화면은 시장 → 완제품 배치·수주 및 공급망 CAPA → 배터리 셀·모듈 물량 → 기업별 재무 순서입니다. 배터리 차트는 동일 기준의 공시 이력이 2개 기간 이상인 경우만 표시합니다.",
+      "cadence": "미국 유틸리티 규모 배터리 ESS · EIA-860M 월간 자료입니다. 전력 탭과 같은 원자료를 함께 표시하며, 공표에는 약 2개월 시차가 있습니다. GW는 출력, GWh는 저장 에너지입니다. 기업 지표는 공식 분기·반기·연간 공시 기준입니다. 출하·배치·누적 순증·수주·미계약 파이프라인을 구분하며 미공개는 0으로 채우지 않습니다. 시장 현황·배터리·ESS 완제품을 별도 세부탭으로 구분합니다. 배터리에는 셀·모듈 물량·공장·재무를, ESS 완제품에는 시스템 배치·수주·사양·공장·재무를 모았습니다. 배터리 차트는 동일 기준의 공시 이력이 2개 기간 이상인 경우만 표시합니다.",
       "sections": [
         {
           "title": "미국 배터리 ESS · 준공 용량·지속시간",
@@ -270,7 +270,8 @@
             "battery_duration_mix",
             "battery_duration_mix_cum",
             "battery_duration_share"
-          ]
+          ],
+          "tab": "market"
         },
         {
           "title": "ESS 완제품 · 배치·수주잔고·파이프라인",
@@ -285,7 +286,8 @@
             "ess_fluence_backlog_gw",
             "ess_fluence_pipeline"
           ],
-          "supply_note": "테슬라 Megapack·Powerwall과 플루언스 ESS 솔루션의 공시입니다. 배치·누적 순증·계약 잔고·미계약 파이프라인을 구분합니다. RPO는 태양광 등 에너지 부문을 포함하며, 배터리 셀 출하량과 합산하지 않습니다."
+          "supply_note": "테슬라 Megapack·Powerwall과 플루언스 ESS 솔루션의 공시입니다. 배치·누적 순증·계약 잔고·미계약 파이프라인을 구분합니다. RPO는 태양광 등 에너지 부문을 포함하며, 배터리 셀 출하량과 합산하지 않습니다.",
+          "tab": "systems"
         },
         {
           "title": "ESS 통합업체 · 출하 공시 범위",
@@ -294,7 +296,8 @@
             "ess_sungrow_cumulative",
             "ess_sungrow_shipments"
           ],
-          "supply_note": "선그로우 공시의 ESS 총출하량입니다. PCS·EMS 포함 완제품만의 물량이 별도로 분리되지 않아 완제품 배치량과 직접 비교하지 않습니다. 신규 설치량·누적 설치량은 미공개입니다."
+          "supply_note": "선그로우 공시의 ESS 총출하량입니다. PCS·EMS 포함 완제품만의 물량이 별도로 분리되지 않아 완제품 배치량과 직접 비교하지 않습니다. 신규 설치량·누적 설치량은 미공개입니다.",
+          "tab": "systems"
         },
         {
           "title": "ESS 완제품 · 제품 사양 비교",
@@ -302,7 +305,8 @@
           "table_kind": "ess_products",
           "indicators": [
             "ess_products"
-          ]
+          ],
+          "tab": "systems"
         },
         {
           "title": "ESS 시스템 공급망 공장 · 위치·면적·CAPA",
@@ -310,7 +314,8 @@
           "table_kind": "ess_factories",
           "indicators": [
             "ess_factories"
-          ]
+          ],
+          "tab": "systems"
         },
         {
           "title": "배터리 셀·모듈 · 생산능력·생산·판매 추이",
@@ -319,7 +324,8 @@
           "indicators": [
             "ess_batteries"
           ],
-          "battery_view": "physical"
+          "battery_view": "physical",
+          "tab": "batteries"
         },
         {
           "title": "ESS 셀 업체 공장 · 위치·CAPA",
@@ -327,10 +333,11 @@
           "table_kind": "ess_factories",
           "indicators": [
             "ess_cell_factories"
-          ]
+          ],
+          "tab": "batteries"
         },
         {
-          "title": "ESS 기업별 · 매출·수익성",
+          "title": "ESS 완제품 기업 · 매출·수익성",
           "indicators": [],
           "companies": [
             {
@@ -360,16 +367,38 @@
                 "ess_fluence_profit"
               ]
             }
-          ]
+          ],
+          "tab": "systems"
         },
         {
-          "title": "ESS 배터리 기업 · 셀과 시스템",
+          "title": "ESS 배터리 기업 · 매출·수익성",
           "type": "table",
           "table_kind": "ess_batteries",
           "indicators": [
             "ess_batteries"
           ],
-          "battery_view": "companies"
+          "battery_view": "companies",
+          "tab": "batteries"
+        }
+      ],
+      "tabs": [
+        {
+          "id": "market",
+          "name": "시장 현황",
+          "default_range": "all",
+          "description": "미국 유틸리티 규모 배터리 ESS의 준공 용량과 지속시간을 확인합니다. 기업 지표는 배터리와 ESS 완제품 탭에서 구분해 볼 수 있습니다."
+        },
+        {
+          "id": "batteries",
+          "name": "배터리",
+          "default_range": "all",
+          "description": "CATL·LG에너지솔루션·삼성SDI·SK On 등 배터리 업체의 셀·모듈 생산능력, 생산·출하·판매, 공장과 ESS 매출·수익성을 모았습니다. 회사별 공시 제품 범위와 미공개 항목을 함께 표시합니다."
+        },
+        {
+          "id": "systems",
+          "name": "ESS 완제품",
+          "default_range": "all",
+          "description": "테슬라 에너지·플루언스·선그로우 등 ESS 완제품·시스템 판매 업체의 배치·수주, 제품 사양, 공급망 공장과 매출·수익성을 모았습니다. 완제품 물량과 배터리 셀 출하량은 구분합니다."
         }
       ]
     },

@@ -65,9 +65,11 @@ class ESSProductSpecTests(unittest.TestCase):
         sections = next(i for i in cat["industries"] if i["id"] == "ess")["sections"]
         products = next(i for i, s in enumerate(sections) if s.get("table_kind") == "ess_products")
         systems = next(i for i, s in enumerate(sections) if "ess_factories" in s.get("indicators", []))
-        cells = next(i for i, s in enumerate(sections) if s.get("battery_view") == "physical")
-        self.assertTrue(1 < products < systems < cells)
+        self.assertTrue(products < systems)
+        self.assertEqual(sections[products]['tab'],'systems')
+        self.assertEqual(sections[systems]['tab'],'systems')
         self.assertEqual(sections[0]["data_industry"], "power")
+        self.assertEqual(sections[0]['tab'],'market')
 
 
 if __name__ == "__main__":
