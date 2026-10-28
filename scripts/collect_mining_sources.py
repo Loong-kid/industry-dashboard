@@ -3,6 +3,7 @@ import datetime as dt
 import json
 from pathlib import Path
 import time
+import argparse
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
@@ -13,11 +14,12 @@ CIKS={'bhp':811809,'scco':1001838,'rio':863064,'nem':1164727,
       'fcx':831259,'aem':2809,'barrick':756894,'ero':1853860}
 
 
-def collect():
+def collect(only=None):
     CACHE.mkdir(parents=True,exist_ok=True)
     session=requests.Session();session.headers['User-Agent']='industry-dashboard personal research wkorotk@gmail.com'
     asof=dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat();status={}
     for key,cik in CIKS.items():
+        if only and key!=only:continue
         try:
             for kind,url in [('facts',f'https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json'),('sub',f'https://data.sec.gov/submissions/CIK{cik:010d}.json')]:
                 r=session.get(url,timeout=45);r.raise_for_status();(CACHE/f'{key}-{kind}.json').write_bytes(r.content);time.sleep(.25)
@@ -33,7 +35,8 @@ def collect():
                 for i,form in enumerate(group['form']):
                     report=group.get('reportDate',['']*len(group['form']))[i];filed=group['filingDate'][i]
                     if filed>asof or filed<'2014-01-01':continue
-                    if form not in ['10-K','10-K/A','20-F','20-F/A','40-F','40-F/A','10-Q']:continue
+                    interim=(key=='ero' and form=='6-K' and report[5:] in ['03-31','06-30','09-30','12-31'])
+                    if form not in ['10-K','10-K/A','20-F','20-F/A','40-F','40-F/A','10-Q'] and not interim:continue
                     if form=='10-Q' and report<'2024-01-01':continue
                     if report and report<'2014-01-01':continue
                     accn=group['accessionNumber'][i];doc=group['primaryDocument'][i]
@@ -42,7 +45,7 @@ def collect():
                     if not path.exists():
                         r=session.get(url,timeout=45);r.raise_for_status();path.write_bytes(r.content);time.sleep(.25)
                     registry[accn]=dict(url=url,form=form,filed=filed,date=report,path=path.name)
-                    if form.startswith('40-F'):
+                    if form.startswith('40-F') or interim:
                         soup=BeautifulSoup(path.read_bytes(),'html.parser')
                         for a in soup.select('a[href]'):
                             text=a.get_text(' ',strip=True).lower();href=a['href']
@@ -63,4 +66,6 @@ def collect():
     return status
 
 
-if __name__=='__main__':collect()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--company',choices=list(CIKS))
+    collect(parser.parse_args().company)
