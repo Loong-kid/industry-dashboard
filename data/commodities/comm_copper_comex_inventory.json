@@ -1,18 +1,18 @@
 {
   "unit": "톤",
   "frequency": "daily",
-  "fetched": "2026-10-27",
+  "fetched": "2026-10-28",
   "data_stale_days": 10,
   "source": "The Vault Report · CC BY 4.0",
   "source_url": "https://thevaultreport.com",
   "source_api": "https://thevaultreport.com/api/v1/snapshot",
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
-  "provider_generated_at": "2026-10-27T01:48:04Z",
+  "provider_generated_at": "2026-10-28T01:45:55Z",
   "snapshot_history": true,
   "id": "comm_copper_comex_inventory",
   "name": "COMEX 구리 재고",
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "default_series": [
     "총재고"
   ],
@@ -1073,6 +1073,10 @@
       [
         "2026-10-23",
         725589.942
+      ],
+      [
+        "2026-10-26",
+        726622.318
       ]
     ],
     "등록재고 (Registered)": [
@@ -2131,6 +2135,10 @@
       [
         "2026-10-23",
         429172.771
+      ],
+      [
+        "2026-10-26",
+        429629.085
       ]
     ],
     "적격재고 (Eligible · 계산)": [
@@ -3189,14 +3197,18 @@
       [
         "2026-10-23",
         296417.171
+      ],
+      [
+        "2026-10-26",
+        296993.233
       ]
     ]
   },
   "source_original": "CME Group COMEX warehouse stocks",
   "source_values": {
     "unit": "short tons",
-    "total": 799826,
-    "registered": 473082
+    "total": 800964,
+    "registered": 473585
   },
   "description": "미국 COMEX 총재고와 등록재고를 비교합니다. 등록재고는 창고증권이 발행된 물량이고, 적격재고는 총재고에서 등록재고를 뺀 값입니다.",
   "note": "총재고 = 등록재고 + 적격재고입니다. 1 short ton = 0.90718474톤으로 환산했습니다. 지역 간 이동·관세·등록 상태 변화도 재고에 영향을 줍니다. CME 직접 수집이 아닌 제3자 공개 API 자료입니다.",
