@@ -1,0 +1,531 @@
+{
+ "ranking_date": "2026-10-28",
+ "ranking_source_url": "https://companiesmarketcap.com/mining/largest-mining-companies-by-market-cap/",
+ "methodology": "글로벌 상장 광산기업의 공개 시가총액 목록에서 석탄 전업·주력사를 제외한 상위 10개 법인입니다. 조회일 기준 스냅샷으로 거래소별 최근 가격과 환율의 시차가 있으며 실시간 순위가 아닙니다. 복합 광산기업과 상품 거래를 겸하는 기업은 포함합니다. 광물 비중은 회사가 공시한 연결 외부매출·제품매출·사업부 중 확인 가능한 기준을 행마다 구분합니다. 기업명을 누르면 아래 실적으로 이동합니다.",
+ "ownership_note": "Grupo México는 Southern Copper의 지배주주입니다. 법인별 시가총액 순위를 그대로 표시하므로 두 회사를 독립적인 광물 노출로 합산하면 중복됩니다. BHP·Glencore처럼 석탄도 생산하는 복합 광산기업의 석탄·에너지 비중은 숨기지 않습니다. 매출 비중은 이익 비중·생산량 비중과 다릅니다.",
+ "companies": [
+  {
+   "id": "bhp",
+   "rank": 1,
+   "name": "BHP",
+   "ticker": "BHP · ASX / NYSE",
+   "market_cap_usd_billion": 209.92,
+   "cik": 811809,
+   "fiscal_start": 7,
+   "currency": "USD",
+   "scope": "전사 연결 · 구리·철광석·석탄·기타",
+   "note": "6월 결산입니다. FY는 종료 연도이며 분기 손익 공시가 없는 기간은 반기·연간만 표시합니다. 매출에는 제3자 상품 판매가 포함됩니다. CAPEX는 유형자산 취득 현금지출이며 회사 발표 Capital and exploration expenditure와 다를 수 있습니다.",
+   "mix": {
+    "period": "FY2026 · 6월 결산",
+    "basis": "연결 매출 · USD 백만 · 지분법 조정 후",
+    "note": "외부 상품 판매를 포함한 공시 사업부 매출. 석탄 주력사는 제외하되 복합 광산기업의 석탄 매출은 표시합니다.",
+    "denominator": 58760,
+    "parts": [
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 29031,
+      "percent": 49.406058543226685
+     },
+     {
+      "key": "iron",
+      "label": "철광석",
+      "amount": 23883,
+      "percent": 40.64499659632403
+     },
+     {
+      "key": "coal",
+      "label": "석탄",
+      "amount": 5590,
+      "percent": 9.513274336283185
+     },
+     {
+      "key": "other",
+      "label": "기타",
+      "amount": 256,
+      "percent": 0.4356705241660994
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/811809/000119312526354647/bhp-20260630.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "scco",
+   "rank": 2,
+   "name": "Southern Copper",
+   "ticker": "SCCO · NYSE",
+   "market_cap_usd_billion": 164.16,
+   "cik": 1001838,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 구리·몰리브덴·은·아연·부산물",
+   "note": "Grupo México가 지배하는 별도 상장 법인입니다. 구리만의 실적이 아닌 회사 전체 연결 실적입니다. CAPEX는 현금흐름표의 유형자산 취득입니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 순매출 · 회사가 직접 공시한 비중",
+    "note": "생산량·매장량·이익 비중이 아닌 매출 비중입니다.",
+    "denominator": 100,
+    "parts": [
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 74.8,
+      "percent": 74.8
+     },
+     {
+      "key": "molybdenum",
+      "label": "몰리브덴",
+      "amount": 10.5,
+      "percent": 10.5
+     },
+     {
+      "key": "silver",
+      "label": "은",
+      "amount": 7.3,
+      "percent": 7.3
+     },
+     {
+      "key": "zinc",
+      "label": "아연",
+      "amount": 3.9,
+      "percent": 3.9
+     },
+     {
+      "key": "other",
+      "label": "기타 부산물",
+      "amount": 3.5,
+      "percent": 3.5000000000000004
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465926089169/scco-20260630x10q.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rio",
+   "rank": 3,
+   "name": "Rio Tinto",
+   "ticker": "RIO · LSE / ASX / NYSE",
+   "market_cap_usd_billion": 139.44,
+   "cik": 863064,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 철광석·알루미늄·구리·리튬·기타",
+   "note": "듀얼 상장 그룹을 한 기업으로 취급합니다. 반기·연간 재무 공시를 사용하며 분기 생산량으로 분기 매출을 추정하지 않습니다. CAPEX는 유형·무형 및 기타 비유동자산 취득 현금지출이라는 회사 공시 항목입니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 외부매출 · USD 백만 · Note 6",
+    "note": "잠정 가격 정산을 포함한 consolidated sales revenue 기준입니다. 이중 상장 그룹은 한 회사로 집계합니다.",
+    "denominator": 57638,
+    "parts": [
+     {
+      "key": "iron",
+      "label": "철광석",
+      "amount": 28376,
+      "percent": 49.23140983379021
+     },
+     {
+      "key": "aluminium",
+      "label": "알루미늄·알루미나·보크사이트",
+      "amount": 15395,
+      "percent": 26.709809500676634
+     },
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 6664,
+      "percent": 11.56181685693466
+     },
+     {
+      "key": "other",
+      "label": "산업용 광물",
+      "amount": 2370,
+      "percent": 4.1118706408966315
+     },
+     {
+      "key": "gold",
+      "label": "금",
+      "amount": 1922,
+      "percent": 3.3346056421111077
+     },
+     {
+      "key": "other",
+      "label": "리튬",
+      "amount": 944,
+      "percent": 1.6378083902980671
+     },
+     {
+      "key": "other",
+      "label": "기타·운임",
+      "amount": 1967,
+      "percent": 3.4126791352926884
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/rio-20251231.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "nem",
+   "rank": 4,
+   "name": "Newmont",
+   "ticker": "NEM · NYSE",
+   "market_cap_usd_billion": 117.05,
+   "cik": 1164727,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 금·구리·은·납·아연",
+   "profit_calculated": true,
+   "profit_formula": "연결 매출 − 연결 비용·경비 합계. 투자 공정가치·금융·지분법 손익은 제외하며 자산매각 등 비용·경비에 포함된 항목은 유지합니다.",
+   "note": "금 단독 실적이 아닙니다. 연결 영업이익 소계가 없어 손익계산서 매출에서 비용·경비 합계를 뺀 계산 영업손익입니다. 인수·매각·중단영업 재분류를 포함하며 과거 비교 공시와 당시 공시의 기준이 다를 수 있습니다. CAPEX는 현금흐름표 Capital expenditures입니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 매출 · USD 백만 · 금속별 공시",
+    "note": "광산별 또는 지분 귀속 생산량 비중으로 대체하지 않습니다.",
+    "denominator": 22669,
+    "parts": [
+     {
+      "key": "gold",
+      "label": "금",
+      "amount": 19304,
+      "percent": 85.15593982972341
+     },
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 1438,
+      "percent": 6.343464643345538
+     },
+     {
+      "key": "silver",
+      "label": "은",
+      "amount": 1080,
+      "percent": 4.764215448409723
+     },
+     {
+      "key": "other",
+      "label": "납",
+      "amount": 183,
+      "percent": 0.8072698398694252
+     },
+     {
+      "key": "zinc",
+      "label": "아연",
+      "amount": 664,
+      "percent": 2.9291102386519037
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1164727/000116472726000036/nem-20260630.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "zijin",
+   "rank": 5,
+   "name": "Zijin Mining",
+   "ticker": "601899 · SSE / 02899 · HKEX",
+   "market_cap_usd_billion": 111.34,
+   "fiscal_start": 1,
+   "currency": "CNY",
+   "scope": "전사 연결 · 금·구리·아연·은·제련·기타 · 중국 회계기준",
+   "note": "위안화 CNY 백만으로 미국 달러 기업과 통화가 다릅니다. 영문 보고서의 Operating income은 매출, Operating profit은 중국 회계기준 영업이익입니다. 후자는 금융·투자 손익을 포함할 수 있어 미국 GAAP 영업이익과 직접 같은 정의가 아닙니다. CAPEX는 고정·무형·기타 비유동자산 취득·건설 현금지출로 기업 인수·투자금 지급과 구분합니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 외부매출 · RMB · 재무제표 주석 V.54",
+    "note": "핵심 채굴 광물은 금·구리입니다. 광물별 매출 표에는 내부거래 2,349.7억 위안이 섞여 있어 연결 금·구리 비중으로 쓰지 않았습니다. 외부매출 분리가 검증된 사업 구성만 표시합니다.",
+    "denominator": 349079082852,
+    "parts": [
+     {
+      "key": "mining",
+      "label": "광산 생산품",
+      "amount": 109977556345,
+      "percent": 31.505054799180698
+     },
+     {
+      "key": "other",
+      "label": "제련 제품",
+      "amount": 165858644874,
+      "percent": 47.51320059595766
+     },
+     {
+      "key": "other",
+      "label": "무역",
+      "amount": 29212610830,
+      "percent": 8.368479311716696
+     },
+     {
+      "key": "other",
+      "label": "기타",
+      "amount": 44030270803,
+      "percent": 12.613265293144943
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0427/2026042700802.pdf#page=312",
+      "label": "연차보고서 p.312"
+     }
+    ]
+   }
+  },
+  {
+   "id": "fcx",
+   "rank": 6,
+   "name": "Freeport-McMoRan",
+   "ticker": "FCX · NYSE",
+   "market_cap_usd_billion": 94.7,
+   "cik": 831259,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 구리·금·몰리브덴·제련",
+   "note": "총 연결 매출에는 잠정가격 정산·내재파생상품 효과 등이 포함됩니다. 계약매출만의 수치와 구분합니다. CAPEX는 현금흐름표 Capital expenditures입니다. 인도네시아 등 연결 광산 전체 기준으로 회사 지분 생산량이나 구리 단독 매출로 환산하지 않습니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "제품별 총매출 · USD 백만 · 차감·파생 정산 전",
+    "note": "공시 제품별 매출 합계 25,940을 분모로 사용합니다. 로열티·관세·TC 차감 754, 내재파생 정산 +729는 미배분입니다. 연결 순매출 25,915와 분모가 다릅니다.",
+    "denominator": 25940,
+    "parts": [
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 19325,
+      "percent": 74.4988434849653
+     },
+     {
+      "key": "gold",
+      "label": "금",
+      "amount": 3900,
+      "percent": 15.034695451040864
+     },
+     {
+      "key": "molybdenum",
+      "label": "몰리브덴",
+      "amount": 1966,
+      "percent": 7.5790285273708555
+     },
+     {
+      "key": "other",
+      "label": "은·기타",
+      "amount": 749,
+      "percent": 2.8874325366229763
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125926000036/fcx-20260630.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grupo",
+   "rank": 7,
+   "name": "Grupo México",
+   "ticker": "GMEXICOB · BMV",
+   "market_cap_usd_billion": 93.9,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 광업·철도·인프라·부동산",
+   "profit_calculated": true,
+   "profit_formula": "연결 매출총이익 − 관리비. 기타손익·금융·환산·지분법 손익은 제외합니다.",
+   "note": "Southern Copper를 포함한 모회사 연결 실적이므로 SCCO와 합산하지 않습니다. 멕시코 거래소에 제출한 감사 재무제표의 USD 천 단위를 USD 백만으로 환산합니다. 영업손익은 매출총이익−관리비로 계산하며 CAPEX는 유형자산 취득 현금지출입니다. 원문을 확보한 연도만 제공합니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 재화·서비스 매출 · USD 천 · 감사 재무제표",
+    "note": "구리가 핵심 광물이나 연결 광물별 비중은 별도로 검증하지 못했습니다. 재화 매출을 전부 구리로 간주하지 않습니다. Southern Copper 실적을 연결하므로 중복에 주의하세요.",
+    "denominator": 18176711,
+    "parts": [
+     {
+      "key": "mining",
+      "label": "상품 판매·광업 중심",
+      "amount": 14561990,
+      "percent": 80.11344846710718
+     },
+     {
+      "key": "other",
+      "label": "운송·인프라 등 서비스",
+      "amount": 3614721,
+      "percent": 19.88655153289283
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.bmv.com.mx/docs-pub/infoanua/infoanua_1554188_2025_1.pdf#page=232",
+      "label": "연차보고서 p.232"
+     }
+    ]
+   }
+  },
+  {
+   "id": "aem",
+   "rank": 8,
+   "name": "Agnico Eagle",
+   "ticker": "AEM · NYSE / TSX",
+   "market_cap_usd_billion": 91.5,
+   "cik": 2809,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 금 중심·은·구리·기타 부산물",
+   "profit_calculated": true,
+   "profit_formula": "세전이익 + 금융비용. 기타 영업손익·금융수익 등은 공시 분류를 유지한 금융비용 전 계산 손익입니다.",
+   "note": "광산별 Mine operating margin이나 조정 EBITDA를 전사 영업이익으로 사용하지 않습니다. 전사 손익계산서의 세전이익+금융비용으로 계산한 손익을 표시하며 별도 공시 영업이익과 같지 않을 수 있습니다. CAPEX는 광물자산·유형자산 취득 현금지출입니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "제품별 계약매출 · USD 백만",
+    "note": "제품별 계약매출 합계가 분모입니다. 기타·잠정 가격 정산 등 27.250을 포함한 연결 매출 11,907.851과 구분합니다.",
+    "denominator": 11880.601,
+    "parts": [
+     {
+      "key": "gold",
+      "label": "금",
+      "amount": 11718.661,
+      "percent": 98.63693764313774
+     },
+     {
+      "key": "silver",
+      "label": "은",
+      "amount": 102.466,
+      "percent": 0.8624647860827915
+     },
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 50.276,
+      "percent": 0.42317724498954223
+     },
+     {
+      "key": "other",
+      "label": "기타",
+      "amount": 9.198,
+      "percent": 0.07742032578991585
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/2809/000110465926032153/aem-20251231xex99d2.htm",
+      "label": "연차보고서"
+     }
+    ]
+   }
+  },
+  {
+   "id": "glen",
+   "rank": 9,
+   "name": "Glencore",
+   "ticker": "GLEN · LSE",
+   "market_cap_usd_billion": 84.48,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 금속·광물·에너지 · 상품 거래 포함",
+   "profit_calculated": true,
+   "profit_formula": "세전이익 + 이자비용 − 이자수익. 손상·처분·지분법 손익 등은 공시 분류를 유지하며 조정 EBIT·EBITDA와 다릅니다.",
+   "note": "자체 광산 생산뿐 아니라 원유·석유제품 등 상품 거래 매출도 포함합니다. 영업손익은 세전이익+이자비용−이자수익으로 계산하며 조정 EBIT·EBITDA를 사용하지 않습니다. CAPEX는 유형자산 취득 현금지출입니다. 연도별 원 공시와 이후 농산물 사업 등 중단영업 재작성 수치의 범위 차이에 유의해야 합니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "내부거래 제거 후 사업부 매출 · USD 백만 · 비례연결 조정 전",
+    "note": "채굴 외 상품 거래를 포함합니다. 회사 사업부 측정치 251,297이 분모이며 비례연결 조정 −3,762 후 연결 매출은 247,535입니다. 금속별 배분은 미공시·미검증입니다.",
+    "denominator": 251297,
+    "parts": [
+     {
+      "key": "mining",
+      "label": "금속·광물",
+      "amount": 115551,
+      "percent": 45.98184618200774
+     },
+     {
+      "key": "energy",
+      "label": "에너지·제철용 석탄",
+      "amount": 135472,
+      "percent": 53.909119488095754
+     },
+     {
+      "key": "other",
+      "label": "기타",
+      "amount": 274,
+      "percent": 0.10903432989649697
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf#page=164",
+      "label": "연차보고서 p.164"
+     }
+    ]
+   }
+  },
+  {
+   "id": "barrick",
+   "rank": 10,
+   "name": "Barrick Mining",
+   "ticker": "B · NYSE / ABX · TSX",
+   "market_cap_usd_billion": 64.61,
+   "cik": 756894,
+   "fiscal_start": 1,
+   "currency": "USD",
+   "scope": "전사 연결 · 금·구리",
+   "profit_calculated": true,
+   "profit_formula": "세전이익 − 순금융손익(금융비용 순액을 가산). 지분법·처분·손상 등은 공시 분류를 유지한 금융손익 전 계산 손익입니다.",
+   "note": "구 Barrick Gold입니다. 조정 EBITDA 대신 세전이익에서 순금융손익을 제거한 계산 영업손익을 표시합니다. 지분법 광산 이익 등이 포함될 수 있어 미국 GAAP 영업이익과 정의가 다릅니다. CAPEX는 유형자산 취득 현금지출입니다.",
+   "mix": {
+    "period": "FY2025",
+    "basis": "연결 매출 · USD 백만 · Note 6",
+    "note": "금·구리 매출에는 잠정 가격 조정이 포함됩니다. 기타는 금·구리 광산에서 나온 부산물 매출입니다.",
+    "denominator": 16956,
+    "parts": [
+     {
+      "key": "gold",
+      "label": "금",
+      "amount": 15147,
+      "percent": 89.3312101910828
+     },
+     {
+      "key": "copper",
+      "label": "구리",
+      "amount": 1475,
+      "percent": 8.698985609813635
+     },
+     {
+      "key": "other",
+      "label": "기타 부산물",
+      "amount": 334,
+      "percent": 1.9698041991035622
+     }
+    ],
+    "sources": [
+     {
+      "url": "https://s25.q4cdn.com/322814910/files/doc_financial/annual_reports/2025/Barrick_Annual_Report_2025.pdf#page=104",
+      "label": "연차보고서 p.104"
+     }
+    ]
+   }
+  }
+ ],
+ "ero": {
+  "id": "ero",
+  "name": "Ero Copper",
+  "ticker": "ERO · NYSE / TSX",
+  "cik": 1853860,
+  "fiscal_start": 1,
+  "currency": "USD",
+  "scope": "전사 연결 · 브라질 구리·금 광산",
+  "note": "2016년 설립, 2017년 TSX·2021년 NYSE 상장 회사입니다. 공식 원문에서 확보한 기간부터 표시하며 설립 전 2014년 자료를 만들지 않습니다. 매출·영업손익은 구리·금 전체 연결 기준이고 CAPEX는 광물자산·유형자산 현금취득으로 별도 탐사·평가자산 지출은 제외합니다."
+ }
+}

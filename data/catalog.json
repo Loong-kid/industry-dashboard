@@ -858,7 +858,25 @@
         {
           "id": "copper",
           "name": "구리",
-          "description": "구리 가격·세계 전체 및 국가별 생산량·매장량·거래소 재고·건설 수요 지표를 함께 봅니다. USGS 세계 전체와 KOMIS 공개 국가 합계를 구분해서 표시합니다."
+          "description": "구리 가격·세계 전체 및 국가별 생산량·매장량·거래소 재고·건설 수요 지표를 함께 봅니다. USGS 세계 전체와 KOMIS 공개 국가 합계를 구분해서 표시합니다.",
+          "views": [
+            {
+              "id": "indicators",
+              "name": "시장 지표",
+              "description": "구리 가격·거래소 재고·양산 프리미엄·공급과 수요를 모아 봅니다."
+            },
+            {
+              "id": "miners",
+              "name": "구리 광산기업",
+              "description": "Southern Copper·Freeport-McMoRan과 Ero Copper의 전사 실적입니다. 구리 외 금·몰리브덴 등 부산물도 포함합니다."
+            }
+          ]
+        },
+        {
+          "id": "mining",
+          "name": "광산기업",
+          "default_range": "all",
+          "description": "글로벌 상장 광산기업 시가총액 상위 10개사 · 석탄 주력사 제외. 전사 연결 매출·영업손익·현금 CAPEX를 공시 통화와 주기로 비교합니다."
         },
         {
           "id": "rare_earth",
@@ -1535,7 +1553,10 @@
           "tab": "copper",
           "type": "table",
           "table_kind": "copper_mines",
-          "indicators": ["comm_copper_mines"]
+          "indicators": [
+            "comm_copper_mines"
+          ],
+          "view": "miners"
         },
         {
           "title": "구리",
@@ -1547,14 +1568,16 @@
           ],
           "minerals": [
             "MNRL0008"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "3대 거래소 합산 재고",
           "tab": "copper",
           "indicators": [
             "comm_copper_total_inventory"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "구리 수급 · 거래소 재고",
@@ -1565,12 +1588,17 @@
             "comm_copper_comex_inventory",
             "comm_copper_lme_inventory",
             "comm_copper_lme_warrant_composition"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "정광 수급 · 제련수수료 TC",
           "tab": "copper",
-          "indicators": ["comm_copper_concentrate_tc_mysteel", "comm_copper_concentrate_tc"]
+          "indicators": [
+            "comm_copper_concentrate_tc_mysteel",
+            "comm_copper_concentrate_tc"
+          ],
+          "view": "indicators"
         },
         {
           "title": "중국 수입 수요 · 양산 프리미엄",
@@ -1580,7 +1608,8 @@
             "comm_copper_yangshan_bill_of_lading",
             "comm_copper_yangshan_smm",
             "comm_copper_yangshan_delivery_gap"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "구리 기간구조",
@@ -1588,7 +1617,8 @@
           "indicators": [
             "comm_copper_curve",
             "comm_copper_spread"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "중국 부동산·건설",
@@ -1599,7 +1629,8 @@
             "comm_copper_cn_sales",
             "comm_copper_cn_investment",
             "comm_copper_cn_construction_pmi"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "미국 주택·건설",
@@ -1607,7 +1638,8 @@
           "indicators": [
             "comm_copper_us_housing",
             "comm_copper_us_construction_spending"
-          ]
+          ],
+          "view": "indicators"
         },
         {
           "title": "구리 기업 지표",
@@ -1634,7 +1666,8 @@
                 "comm_company_fcx_production"
               ]
             }
-          ]
+          ],
+          "view": "miners"
         },
         {
           "title": "희토류 전체 · 산화물 환산",
@@ -1777,6 +1810,137 @@
           "indicators": [
             "comm_korea_mineral_trade"
           ]
+        },
+        {
+          "title": "Ero Copper · 브라질 구리·금",
+          "tab": "copper",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_ero_revenue",
+            "company_mining_ero_profit",
+            "company_mining_ero_capex"
+          ],
+          "anchor": "mining-ero",
+          "view": "miners"
+        },
+        {
+          "title": "광산기업 순위와 매출 구성",
+          "tab": "mining",
+          "table_kind": "mining_companies",
+          "indicators": [
+            "mining_universe"
+          ],
+          "type": "table"
+        },
+        {
+          "title": "01 · BHP",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_bhp_revenue",
+            "company_mining_bhp_profit",
+            "company_mining_bhp_capex"
+          ],
+          "anchor": "mining-bhp"
+        },
+        {
+          "title": "02 · Southern Copper",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_scco_revenue",
+            "company_mining_scco_profit",
+            "company_mining_scco_capex"
+          ],
+          "anchor": "mining-scco"
+        },
+        {
+          "title": "03 · Rio Tinto",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_rio_revenue",
+            "company_mining_rio_profit",
+            "company_mining_rio_capex"
+          ],
+          "anchor": "mining-rio"
+        },
+        {
+          "title": "04 · Newmont",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_nem_revenue",
+            "company_mining_nem_profit",
+            "company_mining_nem_capex"
+          ],
+          "anchor": "mining-nem"
+        },
+        {
+          "title": "05 · Zijin Mining",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_zijin_revenue",
+            "company_mining_zijin_profit",
+            "company_mining_zijin_capex"
+          ],
+          "anchor": "mining-zijin"
+        },
+        {
+          "title": "06 · Freeport-McMoRan",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_fcx_revenue",
+            "company_mining_fcx_profit",
+            "company_mining_fcx_capex"
+          ],
+          "anchor": "mining-fcx"
+        },
+        {
+          "title": "07 · Grupo México",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_grupo_revenue",
+            "company_mining_grupo_profit",
+            "company_mining_grupo_capex"
+          ],
+          "anchor": "mining-grupo"
+        },
+        {
+          "title": "08 · Agnico Eagle",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_aem_revenue",
+            "company_mining_aem_profit",
+            "company_mining_aem_capex"
+          ],
+          "anchor": "mining-aem"
+        },
+        {
+          "title": "09 · Glencore",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_glen_revenue",
+            "company_mining_glen_profit",
+            "company_mining_glen_capex"
+          ],
+          "anchor": "mining-glen"
+        },
+        {
+          "title": "10 · Barrick Mining",
+          "tab": "mining",
+          "layout": "financial",
+          "indicators": [
+            "company_mining_barrick_revenue",
+            "company_mining_barrick_profit",
+            "company_mining_barrick_capex"
+          ],
+          "anchor": "mining-barrick"
         }
       ]
     },

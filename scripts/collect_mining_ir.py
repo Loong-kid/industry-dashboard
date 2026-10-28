@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 import requests
+import time
 
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/mining'
@@ -15,9 +16,16 @@ def collect():
         try:
             path=CACHE/name
             if not path.exists():
-                r=requests.get(meta['url'],timeout=60);r.raise_for_status()
-                if not r.content.startswith(b'%PDF'):raise ValueError('Original PDF unavailable')
-                path.write_bytes(r.content)
+                started=time.monotonic();chunks=[];size=0
+                with requests.get(meta['url'],timeout=(15,30),stream=True) as r:
+                    r.raise_for_status()
+                    for chunk in r.iter_content(65536):
+                        size+=len(chunk)
+                        if time.monotonic()-started>180 or size>80_000_000:raise ValueError('PDF download limit')
+                        chunks.append(chunk)
+                content=b''.join(chunks)
+                if not content.startswith(b'%PDF'):raise ValueError('Original PDF unavailable')
+                path.write_bytes(content)
             return name,dict(ok=True)
         except Exception as error:
             print(name,'IR source unavailable:',type(error).__name__,flush=True)

@@ -1,0 +1,754 @@
+{
+ "id": "company_mining_rio_profit",
+ "name": "Rio Tinto · 영업이익",
+ "unit": "USD 백만",
+ "source": "Rio Tinto · 공식 재무제표",
+ "fetched": "2026-10-28",
+ "description": "전사 연결 · 철광석·알루미늄·구리·리튬·기타. 듀얼 상장 그룹을 한 기업으로 취급합니다. 반기·연간 재무 공시를 사용하며 분기 생산량으로 분기 매출을 추정하지 않습니다. CAPEX는 유형·무형 및 기타 비유동자산 취득 현금지출이라는 회사 공시 항목입니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+ "default_series": [
+  "공시 영업손익"
+ ],
+ "span_gaps": false,
+ "company_kpi": true,
+ "table_limit": 100,
+ "series_views": {
+  "half": {
+   "series": {
+    "공시 영업손익": [
+     [
+      "2017-06-30",
+      6123.0
+     ],
+     [
+      "2017-12-31",
+      8012.0
+     ],
+     [
+      "2018-06-30",
+      6458.0
+     ],
+     [
+      "2018-12-31",
+      11229.0
+     ],
+     [
+      "2019-06-30",
+      5276.0
+     ],
+     [
+      "2019-12-31",
+      6190.0
+     ],
+     [
+      "2020-06-30",
+      5850.0
+     ],
+     [
+      "2020-12-31",
+      10979.0
+     ],
+     [
+      "2021-06-30",
+      17437.0
+     ],
+     [
+      "2021-12-31",
+      12380.0
+     ],
+     [
+      "2022-06-30",
+      12206.0
+     ],
+     [
+      "2022-12-31",
+      7727.0
+     ],
+     [
+      "2023-06-30",
+      7247.0
+     ],
+     [
+      "2023-12-31",
+      7576.0
+     ],
+     [
+      "2024-06-30",
+      8259.0
+     ],
+     [
+      "2024-12-31",
+      7394.0
+     ],
+     [
+      "2025-06-30",
+      6971.0
+     ],
+     [
+      "2025-12-31",
+      7965.0
+     ]
+    ]
+   },
+   "period_labels": {
+    "2017-06-30": "FY2017 H1",
+    "2017-12-31": "FY2017 H2",
+    "2018-06-30": "FY2018 H1",
+    "2018-12-31": "FY2018 H2",
+    "2019-06-30": "FY2019 H1",
+    "2019-12-31": "FY2019 H2",
+    "2020-06-30": "FY2020 H1",
+    "2020-12-31": "FY2020 H2",
+    "2021-06-30": "FY2021 H1",
+    "2021-12-31": "FY2021 H2",
+    "2022-06-30": "FY2022 H1",
+    "2022-12-31": "FY2022 H2",
+    "2023-06-30": "FY2023 H1",
+    "2023-12-31": "FY2023 H2",
+    "2024-06-30": "FY2024 H1",
+    "2024-12-31": "FY2024 H2",
+    "2025-06-30": "FY2025 H1",
+    "2025-12-31": "FY2025 H2"
+   },
+   "point_sources": {
+    "2017-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000095012318007218/0000950123-18-007218-index.html",
+     "label": "FY2017 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000095012318007218/0000950123-18-007218-index.html",
+       "label": "2017-01-01 ~ 2017-06-30"
+      }
+     ]
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+     "label": "FY2017 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+       "label": "2017-01-01 ~ 2017-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000095012318007218/0000950123-18-007218-index.html",
+       "label": "2017-01-01 ~ 2017-06-30"
+      }
+     ]
+    },
+    "2018-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828019009687/0001628280-19-009687-index.html",
+     "label": "FY2018 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828019009687/0001628280-19-009687-index.html",
+       "label": "2018-01-01 ~ 2018-06-30"
+      }
+     ]
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+     "label": "FY2018 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+       "label": "2018-01-01 ~ 2018-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828019009687/0001628280-19-009687-index.html",
+       "label": "2018-01-01 ~ 2018-06-30"
+      }
+     ]
+    },
+    "2019-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020010760/0001628280-20-010760-index.html",
+     "label": "FY2019 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020010760/0001628280-20-010760-index.html",
+       "label": "2019-01-01 ~ 2019-06-30"
+      }
+     ]
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2019 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+       "label": "2019-01-01 ~ 2019-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020010760/0001628280-20-010760-index.html",
+       "label": "2019-01-01 ~ 2019-06-30"
+      }
+     ]
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021014608/0001628280-21-014608-index.html",
+     "label": "FY2020 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021014608/0001628280-21-014608-index.html",
+       "label": "2020-01-01 ~ 2020-06-30"
+      }
+     ]
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2020 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+       "label": "2020-01-01 ~ 2020-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021014608/0001628280-21-014608-index.html",
+       "label": "2020-01-01 ~ 2020-06-30"
+      }
+     ]
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828022019482/0001628280-22-019482-index.html",
+     "label": "FY2021 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828022019482/0001628280-22-019482-index.html",
+       "label": "2021-01-01 ~ 2021-06-30"
+      }
+     ]
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+     "label": "FY2021 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+       "label": "2021-01-01 ~ 2021-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828022019482/0001628280-22-019482-index.html",
+       "label": "2021-01-01 ~ 2021-06-30"
+      }
+     ]
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023025620/0001628280-23-025620-index.html",
+     "label": "FY2022 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023025620/0001628280-23-025620-index.html",
+       "label": "2022-01-01 ~ 2022-06-30"
+      }
+     ]
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+     "label": "FY2022 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+       "label": "2022-01-01 ~ 2022-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023025620/0001628280-23-025620-index.html",
+       "label": "2022-01-01 ~ 2022-06-30"
+      }
+     ]
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024033611/0001628280-24-033611-index.html",
+     "label": "FY2023 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024033611/0001628280-24-033611-index.html",
+       "label": "2023-01-01 ~ 2023-06-30"
+      }
+     ]
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2023 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "2023-01-01 ~ 2023-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024033611/0001628280-24-033611-index.html",
+       "label": "2023-01-01 ~ 2023-06-30"
+      }
+     ]
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+     "label": "FY2024 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+       "label": "2024-01-01 ~ 2024-06-30"
+      }
+     ]
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2024 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+       "label": "2024-01-01 ~ 2024-06-30"
+      }
+     ]
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+     "label": "FY2025 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+       "label": "2025-01-01 ~ 2025-06-30"
+      }
+     ]
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2025 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025036552/0001628280-25-036552-index.html",
+       "label": "2025-01-01 ~ 2025-06-30"
+      }
+     ]
+    }
+   },
+   "description": "전사 연결 · 철광석·알루미늄·구리·리튬·기타. 듀얼 상장 그룹을 한 기업으로 취급합니다. 반기·연간 재무 공시를 사용하며 분기 생산량으로 분기 매출을 추정하지 않습니다. CAPEX는 유형·무형 및 기타 비유동자산 취득 현금지출이라는 회사 공시 항목입니다. 하반기는 동일 회계연도의 연간에서 상반기를 차감한 값입니다. 분기 추정은 하지 않습니다.",
+   "label": "반기",
+   "frequency": "semiannual",
+   "frequency_label": "반기 · 회사 공시",
+   "quarter_labels": false,
+   "year_labels": false,
+   "annual_axis": false,
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  },
+  "annual": {
+   "series": {
+    "공시 영업손익": [
+     [
+      "2015-12-31",
+      3615.0
+     ],
+     [
+      "2016-12-31",
+      6795.0
+     ],
+     [
+      "2017-12-31",
+      14135.0
+     ],
+     [
+      "2018-12-31",
+      17687.0
+     ],
+     [
+      "2019-12-31",
+      11466.0
+     ],
+     [
+      "2020-12-31",
+      16829.0
+     ],
+     [
+      "2021-12-31",
+      29817.0
+     ],
+     [
+      "2022-12-31",
+      19933.0
+     ],
+     [
+      "2023-12-31",
+      14823.0
+     ],
+     [
+      "2024-12-31",
+      15653.0
+     ],
+     [
+      "2025-12-31",
+      14936.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000156459018007060/0001564590-18-007060-index.html",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000156459018007060/0001564590-18-007060-index.html",
+       "label": "FY2015"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000119312519062147/0001193125-19-062147-index.html",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000119312519062147/0001193125-19-062147-index.html",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+   "updated": "2025-12-31",
+   "description": "전사 연결 · 철광석·알루미늄·구리·리튬·기타. 듀얼 상장 그룹을 한 기업으로 취급합니다. 반기·연간 재무 공시를 사용하며 분기 생산량으로 분기 매출을 추정하지 않습니다. CAPEX는 유형·무형 및 기타 비유동자산 취득 현금지출이라는 회사 공시 항목입니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "default_view": "annual",
+ "basis_details": [
+  {
+   "label": "연결 범위·산식",
+   "value": "전사 연결 · 철광석·알루미늄·구리·리튬·기타. 듀얼 상장 그룹을 한 기업으로 취급합니다. 반기·연간 재무 공시를 사용하며 분기 생산량으로 분기 매출을 추정하지 않습니다. CAPEX는 유형·무형 및 기타 비유동자산 취득 현금지출이라는 회사 공시 항목입니다."
+  },
+  {
+   "label": "공시 주기",
+   "value": "연간·분기·반기는 확보된 원문만 표시합니다. 누적 금액의 분기는 같은 회계연도의 직전 누적을 차감합니다. 미확인 값은 0으로 채우지 않습니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-28 · 정상"
+  }
+ ],
+ "series": {
+  "공시 영업손익": [
+   [
+    "2015-12-31",
+    3615.0
+   ],
+   [
+    "2016-12-31",
+    6795.0
+   ],
+   [
+    "2017-12-31",
+    14135.0
+   ],
+   [
+    "2018-12-31",
+    17687.0
+   ],
+   [
+    "2019-12-31",
+    11466.0
+   ],
+   [
+    "2020-12-31",
+    16829.0
+   ],
+   [
+    "2021-12-31",
+    29817.0
+   ],
+   [
+    "2022-12-31",
+    19933.0
+   ],
+   [
+    "2023-12-31",
+    14823.0
+   ],
+   [
+    "2024-12-31",
+    15653.0
+   ],
+   [
+    "2025-12-31",
+    14936.0
+   ]
+  ]
+ },
+ "point_sources": {
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000156459018007060/0001564590-18-007060-index.html",
+   "label": "FY2015",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000156459018007060/0001564590-18-007060-index.html",
+     "label": "FY2015"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000119312519062147/0001193125-19-062147-index.html",
+   "label": "FY2016",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000119312519062147/0001193125-19-062147-index.html",
+     "label": "FY2016"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+   "label": "FY2017",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828020002536/0001628280-20-002536-index.html",
+     "label": "FY2017"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+   "label": "FY2018",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828021003713/0001628280-21-003713-index.html",
+     "label": "FY2018"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+   "label": "FY2019",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2019"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+   "label": "FY2020",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828023009794/0001628280-23-009794-index.html",
+     "label": "FY2020"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+   "label": "FY2021",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828024006512/0001628280-24-006512-index.html",
+     "label": "FY2021"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+   "label": "FY2022",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828025006642/0001628280-25-006642-index.html",
+     "label": "FY2022"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+   "label": "FY2023",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2023"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+   "label": "FY2024",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2024"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+   "label": "FY2025",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+     "label": "FY2025"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "period_labels": {
+  "2015-12-31": "FY2015",
+  "2016-12-31": "FY2016",
+  "2017-12-31": "FY2017",
+  "2018-12-31": "FY2018",
+  "2019-12-31": "FY2019",
+  "2020-12-31": "FY2020",
+  "2021-12-31": "FY2021",
+  "2022-12-31": "FY2022",
+  "2023-12-31": "FY2023",
+  "2024-12-31": "FY2024",
+  "2025-12-31": "FY2025"
+ },
+ "source_url": "https://www.sec.gov/Archives/edgar/data/863064/000162828026009531/0001628280-26-009531-index.html",
+ "updated": "2025-12-31",
+ "frequency": "yearly",
+ "frequency_label": "연간 · 회사 회계연도",
+ "quarter_labels": false,
+ "year_labels": true,
+ "annual_axis": true,
+ "comparison_dates": {},
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": false,
+ "change_mode": "none"
+}

@@ -1,0 +1,529 @@
+{
+ "id": "company_mining_glen_profit",
+ "name": "Glencore · 영업이익 (계산)",
+ "unit": "USD 백만",
+ "source": "Glencore · 공식 재무제표",
+ "fetched": "2026-10-28",
+ "description": "전사 연결 · 금속·광물·에너지 · 상품 거래 포함. 자체 광산 생산뿐 아니라 원유·석유제품 등 상품 거래 매출도 포함합니다. 영업손익은 세전이익+이자비용−이자수익으로 계산하며 조정 EBIT·EBITDA를 사용하지 않습니다. CAPEX는 유형자산 취득 현금지출입니다. 연도별 원 공시와 이후 농산물 사업 등 중단영업 재작성 수치의 범위 차이에 유의해야 합니다. 계산식: 세전이익 + 이자비용 − 이자수익. 손상·처분·지분법 손익 등은 공시 분류를 유지하며 조정 EBIT·EBITDA와 다릅니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+ "default_series": [
+  "계산 영업손익"
+ ],
+ "span_gaps": false,
+ "company_kpi": true,
+ "table_limit": 100,
+ "series_views": {
+  "half": {
+   "series": {
+    "계산 영업손익": [
+     [
+      "2025-06-30",
+      190.0
+     ],
+     [
+      "2025-12-31",
+      2860.0
+     ],
+     [
+      "2026-06-30",
+      6244.0
+     ]
+    ]
+   },
+   "period_labels": {
+    "2025-06-30": "FY2025 H1",
+    "2025-12-31": "FY2025 H2",
+    "2026-06-30": "FY2026 H1"
+   },
+   "point_sources": {
+    "2025-06-30": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+     "label": "FY2025 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+       "label": "2025-01-01 ~ 2025-06-30"
+      }
+     ]
+    },
+    "2025-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+     "label": "FY2025 H2",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+       "label": "2025-01-01 ~ 2025-06-30"
+      }
+     ]
+    },
+    "2026-06-30": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+     "label": "FY2026 H1",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+       "label": "2026-01-01 ~ 2026-06-30"
+      }
+     ]
+    }
+   },
+   "description": "전사 연결 · 금속·광물·에너지 · 상품 거래 포함. 자체 광산 생산뿐 아니라 원유·석유제품 등 상품 거래 매출도 포함합니다. 영업손익은 세전이익+이자비용−이자수익으로 계산하며 조정 EBIT·EBITDA를 사용하지 않습니다. CAPEX는 유형자산 취득 현금지출입니다. 연도별 원 공시와 이후 농산물 사업 등 중단영업 재작성 수치의 범위 차이에 유의해야 합니다. 계산식: 세전이익 + 이자비용 − 이자수익. 손상·처분·지분법 손익 등은 공시 분류를 유지하며 조정 EBIT·EBITDA와 다릅니다. 하반기는 동일 회계연도의 연간에서 상반기를 차감한 값입니다. 분기 추정은 하지 않습니다.",
+   "label": "반기",
+   "frequency": "semiannual",
+   "frequency_label": "반기 · 회사 공시",
+   "quarter_labels": false,
+   "year_labels": false,
+   "annual_axis": false,
+   "updated": "2026-06-30",
+   "source_url": "https://www.glencore.com/.rest/api/v1/documents/static/98cf0f2a-ede7-4ced-9539-061198c3b6be/GLEN-2026-Half-Year-Report.pdf",
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  },
+  "annual": {
+   "series": {
+    "계산 영업손익": [
+     [
+      "2014-12-31",
+      5724.0
+     ],
+     [
+      "2015-12-31",
+      -6622.0
+     ],
+     [
+      "2016-12-31",
+      984.0
+     ],
+     [
+      "2017-12-31",
+      8372.0
+     ],
+     [
+      "2018-12-31",
+      6193.0
+     ],
+     [
+      "2019-12-31",
+      825.0
+     ],
+     [
+      "2020-12-31",
+      -3663.0
+     ],
+     [
+      "2021-12-31",
+      8515.0
+     ],
+     [
+      "2022-12-31",
+      24215.0
+     ],
+     [
+      "2023-12-31",
+      7317.0
+     ],
+     [
+      "2024-12-31",
+      1336.0
+     ],
+     [
+      "2025-12-31",
+      3050.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/bcc3565e83ebfba3196edf8ce30e6640/GLEN-2014-Annual-Report.pdf",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/bcc3565e83ebfba3196edf8ce30e6640/GLEN-2014-Annual-Report.pdf",
+       "label": "FY2014"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/5f125eeeeccd6ecf6288f4e8fe8a4bd5/GLEN-2015-Annual-Report.pdf",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/5f125eeeeccd6ecf6288f4e8fe8a4bd5/GLEN-2015-Annual-Report.pdf",
+       "label": "FY2015"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/d523912ae57caadd08fb3384fc545729/GLEN-2016-Annual-Report.pdf",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/d523912ae57caadd08fb3384fc545729/GLEN-2016-Annual-Report.pdf",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/94c45f6e64e01219136c6965f953a058/glen-2017-annual-report.pdf",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/94c45f6e64e01219136c6965f953a058/glen-2017-annual-report.pdf",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/86c793f0e276ae24d427d194c0d62b24/glen-2018-annual-report--.pdf",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/86c793f0e276ae24d427d194c0d62b24/glen-2018-annual-report--.pdf",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/5a08fe1942f92df7f2301ac3681e23aa/glen-2019-annual-report-interactive.pdf",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/5a08fe1942f92df7f2301ac3681e23aa/glen-2019-annual-report-interactive.pdf",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/3505497f3cb94b24f0c79f5ba32b293b/Glencore_AR20_Interactive+%281%29.pdf",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/3505497f3cb94b24f0c79f5ba32b293b/Glencore_AR20_Interactive+%281%29.pdf",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/ce4fec31fc81d6049d076b15db35d45d/GLEN-2021-annual-report-.pdf",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/ce4fec31fc81d6049d076b15db35d45d/GLEN-2021-annual-report-.pdf",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/ded10fa92974aa388a43aa9f86f483e9/GLEN-2022-Annual-Report.pdf",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/ded10fa92974aa388a43aa9f86f483e9/GLEN-2022-Annual-Report.pdf",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/d09d8212-4a9f-4034-b2d4-49152e5a0aff/GLEN-2023-Annual-Report.pdf",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/d09d8212-4a9f-4034-b2d4-49152e5a0aff/GLEN-2023-Annual-Report.pdf",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/7a4295e4-3674-45e9-94c4-7d7fb285faff/GLEN-2024-Annual-Report.pdf",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/7a4295e4-3674-45e9-94c4-7d7fb285faff/GLEN-2024-Annual-Report.pdf",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+   "updated": "2025-12-31",
+   "description": "전사 연결 · 금속·광물·에너지 · 상품 거래 포함. 자체 광산 생산뿐 아니라 원유·석유제품 등 상품 거래 매출도 포함합니다. 영업손익은 세전이익+이자비용−이자수익으로 계산하며 조정 EBIT·EBITDA를 사용하지 않습니다. CAPEX는 유형자산 취득 현금지출입니다. 연도별 원 공시와 이후 농산물 사업 등 중단영업 재작성 수치의 범위 차이에 유의해야 합니다. 계산식: 세전이익 + 이자비용 − 이자수익. 손상·처분·지분법 손익 등은 공시 분류를 유지하며 조정 EBIT·EBITDA와 다릅니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "default_view": "annual",
+ "basis_details": [
+  {
+   "label": "연결 범위·산식",
+   "value": "전사 연결 · 금속·광물·에너지 · 상품 거래 포함. 자체 광산 생산뿐 아니라 원유·석유제품 등 상품 거래 매출도 포함합니다. 영업손익은 세전이익+이자비용−이자수익으로 계산하며 조정 EBIT·EBITDA를 사용하지 않습니다. CAPEX는 유형자산 취득 현금지출입니다. 연도별 원 공시와 이후 농산물 사업 등 중단영업 재작성 수치의 범위 차이에 유의해야 합니다. 계산식: 세전이익 + 이자비용 − 이자수익. 손상·처분·지분법 손익 등은 공시 분류를 유지하며 조정 EBIT·EBITDA와 다릅니다."
+  },
+  {
+   "label": "공시 주기",
+   "value": "연간·분기·반기는 확보된 원문만 표시합니다. 누적 금액의 분기는 같은 회계연도의 직전 누적을 차감합니다. 미확인 값은 0으로 채우지 않습니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-28 · 정상"
+  }
+ ],
+ "series": {
+  "계산 영업손익": [
+   [
+    "2014-12-31",
+    5724.0
+   ],
+   [
+    "2015-12-31",
+    -6622.0
+   ],
+   [
+    "2016-12-31",
+    984.0
+   ],
+   [
+    "2017-12-31",
+    8372.0
+   ],
+   [
+    "2018-12-31",
+    6193.0
+   ],
+   [
+    "2019-12-31",
+    825.0
+   ],
+   [
+    "2020-12-31",
+    -3663.0
+   ],
+   [
+    "2021-12-31",
+    8515.0
+   ],
+   [
+    "2022-12-31",
+    24215.0
+   ],
+   [
+    "2023-12-31",
+    7317.0
+   ],
+   [
+    "2024-12-31",
+    1336.0
+   ],
+   [
+    "2025-12-31",
+    3050.0
+   ]
+  ]
+ },
+ "point_sources": {
+  "2014-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/bcc3565e83ebfba3196edf8ce30e6640/GLEN-2014-Annual-Report.pdf",
+   "label": "FY2014",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/bcc3565e83ebfba3196edf8ce30e6640/GLEN-2014-Annual-Report.pdf",
+     "label": "FY2014"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/5f125eeeeccd6ecf6288f4e8fe8a4bd5/GLEN-2015-Annual-Report.pdf",
+   "label": "FY2015",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/5f125eeeeccd6ecf6288f4e8fe8a4bd5/GLEN-2015-Annual-Report.pdf",
+     "label": "FY2015"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/d523912ae57caadd08fb3384fc545729/GLEN-2016-Annual-Report.pdf",
+   "label": "FY2016",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/d523912ae57caadd08fb3384fc545729/GLEN-2016-Annual-Report.pdf",
+     "label": "FY2016"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/94c45f6e64e01219136c6965f953a058/glen-2017-annual-report.pdf",
+   "label": "FY2017",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/94c45f6e64e01219136c6965f953a058/glen-2017-annual-report.pdf",
+     "label": "FY2017"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/86c793f0e276ae24d427d194c0d62b24/glen-2018-annual-report--.pdf",
+   "label": "FY2018",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/86c793f0e276ae24d427d194c0d62b24/glen-2018-annual-report--.pdf",
+     "label": "FY2018"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/5a08fe1942f92df7f2301ac3681e23aa/glen-2019-annual-report-interactive.pdf",
+   "label": "FY2019",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/5a08fe1942f92df7f2301ac3681e23aa/glen-2019-annual-report-interactive.pdf",
+     "label": "FY2019"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/3505497f3cb94b24f0c79f5ba32b293b/Glencore_AR20_Interactive+%281%29.pdf",
+   "label": "FY2020",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/3505497f3cb94b24f0c79f5ba32b293b/Glencore_AR20_Interactive+%281%29.pdf",
+     "label": "FY2020"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/ce4fec31fc81d6049d076b15db35d45d/GLEN-2021-annual-report-.pdf",
+   "label": "FY2021",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/ce4fec31fc81d6049d076b15db35d45d/GLEN-2021-annual-report-.pdf",
+     "label": "FY2021"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/ded10fa92974aa388a43aa9f86f483e9/GLEN-2022-Annual-Report.pdf",
+   "label": "FY2022",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/ded10fa92974aa388a43aa9f86f483e9/GLEN-2022-Annual-Report.pdf",
+     "label": "FY2022"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/static/d09d8212-4a9f-4034-b2d4-49152e5a0aff/GLEN-2023-Annual-Report.pdf",
+   "label": "FY2023",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/d09d8212-4a9f-4034-b2d4-49152e5a0aff/GLEN-2023-Annual-Report.pdf",
+     "label": "FY2023"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/static/7a4295e4-3674-45e9-94c4-7d7fb285faff/GLEN-2024-Annual-Report.pdf",
+   "label": "FY2024",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/7a4295e4-3674-45e9-94c4-7d7fb285faff/GLEN-2024-Annual-Report.pdf",
+     "label": "FY2024"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+   "label": "FY2025",
+   "supporting_sources": [
+    {
+     "url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+     "label": "FY2025"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "period_labels": {
+  "2014-12-31": "FY2014",
+  "2015-12-31": "FY2015",
+  "2016-12-31": "FY2016",
+  "2017-12-31": "FY2017",
+  "2018-12-31": "FY2018",
+  "2019-12-31": "FY2019",
+  "2020-12-31": "FY2020",
+  "2021-12-31": "FY2021",
+  "2022-12-31": "FY2022",
+  "2023-12-31": "FY2023",
+  "2024-12-31": "FY2024",
+  "2025-12-31": "FY2025"
+ },
+ "source_url": "https://www.glencore.com/.rest/api/v1/documents/static/9b103e11-72e7-40bf-ae7c-eabe57361522/GLEN-2025-Annual-Report.pdf",
+ "updated": "2025-12-31",
+ "frequency": "yearly",
+ "frequency_label": "연간 · 회사 회계연도",
+ "quarter_labels": false,
+ "year_labels": true,
+ "annual_axis": true,
+ "comparison_dates": {},
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": false,
+ "change_mode": "none"
+}

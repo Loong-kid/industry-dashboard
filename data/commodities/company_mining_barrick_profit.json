@@ -1,0 +1,695 @@
+{
+ "id": "company_mining_barrick_profit",
+ "name": "Barrick Mining · 영업이익 (계산)",
+ "unit": "USD 백만",
+ "frequency": "yearly",
+ "frequency_label": "연간 · 회사 회계연도",
+ "quarter_labels": false,
+ "period_labels": {
+  "2016-12-31": "FY2016",
+  "2017-12-31": "FY2017",
+  "2018-12-31": "FY2018",
+  "2019-12-31": "FY2019",
+  "2020-12-31": "FY2020",
+  "2021-12-31": "FY2021",
+  "2022-12-31": "FY2022",
+  "2023-12-31": "FY2023",
+  "2024-12-31": "FY2024",
+  "2025-12-31": "FY2025"
+ },
+ "comparison_dates": {},
+ "updated": "2025-12-31",
+ "fetched": "2026-10-28",
+ "source": "Barrick Mining · 공식 재무제표",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+ "description": "전사 연결 · 금·구리. 구 Barrick Gold입니다. 조정 EBITDA 대신 세전이익에서 순금융손익을 제거한 계산 영업손익을 표시합니다. 지분법 광산 이익 등이 포함될 수 있어 미국 GAAP 영업이익과 정의가 다릅니다. CAPEX는 유형자산 취득 현금지출입니다. 계산식: 세전이익 − 순금융손익(금융비용 순액을 가산). 지분법·처분·손상 등은 공시 분류를 유지한 금융손익 전 계산 손익입니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+ "series": {
+  "계산 영업손익": [
+   [
+    "2016-12-31",
+    2553.0
+   ],
+   [
+    "2017-12-31",
+    3438.0
+   ],
+   [
+    "2018-12-31",
+    308.0
+   ],
+   [
+    "2019-12-31",
+    6826.0
+   ],
+   [
+    "2020-12-31",
+    5293.0
+   ],
+   [
+    "2021-12-31",
+    4987.0
+   ],
+   [
+    "2022-12-31",
+    1982.0
+   ],
+   [
+    "2023-12-31",
+    2644.0
+   ],
+   [
+    "2024-12-31",
+    4840.0
+   ],
+   [
+    "2025-12-31",
+    9032.0
+   ]
+  ]
+ },
+ "default_series": [
+  "계산 영업손익"
+ ],
+ "span_gaps": false,
+ "point_sources": {
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518094424/0001193125-18-094424-index.html",
+   "label": "FY2016",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518094424/0001193125-18-094424-index.html",
+     "label": "FY2016"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519083744/0001193125-19-083744-index.html",
+   "label": "FY2017",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519083744/0001193125-19-083744-index.html",
+     "label": "FY2017"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520085600/0001193125-20-085600-index.html",
+   "label": "FY2018",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520085600/0001193125-20-085600-index.html",
+     "label": "FY2018"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521086732/0001193125-21-086732-index.html",
+   "label": "FY2019",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521086732/0001193125-21-086732-index.html",
+     "label": "FY2019"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522078905/0001193125-22-078905-index.html",
+   "label": "FY2020",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522078905/0001193125-22-078905-index.html",
+     "label": "FY2020"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523073212/0001193125-23-073212-index.html",
+   "label": "FY2021",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523073212/0001193125-23-073212-index.html",
+     "label": "FY2021"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524068583/0001193125-24-068583-index.html",
+   "label": "FY2022",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524068583/0001193125-24-068583-index.html",
+     "label": "FY2022"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525054500/0001193125-25-054500-index.html",
+   "label": "FY2023",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525054500/0001193125-25-054500-index.html",
+     "label": "FY2023"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+   "label": "FY2024",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+     "label": "FY2024"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+   "label": "FY2025",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+     "label": "FY2025"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "table_limit": 100,
+ "company_kpi": true,
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": false,
+ "basis_details": [
+  {
+   "label": "연결 범위·산식",
+   "value": "전사 연결 · 금·구리. 구 Barrick Gold입니다. 조정 EBITDA 대신 세전이익에서 순금융손익을 제거한 계산 영업손익을 표시합니다. 지분법 광산 이익 등이 포함될 수 있어 미국 GAAP 영업이익과 정의가 다릅니다. CAPEX는 유형자산 취득 현금지출입니다. 계산식: 세전이익 − 순금융손익(금융비용 순액을 가산). 지분법·처분·손상 등은 공시 분류를 유지한 금융손익 전 계산 손익입니다."
+  },
+  {
+   "label": "공시 주기",
+   "value": "연간·분기·반기는 확보된 원문만 표시합니다. 누적 금액의 분기는 같은 회계연도의 직전 누적을 차감합니다. 미확인 값은 0으로 채우지 않습니다."
+  },
+  {
+   "label": "갱신 확인",
+   "value": "2026-10-28 · 정상"
+  }
+ ],
+ "default_view": "annual",
+ "series_views": {
+  "quarter": {
+   "series": {
+    "계산 영업손익": [
+     [
+      "2017-06-30",
+      1584.0
+     ],
+     [
+      "2017-09-30",
+      null
+     ],
+     [
+      "2017-12-31",
+      null
+     ],
+     [
+      "2018-03-31",
+      null
+     ],
+     [
+      "2018-06-30",
+      176.0
+     ],
+     [
+      "2018-09-30",
+      null
+     ],
+     [
+      "2018-12-31",
+      null
+     ],
+     [
+      "2019-03-31",
+      null
+     ],
+     [
+      "2019-06-30",
+      382.0
+     ],
+     [
+      "2019-09-30",
+      null
+     ],
+     [
+      "2019-12-31",
+      null
+     ],
+     [
+      "2020-03-31",
+      null
+     ],
+     [
+      "2020-06-30",
+      962.0
+     ],
+     [
+      "2020-09-30",
+      null
+     ],
+     [
+      "2020-12-31",
+      null
+     ],
+     [
+      "2021-03-31",
+      null
+     ],
+     [
+      "2021-06-30",
+      1128.0
+     ],
+     [
+      "2021-09-30",
+      null
+     ],
+     [
+      "2021-12-31",
+      null
+     ],
+     [
+      "2022-03-31",
+      null
+     ],
+     [
+      "2022-06-30",
+      1085.0
+     ],
+     [
+      "2022-09-30",
+      null
+     ],
+     [
+      "2022-12-31",
+      null
+     ],
+     [
+      "2023-03-31",
+      null
+     ],
+     [
+      "2023-06-30",
+      810.0
+     ],
+     [
+      "2023-09-30",
+      null
+     ],
+     [
+      "2023-12-31",
+      null
+     ],
+     [
+      "2024-03-31",
+      null
+     ],
+     [
+      "2024-06-30",
+      1092.0
+     ],
+     [
+      "2024-09-30",
+      null
+     ],
+     [
+      "2024-12-31",
+      null
+     ],
+     [
+      "2025-03-31",
+      null
+     ],
+     [
+      "2025-06-30",
+      1416.0
+     ]
+    ]
+   },
+   "period_labels": {
+    "2017-06-30": "FY2017 Q2",
+    "2018-06-30": "FY2018 Q2",
+    "2019-06-30": "FY2019 Q2",
+    "2020-06-30": "FY2020 Q2",
+    "2021-06-30": "FY2021 Q2",
+    "2022-06-30": "FY2022 Q2",
+    "2023-06-30": "FY2023 Q2",
+    "2024-06-30": "FY2024 Q2",
+    "2025-06-30": "FY2025 Q2"
+   },
+   "point_sources": {
+    "2017-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518227887/0001193125-18-227887-index.html",
+     "label": "FY2017 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518227887/0001193125-18-227887-index.html",
+       "label": "2017-04-01 ~ 2017-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519218473/0001193125-19-218473-index.html",
+     "label": "FY2018 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519218473/0001193125-19-218473-index.html",
+       "label": "2018-04-01 ~ 2018-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520215351/0001193125-20-215351-index.html",
+     "label": "FY2019 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520215351/0001193125-20-215351-index.html",
+       "label": "2019-04-01 ~ 2019-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521240554/0001193125-21-240554-index.html",
+     "label": "FY2020 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521240554/0001193125-21-240554-index.html",
+       "label": "2020-04-01 ~ 2020-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522214948/0001193125-22-214948-index.html",
+     "label": "FY2021 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522214948/0001193125-22-214948-index.html",
+       "label": "2021-04-01 ~ 2021-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523206350/0001193125-23-206350-index.html",
+     "label": "FY2022 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523206350/0001193125-23-206350-index.html",
+       "label": "2022-04-01 ~ 2022-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524198723/0001193125-24-198723-index.html",
+     "label": "FY2023 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524198723/0001193125-24-198723-index.html",
+       "label": "2023-04-01 ~ 2023-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525178085/0001193125-25-178085-index.html",
+     "label": "FY2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525178085/0001193125-25-178085-index.html",
+       "label": "2024-04-01 ~ 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525178085/0001193125-25-178085-index.html",
+     "label": "FY2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525178085/0001193125-25-178085-index.html",
+       "label": "2025-04-01 ~ 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525178085/0001193125-25-178085-index.html",
+   "updated": "2025-06-30",
+   "description": "전사 연결 · 금·구리. 전사 연결 · 금·구리. 구 Barrick Gold입니다. 조정 EBITDA 대신 세전이익에서 순금융손익을 제거한 계산 영업손익을 표시합니다. 지분법 광산 이익 등이 포함될 수 있어 미국 GAAP 영업이익과 정의가 다릅니다. CAPEX는 유형자산 취득 현금지출입니다. 계산식: 세전이익 − 순금융손익(금융비용 순액을 가산). 지분법·처분·손상 등은 공시 분류를 유지한 금융손익 전 계산 손익입니다.",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · SEC 공시",
+   "quarter_labels": true,
+   "comparison_dates": {
+    "2017-06-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2018-06-30": {
+     "year_ago": "2017-06-30",
+     "quarter_ago": null
+    },
+    "2019-06-30": {
+     "year_ago": "2018-06-30",
+     "quarter_ago": null
+    },
+    "2020-06-30": {
+     "year_ago": "2019-06-30",
+     "quarter_ago": null
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": null
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": null
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": null
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": null
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": null
+    }
+   },
+   "quarterly_profit_summary": true,
+   "quarterly_revenue_summary": false,
+   "default_series": [
+    "계산 영업손익"
+   ],
+   "label": "분기",
+   "year_labels": false,
+   "annual_axis": false
+  },
+  "annual": {
+   "series": {
+    "계산 영업손익": [
+     [
+      "2016-12-31",
+      2553.0
+     ],
+     [
+      "2017-12-31",
+      3438.0
+     ],
+     [
+      "2018-12-31",
+      308.0
+     ],
+     [
+      "2019-12-31",
+      6826.0
+     ],
+     [
+      "2020-12-31",
+      5293.0
+     ],
+     [
+      "2021-12-31",
+      4987.0
+     ],
+     [
+      "2022-12-31",
+      1982.0
+     ],
+     [
+      "2023-12-31",
+      2644.0
+     ],
+     [
+      "2024-12-31",
+      4840.0
+     ],
+     [
+      "2025-12-31",
+      9032.0
+     ]
+    ]
+   },
+   "point_sources": {
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518094424/0001193125-18-094424-index.html",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312518094424/0001193125-18-094424-index.html",
+       "label": "FY2016"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519083744/0001193125-19-083744-index.html",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312519083744/0001193125-19-083744-index.html",
+       "label": "FY2017"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520085600/0001193125-20-085600-index.html",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312520085600/0001193125-20-085600-index.html",
+       "label": "FY2018"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521086732/0001193125-21-086732-index.html",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312521086732/0001193125-21-086732-index.html",
+       "label": "FY2019"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522078905/0001193125-22-078905-index.html",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312522078905/0001193125-22-078905-index.html",
+       "label": "FY2020"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523073212/0001193125-23-073212-index.html",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312523073212/0001193125-23-073212-index.html",
+       "label": "FY2021"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524068583/0001193125-24-068583-index.html",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312524068583/0001193125-24-068583-index.html",
+       "label": "FY2022"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525054500/0001193125-25-054500-index.html",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312525054500/0001193125-25-054500-index.html",
+       "label": "FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+       "label": "FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+       "label": "FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "period_labels": {
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/756894/000119312526079253/0001193125-26-079253-index.html",
+   "updated": "2025-12-31",
+   "description": "전사 연결 · 금·구리. 구 Barrick Gold입니다. 조정 EBITDA 대신 세전이익에서 순금융손익을 제거한 계산 영업손익을 표시합니다. 지분법 광산 이익 등이 포함될 수 있어 미국 GAAP 영업이익과 정의가 다릅니다. CAPEX는 유형자산 취득 현금지출입니다. 계산식: 세전이익 − 순금융손익(금융비용 순액을 가산). 지분법·처분·손상 등은 공시 분류를 유지한 금융손익 전 계산 손익입니다. 연간은 회사가 공시한 완결 회계연도 실적입니다. 진행 중인 연도의 누적값은 연간 값으로 표시하지 않습니다.",
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 회사 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "year_labels": true,
+ "annual_axis": true,
+ "change_mode": "none"
+}

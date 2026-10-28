@@ -1,0 +1,50 @@
+name: update-mining
+on:
+  schedule:
+    - cron: '40 23 * * 1' # Tuesday 08:40 KST
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 lxml pymupdf
+      - uses: actions/cache@v4
+        with:
+          path: .cache/mining
+          key: mining-originals-v1-${{ github.run_id }}
+          restore-keys: mining-originals-v1-
+      - name: Validate mining definitions and reviewed financial anchors
+        id: definitions
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_mining.py
+      - name: Check SEC and reviewed issuer originals
+        if: steps.definitions.outcome == 'success'
+        run: python -u scripts/fetch_mining.py --refresh
+      - name: Validate collected financial histories
+        if: steps.definitions.outcome == 'success'
+        run: python -m unittest discover -s scripts -p test_mining.py
+      - name: Validate commodity navigation
+        if: steps.definitions.outcome == 'success'
+        run: node scripts/test_commodity_tabs.cjs
+      - name: Commit mining documents only
+        if: steps.definitions.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/commodities/company_mining_*.json data/commodities/mining_financial_history.json data/commodities/mining_universe.json
+          git diff --cached --quiet || git commit -m "chore: refresh mining financial statements"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
