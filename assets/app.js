@@ -250,7 +250,7 @@ async function renderIndustry(options = {}) {
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
   content.classList.toggle("sb-root", ind.id === "shipbuilding");
-  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || (ind.id === "shipbuilding" && state.subtab !== "market") || (ind.id === "natgas" && state.subtab?.startsWith("containment")));
+  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || (ind.id === "shipbuilding" && state.subtab !== "market") || (ind.id === "natgas" && (state.subtab === "overview" || state.subtab?.startsWith("containment"))));
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
