@@ -48,10 +48,12 @@ def collect(only=None):
                     if form.startswith('40-F') or interim:
                         soup=BeautifulSoup(path.read_bytes(),'html.parser')
                         for a in soup.select('a[href]'):
-                            text=a.get_text(' ',strip=True).lower();href=a['href']
+                            row=a.find_parent('tr')
+                            text=(row.get_text(' ',strip=True) if row else a.get_text(' ',strip=True)).lower();href=a['href']
                             if not ('financial statements' in text or 'annual report' in text or 'discussion and analysis' in text):continue
                             if not href.lower().endswith(('.htm','.html','.pdf')):continue
                             target=urljoin(url,href)
+                            if target.startswith('http://www.sec.gov/Archives/'):target='https://'+target[len('http://'):]
                             if not target.startswith('https://www.sec.gov/Archives/'):continue
                             filename=f'{key}-{accn}-'+target.rsplit('/',1)[-1];extra=CACHE/filename
                             if not extra.exists():
