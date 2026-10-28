@@ -1,10 +1,24 @@
 import unittest
+import copy
+import datetime as dt
 
 from fetch_quantum import document
 from quantum_sources import period, sec_rows, derive_first_quarters, reviewed_table, holdings
+from fetch_quantum_prices import parse
 
 
 class QuantumTests(unittest.TestCase):
+    def test_etf_price_identity_and_unfinished_session(self):
+        stamp=lambda day:int(dt.datetime.fromisoformat(day).timestamp())
+        raw=dict(chart=dict(result=[dict(meta=dict(symbol='QNTM.L',currency='USD',instrumentType='ETF',exchangeName='LSE',dataGranularity='1d',exchangeTimezoneName='Europe/London',
+            currentTradingPeriod={'regular':{'end':stamp('2026-10-28T16:30:00+00:00')}}),
+            timestamp=[stamp('2026-10-27T08:00:00+00:00'),stamp('2026-10-28T08:00:00+00:00')],indicators=dict(quote=[dict(close=[30,31])],adjclose=[dict(adjclose=[30,31])]))]))
+        rows=parse(raw,'qntm_ucits','2026-10-28',stamp('2026-10-28T12:00:00+00:00'))
+        self.assertEqual(rows,[['2026-10-27',30,30]])
+        for field,value in [('symbol','QNTM'),('instrumentType','EQUITY'),('currency','GBP'),('exchangeName','NCM'),('dataGranularity','1mo')]:
+            wrong=copy.deepcopy(raw);wrong['chart']['result'][0]['meta'][field]=value
+            with self.assertRaises(ValueError):parse(wrong,'qntm_ucits','2026-10-28',stamp('2026-10-28T12:00:00+00:00'))
+
     def fact(self, start, end, value, filed='2026-08-01'):
         return dict(start=start, end=end, val=value, filed=filed, accn='0000000001-26-000001', form='10-Q')
 

@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from fetch_cpu_companies import save
 from fetch_game_fx import SOURCE, parse_rates, build_snapshot
 from quantum_sources import METRICS, sec_rows, reviewed_table, merge_rows, derive_first_quarters, holdings, period
+from fetch_quantum_prices import collect as collect_prices
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/quantum'
@@ -210,6 +211,7 @@ def collect(offline=False, asof=None):
     save(OUT / 'universe.json', dict(name='양자컴퓨터 ETF·추적 대상', updated=asof,
         fetched=universe.get('fetched') if offline else asof, etfs=etfs, companies=companies))
     print('Published', len(meta) * len(METRICS), 'quantum cards;', len(fx['missing']), 'missing FX intervals', flush=True)
+    collect_prices(offline, asof)
     return state
 
 

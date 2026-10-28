@@ -240,7 +240,7 @@ async function renderIndustry(options = {}) {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "quantum" && state.subtab === "overview") || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -381,22 +381,6 @@ async function renderIndustry(options = {}) {
       if (mySeq === renderSeq) content.appendChild(errorCard("drone", "universe", e.message));
     }
     loading.remove();
-  }
-
-  if (ind.id === "quantum" && state.subtab === "overview") {
-    const loading = document.createElement("p");
-    loading.className = "page-loading"; loading.textContent = "ETF·추적 대상 불러오는 중…"; content.appendChild(loading);
-    try {
-      const [doc, quantum] = await Promise.all([loadDoc("quantum", "universe"), import("./quantum.js")]);
-      if (mySeq !== renderSeq) return;
-      const err = state.docErrors.get("universe");
-      content.appendChild(err ? errorCard("quantum", "universe", err) : quantum.renderOverview(doc));
-      loading.remove();
-      renderFootStatus(doc?.updated || "", doc ? [{name: doc.name, fetched: doc.fetched, stale: staleDays(doc)}] : [], ind);
-    } catch (e) {
-      if (mySeq === renderSeq) loading.textContent = "ETF·추적 대상을 불러오지 못했습니다. 새로고침해 주세요.";
-    }
-    return;
   }
 
   if (photomask && typeof renderPhotomaskViews === "function") {
@@ -547,6 +531,19 @@ async function renderIndustry(options = {}) {
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
         if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
       }
+    }
+  }
+  if (ind.id === "quantum" && state.subtab === "overview") {
+    try {
+      const [doc, quantum] = await Promise.all([loadDoc("quantum", "universe"), import("./quantum.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("universe");
+      content.appendChild(err ? errorCard("quantum", "universe", err) : quantum.renderOverview(doc));
+      if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
+      if (doc?.updated > latestUpdate) latestUpdate = doc.updated;
+    } catch (e) {
+      if (mySeq !== renderSeq) return;
+      content.appendChild(errorCard("quantum", "universe", e.message));
     }
   }
   loading.remove();

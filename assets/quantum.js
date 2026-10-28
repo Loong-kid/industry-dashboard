@@ -20,6 +20,33 @@ function ordinary(etf, ticker) {
 }
 
 export function renderOverview(doc) {
+  const details = node('details', 'qt-holdings');
+  details.append(node('summary', '', '구성종목·추적 기업 보기'), renderHoldings(doc));
+  return details;
+}
+
+function renderPositions(etf) {
+  const details = node('details', 'qt-positions');
+  details.append(node('summary', '', `전체 구성종목 ${etf.positions.length}개 보기`));
+  const wrap = node('div', 'qt-table-wrap');
+  wrap.tabIndex = 0; wrap.setAttribute('role', 'region');
+  wrap.setAttribute('aria-label', etf.ticker + ' 전체 구성종목 · 가로 스크롤');
+  const table = node('table', 'qt-table qt-positions-table'), head = node('thead'), tr = node('tr');
+  for (const label of ['티커', '종목', '비중', '구분']) { const th = node('th', '', label); th.scope = 'col'; tr.append(th); }
+  head.append(tr); table.append(head);
+  const body = node('tbody');
+  for (const p of etf.positions) {
+    const row = node('tr'), name = node('td', '', p.name), ticker = node('td', '', p.ticker);
+    name.title = p.name; ticker.title = p.ticker;
+    row.append(ticker, name, node('td', 'qt-weight', p.weight.toFixed(2) + '%'),
+      node('td', '', p.kind === 'equity' ? '현물 주식' : p.kind === 'derivative' ? '파생상품' : p.kind === 'cash' ? '현금 등' : p.kind));
+    body.append(row);
+  }
+  table.append(body); wrap.append(table); details.append(wrap);
+  return details;
+}
+
+function renderHoldings(doc) {
   const root = node('div', 'qt-overview');
   if (!doc) {
     root.append(node('p', 'card-empty', '양자컴퓨터 추적 대상 자료를 아직 확보하지 못했습니다.'));
@@ -39,6 +66,7 @@ export function renderOverview(doc) {
       box.append(foot);
       if (etf.status !== 'ok') box.append(node('p', 'qt-warn', etf.status));
     }
+    if (etf.positions?.length) box.append(renderPositions(etf));
     etfs.append(box);
   }
   root.append(etfs, node('h2', 'qt-heading', `실적 추적 ${doc.companies.length}개사`));

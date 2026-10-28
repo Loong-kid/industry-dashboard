@@ -2,6 +2,12 @@
 
 무료 SEC Company Facts·SEC 재무제표 원문·ECB 일별 기준환율·ETF 운용사 공개 보유 내역을 사용한다. 유료 API와 로그인은 필요 없다.
 
+ETF 탭은 QTUM·QTUP·미국 WQTM·런던 QNTM.L의 일별 가격 차트를 먼저 보여준다. 수정종가·종가·처음=100 보기와 공통 기간 필터를 제공하며, 아래 `구성종목·추적 기업 보기`는 기본으로 접힌다. QTUM·QTUP의 전체 포지션은 각 상품 안에서 별도로 펼칠 수 있고 현물·파생상품·현금을 구분한다. 기존 10개 추적 기업 비교 표도 유지한다.
+
+가격은 Yahoo Finance의 완료된 거래일 USD 자료다. 미국 WQTM은 동명 UCITS와 다르며, QNTM은 [런던 상장 ETF](https://www.londonstockexchange.com/stock/QNTM/van-eck-global/company-page)의 QNTM.L을 사용한다. 거래소·ETF 유형·티커·통화·일별 표본을 검증하며 동명 개별 기업이나 미완료 장중 가격은 배제한다. 수정종가는 분할·분배 조정을 포함하고 NAV와 다르다. QTUP의 이전 티커 LQTM 이력은 공급자가 제공한 범위에서 이어진다.
+
+`scripts/fetch_quantum_prices.py`는 기존 `update-quantum.yml`에서 매일 KST 09:10에 함께 실행한다. 출처 실패 시 직전 성공 이력을 유지하고 실패 상태를 표시한다. 가격은 별도 `prices_state.json`에 보존하며 재무 공시·보유 비중과 기준일을 혼합하지 않는다.
+
 ## 추적 범위
 
 - 미국 QTUM·QTUP, 미국 WQTM, 유럽 QNTM UCITS를 소개한다. WQTM 미국/UCITS와 QNTM ETF/동일 티커 개별 기업을 구분한다.
