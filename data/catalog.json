@@ -1785,7 +1785,7 @@
       "name": "천연가스",
       "icon": "⛽",
       "default_range": "3y",
-      "cadence": "가격·미드스트림 공시는 독립 update-natgas 작업에서 매일 08:55(KST) 확인합니다. 현물은 FRED/EIA, 선물은 Yahoo 공개 일봉이며 거래·공표 지연을 시리즈별 관측일로 표시합니다. 미국 미드스트림·압축기 8사 실적은 SEC, HP는 정기보고서·IPO 원문에서 확인합니다. HP는 분기 말 잔량이며 회사별 정의가 달라 합산하지 않습니다. 미국 LNG 프로젝트는 EIA 워크북, 전세계 액화 프로젝트·선단은 GEM 수동 다운로드, FLNG는 수기 자료입니다. GTT·보냉재 실적·수주 KPI는 별도 작업에서 매일 09:40(KST) 확인합니다. GTT의 새 미검토 실적 공시는 상태에 표시하며 기존 검토 수치를 보존합니다.",
+      "cadence": "가격·미드스트림 공시는 독립 update-natgas 작업에서 매일 08:55(KST) 확인합니다. 현물은 FRED/EIA, 선물은 Yahoo 공개 일봉이며 거래·공표 지연을 시리즈별 관측일로 표시합니다. 미국 미드스트림·압축기 8사 실적은 SEC, HP는 정기보고서·IPO 원문에서 확인합니다. HP는 분기 말 잔량이며 회사별 정의가 달라 합산하지 않습니다. 미국 LNG 프로젝트는 EIA 워크북, 전세계 액화 프로젝트·선단은 GEM 수동 다운로드, FLNG는 수기 자료입니다. GTT·보냉재 실적·수주 KPI는 별도 작업에서 매일 09:40(KST) 확인합니다. GTT의 새 미검토 실적 공시는 상태에 표시하며 기존 검토 수치를 보존합니다. 가격·LNG 탭의 Flex LNG(FLNG)·Golar LNG(GLNG) 매출·영업이익·연결 전체 순이익은 별도 병렬 작업으로 매일 08:55(KST) 확인하며, USD 공시 그대로 분기·연간을 표시합니다. 새 미검토 원문은 상태에 표시하고 마지막 검토 이력을 유지합니다.",
       "sections": [
         {
           "title": "가격",
@@ -1893,6 +1893,28 @@
             "lng_equities"
           ],
           "tab": "overview"
+        },
+        {
+          "tab": "overview",
+          "title": "Flex LNG · FLNG · 연결 실적",
+          "layout": "financial",
+          "supply_note": "LNG 운반선 보유·용선 운영을 포함한 Flex LNG 연결 전체 실적입니다. 종목 코드 FLNG는 부유식 액화설비의 일반명 FLNG와 구분합니다. 2014년부터 확보한 실제 공시를 사용합니다. 상업 운항 전 공시의 매출 0과 손실도 보존합니다. 선단 확대와 IFRS·US GAAP 전환·감사 조정에 유의하세요. 최근 매출은 EUA 등 공시된 포함 범위를 유지하며 TCE 수익·조정 순익으로 대체하지 않습니다.",
+          "indicators": [
+            "carrier_flng_revenue",
+            "carrier_flng_profit",
+            "carrier_flng_netincome"
+          ]
+        },
+        {
+          "tab": "overview",
+          "title": "Golar LNG · GLNG · 연결 실적",
+          "layout": "financial",
+          "supply_note": "FLNG 액화 서비스·판매형 리스·선박 관리 등을 포함한 Golar LNG 연결 전체 실적입니다. 과거 LNG 운송·FSRU와 현재 FLNG 중심 사업 범위가 다릅니다. Golar LNG Partners LP와 다른 상장법인입니다. 사업 매각·중단영업 재분류와 Gimi의 상업 가동·판매형 리스 회계를 고려하세요. 공시된 파생상품 평가손익·일회성 처분손익 등이 포함됩니다. 순이익은 주주 귀속이 아닌 비지배지분을 포함한 연결 전체 순손익입니다.",
+          "indicators": [
+            "carrier_glng_revenue",
+            "carrier_glng_profit",
+            "carrier_glng_netincome"
+          ]
         },
         {
           "title": "전방 수요 (가스가 원료)",
