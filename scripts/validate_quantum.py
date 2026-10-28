@@ -4,6 +4,7 @@ import math
 from pathlib import Path
 
 from quantum_sources import METRICS
+from fetch_quantum_prices import SYMBOLS
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -51,6 +52,16 @@ def validate():
         if etf.get('holdings_url'):
             assert etf.get('positions') and etf['asof']<=universe['updated']
             assert any(p['kind']=='equity' for p in etf['positions'])
+    price_state=read('data/quantum/prices_state.json')['etfs']
+    for key,(symbol,exchange) in SYMBOLS.items():
+        p=price_state[key];rows=p['rows'];d=read(f'data/quantum/price_{key}.json')
+        assert p['symbol']==symbol and p['exchange']==exchange
+        assert rows and len({r[0] for r in rows})==len(rows)
+        assert all(a[0]<b[0] for a,b in zip(rows,rows[1:]))
+        assert all(day<=p['checked'] and all(math.isfinite(x) and x>0 for x in (c,a)) for day,c,a in rows)
+        assert d['updated']==rows[-1][0] and d['unit']=='USD/주'
+        assert d['collection_status']['ok']==p['ok']
+        assert len(next(iter(d['series'].values())))==len(rows)
     print('PASS: 10 companies, 30 USD cards, actual quarter/half/annual periods, native currencies, restatements, consolidated net losses and dated ETF positions')
 
 
