@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import time
 import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
 
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'.cache/mining'
@@ -40,6 +42,18 @@ def collect():
                     if not path.exists():
                         r=session.get(url,timeout=45);r.raise_for_status();path.write_bytes(r.content);time.sleep(.25)
                     registry[accn]=dict(url=url,form=form,filed=filed,date=report,path=path.name)
+                    if form.startswith('40-F'):
+                        soup=BeautifulSoup(path.read_bytes(),'html.parser')
+                        for a in soup.select('a[href]'):
+                            text=a.get_text(' ',strip=True).lower();href=a['href']
+                            if not ('financial statements' in text or 'annual report' in text or 'discussion and analysis' in text):continue
+                            if not href.lower().endswith(('.htm','.html','.pdf')):continue
+                            target=urljoin(url,href)
+                            if not target.startswith('https://www.sec.gov/Archives/'):continue
+                            filename=f'{key}-{accn}-'+target.rsplit('/',1)[-1];extra=CACHE/filename
+                            if not extra.exists():
+                                response=session.get(target,timeout=45);response.raise_for_status();extra.write_bytes(response.content);time.sleep(.25)
+                            registry[accn+'-'+filename]=dict(url=target,form=form,filed=filed,date=report,path=filename)
             (CACHE/f'{key}-filings.json').write_text(json.dumps(registry,indent=1),encoding='utf8')
             status[key]=dict(ok=True,checked=asof);print(key,len(registry),'public statement originals',flush=True)
         except Exception as error:
