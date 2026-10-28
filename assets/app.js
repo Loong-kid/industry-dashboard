@@ -154,6 +154,7 @@ function route() {
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   }
   state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
+  state.copperView = state.industry.id === "commodities" && state.subtab === "copper" && requestedView === "miners" ? "miners" : "indicators";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
   document.querySelectorAll("#nav a").forEach((a) => {
     const selected = a.dataset.id === state.industry.id;
@@ -232,7 +233,8 @@ async function renderIndustry(options = {}) {
   const selectedCategory = ind.material_categories?.find(category => category.id === state.materialCategory);
   const gasView = ind.id === "natgas" && state.subtab === "midstream" ? selectedTab.views?.find(view => view.id === state.natgasView) : null;
   const oilView = ind.id === "oil" && state.subtab === "offshore" ? selectedTab.views?.find(view => view.id === state.oilOffshoreView) : null;
-  const nestedView = gasView || oilView;
+  const copperView = ind.id === "commodities" && state.subtab === "copper" ? selectedTab.views?.find(view => view.id === state.copperView) : null;
+  const nestedView = gasView || oilView || copperView;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
   document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${nestedView ? " · " + nestedView.name : ""}`;
@@ -351,7 +353,7 @@ async function renderIndustry(options = {}) {
   if (nestedView) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs";
-    views.setAttribute("aria-label", oilView ? "해양 시추 분류" : "미드스트림 분류");
+    views.setAttribute("aria-label", copperView ? "구리 보기" : oilView ? "해양 시추 분류" : "미드스트림 분류");
     for (const view of selectedTab.views) {
       const link = document.createElement("a");
       link.href = `#/${ind.id}/${state.subtab}/${view.id}`;
@@ -387,7 +389,7 @@ async function renderIndustry(options = {}) {
     pageTabs.appendChild(renderPhotomaskViews(state.photomaskView, ind.groups ? "#/semicon/materials/components/snstech" : "#/semicon/snstech"));
   }
 
-  if (ind.id === "commodities" && state.subtab === "copper" && typeof renderCopperMarketGuide === "function") {
+  if (ind.id === "commodities" && state.subtab === "copper" && state.copperView === "indicators" && typeof renderCopperMarketGuide === "function") {
     content.appendChild(renderCopperMarketGuide());
   }
 
@@ -423,6 +425,7 @@ async function renderIndustry(options = {}) {
     const dataIndustry = section.data_industry || ind.id;
     const h = document.createElement("div");
     h.className = "section-title";
+    if (section.anchor) h.id = section.anchor;
     h.textContent = section.title;
     content.appendChild(h);
 
@@ -458,6 +461,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "ess_batteries" ? doc => renderESSBatteries(doc, {view: section.battery_view})
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : section.table_kind === "copper_mines" ? renderCopperMines
+        : section.table_kind === "mining_companies" ? renderMiningCompanies
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
         const doc = await loadDoc(dataIndustry, indicatorId);
