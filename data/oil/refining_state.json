@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "updated": "2026-10-28",
+ "updated": "2026-10-29",
  "companies": {
   "vlo": {
    "rows": [
@@ -5411,6 +5411,138 @@
      "revenue": 44476.0,
      "profit": 5196.0,
      "capex": 226.0
+    },
+    {
+     "date": "2026-09-30",
+     "year": 2026,
+     "quarter": 3,
+     "start": "2026-07-01",
+     "refs": {
+      "revenue": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax"
+        }
+       ],
+       "calculation": "reported quarter on original-year basis"
+      },
+      "profit": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "us-gaap:OperatingIncomeLoss",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "us-gaap:OperatingIncomeLoss"
+        }
+       ],
+       "calculation": "reported quarter on original-year basis"
+      },
+      "capex": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "tag": "sum of consolidated cash capital expenditures rows",
+       "derivation": "Sum of cash capital expenditures excluding VIEs plus separately disclosed consolidated VIE cash capital expenditures; excludes deferred turnaround/catalyst costs and nonconsolidated JV investments.",
+       "inputs": [
+        {
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "val": -654000000.0,
+         "source_tag": "original main statement row: capex"
+        },
+        {
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "val": -4000000.0,
+         "source_tag": "original main statement row: dgd_capex"
+        },
+        {
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "val": -3000000.0,
+         "source_tag": "original main statement row: other_vie_capex"
+        }
+       ],
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026067679/vlo-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "tag": "sum of consolidated cash capital expenditures rows",
+         "derivation": "Sum of cash capital expenditures excluding VIEs plus separately disclosed consolidated VIE cash capital expenditures; excludes deferred turnaround/catalyst costs and nonconsolidated JV investments.",
+         "inputs": [
+          {
+           "start": "2026-01-01",
+           "end": "2026-09-30",
+           "val": -654000000.0,
+           "source_tag": "original main statement row: capex"
+          },
+          {
+           "start": "2026-01-01",
+           "end": "2026-09-30",
+           "val": -4000000.0,
+           "source_tag": "original main statement row: dgd_capex"
+          },
+          {
+           "start": "2026-01-01",
+           "end": "2026-09-30",
+           "val": -3000000.0,
+           "source_tag": "original main statement row: other_vie_capex"
+          }
+         ]
+        },
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1035002/000162828026050937/vlo-20260630.htm",
+         "filed": "2026-07-30",
+         "start": "2026-01-01",
+         "end": "2026-06-30",
+         "tag": "sum of consolidated cash capital expenditures rows",
+         "derivation": "Sum of cash capital expenditures excluding VIEs plus separately disclosed consolidated VIE cash capital expenditures; excludes deferred turnaround/catalyst costs and nonconsolidated JV investments.",
+         "inputs": [
+          {
+           "start": "2026-01-01",
+           "end": "2026-06-30",
+           "val": -382000000.0,
+           "source_tag": "original main statement row: capex"
+          },
+          {
+           "start": "2026-01-01",
+           "end": "2026-06-30",
+           "val": -7000000.0,
+           "source_tag": "original main statement row: dgd_capex"
+          },
+          {
+           "start": "2026-01-01",
+           "end": "2026-06-30",
+           "val": -2000000.0,
+           "source_tag": "original main statement row: other_vie_capex"
+          }
+         ]
+        }
+       ],
+       "calculation": "same fiscal-year cumulative difference on original-year basis"
+      }
+     },
+     "revenue": 46098.0,
+     "profit": 9073.0,
+     "capex": 270.0
     }
    ],
    "annual": [
@@ -6490,8 +6622,8 @@
     }
    ],
    "reports": [],
-   "fetched": "2026-10-28",
-   "checked": "2026-10-28",
+   "fetched": "2026-10-29",
+   "checked": "2026-10-29",
    "ok": true
   },
   "mpc": {
@@ -11077,8 +11209,8 @@
     }
    ],
    "reports": [],
-   "fetched": "2026-10-28",
-   "checked": "2026-10-28",
+   "fetched": "2026-10-29",
+   "checked": "2026-10-29",
    "ok": true
   },
   "psx": {
@@ -17156,6 +17288,123 @@
      "revenue": 51004.0,
      "profit": 4245.0,
      "capex": 726.0
+    },
+    {
+     "date": "2026-09-30",
+     "year": 2026,
+     "quarter": 3,
+     "start": "2026-07-01",
+     "refs": {
+      "revenue": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+        }
+       ],
+       "calculation": "reported quarter on original-year basis"
+      },
+      "profit": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "derived consolidated operating subtotal",
+       "derivation": "Sales and other operating revenues − total costs and expenses + interest and debt expense. Equity earnings, asset-sale gains and other non-sales income excluded.",
+       "inputs": [
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 50540000000.0,
+         "source_tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+         "location": "Sales and other operating revenues $ 50,540 34,515 134,084 98,268"
+        },
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 44398000000.0,
+         "source_tag": "psx:CostAndExpenses",
+         "location": "Total Costs and Expenses 44,398 34,780 124,213 98,260"
+        },
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 243000000.0,
+         "source_tag": "us-gaap:InterestAndDebtExpense",
+         "location": "Interest and debt expense 243 259 843 744"
+        }
+       ],
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "derived consolidated operating subtotal",
+         "derivation": "Sales and other operating revenues − total costs and expenses + interest and debt expense. Equity earnings, asset-sale gains and other non-sales income excluded.",
+         "inputs": [
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 50540000000.0,
+           "source_tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+           "location": "Sales and other operating revenues $ 50,540 34,515 134,084 98,268"
+          },
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 44398000000.0,
+           "source_tag": "psx:CostAndExpenses",
+           "location": "Total Costs and Expenses 44,398 34,780 124,213 98,260"
+          },
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 243000000.0,
+           "source_tag": "us-gaap:InterestAndDebtExpense",
+           "location": "Interest and debt expense 243 259 843 744"
+          }
+         ]
+        }
+       ],
+       "calculation": "reported quarter on original-year basis"
+      },
+      "capex": {
+       "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+       "filed": "2026-10-28",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "tag": "psx:CapitalExpendituresAndInvestments",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000037/psx-20260930.htm",
+         "filed": "2026-10-28",
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "tag": "psx:CapitalExpendituresAndInvestments"
+        },
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000032/psx-20260630.htm",
+         "filed": "2026-08-05",
+         "start": "2026-01-01",
+         "end": "2026-06-30",
+         "tag": "psx:CapitalExpendituresAndInvestments"
+        }
+       ],
+       "calculation": "same fiscal-year cumulative difference on original-year basis"
+      }
+     },
+     "revenue": 50540.0,
+     "profit": 6385.0,
+     "capex": 680.0
     }
    ],
    "annual": [
@@ -18427,8 +18676,8 @@
     }
    ],
    "reports": [],
-   "fetched": "2026-10-28",
-   "checked": "2026-10-28",
+   "fetched": "2026-10-29",
+   "checked": "2026-10-29",
    "ok": true
   },
   "soil": {
@@ -26880,8 +27129,8 @@
      }
     }
    ],
-   "fetched": "2026-10-28",
-   "checked": "2026-10-28",
+   "fetched": "2026-10-29",
+   "checked": "2026-10-29",
    "ok": true
   }
  }
