@@ -2218,7 +2218,9 @@
           "indicators": [
             "containment_gtt_revenue",
             "containment_gtt_profit",
-            "containment_gtt_netincome"
+            "containment_gtt_netincome",
+            "containment_gtt_backlog",
+            "containment_gtt_orders"
           ]
         },
         {
@@ -2229,7 +2231,9 @@
           "indicators": [
             "containment_dongsung_finetec_revenue",
             "containment_dongsung_finetec_profit",
-            "containment_dongsung_finetec_netincome"
+            "containment_dongsung_finetec_netincome",
+            "containment_dongsung_backlog",
+            "containment_dongsung_utilization"
           ]
         },
         {
@@ -2240,29 +2244,7 @@
           "indicators": [
             "containment_hankuk_carbon_revenue",
             "containment_hankuk_carbon_profit",
-            "containment_hankuk_carbon_netincome"
-          ]
-        },
-        {
-          "tab": "containment_kpis",
-          "title": "GTT · 설계·라이선스 사업의 수주",
-          "indicators": [
-            "containment_gtt_backlog",
-            "containment_gtt_orders"
-          ]
-        },
-        {
-          "tab": "containment_kpis",
-          "title": "동성화인텍 · 초저온 보냉재",
-          "indicators": [
-            "containment_dongsung_backlog",
-            "containment_dongsung_utilization"
-          ]
-        },
-        {
-          "tab": "containment_kpis",
-          "title": "한국카본 · 화물창 판넬·소재",
-          "indicators": [
+            "containment_hankuk_carbon_netincome",
             "containment_hankuk_backlog",
             "containment_hankuk_mix"
           ]
@@ -2294,17 +2276,10 @@
         },
         {
           "id": "containment",
-          "name": "GTT·보냉재 실적",
+          "name": "보냉재",
           "default_range": "all",
           "auto_collect_time": "09:40",
-          "description": "GTT·동성화인텍·한국카본의 연결 전체 매출·영업이익·순이익입니다. USD로 비교하고 원통화와 기간 평균환율은 메모에서 확인합니다. 국내 두 회사는 분기·연간, GTT는 분기 매출과 반기·연간 손익을 표시합니다. GTT의 비경상 항목 포함 영업손익은 요약표의 EBIT·EBITDA와 다릅니다. 수주·가동률·사업 비중은 옆의 수주·운영 KPI 탭에서 봅니다."
-        },
-        {
-          "id": "containment_kpis",
-          "name": "수주·운영 KPI",
-          "default_range": "all",
-          "auto_collect_time": "09:40",
-          "description": "GTT의 핵심사업·LNG선·연료용 수주잔고와 신규 수주, 국내 두 회사의 보냉재 수주잔고를 봅니다. 잔고는 기말 잔량, 신규 수주는 연초 이후 누적(YTD)으로 구분합니다. 달러 잔고는 원문 USD 또는 기말 환율 기준입니다. 동성화인텍 가동률과 한국카본의 LNG 포함 산업재 비중은 서로 다른 지표입니다. 보냉재 생산능력은 회사별 금액·면적·품목 단위가 달라 합산하거나 LNG선 척수로 환산하지 않습니다."
+          "description": "GTT·동성화인텍·한국카본을 기업별로 묶어 연결 매출·영업이익·순이익과 수주·운영 지표를 함께 봅니다. 실적은 USD 기준이며 원통화·환율은 메모에서 확인합니다. GTT는 분기 매출과 반기·연간 손익 다음에 화물창 수주잔고·신규 수주를 표시합니다. 국내 두 회사는 분기·연간 실적 다음에 수주잔고와 가동률·사업 비중을 표시합니다. 수주잔고는 기말 잔량, 신규 수주는 연초 이후 누적(YTD)이며 회사별 집계 범위와 단위가 달라 합산하지 않습니다."
         }
       ]
     },

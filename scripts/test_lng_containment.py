@@ -66,10 +66,14 @@ class ContainmentTests(unittest.TestCase):
     def test_latest_financial_cards_and_kpi_catalog_are_connected(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))
         gas=next(i for i in catalog['industries'] if i['id']=='natgas')
-        for tab,count in [('containment',9),('containment_kpis',6)]:
-            ids=[id for s in gas['sections'] if s.get('tab')==tab for id in s['indicators']]
-            self.assertEqual(len(ids),count)
-            self.assertTrue(all((ROOT/'data/natgas'/f'{id}.json').exists() for id in ids))
+        sections=[s for s in gas['sections'] if s.get('tab')=='containment']
+        self.assertEqual([len(s['indicators']) for s in sections],[5,5,5])
+        ids=[id for s in sections for id in s['indicators']]
+        self.assertEqual(len(set(ids)),15)
+        self.assertTrue(all((ROOT/'data/natgas'/f'{id}.json').exists() for id in ids))
+        self.assertEqual(sections[0]['indicators'][-2:],['containment_gtt_backlog','containment_gtt_orders'])
+        self.assertEqual(next(t for t in gas['tabs'] if t['id']=='containment')['name'],'보냉재')
+        self.assertFalse(any(t['id']=='containment_kpis' for t in gas['tabs']))
 
 
 if __name__=='__main__':unittest.main()

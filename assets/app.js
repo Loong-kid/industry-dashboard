@@ -127,6 +127,10 @@ function route() {
     history.replaceState(null, "", `#/oil/offshore/${requestedView}`);
   }
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
+  if (id === "natgas" && requestedTab === "containment_kpis") {
+    requestedTab = "containment";
+    history.replaceState(null, "", "#/natgas/containment");
+  }
   const subtab = id === "commodities" ? commodityAliases[requestedTab] || requestedTab : requestedTab;
   const prev = state.industry;
   const prevSubtab = state.subtab;
