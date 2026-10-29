@@ -1,0 +1,44 @@
+name: update-rings
+on:
+  schedule:
+    - cron: '45 23 * * *' # KST 08:45
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate Si and SiC parts financial definitions
+        id: definitions
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_rings.py
+      - name: Refresh original OpenDART company accounts
+        if: steps.definitions.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_rings.py --refresh
+      - name: Validate refreshed financial histories
+        if: steps.definitions.outcome == 'success'
+        run: python -m unittest discover -s scripts -p test_rings.py
+      - name: Commit ring component issuer documents only
+        if: steps.definitions.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/company_rings_*.json data/semicon/rings_state.json
+          git diff --cached --quiet || git commit -m "chore: refresh Korean Si and SiC parts accounts"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done

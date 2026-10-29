@@ -1,0 +1,621 @@
+{
+ "id": "company_rings_cmtx_profit",
+ "name": "씨엠티엑스 · 영업이익",
+ "unit": "KRW 백만",
+ "source": "OpenDART · 씨엠티엑스 정기 공시",
+ "fetched": "2026-10-29",
+ "description": "실리콘·세라믹·쿼츠·사파이어 부품 등을 포함한 회사 전체. 링 단독 또는 SiC 단독 실적이 아닙니다. 상장 전 비교표시를 포함해 연간은 2023년부터, 독립 분기 손익은 2024년 3분기부터 확인했습니다. 상장 전 반기의 6개월 누적액을 2분기로 표시하지 않습니다. CAPEX는 항목별 취득 지출 합계이며 2026년 시설장치 취득 항목의 현금환급은 차감합니다.",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · DART 정기 공시",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "comparison_dates": {
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": true,
+   "series": {
+    "공시 영업이익": [
+     [
+      "2024-09-30",
+      9137.215011
+     ],
+     [
+      "2024-12-31",
+      9411.342091999999
+     ],
+     [
+      "2025-03-31",
+      12624.341868
+     ],
+     [
+      "2025-06-30",
+      13688.726106
+     ],
+     [
+      "2025-09-30",
+      15464.799583
+     ],
+     [
+      "2025-12-31",
+      10004.076632000004
+     ],
+     [
+      "2026-03-31",
+      13509.729007
+     ],
+     [
+      "2026-06-30",
+      15575.157712
+     ]
+    ]
+   },
+   "default_series": [
+    "공시 영업이익"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+   "point_sources": {
+    "2024-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "FY2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+       "label": "2024-07-01 ~ 2024-09-30 · 2025-11-18"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "FY2024 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+       "label": "2024-01-01 ~ 2024-12-31 · 2026-03-23"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+       "label": "2024-01-01 ~ 2024-09-30 · 2025-11-18"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+     "label": "FY2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+       "label": "2025-01-01 ~ 2025-03-31 · 2026-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+     "label": "FY2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+       "label": "2025-04-01 ~ 2025-06-30 · 2026-08-14"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "FY2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+       "label": "2025-07-01 ~ 2025-09-30 · 2025-11-18"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "FY2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+       "label": "2025-01-01 ~ 2025-12-31 · 2026-03-23"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+       "label": "2025-01-01 ~ 2025-09-30 · 2025-11-18"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2026-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+     "label": "FY2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+       "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+     "label": "FY2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+       "label": "2026-04-01 ~ 2026-06-30 · 2026-08-14"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2024-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 9,137,215,011원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2024-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 9,411,342,092원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2025-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 12,624,341,868원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2025-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 13,688,726,106원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2025-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 15,464,799,583원"
+    ],
+    "2025-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 10,004,076,632원"
+    ],
+    "2026-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 13,509,729,007원"
+    ],
+    "2026-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported three-month income",
+     "원화 금액: 15,575,157,712원"
+    ]
+   }
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · DART 사업보고서",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "comparison_dates": {},
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "series": {
+    "공시 영업이익": [
+     [
+      "2023-12-31",
+      2875.060944
+     ],
+     [
+      "2024-12-31",
+      23639.028765
+     ],
+     [
+      "2025-12-31",
+      51781.944189
+     ]
+    ]
+   },
+   "default_series": [
+    "공시 영업이익"
+   ],
+   "updated": "2025-12-31",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+   "point_sources": {
+    "2023-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+       "label": "2023-01-01 ~ 2023-12-31 · 2026-03-23"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+       "label": "2024-01-01 ~ 2024-12-31 · 2026-03-23"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+       "label": "2025-01-01 ~ 2025-12-31 · 2026-03-23"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2023-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported annual",
+     "원화 금액: 2,875,060,944원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2024-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported annual",
+     "원화 금액: 23,639,028,765원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2025-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 영업이익(손실)",
+     "산식: reported annual",
+     "원화 금액: 51,781,944,189원"
+    ]
+   }
+  }
+ },
+ "default_view": "quarter",
+ "company_kpi": true,
+ "span_gaps": false,
+ "table_limit": 120,
+ "basis_details": [
+  {
+   "label": "제품·사업 범위",
+   "value": "Si 링·전극 등 정밀 부품 / 세라믹·쿼츠·사파이어. 실리콘·세라믹·쿼츠·사파이어 부품 등을 포함한 회사 전체. 링 단독 또는 SiC 단독 실적이 아닙니다. 상장 전 비교표시를 포함해 연간은 2023년부터, 독립 분기 손익은 2024년 3분기부터 확인했습니다. 상장 전 반기의 6개월 누적액을 2분기로 표시하지 않습니다. CAPEX는 항목별 취득 지출 합계이며 2026년 시설장치 취득 항목의 현금환급은 차감합니다."
+  },
+  {
+   "label": "이력",
+   "value": "연간 2023-12-31부터 · 분기 2024-09-30부터. 미확인 분기는 공백으로 남깁니다."
+  },
+  {
+   "label": "연결·별도",
+   "value": "연결 재무제표. 연결을 우선하고 연결이 없는 보고서는 별도로 표시합니다. 서로 다른 연결·별도 누적끼리는 차감하지 않습니다."
+  },
+  {
+   "label": "분기·현금흐름 산식",
+   "value": "매출·영업이익은 공시 3개월 금액을 우선합니다. 4분기는 연간−9개월 누적, CAPEX는 해당 연도 누적−직전 누적입니다. 비교표시는 확인된 기간에만 쓰며 누적 기준이 맞지 않거나 지출 누적이 역전된 구간은 공백입니다."
+  },
+  {
+   "label": "자동 갱신",
+   "value": "2026-10-29 · 정상"
+  }
+ ],
+ "frequency": "quarterly",
+ "frequency_label": "분기 · DART 정기 공시",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": true,
+ "series": {
+  "공시 영업이익": [
+   [
+    "2024-09-30",
+    9137.215011
+   ],
+   [
+    "2024-12-31",
+    9411.342091999999
+   ],
+   [
+    "2025-03-31",
+    12624.341868
+   ],
+   [
+    "2025-06-30",
+    13688.726106
+   ],
+   [
+    "2025-09-30",
+    15464.799583
+   ],
+   [
+    "2025-12-31",
+    10004.076632000004
+   ],
+   [
+    "2026-03-31",
+    13509.729007
+   ],
+   [
+    "2026-06-30",
+    15575.157712
+   ]
+  ]
+ },
+ "default_series": [
+  "공시 영업이익"
+ ],
+ "updated": "2026-06-30",
+ "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+ "point_sources": {
+  "2024-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "2024-07-01 ~ 2024-09-30 · 2025-11-18"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "2024-01-01 ~ 2024-12-31 · 2026-03-23"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "2024-01-01 ~ 2024-09-30 · 2025-11-18"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+     "label": "2025-01-01 ~ 2025-03-31 · 2026-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+     "label": "2025-04-01 ~ 2025-06-30 · 2026-08-14"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "2025-07-01 ~ 2025-09-30 · 2025-11-18"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000962",
+     "label": "2025-01-01 ~ 2025-12-31 · 2026-03-23"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251118000263",
+     "label": "2025-01-01 ~ 2025-09-30 · 2025-11-18"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2026-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000214",
+     "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+     "label": "2026-04-01 ~ 2026-06-30 · 2026-08-14"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2024-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 9,137,215,011원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2024-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 9,411,342,092원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2025-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 12,624,341,868원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2025-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 13,688,726,106원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2025-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 15,464,799,583원"
+  ],
+  "2025-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 10,004,076,632원"
+  ],
+  "2026-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 13,509,729,007원"
+  ],
+  "2026-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 영업이익(손실)",
+   "산식: reported three-month income",
+   "원화 금액: 15,575,157,712원"
+  ]
+ }
+}
