@@ -106,14 +106,14 @@ def release_rows(raw, meta, url, filed, asof):
     """
     if filed>asof:return []
     soup=BeautifulSoup(raw,'html.parser');results=[]
-    owner=meta['owner_match'].lower()
+    owners=meta['owner_match'] if isinstance(meta['owner_match'],list) else [meta['owner_match']]
     for table_index,table in enumerate(soup.find_all('table')):
         trs=table.find_all('tr',recursive=False) or (table.find('tbody').find_all('tr',recursive=False) if table.find('tbody') else [])
         grid=[expand(tr) for tr in trs]
         if len(grid)<20:continue
         labels=[next((v for v in row if v),'') for row in grid]
         candidates={m:[i for i,label in enumerate(labels) if pattern.fullmatch(' '.join(re.sub(r'[^a-z ]',' ',label.lower()).split()))] for m,pattern in LABELS.items()}
-        candidates['netincome']=[i for i,l in enumerate(labels) if l.lower().startswith('net ') and 'attributable to' in l.lower() and owner in l.lower() and not any(t in l.lower() for t in ('per ads','per share','diluted','basic','comprehensive'))]
+        candidates['netincome']=[i for i,l in enumerate(labels) if l.lower().startswith('net ') and 'attributable to' in l.lower() and any(owner.lower() in l.lower() for owner in owners) and not any(t in l.lower() for t in ('per ads','per share','diluted','basic','comprehensive'))]
         if not all(len(v)==1 for v in candidates.values()):continue
         revenue_index=candidates['revenue'][0];header=grid[:revenue_index]
         if not header:continue

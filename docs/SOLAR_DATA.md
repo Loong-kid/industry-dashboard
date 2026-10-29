@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | 모듈·통합 제조 | First Solar (FSLR) | CdTe 박막 모듈, 과거 시스템·발전 프로젝트 |
 | 모듈·통합 제조 | Canadian Solar (CSIQ) | 모듈·ESS·Recurrent Energy 개발·발전 |
-| 모듈·통합 제조 | JinkoSolar Holding (JKS) | 모듈·셀 등 Holding 연결, 중국 상장 자회사와 구분 |
+| 모듈·통합 제조 | Jinko Holdings, 옛 JinkoSolar Holding (JKS) | 태양광·ESS·전략투자 Holding 연결, 중국 상장 자회사와 구분 |
 | 인버터·에너지 관리 | Enphase (ENPH) | 마이크로인버터·배터리·에너지 관리 |
 | 인버터·에너지 관리 | SolarEdge (SEDG) | 인버터·옵티마이저·배터리와 과거 비태양광 사업 |
 | 추적기·발전 설비 | Nextpower, 옛 Nextracker (NXT) | 추적기·전기 설비·발전소 기술 |
@@ -14,6 +14,8 @@
 | 폴리실리콘 소재 | Daqo New Energy (DQ) | DQ 연결 폴리실리콘 사업, 중국 상장 자회사와 구분 |
 
 각 회사의 공식 IR 링크와 포함 범위는 `manual/solar/companies.json`에 보존한다. 초기 선정은 제조·전력변환·추적기·소재를 비교하고 장기 공개 실적을 확보할 수 있는 기업을 기준으로 했다. LONGi·Trina·Sungrow 등 중국 본토 상장사와 한화솔루션 등은 이번 등록 범위에 포함하지 않는다.
+
+JKS의 모회사는 [2026-10-23 SEC 공시](https://www.sec.gov/Archives/edgar/data/1481513/000110465926118304/tm2628191d1_6k.htm)에서 Jinko Holdings Limited로의 사명 변경 완료를 발표했다. 과거·현재 모회사 귀속 손익 행을 모두 인식하며 중국 상장 자회사의 예비 실적을 모회사 실적으로 사용하지 않는다.
 
 ## 데이터와 기간
 

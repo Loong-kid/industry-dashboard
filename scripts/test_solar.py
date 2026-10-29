@@ -1,6 +1,7 @@
 import copy
 import json
 import math
+import re
 import unittest
 from pathlib import Path
 
@@ -34,6 +35,12 @@ class SolarTests(unittest.TestCase):
         rows=release_rows(raw,self.meta['csiq'],'source','2026-08-27','2026-10-29')
         wrong=copy.deepcopy(rows[0]);wrong['currency']='CNY'
         with self.assertRaises(ValueError):merge_rows(rows,[wrong])
+        jks=(ROOT/'scripts/fixtures/solar/jks.html').read_text(encoding='utf8')
+        renamed=re.sub(r'JinkoSolar\s+Holding','Jinko Holdings',jks)
+        parsed=release_rows(renamed,self.meta['jks'],'source','2026-08-27','2026-10-29')
+        self.assertTrue(any(r['date']=='2026-06-30' and r['kind']=='quarter' for r in parsed))
+        subsidiary=re.sub(r'JinkoSolar\s+Holding','Jinko Solar',jks)
+        self.assertFalse(release_rows(subsidiary,self.meta['jks'],'source','2026-08-27','2026-10-29'))
 
     def test_public_history_views_fx_fiscal_change_and_sources(self):
         state=json.loads((ROOT/'data/solar/state.json').read_text(encoding='utf8'))
