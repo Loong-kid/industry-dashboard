@@ -10,6 +10,7 @@ const WORKFLOW = "update-data.yml";
 
 // 같은 workflow가 전부 갱신하지만, 라벨/신선도 확인 대상은 현재 탭에 맞춘다.
 const REFRESH_TARGETS = {
+  solar: { file: "data/solar/state.json", label: "태양광 실적 갱신", workflow: "update-solar.yml" },
   drone: { file: "data/drone/state.json", label: "드론 데이터 갱신", workflow: "update-drone.yml" },
   quantum: { file: "data/quantum/state.json", label: "양자 실적 갱신", workflow: "update-quantum.yml" },
   shipbuilding: { file: "data/shipbuilding/korea_orders.json", label: "수주 갱신" },

@@ -1,0 +1,2604 @@
+{
+ "id": "company_sedg_profit",
+ "name": "SolarEdge Technologies · 영업이익",
+ "unit": "백만 USD",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "source": "SEC · GAAP 연결 공시",
+ "fetched": "2026-10-29",
+ "description": "인버터·옵티마이저·배터리·에너지 관리의 연결 실적",
+ "basis_details": [
+  {
+   "label": "사업·연결 범위",
+   "value": "과거 비태양광 사업과 사업 재편·손상차손의 영향을 포함합니다. 2016년 6월까지 6월 결산, 2016년 7~12월은 6개월 전환기, 2017년부터 달력 연도입니다. 전환기는 정상 연간 실적과 따로 표시합니다."
+  },
+  {
+   "label": "집계 기준",
+   "value": "회사 연결 GAAP 매출·영업손익과 지배주주 귀속 순손익을 표시합니다. 조정 EBITDA·비GAAP 이익·출하량·수주액으로 대체하지 않습니다. 직접 공시한 실제 기간을 사용하며 미국 기업의 4분기는 같은 회계연도 누적 차분으로 보완할 수 있습니다. 연간을 4로 나누지 않습니다. 회계연도 변경·연결 범위·귀속 지분 변경과 손상차손·세액공제 등은 각 회사 손익에 반영됩니다."
+  },
+  {
+   "label": "수집 확인",
+   "value": "2026-10-29"
+  },
+  {
+   "label": "과거 비교와 재작성",
+   "value": "각 기간에서 확보한 최신 공시를 사용합니다. 사업 매각·중단사업 재분류로 연간 실적이 재작성되면 당시 분기 합계와 다를 수 있습니다. 과거 분기를 연간에 비례 배분해 맞추지 않습니다. Enphase의 과거 미제공 영업 소계는 동일 공시의 매출총이익 − 영업비용으로 보완하며 각 포인트에 계산 근거를 남깁니다."
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-29",
+  "message": "공개 공시 조회 완료"
+ },
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 실제 결산일",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2014-03-31": "FY2014 Q3",
+    "2014-06-30": "FY2014 Q4",
+    "2014-09-30": "FY2015 Q1",
+    "2014-12-31": "FY2015 Q2",
+    "2015-03-31": "FY2015 Q3",
+    "2015-06-30": "FY2015 Q4",
+    "2015-09-30": "FY2016 Q1",
+    "2015-12-31": "FY2016 Q2",
+    "2016-03-31": "FY2016 Q3",
+    "2016-06-30": "FY2016 Q4",
+    "2016-09-30": "2016 전환기 · 1번째 3개월",
+    "2016-12-31": "2016 전환기 · 2번째 3개월",
+    "2017-03-31": "FY2017 Q1",
+    "2017-06-30": "FY2017 Q2",
+    "2017-09-30": "FY2017 Q3",
+    "2017-12-31": "FY2017 Q4",
+    "2018-03-31": "FY2018 Q1",
+    "2018-06-30": "FY2018 Q2",
+    "2018-09-30": "FY2018 Q3",
+    "2018-12-31": "FY2018 Q4",
+    "2019-03-31": "FY2019 Q1",
+    "2019-06-30": "FY2019 Q2",
+    "2019-09-30": "FY2019 Q3",
+    "2019-12-31": "FY2019 Q4",
+    "2020-03-31": "FY2020 Q1",
+    "2020-06-30": "FY2020 Q2",
+    "2020-09-30": "FY2020 Q3",
+    "2020-12-31": "FY2020 Q4",
+    "2021-03-31": "FY2021 Q1",
+    "2021-06-30": "FY2021 Q2",
+    "2021-09-30": "FY2021 Q3",
+    "2021-12-31": "FY2021 Q4",
+    "2022-03-31": "FY2022 Q1",
+    "2022-06-30": "FY2022 Q2",
+    "2022-09-30": "FY2022 Q3",
+    "2022-12-31": "FY2022 Q4",
+    "2023-03-31": "FY2023 Q1",
+    "2023-06-30": "FY2023 Q2",
+    "2023-09-30": "FY2023 Q3",
+    "2023-12-31": "FY2023 Q4",
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "series": {
+    "영업이익": [
+     [
+      "2014-03-31",
+      -4.545
+     ],
+     [
+      "2014-06-30",
+      -2.44
+     ],
+     [
+      "2014-09-30",
+      2.351
+     ],
+     [
+      "2014-12-31",
+      4.234
+     ],
+     [
+      "2015-03-31",
+      9.799
+     ],
+     [
+      "2015-06-30",
+      11.873
+     ],
+     [
+      "2015-09-30",
+      14.874
+     ],
+     [
+      "2015-12-31",
+      19.262
+     ],
+     [
+      "2016-03-31",
+      19.739
+     ],
+     [
+      "2016-06-30",
+      17.884
+     ],
+     [
+      "2016-09-30",
+      18.24
+     ],
+     [
+      "2016-12-31",
+      15.147
+     ],
+     [
+      "2017-03-31",
+      12.004
+     ],
+     [
+      "2017-06-30",
+      19.115
+     ],
+     [
+      "2017-09-30",
+      25.396
+     ],
+     [
+      "2017-12-31",
+      34.571
+     ],
+     [
+      "2018-03-31",
+      40.764
+     ],
+     [
+      "2018-06-30",
+      40.665
+     ],
+     [
+      "2018-09-30",
+      34.037
+     ],
+     [
+      "2018-12-31",
+      23.954
+     ],
+     [
+      "2019-03-31",
+      28.048
+     ],
+     [
+      "2019-06-30",
+      45.353
+     ],
+     [
+      "2019-09-30",
+      66.017
+     ],
+     [
+      "2019-12-31",
+      50.528
+     ],
+     [
+      "2020-03-31",
+      67.775
+     ],
+     [
+      "2020-06-30",
+      29.965
+     ],
+     [
+      "2020-09-30",
+      30.394
+     ],
+     [
+      "2020-12-31",
+      14.427
+     ],
+     [
+      "2021-03-31",
+      44.128
+     ],
+     [
+      "2021-06-30",
+      55.559
+     ],
+     [
+      "2021-09-30",
+      66.414
+     ],
+     [
+      "2021-12-31",
+      41.038
+     ],
+     [
+      "2022-03-31",
+      50.864
+     ],
+     [
+      "2022-06-30",
+      36.012
+     ],
+     [
+      "2022-09-30",
+      84.407
+     ],
+     [
+      "2022-12-31",
+      -5.163
+     ],
+     [
+      "2023-03-31",
+      144.154
+     ],
+     [
+      "2023-06-30",
+      150.358
+     ],
+     [
+      "2023-09-30",
+      -16.726
+     ],
+     [
+      "2023-12-31",
+      -237.581
+     ],
+     [
+      "2024-03-31",
+      -173.705
+     ],
+     [
+      "2024-06-30",
+      -160.182
+     ],
+     [
+      "2024-09-30",
+      -1110.734
+     ],
+     [
+      "2024-12-31",
+      -263.667
+     ],
+     [
+      "2025-03-31",
+      -102.726
+     ],
+     [
+      "2025-06-30",
+      -115.493
+     ],
+     [
+      "2025-09-30",
+      -35.15
+     ],
+     [
+      "2025-12-31",
+      -48.31
+     ],
+     [
+      "2026-03-31",
+      -55.043
+     ],
+     [
+      "2026-06-30",
+      -16.046
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315001865/0001178913-15-001865-index.html",
+     "label": "FY2014 Q3 · SEC 원문"
+    },
+    "2014-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317000579/0001178913-17-000579-index.html",
+     "label": "FY2014 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317000579/0001178913-17-000579-index.html",
+       "label": "2013-07-01 ~ 2014-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315001865/0001178913-15-001865-index.html",
+       "label": "2013-07-01 ~ 2014-03-31"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2014-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315003313/0001178913-15-003313-index.html",
+     "label": "FY2015 Q1 · SEC 원문"
+    },
+    "2014-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316004185/0001178913-16-004185-index.html",
+     "label": "FY2015 Q2 · SEC 원문"
+    },
+    "2015-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316005371/0001178913-16-005371-index.html",
+     "label": "FY2015 Q3 · SEC 원문"
+    },
+    "2015-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318000655/0001178913-18-000655-index.html",
+     "label": "FY2015 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318000655/0001178913-18-000655-index.html",
+       "label": "2014-07-01 ~ 2015-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316005371/0001178913-16-005371-index.html",
+       "label": "2014-07-01 ~ 2015-03-31"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2015-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316006821/0001178913-16-006821-index.html",
+     "label": "FY2016 Q1 · SEC 원문"
+    },
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316004185/0001178913-16-004185-index.html",
+     "label": "FY2016 Q2 · SEC 원문"
+    },
+    "2016-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317001381/0001178913-17-001381-index.html",
+     "label": "FY2016 Q3 · SEC 원문"
+    },
+    "2016-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317002265/0001178913-17-002265-index.html",
+     "label": "FY2016 Q4 · SEC 원문"
+    },
+    "2016-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317003075/0001178913-17-003075-index.html",
+     "label": "2016 전환기 · 1번째 3개월 · SEC 원문"
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+     "label": "2016 전환기 · 2번째 3개월 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+       "label": "2016-07-01 ~ 2016-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317003075/0001178913-17-003075-index.html",
+       "label": "2016-07-01 ~ 2016-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2017-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318001580/0001178913-18-001580-index.html",
+     "label": "FY2017 Q1 · SEC 원문"
+    },
+    "2017-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002270/0001178913-18-002270-index.html",
+     "label": "FY2017 Q2 · SEC 원문"
+    },
+    "2017-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002784/0001178913-18-002784-index.html",
+     "label": "FY2017 Q3 · SEC 원문"
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320000672/0001178913-20-000672-index.html",
+     "label": "FY2017 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320000672/0001178913-20-000672-index.html",
+       "label": "2017-01-01 ~ 2017-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002784/0001178913-18-002784-index.html",
+       "label": "2017-01-01 ~ 2017-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2018-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319001396/0001178913-19-001396-index.html",
+     "label": "FY2018 Q1 · SEC 원문"
+    },
+    "2018-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002129/0001178913-19-002129-index.html",
+     "label": "FY2018 Q2 · SEC 원문"
+    },
+    "2018-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002642/0001178913-19-002642-index.html",
+     "label": "FY2018 Q3 · SEC 원문"
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321000700/0001178913-21-000700-index.html",
+     "label": "FY2018 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321000700/0001178913-21-000700-index.html",
+       "label": "2018-01-01 ~ 2018-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002642/0001178913-19-002642-index.html",
+       "label": "2018-01-01 ~ 2018-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2019-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320001355/0001178913-20-001355-index.html",
+     "label": "FY2019 Q1 · SEC 원문"
+    },
+    "2019-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002282/0001178913-20-002282-index.html",
+     "label": "FY2019 Q2 · SEC 원문"
+    },
+    "2019-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002995/0001178913-20-002995-index.html",
+     "label": "FY2019 Q3 · SEC 원문"
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322000760/0001178913-22-000760-index.html",
+     "label": "FY2019 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322000760/0001178913-22-000760-index.html",
+       "label": "2019-01-01 ~ 2019-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002995/0001178913-20-002995-index.html",
+       "label": "2019-01-01 ~ 2019-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2020-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321001589/0001178913-21-001589-index.html",
+     "label": "FY2020 Q1 · SEC 원문"
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321002525/0001178913-21-002525-index.html",
+     "label": "FY2020 Q2 · SEC 원문"
+    },
+    "2020-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321003364/0001178913-21-003364-index.html",
+     "label": "FY2020 Q3 · SEC 원문"
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323000707/0001178913-23-000707-index.html",
+     "label": "FY2020 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323000707/0001178913-23-000707-index.html",
+       "label": "2020-01-01 ~ 2020-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321003364/0001178913-21-003364-index.html",
+       "label": "2020-01-01 ~ 2020-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2021-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322001805/0001178913-22-001805-index.html",
+     "label": "FY2021 Q1 · SEC 원문"
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322002939/0001178913-22-002939-index.html",
+     "label": "FY2021 Q2 · SEC 원문"
+    },
+    "2021-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322003868/0001178913-22-003868-index.html",
+     "label": "FY2021 Q3 · SEC 원문"
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324000717/0001178913-24-000717-index.html",
+     "label": "FY2021 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324000717/0001178913-24-000717-index.html",
+       "label": "2021-01-01 ~ 2021-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322003868/0001178913-22-003868-index.html",
+       "label": "2021-01-01 ~ 2021-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323001734/0001178913-23-001734-index.html",
+     "label": "FY2022 Q1 · SEC 원문"
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323002728/0001178913-23-002728-index.html",
+     "label": "FY2022 Q2 · SEC 원문"
+    },
+    "2022-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323003538/0001178913-23-003538-index.html",
+     "label": "FY2022 Q3 · SEC 원문"
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325000605/0001178913-25-000605-index.html",
+     "label": "FY2022 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325000605/0001178913-25-000605-index.html",
+       "label": "2022-01-01 ~ 2022-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323003538/0001178913-23-003538-index.html",
+       "label": "2022-01-01 ~ 2022-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324001670/0001178913-24-001670-index.html",
+     "label": "FY2023 Q1 · SEC 원문"
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324002470/0001178913-24-002470-index.html",
+     "label": "FY2023 Q2 · SEC 원문"
+    },
+    "2023-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324003529/0001178913-24-003529-index.html",
+     "label": "FY2023 Q3 · SEC 원문"
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2023 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+       "label": "2023-01-01 ~ 2023-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324003529/0001178913-24-003529-index.html",
+       "label": "2023-01-01 ~ 2023-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325001662/0001178913-25-001662-index.html",
+     "label": "FY2024 Q1 · SEC 원문"
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325002690/0001178913-25-002690-index.html",
+     "label": "FY2024 Q2 · SEC 원문"
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+     "label": "FY2024 Q3 · SEC 원문"
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2024 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+       "label": "2024-01-01 ~ 2024-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326002432/0001178913-26-002432-index.html",
+     "label": "FY2025 Q1 · SEC 원문"
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html",
+     "label": "FY2025 Q2 · SEC 원문"
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+     "label": "FY2025 Q3 · SEC 원문"
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2025 Q4 · SEC 원문",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+       "label": "2025-01-01 ~ 2025-09-30"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326002432/0001178913-26-002432-index.html",
+     "label": "FY2026 Q1 · SEC 원문"
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html",
+     "label": "FY2026 Q2 · SEC 원문"
+    }
+   },
+   "point_notes": {
+    "2014-03-31": [
+     "FY2014 Q3",
+     "2014-01-01 ~ 2014-03-31",
+     "원자료: -4.545000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2014-06-30": [
+     "FY2014 Q4",
+     "2014-04-01 ~ 2014-06-30",
+     "원자료: -2.440000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2014-09-30": [
+     "FY2015 Q1",
+     "2014-07-01 ~ 2014-09-30",
+     "원자료: 2.351000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2014-12-31": [
+     "FY2015 Q2",
+     "2014-10-01 ~ 2014-12-31",
+     "원자료: 4.234000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2015-03-31": [
+     "FY2015 Q3",
+     "2015-01-01 ~ 2015-03-31",
+     "원자료: 9.799000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2015-06-30": [
+     "FY2015 Q4",
+     "2015-04-01 ~ 2015-06-30",
+     "원자료: 11.873000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2015-09-30": [
+     "FY2016 Q1",
+     "2015-07-01 ~ 2015-09-30",
+     "원자료: 14.874000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2015-12-31": [
+     "FY2016 Q2",
+     "2015-10-01 ~ 2015-12-31",
+     "원자료: 19.262000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2016-03-31": [
+     "FY2016 Q3",
+     "2016-01-01 ~ 2016-03-31",
+     "원자료: 19.739000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2016-06-30": [
+     "FY2016 Q4",
+     "2016-04-01 ~ 2016-06-30",
+     "원자료: 17.884000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2016-09-30": [
+     "2016 전환기 · 1번째 3개월",
+     "2016-07-01 ~ 2016-09-30",
+     "원자료: 18.240000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2016-12-31": [
+     "2016 전환기 · 2번째 3개월",
+     "2016-10-01 ~ 2016-12-31",
+     "원자료: 15.147000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2017-03-31": [
+     "FY2017 Q1",
+     "2017-01-01 ~ 2017-03-31",
+     "원자료: 12.004000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2017-06-30": [
+     "FY2017 Q2",
+     "2017-04-01 ~ 2017-06-30",
+     "원자료: 19.115000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2017-09-30": [
+     "FY2017 Q3",
+     "2017-07-01 ~ 2017-09-30",
+     "원자료: 25.396000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2017-12-31": [
+     "FY2017 Q4",
+     "2017-10-01 ~ 2017-12-31",
+     "원자료: 34.571000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2018-03-31": [
+     "FY2018 Q1",
+     "2018-01-01 ~ 2018-03-31",
+     "원자료: 40.764000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2018-06-30": [
+     "FY2018 Q2",
+     "2018-04-01 ~ 2018-06-30",
+     "원자료: 40.665000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2018-09-30": [
+     "FY2018 Q3",
+     "2018-07-01 ~ 2018-09-30",
+     "원자료: 34.037000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2018-12-31": [
+     "FY2018 Q4",
+     "2018-10-01 ~ 2018-12-31",
+     "원자료: 23.954000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2019-03-31": [
+     "FY2019 Q1",
+     "2019-01-01 ~ 2019-03-31",
+     "원자료: 28.048000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2019-06-30": [
+     "FY2019 Q2",
+     "2019-04-01 ~ 2019-06-30",
+     "원자료: 45.353000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2019-09-30": [
+     "FY2019 Q3",
+     "2019-07-01 ~ 2019-09-30",
+     "원자료: 66.017000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2019-12-31": [
+     "FY2019 Q4",
+     "2019-10-01 ~ 2019-12-31",
+     "원자료: 50.528000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2020-03-31": [
+     "FY2020 Q1",
+     "2020-01-01 ~ 2020-03-31",
+     "원자료: 67.775000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2020-06-30": [
+     "FY2020 Q2",
+     "2020-04-01 ~ 2020-06-30",
+     "원자료: 29.965000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2020-09-30": [
+     "FY2020 Q3",
+     "2020-07-01 ~ 2020-09-30",
+     "원자료: 30.394000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2020-12-31": [
+     "FY2020 Q4",
+     "2020-10-01 ~ 2020-12-31",
+     "원자료: 14.427000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2021-03-31": [
+     "FY2021 Q1",
+     "2021-01-01 ~ 2021-03-31",
+     "원자료: 44.128000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2021-06-30": [
+     "FY2021 Q2",
+     "2021-04-01 ~ 2021-06-30",
+     "원자료: 55.559000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2021-09-30": [
+     "FY2021 Q3",
+     "2021-07-01 ~ 2021-09-30",
+     "원자료: 66.414000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2021-12-31": [
+     "FY2021 Q4",
+     "2021-10-01 ~ 2021-12-31",
+     "원자료: 41.038000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2022-03-31": [
+     "FY2022 Q1",
+     "2022-01-01 ~ 2022-03-31",
+     "원자료: 50.864000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2022-06-30": [
+     "FY2022 Q2",
+     "2022-04-01 ~ 2022-06-30",
+     "원자료: 36.012000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2022-09-30": [
+     "FY2022 Q3",
+     "2022-07-01 ~ 2022-09-30",
+     "원자료: 84.407000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2022-12-31": [
+     "FY2022 Q4",
+     "2022-10-01 ~ 2022-12-31",
+     "원자료: -5.163000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2023-03-31": [
+     "FY2023 Q1",
+     "2023-01-01 ~ 2023-03-31",
+     "원자료: 144.154000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2023-06-30": [
+     "FY2023 Q2",
+     "2023-04-01 ~ 2023-06-30",
+     "원자료: 150.358000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2023-09-30": [
+     "FY2023 Q3",
+     "2023-07-01 ~ 2023-09-30",
+     "원자료: -16.726000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2023-12-31": [
+     "FY2023 Q4",
+     "2023-10-01 ~ 2023-12-31",
+     "원자료: -237.581000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2024-03-31": [
+     "FY2024 Q1",
+     "2024-01-01 ~ 2024-03-31",
+     "원자료: -173.705000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2024-06-30": [
+     "FY2024 Q2",
+     "2024-04-01 ~ 2024-06-30",
+     "원자료: -160.182000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2024-09-30": [
+     "FY2024 Q3",
+     "2024-07-01 ~ 2024-09-30",
+     "원자료: -1,110.734000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2024-12-31": [
+     "FY2024 Q4",
+     "2024-10-01 ~ 2024-12-31",
+     "원자료: -263.667000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2025-03-31": [
+     "FY2025 Q1",
+     "2025-01-01 ~ 2025-03-31",
+     "원자료: -102.726000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2025-06-30": [
+     "FY2025 Q2",
+     "2025-04-01 ~ 2025-06-30",
+     "원자료: -115.493000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2025-09-30": [
+     "FY2025 Q3",
+     "2025-07-01 ~ 2025-09-30",
+     "원자료: -35.150000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2025-12-31": [
+     "FY2025 Q4",
+     "2025-10-01 ~ 2025-12-31",
+     "원자료: -48.310000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "same fiscal-year YTD minus prior YTD"
+    ],
+    "2026-03-31": [
+     "FY2026 Q1",
+     "2026-01-01 ~ 2026-03-31",
+     "원자료: -55.043000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ],
+    "2026-06-30": [
+     "FY2026 Q2",
+     "2026-04-01 ~ 2026-06-30",
+     "원자료: -16.046000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported quarter"
+    ]
+   },
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": true,
+   "change_mode": "none",
+   "comparison_dates": {
+    "2014-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2014-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2014-03-31"
+    },
+    "2014-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2014-06-30"
+    },
+    "2014-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2014-09-30"
+    },
+    "2015-03-31": {
+     "year_ago": "2014-03-31",
+     "quarter_ago": "2014-12-31"
+    },
+    "2015-06-30": {
+     "year_ago": "2014-06-30",
+     "quarter_ago": "2015-03-31"
+    },
+    "2015-09-30": {
+     "year_ago": "2014-09-30",
+     "quarter_ago": "2015-06-30"
+    },
+    "2015-12-31": {
+     "year_ago": "2014-12-31",
+     "quarter_ago": "2015-09-30"
+    },
+    "2016-03-31": {
+     "year_ago": "2015-03-31",
+     "quarter_ago": "2015-12-31"
+    },
+    "2016-06-30": {
+     "year_ago": "2015-06-30",
+     "quarter_ago": "2016-03-31"
+    },
+    "2016-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2016-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2016-09-30"
+    },
+    "2017-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2017-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2017-03-31"
+    },
+    "2017-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2017-06-30"
+    },
+    "2017-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2017-09-30"
+    },
+    "2018-03-31": {
+     "year_ago": "2017-03-31",
+     "quarter_ago": "2017-12-31"
+    },
+    "2018-06-30": {
+     "year_ago": "2017-06-30",
+     "quarter_ago": "2018-03-31"
+    },
+    "2018-09-30": {
+     "year_ago": "2017-09-30",
+     "quarter_ago": "2018-06-30"
+    },
+    "2018-12-31": {
+     "year_ago": "2017-12-31",
+     "quarter_ago": "2018-09-30"
+    },
+    "2019-03-31": {
+     "year_ago": "2018-03-31",
+     "quarter_ago": "2018-12-31"
+    },
+    "2019-06-30": {
+     "year_ago": "2018-06-30",
+     "quarter_ago": "2019-03-31"
+    },
+    "2019-09-30": {
+     "year_ago": "2018-09-30",
+     "quarter_ago": "2019-06-30"
+    },
+    "2019-12-31": {
+     "year_ago": "2018-12-31",
+     "quarter_ago": "2019-09-30"
+    },
+    "2020-03-31": {
+     "year_ago": "2019-03-31",
+     "quarter_ago": "2019-12-31"
+    },
+    "2020-06-30": {
+     "year_ago": "2019-06-30",
+     "quarter_ago": "2020-03-31"
+    },
+    "2020-09-30": {
+     "year_ago": "2019-09-30",
+     "quarter_ago": "2020-06-30"
+    },
+    "2020-12-31": {
+     "year_ago": "2019-12-31",
+     "quarter_ago": "2020-09-30"
+    },
+    "2021-03-31": {
+     "year_ago": "2020-03-31",
+     "quarter_ago": "2020-12-31"
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": "2021-03-31"
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": "2021-06-30"
+    },
+    "2021-12-31": {
+     "year_ago": "2020-12-31",
+     "quarter_ago": "2021-09-30"
+    },
+    "2022-03-31": {
+     "year_ago": "2021-03-31",
+     "quarter_ago": "2021-12-31"
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": "2021-12-31",
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 완결 회계연도",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2014-06-30": "FY2014",
+    "2015-06-30": "FY2015",
+    "2016-06-30": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "series": {
+    "영업이익": [
+     [
+      "2014-06-30",
+      -18.371
+     ],
+     [
+      "2015-06-30",
+      28.257
+     ],
+     [
+      "2016-06-30",
+      71.759
+     ],
+     [
+      "2017-12-31",
+      91.086
+     ],
+     [
+      "2018-12-31",
+      139.42
+     ],
+     [
+      "2019-12-31",
+      189.946
+     ],
+     [
+      "2020-12-31",
+      142.561
+     ],
+     [
+      "2021-12-31",
+      207.139
+     ],
+     [
+      "2022-12-31",
+      166.12
+     ],
+     [
+      "2023-12-31",
+      40.205
+     ],
+     [
+      "2024-12-31",
+      -1708.288
+     ],
+     [
+      "2025-12-31",
+      -301.679
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317000579/0001178913-17-000579-index.html",
+     "label": "FY2014 · SEC 원문"
+    },
+    "2015-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318000655/0001178913-18-000655-index.html",
+     "label": "FY2015 · SEC 원문"
+    },
+    "2016-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+     "label": "FY2016 · SEC 원문"
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320000672/0001178913-20-000672-index.html",
+     "label": "FY2017 · SEC 원문"
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321000700/0001178913-21-000700-index.html",
+     "label": "FY2018 · SEC 원문"
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322000760/0001178913-22-000760-index.html",
+     "label": "FY2019 · SEC 원문"
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323000707/0001178913-23-000707-index.html",
+     "label": "FY2020 · SEC 원문"
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324000717/0001178913-24-000717-index.html",
+     "label": "FY2021 · SEC 원문"
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325000605/0001178913-25-000605-index.html",
+     "label": "FY2022 · SEC 원문"
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2023 · SEC 원문"
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2024 · SEC 원문"
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "FY2025 · SEC 원문"
+    }
+   },
+   "point_notes": {
+    "2014-06-30": [
+     "FY2014",
+     "2013-07-01 ~ 2014-06-30",
+     "원자료: -18.371000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2015-06-30": [
+     "FY2015",
+     "2014-07-01 ~ 2015-06-30",
+     "원자료: 28.257000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2016-06-30": [
+     "FY2016",
+     "2015-07-01 ~ 2016-06-30",
+     "원자료: 71.759000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2017-12-31": [
+     "FY2017",
+     "2017-01-01 ~ 2017-12-31",
+     "원자료: 91.086000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2018-12-31": [
+     "FY2018",
+     "2018-01-01 ~ 2018-12-31",
+     "원자료: 139.420000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2019-12-31": [
+     "FY2019",
+     "2019-01-01 ~ 2019-12-31",
+     "원자료: 189.946000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2020-12-31": [
+     "FY2020",
+     "2020-01-01 ~ 2020-12-31",
+     "원자료: 142.561000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2021-12-31": [
+     "FY2021",
+     "2021-01-01 ~ 2021-12-31",
+     "원자료: 207.139000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2022-12-31": [
+     "FY2022",
+     "2022-01-01 ~ 2022-12-31",
+     "원자료: 166.120000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2023-12-31": [
+     "FY2023",
+     "2023-01-01 ~ 2023-12-31",
+     "원자료: 40.205000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2024-12-31": [
+     "FY2024",
+     "2024-01-01 ~ 2024-12-31",
+     "원자료: -1,708.288000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ],
+    "2025-12-31": [
+     "FY2025",
+     "2025-01-01 ~ 2025-12-31",
+     "원자료: -301.679000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported annual"
+    ]
+   },
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html"
+  },
+  "transition": {
+   "label": "전환기 6개월",
+   "frequency": "irregular",
+   "frequency_label": "2016년 7~12월 · 6개월",
+   "quarter_labels": false,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2016-12-31": "2016 전환기 · 6개월"
+   },
+   "series": {
+    "영업이익": [
+     [
+      "2016-12-31",
+      33.387
+     ]
+    ]
+   },
+   "point_sources": {
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+     "label": "2016 전환기 · 6개월 · SEC 원문"
+    }
+   },
+   "point_notes": {
+    "2016-12-31": [
+     "2016 전환기 · 6개월",
+     "2016-07-01 ~ 2016-12-31",
+     "원자료: 33.387000 백만 USD",
+     "us-gaap:OperatingIncomeLoss",
+     "reported six-month transition"
+    ]
+   },
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "comparison_dates": {},
+   "updated": "2016-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 실제 결산일",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2014-03-31": "FY2014 Q3",
+  "2014-06-30": "FY2014 Q4",
+  "2014-09-30": "FY2015 Q1",
+  "2014-12-31": "FY2015 Q2",
+  "2015-03-31": "FY2015 Q3",
+  "2015-06-30": "FY2015 Q4",
+  "2015-09-30": "FY2016 Q1",
+  "2015-12-31": "FY2016 Q2",
+  "2016-03-31": "FY2016 Q3",
+  "2016-06-30": "FY2016 Q4",
+  "2016-09-30": "2016 전환기 · 1번째 3개월",
+  "2016-12-31": "2016 전환기 · 2번째 3개월",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "series": {
+  "영업이익": [
+   [
+    "2014-03-31",
+    -4.545
+   ],
+   [
+    "2014-06-30",
+    -2.44
+   ],
+   [
+    "2014-09-30",
+    2.351
+   ],
+   [
+    "2014-12-31",
+    4.234
+   ],
+   [
+    "2015-03-31",
+    9.799
+   ],
+   [
+    "2015-06-30",
+    11.873
+   ],
+   [
+    "2015-09-30",
+    14.874
+   ],
+   [
+    "2015-12-31",
+    19.262
+   ],
+   [
+    "2016-03-31",
+    19.739
+   ],
+   [
+    "2016-06-30",
+    17.884
+   ],
+   [
+    "2016-09-30",
+    18.24
+   ],
+   [
+    "2016-12-31",
+    15.147
+   ],
+   [
+    "2017-03-31",
+    12.004
+   ],
+   [
+    "2017-06-30",
+    19.115
+   ],
+   [
+    "2017-09-30",
+    25.396
+   ],
+   [
+    "2017-12-31",
+    34.571
+   ],
+   [
+    "2018-03-31",
+    40.764
+   ],
+   [
+    "2018-06-30",
+    40.665
+   ],
+   [
+    "2018-09-30",
+    34.037
+   ],
+   [
+    "2018-12-31",
+    23.954
+   ],
+   [
+    "2019-03-31",
+    28.048
+   ],
+   [
+    "2019-06-30",
+    45.353
+   ],
+   [
+    "2019-09-30",
+    66.017
+   ],
+   [
+    "2019-12-31",
+    50.528
+   ],
+   [
+    "2020-03-31",
+    67.775
+   ],
+   [
+    "2020-06-30",
+    29.965
+   ],
+   [
+    "2020-09-30",
+    30.394
+   ],
+   [
+    "2020-12-31",
+    14.427
+   ],
+   [
+    "2021-03-31",
+    44.128
+   ],
+   [
+    "2021-06-30",
+    55.559
+   ],
+   [
+    "2021-09-30",
+    66.414
+   ],
+   [
+    "2021-12-31",
+    41.038
+   ],
+   [
+    "2022-03-31",
+    50.864
+   ],
+   [
+    "2022-06-30",
+    36.012
+   ],
+   [
+    "2022-09-30",
+    84.407
+   ],
+   [
+    "2022-12-31",
+    -5.163
+   ],
+   [
+    "2023-03-31",
+    144.154
+   ],
+   [
+    "2023-06-30",
+    150.358
+   ],
+   [
+    "2023-09-30",
+    -16.726
+   ],
+   [
+    "2023-12-31",
+    -237.581
+   ],
+   [
+    "2024-03-31",
+    -173.705
+   ],
+   [
+    "2024-06-30",
+    -160.182
+   ],
+   [
+    "2024-09-30",
+    -1110.734
+   ],
+   [
+    "2024-12-31",
+    -263.667
+   ],
+   [
+    "2025-03-31",
+    -102.726
+   ],
+   [
+    "2025-06-30",
+    -115.493
+   ],
+   [
+    "2025-09-30",
+    -35.15
+   ],
+   [
+    "2025-12-31",
+    -48.31
+   ],
+   [
+    "2026-03-31",
+    -55.043
+   ],
+   [
+    "2026-06-30",
+    -16.046
+   ]
+  ]
+ },
+ "point_sources": {
+  "2014-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315001865/0001178913-15-001865-index.html",
+   "label": "FY2014 Q3 · SEC 원문"
+  },
+  "2014-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317000579/0001178913-17-000579-index.html",
+   "label": "FY2014 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317000579/0001178913-17-000579-index.html",
+     "label": "2013-07-01 ~ 2014-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315001865/0001178913-15-001865-index.html",
+     "label": "2013-07-01 ~ 2014-03-31"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2014-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891315003313/0001178913-15-003313-index.html",
+   "label": "FY2015 Q1 · SEC 원문"
+  },
+  "2014-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316004185/0001178913-16-004185-index.html",
+   "label": "FY2015 Q2 · SEC 원문"
+  },
+  "2015-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316005371/0001178913-16-005371-index.html",
+   "label": "FY2015 Q3 · SEC 원문"
+  },
+  "2015-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318000655/0001178913-18-000655-index.html",
+   "label": "FY2015 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318000655/0001178913-18-000655-index.html",
+     "label": "2014-07-01 ~ 2015-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316005371/0001178913-16-005371-index.html",
+     "label": "2014-07-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2015-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316006821/0001178913-16-006821-index.html",
+   "label": "FY2016 Q1 · SEC 원문"
+  },
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891316004185/0001178913-16-004185-index.html",
+   "label": "FY2016 Q2 · SEC 원문"
+  },
+  "2016-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317001381/0001178913-17-001381-index.html",
+   "label": "FY2016 Q3 · SEC 원문"
+  },
+  "2016-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317002265/0001178913-17-002265-index.html",
+   "label": "FY2016 Q4 · SEC 원문"
+  },
+  "2016-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317003075/0001178913-17-003075-index.html",
+   "label": "2016 전환기 · 1번째 3개월 · SEC 원문"
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+   "label": "2016 전환기 · 2번째 3개월 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319000721/0001178913-19-000721-index.html",
+     "label": "2016-07-01 ~ 2016-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891317003075/0001178913-17-003075-index.html",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2017-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318001580/0001178913-18-001580-index.html",
+   "label": "FY2017 Q1 · SEC 원문"
+  },
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002270/0001178913-18-002270-index.html",
+   "label": "FY2017 Q2 · SEC 원문"
+  },
+  "2017-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002784/0001178913-18-002784-index.html",
+   "label": "FY2017 Q3 · SEC 원문"
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320000672/0001178913-20-000672-index.html",
+   "label": "FY2017 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320000672/0001178913-20-000672-index.html",
+     "label": "2017-01-01 ~ 2017-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891318002784/0001178913-18-002784-index.html",
+     "label": "2017-01-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319001396/0001178913-19-001396-index.html",
+   "label": "FY2018 Q1 · SEC 원문"
+  },
+  "2018-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002129/0001178913-19-002129-index.html",
+   "label": "FY2018 Q2 · SEC 원문"
+  },
+  "2018-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002642/0001178913-19-002642-index.html",
+   "label": "FY2018 Q3 · SEC 원문"
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321000700/0001178913-21-000700-index.html",
+   "label": "FY2018 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321000700/0001178913-21-000700-index.html",
+     "label": "2018-01-01 ~ 2018-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891319002642/0001178913-19-002642-index.html",
+     "label": "2018-01-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320001355/0001178913-20-001355-index.html",
+   "label": "FY2019 Q1 · SEC 원문"
+  },
+  "2019-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002282/0001178913-20-002282-index.html",
+   "label": "FY2019 Q2 · SEC 원문"
+  },
+  "2019-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002995/0001178913-20-002995-index.html",
+   "label": "FY2019 Q3 · SEC 원문"
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322000760/0001178913-22-000760-index.html",
+   "label": "FY2019 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322000760/0001178913-22-000760-index.html",
+     "label": "2019-01-01 ~ 2019-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891320002995/0001178913-20-002995-index.html",
+     "label": "2019-01-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2020-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321001589/0001178913-21-001589-index.html",
+   "label": "FY2020 Q1 · SEC 원문"
+  },
+  "2020-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321002525/0001178913-21-002525-index.html",
+   "label": "FY2020 Q2 · SEC 원문"
+  },
+  "2020-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321003364/0001178913-21-003364-index.html",
+   "label": "FY2020 Q3 · SEC 원문"
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323000707/0001178913-23-000707-index.html",
+   "label": "FY2020 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323000707/0001178913-23-000707-index.html",
+     "label": "2020-01-01 ~ 2020-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891321003364/0001178913-21-003364-index.html",
+     "label": "2020-01-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2021-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322001805/0001178913-22-001805-index.html",
+   "label": "FY2021 Q1 · SEC 원문"
+  },
+  "2021-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322002939/0001178913-22-002939-index.html",
+   "label": "FY2021 Q2 · SEC 원문"
+  },
+  "2021-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322003868/0001178913-22-003868-index.html",
+   "label": "FY2021 Q3 · SEC 원문"
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324000717/0001178913-24-000717-index.html",
+   "label": "FY2021 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324000717/0001178913-24-000717-index.html",
+     "label": "2021-01-01 ~ 2021-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891322003868/0001178913-22-003868-index.html",
+     "label": "2021-01-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323001734/0001178913-23-001734-index.html",
+   "label": "FY2022 Q1 · SEC 원문"
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323002728/0001178913-23-002728-index.html",
+   "label": "FY2022 Q2 · SEC 원문"
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323003538/0001178913-23-003538-index.html",
+   "label": "FY2022 Q3 · SEC 원문"
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325000605/0001178913-25-000605-index.html",
+   "label": "FY2022 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325000605/0001178913-25-000605-index.html",
+     "label": "2022-01-01 ~ 2022-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891323003538/0001178913-23-003538-index.html",
+     "label": "2022-01-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324001670/0001178913-24-001670-index.html",
+   "label": "FY2023 Q1 · SEC 원문"
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324002470/0001178913-24-002470-index.html",
+   "label": "FY2023 Q2 · SEC 원문"
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324003529/0001178913-24-003529-index.html",
+   "label": "FY2023 Q3 · SEC 원문"
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+   "label": "FY2023 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "2023-01-01 ~ 2023-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891324003529/0001178913-24-003529-index.html",
+     "label": "2023-01-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325001662/0001178913-25-001662-index.html",
+   "label": "FY2024 Q1 · SEC 원문"
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325002690/0001178913-25-002690-index.html",
+   "label": "FY2024 Q2 · SEC 원문"
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+   "label": "FY2024 Q3 · SEC 원문"
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+   "label": "FY2024 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "2024-01-01 ~ 2024-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+     "label": "2024-01-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326002432/0001178913-26-002432-index.html",
+   "label": "FY2025 Q1 · SEC 원문"
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html",
+   "label": "FY2025 Q2 · SEC 원문"
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+   "label": "FY2025 Q3 · SEC 원문"
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+   "label": "FY2025 Q4 · SEC 원문",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326001595/0001178913-26-001595-index.html",
+     "label": "2025-01-01 ~ 2025-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891325003678/0001178913-25-003678-index.html",
+     "label": "2025-01-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326002432/0001178913-26-002432-index.html",
+   "label": "FY2026 Q1 · SEC 원문"
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html",
+   "label": "FY2026 Q2 · SEC 원문"
+  }
+ },
+ "point_notes": {
+  "2014-03-31": [
+   "FY2014 Q3",
+   "2014-01-01 ~ 2014-03-31",
+   "원자료: -4.545000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2014-06-30": [
+   "FY2014 Q4",
+   "2014-04-01 ~ 2014-06-30",
+   "원자료: -2.440000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2014-09-30": [
+   "FY2015 Q1",
+   "2014-07-01 ~ 2014-09-30",
+   "원자료: 2.351000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2014-12-31": [
+   "FY2015 Q2",
+   "2014-10-01 ~ 2014-12-31",
+   "원자료: 4.234000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2015-03-31": [
+   "FY2015 Q3",
+   "2015-01-01 ~ 2015-03-31",
+   "원자료: 9.799000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2015-06-30": [
+   "FY2015 Q4",
+   "2015-04-01 ~ 2015-06-30",
+   "원자료: 11.873000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2015-09-30": [
+   "FY2016 Q1",
+   "2015-07-01 ~ 2015-09-30",
+   "원자료: 14.874000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2015-12-31": [
+   "FY2016 Q2",
+   "2015-10-01 ~ 2015-12-31",
+   "원자료: 19.262000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2016-03-31": [
+   "FY2016 Q3",
+   "2016-01-01 ~ 2016-03-31",
+   "원자료: 19.739000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2016-06-30": [
+   "FY2016 Q4",
+   "2016-04-01 ~ 2016-06-30",
+   "원자료: 17.884000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2016-09-30": [
+   "2016 전환기 · 1번째 3개월",
+   "2016-07-01 ~ 2016-09-30",
+   "원자료: 18.240000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2016-12-31": [
+   "2016 전환기 · 2번째 3개월",
+   "2016-10-01 ~ 2016-12-31",
+   "원자료: 15.147000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2017-03-31": [
+   "FY2017 Q1",
+   "2017-01-01 ~ 2017-03-31",
+   "원자료: 12.004000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2017-06-30": [
+   "FY2017 Q2",
+   "2017-04-01 ~ 2017-06-30",
+   "원자료: 19.115000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2017-09-30": [
+   "FY2017 Q3",
+   "2017-07-01 ~ 2017-09-30",
+   "원자료: 25.396000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2017-12-31": [
+   "FY2017 Q4",
+   "2017-10-01 ~ 2017-12-31",
+   "원자료: 34.571000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2018-03-31": [
+   "FY2018 Q1",
+   "2018-01-01 ~ 2018-03-31",
+   "원자료: 40.764000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2018-06-30": [
+   "FY2018 Q2",
+   "2018-04-01 ~ 2018-06-30",
+   "원자료: 40.665000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2018-09-30": [
+   "FY2018 Q3",
+   "2018-07-01 ~ 2018-09-30",
+   "원자료: 34.037000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2018-12-31": [
+   "FY2018 Q4",
+   "2018-10-01 ~ 2018-12-31",
+   "원자료: 23.954000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2019-03-31": [
+   "FY2019 Q1",
+   "2019-01-01 ~ 2019-03-31",
+   "원자료: 28.048000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2019-06-30": [
+   "FY2019 Q2",
+   "2019-04-01 ~ 2019-06-30",
+   "원자료: 45.353000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2019-09-30": [
+   "FY2019 Q3",
+   "2019-07-01 ~ 2019-09-30",
+   "원자료: 66.017000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2019-12-31": [
+   "FY2019 Q4",
+   "2019-10-01 ~ 2019-12-31",
+   "원자료: 50.528000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2020-03-31": [
+   "FY2020 Q1",
+   "2020-01-01 ~ 2020-03-31",
+   "원자료: 67.775000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2020-06-30": [
+   "FY2020 Q2",
+   "2020-04-01 ~ 2020-06-30",
+   "원자료: 29.965000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2020-09-30": [
+   "FY2020 Q3",
+   "2020-07-01 ~ 2020-09-30",
+   "원자료: 30.394000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2020-12-31": [
+   "FY2020 Q4",
+   "2020-10-01 ~ 2020-12-31",
+   "원자료: 14.427000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2021-03-31": [
+   "FY2021 Q1",
+   "2021-01-01 ~ 2021-03-31",
+   "원자료: 44.128000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2021-06-30": [
+   "FY2021 Q2",
+   "2021-04-01 ~ 2021-06-30",
+   "원자료: 55.559000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2021-09-30": [
+   "FY2021 Q3",
+   "2021-07-01 ~ 2021-09-30",
+   "원자료: 66.414000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2021-12-31": [
+   "FY2021 Q4",
+   "2021-10-01 ~ 2021-12-31",
+   "원자료: 41.038000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2022-03-31": [
+   "FY2022 Q1",
+   "2022-01-01 ~ 2022-03-31",
+   "원자료: 50.864000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2022-06-30": [
+   "FY2022 Q2",
+   "2022-04-01 ~ 2022-06-30",
+   "원자료: 36.012000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2022-09-30": [
+   "FY2022 Q3",
+   "2022-07-01 ~ 2022-09-30",
+   "원자료: 84.407000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2022-12-31": [
+   "FY2022 Q4",
+   "2022-10-01 ~ 2022-12-31",
+   "원자료: -5.163000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2023-03-31": [
+   "FY2023 Q1",
+   "2023-01-01 ~ 2023-03-31",
+   "원자료: 144.154000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2023-06-30": [
+   "FY2023 Q2",
+   "2023-04-01 ~ 2023-06-30",
+   "원자료: 150.358000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2023-09-30": [
+   "FY2023 Q3",
+   "2023-07-01 ~ 2023-09-30",
+   "원자료: -16.726000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2023-12-31": [
+   "FY2023 Q4",
+   "2023-10-01 ~ 2023-12-31",
+   "원자료: -237.581000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2024-03-31": [
+   "FY2024 Q1",
+   "2024-01-01 ~ 2024-03-31",
+   "원자료: -173.705000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2024-06-30": [
+   "FY2024 Q2",
+   "2024-04-01 ~ 2024-06-30",
+   "원자료: -160.182000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2024-09-30": [
+   "FY2024 Q3",
+   "2024-07-01 ~ 2024-09-30",
+   "원자료: -1,110.734000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2024-12-31": [
+   "FY2024 Q4",
+   "2024-10-01 ~ 2024-12-31",
+   "원자료: -263.667000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2025-03-31": [
+   "FY2025 Q1",
+   "2025-01-01 ~ 2025-03-31",
+   "원자료: -102.726000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2025-06-30": [
+   "FY2025 Q2",
+   "2025-04-01 ~ 2025-06-30",
+   "원자료: -115.493000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2025-09-30": [
+   "FY2025 Q3",
+   "2025-07-01 ~ 2025-09-30",
+   "원자료: -35.150000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2025-12-31": [
+   "FY2025 Q4",
+   "2025-10-01 ~ 2025-12-31",
+   "원자료: -48.310000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "same fiscal-year YTD minus prior YTD"
+  ],
+  "2026-03-31": [
+   "FY2026 Q1",
+   "2026-01-01 ~ 2026-03-31",
+   "원자료: -55.043000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ],
+  "2026-06-30": [
+   "FY2026 Q2",
+   "2026-04-01 ~ 2026-06-30",
+   "원자료: -16.046000 백만 USD",
+   "us-gaap:OperatingIncomeLoss",
+   "reported quarter"
+  ]
+ },
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": true,
+ "change_mode": "none",
+ "comparison_dates": {
+  "2014-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2016-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2017-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/0001178913-26-003854-index.html"
+}

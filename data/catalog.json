@@ -4158,6 +4158,126 @@
           ]
         }
       ]
+    },
+    {
+      "id": "solar",
+      "name": "태양광",
+      "icon": "☀️",
+      "default_range": "all",
+      "auto_collect_time": "09:35",
+      "cadence": "매일 KST 09:35에 SEC 연결 공시와 외국 발행사 6-K 실적 첨부를 확인합니다. 매출·영업이익·귀속 순이익은 실제 분기·회계연도 기준이며 발표 후 반영됩니다. JinkoSolar 위안화 원자료와 보고기간 평균환율 USD를 함께 보존합니다. 2014년 이후 가용 공시를 수집하며 상장 전 이력·사업 재편·회계 전환기는 집계 기준에서 확인합니다.",
+      "tabs": [
+        {
+          "id": "modules",
+          "name": "모듈·통합 제조",
+          "description": "First Solar·Canadian Solar·JinkoSolar. 모듈 기술과 ESS·발전 프로젝트의 포함 범위를 함께 확인합니다."
+        },
+        {
+          "id": "inverters",
+          "name": "인버터·에너지 관리",
+          "description": "Enphase·SolarEdge. 인버터·옵티마이저·배터리와 에너지 관리 사업의 연결 실적입니다."
+        },
+        {
+          "id": "trackers",
+          "name": "추적기·발전 설비",
+          "description": "Nextpower(옛 Nextracker)·Array. 발전소용 태양광 추적기와 관련 전기·제어 설비 기업입니다."
+        },
+        {
+          "id": "materials",
+          "name": "폴리실리콘 소재",
+          "description": "Daqo New Energy. 폴리실리콘 소재 사이클을 모듈·발전소 설비와 구분해서 봅니다."
+        }
+      ],
+      "sections": [
+        {
+          "tab": "modules",
+          "title": "First Solar · FSLR",
+          "layout": "financial",
+          "supply_note": "CdTe 박막 태양광 모듈 제조를 중심으로 한 연결 실적",
+          "indicators": [
+            "company_fslr_revenue",
+            "company_fslr_profit",
+            "company_fslr_netincome"
+          ]
+        },
+        {
+          "tab": "modules",
+          "title": "Canadian Solar · CSIQ",
+          "layout": "financial",
+          "supply_note": "태양광 모듈·ESS·Recurrent Energy 발전 프로젝트의 연결 실적",
+          "indicators": [
+            "company_csiq_revenue",
+            "company_csiq_profit",
+            "company_csiq_netincome"
+          ]
+        },
+        {
+          "tab": "modules",
+          "title": "JinkoSolar Holding · JKS",
+          "layout": "financial",
+          "supply_note": "태양광 모듈·셀 등 JinkoSolar Holding의 연결 실적",
+          "indicators": [
+            "company_jks_revenue",
+            "company_jks_profit",
+            "company_jks_netincome"
+          ]
+        },
+        {
+          "tab": "inverters",
+          "title": "Enphase Energy · ENPH",
+          "layout": "financial",
+          "supply_note": "마이크로인버터·가정용 배터리·에너지 관리의 연결 실적",
+          "indicators": [
+            "company_enph_revenue",
+            "company_enph_profit",
+            "company_enph_netincome"
+          ]
+        },
+        {
+          "tab": "inverters",
+          "title": "SolarEdge Technologies · SEDG",
+          "layout": "financial",
+          "supply_note": "인버터·옵티마이저·배터리·에너지 관리의 연결 실적",
+          "indicators": [
+            "company_sedg_revenue",
+            "company_sedg_profit",
+            "company_sedg_netincome"
+          ]
+        },
+        {
+          "tab": "trackers",
+          "title": "Nextpower · 옛 Nextracker · NXT",
+          "layout": "financial",
+          "supply_note": "태양광 추적기·전기 설비·소프트웨어 등 발전소 기술의 연결 실적",
+          "indicators": [
+            "company_nxt_revenue",
+            "company_nxt_profit",
+            "company_nxt_netincome"
+          ]
+        },
+        {
+          "tab": "trackers",
+          "title": "Array Technologies · ARRY",
+          "layout": "financial",
+          "supply_note": "태양광 단축 추적기·제어 시스템의 연결 실적",
+          "indicators": [
+            "company_arry_revenue",
+            "company_arry_profit",
+            "company_arry_netincome"
+          ]
+        },
+        {
+          "tab": "materials",
+          "title": "Daqo New Energy · DQ",
+          "layout": "financial",
+          "supply_note": "태양광용 고순도 폴리실리콘 소재의 연결 실적",
+          "indicators": [
+            "company_dq_revenue",
+            "company_dq_profit",
+            "company_dq_netincome"
+          ]
+        }
+      ]
     }
   ]
 }
