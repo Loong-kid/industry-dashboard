@@ -1,0 +1,3280 @@
+{
+ "id": "us_dc_googl_rpo",
+ "name": "Alphabet · RPO",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "rpo_googl",
+ "comparison_compact": true,
+ "series_unavailable": {},
+ "fetched": "2026-10-31",
+ "source": "SEC · 계약 잔액 공시",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-31",
+  "message": "공시 조회 완료"
+ },
+ "description": "Google Cloud RPO · GCP·Workspace 등 포함",
+ "note": "기말 미이행 계약 잔액입니다. 분기·연간 값을 합산하거나 누적 차분하지 않습니다. 연간은 각 회사의 실제 결산일 잔액만 표시합니다. Cloud 단독 RPO는 2026년부터 별도 공시되어, 이전 전사 이력은 별도 항목으로 구분했습니다.",
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 말 잔액",
+   "quarter_labels": true,
+   "year_labels": false,
+   "period_labels": {
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2",
+    "2026-09-30": "FY2026 Q3",
+    "2019-12-31": "FY2019 Q4",
+    "2020-03-31": "FY2020 Q1",
+    "2020-06-30": "FY2020 Q2",
+    "2020-09-30": "FY2020 Q3",
+    "2020-12-31": "FY2020 Q4",
+    "2021-03-31": "FY2021 Q1",
+    "2021-06-30": "FY2021 Q2",
+    "2021-09-30": "FY2021 Q3",
+    "2021-12-31": "FY2021 Q4",
+    "2022-03-31": "FY2022 Q1",
+    "2022-06-30": "FY2022 Q2",
+    "2022-09-30": "FY2022 Q3",
+    "2022-12-31": "FY2022 Q4",
+    "2023-03-31": "FY2023 Q1",
+    "2023-06-30": "FY2023 Q2",
+    "2023-09-30": "FY2023 Q3",
+    "2023-12-31": "FY2023 Q4",
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4"
+   },
+   "series": {
+    "Google Cloud RPO": [
+     [
+      "2026-03-31",
+      462300.0
+     ],
+     [
+      "2026-06-30",
+      513900.0
+     ],
+     [
+      "2026-09-30",
+      560800.0
+     ]
+    ],
+    "Alphabet 전사 RPO · Cloud 중심": [
+     [
+      "2019-12-31",
+      11400.0
+     ],
+     [
+      "2020-03-31",
+      12800.0
+     ],
+     [
+      "2020-06-30",
+      14800.0
+     ],
+     [
+      "2020-09-30",
+      19000.0
+     ],
+     [
+      "2020-12-31",
+      29800.0
+     ],
+     [
+      "2021-03-31",
+      30700.0
+     ],
+     [
+      "2021-06-30",
+      35300.0
+     ],
+     [
+      "2021-09-30",
+      37100.0
+     ],
+     [
+      "2021-12-31",
+      51000.0
+     ],
+     [
+      "2022-03-31",
+      50500.0
+     ],
+     [
+      "2022-06-30",
+      51200.0
+     ],
+     [
+      "2022-09-30",
+      52400.0
+     ],
+     [
+      "2022-12-31",
+      64300.0
+     ],
+     [
+      "2023-03-31",
+      61700.0
+     ],
+     [
+      "2023-06-30",
+      60600.0
+     ],
+     [
+      "2023-09-30",
+      64900.0
+     ],
+     [
+      "2023-12-31",
+      74100.0
+     ],
+     [
+      "2024-03-31",
+      72500.0
+     ],
+     [
+      "2024-06-30",
+      78800.0
+     ],
+     [
+      "2024-09-30",
+      86800.0
+     ],
+     [
+      "2024-12-31",
+      93200.0
+     ],
+     [
+      "2025-03-31",
+      92400.0
+     ],
+     [
+      "2025-06-30",
+      108200.0
+     ],
+     [
+      "2025-09-30",
+      157700.0
+     ],
+     [
+      "2025-12-31",
+      242800.0
+     ],
+     [
+      "2026-03-31",
+      467600.0
+     ],
+     [
+      "2026-06-30",
+      519500.0
+     ],
+     [
+      "2026-09-30",
+      567700.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "Google Cloud RPO": {
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+      "filed": "2026-04-30",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+        "filed": "2026-04-30",
+        "start": "2026-03-31",
+        "end": "2026-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+       }
+      ],
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-03-31"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "filed": "2026-07-23",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+        "filed": "2026-07-23",
+        "start": "2026-06-30",
+        "end": "2026-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+       }
+      ],
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-06-30"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "filed": "2026-10-29",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+        "filed": "2026-10-29",
+        "start": "2026-09-30",
+        "end": "2026-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+       }
+      ],
+      "period": "FY2026 Q3",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-09-30"
+     }
+    },
+    "Alphabet 전사 RPO · Cloud 중심": {
+     "2019-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+      "filed": "2020-02-04",
+      "start": "2019-12-31",
+      "end": "2019-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+        "filed": "2020-02-04",
+        "start": "2019-12-31",
+        "end": "2019-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2019 Q4",
+      "observed_date": "2019-12-31",
+      "period_start": "2019-12-31"
+     },
+     "2020-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+      "filed": "2020-04-29",
+      "start": "2020-03-31",
+      "end": "2020-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+        "filed": "2020-04-29",
+        "start": "2020-03-31",
+        "end": "2020-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2020 Q1",
+      "observed_date": "2020-03-31",
+      "period_start": "2020-03-31"
+     },
+     "2020-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+      "filed": "2020-07-31",
+      "start": "2020-06-30",
+      "end": "2020-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+        "filed": "2020-07-31",
+        "start": "2020-06-30",
+        "end": "2020-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2020 Q2",
+      "observed_date": "2020-06-30",
+      "period_start": "2020-06-30"
+     },
+     "2020-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+      "filed": "2020-10-30",
+      "start": "2020-09-30",
+      "end": "2020-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+        "filed": "2020-10-30",
+        "start": "2020-09-30",
+        "end": "2020-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2020 Q3",
+      "observed_date": "2020-09-30",
+      "period_start": "2020-09-30"
+     },
+     "2020-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+      "filed": "2021-02-03",
+      "start": "2020-12-31",
+      "end": "2020-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+        "filed": "2021-02-03",
+        "start": "2020-12-31",
+        "end": "2020-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2020 Q4",
+      "observed_date": "2020-12-31",
+      "period_start": "2020-12-31"
+     },
+     "2021-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+      "filed": "2021-04-28",
+      "start": "2021-03-31",
+      "end": "2021-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+        "filed": "2021-04-28",
+        "start": "2021-03-31",
+        "end": "2021-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2021 Q1",
+      "observed_date": "2021-03-31",
+      "period_start": "2021-03-31"
+     },
+     "2021-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+      "filed": "2021-07-28",
+      "start": "2021-06-30",
+      "end": "2021-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+        "filed": "2021-07-28",
+        "start": "2021-06-30",
+        "end": "2021-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2021 Q2",
+      "observed_date": "2021-06-30",
+      "period_start": "2021-06-30"
+     },
+     "2021-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+      "filed": "2021-10-27",
+      "start": "2021-09-30",
+      "end": "2021-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+        "filed": "2021-10-27",
+        "start": "2021-09-30",
+        "end": "2021-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2021 Q3",
+      "observed_date": "2021-09-30",
+      "period_start": "2021-09-30"
+     },
+     "2021-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+      "filed": "2022-02-02",
+      "start": "2021-12-31",
+      "end": "2021-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+        "filed": "2022-02-02",
+        "start": "2021-12-31",
+        "end": "2021-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2021 Q4",
+      "observed_date": "2021-12-31",
+      "period_start": "2021-12-31"
+     },
+     "2022-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+      "filed": "2022-04-27",
+      "start": "2022-03-31",
+      "end": "2022-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+        "filed": "2022-04-27",
+        "start": "2022-03-31",
+        "end": "2022-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2022 Q1",
+      "observed_date": "2022-03-31",
+      "period_start": "2022-03-31"
+     },
+     "2022-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+      "filed": "2022-07-27",
+      "start": "2022-06-30",
+      "end": "2022-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+        "filed": "2022-07-27",
+        "start": "2022-06-30",
+        "end": "2022-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2022 Q2",
+      "observed_date": "2022-06-30",
+      "period_start": "2022-06-30"
+     },
+     "2022-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+      "filed": "2022-10-26",
+      "start": "2022-09-30",
+      "end": "2022-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+        "filed": "2022-10-26",
+        "start": "2022-09-30",
+        "end": "2022-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2022 Q3",
+      "observed_date": "2022-09-30",
+      "period_start": "2022-09-30"
+     },
+     "2022-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+      "filed": "2023-02-03",
+      "start": "2022-12-31",
+      "end": "2022-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+        "filed": "2023-02-03",
+        "start": "2022-12-31",
+        "end": "2022-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2022 Q4",
+      "observed_date": "2022-12-31",
+      "period_start": "2022-12-31"
+     },
+     "2023-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+      "filed": "2023-04-26",
+      "start": "2023-03-31",
+      "end": "2023-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+        "filed": "2023-04-26",
+        "start": "2023-03-31",
+        "end": "2023-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2023 Q1",
+      "observed_date": "2023-03-31",
+      "period_start": "2023-03-31"
+     },
+     "2023-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+      "filed": "2023-07-26",
+      "start": "2023-06-30",
+      "end": "2023-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+        "filed": "2023-07-26",
+        "start": "2023-06-30",
+        "end": "2023-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2023 Q2",
+      "observed_date": "2023-06-30",
+      "period_start": "2023-06-30"
+     },
+     "2023-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+      "filed": "2023-10-25",
+      "start": "2023-09-30",
+      "end": "2023-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+        "filed": "2023-10-25",
+        "start": "2023-09-30",
+        "end": "2023-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2023 Q3",
+      "observed_date": "2023-09-30",
+      "period_start": "2023-09-30"
+     },
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+      "filed": "2024-01-31",
+      "start": "2023-12-31",
+      "end": "2023-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+        "filed": "2024-01-31",
+        "start": "2023-12-31",
+        "end": "2023-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2023 Q4",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-12-31"
+     },
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+      "filed": "2024-04-26",
+      "start": "2024-03-31",
+      "end": "2024-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+        "filed": "2024-04-26",
+        "start": "2024-03-31",
+        "end": "2024-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-03-31"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+      "filed": "2024-07-24",
+      "start": "2024-06-30",
+      "end": "2024-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+        "filed": "2024-07-24",
+        "start": "2024-06-30",
+        "end": "2024-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-06-30"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+      "filed": "2024-10-30",
+      "start": "2024-09-30",
+      "end": "2024-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+        "filed": "2024-10-30",
+        "start": "2024-09-30",
+        "end": "2024-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-09-30"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+      "filed": "2025-02-05",
+      "start": "2024-12-31",
+      "end": "2024-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+        "filed": "2025-02-05",
+        "start": "2024-12-31",
+        "end": "2024-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-12-31"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+      "filed": "2025-04-25",
+      "start": "2025-03-31",
+      "end": "2025-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+        "filed": "2025-04-25",
+        "start": "2025-03-31",
+        "end": "2025-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-03-31"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+      "filed": "2025-07-24",
+      "start": "2025-06-30",
+      "end": "2025-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+        "filed": "2025-07-24",
+        "start": "2025-06-30",
+        "end": "2025-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-06-30"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+      "filed": "2025-10-30",
+      "start": "2025-09-30",
+      "end": "2025-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+        "filed": "2025-10-30",
+        "start": "2025-09-30",
+        "end": "2025-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-09-30"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "filed": "2026-02-05",
+      "start": "2025-12-31",
+      "end": "2025-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "filed": "2026-02-05",
+        "start": "2025-12-31",
+        "end": "2025-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-12-31"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+      "filed": "2026-04-30",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+        "filed": "2026-04-30",
+        "start": "2026-03-31",
+        "end": "2026-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-03-31"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "filed": "2026-07-23",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+        "filed": "2026-07-23",
+        "start": "2026-06-30",
+        "end": "2026-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-06-30"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "filed": "2026-10-29",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+        "filed": "2026-10-29",
+        "start": "2026-09-30",
+        "end": "2026-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2026 Q3",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-09-30"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Google Cloud RPO": {
+     "2026-03-31": [
+      "Alphabet · Google Cloud RPO",
+      "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "462,300.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2026-06-30": [
+      "Alphabet · Google Cloud RPO",
+      "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "513,900.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2026-09-30": [
+      "Alphabet · Google Cloud RPO",
+      "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "560,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ]
+    },
+    "Alphabet 전사 RPO · Cloud 중심": {
+     "2019-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2019-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "11,400.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2020-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2020-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "12,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2020-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2020-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "14,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2020-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2020-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "19,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2020-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2020-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "29,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2021-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2021-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "30,700.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2021-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2021-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "35,300.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2021-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2021-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "37,100.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2021-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2021-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "51,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2022-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2022-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "50,500.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2022-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2022-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "51,200.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2022-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2022-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "52,400.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2022-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2022-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "64,300.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2023-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2023-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "61,700.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2023-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2023-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "60,600.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2023-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2023-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "64,900.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2023-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2023-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "74,100.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2024-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2024-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "72,500.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2024-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2024-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "78,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2024-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2024-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "86,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2024-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2024-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "93,200.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2025-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2025-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "92,400.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2025-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2025-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "108,200.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2025-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2025-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "157,700.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2025-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2025-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "242,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2026-03-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "467,600.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2026-06-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "519,500.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2026-09-30": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "567,700.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ]
+    }
+   },
+   "point_sources": {
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+       "label": "Google Cloud RPO · 2026-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+       "label": "Google Cloud RPO · 2026-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+       "label": "Google Cloud RPO · 2026-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Google Cloud RPO"
+   ],
+   "updated": "2026-09-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "comparison_dates": {
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
+    },
+    "2019-12-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2020-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2019-12-31"
+    },
+    "2020-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2020-03-31"
+    },
+    "2020-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2020-06-30"
+    },
+    "2020-12-31": {
+     "year_ago": "2019-12-31",
+     "quarter_ago": "2020-09-30"
+    },
+    "2021-03-31": {
+     "year_ago": "2020-03-31",
+     "quarter_ago": "2020-12-31"
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": "2021-03-31"
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": "2021-06-30"
+    },
+    "2021-12-31": {
+     "year_ago": "2020-12-31",
+     "quarter_ago": "2021-09-30"
+    },
+    "2022-03-31": {
+     "year_ago": "2021-03-31",
+     "quarter_ago": "2021-12-31"
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": "2021-12-31",
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    }
+   },
+   "quarterly_revenue_summary": true,
+   "change_mode": "none"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "회계연도 결산일 잔액",
+   "quarter_labels": false,
+   "year_labels": true,
+   "period_labels": {
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "series": {
+    "Google Cloud RPO": [],
+    "Alphabet 전사 RPO · Cloud 중심": [
+     [
+      "2019-12-31",
+      11400.0
+     ],
+     [
+      "2020-12-31",
+      29800.0
+     ],
+     [
+      "2021-12-31",
+      51000.0
+     ],
+     [
+      "2022-12-31",
+      64300.0
+     ],
+     [
+      "2023-12-31",
+      74100.0
+     ],
+     [
+      "2024-12-31",
+      93200.0
+     ],
+     [
+      "2025-12-31",
+      242800.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "Google Cloud RPO": {},
+    "Alphabet 전사 RPO · Cloud 중심": {
+     "2019-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+      "filed": "2020-02-04",
+      "start": "2019-12-31",
+      "end": "2019-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+        "filed": "2020-02-04",
+        "start": "2019-12-31",
+        "end": "2019-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2019",
+      "observed_date": "2019-12-31",
+      "period_start": "2019-12-31"
+     },
+     "2020-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+      "filed": "2021-02-03",
+      "start": "2020-12-31",
+      "end": "2020-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+        "filed": "2021-02-03",
+        "start": "2020-12-31",
+        "end": "2020-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2020",
+      "observed_date": "2020-12-31",
+      "period_start": "2020-12-31"
+     },
+     "2021-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+      "filed": "2022-02-02",
+      "start": "2021-12-31",
+      "end": "2021-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+        "filed": "2022-02-02",
+        "start": "2021-12-31",
+        "end": "2021-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2021",
+      "observed_date": "2021-12-31",
+      "period_start": "2021-12-31"
+     },
+     "2022-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+      "filed": "2023-02-03",
+      "start": "2022-12-31",
+      "end": "2022-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+        "filed": "2023-02-03",
+        "start": "2022-12-31",
+        "end": "2022-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2022",
+      "observed_date": "2022-12-31",
+      "period_start": "2022-12-31"
+     },
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+      "filed": "2024-01-31",
+      "start": "2023-12-31",
+      "end": "2023-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+        "filed": "2024-01-31",
+        "start": "2023-12-31",
+        "end": "2023-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-12-31"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+      "filed": "2025-02-05",
+      "start": "2024-12-31",
+      "end": "2024-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+        "filed": "2025-02-05",
+        "start": "2024-12-31",
+        "end": "2024-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-12-31"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "filed": "2026-02-05",
+      "start": "2025-12-31",
+      "end": "2025-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · ",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "filed": "2026-02-05",
+        "start": "2025-12-31",
+        "end": "2025-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · "
+       }
+      ],
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-12-31"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Google Cloud RPO": {},
+    "Alphabet 전사 RPO · Cloud 중심": {
+     "2019-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2019-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "11,400.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2020-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2020-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "29,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2021-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2021-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "51,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2022-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2022-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "64,300.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2023-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2023-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "74,100.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2024-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2024-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "93,200.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ],
+     "2025-12-31": [
+      "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+      "2025-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "242,800.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · ",
+      "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+     ]
+    }
+   },
+   "point_sources": {
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+       "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Alphabet 전사 RPO · Cloud 중심"
+   ],
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "comparison_dates": {},
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 말 잔액",
+ "quarter_labels": true,
+ "year_labels": false,
+ "period_labels": {
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4"
+ },
+ "series": {
+  "Google Cloud RPO": [
+   [
+    "2026-03-31",
+    462300.0
+   ],
+   [
+    "2026-06-30",
+    513900.0
+   ],
+   [
+    "2026-09-30",
+    560800.0
+   ]
+  ],
+  "Alphabet 전사 RPO · Cloud 중심": [
+   [
+    "2019-12-31",
+    11400.0
+   ],
+   [
+    "2020-03-31",
+    12800.0
+   ],
+   [
+    "2020-06-30",
+    14800.0
+   ],
+   [
+    "2020-09-30",
+    19000.0
+   ],
+   [
+    "2020-12-31",
+    29800.0
+   ],
+   [
+    "2021-03-31",
+    30700.0
+   ],
+   [
+    "2021-06-30",
+    35300.0
+   ],
+   [
+    "2021-09-30",
+    37100.0
+   ],
+   [
+    "2021-12-31",
+    51000.0
+   ],
+   [
+    "2022-03-31",
+    50500.0
+   ],
+   [
+    "2022-06-30",
+    51200.0
+   ],
+   [
+    "2022-09-30",
+    52400.0
+   ],
+   [
+    "2022-12-31",
+    64300.0
+   ],
+   [
+    "2023-03-31",
+    61700.0
+   ],
+   [
+    "2023-06-30",
+    60600.0
+   ],
+   [
+    "2023-09-30",
+    64900.0
+   ],
+   [
+    "2023-12-31",
+    74100.0
+   ],
+   [
+    "2024-03-31",
+    72500.0
+   ],
+   [
+    "2024-06-30",
+    78800.0
+   ],
+   [
+    "2024-09-30",
+    86800.0
+   ],
+   [
+    "2024-12-31",
+    93200.0
+   ],
+   [
+    "2025-03-31",
+    92400.0
+   ],
+   [
+    "2025-06-30",
+    108200.0
+   ],
+   [
+    "2025-09-30",
+    157700.0
+   ],
+   [
+    "2025-12-31",
+    242800.0
+   ],
+   [
+    "2026-03-31",
+    467600.0
+   ],
+   [
+    "2026-06-30",
+    519500.0
+   ],
+   [
+    "2026-09-30",
+    567700.0
+   ]
+  ]
+ },
+ "series_sources": {
+  "Google Cloud RPO": {
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+    "filed": "2026-04-30",
+    "start": "2026-03-31",
+    "end": "2026-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+      "filed": "2026-04-30",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+     }
+    ],
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-03-31"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+    "filed": "2026-07-23",
+    "start": "2026-06-30",
+    "end": "2026-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "filed": "2026-07-23",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+     }
+    ],
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-06-30"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+    "filed": "2026-10-29",
+    "start": "2026-09-30",
+    "end": "2026-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "filed": "2026-10-29",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember"
+     }
+    ],
+    "period": "FY2026 Q3",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-09-30"
+   }
+  },
+  "Alphabet 전사 RPO · Cloud 중심": {
+   "2019-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+    "filed": "2020-02-04",
+    "start": "2019-12-31",
+    "end": "2019-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+      "filed": "2020-02-04",
+      "start": "2019-12-31",
+      "end": "2019-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2019 Q4",
+    "observed_date": "2019-12-31",
+    "period_start": "2019-12-31"
+   },
+   "2020-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+    "filed": "2020-04-29",
+    "start": "2020-03-31",
+    "end": "2020-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+      "filed": "2020-04-29",
+      "start": "2020-03-31",
+      "end": "2020-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2020 Q1",
+    "observed_date": "2020-03-31",
+    "period_start": "2020-03-31"
+   },
+   "2020-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+    "filed": "2020-07-31",
+    "start": "2020-06-30",
+    "end": "2020-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+      "filed": "2020-07-31",
+      "start": "2020-06-30",
+      "end": "2020-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2020 Q2",
+    "observed_date": "2020-06-30",
+    "period_start": "2020-06-30"
+   },
+   "2020-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+    "filed": "2020-10-30",
+    "start": "2020-09-30",
+    "end": "2020-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+      "filed": "2020-10-30",
+      "start": "2020-09-30",
+      "end": "2020-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2020 Q3",
+    "observed_date": "2020-09-30",
+    "period_start": "2020-09-30"
+   },
+   "2020-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+    "filed": "2021-02-03",
+    "start": "2020-12-31",
+    "end": "2020-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+      "filed": "2021-02-03",
+      "start": "2020-12-31",
+      "end": "2020-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2020 Q4",
+    "observed_date": "2020-12-31",
+    "period_start": "2020-12-31"
+   },
+   "2021-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+    "filed": "2021-04-28",
+    "start": "2021-03-31",
+    "end": "2021-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+      "filed": "2021-04-28",
+      "start": "2021-03-31",
+      "end": "2021-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2021 Q1",
+    "observed_date": "2021-03-31",
+    "period_start": "2021-03-31"
+   },
+   "2021-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+    "filed": "2021-07-28",
+    "start": "2021-06-30",
+    "end": "2021-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+      "filed": "2021-07-28",
+      "start": "2021-06-30",
+      "end": "2021-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2021 Q2",
+    "observed_date": "2021-06-30",
+    "period_start": "2021-06-30"
+   },
+   "2021-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+    "filed": "2021-10-27",
+    "start": "2021-09-30",
+    "end": "2021-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+      "filed": "2021-10-27",
+      "start": "2021-09-30",
+      "end": "2021-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2021 Q3",
+    "observed_date": "2021-09-30",
+    "period_start": "2021-09-30"
+   },
+   "2021-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+    "filed": "2022-02-02",
+    "start": "2021-12-31",
+    "end": "2021-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+      "filed": "2022-02-02",
+      "start": "2021-12-31",
+      "end": "2021-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2021 Q4",
+    "observed_date": "2021-12-31",
+    "period_start": "2021-12-31"
+   },
+   "2022-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+    "filed": "2022-04-27",
+    "start": "2022-03-31",
+    "end": "2022-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+      "filed": "2022-04-27",
+      "start": "2022-03-31",
+      "end": "2022-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2022 Q1",
+    "observed_date": "2022-03-31",
+    "period_start": "2022-03-31"
+   },
+   "2022-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+    "filed": "2022-07-27",
+    "start": "2022-06-30",
+    "end": "2022-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+      "filed": "2022-07-27",
+      "start": "2022-06-30",
+      "end": "2022-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2022 Q2",
+    "observed_date": "2022-06-30",
+    "period_start": "2022-06-30"
+   },
+   "2022-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+    "filed": "2022-10-26",
+    "start": "2022-09-30",
+    "end": "2022-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+      "filed": "2022-10-26",
+      "start": "2022-09-30",
+      "end": "2022-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2022 Q3",
+    "observed_date": "2022-09-30",
+    "period_start": "2022-09-30"
+   },
+   "2022-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+    "filed": "2023-02-03",
+    "start": "2022-12-31",
+    "end": "2022-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+      "filed": "2023-02-03",
+      "start": "2022-12-31",
+      "end": "2022-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2022 Q4",
+    "observed_date": "2022-12-31",
+    "period_start": "2022-12-31"
+   },
+   "2023-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+    "filed": "2023-04-26",
+    "start": "2023-03-31",
+    "end": "2023-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+      "filed": "2023-04-26",
+      "start": "2023-03-31",
+      "end": "2023-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2023 Q1",
+    "observed_date": "2023-03-31",
+    "period_start": "2023-03-31"
+   },
+   "2023-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+    "filed": "2023-07-26",
+    "start": "2023-06-30",
+    "end": "2023-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+      "filed": "2023-07-26",
+      "start": "2023-06-30",
+      "end": "2023-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2023 Q2",
+    "observed_date": "2023-06-30",
+    "period_start": "2023-06-30"
+   },
+   "2023-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+    "filed": "2023-10-25",
+    "start": "2023-09-30",
+    "end": "2023-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+      "filed": "2023-10-25",
+      "start": "2023-09-30",
+      "end": "2023-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2023 Q3",
+    "observed_date": "2023-09-30",
+    "period_start": "2023-09-30"
+   },
+   "2023-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+    "filed": "2024-01-31",
+    "start": "2023-12-31",
+    "end": "2023-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+      "filed": "2024-01-31",
+      "start": "2023-12-31",
+      "end": "2023-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2023 Q4",
+    "observed_date": "2023-12-31",
+    "period_start": "2023-12-31"
+   },
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+    "filed": "2024-04-26",
+    "start": "2024-03-31",
+    "end": "2024-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+      "filed": "2024-04-26",
+      "start": "2024-03-31",
+      "end": "2024-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-03-31"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+    "filed": "2024-07-24",
+    "start": "2024-06-30",
+    "end": "2024-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+      "filed": "2024-07-24",
+      "start": "2024-06-30",
+      "end": "2024-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-06-30"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+    "filed": "2024-10-30",
+    "start": "2024-09-30",
+    "end": "2024-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+      "filed": "2024-10-30",
+      "start": "2024-09-30",
+      "end": "2024-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-09-30"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+    "filed": "2025-02-05",
+    "start": "2024-12-31",
+    "end": "2024-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+      "filed": "2025-02-05",
+      "start": "2024-12-31",
+      "end": "2024-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-12-31"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+    "filed": "2025-04-25",
+    "start": "2025-03-31",
+    "end": "2025-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+      "filed": "2025-04-25",
+      "start": "2025-03-31",
+      "end": "2025-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-03-31"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+    "filed": "2025-07-24",
+    "start": "2025-06-30",
+    "end": "2025-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+      "filed": "2025-07-24",
+      "start": "2025-06-30",
+      "end": "2025-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-06-30"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+    "filed": "2025-10-30",
+    "start": "2025-09-30",
+    "end": "2025-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+      "filed": "2025-10-30",
+      "start": "2025-09-30",
+      "end": "2025-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-09-30"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+    "filed": "2026-02-05",
+    "start": "2025-12-31",
+    "end": "2025-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+      "filed": "2026-02-05",
+      "start": "2025-12-31",
+      "end": "2025-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-12-31"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+    "filed": "2026-04-30",
+    "start": "2026-03-31",
+    "end": "2026-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+      "filed": "2026-04-30",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-03-31"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+    "filed": "2026-07-23",
+    "start": "2026-06-30",
+    "end": "2026-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "filed": "2026-07-23",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-06-30"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+    "filed": "2026-10-29",
+    "start": "2026-09-30",
+    "end": "2026-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · ",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+      "filed": "2026-10-29",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · "
+     }
+    ],
+    "period": "FY2026 Q3",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-09-30"
+   }
+  }
+ },
+ "series_point_notes": {
+  "Google Cloud RPO": {
+   "2026-03-31": [
+    "Alphabet · Google Cloud RPO",
+    "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "462,300.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2026-06-30": [
+    "Alphabet · Google Cloud RPO",
+    "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "513,900.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2026-09-30": [
+    "Alphabet · Google Cloud RPO",
+    "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "560,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · goog:GoogleCloudMember",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ]
+  },
+  "Alphabet 전사 RPO · Cloud 중심": {
+   "2019-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2019-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "11,400.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2020-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2020-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "12,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2020-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2020-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "14,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2020-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2020-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "19,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2020-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2020-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "29,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2021-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2021-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "30,700.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2021-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2021-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "35,300.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2021-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2021-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "37,100.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2021-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2021-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "51,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2022-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2022-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "50,500.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2022-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2022-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "51,200.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2022-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2022-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "52,400.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2022-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2022-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "64,300.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2023-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2023-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "61,700.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2023-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2023-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "60,600.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2023-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2023-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "64,900.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2023-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2023-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "74,100.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2024-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2024-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "72,500.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2024-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2024-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "78,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2024-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2024-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "86,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2024-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2024-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "93,200.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2025-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2025-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "92,400.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2025-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2025-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "108,200.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2025-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2025-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "157,700.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2025-12-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2025-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "242,800.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2026-03-31": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "467,600.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2026-06-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "519,500.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ],
+   "2026-09-30": [
+    "Alphabet · Alphabet 전사 RPO · Cloud 중심",
+    "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "567,700.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · ",
+    "Google은 2026년 1분기부터 원래 계약기간 1년 이하도 포함 · 전사와 Cloud 범위 구분"
+   ]
+  }
+ },
+ "point_sources": {
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+     "label": "Google Cloud RPO · 2026-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+     "label": "Google Cloud RPO · 2026-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+     "label": "Google Cloud RPO · 2026-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2026-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000008/goog10-k2019.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000021/goog-20200331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000032/goog-20200630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000010/goog-20201231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000020/goog-20210331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204421000057/goog-20210930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000029/goog-20220331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000071/goog-20220630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204422000090/goog-20220930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/goog-20230331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/goog-20230630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/goog-20240331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/goog-20240630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/goog-20240930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+     "label": "Alphabet 전사 RPO · Cloud 중심 · 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "Google Cloud RPO"
+ ],
+ "updated": "2026-09-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+ "comparison_dates": {
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2020-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  }
+ },
+ "quarterly_revenue_summary": true,
+ "change_mode": "none"
+}

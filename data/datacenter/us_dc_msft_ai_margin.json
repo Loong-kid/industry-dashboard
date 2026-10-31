@@ -1,0 +1,183 @@
+{
+ "id": "us_dc_msft_ai_margin",
+ "name": "Microsoft · 개편 부문 이익률(대리)",
+ "unit": "%",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "source": "SEC · 공시 부문 매출·영업이익",
+ "fetched": "2026-10-31",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-31",
+  "message": "공시 조회 완료"
+ },
+ "description": "Agents and Infra 영업이익 / Agents and Infra 매출 × 100",
+ "note": "공시된 부문 자체의 이익률이며 Azure·Microsoft Cloud 수익성의 근사 지표입니다. Intelligent Cloud와 FY2027의 Agents and Infra는 포함 사업이 달라 별도 그래프로 구분합니다. IC의 마지막 값을 현재 분기로 이월하지 않습니다. 연간은 연간 공시끼리 나누며 분기 이익률을 평균하지 않습니다.",
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 부문 이익률 대리치",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {
+    "Agents and Infra": [
+     [
+      "2025-09-30",
+      53.051627967310935
+     ],
+     [
+      "2026-09-30",
+      52.81333420144541
+     ]
+    ]
+   },
+   "period_labels": {
+    "2025-09-30": "FY2026 Q1",
+    "2026-09-30": "FY2027 Q1"
+   },
+   "point_sources": {
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "Agents and Infra",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+       "label": "OperatingIncomeLoss · msft:AgentsAndInfraMember"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+       "label": "RevenueFromContractWithCustomerExcludingAssessedTax · msft:AgentsAndInfraMember"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "Agents and Infra",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+       "label": "OperatingIncomeLoss · msft:AgentsAndInfraMember"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+       "label": "RevenueFromContractWithCustomerExcludingAssessedTax · msft:AgentsAndInfraMember"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2025-09-30": [
+     "Agents and Infra 사업부 · 클라우드 수익성 대리지표",
+     "2025-07-01 ~ 2025-09-30",
+     "영업이익 32,718.000 / 같은 사업부 매출 61,672.000 × 100 = 53.0516%",
+     "Azure·Microsoft Cloud 단독 이익률이 아님 · 서로 다른 보고 부문을 연결하지 않음"
+    ],
+    "2026-09-30": [
+     "Agents and Infra 사업부 · 클라우드 수익성 대리지표",
+     "2026-07-01 ~ 2026-09-30",
+     "영업이익 40,558.000 / 같은 사업부 매출 76,795.000 × 100 = 52.8133%",
+     "Azure·Microsoft Cloud 단독 이익률이 아님 · 서로 다른 보고 부문을 연결하지 않음"
+    ]
+   },
+   "updated": "2026-09-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+   "change_mode": "none",
+   "empty_message": "Agents and Infra의 완결 연간 공시를 아직 확보하지 못했습니다. 분기 이익률을 평균하거나 다른 부문을 대입하지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 부문 이익률 대리치",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "Agents and Infra": []
+   },
+   "period_labels": {},
+   "point_sources": {},
+   "point_notes": {},
+   "updated": "",
+   "source_url": "https://www.microsoft.com/en-us/investor/",
+   "change_mode": "none",
+   "empty_message": "Agents and Infra의 완결 연간 공시를 아직 확보하지 못했습니다. 분기 이익률을 평균하거나 다른 부문을 대입하지 않습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 부문 이익률 대리치",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "series": {
+  "Agents and Infra": [
+   [
+    "2025-09-30",
+    53.051627967310935
+   ],
+   [
+    "2026-09-30",
+    52.81333420144541
+   ]
+  ]
+ },
+ "period_labels": {
+  "2025-09-30": "FY2026 Q1",
+  "2026-09-30": "FY2027 Q1"
+ },
+ "point_sources": {
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+   "label": "Agents and Infra",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "OperatingIncomeLoss · msft:AgentsAndInfraMember"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "RevenueFromContractWithCustomerExcludingAssessedTax · msft:AgentsAndInfraMember"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+   "label": "Agents and Infra",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "OperatingIncomeLoss · msft:AgentsAndInfraMember"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "RevenueFromContractWithCustomerExcludingAssessedTax · msft:AgentsAndInfraMember"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2025-09-30": [
+   "Agents and Infra 사업부 · 클라우드 수익성 대리지표",
+   "2025-07-01 ~ 2025-09-30",
+   "영업이익 32,718.000 / 같은 사업부 매출 61,672.000 × 100 = 53.0516%",
+   "Azure·Microsoft Cloud 단독 이익률이 아님 · 서로 다른 보고 부문을 연결하지 않음"
+  ],
+  "2026-09-30": [
+   "Agents and Infra 사업부 · 클라우드 수익성 대리지표",
+   "2026-07-01 ~ 2026-09-30",
+   "영업이익 40,558.000 / 같은 사업부 매출 76,795.000 × 100 = 52.8133%",
+   "Azure·Microsoft Cloud 단독 이익률이 아님 · 서로 다른 보고 부문을 연결하지 않음"
+  ]
+ },
+ "updated": "2026-09-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+ "change_mode": "none",
+ "empty_message": "Agents and Infra의 완결 연간 공시를 아직 확보하지 못했습니다. 분기 이익률을 평균하거나 다른 부문을 대입하지 않습니다."
+}

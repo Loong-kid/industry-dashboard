@@ -12,6 +12,7 @@ function renderUsDatacenterComparison(doc) {
   const selected = dcComparisonDefaults(doc, state.dcComparisonSelections[doc.id]);
   const card = renderCard({...doc, company_comparison: false, default_series: selected}, doc.id);
   card.classList.add("dc-company-comparison");
+  if (doc.comparison_compact) card.classList.add("dc-comparison-compact");
   card.dataset.dcComparison = doc.comparison_metric;
   const chart = Chart.getChart(card.querySelector("canvas"));
   const names = Object.keys(doc.series), e = escapeHtml;
@@ -22,7 +23,7 @@ function renderUsDatacenterComparison(doc) {
       card.querySelector('.card-stat').innerHTML = '<span class="stat-unit">비교할 기업을 선택하세요</span>';
       return;
     }
-    const name = card.querySelector(".stat-series")?.textContent;
+    const name = card.querySelector(".stat-series")?.textContent || (names.length === 1 ? names[0] : null);
     const last = doc.series[name]?.at(-1);
     if (!last) return;
     const ref = doc.series_sources[name]?.[last[0]], memo = doc.series_point_notes[name]?.[last[0]];

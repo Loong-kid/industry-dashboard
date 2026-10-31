@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:xbrl xmlns:ns0="http://www.xbrl.org/2003/instance" xmlns:ns1="http://xbrl.org/2006/xbrldi" xmlns:ns2="http://fasb.org/us-gaap/2026"><ns0:context id="C_d63e0ec9-7988-46b4-a7f8-7eb42489d7ca">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0000789019</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">msft:AgentsAndInfraMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2026-07-01</ns0:startDate>
+            <ns0:endDate>2026-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="C_10d1f015-3e04-4689-af72-3d5162e04743">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0000789019</ns0:identifier>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="C_19827b72-bff2-4677-afd2-2d1657a083a2">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0000789019</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">msft:AgentsAndInfraMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2025-07-01</ns0:startDate>
+            <ns0:endDate>2025-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="C_29087c8f-ba21-49d1-8838-26ed91a3b593">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0000789019</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="srt:MajorCustomersAxis">msft:CommercialCustomersMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:unit id="U_EUR">
+        <ns0:measure>iso4217:EUR</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_pure">
+        <ns0:measure>pure</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_Segment">
+        <ns0:measure>msft:Segment</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_shares">
+        <ns0:measure>shares</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_UnitedStatesOfAmericaDollarsShare">
+        <ns0:divide>
+            <ns0:unitNumerator>
+                <ns0:measure>iso4217:USD</ns0:measure>
+            </ns0:unitNumerator>
+            <ns0:unitDenominator>
+                <ns0:measure>shares</ns0:measure>
+            </ns0:unitDenominator>
+        </ns0:divide>
+    </ns0:unit>
+    <ns0:unit id="U_USD">
+        <ns0:measure>iso4217:USD</ns0:measure>
+    </ns0:unit>
+    <ns2:RevenueRemainingPerformanceObligation contextRef="C_10d1f015-3e04-4689-af72-3d5162e04743" decimals="-9" id="F_246d81d1-bf14-432d-9b5a-30f051946d1b" unitRef="U_USD">683000000000</ns2:RevenueRemainingPerformanceObligation>
+    <ns2:RevenueRemainingPerformanceObligation contextRef="C_29087c8f-ba21-49d1-8838-26ed91a3b593" decimals="-9" id="F_c9c2c427-09ef-46d4-8c7f-d43ed630a643" unitRef="U_USD">677000000000</ns2:RevenueRemainingPerformanceObligation>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="C_d63e0ec9-7988-46b4-a7f8-7eb42489d7ca" decimals="-6" id="F_a54b242e-74dd-410d-99b0-392271c41548" unitRef="U_USD">76795000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="C_19827b72-bff2-4677-afd2-2d1657a083a2" decimals="-6" id="F_95171386-aada-4f5b-92a4-1362b7382264" unitRef="U_USD">61672000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:OperatingIncomeLoss contextRef="C_d63e0ec9-7988-46b4-a7f8-7eb42489d7ca" decimals="-6" id="F_02816a33-e08a-4015-b483-25e1df90b86f" unitRef="U_USD">40558000000</ns2:OperatingIncomeLoss>
+    <ns2:OperatingIncomeLoss contextRef="C_19827b72-bff2-4677-afd2-2d1657a083a2" decimals="-6" id="F_e7f10192-1d06-452f-8075-34d27f901567" unitRef="U_USD">32718000000</ns2:OperatingIncomeLoss>
+    </ns0:xbrl>

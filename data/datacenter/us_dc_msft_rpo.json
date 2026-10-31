@@ -1,0 +1,3078 @@
+{
+ "id": "us_dc_msft_rpo",
+ "name": "Microsoft · RPO",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "rpo_msft",
+ "comparison_compact": true,
+ "series_unavailable": {},
+ "fetched": "2026-10-31",
+ "source": "SEC · 계약 잔액 공시",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-31",
+  "message": "공시 조회 완료"
+ },
+ "description": "Commercial RPO · Azure 외 Microsoft 365·지원·라이선스 등 포함",
+ "note": "기말 미이행 계약 잔액입니다. 분기·연간 값을 합산하거나 누적 차분하지 않습니다. 연간은 각 회사의 실제 결산일 잔액만 표시합니다.",
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 말 잔액",
+   "quarter_labels": true,
+   "year_labels": false,
+   "period_labels": {
+    "2019-09-30": "FY2020 Q1",
+    "2019-12-31": "FY2020 Q2",
+    "2020-03-31": "FY2020 Q3",
+    "2020-06-30": "FY2020 Q4",
+    "2020-09-30": "FY2021 Q1",
+    "2020-12-31": "FY2021 Q2",
+    "2021-03-31": "FY2021 Q3",
+    "2021-06-30": "FY2021 Q4",
+    "2021-09-30": "FY2022 Q1",
+    "2021-12-31": "FY2022 Q2",
+    "2022-03-31": "FY2022 Q3",
+    "2022-06-30": "FY2022 Q4",
+    "2022-09-30": "FY2023 Q1",
+    "2022-12-31": "FY2023 Q2",
+    "2023-03-31": "FY2023 Q3",
+    "2023-06-30": "FY2023 Q4",
+    "2023-09-30": "FY2024 Q1",
+    "2023-12-31": "FY2024 Q2",
+    "2024-03-31": "FY2024 Q3",
+    "2024-06-30": "FY2024 Q4",
+    "2024-09-30": "FY2025 Q1",
+    "2024-12-31": "FY2025 Q2",
+    "2025-03-31": "FY2025 Q3",
+    "2025-06-30": "FY2025 Q4",
+    "2025-09-30": "FY2026 Q1",
+    "2025-12-31": "FY2026 Q2",
+    "2026-03-31": "FY2026 Q3",
+    "2026-06-30": "FY2026 Q4",
+    "2026-09-30": "FY2027 Q1"
+   },
+   "series": {
+    "Commercial RPO": [
+     [
+      "2019-09-30",
+      86000.0
+     ],
+     [
+      "2019-12-31",
+      90000.0
+     ],
+     [
+      "2020-03-31",
+      89000.0
+     ],
+     [
+      "2020-06-30",
+      107000.0
+     ],
+     [
+      "2020-09-30",
+      107000.0
+     ],
+     [
+      "2020-12-31",
+      112000.0
+     ],
+     [
+      "2021-03-31",
+      117000.0
+     ],
+     [
+      "2021-06-30",
+      141000.0
+     ],
+     [
+      "2021-09-30",
+      137000.0
+     ],
+     [
+      "2021-12-31",
+      147000.0
+     ],
+     [
+      "2022-03-31",
+      155000.0
+     ],
+     [
+      "2022-06-30",
+      189000.0
+     ],
+     [
+      "2022-09-30",
+      180000.0
+     ],
+     [
+      "2022-12-31",
+      189000.0
+     ],
+     [
+      "2023-03-31",
+      196000.0
+     ],
+     [
+      "2023-06-30",
+      224000.0
+     ],
+     [
+      "2023-09-30",
+      212000.0
+     ],
+     [
+      "2023-12-31",
+      222000.0
+     ],
+     [
+      "2024-03-31",
+      235000.0
+     ],
+     [
+      "2024-06-30",
+      269000.0
+     ],
+     [
+      "2024-09-30",
+      259000.0
+     ],
+     [
+      "2024-12-31",
+      298000.0
+     ],
+     [
+      "2025-03-31",
+      315000.0
+     ],
+     [
+      "2025-06-30",
+      368000.0
+     ],
+     [
+      "2025-09-30",
+      392000.0
+     ],
+     [
+      "2025-12-31",
+      625000.0
+     ],
+     [
+      "2026-03-31",
+      627000.0
+     ],
+     [
+      "2026-06-30",
+      678000.0
+     ],
+     [
+      "2026-09-30",
+      677000.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "Commercial RPO": {
+     "2019-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+      "filed": "2019-10-23",
+      "start": "2019-09-30",
+      "end": "2019-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+        "filed": "2019-10-23",
+        "start": "2019-09-30",
+        "end": "2019-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2020 Q1",
+      "observed_date": "2019-09-30",
+      "period_start": "2019-09-30"
+     },
+     "2019-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+      "filed": "2020-01-29",
+      "start": "2019-12-31",
+      "end": "2019-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+        "filed": "2020-01-29",
+        "start": "2019-12-31",
+        "end": "2019-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2020 Q2",
+      "observed_date": "2019-12-31",
+      "period_start": "2019-12-31"
+     },
+     "2020-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+      "filed": "2020-04-29",
+      "start": "2020-03-31",
+      "end": "2020-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+        "filed": "2020-04-29",
+        "start": "2020-03-31",
+        "end": "2020-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2020 Q3",
+      "observed_date": "2020-03-31",
+      "period_start": "2020-03-31"
+     },
+     "2020-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+      "filed": "2020-07-30",
+      "start": "2020-06-30",
+      "end": "2020-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+        "filed": "2020-07-30",
+        "start": "2020-06-30",
+        "end": "2020-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2020 Q4",
+      "observed_date": "2020-06-30",
+      "period_start": "2020-06-30"
+     },
+     "2020-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+      "filed": "2020-10-27",
+      "start": "2020-09-30",
+      "end": "2020-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+        "filed": "2020-10-27",
+        "start": "2020-09-30",
+        "end": "2020-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2021 Q1",
+      "observed_date": "2020-09-30",
+      "period_start": "2020-09-30"
+     },
+     "2020-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+      "filed": "2021-01-26",
+      "start": "2020-12-31",
+      "end": "2020-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+        "filed": "2021-01-26",
+        "start": "2020-12-31",
+        "end": "2020-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2021 Q2",
+      "observed_date": "2020-12-31",
+      "period_start": "2020-12-31"
+     },
+     "2021-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+      "filed": "2021-04-27",
+      "start": "2021-03-31",
+      "end": "2021-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+        "filed": "2021-04-27",
+        "start": "2021-03-31",
+        "end": "2021-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2021 Q3",
+      "observed_date": "2021-03-31",
+      "period_start": "2021-03-31"
+     },
+     "2021-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "filed": "2021-07-29",
+      "start": "2021-06-30",
+      "end": "2021-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+        "filed": "2021-07-29",
+        "start": "2021-06-30",
+        "end": "2021-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2021 Q4",
+      "observed_date": "2021-06-30",
+      "period_start": "2021-06-30"
+     },
+     "2021-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+      "filed": "2021-10-26",
+      "start": "2021-09-30",
+      "end": "2021-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+        "filed": "2021-10-26",
+        "start": "2021-09-30",
+        "end": "2021-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2022 Q1",
+      "observed_date": "2021-09-30",
+      "period_start": "2021-09-30"
+     },
+     "2021-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+      "filed": "2022-01-25",
+      "start": "2021-12-31",
+      "end": "2021-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+        "filed": "2022-01-25",
+        "start": "2021-12-31",
+        "end": "2021-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2022 Q2",
+      "observed_date": "2021-12-31",
+      "period_start": "2021-12-31"
+     },
+     "2022-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+      "filed": "2022-04-26",
+      "start": "2022-03-31",
+      "end": "2022-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+        "filed": "2022-04-26",
+        "start": "2022-03-31",
+        "end": "2022-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2022 Q3",
+      "observed_date": "2022-03-31",
+      "period_start": "2022-03-31"
+     },
+     "2022-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "filed": "2022-07-28",
+      "start": "2022-06-30",
+      "end": "2022-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+        "filed": "2022-07-28",
+        "start": "2022-06-30",
+        "end": "2022-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2022 Q4",
+      "observed_date": "2022-06-30",
+      "period_start": "2022-06-30"
+     },
+     "2022-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+      "filed": "2022-10-25",
+      "start": "2022-09-30",
+      "end": "2022-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+        "filed": "2022-10-25",
+        "start": "2022-09-30",
+        "end": "2022-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2023 Q1",
+      "observed_date": "2022-09-30",
+      "period_start": "2022-09-30"
+     },
+     "2022-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+      "filed": "2023-01-24",
+      "start": "2022-12-31",
+      "end": "2022-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+        "filed": "2023-01-24",
+        "start": "2022-12-31",
+        "end": "2022-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2023 Q2",
+      "observed_date": "2022-12-31",
+      "period_start": "2022-12-31"
+     },
+     "2023-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+      "filed": "2023-04-25",
+      "start": "2023-03-31",
+      "end": "2023-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+        "filed": "2023-04-25",
+        "start": "2023-03-31",
+        "end": "2023-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2023 Q3",
+      "observed_date": "2023-03-31",
+      "period_start": "2023-03-31"
+     },
+     "2023-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "filed": "2023-07-27",
+      "start": "2023-06-30",
+      "end": "2023-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+        "filed": "2023-07-27",
+        "start": "2023-06-30",
+        "end": "2023-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2023 Q4",
+      "observed_date": "2023-06-30",
+      "period_start": "2023-06-30"
+     },
+     "2023-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+      "filed": "2023-10-24",
+      "start": "2023-09-30",
+      "end": "2023-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+        "filed": "2023-10-24",
+        "start": "2023-09-30",
+        "end": "2023-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2024 Q1",
+      "observed_date": "2023-09-30",
+      "period_start": "2023-09-30"
+     },
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+      "filed": "2024-01-30",
+      "start": "2023-12-31",
+      "end": "2023-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+        "filed": "2024-01-30",
+        "start": "2023-12-31",
+        "end": "2023-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2024 Q2",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-12-31"
+     },
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+      "filed": "2024-04-25",
+      "start": "2024-03-31",
+      "end": "2024-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+        "filed": "2024-04-25",
+        "start": "2024-03-31",
+        "end": "2024-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2024 Q3",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-03-31"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "filed": "2024-07-30",
+      "start": "2024-06-30",
+      "end": "2024-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+        "filed": "2024-07-30",
+        "start": "2024-06-30",
+        "end": "2024-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2024 Q4",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-06-30"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+      "filed": "2024-10-30",
+      "start": "2024-09-30",
+      "end": "2024-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+        "filed": "2024-10-30",
+        "start": "2024-09-30",
+        "end": "2024-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2025 Q1",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-09-30"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+      "filed": "2025-01-29",
+      "start": "2024-12-31",
+      "end": "2024-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+        "filed": "2025-01-29",
+        "start": "2024-12-31",
+        "end": "2024-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2025 Q2",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-12-31"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+      "filed": "2025-04-30",
+      "start": "2025-03-31",
+      "end": "2025-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+        "filed": "2025-04-30",
+        "start": "2025-03-31",
+        "end": "2025-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2025 Q3",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-03-31"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "filed": "2025-07-30",
+      "start": "2025-06-30",
+      "end": "2025-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+        "filed": "2025-07-30",
+        "start": "2025-06-30",
+        "end": "2025-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2025 Q4",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-06-30"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+      "filed": "2025-10-29",
+      "start": "2025-09-30",
+      "end": "2025-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+        "filed": "2025-10-29",
+        "start": "2025-09-30",
+        "end": "2025-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2026 Q1",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-09-30"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+      "filed": "2026-01-28",
+      "start": "2025-12-31",
+      "end": "2025-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+        "filed": "2026-01-28",
+        "start": "2025-12-31",
+        "end": "2025-12-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2026 Q2",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-12-31"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+      "filed": "2026-04-29",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+        "filed": "2026-04-29",
+        "start": "2026-03-31",
+        "end": "2026-03-31",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2026 Q3",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-03-31"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "filed": "2026-07-29",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "filed": "2026-07-29",
+        "start": "2026-06-30",
+        "end": "2026-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2026 Q4",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-06-30"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+      "filed": "2026-10-28",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+        "filed": "2026-10-28",
+        "start": "2026-09-30",
+        "end": "2026-09-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2027 Q1",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-09-30"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Commercial RPO": {
+     "2019-09-30": [
+      "Microsoft · Commercial RPO",
+      "2019-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "86,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2019-12-31": [
+      "Microsoft · Commercial RPO",
+      "2019-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "90,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2020-03-31": [
+      "Microsoft · Commercial RPO",
+      "2020-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "89,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2020-06-30": [
+      "Microsoft · Commercial RPO",
+      "2020-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "107,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2020-09-30": [
+      "Microsoft · Commercial RPO",
+      "2020-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "107,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2020-12-31": [
+      "Microsoft · Commercial RPO",
+      "2020-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "112,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2021-03-31": [
+      "Microsoft · Commercial RPO",
+      "2021-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "117,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2021-06-30": [
+      "Microsoft · Commercial RPO",
+      "2021-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "141,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2021-09-30": [
+      "Microsoft · Commercial RPO",
+      "2021-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "137,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2021-12-31": [
+      "Microsoft · Commercial RPO",
+      "2021-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "147,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2022-03-31": [
+      "Microsoft · Commercial RPO",
+      "2022-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "155,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2022-06-30": [
+      "Microsoft · Commercial RPO",
+      "2022-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "189,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2022-09-30": [
+      "Microsoft · Commercial RPO",
+      "2022-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "180,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2022-12-31": [
+      "Microsoft · Commercial RPO",
+      "2022-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "189,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2023-03-31": [
+      "Microsoft · Commercial RPO",
+      "2023-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "196,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2023-06-30": [
+      "Microsoft · Commercial RPO",
+      "2023-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "224,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2023-09-30": [
+      "Microsoft · Commercial RPO",
+      "2023-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "212,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2023-12-31": [
+      "Microsoft · Commercial RPO",
+      "2023-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "222,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2024-03-31": [
+      "Microsoft · Commercial RPO",
+      "2024-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "235,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2024-06-30": [
+      "Microsoft · Commercial RPO",
+      "2024-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "269,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2024-09-30": [
+      "Microsoft · Commercial RPO",
+      "2024-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "259,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2024-12-31": [
+      "Microsoft · Commercial RPO",
+      "2024-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "298,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2025-03-31": [
+      "Microsoft · Commercial RPO",
+      "2025-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "315,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2025-06-30": [
+      "Microsoft · Commercial RPO",
+      "2025-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "368,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2025-09-30": [
+      "Microsoft · Commercial RPO",
+      "2025-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "392,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2025-12-31": [
+      "Microsoft · Commercial RPO",
+      "2025-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "625,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2026-03-31": [
+      "Microsoft · Commercial RPO",
+      "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "627,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2026-06-30": [
+      "Microsoft · Commercial RPO",
+      "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "678,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2026-09-30": [
+      "Microsoft · Commercial RPO",
+      "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "677,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ]
+    }
+   },
+   "point_sources": {
+    "2019-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+       "label": "Commercial RPO · 2019-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+       "label": "Commercial RPO · 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+       "label": "Commercial RPO · 2020-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+       "label": "Commercial RPO · 2020-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+       "label": "Commercial RPO · 2020-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+       "label": "Commercial RPO · 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+       "label": "Commercial RPO · 2021-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+       "label": "Commercial RPO · 2021-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+       "label": "Commercial RPO · 2021-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+       "label": "Commercial RPO · 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+       "label": "Commercial RPO · 2022-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+       "label": "Commercial RPO · 2022-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+       "label": "Commercial RPO · 2022-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+       "label": "Commercial RPO · 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+       "label": "Commercial RPO · 2023-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+       "label": "Commercial RPO · 2023-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+       "label": "Commercial RPO · 2023-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+       "label": "Commercial RPO · 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+       "label": "Commercial RPO · 2024-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+       "label": "Commercial RPO · 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+       "label": "Commercial RPO · 2024-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+       "label": "Commercial RPO · 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+       "label": "Commercial RPO · 2025-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+       "label": "Commercial RPO · 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+       "label": "Commercial RPO · 2025-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+       "label": "Commercial RPO · 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+       "label": "Commercial RPO · 2026-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+       "label": "Commercial RPO · 2026-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+       "label": "Commercial RPO · 2026-09-30"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Commercial RPO"
+   ],
+   "updated": "2026-09-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+   "comparison_dates": {
+    "2019-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2019-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2019-09-30"
+    },
+    "2020-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2019-12-31"
+    },
+    "2020-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2020-03-31"
+    },
+    "2020-09-30": {
+     "year_ago": "2019-09-30",
+     "quarter_ago": "2020-06-30"
+    },
+    "2020-12-31": {
+     "year_ago": "2019-12-31",
+     "quarter_ago": "2020-09-30"
+    },
+    "2021-03-31": {
+     "year_ago": "2020-03-31",
+     "quarter_ago": "2020-12-31"
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": "2021-03-31"
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": "2021-06-30"
+    },
+    "2021-12-31": {
+     "year_ago": "2020-12-31",
+     "quarter_ago": "2021-09-30"
+    },
+    "2022-03-31": {
+     "year_ago": "2021-03-31",
+     "quarter_ago": "2021-12-31"
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": "2021-12-31",
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
+    }
+   },
+   "quarterly_revenue_summary": true,
+   "change_mode": "none"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "회계연도 결산일 잔액",
+   "quarter_labels": false,
+   "year_labels": true,
+   "period_labels": {
+    "2020-06-30": "FY2020",
+    "2021-06-30": "FY2021",
+    "2022-06-30": "FY2022",
+    "2023-06-30": "FY2023",
+    "2024-06-30": "FY2024",
+    "2025-06-30": "FY2025",
+    "2026-06-30": "FY2026"
+   },
+   "series": {
+    "Commercial RPO": [
+     [
+      "2020-06-30",
+      107000.0
+     ],
+     [
+      "2021-06-30",
+      141000.0
+     ],
+     [
+      "2022-06-30",
+      189000.0
+     ],
+     [
+      "2023-06-30",
+      224000.0
+     ],
+     [
+      "2024-06-30",
+      269000.0
+     ],
+     [
+      "2025-06-30",
+      368000.0
+     ],
+     [
+      "2026-06-30",
+      678000.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "Commercial RPO": {
+     "2020-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+      "filed": "2020-07-30",
+      "start": "2020-06-30",
+      "end": "2020-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+        "filed": "2020-07-30",
+        "start": "2020-06-30",
+        "end": "2020-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2020",
+      "observed_date": "2020-06-30",
+      "period_start": "2020-06-30"
+     },
+     "2021-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "filed": "2021-07-29",
+      "start": "2021-06-30",
+      "end": "2021-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+        "filed": "2021-07-29",
+        "start": "2021-06-30",
+        "end": "2021-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2021",
+      "observed_date": "2021-06-30",
+      "period_start": "2021-06-30"
+     },
+     "2022-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "filed": "2022-07-28",
+      "start": "2022-06-30",
+      "end": "2022-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+        "filed": "2022-07-28",
+        "start": "2022-06-30",
+        "end": "2022-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2022",
+      "observed_date": "2022-06-30",
+      "period_start": "2022-06-30"
+     },
+     "2023-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "filed": "2023-07-27",
+      "start": "2023-06-30",
+      "end": "2023-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+        "filed": "2023-07-27",
+        "start": "2023-06-30",
+        "end": "2023-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2023",
+      "observed_date": "2023-06-30",
+      "period_start": "2023-06-30"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "filed": "2024-07-30",
+      "start": "2024-06-30",
+      "end": "2024-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+        "filed": "2024-07-30",
+        "start": "2024-06-30",
+        "end": "2024-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2024",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-06-30"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "filed": "2025-07-30",
+      "start": "2025-06-30",
+      "end": "2025-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+        "filed": "2025-07-30",
+        "start": "2025-06-30",
+        "end": "2025-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2025",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-06-30"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "filed": "2026-07-29",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+      "instant": true,
+      "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "filed": "2026-07-29",
+        "start": "2026-06-30",
+        "end": "2026-06-30",
+        "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+       }
+      ],
+      "period": "FY2026",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-06-30"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Commercial RPO": {
+     "2020-06-30": [
+      "Microsoft · Commercial RPO",
+      "2020-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "107,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2021-06-30": [
+      "Microsoft · Commercial RPO",
+      "2021-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "141,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2022-06-30": [
+      "Microsoft · Commercial RPO",
+      "2022-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "189,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2023-06-30": [
+      "Microsoft · Commercial RPO",
+      "2023-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "224,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2024-06-30": [
+      "Microsoft · Commercial RPO",
+      "2024-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "269,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2025-06-30": [
+      "Microsoft · Commercial RPO",
+      "2025-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "368,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ],
+     "2026-06-30": [
+      "Microsoft · Commercial RPO",
+      "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+      "678,000.000 백만 USD",
+      "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     ]
+    }
+   },
+   "point_sources": {
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+       "label": "Commercial RPO · 2020-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+       "label": "Commercial RPO · 2021-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+       "label": "Commercial RPO · 2022-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+       "label": "Commercial RPO · 2023-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+       "label": "Commercial RPO · 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+       "label": "Commercial RPO · 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+       "label": "Commercial RPO · 2026-06-30"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Commercial RPO"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+   "comparison_dates": {},
+   "quarterly_revenue_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 말 잔액",
+ "quarter_labels": true,
+ "year_labels": false,
+ "period_labels": {
+  "2019-09-30": "FY2020 Q1",
+  "2019-12-31": "FY2020 Q2",
+  "2020-03-31": "FY2020 Q3",
+  "2020-06-30": "FY2020 Q4",
+  "2020-09-30": "FY2021 Q1",
+  "2020-12-31": "FY2021 Q2",
+  "2021-03-31": "FY2021 Q3",
+  "2021-06-30": "FY2021 Q4",
+  "2021-09-30": "FY2022 Q1",
+  "2021-12-31": "FY2022 Q2",
+  "2022-03-31": "FY2022 Q3",
+  "2022-06-30": "FY2022 Q4",
+  "2022-09-30": "FY2023 Q1",
+  "2022-12-31": "FY2023 Q2",
+  "2023-03-31": "FY2023 Q3",
+  "2023-06-30": "FY2023 Q4",
+  "2023-09-30": "FY2024 Q1",
+  "2023-12-31": "FY2024 Q2",
+  "2024-03-31": "FY2024 Q3",
+  "2024-06-30": "FY2024 Q4",
+  "2024-09-30": "FY2025 Q1",
+  "2024-12-31": "FY2025 Q2",
+  "2025-03-31": "FY2025 Q3",
+  "2025-06-30": "FY2025 Q4",
+  "2025-09-30": "FY2026 Q1",
+  "2025-12-31": "FY2026 Q2",
+  "2026-03-31": "FY2026 Q3",
+  "2026-06-30": "FY2026 Q4",
+  "2026-09-30": "FY2027 Q1"
+ },
+ "series": {
+  "Commercial RPO": [
+   [
+    "2019-09-30",
+    86000.0
+   ],
+   [
+    "2019-12-31",
+    90000.0
+   ],
+   [
+    "2020-03-31",
+    89000.0
+   ],
+   [
+    "2020-06-30",
+    107000.0
+   ],
+   [
+    "2020-09-30",
+    107000.0
+   ],
+   [
+    "2020-12-31",
+    112000.0
+   ],
+   [
+    "2021-03-31",
+    117000.0
+   ],
+   [
+    "2021-06-30",
+    141000.0
+   ],
+   [
+    "2021-09-30",
+    137000.0
+   ],
+   [
+    "2021-12-31",
+    147000.0
+   ],
+   [
+    "2022-03-31",
+    155000.0
+   ],
+   [
+    "2022-06-30",
+    189000.0
+   ],
+   [
+    "2022-09-30",
+    180000.0
+   ],
+   [
+    "2022-12-31",
+    189000.0
+   ],
+   [
+    "2023-03-31",
+    196000.0
+   ],
+   [
+    "2023-06-30",
+    224000.0
+   ],
+   [
+    "2023-09-30",
+    212000.0
+   ],
+   [
+    "2023-12-31",
+    222000.0
+   ],
+   [
+    "2024-03-31",
+    235000.0
+   ],
+   [
+    "2024-06-30",
+    269000.0
+   ],
+   [
+    "2024-09-30",
+    259000.0
+   ],
+   [
+    "2024-12-31",
+    298000.0
+   ],
+   [
+    "2025-03-31",
+    315000.0
+   ],
+   [
+    "2025-06-30",
+    368000.0
+   ],
+   [
+    "2025-09-30",
+    392000.0
+   ],
+   [
+    "2025-12-31",
+    625000.0
+   ],
+   [
+    "2026-03-31",
+    627000.0
+   ],
+   [
+    "2026-06-30",
+    678000.0
+   ],
+   [
+    "2026-09-30",
+    677000.0
+   ]
+  ]
+ },
+ "series_sources": {
+  "Commercial RPO": {
+   "2019-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+    "filed": "2019-10-23",
+    "start": "2019-09-30",
+    "end": "2019-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+      "filed": "2019-10-23",
+      "start": "2019-09-30",
+      "end": "2019-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2020 Q1",
+    "observed_date": "2019-09-30",
+    "period_start": "2019-09-30"
+   },
+   "2019-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+    "filed": "2020-01-29",
+    "start": "2019-12-31",
+    "end": "2019-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+      "filed": "2020-01-29",
+      "start": "2019-12-31",
+      "end": "2019-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2020 Q2",
+    "observed_date": "2019-12-31",
+    "period_start": "2019-12-31"
+   },
+   "2020-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+    "filed": "2020-04-29",
+    "start": "2020-03-31",
+    "end": "2020-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+      "filed": "2020-04-29",
+      "start": "2020-03-31",
+      "end": "2020-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2020 Q3",
+    "observed_date": "2020-03-31",
+    "period_start": "2020-03-31"
+   },
+   "2020-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+    "filed": "2020-07-30",
+    "start": "2020-06-30",
+    "end": "2020-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+      "filed": "2020-07-30",
+      "start": "2020-06-30",
+      "end": "2020-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2020 Q4",
+    "observed_date": "2020-06-30",
+    "period_start": "2020-06-30"
+   },
+   "2020-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+    "filed": "2020-10-27",
+    "start": "2020-09-30",
+    "end": "2020-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+      "filed": "2020-10-27",
+      "start": "2020-09-30",
+      "end": "2020-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2021 Q1",
+    "observed_date": "2020-09-30",
+    "period_start": "2020-09-30"
+   },
+   "2020-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+    "filed": "2021-01-26",
+    "start": "2020-12-31",
+    "end": "2020-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+      "filed": "2021-01-26",
+      "start": "2020-12-31",
+      "end": "2020-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2021 Q2",
+    "observed_date": "2020-12-31",
+    "period_start": "2020-12-31"
+   },
+   "2021-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+    "filed": "2021-04-27",
+    "start": "2021-03-31",
+    "end": "2021-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+      "filed": "2021-04-27",
+      "start": "2021-03-31",
+      "end": "2021-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2021 Q3",
+    "observed_date": "2021-03-31",
+    "period_start": "2021-03-31"
+   },
+   "2021-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+    "filed": "2021-07-29",
+    "start": "2021-06-30",
+    "end": "2021-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+      "filed": "2021-07-29",
+      "start": "2021-06-30",
+      "end": "2021-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2021 Q4",
+    "observed_date": "2021-06-30",
+    "period_start": "2021-06-30"
+   },
+   "2021-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+    "filed": "2021-10-26",
+    "start": "2021-09-30",
+    "end": "2021-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+      "filed": "2021-10-26",
+      "start": "2021-09-30",
+      "end": "2021-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2022 Q1",
+    "observed_date": "2021-09-30",
+    "period_start": "2021-09-30"
+   },
+   "2021-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+    "filed": "2022-01-25",
+    "start": "2021-12-31",
+    "end": "2021-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+      "filed": "2022-01-25",
+      "start": "2021-12-31",
+      "end": "2021-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2022 Q2",
+    "observed_date": "2021-12-31",
+    "period_start": "2021-12-31"
+   },
+   "2022-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+    "filed": "2022-04-26",
+    "start": "2022-03-31",
+    "end": "2022-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+      "filed": "2022-04-26",
+      "start": "2022-03-31",
+      "end": "2022-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2022 Q3",
+    "observed_date": "2022-03-31",
+    "period_start": "2022-03-31"
+   },
+   "2022-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+    "filed": "2022-07-28",
+    "start": "2022-06-30",
+    "end": "2022-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+      "filed": "2022-07-28",
+      "start": "2022-06-30",
+      "end": "2022-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2022 Q4",
+    "observed_date": "2022-06-30",
+    "period_start": "2022-06-30"
+   },
+   "2022-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+    "filed": "2022-10-25",
+    "start": "2022-09-30",
+    "end": "2022-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+      "filed": "2022-10-25",
+      "start": "2022-09-30",
+      "end": "2022-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2023 Q1",
+    "observed_date": "2022-09-30",
+    "period_start": "2022-09-30"
+   },
+   "2022-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+    "filed": "2023-01-24",
+    "start": "2022-12-31",
+    "end": "2022-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+      "filed": "2023-01-24",
+      "start": "2022-12-31",
+      "end": "2022-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2023 Q2",
+    "observed_date": "2022-12-31",
+    "period_start": "2022-12-31"
+   },
+   "2023-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+    "filed": "2023-04-25",
+    "start": "2023-03-31",
+    "end": "2023-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+      "filed": "2023-04-25",
+      "start": "2023-03-31",
+      "end": "2023-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2023 Q3",
+    "observed_date": "2023-03-31",
+    "period_start": "2023-03-31"
+   },
+   "2023-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+    "filed": "2023-07-27",
+    "start": "2023-06-30",
+    "end": "2023-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "filed": "2023-07-27",
+      "start": "2023-06-30",
+      "end": "2023-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2023 Q4",
+    "observed_date": "2023-06-30",
+    "period_start": "2023-06-30"
+   },
+   "2023-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+    "filed": "2023-10-24",
+    "start": "2023-09-30",
+    "end": "2023-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+      "filed": "2023-10-24",
+      "start": "2023-09-30",
+      "end": "2023-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2024 Q1",
+    "observed_date": "2023-09-30",
+    "period_start": "2023-09-30"
+   },
+   "2023-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+    "filed": "2024-01-30",
+    "start": "2023-12-31",
+    "end": "2023-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+      "filed": "2024-01-30",
+      "start": "2023-12-31",
+      "end": "2023-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2024 Q2",
+    "observed_date": "2023-12-31",
+    "period_start": "2023-12-31"
+   },
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+    "filed": "2024-04-25",
+    "start": "2024-03-31",
+    "end": "2024-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+      "filed": "2024-04-25",
+      "start": "2024-03-31",
+      "end": "2024-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2024 Q3",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-03-31"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+    "filed": "2024-07-30",
+    "start": "2024-06-30",
+    "end": "2024-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+      "filed": "2024-07-30",
+      "start": "2024-06-30",
+      "end": "2024-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2024 Q4",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-06-30"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+    "filed": "2024-10-30",
+    "start": "2024-09-30",
+    "end": "2024-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+      "filed": "2024-10-30",
+      "start": "2024-09-30",
+      "end": "2024-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2025 Q1",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-09-30"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+    "filed": "2025-01-29",
+    "start": "2024-12-31",
+    "end": "2024-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+      "filed": "2025-01-29",
+      "start": "2024-12-31",
+      "end": "2024-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2025 Q2",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-12-31"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+    "filed": "2025-04-30",
+    "start": "2025-03-31",
+    "end": "2025-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+      "filed": "2025-04-30",
+      "start": "2025-03-31",
+      "end": "2025-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2025 Q3",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-03-31"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+    "filed": "2025-07-30",
+    "start": "2025-06-30",
+    "end": "2025-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "filed": "2025-07-30",
+      "start": "2025-06-30",
+      "end": "2025-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2025 Q4",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-06-30"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+    "filed": "2025-10-29",
+    "start": "2025-09-30",
+    "end": "2025-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+      "filed": "2025-10-29",
+      "start": "2025-09-30",
+      "end": "2025-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2026 Q1",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-09-30"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+    "filed": "2026-01-28",
+    "start": "2025-12-31",
+    "end": "2025-12-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+      "filed": "2026-01-28",
+      "start": "2025-12-31",
+      "end": "2025-12-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2026 Q2",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-12-31"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+    "filed": "2026-04-29",
+    "start": "2026-03-31",
+    "end": "2026-03-31",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+      "filed": "2026-04-29",
+      "start": "2026-03-31",
+      "end": "2026-03-31",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2026 Q3",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-03-31"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "filed": "2026-07-29",
+    "start": "2026-06-30",
+    "end": "2026-06-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "filed": "2026-07-29",
+      "start": "2026-06-30",
+      "end": "2026-06-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2026 Q4",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-06-30"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+    "filed": "2026-10-28",
+    "start": "2026-09-30",
+    "end": "2026-09-30",
+    "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember",
+    "instant": true,
+    "calculation": "reported point-in-time remaining performance obligations; not a quarterly flow",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+      "filed": "2026-10-28",
+      "start": "2026-09-30",
+      "end": "2026-09-30",
+      "tag": "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+     }
+    ],
+    "period": "FY2027 Q1",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-09-30"
+   }
+  }
+ },
+ "series_point_notes": {
+  "Commercial RPO": {
+   "2019-09-30": [
+    "Microsoft · Commercial RPO",
+    "2019-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "86,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2019-12-31": [
+    "Microsoft · Commercial RPO",
+    "2019-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "90,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2020-03-31": [
+    "Microsoft · Commercial RPO",
+    "2020-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "89,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2020-06-30": [
+    "Microsoft · Commercial RPO",
+    "2020-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "107,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2020-09-30": [
+    "Microsoft · Commercial RPO",
+    "2020-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "107,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2020-12-31": [
+    "Microsoft · Commercial RPO",
+    "2020-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "112,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2021-03-31": [
+    "Microsoft · Commercial RPO",
+    "2021-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "117,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2021-06-30": [
+    "Microsoft · Commercial RPO",
+    "2021-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "141,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2021-09-30": [
+    "Microsoft · Commercial RPO",
+    "2021-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "137,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2021-12-31": [
+    "Microsoft · Commercial RPO",
+    "2021-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "147,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2022-03-31": [
+    "Microsoft · Commercial RPO",
+    "2022-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "155,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2022-06-30": [
+    "Microsoft · Commercial RPO",
+    "2022-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "189,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2022-09-30": [
+    "Microsoft · Commercial RPO",
+    "2022-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "180,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2022-12-31": [
+    "Microsoft · Commercial RPO",
+    "2022-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "189,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2023-03-31": [
+    "Microsoft · Commercial RPO",
+    "2023-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "196,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2023-06-30": [
+    "Microsoft · Commercial RPO",
+    "2023-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "224,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2023-09-30": [
+    "Microsoft · Commercial RPO",
+    "2023-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "212,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2023-12-31": [
+    "Microsoft · Commercial RPO",
+    "2023-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "222,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2024-03-31": [
+    "Microsoft · Commercial RPO",
+    "2024-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "235,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2024-06-30": [
+    "Microsoft · Commercial RPO",
+    "2024-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "269,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2024-09-30": [
+    "Microsoft · Commercial RPO",
+    "2024-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "259,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2024-12-31": [
+    "Microsoft · Commercial RPO",
+    "2024-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "298,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2025-03-31": [
+    "Microsoft · Commercial RPO",
+    "2025-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "315,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2025-06-30": [
+    "Microsoft · Commercial RPO",
+    "2025-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "368,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2025-09-30": [
+    "Microsoft · Commercial RPO",
+    "2025-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "392,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2025-12-31": [
+    "Microsoft · Commercial RPO",
+    "2025-12-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "625,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2026-03-31": [
+    "Microsoft · Commercial RPO",
+    "2026-03-31 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "627,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2026-06-30": [
+    "Microsoft · Commercial RPO",
+    "2026-06-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "678,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ],
+   "2026-09-30": [
+    "Microsoft · Commercial RPO",
+    "2026-09-30 기준 잔액 · 분기 흐름이나 신규 수주가 아님",
+    "677,000.000 백만 USD",
+    "RevenueRemainingPerformanceObligation · msft:CommercialCustomersMember"
+   ]
+  }
+ },
+ "point_sources": {
+  "2019-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459019037549/msft-10q_20190930.htm",
+     "label": "Commercial RPO · 2019-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020002450/msft-10q_20191231.htm",
+     "label": "Commercial RPO · 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020019706/msft-10q_20200331.htm",
+     "label": "Commercial RPO · 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020034944/msft-10k_20200630.htm",
+     "label": "Commercial RPO · 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459020047996/msft-10q_20200930.htm",
+     "label": "Commercial RPO · 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021002316/msft-10q_20201231.htm",
+     "label": "Commercial RPO · 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021020891/msft-10q_20210331.htm",
+     "label": "Commercial RPO · 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021039151/msft-10k_20210630.htm",
+     "label": "Commercial RPO · 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459021051992/msft-10q_20210930.htm",
+     "label": "Commercial RPO · 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022002324/msft-10q_20211231.htm",
+     "label": "Commercial RPO · 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022015675/msft-10q_20220331.htm",
+     "label": "Commercial RPO · 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022026876/msft-10k_20220630.htm",
+     "label": "Commercial RPO · 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459022035087/msft-10q_20220930.htm",
+     "label": "Commercial RPO · 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000156459023000733/msft-10q_20221231.htm",
+     "label": "Commercial RPO · 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023014423/msft-20230331.htm",
+     "label": "Commercial RPO · 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+     "label": "Commercial RPO · 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023054855/msft-20230930.htm",
+     "label": "Commercial RPO · 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024008814/msft-20231231.htm",
+     "label": "Commercial RPO · 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024048288/msft-20240331.htm",
+     "label": "Commercial RPO · 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+     "label": "Commercial RPO · 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024118967/msft-20240930.htm",
+     "label": "Commercial RPO · 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025010491/msft-20241231.htm",
+     "label": "Commercial RPO · 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025061046/msft-20250331.htm",
+     "label": "Commercial RPO · 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+     "label": "Commercial RPO · 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+     "label": "Commercial RPO · 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+     "label": "Commercial RPO · 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+     "label": "Commercial RPO · 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+     "label": "Commercial RPO · 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+     "label": "Commercial RPO · 2026-09-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "Commercial RPO"
+ ],
+ "updated": "2026-09-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+ "comparison_dates": {
+  "2019-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2019-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
+  }
+ },
+ "quarterly_revenue_summary": true,
+ "change_mode": "none"
+}

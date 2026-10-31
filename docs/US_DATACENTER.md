@@ -19,13 +19,35 @@ Microsoft의 예전 Intelligent Cloud·현재 Agents and Infra는 Microsoft Clou
 
 클라우드 비중은 **동일 실제 기간의 클라우드 매출 / 전사 매출 × 100**이다. 연간 비중은 연간 실적끼리 계산하며 분기 비중을 평균하지 않는다. Microsoft는 6월, Oracle은 5월 결산이며 FY는 끝나는 해를 따른다.
 
-미국 탭 앞쪽에는 **클라우드 매출·영업이익·영업이익률의 선 그래프 3개와 CAPEX의 기업별 나란한 막대 그래프**가 있다. 각 그래프에서 기업 이름을 클릭해 여러 회사를 동시에 켜거나 끈다. 선택은 분기·연간 전환과 기간 변경에도 유지한다. Microsoft·Oracle의 클라우드 단독 영업이익·이익률과 Meta의 외부 클라우드 사업은 빈값과 비활성 항목으로 표시한다.
+미국 탭 앞쪽에는 **클라우드 매출·영업이익·영업이익률·RPO의 선 그래프와 CAPEX의 기업별 나란한 막대 그래프**가 있다. 각 그래프에서 기업 이름을 클릭해 여러 회사를 동시에 켜거나 끈다. 선택은 분기·연간 전환과 기간 변경에도 유지한다. Microsoft·Oracle의 클라우드 단독 영업이익과 Meta의 외부 클라우드 사업은 빈값으로 표시한다. Microsoft 이익률 비교에는 아래의 명시적 부문 대리치를 추가한다.
 
 ### Microsoft 공시 범위
 
-Intelligent Cloud 사업부 영업이익은 공시된 수치다. 다만 Intelligent Cloud에는 Azure 외 서버 제품·기업 지원 서비스 등이 포함되어 Azure 단독과 다르고, Microsoft Cloud는 Microsoft 365 등 여러 사업부의 클라우드 매출을 합친 지표다. FY2027에는 Agents and Infra로 보고 부문이 바뀌었으며 이 부문 역시 Azure·Microsoft Cloud와 범위가 다르다. 대시보드의 Microsoft 비교 선은 Microsoft Cloud 매출 기준으로, 더 넓은 부문 이익을 이 매출로 나눠 영업이익률을 만들지 않는다.
+Intelligent Cloud 사업부 영업이익은 공시된 수치다. 다만 Intelligent Cloud에는 Azure 외 서버 제품·기업 지원 서비스 등이 포함되어 Azure 단독과 다르고, Microsoft Cloud는 Microsoft 365 등 여러 사업부의 클라우드 매출을 합친 지표다. FY2027에는 Agents and Infra로 보고 부문이 바뀌었으며 이 부문 역시 Azure·Microsoft Cloud와 범위가 다르다. 매출 비교의 Microsoft 선은 Microsoft Cloud 기준이다.
+
+사용자 요청에 따라 영업이익률 비교에는 **Intelligent Cloud 영업이익 / Intelligent Cloud 매출 × 100**을 클라우드 수익성 대리치로 넣는다. 최신 IC 공시 분기인 2026년 4~6월은 15,955 / 39,306 × 100 = 40.5918%다. FY2027의 Agents and Infra는 별도 점선 계열이며 2026년 7~9월은 40,558 / 76,795 × 100 = 52.8133%다. 두 부문을 하나의 연속 계열로 접합하지 않고 과거 IC 값을 현재 분기로 이월하지 않는다. 각각 동일 부문·동일 기간의 분자와 분모만 사용하며 Microsoft Cloud 매출 63,900을 분모로 쓰지 않는다. 연간도 연간 공시끼리 나누며 분기 비율을 평균하지 않는다. 현재 새 부문의 완결 연간 이력은 없어 그 보기는 빈값과 설명을 표시한다. 개별 IC·개편 부문 이익률 카드에서도 분자·분모·실제 기간을 확인할 수 있다.
 
 [FY2027 Q1 공식 실적](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast)은 Azure 매출을 2026년 7~9월 33,165백만 달러, 전년 동기 22,384백만 달러로 별도 공시한다. 이 공시 기간의 매출은 YoY 역산 대상이 아니다. [Investor Metrics](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/metrics)의 Microsoft Cloud 66%는 매출총이익률이며 영업이익률이 아니다. 과거 Azure 매출을 YoY로 역산하려면 같은 범위의 전년 동분기 금액과 보고통화 성장률이 필요하며, 반올림·환율·사업 재분류로 추정 오차가 생긴다. 연간 매출 한 개와 YoY만으로 과거의 모든 분기 매출을 유일하게 복원할 수는 없다. 이번 변경은 공시 매출과 추정 매출을 섞지 않는다.
+
+### 클라우드 수주잔고 RPO
+
+IC의 4분기 단독 값은 해당 회계연도의 최초 연간 공시에서 그 시점까지 공개된 같은 회계연도 9개월 누적을 차감한다. 뒤늦게 재분류한 연간값에서 옛 9개월 누적을 빼지 않는다. 예를 들어 FY2023의 2025년 재작성 연간과 2023년 9개월 누적을 혼합하면 잘못된 급락이 생긴다. 매출과 이익도 같은 공시 시점의 쌍으로 선택한다. 완결 연간 이익률은 별도로 최신 재작성 연간 쌍을 사용하므로 과거 분기 합계와 후속 연간의 범위가 다를 수 있다.
+
+RPO(Remaining Performance Obligations)는 아직 매출로 인식하지 않은 계약 잔액이며 분기 매출·신규 수주·연간 누적액이 아니다. USD 백만으로 환산하되 원래 공시 단위와 날짜·태그·차원을 보존한다. 분기는 실제 보고일 잔액, 연간은 각 회사의 실제 회계연도 결산일 잔액만 사용한다. 분기 잔액을 합산·평균·차분해 연간 값을 만들지 않는다. 중간 미공시 분기는 null이며 0·보간·직전값으로 채우지 않는다.
+
+| 회사·계열 | 범위 | 확보 이력 | 2026-10-31 기준 최신 |
+| --- | --- | --- | --- |
+| AWS 중심 RPO | 원래 계약기간 1년 초과 장기계약, 주로 AWS | 2018년 1분기부터 | 2026-09-30 578,000백만 USD |
+| Microsoft Commercial RPO | Azure 외 상업용 서비스·소프트웨어 등 포함 | 2019년 9월부터 | 2026-09-30 677,000백만 USD |
+| Google Cloud RPO | Cloud 사업 차원이 별도 명시된 값 | 2026년 1분기부터 | 2026-09-30 560,800백만 USD |
+| Alphabet 전사 RPO | Cloud 중심 전사, Cloud 단독과 다른 범위 | 2019년 말부터 | 2026-09-30 567,700백만 USD |
+| Oracle 전사 RPO | 클라우드·라이선스 지원 등 전사 | 2018년 8월부터 | 2026-08-31 664,000백만 USD |
+
+Google Cloud와 Alphabet 전사는 별도 선이며 합쳐서 더하지 않는다. Google은 2026년 1분기부터 원래 계약기간 1년 이하도 RPO에 포함하도록 공시 기준을 바꿨다. Microsoft 전사 683,000백만을 Commercial 677,000백만 대신 쓰지 않고, Google 관계기업 계약 16,800백만을 전체 Cloud RPO로 오인하지 않는다. Meta는 외부 클라우드 사업 해당 없음, xAI는 AI/SI 단독 RPO 미공개다. 우주·Starlink 등을 포함한 SpaceX 전사 RPO를 xAI 수치로 대체하지 않는다.
+
+AWS·Microsoft·Google·Oracle의 개별 RPO 카드도 추가한다. Google의 Cloud 단독 연말 잔액은 아직 없어 연간 보기에서는 명시적으로 구분된 Alphabet 전사 이력을 기본 표시한다. 비교 차트에는 실제 날짜가 속한 달력 분기·FY를 사용하고 메모·표에는 원래 회계기간을 보존한다.
+
+출처: [Amazon 2026 Q3](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm), [Microsoft FY2027 Q1](https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm), [Alphabet 2026 Q3](https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm), [Oracle FY2027 Q1](https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm).
 
 비교 축은 분기의 경우 실제 결산 종료일이 속하는 달력 분기, 연간은 FY 결산연도다. Microsoft·Oracle의 실제 회계기간은 다른 회사와 달라 숫자·차트 메모·표에 원래 FY·분기와 시작·종료일을 보존한다. 같은 표시 분기나 FY가 완전히 동일한 사업 기간을 뜻하지 않는다. 연간 이익률은 연간 영업이익 / 연간 매출이며 분기 이익률을 평균하지 않는다. 미공개·중간 공백을 0으로 채우거나 연결하지 않는다.
 

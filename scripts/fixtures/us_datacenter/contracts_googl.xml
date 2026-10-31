@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:xbrl xmlns:ns0="http://www.xbrl.org/2003/instance" xmlns:ns1="http://xbrl.org/2006/xbrldi" xmlns:ns2="http://fasb.org/us-gaap/2026"><ns0:context id="c-32">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001652044</ns0:identifier>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-164">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001652044</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">goog:GoogleCloudMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:unit id="shares">
+        <ns0:measure>shares</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usd">
+        <ns0:measure>iso4217:USD</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usdPerShare">
+        <ns0:divide>
+            <ns0:unitNumerator>
+                <ns0:measure>iso4217:USD</ns0:measure>
+            </ns0:unitNumerator>
+            <ns0:unitDenominator>
+                <ns0:measure>shares</ns0:measure>
+            </ns0:unitDenominator>
+        </ns0:divide>
+    </ns0:unit>
+    <ns0:unit id="number">
+        <ns0:measure>pure</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="investment">
+        <ns0:measure>goog:investment</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="aud">
+        <ns0:measure>iso4217:AUD</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="eur">
+        <ns0:measure>iso4217:EUR</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="investigation">
+        <ns0:measure>goog:investigation</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="day">
+        <ns0:measure>goog:day</ns0:measure>
+    </ns0:unit>
+    <ns2:RevenueRemainingPerformanceObligation contextRef="c-32" decimals="-8" id="f-639" unitRef="usd">567700000000</ns2:RevenueRemainingPerformanceObligation>
+    <ns2:RevenueRemainingPerformanceObligation contextRef="c-164" decimals="-8" id="f-640" unitRef="usd">560800000000</ns2:RevenueRemainingPerformanceObligation>
+    </ns0:xbrl>

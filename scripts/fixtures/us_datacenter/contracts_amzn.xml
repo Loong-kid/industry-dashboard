@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:xbrl xmlns:ns0="http://www.xbrl.org/2003/instance" xmlns:ns1="http://xbrl.org/2006/xbrldi" xmlns:ns2="http://fasb.org/us-gaap/2026"><ns0:context id="c-49">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001018724</ns0:identifier>
+            <ns0:segment>
+                <ns1:typedMember dimension="us-gaap:RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionStartDateAxis">
+                    <ns2:date.domain>2026-10-01</ns2:date.domain>
+                </ns1:typedMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:unit id="shares">
+        <ns0:measure>shares</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usd">
+        <ns0:measure>iso4217:USD</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usdPerShare">
+        <ns0:divide>
+            <ns0:unitNumerator>
+                <ns0:measure>iso4217:USD</ns0:measure>
+            </ns0:unitNumerator>
+            <ns0:unitDenominator>
+                <ns0:measure>shares</ns0:measure>
+            </ns0:unitDenominator>
+        </ns0:divide>
+    </ns0:unit>
+    <ns0:unit id="mwh">
+        <ns0:measure>utr:MWh</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="number">
+        <ns0:measure>pure</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="complaint">
+        <ns0:measure>amzn:complaint</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="case">
+        <ns0:measure>amzn:case</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="lawsuit">
+        <ns0:measure>amzn:lawsuit</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="eur">
+        <ns0:measure>iso4217:EUR</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="chf">
+        <ns0:measure>iso4217:CHF</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="cad">
+        <ns0:measure>iso4217:CAD</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="gbp">
+        <ns0:measure>iso4217:GBP</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="extension">
+        <ns0:measure>amzn:extension</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="segment">
+        <ns0:measure>amzn:segment</ns0:measure>
+    </ns0:unit>
+    <ns2:RevenueRemainingPerformanceObligation contextRef="c-49" decimals="-9" id="f-600" unitRef="usd">578000000000</ns2:RevenueRemainingPerformanceObligation>
+    </ns0:xbrl>

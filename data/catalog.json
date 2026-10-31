@@ -577,7 +577,8 @@
             "us_dc_compare_revenue",
             "us_dc_compare_profit",
             "us_dc_compare_margin",
-            "us_dc_compare_capex"
+            "us_dc_compare_capex",
+            "us_dc_compare_rpo"
           ]
         },
         {
@@ -591,22 +592,26 @@
             "us_dc_amzn_cloud_share",
             "us_dc_amzn_profit",
             "us_dc_amzn_cloud_profit",
-            "us_dc_amzn_capex"
+            "us_dc_amzn_capex",
+            "us_dc_amzn_rpo"
           ]
         },
         {
           "tab": "us",
           "title": "Microsoft · MSFT",
           "layout": "financial",
-          "supply_note": "Microsoft Cloud는 Azure·Microsoft 365 등 여러 클라우드 서비스를 포함합니다. 이 범위의 영업이익은 단독 미공개입니다. 금융리스 취득자산을 더한 지표는 별도의 재무제표 계산값입니다.",
+          "supply_note": "Microsoft Cloud는 Azure·Microsoft 365 등 여러 서비스를 포함합니다. IC와 개편 후 Agents and Infra의 부문 이익률은 클라우드 수익성의 대리치로 각각 표시합니다. Commercial RPO는 Azure 외 상업용 서비스도 포함하는 기말 계약 잔액입니다. 금융리스 취득자산을 더한 투자는 별도의 재무제표 계산값입니다.",
           "indicators": [
             "us_dc_msft_revenue",
             "us_dc_msft_cloud_revenue",
             "us_dc_msft_cloud_share",
             "us_dc_msft_profit",
             "us_dc_msft_cloud_profit",
+            "us_dc_msft_ic_margin",
+            "us_dc_msft_ai_margin",
             "us_dc_msft_capex",
-            "us_dc_msft_capex_extra"
+            "us_dc_msft_capex_extra",
+            "us_dc_msft_rpo"
           ]
         },
         {
@@ -620,7 +625,8 @@
             "us_dc_googl_cloud_share",
             "us_dc_googl_profit",
             "us_dc_googl_cloud_profit",
-            "us_dc_googl_capex"
+            "us_dc_googl_capex",
+            "us_dc_googl_rpo"
           ]
         },
         {
@@ -634,7 +640,8 @@
             "us_dc_orcl_cloud_share",
             "us_dc_orcl_profit",
             "us_dc_orcl_cloud_profit",
-            "us_dc_orcl_capex"
+            "us_dc_orcl_capex",
+            "us_dc_orcl_rpo"
           ]
         },
         {
@@ -676,7 +683,7 @@
           "name": "미국",
           "default_range": "all",
           "auto_collect_time": "09:50",
-          "description": "클라우드 매출·영업이익·영업이익률·CAPEX를 지표별로 비교합니다. 각 그래프에서 기업 이름을 클릭해 여러 회사의 선을 함께 볼 수 있습니다. 아래에는 회사별 상세 실적이 이어집니다. xAI는 AI/SI 사업부, CAPEX는 전사 투자 대리치와 사업부 공시를 구분합니다."
+          "description": "클라우드 매출·영업이익·영업이익률·CAPEX·수주잔고(RPO)를 기업별로 비교합니다. Microsoft의 IC와 개편 후 Agents and Infra 이익률은 별도 대리치로 구분합니다. RPO는 회사별 공시 범위가 다른 기말 잔액입니다. 기업 이름을 클릭해 여러 회사를 함께 볼 수 있고, 아래에는 개별 실적이 이어집니다."
         }
       ]
     },

@@ -8,6 +8,8 @@ from cpu_business_history import SecClient
 from fetch_cpu_companies import load,save,parse_facts,parse_annual,TAGS
 from us_datacenter_sources import parse_instance
 from us_datacenter_xai import collect_xai
+from us_datacenter_contracts import collect as collect_contracts
+from us_datacenter_extra_presentations import rpo_document,proxy_margin_document
 from us_datacenter_presentations import comparison_document,METRICS as COMPARISON_METRICS
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -199,6 +201,8 @@ def collect(full=False,offline=False):
         cohort=dict(core_rows=rows,core_annual=annual,fields=fields,filings=sorted(known),rows=combined,annual=combined_annual,
             core_ok=core_ok,cloud_ok=cloud_ok,errors=errors,checked=old.get('checked',asof) if offline else asof,
             fetched=old.get('fetched',asof) if offline or not core_ok else asof)
+        if key in ('amzn','msft','googl','orcl'):
+            cohort['contracts']=collect_contracts(key,spec,old.get('contracts',{}),client,asof,full,offline)
         state['companies'][key]=cohort;save(OUT/'us_hyperscalers_state.json',state)
         print(key,len(combined),'quarters',len(combined_annual),'years;',len(cloud_rows),'cloud quarters; warnings',len(errors),flush=True)
     for key,spec in meta.items():
@@ -206,9 +210,13 @@ def collect(full=False,offline=False):
             save(OUT/f'us_dc_{key}_{metric}.json',document(key,metric,spec,state['companies'][key]))
     for metric in COMPARISON_METRICS:
         comparison=comparison_document(metric,meta,state['companies']);save(OUT/(comparison['id']+'.json'),comparison)
+    for key in ('amzn','msft','googl','orcl'):
+        rpo=rpo_document(key,meta[key],state['companies'][key]);save(OUT/(rpo['id']+'.json'),rpo)
+    for segment in ('ic','ai'):
+        margin=proxy_margin_document(segment,state['companies']['msft']);save(OUT/(margin['id']+'.json'),margin)
     if not offline:state['updated']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
     save(OUT/'us_hyperscalers_state.json',state)
-    print('Published',sum(len(metrics_for(k,s)) for k,s in meta.items())+len(COMPARISON_METRICS),'hyperscaler metric cards',flush=True)
+    print('Published',sum(len(metrics_for(k,s)) for k,s in meta.items())+len(COMPARISON_METRICS)+6,'hyperscaler metric cards',flush=True)
     return state
 
 

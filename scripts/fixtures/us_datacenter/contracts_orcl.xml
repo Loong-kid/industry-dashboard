@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:xbrl xmlns:ns0="http://www.xbrl.org/2003/instance" xmlns:ns1="http://fasb.org/us-gaap/2026"><ns0:context id="C_6aa4717d-0551-43f7-9cf4-c8a0049a656e">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001341439</ns0:identifier>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-08-31</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:unit id="U_EUR">
+        <ns0:measure>iso4217:EUR</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_UnitedStatesOfAmericaDollarsShare">
+        <ns0:divide>
+            <ns0:unitNumerator>
+                <ns0:measure>iso4217:USD</ns0:measure>
+            </ns0:unitNumerator>
+            <ns0:unitDenominator>
+                <ns0:measure>shares</ns0:measure>
+            </ns0:unitDenominator>
+        </ns0:divide>
+    </ns0:unit>
+    <ns0:unit id="U_pure">
+        <ns0:measure>pure</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_shares">
+        <ns0:measure>shares</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_Business">
+        <ns0:measure>orcl:Business</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_Segment">
+        <ns0:measure>orcl:Segment</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="U_USD">
+        <ns0:measure>iso4217:USD</ns0:measure>
+    </ns0:unit>
+    <ns1:RevenueRemainingPerformanceObligation contextRef="C_6aa4717d-0551-43f7-9cf4-c8a0049a656e" decimals="-9" id="F_b3c348b4-9226-462b-b27e-e98f45a68cc2" unitRef="U_USD">664000000000</ns1:RevenueRemainingPerformanceObligation>
+    </ns0:xbrl>
