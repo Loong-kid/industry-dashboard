@@ -110,6 +110,7 @@ class HyperscalerTests(unittest.TestCase):
             doc=comparison_document(metric,self.meta,companies)
             saved=json.loads((ROOT/f'data/datacenter/us_dc_compare_{metric}.json').read_text(encoding='utf8'))
             self.assertEqual(doc,saved);self.assertTrue(doc['company_comparison'])
+            self.assertEqual(doc['chart_type'],'bar' if metric=='capex' else 'line')
             self.assertEqual(len(doc['series']),6)
             self.assertFalse(doc['span_gaps'])
         revenue=comparison_document('revenue',self.meta,companies)

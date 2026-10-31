@@ -19,7 +19,13 @@ Microsoft의 예전 Intelligent Cloud·현재 Agents and Infra는 Microsoft Clou
 
 클라우드 비중은 **동일 실제 기간의 클라우드 매출 / 전사 매출 × 100**이다. 연간 비중은 연간 실적끼리 계산하며 분기 비중을 평균하지 않는다. Microsoft는 6월, Oracle은 5월 결산이며 FY는 끝나는 해를 따른다.
 
-미국 탭 앞쪽에는 **클라우드 매출·영업이익·영업이익률·CAPEX를 각각 비교하는 선 그래프 4개**가 있다. 각 그래프에서 기업 이름을 클릭해 여러 회사를 동시에 켜거나 끈다. 선택은 분기·연간 전환과 기간 변경에도 유지한다. Microsoft·Oracle의 클라우드 단독 영업이익·이익률과 Meta의 외부 클라우드 사업은 빈값과 비활성 항목으로 표시한다.
+미국 탭 앞쪽에는 **클라우드 매출·영업이익·영업이익률의 선 그래프 3개와 CAPEX의 기업별 나란한 막대 그래프**가 있다. 각 그래프에서 기업 이름을 클릭해 여러 회사를 동시에 켜거나 끈다. 선택은 분기·연간 전환과 기간 변경에도 유지한다. Microsoft·Oracle의 클라우드 단독 영업이익·이익률과 Meta의 외부 클라우드 사업은 빈값과 비활성 항목으로 표시한다.
+
+### Microsoft 공시 범위
+
+Intelligent Cloud 사업부 영업이익은 공시된 수치다. 다만 Intelligent Cloud에는 Azure 외 서버 제품·기업 지원 서비스 등이 포함되어 Azure 단독과 다르고, Microsoft Cloud는 Microsoft 365 등 여러 사업부의 클라우드 매출을 합친 지표다. FY2027에는 Agents and Infra로 보고 부문이 바뀌었으며 이 부문 역시 Azure·Microsoft Cloud와 범위가 다르다. 대시보드의 Microsoft 비교 선은 Microsoft Cloud 매출 기준으로, 더 넓은 부문 이익을 이 매출로 나눠 영업이익률을 만들지 않는다.
+
+[FY2027 Q1 공식 실적](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast)은 Azure 매출을 2026년 7~9월 33,165백만 달러, 전년 동기 22,384백만 달러로 별도 공시한다. 이 공시 기간의 매출은 YoY 역산 대상이 아니다. [Investor Metrics](https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/metrics)의 Microsoft Cloud 66%는 매출총이익률이며 영업이익률이 아니다. 과거 Azure 매출을 YoY로 역산하려면 같은 범위의 전년 동분기 금액과 보고통화 성장률이 필요하며, 반올림·환율·사업 재분류로 추정 오차가 생긴다. 연간 매출 한 개와 YoY만으로 과거의 모든 분기 매출을 유일하게 복원할 수는 없다. 이번 변경은 공시 매출과 추정 매출을 섞지 않는다.
 
 비교 축은 분기의 경우 실제 결산 종료일이 속하는 달력 분기, 연간은 FY 결산연도다. Microsoft·Oracle의 실제 회계기간은 다른 회사와 달라 숫자·차트 메모·표에 원래 FY·분기와 시작·종료일을 보존한다. 같은 표시 분기나 FY가 완전히 동일한 사업 기간을 뜻하지 않는다. 연간 이익률은 연간 영업이익 / 연간 매출이며 분기 이익률을 평균하지 않는다. 미공개·중간 공백을 0으로 채우거나 연결하지 않는다.
 

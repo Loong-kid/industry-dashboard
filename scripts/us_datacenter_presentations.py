@@ -67,10 +67,11 @@ def comparison_document(metric,specs,cohorts):
     checked=min(c['checked'] for c in cohorts.values());healthy=all(c['core_ok'] and (metric=='capex' or c['cloud_ok']) for c in cohorts.values())
     return dict(id='us_dc_compare_'+metric,name=METRICS[metric]+' (기업별)',comparison_metric=metric,company_comparison=True,
         unit=unit,company_kpi=True,compact_ticks=True,span_gaps=False,table_scroll=True,table_limit=1000,
+        chart_type='bar' if metric=='capex' else 'line',
         series_colors={labels[key]:color for (key,_),color in zip(COMPANIES,COLORS)},series_unavailable=unavailable,
         source='SEC · 기업 공식 공시',fetched=min(c['fetched'] for c in cohorts.values()),
         collection_status=dict(ok=healthy,checked=checked,message='공시 조회 완료' if healthy else '일부 조회·새 공시 검토 필요 · 기존 이력 유지'),
-        description='기업 이름을 클릭하면 해당 회사의 선을 켜거나 끌 수 있습니다. 여러 회사를 동시에 선택할 수 있습니다.',note=note,
+        description='기업 이름을 클릭하면 해당 회사의 '+('막대를' if metric=='capex' else '선을')+' 켜거나 끌 수 있습니다. 여러 회사를 동시에 선택할 수 있습니다.',note=note,
         basis_details=[dict(label='기간 비교',value='분기는 실제 결산 종료일이 속한 달력 분기에, 연간은 결산연도 FY에 맞춰 표시합니다. Microsoft는 6월, Oracle은 5월 결산으로 같은 FY라도 실제 시작·종료일이 다릅니다. 숫자·차트 메모·표에 각 회사의 실제 회계기간을 보존합니다.'),
             dict(label='영업이익률',value='같은 회사·같은 사업 범위·같은 실제 기간의 영업이익 / 매출 × 100입니다. 연간은 연간 공시끼리 계산하며 분기 비율을 평균하지 않습니다.')],
         default_view='quarter',series_views=views,**{k:v for k,v in views['quarter'].items() if k!='label'})
