@@ -7,11 +7,19 @@ import requests
 from cpu_business_history import SecClient
 from fetch_cpu_companies import load,save,parse_facts,parse_annual,TAGS
 from us_datacenter_sources import parse_instance
+from us_datacenter_xai import collect_xai
+from us_datacenter_presentations import combo_document
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/datacenter';CACHE=ROOT/'.cache/us-datacenter'
 CORE_TAGS=dict(TAGS,lease_principal=['FinanceLeasePrincipalPayments'],lease_additions=['RightOfUseAssetObtainedInExchangeForFinanceLeaseLiability'])
 METRICS={'revenue':'전사 매출','cloud_revenue':'클라우드 매출','cloud_share':'클라우드 매출 비중','profit':'전사 영업이익','cloud_profit':'클라우드 영업이익','capex':'전사 현금 CAPEX','capex_extra':'리스 반영 투자 지표'}
+XAI_METRICS={'segment_revenue':'AI/SI 매출','segment_profit':'AI/SI 영업이익','segment_share':'SpaceX 매출 대비 비중','segment_capex':'AI/SI CAPEX'}
+
+
+def metrics_for(key,meta):
+    if key=='xai':return ['revenue','profit','capex',*XAI_METRICS]
+    return [m for m in METRICS if not (m=='capex_extra' and not meta.get('capex_extra')) and not (key=='meta' and m.startswith('cloud_'))]
 
 
 def fiscal_payload(payload,meta):
@@ -85,8 +93,9 @@ def extra_capex(rows,meta):
 
 
 def document(key,metric,meta,cohort):
-    identifier=f'us_dc_{key}_{metric}';title=METRICS[metric]
+    identifier=f'us_dc_{key}_{metric}';title={**METRICS,**XAI_METRICS}[metric]
     card_title=title;company_name=meta.get('short_name',meta['name'])
+    if key=='xai':company_name='xAI' if metric.startswith('segment_') else 'SpaceX'
     if metric in ('cloud_revenue','cloud_profit') and meta.get('cloud_name'):title+=' · '+meta['cloud_name']
     if metric=='capex_extra':title=meta['capex_extra_name'];card_title=title
     unavailable=(key=='meta' and metric.startswith('cloud_')) or (metric=='cloud_profit' and meta.get('cloud_profit_note'))
@@ -105,10 +114,11 @@ def document(key,metric,meta,cohort):
         for r in valid:
             ref=r['refs'][metric];components=ref.get('components',[])
             sources[r['date']]=dict(url=ref['url'],label=f"FY{r['year']}"+(f" Q{r['quarter']}" if kind=='rows' else ''),
-                supporting_sources=[dict(url=c['url'],label=c['start']+' ~ '+c['end']) for c in components],source_separator=' / ' if metric=='cloud_share' else ' + ' if metric=='capex_extra' else ' − ')
+                supporting_sources=[dict(url=c['url'],label=c['start']+' ~ '+c['end']) for c in components],source_separator=' / ' if metric in ('cloud_share','segment_share') else ' + ' if metric=='capex_extra' else ' − ')
             notes[r['date']]=[r['start']+' ~ '+r['date'],ref['tag'],ref.get('calculation','reported'),
-                ('매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100' if metric=='cloud_share' else '글로벌 연결/공시 사업 범위 · 미국 지역 단독이 아님')]
+                ('매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100' if metric=='cloud_share' else '매출 비중 = 동일 기간 AI/SI 매출 ÷ SpaceX 매출 × 100' if metric=='segment_share' else '글로벌 연결/공시 사업 범위 · 미국 지역 단독이 아님')]
             if metric=='cloud_share':notes[r['date']].append(f"클라우드 {r['cloud_revenue']:,.3f} / 전사 {r['revenue']:,.3f} × 100 = {r['cloud_share']:,.4f}%")
+            if metric=='segment_share':notes[r['date']].append(f"AI/SI {r['segment_revenue']:,.3f} / SpaceX {r['revenue']:,.3f} × 100 = {r['segment_share']:,.4f}%")
             if metric=='capex_extra':notes[r['date']].append(f"현금 PP&E {r['capex']:,.3f} + {meta['capex_extra']} {r[meta['capex_extra']]:,.3f} = {r['capex_extra']:,.3f} 백만 USD")
         lookup={(r['year'],r.get('quarter')):r['date'] for r in rows}
         views['quarter' if kind=='rows' else 'annual']=dict(label=label,frequency='quarterly' if kind=='rows' else 'yearly',
@@ -116,12 +126,12 @@ def document(key,metric,meta,cohort):
             period_labels={r['date']:f"FY{r['year']}"+(f" Q{r['quarter']}" if kind=='rows' else '') for r in rows},
             series={title:[[d,dates[d].get(metric)] for d in sorted(dates)]},point_sources=sources,point_notes=notes,
             source_url=valid[-1]['refs'][metric]['url'] if valid else meta['source_url'],updated=last,
-            quarterly_revenue_summary=kind=='rows' and metric in ('revenue','cloud_revenue','capex','capex_extra'),quarterly_profit_summary=kind=='rows' and metric in ('profit','cloud_profit'),
+            quarterly_revenue_summary=kind=='rows' and metric in ('revenue','cloud_revenue','capex','capex_extra','segment_revenue','segment_capex'),quarterly_profit_summary=kind=='rows' and metric in ('profit','cloud_profit','segment_profit'),
             comparison_dates={r['date']:dict(year_ago=lookup.get((r['year']-1,r['quarter'])),quarter_ago=lookup.get((r['year']-(r['quarter']==1),r['quarter']-1 or 4))) for r in rows} if kind=='rows' else {},
             change_mode='none',empty_message='공시된 실제 '+label+' 자료를 아직 확보하지 못했습니다. 미공개 기간을 추정하거나 0으로 채우지 않습니다.')
     healthy=cohort['core_ok'] and (cohort.get('cloud_ok',True) if metric.startswith('cloud_') else True)
     scope=meta['capex_extra_note'] if metric=='capex_extra' else meta['note']
-    return dict(id=identifier,name=company_name+' · '+card_title,unit='%' if metric=='cloud_share' else 'USD 백만',company_kpi=True,compact_ticks=True,span_gaps=False,
+    return dict(id=identifier,name=company_name+' · '+card_title,unit='%' if metric in ('cloud_share','segment_share') else 'USD 백만',company_kpi=True,compact_ticks=True,span_gaps=False,
         description=meta['scope'],source='SEC · 공식 연결·사업 공시',fetched=cohort['fetched'],
         collection_status=dict(ok=healthy,checked=cohort['checked'],message='공시 조회 완료' if healthy else '일부 조회·새 공시 검토 필요 · 기존 이력 유지'),
         basis_details=[dict(label='매출·영업이익·투자 범위',value=scope),dict(label='지역·데이터센터 CAPEX',value='미국 본사 기업의 글로벌 실적입니다. 미국 내 데이터센터 수·위치·용량 또는 미국 데이터센터 전용 CAPEX를 뜻하지 않습니다. CAPEX는 실제 현금 PP&E 취득액을 공통 투자 대리지표로 표시하며 회사별 리스 반영 지표는 따로 구분합니다. 미래 투자 계획·리스 약정·가이던스는 실제 지출에 합산하지 않습니다.'),
@@ -137,6 +147,10 @@ def collect(full=False,offline=False):
     client=SecClient(CACHE/'sec')
     for key,spec in meta.items():
         old=state['companies'].get(key,{})
+        if key=='xai':
+            state['companies'][key]=collect_xai(spec,old,client,asof,full,offline)
+            print('xai',len(state['companies'][key]['rows']),'quarters;',len(state['companies'][key]['annual']),'years;',len(state['companies'][key]['errors']),'warnings',flush=True)
+            continue
         errors=copy.deepcopy(old.get('errors',[])) if offline else []
         core_ok=old.get('core_ok',True) if offline else True;cloud_ok=old.get('cloud_ok',True) if offline else True
         try:
@@ -188,13 +202,13 @@ def collect(full=False,offline=False):
         state['companies'][key]=cohort;save(OUT/'us_hyperscalers_state.json',state)
         print(key,len(combined),'quarters',len(combined_annual),'years;',len(cloud_rows),'cloud quarters; warnings',len(errors),flush=True)
     for key,spec in meta.items():
-        for metric in METRICS:
-            if metric=='capex_extra' and not spec.get('capex_extra'):continue
-            if key=='meta' and metric.startswith('cloud_'):continue
+        for metric in metrics_for(key,spec):
             save(OUT/f'us_dc_{key}_{metric}.json',document(key,metric,spec,state['companies'][key]))
+        if key!='meta':
+            combo=combo_document(key,spec,state['companies'][key]);save(OUT/(combo['id']+'.json'),combo)
     if not offline:state['updated']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
     save(OUT/'us_hyperscalers_state.json',state)
-    print('Published 29 hyperscaler metric cards',flush=True)
+    print('Published',sum(len(metrics_for(k,s))+(k!='meta') for k,s in meta.items()),'hyperscaler metric cards',flush=True)
     return state
 
 

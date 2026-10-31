@@ -1,0 +1,1706 @@
+{
+ "id": "us_dc_xai_segment_summary",
+ "name": "xAI · AI/SI 실적 함께 보기",
+ "financial_combo": true,
+ "unit": "USD 백만",
+ "margin_series": "AI/SI 영업이익률",
+ "missing_profit_note": "",
+ "series_units": {
+  "AI/SI 매출": "USD 백만",
+  "AI/SI 영업이익": "USD 백만",
+  "AI/SI 영업이익률": "%"
+ },
+ "span_gaps": false,
+ "source": "SEC · 공식 사업 공시",
+ "fetched": "2026-10-31",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-31",
+  "message": "공시 조회 완료"
+ },
+ "note": "Grok·X·Cursor·클라우드 서비스 등을 포함한 AI/SI 사업부입니다. 순수 클라우드 실적과 다릅니다. 매출·영업이익은 왼쪽 금액 축, 영업이익률은 오른쪽 % 축입니다. 연간 이익률은 연간 영업이익 / 연간 매출로 계산합니다.",
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 동일 사업 범위",
+   "quarter_labels": true,
+   "year_labels": false,
+   "series": {
+    "AI/SI 매출": [
+     [
+      "2025-03-31",
+      727.0
+     ],
+     [
+      "2025-06-30",
+      737.0
+     ],
+     [
+      "2025-09-30",
+      813.0
+     ],
+     [
+      "2025-12-31",
+      923.0
+     ],
+     [
+      "2026-03-31",
+      818.0
+     ],
+     [
+      "2026-06-30",
+      2561.0
+     ],
+     [
+      "2026-09-30",
+      7560.0
+     ]
+    ],
+    "AI/SI 영업이익": [
+     [
+      "2025-03-31",
+      -936.0
+     ],
+     [
+      "2025-06-30",
+      -1524.0
+     ],
+     [
+      "2025-09-30",
+      -1722.0
+     ],
+     [
+      "2025-12-31",
+      -2173.0
+     ],
+     [
+      "2026-03-31",
+      -2469.0
+     ],
+     [
+      "2026-06-30",
+      -1257.0
+     ],
+     [
+      "2026-09-30",
+      431.0
+     ]
+    ],
+    "AI/SI 영업이익률": [
+     [
+      "2025-03-31",
+      -128.74828060522697
+     ],
+     [
+      "2025-06-30",
+      -206.7842605156038
+     ],
+     [
+      "2025-09-30",
+      -211.80811808118082
+     ],
+     [
+      "2025-12-31",
+      -235.4279523293608
+     ],
+     [
+      "2026-03-31",
+      -301.8337408312958
+     ],
+     [
+      "2026-06-30",
+      -49.08238969152674
+     ],
+     [
+      "2026-09-30",
+      5.701058201058201
+     ]
+    ]
+   },
+   "series_sources": {
+    "AI/SI 매출": {
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Revenue .............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Revenue .............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    },
+    "AI/SI 영업이익": {
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    },
+    "AI/SI 영업이익률": {
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-03-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Revenue .............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-03-31",
+          "tag": "IPO prospectus segment table · Revenue .............................................................. · AI"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+          "filed": "2026-08-04",
+          "start": "2025-04-01",
+          "end": "2025-06-30",
+          "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+          "filed": "2026-08-04",
+          "start": "2025-04-01",
+          "end": "2025-06-30",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2025-07-01",
+          "end": "2025-09-30",
+          "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2025-07-01",
+          "end": "2025-09-30",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2026-01-01",
+          "end": "2026-03-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2026-01-01",
+          "end": "2026-03-31",
+          "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+          "filed": "2026-08-04",
+          "start": "2026-04-01",
+          "end": "2026-06-30",
+          "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+          "filed": "2026-08-04",
+          "start": "2026-04-01",
+          "end": "2026-06-30",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2026-07-01",
+          "end": "2026-09-30",
+          "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+          "filed": "2026-10-22",
+          "start": "2026-07-01",
+          "end": "2026-09-30",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     }
+    }
+   },
+   "period_labels": {
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2",
+    "2026-09-30": "FY2026 Q3"
+   },
+   "updated": "2026-09-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 동일 사업 범위",
+   "quarter_labels": false,
+   "year_labels": true,
+   "series": {
+    "AI/SI 매출": [
+     [
+      "2023-12-31",
+      2961.0
+     ],
+     [
+      "2024-12-31",
+      2620.0
+     ],
+     [
+      "2025-12-31",
+      3201.0
+     ]
+    ],
+    "AI/SI 영업이익": [
+     [
+      "2023-12-31",
+      -3973.0
+     ],
+     [
+      "2024-12-31",
+      -1561.0
+     ],
+     [
+      "2025-12-31",
+      -6355.0
+     ]
+    ],
+    "AI/SI 영업이익률": [
+     [
+      "2023-12-31",
+      -134.177642688281
+     ],
+     [
+      "2024-12-31",
+      -59.58015267175573
+     ],
+     [
+      "2025-12-31",
+      -198.5317088409872
+     ]
+    ]
+   },
+   "series_sources": {
+    "AI/SI 매출": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    },
+    "AI/SI 영업이익": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    },
+    "AI/SI 영업이익률": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+         }
+        ],
+        "calculation": "reported period"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+          "filed": "2026-06-01",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+         }
+        ],
+        "calculation": "reported period"
+       }
+      ],
+      "calculation": "same-period operating profit / revenue × 100"
+     }
+    }
+   },
+   "period_labels": {
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 동일 사업 범위",
+ "quarter_labels": true,
+ "year_labels": false,
+ "series": {
+  "AI/SI 매출": [
+   [
+    "2025-03-31",
+    727.0
+   ],
+   [
+    "2025-06-30",
+    737.0
+   ],
+   [
+    "2025-09-30",
+    813.0
+   ],
+   [
+    "2025-12-31",
+    923.0
+   ],
+   [
+    "2026-03-31",
+    818.0
+   ],
+   [
+    "2026-06-30",
+    2561.0
+   ],
+   [
+    "2026-09-30",
+    7560.0
+   ]
+  ],
+  "AI/SI 영업이익": [
+   [
+    "2025-03-31",
+    -936.0
+   ],
+   [
+    "2025-06-30",
+    -1524.0
+   ],
+   [
+    "2025-09-30",
+    -1722.0
+   ],
+   [
+    "2025-12-31",
+    -2173.0
+   ],
+   [
+    "2026-03-31",
+    -2469.0
+   ],
+   [
+    "2026-06-30",
+    -1257.0
+   ],
+   [
+    "2026-09-30",
+    431.0
+   ]
+  ],
+  "AI/SI 영업이익률": [
+   [
+    "2025-03-31",
+    -128.74828060522697
+   ],
+   [
+    "2025-06-30",
+    -206.7842605156038
+   ],
+   [
+    "2025-09-30",
+    -211.80811808118082
+   ],
+   [
+    "2025-12-31",
+    -235.4279523293608
+   ],
+   [
+    "2026-03-31",
+    -301.8337408312958
+   ],
+   [
+    "2026-06-30",
+    -49.08238969152674
+   ],
+   [
+    "2026-09-30",
+    5.701058201058201
+   ]
+  ]
+ },
+ "series_sources": {
+  "AI/SI 매출": {
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "IPO prospectus segment table · Revenue .............................................................. · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Revenue .............................................................. · AI"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2026-07-01",
+    "end": "2026-09-30",
+    "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "reported period"
+   }
+  },
+  "AI/SI 영업이익": {
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+     }
+    ],
+    "calculation": "reported period"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2026-07-01",
+    "end": "2026-09-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+     }
+    ],
+    "calculation": "reported period"
+   }
+  },
+  "AI/SI 영업이익률": {
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "IPO prospectus segment table · Revenue .............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "IPO prospectus segment table · Revenue .............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations ......................... · AI"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+    "filed": "2026-06-01",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Income (loss) from operations .......................... · AI"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+      "filed": "2026-06-01",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "IPO prospectus segment table · Revenue ............................................................. · AI",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm",
+        "filed": "2026-06-01",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "IPO prospectus segment table · Revenue ............................................................. · AI"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+    "filed": "2026-08-04",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "filed": "2026-08-04",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+        "filed": "2026-08-04",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:AIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "filed": "2026-10-22",
+    "start": "2026-07-01",
+    "end": "2026-09-30",
+    "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "OperatingIncomeLoss · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "filed": "2026-10-22",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+        "filed": "2026-10-22",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax · us-gaap:OperatingSegmentsMember, spcx:SIMember"
+       }
+      ],
+      "calculation": "reported period"
+     }
+    ],
+    "calculation": "same-period operating profit / revenue × 100"
+   }
+  }
+ },
+ "period_labels": {
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3"
+ },
+ "updated": "2026-09-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm"
+}

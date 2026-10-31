@@ -575,6 +575,7 @@
           "layout": "financial",
           "supply_note": "글로벌 연결·AWS 사업부입니다. CAPEX는 물류 등 다른 사업 설비를 포함한 전사 현금지출이며 미국 데이터센터 전용 금액이 아닙니다.",
           "indicators": [
+            "us_dc_amzn_cloud_summary",
             "us_dc_amzn_revenue",
             "us_dc_amzn_cloud_revenue",
             "us_dc_amzn_cloud_share",
@@ -589,6 +590,7 @@
           "layout": "financial",
           "supply_note": "Microsoft Cloud는 Azure·Microsoft 365 등 여러 클라우드 서비스를 포함합니다. 이 범위의 영업이익은 단독 미공개입니다. 금융리스 취득자산을 더한 지표는 별도의 재무제표 계산값입니다.",
           "indicators": [
+            "us_dc_msft_cloud_summary",
             "us_dc_msft_revenue",
             "us_dc_msft_cloud_revenue",
             "us_dc_msft_cloud_share",
@@ -604,6 +606,7 @@
           "layout": "financial",
           "supply_note": "Google Cloud는 GCP와 Workspace 등을 포함하며 사업부 영업이익은 실제 공시값입니다. CAPEX는 기술 인프라 등을 포함한 글로벌 전사 투자입니다.",
           "indicators": [
+            "us_dc_googl_cloud_summary",
             "us_dc_googl_revenue",
             "us_dc_googl_cloud_revenue",
             "us_dc_googl_cloud_share",
@@ -618,6 +621,7 @@
           "layout": "financial",
           "supply_note": "공시된 IaaS·SaaS 등 클라우드 서비스 매출입니다. 라이선스·지원을 더한 큰 사업부와 구분하며 클라우드 단독 영업이익은 미공개입니다. CAPEX는 글로벌 전사 투자입니다.",
           "indicators": [
+            "us_dc_orcl_cloud_summary",
             "us_dc_orcl_revenue",
             "us_dc_orcl_cloud_revenue",
             "us_dc_orcl_cloud_share",
@@ -637,6 +641,22 @@
             "us_dc_meta_capex",
             "us_dc_meta_capex_extra"
           ]
+        },
+        {
+          "tab": "us",
+          "title": "SpaceX · xAI AI/SI · SPCX",
+          "layout": "financial",
+          "supply_note": "SpaceX 전사와 xAI AI/SI 사업부를 구분합니다. AI/SI에는 Grok·X·Cursor·클라우드 서비스 등이 포함됩니다. 2023~2025년 연간과 2025년 이후 분기는 공통지배 합병을 소급 반영한 공시이며, 2026년 8월 Cursor 인수 전후 사업 범위가 달라집니다. AI/SI CAPEX는 공시된 사업부 투자액입니다.",
+          "indicators": [
+            "us_dc_xai_segment_summary",
+            "us_dc_xai_revenue",
+            "us_dc_xai_profit",
+            "us_dc_xai_capex",
+            "us_dc_xai_segment_revenue",
+            "us_dc_xai_segment_profit",
+            "us_dc_xai_segment_share",
+            "us_dc_xai_segment_capex"
+          ]
         }
       ],
       "tabs": [
@@ -650,7 +670,7 @@
           "name": "미국",
           "default_range": "all",
           "auto_collect_time": "09:50",
-          "description": "미국 하이퍼스케일러 5개사의 글로벌 연결·클라우드 실적과 설비투자를 봅니다. 미국 내 센터 수·용량이나 데이터센터 전용 CAPEX 통계가 아닙니다. 현금 PP&E를 공통 투자 대리지표로 사용하고, Microsoft·Meta의 리스 반영 기준은 별도로 표시합니다. 클라우드 단독 영업이익 미공개는 0으로 채우지 않습니다."
+          "description": "미국 하이퍼스케일러와 SpaceX·xAI의 글로벌 실적과 설비투자를 봅니다. 클라우드 매출·영업이익·이익률을 함께 비교하고, xAI는 Grok·X·Cursor 등을 포함한 AI/SI 사업부로 구분합니다. 전사 현금 PP&E와 사업부 CAPEX의 범위는 각 회사 설명에서 확인할 수 있습니다. 미국 내 센터 수·용량이나 데이터센터 전용 CAPEX 통계가 아니며, 미공개 실적은 0으로 채우지 않습니다."
         }
       ]
     },

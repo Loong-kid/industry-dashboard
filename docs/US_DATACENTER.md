@@ -11,12 +11,21 @@
 | Alphabet | Google Cloud, GCP·Workspace 등 포함 | Google Cloud 사업부 실제 공시 |
 | Oracle | 공시된 Cloud 서비스 IaaS·SaaS 등 | 클라우드 단독 이익 미공개 |
 | Meta | 외부 퍼블릭 클라우드 판매 사업 없음 | 해당 없음 |
+| SpaceX / xAI | AI/SI 전체: Grok·X·Cursor·클라우드 서비스 등 | AI/SI 사업부 실제 공시, 순수 클라우드 이익과 다름 |
 
 전사 매출·영업이익, 클라우드 매출·전사 매출 대비 비중, 클라우드 영업이익, 전사 현금 PP&E CAPEX를 분기·완결 회계연도로 나열한다. Microsoft·Oracle은 공시 범위가 더 넓은 사업부 이익을 클라우드 이익으로 대체하지 않는다. Meta는 자체 AI·서비스 인프라 투자 비교용으로 전사 실적과 투자만 표시한다. 비공개·해당 없음은 0으로 계산하지 않는다.
 
 Microsoft의 예전 Intelligent Cloud·현재 Agents and Infra는 Microsoft Cloud와 다른 범위다. Oracle의 Cloud services and license support, Cloud and software도 유지보수·라이선스 등 다른 매출을 포함한다. 이 큰 부문의 매출·이익을 클라우드 단독 수치로 쓰지 않는다.
 
 클라우드 비중은 **동일 실제 기간의 클라우드 매출 / 전사 매출 × 100**이다. 연간 비중은 연간 실적끼리 계산하며 분기 비중을 평균하지 않는다. Microsoft는 6월, Oracle은 5월 결산이며 FY는 끝나는 해를 따른다.
+
+각 클라우드 회사의 앞쪽에는 **매출·영업이익 막대 + 영업이익률 선**을 함께 그린 통합 카드가 있다. 금액은 왼쪽 USD 백만 축, 이익률은 오른쪽 % 축이다. 분기·연간을 바꿀 수 있으며 연간 이익률은 연간 영업이익 / 연간 매출로 계산한다. Microsoft·Oracle은 매출만 그리고 이익·이익률은 미공개로 표시한다. Meta에는 외부 클라우드 사업이 없어 클라우드 통합 카드를 만들지 않는다.
+
+### SpaceX / xAI
+
+2026년 2월 2일 SpaceX가 인수한 xAI는 AI 사업부이며, 2026년 3분기 공시에서는 SI(Super Intelligence)로 명칭이 바뀌었다. 순수 클라우드만의 실적이 아니므로 기존 회사의 클라우드 실적과 명칭을 구분한다. SpaceX 전사 연결 매출·영업이익·현금 CAPEX와 AI/SI 사업부의 매출·영업이익·SpaceX 매출 대비 비중·CAPEX를 별도 카드로 표시한다. AI/SI 통합 카드도 같은 사업부 범위의 매출·영업이익·이익률이다.
+
+[2026-06-01 상장신고서](https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm)의 완전한 사업부 표에서 2023~2025년 연간, 2025·2026년 1분기를 추출하고, 이후 10-Q·10-K의 실제 USD XBRL을 수집한다. 상장신고서에는 XBRL instance가 없어 이 초기 표를 별도 검증한다. 분기 자료는 2025년부터이며 연간 자료를 4등분하지 않는다. 4분기는 연간−9개월 누적으로 계산한다. 공통지배 합병의 소급 재작성으로 X의 과거 실적도 포함하며, 2026년 8월 Cursor 인수 전후는 사업 범위가 다르다. AI/SI CAPEX는 실제 공시된 사업부 금액으로, 우주·Starlink 등 전사 투자와 구분한다.
 
 ## CAPEX 정의
 

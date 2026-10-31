@@ -21,7 +21,9 @@ jobs:
       - name: Validate fiscal periods, scope and cloud ratios
         id: precheck
         continue-on-error: true
-        run: python -m unittest discover -s scripts -p test_us_datacenter.py -v
+        run: |
+          python -m unittest discover -s scripts -p test_us_datacenter.py -v
+          node scripts/test_us_datacenter.cjs
       - name: Refresh consolidated and native cloud disclosures
         if: steps.precheck.outcome == 'success'
         run: python -u scripts/fetch_us_datacenter.py
@@ -29,7 +31,9 @@ jobs:
         id: postcheck
         if: steps.precheck.outcome == 'success'
         continue-on-error: true
-        run: python -m unittest discover -s scripts -p test_us_datacenter.py -v
+        run: |
+          python -m unittest discover -s scripts -p test_us_datacenter.py -v
+          node scripts/test_us_datacenter.cjs
       - name: Commit US hyperscaler data only
         if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
         run: |

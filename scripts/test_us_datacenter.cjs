@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const context = vm.createContext({SERIES_COLORS:{light:['#2a78d6','#1baf7a','#eda100']},isDark:()=>false});
+vm.runInContext(fs.readFileSync('assets/us-datacenter.js','utf8'),context);
+const doc = {margin_series:'Margin',series_units:{Revenue:'USD millions',Profit:'USD millions',Margin:'%'}};
+const series = {Revenue:[['2025-12-31',100],['2026-03-31',200]],Profit:[['2025-12-31',-50],['2026-03-31',null]],Margin:[['2025-12-31',-50],['2026-03-31',null]]};
+const data = JSON.parse(JSON.stringify(context.dcComboChartData(doc,series)));
+assert.deepEqual(data.datasets.map(d=>[d.type,d.yAxisID,d.unit]),[['bar','amount','USD millions'],['bar','amount','USD millions'],['line','margin','%']]);
+assert.deepEqual(data.datasets[1].data,[-50,null]);
+assert.deepEqual(data.datasets[2].data,[-50,null]);
+assert(data.datasets.every(d=>d.spanGaps===false));
+assert(data.datasets[2].order<data.datasets[0].order);
+console.log('US cloud combo: separate currency/% axes, negative profits and unpublished nulls preserved.');
