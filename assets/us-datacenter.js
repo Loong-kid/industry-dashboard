@@ -1,97 +1,84 @@
 "use strict";
 
-// Currency columns and a percentage line must never share an axis or a unit.
-function dcComboChartData(doc, filtered) {
-  const labels = [...new Set(Object.values(filtered).flatMap(points => points.map(p => p[0])))].sort();
-  const palette = SERIES_COLORS[isDark() ? "dark" : "light"];
-  const datasets = Object.entries(filtered).map(([label, points], i) => {
-    const margin = label === doc.margin_series, values = new Map(points);
-    return {label, data: labels.map(date => values.get(date) ?? null),
-      type: margin ? "line" : "bar", yAxisID: margin ? "margin" : "amount",
-      borderColor: palette[i], backgroundColor: margin ? palette[i] : palette[i] + "99",
-      borderWidth: margin ? 2 : 0, pointRadius: margin ? 2 : 0,
-      spanGaps: false, order: margin ? 0 : 1, maxBarThickness: 24,
-      unit: doc.series_units[label]};
-  });
-  return {labels, datasets};
+function dcComparisonDefaults(doc, saved) {
+  const available = Object.keys(doc.series).filter(name => doc.series[name].some(([,v]) => v != null));
+  return (saved ?? doc.default_series ?? available).filter(name => available.includes(name));
 }
 
-function renderUsDatacenterCombo(doc) {
-  const card = document.createElement("div");
-  card.className = "card dc-financial-combo";
-  card.dataset.dcCombo = doc.id;
-  const names = Object.keys(doc.series);
-  const latest = doc.updated;
-  const filtered = Object.fromEntries(names.map(name => [name, doc.series[name].filter(([date]) => date >= rangeCutoff())]));
-  if (Object.values(filtered).every(points => !points.length)) {
-    for (const name of names) filtered[name] = doc.series[name];
-  }
-  const e = escapeHtml;
-  card.innerHTML = `<div class="card-head"><div class="card-name">${e(doc.name)}</div><div class="card-freq">${e(doc.frequency_label)}</div></div>
-    <p class="card-foot">${e(doc.collection_status.checked)} · ${e(doc.collection_status.message)}</p>
-    <div class="stat-date">${e(periodLabel(doc, latest))} · ${e(latest)}</div>
-    <dl class="dc-combo-stats">${names.map(name => {
-      const value = new Map(doc.series[name]).get(latest), unit = doc.series_units[name];
-      const ref = doc.series_sources[name]?.[latest];
-      const memo = `${latest} · ${name} · ${unit}\n${ref?.start || ""} ~ ${ref?.end || latest}\n${ref?.calculation || "공시 실제 기간"}`;
-      return `<div><dt>${e(name)}</dt><dd>${value == null ? "—" : `<button type="button" class="gm-money" data-money-note="${e(memo)}">${fmt(value)}</button>`} <small>${value == null ? "미공개" : e(unit)}</small></dd></div>`;
-    }).join("")}</dl>
-    ${doc.missing_profit_note ? `<p class="ir-scope-note">${e(doc.missing_profit_note)}</p>` : ""}
-    <div class="dc-combo-chips"></div><div class="chart-wrap"><canvas aria-label="${e(doc.name)}" role="img"></canvas></div>
-    <p class="ir-scope-note">${e(doc.note)}</p>
-    <div class="card-foot"><a href="${e(doc.source_url)}" target="_blank" rel="noopener">${e(doc.source)} ↗</a><button type="button" class="table-btn">표 보기</button></div>
-    <div class="data-table" hidden></div>`;
-  const data = dcComboChartData(doc, filtered);
-  const chart = new Chart(card.querySelector("canvas"), {
-    type: "bar", data,
-    options: {responsive: true, maintainAspectRatio: false, animation: false,
-      interaction: {mode: "index", intersect: false},
-      plugins: {legend: {display: false}, tooltip: {
-        backgroundColor: css("--surface"), titleColor: css("--ink"), bodyColor: css("--ink-2"),
-        borderColor: css("--border"), borderWidth: 1,
-        callbacks: {title: items => items.length ? periodLabel(doc, items[0].label) : "",
-          label: c => `${c.dataset.label}: ${fmt(c.parsed.y)} ${c.dataset.unit}`,
-          afterLabel: c => doc.series_sources[c.dataset.label]?.[c.label]?.calculation || ""}}},
-      scales: {
-        x: {ticks: {color: css("--muted"), maxTicksLimit: 6, maxRotation: 0, font: {size: 11},
-          callback: function(v) {return periodLabel(doc, this.getLabelForValue(v));}}, grid: {display: false}},
-        amount: {position: "left", beginAtZero: true, title: {display: true, text: "USD 백만", color: css("--muted")},
-          ticks: {color: css("--muted"), maxTicksLimit: 5, callback: fmt}, grid: {color: css("--grid")}},
-        margin: {position: "right", display: data.datasets.at(-1).data.some(v => v != null),
-          title: {display: true, text: "%", color: css("--muted")},
-          ticks: {color: css("--muted"), maxTicksLimit: 5, callback: v => fmt(v) + "%"}, grid: {drawOnChartArea: false}},
-      }}, plugins: [crosshair],
-  });
-  state.charts.push(chart);
-  const chips = card.querySelector(".dc-combo-chips");
-  buildChips(chips, chart);
-  chips.querySelectorAll("input").forEach((input, i) => {
-    const chip = input.closest("label");
-    if (data.datasets[i].data.every(v => v == null)) {
-      input.disabled = true;
-      chip.append(" · 미공개");
+// Reuse the shipbuilding line chart, company chips and headline interaction.
+// Only this wrapper adds per-company fiscal period/source notes and persistence.
+function renderUsDatacenterComparison(doc) {
+  state.dcComparisonSelections ??= {};
+  const selected = dcComparisonDefaults(doc, state.dcComparisonSelections[doc.id]);
+  const card = renderCard({...doc, company_comparison: false, default_series: selected}, doc.id);
+  card.classList.add("dc-company-comparison");
+  card.dataset.dcComparison = doc.comparison_metric;
+  const chart = Chart.getChart(card.querySelector("canvas"));
+  const names = Object.keys(doc.series), e = escapeHtml;
+  chart.options.plugins.tooltip.callbacks.afterLabel = c => doc.series_point_notes[c.dataset.label]?.[c.label] || [];
+  chart.options.plugins.tooltip.callbacks.afterBody = () => [];
+  const updateHeadline = () => {
+    if (!chart.data.datasets.some((_,i) => chart.isDatasetVisible(i))) {
+      card.querySelector('.card-stat').innerHTML = '<span class="stat-unit">비교할 기업을 선택하세요</span>';
+      return;
     }
-    chip.tabIndex = input.disabled ? -1 : 0;
+    const name = card.querySelector(".stat-series")?.textContent;
+    const last = doc.series[name]?.at(-1);
+    if (!last) return;
+    const ref = doc.series_sources[name]?.[last[0]], memo = doc.series_point_notes[name]?.[last[0]];
+    const date = card.querySelector(".stat-date");
+    if (date && ref) date.textContent = `${ref.period} · ${ref.observed_date}`;
+    const value = card.querySelector(".stat-value");
+    if (value && memo) {
+      const button = document.createElement("button");
+      button.type = "button"; button.className = "stat-value gm-money";
+      button.textContent = value.textContent; button.dataset.moneyNote = memo.join("\n");
+      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. ${memo.join(". ")}`);
+      value.replaceWith(button);
+    }
+  };
+  card.querySelectorAll(".chips input").forEach((input, i) => {
+    const name = names[i], chip = input.closest("label");
+    const empty = !doc.series[name].some(([,v]) => v != null);
+    input.disabled = empty;
+    if (empty) {
+      chip.append(name === "Meta" ? " · 해당 없음" : " · 미공개");
+      chip.title = doc.series_unavailable[name] || "선택 기간에 공시된 자료가 없습니다.";
+    } else if (name.startsWith("xAI")) chip.title = "Grok·X·Cursor 등을 포함한 AI/SI 사업부";
+    chip.tabIndex = empty ? -1 : 0;
     chip.setAttribute("role", "checkbox");
-    chip.setAttribute("aria-disabled", String(input.disabled));
     chip.setAttribute("aria-checked", String(input.checked));
-    input.addEventListener("change", () => chip.setAttribute("aria-checked", String(input.checked)));
+    chip.setAttribute("aria-disabled", String(empty));
+    input.addEventListener("change", () => {
+      state.dcComparisonSelections[doc.id] = chart.data.datasets.filter((_, index) => chart.isDatasetVisible(index)).map(d => d.label);
+      chip.setAttribute("aria-checked", String(input.checked));
+      updateHeadline();
+    });
     chip.addEventListener("keydown", event => {
-      if (!input.disabled && [" ", "Enter"].includes(event.key)) {event.preventDefault(); input.click();}
+      if (!empty && [" ", "Enter"].includes(event.key)) {event.preventDefault(); input.click();}
     });
   });
-  const table = card.querySelector(".data-table"), button = card.querySelector(".table-btn");
-  button.addEventListener("click", () => {
-    table.hidden = !table.hidden;
-    button.textContent = table.hidden ? "표 보기" : "표 닫기";
-    if (!table.hidden) table.innerHTML = `<table><thead><tr><th>회계기간</th>${names.map(name => `<th>${e(name)} (${e(doc.series_units[name])})</th>`).join("")}<th>원문</th></tr></thead><tbody>${data.labels.slice().reverse().map(date =>
-      `<tr><td>${e(periodLabel(doc, date))}</td>${names.map(name => {
-        const v = new Map(filtered[name]).get(date), ref = doc.series_sources[name]?.[date];
-        return `<td>${v == null ? "—" : `<button type="button" class="gm-money" data-money-note="${e(ref?.calculation || "공시 실제 기간")} · ${e(date)} · ${e(doc.series_units[name])}">${fmt(v)}</button>`}</td>`;
-      }).join("")}<td>${[...new Set(names.flatMap(name => {
-        const ref = doc.series_sources[name]?.[date];
-        return ref ? [ref.url, ...(ref.components || []).map(c => c.url)] : [];
-      }))].map((url, i) => `<a href="${e(url)}" target="_blank" rel="noopener">SEC ${i+1}</a>`).join(" / ")}</td></tr>`).join("")}</tbody></table>`;
+  updateHeadline();
+  // Notes belong to a company and a period; a shared date note can otherwise
+  // mislabel Oracle's August close as a September cloud quarter.
+  const table = card.querySelector(".data-table");
+  card.querySelector(".table-btn").addEventListener("click", () => {
+    if (table.style.display === "none") return;
+    const dates = chart.data.labels.slice().reverse();
+    const maps = Object.fromEntries(names.map(name => [name, new Map(doc.series[name])]));
+    table.innerHTML = `<table><thead><tr><th>${doc.frequency === "yearly" ? "결산연도" : "표시 분기"}</th>${names.map(name => `<th>${e(name)} (${e(doc.unit)})</th>`).join("")}<th>공식 원문</th></tr></thead><tbody>${dates.map(date => {
+      const sources = [];
+      const cells = names.map(name => {
+        const value = maps[name].get(date), ref = doc.series_sources[name]?.[date];
+        if (value == null) return "<td>—</td>";
+        for (const part of [ref, ...(ref?.components || [])]) {
+          if (part && !sources.some(s => s.url === part.url)) sources.push({url: part.url, label: name});
+        }
+        const memo = doc.series_point_notes[name]?.[date]?.join("\n") || "";
+        return `<td><button type="button" class="gm-money" data-money-note="${e(memo)}">${fmt(value)}</button><small>${e(ref?.period || "")} · ${e(ref?.observed_date || "")}</small></td>`;
+      }).join("");
+      return `<tr><td>${e(doc.period_labels[date])}</td>${cells}<td>${sources.map(source => `<a href="${e(source.url)}" target="_blank" rel="noopener">${e(source.label)}</a>`).join(" / ")}</td></tr>`;
+    }).join("")}</tbody></table>`;
   });
   return card;
 }

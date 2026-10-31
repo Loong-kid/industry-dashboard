@@ -8,7 +8,7 @@ from cpu_business_history import SecClient
 from fetch_cpu_companies import load,save,parse_facts,parse_annual,TAGS
 from us_datacenter_sources import parse_instance
 from us_datacenter_xai import collect_xai
-from us_datacenter_presentations import combo_document
+from us_datacenter_presentations import comparison_document,METRICS as COMPARISON_METRICS
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/datacenter';CACHE=ROOT/'.cache/us-datacenter'
@@ -204,11 +204,11 @@ def collect(full=False,offline=False):
     for key,spec in meta.items():
         for metric in metrics_for(key,spec):
             save(OUT/f'us_dc_{key}_{metric}.json',document(key,metric,spec,state['companies'][key]))
-        if key!='meta':
-            combo=combo_document(key,spec,state['companies'][key]);save(OUT/(combo['id']+'.json'),combo)
+    for metric in COMPARISON_METRICS:
+        comparison=comparison_document(metric,meta,state['companies']);save(OUT/(comparison['id']+'.json'),comparison)
     if not offline:state['updated']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
     save(OUT/'us_hyperscalers_state.json',state)
-    print('Published',sum(len(metrics_for(k,s))+(k!='meta') for k,s in meta.items()),'hyperscaler metric cards',flush=True)
+    print('Published',sum(len(metrics_for(k,s)) for k,s in meta.items())+len(COMPARISON_METRICS),'hyperscaler metric cards',flush=True)
     return state
 
 

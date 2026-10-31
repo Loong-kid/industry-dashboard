@@ -6,7 +6,7 @@ from fetch_us_datacenter import ROOT,document,fiscal_payload,merge_business,extr
 from us_datacenter_sources import parse_instance,field_for
 from us_datacenter_sources import parse_spacex_bootstrap
 from us_datacenter_xai import BOOTSTRAP,periods
-from us_datacenter_presentations import combo_document
+from us_datacenter_presentations import comparison_document
 
 
 class HyperscalerTests(unittest.TestCase):
@@ -69,7 +69,7 @@ class HyperscalerTests(unittest.TestCase):
                         self.assertLessEqual(ref['filed'],c['checked']);self.assertTrue(ref['url'].startswith('https://www.sec.gov/'))
             for path in (ROOT/'data/datacenter').glob('us_dc_'+key+'_*.json'):
                 metric=path.stem[len('us_dc_'+key+'_'):];d=json.loads(path.read_text(encoding='utf8'))
-                self.assertEqual(d,combo_document(key,self.meta[key],c) if d.get('financial_combo') else document(key,metric,self.meta[key],c))
+                self.assertEqual(d,document(key,metric,self.meta[key],c))
                 if d.get('disclosure_status')=='not_disclosed':
                     self.assertNotIn('series',d);continue
                 self.assertIn('annual',d['series_views']);self.assertFalse(d['span_gaps'])
@@ -86,22 +86,44 @@ class HyperscalerTests(unittest.TestCase):
         self.assertEqual([(t['id'],t['name']) for t in dc['tabs']],[('korea','한국'),('us','미국')])
         korea=[s for s in dc['sections'] if s['tab']=='korea'];us=[s for s in dc['sections'] if s['tab']=='us']
         self.assertEqual(len(korea),5);self.assertEqual({s.get('table_kind') for s in korea if s.get('type')=='table'},{'dc_summary','dc_facilities','dc_changes'})
-        self.assertEqual([len(s['indicators']) for s in us],[7,8,7,7,4,8])
-        ids=[i for s in us for i in s['indicators']];self.assertEqual(len(set(ids)),41)
+        self.assertEqual([len(s['indicators']) for s in us],[4,6,7,6,6,4,7])
+        ids=[i for s in us for i in s['indicators']];self.assertEqual(len(set(ids)),40)
+        self.assertFalse(any(i.endswith('_summary') for i in ids))
         for id in ids:self.assertTrue((ROOT/f'data/datacenter/{id}.json').exists())
 
     def test_margin_uses_actual_annual_totals_and_does_not_fill_missing_profit(self):
-        ref=dict(url='https://www.sec.gov/source',start='2025-01-01',end='2025-12-31',tag='actual',filed='2026-02-01')
-        row=dict(start='2025-01-01',date='2025-12-31',year=2025,quarter=4,cloud_revenue=400,cloud_profit=-80,refs={'cloud_revenue':ref,'cloud_profit':ref})
-        c=dict(rows=[row],annual=[row],core_ok=True,cloud_ok=True,checked='2026-10-31',fetched='2026-10-31')
-        d=combo_document('amzn',self.meta['amzn'],c)
-        self.assertEqual(list(d['series_views']['annual']['series'].values())[-1],[['2025-12-31',-20]])
-        del row['cloud_profit'];del row['refs']['cloud_profit']
-        d=combo_document('msft',self.meta['msft'],c)
-        self.assertTrue(d['missing_profit_note'])
-        self.assertEqual(list(d['series'].values())[1:],[ [['2025-12-31',None]], [['2025-12-31',None]] ])
-        row['cloud_revenue']=0;row['cloud_profit']=10;row['refs']['cloud_profit']=ref
-        self.assertIsNone(list(combo_document('amzn',self.meta['amzn'],c)['series'].values())[-1][0][1])
+        companies=json.loads((ROOT/'data/datacenter/us_hyperscalers_state.json').read_text(encoding='utf8'))['companies']
+        r=companies['amzn']['annual'][-1];r.update(cloud_revenue=400,cloud_profit=-80)
+        d=comparison_document('margin',self.meta,companies)
+        self.assertEqual(dict(d['series_views']['annual']['series']['Amazon · AWS'])[r['date']],-20)
+        self.assertEqual(d['series']['Microsoft Cloud'],[])
+        self.assertEqual(d['series']['Oracle Cloud'],[])
+        self.assertEqual(d['series']['Meta'],[])
+        self.assertNotIn('xAI · AI/SI',d['default_series'])
+        r['cloud_revenue']=0
+        d=comparison_document('margin',self.meta,companies)
+        self.assertNotIn(r['date'],dict(d['series_views']['annual']['series']['Amazon · AWS']))
+
+    def test_four_company_comparisons_preserve_fiscal_periods_and_capex_scope(self):
+        companies=json.loads((ROOT/'data/datacenter/us_hyperscalers_state.json').read_text(encoding='utf8'))['companies']
+        for metric in ('revenue','profit','margin','capex'):
+            doc=comparison_document(metric,self.meta,companies)
+            saved=json.loads((ROOT/f'data/datacenter/us_dc_compare_{metric}.json').read_text(encoding='utf8'))
+            self.assertEqual(doc,saved);self.assertTrue(doc['company_comparison'])
+            self.assertEqual(len(doc['series']),6)
+            self.assertFalse(doc['span_gaps'])
+        revenue=comparison_document('revenue',self.meta,companies)
+        self.assertEqual(dict(revenue['series']['Oracle Cloud'])['2026-09-30'],11607)
+        ref=revenue['series_sources']['Oracle Cloud']['2026-09-30']
+        self.assertEqual((ref['period_start'],ref['observed_date'],ref['period']),('2026-06-01','2026-08-31','FY2027 Q1'))
+        ref=revenue['series_sources']['Microsoft Cloud']['2026-09-30']
+        self.assertEqual((ref['observed_date'],ref['period']),('2026-09-30','FY2027 Q1'))
+        capex=comparison_document('capex',self.meta,companies)
+        self.assertEqual(dict(capex['series']['Amazon · 전사'])['2026-09-30'],77259)
+        self.assertEqual(dict(capex['series']['xAI · AI/SI'])['2026-09-30'],16444)
+        self.assertIn('전사 현금 PP&E',capex['note'])
+        companies['googl']['rows']=[r for r in companies['googl']['rows'] if r['date']!='2026-03-31']
+        self.assertIsNone(dict(comparison_document('revenue',self.meta,companies)['series']['Google Cloud'])['2026-03-31'])
 
     def test_spacex_public_native_and_ipo_history_keep_ai_scope(self):
         raw=(ROOT/'scripts/fixtures/us_datacenter/xai.xml').read_bytes()

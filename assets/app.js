@@ -729,7 +729,7 @@ function renderCard(doc, indicatorId, options = {}) {
     card.insertBefore(controls, card.children[1] || null);
     return card;
   }
-  if (doc?.financial_combo) return renderUsDatacenterCombo(doc);
+  if (doc?.company_comparison) return renderUsDatacenterComparison(doc);
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
   const dateLabel = date => (doc?.period_labels?.[date] ? `${doc.period_labels[date]} · ${date}`
