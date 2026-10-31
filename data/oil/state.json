@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "updated": "2026-10-30",
+ "updated": "2026-10-31",
  "companies": {
   "xom": {
    "rows": [
@@ -16856,8 +16856,8 @@
      ]
     }
    ],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   },
   "cvx": {
@@ -33498,8 +33498,8 @@
      ]
     }
    ],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   },
   "shell": {
@@ -45438,7 +45438,7 @@
     }
    ],
    "fetched": "2026-10-29",
-   "checked": "2026-10-30",
+   "checked": "2026-10-31",
    "ok": false
   },
   "bp": {
@@ -48542,6 +48542,68 @@
      "revenue": 69105.0,
      "profit": 8941.0,
      "capex": 3087.0
+    },
+    {
+     "date": "2026-09-30",
+     "start": "2026-07-01",
+     "year": 2026,
+     "quarter": 3,
+     "refs": {
+      "revenue": {
+       "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+       "filed": "2026-10-30",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "BP original statement row: Sales and other operating revenues(?: \\(Note \\d+\\))?",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+         "filed": "2026-10-30",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "BP original statement row: Sales and other operating revenues(?: \\(Note \\d+\\))?"
+        }
+       ],
+       "calculation": "reported quarter"
+      },
+      "profit": {
+       "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+       "filed": "2026-10-30",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "BP original statement row: Profit (?:\\(loss\\) )?before interest and tax(?:ation)?",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+         "filed": "2026-10-30",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "BP original statement row: Profit (?:\\(loss\\) )?before interest and tax(?:ation)?"
+        }
+       ],
+       "calculation": "reported quarter"
+      },
+      "capex": {
+       "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+       "filed": "2026-10-30",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "BP original statement row: (?:Expenditure on property, plant and equipment, intangible and other assets|Capital expenditure)",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+         "filed": "2026-10-30",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "BP original statement row: (?:Expenditure on property, plant and equipment, intangible and other assets|Capital expenditure)"
+        }
+       ],
+       "calculation": "reported quarter"
+      }
+     },
+     "revenue": 68399.0,
+     "profit": 9684.0,
+     "capex": 2964.0
     }
    ],
    "annual": [
@@ -49267,6 +49329,78 @@
     }
    ],
    "facts": [
+    {
+     "metric": "revenue",
+     "start": "2026-07-01",
+     "end": "2026-09-30",
+     "val": 68399000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: Sales and other operating revenues(?: \\(Note \\d+\\))?",
+     "statement_period": "2026-09-30"
+    },
+    {
+     "metric": "revenue",
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 189759000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: Sales and other operating revenues(?: \\(Note \\d+\\))?",
+     "statement_period": "2026-09-30"
+    },
+    {
+     "metric": "profit",
+     "start": "2026-07-01",
+     "end": "2026-09-30",
+     "val": 9684000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: Profit (?:\\(loss\\) )?before interest and tax(?:ation)?",
+     "statement_period": "2026-09-30"
+    },
+    {
+     "metric": "profit",
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 27111000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: Profit (?:\\(loss\\) )?before interest and tax(?:ation)?",
+     "statement_period": "2026-09-30"
+    },
+    {
+     "metric": "capex",
+     "start": "2026-07-01",
+     "end": "2026-09-30",
+     "val": 2964000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: (?:Expenditure on property, plant and equipment, intangible and other assets|Capital expenditure)",
+     "statement_period": "2026-09-30"
+    },
+    {
+     "metric": "capex",
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 9293000000.0,
+     "filed": "2026-10-30",
+     "accn": "0000313807-26-000018",
+     "form": "6-K",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/313807/000031380726000018/a30092026bp6kq3.htm",
+     "source_tag": "BP original statement row: (?:Expenditure on property, plant and equipment, intangible and other assets|Capital expenditure)",
+     "statement_period": "2026-09-30"
+    },
     {
      "start": "2026-04-01",
      "end": "2026-06-30",
@@ -52556,8 +52690,8 @@
      "statement_period": "2013-12-31"
     }
    ],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   },
   "tte": {
@@ -57015,8 +57149,8 @@
     }
    ],
    "facts": [],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   },
   "cop": {
@@ -73657,8 +73791,8 @@
      ]
     }
    ],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   },
   "equinor": {
@@ -77549,8 +77683,8 @@
     }
    ],
    "facts": [],
-   "fetched": "2026-10-30",
-   "checked": "2026-10-30",
+   "fetched": "2026-10-31",
+   "checked": "2026-10-31",
    "ok": true
   }
  }
