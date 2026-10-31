@@ -1,0 +1,67 @@
+{
+ "amzn": {
+  "name": "Amazon · AWS",
+  "ticker": "AMZN",
+  "cik": 1018724,
+  "fiscal_start": 1,
+  "cloud_name": "AWS",
+  "source_url": "https://ir.aboutamazon.com/",
+  "scope": "Amazon 전사 연결과 AWS 사업부 · 글로벌 기준",
+  "note": "AWS 매출과 영업이익은 공시 사업부 수치입니다. 전사 CAPEX에는 AWS 외 물류·배송·기타 사업 설비도 포함하며 미국 내 데이터센터 전용 투자액이 아닙니다. 현금 PP&E는 현금흐름표의 유형자산 취득액으로 자산 매각·인센티브 차감 후 경영진의 cash CAPEX와 다를 수 있습니다.",
+  "tags": {
+   "capex": [
+    "PaymentsToAcquireProductiveAssets",
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ]
+  },
+  "short_name": "Amazon"
+ },
+ "msft": {
+  "name": "Microsoft",
+  "ticker": "MSFT",
+  "cik": 789019,
+  "fiscal_start": 7,
+  "cloud_name": "Microsoft Cloud",
+  "source_url": "https://www.microsoft.com/en-us/investor/",
+  "scope": "Microsoft 전사 연결과 Microsoft Cloud · 글로벌 기준",
+  "note": "Microsoft Cloud는 Azure 외 Microsoft 365 상업용 클라우드·기타 포함 서비스의 공시 매출입니다. Azure 단독 매출이나 과거 Intelligent Cloud·현재 Agents and Infra 사업부 매출과 동일하지 않습니다. 이 범위의 클라우드 단독 영업이익은 별도 공시하지 않아 대입하지 않습니다. 현금 PP&E와 신규 금융리스 자산을 더한 투자 지표를 별도로 표시합니다. 미국 데이터센터 전용 CAPEX는 아닙니다.",
+  "cloud_profit_note": "Microsoft Cloud·Azure 단독 영업이익은 별도 미공개입니다. 과거 Intelligent Cloud와 FY2027의 Agents and Infra 부문은 다른 사업을 포함하므로 클라우드 단독 이익으로 대체하지 않습니다.",
+  "capex_extra": "lease_additions",
+  "capex_extra_name": "현금 PP&E + 금융리스 취득자산",
+  "capex_extra_note": "현금 유형자산 취득 + 현금흐름표 보충 공시의 금융리스 취득자산(ROU) 금액을 계산한 지표입니다. 금융리스 원금 지급을 더한 Meta 지표와 다르며 콘퍼런스콜에서 발표하는 CAPEX·신규 리스 원금과도 시점·포함 범위가 달라 일치하지 않을 수 있습니다. 미래 리스 약정 총액은 합산하지 않습니다."
+ },
+ "googl": {
+  "name": "Alphabet · Google Cloud",
+  "ticker": "GOOGL",
+  "cik": 1652044,
+  "fiscal_start": 1,
+  "cloud_name": "Google Cloud",
+  "source_url": "https://abc.xyz/investor/",
+  "scope": "Alphabet 전사 연결과 Google Cloud 사업부 · 글로벌 기준",
+  "note": "Google Cloud는 GCP 인프라·플랫폼과 Google Workspace 등을 포함하며 GCP 단독 수치가 아닙니다. 영업이익은 공시 사업부 수치로 공통비 배분·감가상각 추정 변경 영향을 포함합니다. 전사 CAPEX는 주로 기술 인프라와 관련되지만 데이터센터 전용·미국 내 투자만 별도로 공시하지 않습니다.",
+  "short_name": "Alphabet"
+ },
+ "orcl": {
+  "name": "Oracle",
+  "ticker": "ORCL",
+  "cik": 1341439,
+  "fiscal_start": 6,
+  "cloud_name": "Cloud · IaaS+SaaS",
+  "source_url": "https://investor.oracle.com/",
+  "scope": "Oracle 전사 연결과 실제 클라우드 서비스 매출 · 글로벌 기준",
+  "note": "클라우드 매출은 공시된 IaaS·SaaS 등 클라우드 서비스입니다. 유지보수·지원·온프레미스 라이선스를 포함하는 Cloud services and license support 또는 Cloud and software 전체 매출과 구분합니다. 클라우드 단독 영업이익은 별도 공시하지 않습니다. 전사 현금 PP&E를 인프라 투자 대리지표로 사용하며 미국 데이터센터 전용 CAPEX는 아닙니다.",
+  "cloud_profit_note": "IaaS·SaaS 클라우드 단독 영업이익은 별도 미공개입니다. 소프트웨어 라이선스·지원 등을 포함하는 Cloud and software 사업부 영업이익을 클라우드 단독 이익으로 사용하지 않습니다."
+ },
+ "meta": {
+  "name": "Meta Platforms",
+  "ticker": "META",
+  "cik": 1326801,
+  "fiscal_start": 1,
+  "source_url": "https://investor.atmeta.com/",
+  "scope": "Meta 전사 연결 · 자체 AI·서비스 인프라 투자 비교",
+  "note": "외부 고객에게 AWS와 같은 퍼블릭 클라우드를 판매하는 사업이 없어 클라우드 매출·비중·영업이익은 해당 없음입니다. 전사 CAPEX는 자체 AI·서비스 인프라를 포함하는 글로벌 투자이며 미국 데이터센터 전용이 아닙니다. 회사가 발표하는 CAPEX에 맞춰 현금 PP&E + 금융리스 원금 지급 지표도 별도로 표시합니다.",
+  "capex_extra": "lease_principal",
+  "capex_extra_name": "현금 PP&E + 금융리스 원금",
+  "capex_extra_note": "현금 유형자산 취득 + 금융리스 원금 지급입니다. Meta가 발표하는 CAPEX 기준에 해당하며 Microsoft의 신규 금융리스 자산 취득 기준과 다릅니다. 금융리스 이자·향후 미지급 약정 총액은 더하지 않습니다."
+ }
+}

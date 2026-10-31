@@ -524,7 +524,7 @@
       "name": "데이터센터",
       "icon": "🖥️",
       "default_range": "all",
-      "cadence": "기준 정리자료 + 국토교통부 공개 엑셀. 공개 목록을 매일 확인하며 새 파일만 수집합니다. 같은 기준의 자료가 매월 공개된다고 보장되지는 않습니다.",
+      "cadence": "기준 정리자료 + 국토교통부 공개 엑셀. 공개 목록을 매일 확인하며 새 파일만 수집합니다. 같은 기준의 자료가 매월 공개된다고 보장되지는 않습니다. 미국 하이퍼스케일러는 별도 update-us-datacenter 작업에서 매일 09:50(KST)에 SEC 연결 공시와 네이티브 XBRL 클라우드 사업 자료를 확인합니다. 클라우드 매출·비중·이익 및 CAPEX는 실제 분기·완결 회계연도 기준입니다.",
       "sections": [
         {
           "title": "수집 현황",
@@ -532,21 +532,24 @@
             "dc_facilities"
           ],
           "type": "table",
-          "table_kind": "dc_summary"
+          "table_kind": "dc_summary",
+          "tab": "korea"
         },
         {
           "title": "허가·착공 추이",
           "indicators": [
             "dc_permits",
             "dc_starts"
-          ]
+          ],
+          "tab": "korea"
         },
         {
           "title": "착공 규모",
           "indicators": [
             "dc_started_area",
             "dc_started_capacity"
-          ]
+          ],
+          "tab": "korea"
         },
         {
           "title": "센터별 현황",
@@ -554,7 +557,8 @@
             "dc_facilities"
           ],
           "type": "table",
-          "table_kind": "dc_facilities"
+          "table_kind": "dc_facilities",
+          "tab": "korea"
         },
         {
           "title": "갱신 내역",
@@ -562,7 +566,91 @@
             "dc_facilities"
           ],
           "type": "table",
-          "table_kind": "dc_changes"
+          "table_kind": "dc_changes",
+          "tab": "korea"
+        },
+        {
+          "tab": "us",
+          "title": "Amazon · AWS · AMZN",
+          "layout": "financial",
+          "supply_note": "글로벌 연결·AWS 사업부입니다. CAPEX는 물류 등 다른 사업 설비를 포함한 전사 현금지출이며 미국 데이터센터 전용 금액이 아닙니다.",
+          "indicators": [
+            "us_dc_amzn_revenue",
+            "us_dc_amzn_cloud_revenue",
+            "us_dc_amzn_cloud_share",
+            "us_dc_amzn_profit",
+            "us_dc_amzn_cloud_profit",
+            "us_dc_amzn_capex"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "Microsoft · MSFT",
+          "layout": "financial",
+          "supply_note": "Microsoft Cloud는 Azure·Microsoft 365 등 여러 클라우드 서비스를 포함합니다. 이 범위의 영업이익은 단독 미공개입니다. 금융리스 취득자산을 더한 지표는 별도의 재무제표 계산값입니다.",
+          "indicators": [
+            "us_dc_msft_revenue",
+            "us_dc_msft_cloud_revenue",
+            "us_dc_msft_cloud_share",
+            "us_dc_msft_profit",
+            "us_dc_msft_cloud_profit",
+            "us_dc_msft_capex",
+            "us_dc_msft_capex_extra"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "Alphabet · Google Cloud · GOOGL",
+          "layout": "financial",
+          "supply_note": "Google Cloud는 GCP와 Workspace 등을 포함하며 사업부 영업이익은 실제 공시값입니다. CAPEX는 기술 인프라 등을 포함한 글로벌 전사 투자입니다.",
+          "indicators": [
+            "us_dc_googl_revenue",
+            "us_dc_googl_cloud_revenue",
+            "us_dc_googl_cloud_share",
+            "us_dc_googl_profit",
+            "us_dc_googl_cloud_profit",
+            "us_dc_googl_capex"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "Oracle · ORCL",
+          "layout": "financial",
+          "supply_note": "공시된 IaaS·SaaS 등 클라우드 서비스 매출입니다. 라이선스·지원을 더한 큰 사업부와 구분하며 클라우드 단독 영업이익은 미공개입니다. CAPEX는 글로벌 전사 투자입니다.",
+          "indicators": [
+            "us_dc_orcl_revenue",
+            "us_dc_orcl_cloud_revenue",
+            "us_dc_orcl_cloud_share",
+            "us_dc_orcl_profit",
+            "us_dc_orcl_cloud_profit",
+            "us_dc_orcl_capex"
+          ]
+        },
+        {
+          "tab": "us",
+          "title": "Meta Platforms · META",
+          "layout": "financial",
+          "supply_note": "외부 퍼블릭 클라우드 판매 사업은 해당 없습니다. 자체 AI·서비스 인프라 투자 비교용으로 전사 실적과 CAPEX를 표시하며 금융리스 원금 포함 지출도 구분합니다.",
+          "indicators": [
+            "us_dc_meta_revenue",
+            "us_dc_meta_profit",
+            "us_dc_meta_capex",
+            "us_dc_meta_capex_extra"
+          ]
+        }
+      ],
+      "tabs": [
+        {
+          "id": "korea",
+          "name": "한국",
+          "description": "국내 데이터센터의 허가·착공 추이와 센터별 현황입니다. 기준 정리자료와 국토교통부 공개 자료를 함께 확인합니다."
+        },
+        {
+          "id": "us",
+          "name": "미국",
+          "default_range": "all",
+          "auto_collect_time": "09:50",
+          "description": "미국 하이퍼스케일러 5개사의 글로벌 연결·클라우드 실적과 설비투자를 봅니다. 미국 내 센터 수·용량이나 데이터센터 전용 CAPEX 통계가 아닙니다. 현금 PP&E를 공통 투자 대리지표로 사용하고, Microsoft·Meta의 리스 반영 기준은 별도로 표시합니다. 클라우드 단독 영업이익 미공개는 0으로 채우지 않습니다."
         }
       ]
     },

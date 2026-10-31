@@ -1,0 +1,3597 @@
+{
+ "id": "us_dc_amzn_cloud_share",
+ "name": "Amazon · 클라우드 매출 비중",
+ "unit": "%",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "description": "Amazon 전사 연결과 AWS 사업부 · 글로벌 기준",
+ "source": "SEC · 공식 연결·사업 공시",
+ "fetched": "2026-10-31",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-10-31",
+  "message": "공시 조회 완료"
+ },
+ "basis_details": [
+  {
+   "label": "매출·영업이익·투자 범위",
+   "value": "AWS 매출과 영업이익은 공시 사업부 수치입니다. 전사 CAPEX에는 AWS 외 물류·배송·기타 사업 설비도 포함하며 미국 내 데이터센터 전용 투자액이 아닙니다. 현금 PP&E는 현금흐름표의 유형자산 취득액으로 자산 매각·인센티브 차감 후 경영진의 cash CAPEX와 다를 수 있습니다."
+  },
+  {
+   "label": "지역·데이터센터 CAPEX",
+   "value": "미국 본사 기업의 글로벌 실적입니다. 미국 내 데이터센터 수·위치·용량 또는 미국 데이터센터 전용 CAPEX를 뜻하지 않습니다. CAPEX는 실제 현금 PP&E 취득액을 공통 투자 대리지표로 표시하며 회사별 리스 반영 지표는 따로 구분합니다. 미래 투자 계획·리스 약정·가이던스는 실제 지출에 합산하지 않습니다."
+  },
+  {
+   "label": "회계기간·비율",
+   "value": "실제 회사 결산일과 동일 기간 공시를 사용합니다. 연간은 완결 회계연도 공시이며 클라우드 비중은 연간 클라우드 매출 / 연간 전사 매출입니다. 분기 비중을 평균하지 않습니다. 사업 재분류·공통비 배분·재작성 때문에 예전 분기 합계와 최근 연간이 다를 수 있습니다."
+  },
+  {
+   "label": "조회 상태",
+   "value": "2026-10-31"
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 실제 회계기간",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2014-03-31": "FY2014 Q1",
+    "2014-06-30": "FY2014 Q2",
+    "2014-09-30": "FY2014 Q3",
+    "2014-12-31": "FY2014 Q4",
+    "2015-03-31": "FY2015 Q1",
+    "2015-06-30": "FY2015 Q2",
+    "2015-09-30": "FY2015 Q3",
+    "2015-12-31": "FY2015 Q4",
+    "2016-03-31": "FY2016 Q1",
+    "2016-06-30": "FY2016 Q2",
+    "2016-09-30": "FY2016 Q3",
+    "2016-12-31": "FY2016 Q4",
+    "2017-03-31": "FY2017 Q1",
+    "2017-06-30": "FY2017 Q2",
+    "2017-09-30": "FY2017 Q3",
+    "2017-12-31": "FY2017 Q4",
+    "2018-03-31": "FY2018 Q1",
+    "2018-06-30": "FY2018 Q2",
+    "2018-09-30": "FY2018 Q3",
+    "2018-12-31": "FY2018 Q4",
+    "2019-03-31": "FY2019 Q1",
+    "2019-06-30": "FY2019 Q2",
+    "2019-09-30": "FY2019 Q3",
+    "2019-12-31": "FY2019 Q4",
+    "2020-03-31": "FY2020 Q1",
+    "2020-06-30": "FY2020 Q2",
+    "2020-09-30": "FY2020 Q3",
+    "2020-12-31": "FY2020 Q4",
+    "2021-03-31": "FY2021 Q1",
+    "2021-06-30": "FY2021 Q2",
+    "2021-09-30": "FY2021 Q3",
+    "2021-12-31": "FY2021 Q4",
+    "2022-03-31": "FY2022 Q1",
+    "2022-06-30": "FY2022 Q2",
+    "2022-09-30": "FY2022 Q3",
+    "2022-12-31": "FY2022 Q4",
+    "2023-03-31": "FY2023 Q1",
+    "2023-06-30": "FY2023 Q2",
+    "2023-09-30": "FY2023 Q3",
+    "2023-12-31": "FY2023 Q4",
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2",
+    "2026-09-30": "FY2026 Q3"
+   },
+   "series": {
+    "클라우드 매출 비중": [
+     [
+      "2014-03-31",
+      5.3188794893875695
+     ],
+     [
+      "2014-06-30",
+      5.196483971044468
+     ],
+     [
+      "2014-09-30",
+      5.680548131590457
+     ],
+     [
+      "2014-12-31",
+      4.841789416257501
+     ],
+     [
+      "2015-03-31",
+      6.893515869172866
+     ],
+     [
+      "2015-06-30",
+      7.867155488462369
+     ],
+     [
+      "2015-09-30",
+      8.222257275810394
+     ],
+     [
+      "2015-12-31",
+      6.730634738579461
+     ],
+     [
+      "2016-03-31",
+      8.809393023894534
+     ],
+     [
+      "2016-06-30",
+      9.492172082620707
+     ],
+     [
+      "2016-09-30",
+      9.876505471663508
+     ],
+     [
+      "2016-12-31",
+      8.083948698017878
+     ],
+     [
+      "2017-03-31",
+      10.250882007056056
+     ],
+     [
+      "2017-06-30",
+      10.802265841127651
+     ],
+     [
+      "2017-09-30",
+      10.479151426481346
+     ],
+     [
+      "2017-12-31",
+      8.457810199659239
+     ],
+     [
+      "2018-03-31",
+      10.661807922887034
+     ],
+     [
+      "2018-06-30",
+      11.543697765003971
+     ],
+     [
+      "2018-09-30",
+      11.805359162895927
+     ],
+     [
+      "2018-12-31",
+      10.264841191992595
+     ],
+     [
+      "2019-03-31",
+      12.891122278056951
+     ],
+     [
+      "2019-06-30",
+      13.218408933190334
+     ],
+     [
+      "2019-09-30",
+      12.853488804103971
+     ],
+     [
+      "2019-12-31",
+      11.38419662156753
+     ],
+     [
+      "2020-03-31",
+      13.543709908286065
+     ],
+     [
+      "2020-06-30",
+      12.15583948173475
+     ],
+     [
+      "2020-09-30",
+      12.066150085807894
+     ],
+     [
+      "2020-12-31",
+      10.148540480267613
+     ],
+     [
+      "2021-03-31",
+      12.443096997733095
+     ],
+     [
+      "2021-06-30",
+      13.096038203042093
+     ],
+     [
+      "2021-09-30",
+      14.538136663899218
+     ],
+     [
+      "2021-12-31",
+      12.939190172619567
+     ],
+     [
+      "2022-03-31",
+      15.836797087011783
+     ],
+     [
+      "2022-06-30",
+      16.281736146625533
+     ],
+     [
+      "2022-09-30",
+      16.158802841834447
+     ],
+     [
+      "2022-12-31",
+      14.328034100962443
+     ],
+     [
+      "2023-03-31",
+      16.766909028094034
+     ],
+     [
+      "2023-06-30",
+      16.475298214803953
+     ],
+     [
+      "2023-09-30",
+      16.115820887177374
+     ],
+     [
+      "2023-12-31",
+      14.240914092056414
+     ],
+     [
+      "2024-03-31",
+      17.47015274259837
+     ],
+     [
+      "2024-06-30",
+      17.76019246234212
+     ],
+     [
+      "2024-09-30",
+      17.278775404872952
+     ],
+     [
+      "2024-12-31",
+      15.328661497827383
+     ],
+     [
+      "2025-03-31",
+      18.801030404645815
+     ],
+     [
+      "2025-06-30",
+      18.40944055527066
+     ],
+     [
+      "2025-09-30",
+      18.319466722910157
+     ],
+     [
+      "2025-12-31",
+      16.67353996981995
+     ],
+     [
+      "2026-03-31",
+      20.70692324219503
+     ],
+     [
+      "2026-06-30",
+      21.0522117982513
+     ],
+     [
+      "2026-09-30",
+      22.770669096383156
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000038/amzn-20150331x10q.htm",
+     "label": "FY2014 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000038/amzn-20150331x10q.htm",
+       "label": "2014-01-01 ~ 2014-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+       "label": "2014-01-01 ~ 2014-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2014-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000087/amzn-20150630x10q.htm",
+     "label": "FY2014 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000087/amzn-20150630x10q.htm",
+       "label": "2014-04-01 ~ 2014-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+       "label": "2014-04-01 ~ 2014-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2014-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000126/amzn-20150930x10q.htm",
+     "label": "FY2014 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000126/amzn-20150930x10q.htm",
+       "label": "2014-07-01 ~ 2014-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+       "label": "2014-07-01 ~ 2014-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2014-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+     "label": "FY2014 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+       "label": "2014-01-01 ~ 2014-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+       "label": "2014-10-01 ~ 2014-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000227/amzn-20160331x10q.htm",
+     "label": "FY2015 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000227/amzn-20160331x10q.htm",
+       "label": "2015-01-01 ~ 2015-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+       "label": "2015-01-01 ~ 2015-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000286/amzn-20160630x10q.htm",
+     "label": "FY2015 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000286/amzn-20160630x10q.htm",
+       "label": "2015-04-01 ~ 2015-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+       "label": "2015-04-01 ~ 2015-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000324/amzn-20160930x10q.htm",
+     "label": "FY2015 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000324/amzn-20160930x10q.htm",
+       "label": "2015-07-01 ~ 2015-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+       "label": "2015-07-01 ~ 2015-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/amzn-20151231x10k.htm",
+     "label": "FY2015 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/amzn-20151231x10k.htm",
+       "label": "2015-01-01 ~ 2015-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+       "label": "2015-10-01 ~ 2015-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000051/amzn-20170331x10q.htm",
+     "label": "FY2016 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000051/amzn-20170331x10q.htm",
+       "label": "2016-01-01 ~ 2016-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+       "label": "2016-01-01 ~ 2016-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000100/amzn-20170630x10q.htm",
+     "label": "FY2016 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000100/amzn-20170630x10q.htm",
+       "label": "2016-04-01 ~ 2016-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+       "label": "2016-04-01 ~ 2016-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000135/amzn-20170930x10q.htm",
+     "label": "FY2016 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000135/amzn-20170930x10q.htm",
+       "label": "2016-07-01 ~ 2016-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+       "label": "2016-07-01 ~ 2016-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+     "label": "FY2016 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+       "label": "2016-01-01 ~ 2016-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+       "label": "2016-10-01 ~ 2016-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000072/amzn-20180331x10q.htm",
+     "label": "FY2017 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000072/amzn-20180331x10q.htm",
+       "label": "2017-01-01 ~ 2017-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+       "label": "2017-01-01 ~ 2017-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000108/amzn-20180630x10q.htm",
+     "label": "FY2017 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000108/amzn-20180630x10q.htm",
+       "label": "2017-04-01 ~ 2017-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+       "label": "2017-04-01 ~ 2017-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000159/amzn-20180930x10q.htm",
+     "label": "FY2017 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000159/amzn-20180930x10q.htm",
+       "label": "2017-07-01 ~ 2017-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+       "label": "2017-07-01 ~ 2017-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+     "label": "FY2017 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+       "label": "2017-01-01 ~ 2017-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+       "label": "2017-10-01 ~ 2017-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000043/amzn-2019331x10q.htm",
+     "label": "FY2018 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000043/amzn-2019331x10q.htm",
+       "label": "2018-01-01 ~ 2018-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+       "label": "2018-01-01 ~ 2018-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000071/amzn-2019630x10q.htm",
+     "label": "FY2018 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000071/amzn-2019630x10q.htm",
+       "label": "2018-04-01 ~ 2018-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+       "label": "2018-04-01 ~ 2018-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000089/amzn-2019930x10q.htm",
+     "label": "FY2018 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000089/amzn-2019930x10q.htm",
+       "label": "2018-07-01 ~ 2018-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+       "label": "2018-07-01 ~ 2018-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+     "label": "FY2018 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+       "label": "2018-01-01 ~ 2018-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+       "label": "2018-10-01 ~ 2018-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000010/amzn-20200331x10q.htm",
+     "label": "FY2019 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000010/amzn-20200331x10q.htm",
+       "label": "2019-01-01 ~ 2019-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2019-01-01 ~ 2019-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000021/amzn-20200630.htm",
+     "label": "FY2019 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000021/amzn-20200630.htm",
+       "label": "2019-04-01 ~ 2019-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2019-04-01 ~ 2019-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000030/amzn-20200930.htm",
+     "label": "FY2019 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000030/amzn-20200930.htm",
+       "label": "2019-07-01 ~ 2019-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2019-07-01 ~ 2019-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+     "label": "FY2019 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+       "label": "2019-01-01 ~ 2019-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2019-10-01 ~ 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/amzn-20210331.htm",
+     "label": "FY2020 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/amzn-20210331.htm",
+       "label": "2020-01-01 ~ 2020-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/0001018724-21-000010-index.html",
+       "label": "2020-01-01 ~ 2020-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/amzn-20210630.htm",
+     "label": "FY2020 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/amzn-20210630.htm",
+       "label": "2020-04-01 ~ 2020-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/0001018724-21-000020-index.html",
+       "label": "2020-04-01 ~ 2020-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/amzn-20210930.htm",
+     "label": "FY2020 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/amzn-20210930.htm",
+       "label": "2020-07-01 ~ 2020-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/0001018724-21-000028-index.html",
+       "label": "2020-07-01 ~ 2020-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+     "label": "FY2020 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+       "label": "2020-01-01 ~ 2020-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2020-10-01 ~ 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm",
+     "label": "FY2021 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm",
+       "label": "2021-01-01 ~ 2021-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/0001018724-22-000013-index.html",
+       "label": "2021-01-01 ~ 2021-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/amzn-20220630.htm",
+     "label": "FY2021 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/amzn-20220630.htm",
+       "label": "2021-04-01 ~ 2021-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/0001018724-22-000019-index.html",
+       "label": "2021-04-01 ~ 2021-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/amzn-20220930.htm",
+     "label": "FY2021 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/amzn-20220930.htm",
+       "label": "2021-07-01 ~ 2021-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/0001018724-22-000023-index.html",
+       "label": "2021-07-01 ~ 2021-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+     "label": "FY2021 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+       "label": "2021-01-01 ~ 2021-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/0001018724-24-000008-index.html",
+       "label": "2021-01-01 ~ 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/amzn-20230331.htm",
+     "label": "FY2022 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/amzn-20230331.htm",
+       "label": "2022-01-01 ~ 2022-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/0001018724-23-000008-index.html",
+       "label": "2022-01-01 ~ 2022-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/amzn-20230630.htm",
+     "label": "FY2022 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/amzn-20230630.htm",
+       "label": "2022-04-01 ~ 2022-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/0001018724-23-000012-index.html",
+       "label": "2022-04-01 ~ 2022-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/amzn-20230930.htm",
+     "label": "FY2022 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/amzn-20230930.htm",
+       "label": "2022-07-01 ~ 2022-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/0001018724-23-000018-index.html",
+       "label": "2022-07-01 ~ 2022-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+     "label": "FY2022 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+       "label": "2022-01-01 ~ 2022-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/0001018724-25-000004-index.html",
+       "label": "2022-01-01 ~ 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/amzn-20240331.htm",
+     "label": "FY2023 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/amzn-20240331.htm",
+       "label": "2023-01-01 ~ 2023-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/0001018724-24-000083-index.html",
+       "label": "2023-01-01 ~ 2023-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/amzn-20240630.htm",
+     "label": "FY2023 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/amzn-20240630.htm",
+       "label": "2023-04-01 ~ 2023-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/0001018724-24-000130-index.html",
+       "label": "2023-04-01 ~ 2023-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/amzn-20240930.htm",
+     "label": "FY2023 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/amzn-20240930.htm",
+       "label": "2023-07-01 ~ 2023-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/0001018724-24-000161-index.html",
+       "label": "2023-07-01 ~ 2023-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2023 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2023-01-01 ~ 2023-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2023-01-01 ~ 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/amzn-20250331.htm",
+     "label": "FY2024 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/amzn-20250331.htm",
+       "label": "2024-01-01 ~ 2024-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/0001018724-25-000036-index.html",
+       "label": "2024-01-01 ~ 2024-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/amzn-20250630.htm",
+     "label": "FY2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/amzn-20250630.htm",
+       "label": "2024-04-01 ~ 2024-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/0001018724-25-000086-index.html",
+       "label": "2024-04-01 ~ 2024-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+     "label": "FY2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+       "label": "2024-07-01 ~ 2024-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/0001018724-25-000123-index.html",
+       "label": "2024-07-01 ~ 2024-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2024 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2024-01-01 ~ 2024-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+     "label": "FY2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+       "label": "2025-01-01 ~ 2025-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/0001018724-26-000014-index.html",
+       "label": "2025-01-01 ~ 2025-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "label": "FY2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+       "label": "2025-04-01 ~ 2025-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/0001018724-26-000026-index.html",
+       "label": "2025-04-01 ~ 2025-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+     "label": "FY2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+       "label": "2025-07-01 ~ 2025-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/0001018724-26-000040-index.html",
+       "label": "2025-07-01 ~ 2025-09-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+     "label": "FY2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+       "label": "2026-01-01 ~ 2026-03-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/0001018724-26-000014-index.html",
+       "label": "2026-01-01 ~ 2026-03-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "label": "FY2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+       "label": "2026-04-01 ~ 2026-06-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/0001018724-26-000026-index.html",
+       "label": "2026-04-01 ~ 2026-06-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+     "label": "FY2026 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+       "label": "2026-07-01 ~ 2026-09-30"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/0001018724-26-000040-index.html",
+       "label": "2026-07-01 ~ 2026-09-30"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2014-03-31": [
+     "2014-01-01 ~ 2014-03-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,050.000 / 전사 19,741.000 × 100 = 5.3189%"
+    ],
+    "2014-06-30": [
+     "2014-04-01 ~ 2014-06-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,005.000 / 전사 19,340.000 × 100 = 5.1965%"
+    ],
+    "2014-09-30": [
+     "2014-07-01 ~ 2014-09-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,169.000 / 전사 20,579.000 × 100 = 5.6805%"
+    ],
+    "2014-12-31": [
+     "2014-10-01 ~ 2014-12-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,420.000 / 전사 29,328.000 × 100 = 4.8418%"
+    ],
+    "2015-03-31": [
+     "2015-01-01 ~ 2015-03-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,566.000 / 전사 22,717.000 × 100 = 6.8935%"
+    ],
+    "2015-06-30": [
+     "2015-04-01 ~ 2015-06-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 1,824.000 / 전사 23,185.000 × 100 = 7.8672%"
+    ],
+    "2015-09-30": [
+     "2015-07-01 ~ 2015-09-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 2,085.000 / 전사 25,358.000 × 100 = 8.2223%"
+    ],
+    "2015-12-31": [
+     "2015-10-01 ~ 2015-12-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 2,406.000 / 전사 35,747.000 × 100 = 6.7306%"
+    ],
+    "2016-03-31": [
+     "2016-01-01 ~ 2016-03-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 2,566.000 / 전사 29,128.000 × 100 = 8.8094%"
+    ],
+    "2016-06-30": [
+     "2016-04-01 ~ 2016-06-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 2,886.000 / 전사 30,404.000 × 100 = 9.4922%"
+    ],
+    "2016-09-30": [
+     "2016-07-01 ~ 2016-09-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 3,231.000 / 전사 32,714.000 × 100 = 9.8765%"
+    ],
+    "2016-12-31": [
+     "2016-10-01 ~ 2016-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 3,536.000 / 전사 43,741.000 × 100 = 8.0839%"
+    ],
+    "2017-03-31": [
+     "2017-01-01 ~ 2017-03-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 3,661.000 / 전사 35,714.000 × 100 = 10.2509%"
+    ],
+    "2017-06-30": [
+     "2017-04-01 ~ 2017-06-30",
+     "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 4,100.000 / 전사 37,955.000 × 100 = 10.8023%"
+    ],
+    "2017-09-30": [
+     "2017-07-01 ~ 2017-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 4,584.000 / 전사 43,744.000 × 100 = 10.4792%"
+    ],
+    "2017-12-31": [
+     "2017-10-01 ~ 2017-12-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 5,113.000 / 전사 60,453.000 × 100 = 8.4578%"
+    ],
+    "2018-03-31": [
+     "2018-01-01 ~ 2018-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 5,442.000 / 전사 51,042.000 × 100 = 10.6618%"
+    ],
+    "2018-06-30": [
+     "2018-04-01 ~ 2018-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 6,105.000 / 전사 52,886.000 × 100 = 11.5437%"
+    ],
+    "2018-09-30": [
+     "2018-07-01 ~ 2018-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 6,679.000 / 전사 56,576.000 × 100 = 11.8054%"
+    ],
+    "2018-12-31": [
+     "2018-10-01 ~ 2018-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 7,430.000 / 전사 72,383.000 × 100 = 10.2648%"
+    ],
+    "2019-03-31": [
+     "2019-01-01 ~ 2019-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 7,696.000 / 전사 59,700.000 × 100 = 12.8911%"
+    ],
+    "2019-06-30": [
+     "2019-04-01 ~ 2019-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 8,381.000 / 전사 63,404.000 × 100 = 13.2184%"
+    ],
+    "2019-09-30": [
+     "2019-07-01 ~ 2019-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 8,995.000 / 전사 69,981.000 × 100 = 12.8535%"
+    ],
+    "2019-12-31": [
+     "2019-10-01 ~ 2019-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 9,954.000 / 전사 87,437.000 × 100 = 11.3842%"
+    ],
+    "2020-03-31": [
+     "2020-01-01 ~ 2020-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 10,219.000 / 전사 75,452.000 × 100 = 13.5437%"
+    ],
+    "2020-06-30": [
+     "2020-04-01 ~ 2020-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 10,808.000 / 전사 88,912.000 × 100 = 12.1558%"
+    ],
+    "2020-09-30": [
+     "2020-07-01 ~ 2020-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 11,601.000 / 전사 96,145.000 × 100 = 12.0662%"
+    ],
+    "2020-12-31": [
+     "2020-10-01 ~ 2020-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 12,742.000 / 전사 125,555.000 × 100 = 10.1485%"
+    ],
+    "2021-03-31": [
+     "2021-01-01 ~ 2021-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 13,503.000 / 전사 108,518.000 × 100 = 12.4431%"
+    ],
+    "2021-06-30": [
+     "2021-04-01 ~ 2021-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 14,809.000 / 전사 113,080.000 × 100 = 13.0960%"
+    ],
+    "2021-09-30": [
+     "2021-07-01 ~ 2021-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 16,110.000 / 전사 110,812.000 × 100 = 14.5381%"
+    ],
+    "2021-12-31": [
+     "2021-10-01 ~ 2021-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 17,780.000 / 전사 137,412.000 × 100 = 12.9392%"
+    ],
+    "2022-03-31": [
+     "2022-01-01 ~ 2022-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 18,441.000 / 전사 116,444.000 × 100 = 15.8368%"
+    ],
+    "2022-06-30": [
+     "2022-04-01 ~ 2022-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 19,739.000 / 전사 121,234.000 × 100 = 16.2817%"
+    ],
+    "2022-09-30": [
+     "2022-07-01 ~ 2022-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 20,538.000 / 전사 127,101.000 × 100 = 16.1588%"
+    ],
+    "2022-12-31": [
+     "2022-10-01 ~ 2022-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 21,378.000 / 전사 149,204.000 × 100 = 14.3280%"
+    ],
+    "2023-03-31": [
+     "2023-01-01 ~ 2023-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 21,354.000 / 전사 127,358.000 × 100 = 16.7669%"
+    ],
+    "2023-06-30": [
+     "2023-04-01 ~ 2023-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 22,140.000 / 전사 134,383.000 × 100 = 16.4753%"
+    ],
+    "2023-09-30": [
+     "2023-07-01 ~ 2023-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 23,059.000 / 전사 143,083.000 × 100 = 16.1158%"
+    ],
+    "2023-12-31": [
+     "2023-10-01 ~ 2023-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 24,204.000 / 전사 169,961.000 × 100 = 14.2409%"
+    ],
+    "2024-03-31": [
+     "2024-01-01 ~ 2024-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 25,037.000 / 전사 143,313.000 × 100 = 17.4702%"
+    ],
+    "2024-06-30": [
+     "2024-04-01 ~ 2024-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 26,281.000 / 전사 147,977.000 × 100 = 17.7602%"
+    ],
+    "2024-09-30": [
+     "2024-07-01 ~ 2024-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 27,452.000 / 전사 158,877.000 × 100 = 17.2788%"
+    ],
+    "2024-12-31": [
+     "2024-10-01 ~ 2024-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 28,786.000 / 전사 187,792.000 × 100 = 15.3287%"
+    ],
+    "2025-03-31": [
+     "2025-01-01 ~ 2025-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 29,267.000 / 전사 155,667.000 × 100 = 18.8010%"
+    ],
+    "2025-06-30": [
+     "2025-04-01 ~ 2025-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 30,873.000 / 전사 167,702.000 × 100 = 18.4094%"
+    ],
+    "2025-09-30": [
+     "2025-07-01 ~ 2025-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 33,006.000 / 전사 180,169.000 × 100 = 18.3195%"
+    ],
+    "2025-12-31": [
+     "2025-10-01 ~ 2025-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 35,579.000 / 전사 213,386.000 × 100 = 16.6735%"
+    ],
+    "2026-03-31": [
+     "2026-01-01 ~ 2026-03-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 37,587.000 / 전사 181,519.000 × 100 = 20.7069%"
+    ],
+    "2026-06-30": [
+     "2026-04-01 ~ 2026-06-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 42,232.000 / 전사 200,606.000 × 100 = 21.0522%"
+    ],
+    "2026-09-30": [
+     "2026-07-01 ~ 2026-09-30",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 45,984.000 / 전사 201,944.000 × 100 = 22.7707%"
+    ]
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "updated": "2026-09-30",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {
+    "2014-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2014-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2014-03-31"
+    },
+    "2014-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2014-06-30"
+    },
+    "2014-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2014-09-30"
+    },
+    "2015-03-31": {
+     "year_ago": "2014-03-31",
+     "quarter_ago": "2014-12-31"
+    },
+    "2015-06-30": {
+     "year_ago": "2014-06-30",
+     "quarter_ago": "2015-03-31"
+    },
+    "2015-09-30": {
+     "year_ago": "2014-09-30",
+     "quarter_ago": "2015-06-30"
+    },
+    "2015-12-31": {
+     "year_ago": "2014-12-31",
+     "quarter_ago": "2015-09-30"
+    },
+    "2016-03-31": {
+     "year_ago": "2015-03-31",
+     "quarter_ago": "2015-12-31"
+    },
+    "2016-06-30": {
+     "year_ago": "2015-06-30",
+     "quarter_ago": "2016-03-31"
+    },
+    "2016-09-30": {
+     "year_ago": "2015-09-30",
+     "quarter_ago": "2016-06-30"
+    },
+    "2016-12-31": {
+     "year_ago": "2015-12-31",
+     "quarter_ago": "2016-09-30"
+    },
+    "2017-03-31": {
+     "year_ago": "2016-03-31",
+     "quarter_ago": "2016-12-31"
+    },
+    "2017-06-30": {
+     "year_ago": "2016-06-30",
+     "quarter_ago": "2017-03-31"
+    },
+    "2017-09-30": {
+     "year_ago": "2016-09-30",
+     "quarter_ago": "2017-06-30"
+    },
+    "2017-12-31": {
+     "year_ago": "2016-12-31",
+     "quarter_ago": "2017-09-30"
+    },
+    "2018-03-31": {
+     "year_ago": "2017-03-31",
+     "quarter_ago": "2017-12-31"
+    },
+    "2018-06-30": {
+     "year_ago": "2017-06-30",
+     "quarter_ago": "2018-03-31"
+    },
+    "2018-09-30": {
+     "year_ago": "2017-09-30",
+     "quarter_ago": "2018-06-30"
+    },
+    "2018-12-31": {
+     "year_ago": "2017-12-31",
+     "quarter_ago": "2018-09-30"
+    },
+    "2019-03-31": {
+     "year_ago": "2018-03-31",
+     "quarter_ago": "2018-12-31"
+    },
+    "2019-06-30": {
+     "year_ago": "2018-06-30",
+     "quarter_ago": "2019-03-31"
+    },
+    "2019-09-30": {
+     "year_ago": "2018-09-30",
+     "quarter_ago": "2019-06-30"
+    },
+    "2019-12-31": {
+     "year_ago": "2018-12-31",
+     "quarter_ago": "2019-09-30"
+    },
+    "2020-03-31": {
+     "year_ago": "2019-03-31",
+     "quarter_ago": "2019-12-31"
+    },
+    "2020-06-30": {
+     "year_ago": "2019-06-30",
+     "quarter_ago": "2020-03-31"
+    },
+    "2020-09-30": {
+     "year_ago": "2019-09-30",
+     "quarter_ago": "2020-06-30"
+    },
+    "2020-12-31": {
+     "year_ago": "2019-12-31",
+     "quarter_ago": "2020-09-30"
+    },
+    "2021-03-31": {
+     "year_ago": "2020-03-31",
+     "quarter_ago": "2020-12-31"
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": "2021-03-31"
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": "2021-06-30"
+    },
+    "2021-12-31": {
+     "year_ago": "2020-12-31",
+     "quarter_ago": "2021-09-30"
+    },
+    "2022-03-31": {
+     "year_ago": "2021-03-31",
+     "quarter_ago": "2021-12-31"
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": "2021-12-31",
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
+    }
+   },
+   "change_mode": "none",
+   "empty_message": "공시된 실제 분기 자료를 아직 확보하지 못했습니다. 미공개 기간을 추정하거나 0으로 채우지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 실제 회계기간",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "series": {
+    "클라우드 매출 비중": [
+     [
+      "2014-12-31",
+      5.218681170494898
+     ],
+     [
+      "2015-12-31",
+      7.364073042633123
+     ],
+     [
+      "2016-12-31",
+      8.985417723753006
+     ],
+     [
+      "2017-12-31",
+      9.815816401110949
+     ],
+     [
+      "2018-12-31",
+      11.016072172341094
+     ],
+     [
+      "2019-12-31",
+      12.486008227518697
+     ],
+     [
+      "2020-12-31",
+      11.751937502590245
+     ],
+     [
+      "2021-12-31",
+      13.239482186870772
+     ],
+     [
+      "2022-12-31",
+      15.583394781539466
+     ],
+     [
+      "2023-12-31",
+      15.789730072983813
+     ],
+     [
+      "2024-12-31",
+      16.859390650496348
+     ],
+     [
+      "2025-12-31",
+      17.955180744402472
+     ]
+    ]
+   },
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+       "label": "2014-01-01 ~ 2014-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+       "label": "2014-01-01 ~ 2014-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+       "label": "2015-01-01 ~ 2015-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+       "label": "2015-01-01 ~ 2015-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+       "label": "2016-01-01 ~ 2016-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+       "label": "2016-01-01 ~ 2016-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/amzn-20191231x10k.htm",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/amzn-20191231x10k.htm",
+       "label": "2017-01-01 ~ 2017-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+       "label": "2017-01-01 ~ 2017-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/amzn-20201231.htm",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/amzn-20201231.htm",
+       "label": "2018-01-01 ~ 2018-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+       "label": "2018-01-01 ~ 2018-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+       "label": "2019-01-01 ~ 2019-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/0001018724-22-000005-index.html",
+       "label": "2019-01-01 ~ 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+       "label": "2020-01-01 ~ 2020-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/0001018724-23-000004-index.html",
+       "label": "2020-01-01 ~ 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+       "label": "2021-01-01 ~ 2021-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/0001018724-24-000008-index.html",
+       "label": "2021-01-01 ~ 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+       "label": "2022-01-01 ~ 2022-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/0001018724-25-000004-index.html",
+       "label": "2022-01-01 ~ 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2023-01-01 ~ 2023-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2023-01-01 ~ 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2024-01-01 ~ 2024-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+       "label": "2025-01-01 ~ 2025-12-31"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2014-12-31": [
+     "2014-01-01 ~ 2014-12-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 4,644.000 / 전사 88,988.000 × 100 = 5.2187%"
+    ],
+    "2015-12-31": [
+     "2015-01-01 ~ 2015-12-31",
+     "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 7,880.000 / 전사 107,006.000 × 100 = 7.3641%"
+    ],
+    "2016-12-31": [
+     "2016-01-01 ~ 2016-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 12,219.000 / 전사 135,987.000 × 100 = 8.9854%"
+    ],
+    "2017-12-31": [
+     "2017-01-01 ~ 2017-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 17,459.000 / 전사 177,866.000 × 100 = 9.8158%"
+    ],
+    "2018-12-31": [
+     "2018-01-01 ~ 2018-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 25,655.000 / 전사 232,887.000 × 100 = 11.0161%"
+    ],
+    "2019-12-31": [
+     "2019-01-01 ~ 2019-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 35,026.000 / 전사 280,522.000 × 100 = 12.4860%"
+    ],
+    "2020-12-31": [
+     "2020-01-01 ~ 2020-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 45,370.000 / 전사 386,064.000 × 100 = 11.7519%"
+    ],
+    "2021-12-31": [
+     "2021-01-01 ~ 2021-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 62,202.000 / 전사 469,822.000 × 100 = 13.2395%"
+    ],
+    "2022-12-31": [
+     "2022-01-01 ~ 2022-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 80,096.000 / 전사 513,983.000 × 100 = 15.5834%"
+    ],
+    "2023-12-31": [
+     "2023-01-01 ~ 2023-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 90,757.000 / 전사 574,785.000 × 100 = 15.7897%"
+    ],
+    "2024-12-31": [
+     "2024-01-01 ~ 2024-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 107,556.000 / 전사 637,959.000 × 100 = 16.8594%"
+    ],
+    "2025-12-31": [
+     "2025-01-01 ~ 2025-12-31",
+     "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+     "same actual period cloud revenue / consolidated revenue × 100",
+     "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+     "클라우드 128,725.000 / 전사 716,924.000 × 100 = 17.9552%"
+    ]
+   },
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "updated": "2025-12-31",
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "comparison_dates": {},
+   "change_mode": "none",
+   "empty_message": "공시된 실제 연간 자료를 아직 확보하지 못했습니다. 미공개 기간을 추정하거나 0으로 채우지 않습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 실제 회계기간",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2014-03-31": "FY2014 Q1",
+  "2014-06-30": "FY2014 Q2",
+  "2014-09-30": "FY2014 Q3",
+  "2014-12-31": "FY2014 Q4",
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3"
+ },
+ "series": {
+  "클라우드 매출 비중": [
+   [
+    "2014-03-31",
+    5.3188794893875695
+   ],
+   [
+    "2014-06-30",
+    5.196483971044468
+   ],
+   [
+    "2014-09-30",
+    5.680548131590457
+   ],
+   [
+    "2014-12-31",
+    4.841789416257501
+   ],
+   [
+    "2015-03-31",
+    6.893515869172866
+   ],
+   [
+    "2015-06-30",
+    7.867155488462369
+   ],
+   [
+    "2015-09-30",
+    8.222257275810394
+   ],
+   [
+    "2015-12-31",
+    6.730634738579461
+   ],
+   [
+    "2016-03-31",
+    8.809393023894534
+   ],
+   [
+    "2016-06-30",
+    9.492172082620707
+   ],
+   [
+    "2016-09-30",
+    9.876505471663508
+   ],
+   [
+    "2016-12-31",
+    8.083948698017878
+   ],
+   [
+    "2017-03-31",
+    10.250882007056056
+   ],
+   [
+    "2017-06-30",
+    10.802265841127651
+   ],
+   [
+    "2017-09-30",
+    10.479151426481346
+   ],
+   [
+    "2017-12-31",
+    8.457810199659239
+   ],
+   [
+    "2018-03-31",
+    10.661807922887034
+   ],
+   [
+    "2018-06-30",
+    11.543697765003971
+   ],
+   [
+    "2018-09-30",
+    11.805359162895927
+   ],
+   [
+    "2018-12-31",
+    10.264841191992595
+   ],
+   [
+    "2019-03-31",
+    12.891122278056951
+   ],
+   [
+    "2019-06-30",
+    13.218408933190334
+   ],
+   [
+    "2019-09-30",
+    12.853488804103971
+   ],
+   [
+    "2019-12-31",
+    11.38419662156753
+   ],
+   [
+    "2020-03-31",
+    13.543709908286065
+   ],
+   [
+    "2020-06-30",
+    12.15583948173475
+   ],
+   [
+    "2020-09-30",
+    12.066150085807894
+   ],
+   [
+    "2020-12-31",
+    10.148540480267613
+   ],
+   [
+    "2021-03-31",
+    12.443096997733095
+   ],
+   [
+    "2021-06-30",
+    13.096038203042093
+   ],
+   [
+    "2021-09-30",
+    14.538136663899218
+   ],
+   [
+    "2021-12-31",
+    12.939190172619567
+   ],
+   [
+    "2022-03-31",
+    15.836797087011783
+   ],
+   [
+    "2022-06-30",
+    16.281736146625533
+   ],
+   [
+    "2022-09-30",
+    16.158802841834447
+   ],
+   [
+    "2022-12-31",
+    14.328034100962443
+   ],
+   [
+    "2023-03-31",
+    16.766909028094034
+   ],
+   [
+    "2023-06-30",
+    16.475298214803953
+   ],
+   [
+    "2023-09-30",
+    16.115820887177374
+   ],
+   [
+    "2023-12-31",
+    14.240914092056414
+   ],
+   [
+    "2024-03-31",
+    17.47015274259837
+   ],
+   [
+    "2024-06-30",
+    17.76019246234212
+   ],
+   [
+    "2024-09-30",
+    17.278775404872952
+   ],
+   [
+    "2024-12-31",
+    15.328661497827383
+   ],
+   [
+    "2025-03-31",
+    18.801030404645815
+   ],
+   [
+    "2025-06-30",
+    18.40944055527066
+   ],
+   [
+    "2025-09-30",
+    18.319466722910157
+   ],
+   [
+    "2025-12-31",
+    16.67353996981995
+   ],
+   [
+    "2026-03-31",
+    20.70692324219503
+   ],
+   [
+    "2026-06-30",
+    21.0522117982513
+   ],
+   [
+    "2026-09-30",
+    22.770669096383156
+   ]
+  ]
+ },
+ "point_sources": {
+  "2014-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000038/amzn-20150331x10q.htm",
+   "label": "FY2014 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000038/amzn-20150331x10q.htm",
+     "label": "2014-01-01 ~ 2014-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+     "label": "2014-01-01 ~ 2014-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000087/amzn-20150630x10q.htm",
+   "label": "FY2014 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000087/amzn-20150630x10q.htm",
+     "label": "2014-04-01 ~ 2014-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+     "label": "2014-04-01 ~ 2014-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000126/amzn-20150930x10q.htm",
+   "label": "FY2014 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872415000126/amzn-20150930x10q.htm",
+     "label": "2014-07-01 ~ 2014-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+     "label": "2014-07-01 ~ 2014-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2014-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+   "label": "FY2014 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/amzn-20161231x10k.htm",
+     "label": "2014-01-01 ~ 2014-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/0001018724-16-000172-index.html",
+     "label": "2014-10-01 ~ 2014-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000227/amzn-20160331x10q.htm",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000227/amzn-20160331x10q.htm",
+     "label": "2015-01-01 ~ 2015-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+     "label": "2015-01-01 ~ 2015-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000286/amzn-20160630x10q.htm",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000286/amzn-20160630x10q.htm",
+     "label": "2015-04-01 ~ 2015-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+     "label": "2015-04-01 ~ 2015-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000324/amzn-20160930x10q.htm",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000324/amzn-20160930x10q.htm",
+     "label": "2015-07-01 ~ 2015-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+     "label": "2015-07-01 ~ 2015-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/amzn-20151231x10k.htm",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/amzn-20151231x10k.htm",
+     "label": "2015-01-01 ~ 2015-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000011/0001018724-17-000011-index.html",
+     "label": "2015-10-01 ~ 2015-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000051/amzn-20170331x10q.htm",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000051/amzn-20170331x10q.htm",
+     "label": "2016-01-01 ~ 2016-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+     "label": "2016-01-01 ~ 2016-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000100/amzn-20170630x10q.htm",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000100/amzn-20170630x10q.htm",
+     "label": "2016-04-01 ~ 2016-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+     "label": "2016-04-01 ~ 2016-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000135/amzn-20170930x10q.htm",
+   "label": "FY2016 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872417000135/amzn-20170930x10q.htm",
+     "label": "2016-07-01 ~ 2016-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+     "label": "2016-07-01 ~ 2016-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+     "label": "2016-01-01 ~ 2016-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/0001018724-18-000005-index.html",
+     "label": "2016-10-01 ~ 2016-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000072/amzn-20180331x10q.htm",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000072/amzn-20180331x10q.htm",
+     "label": "2017-01-01 ~ 2017-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+     "label": "2017-01-01 ~ 2017-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000108/amzn-20180630x10q.htm",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000108/amzn-20180630x10q.htm",
+     "label": "2017-04-01 ~ 2017-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+     "label": "2017-04-01 ~ 2017-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000159/amzn-20180930x10q.htm",
+   "label": "FY2017 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000159/amzn-20180930x10q.htm",
+     "label": "2017-07-01 ~ 2017-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+     "label": "2017-07-01 ~ 2017-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+   "label": "FY2017 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872418000005/amzn-20171231x10k.htm",
+     "label": "2017-01-01 ~ 2017-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/0001018724-19-000004-index.html",
+     "label": "2017-10-01 ~ 2017-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000043/amzn-2019331x10q.htm",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000043/amzn-2019331x10q.htm",
+     "label": "2018-01-01 ~ 2018-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+     "label": "2018-01-01 ~ 2018-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000071/amzn-2019630x10q.htm",
+   "label": "FY2018 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000071/amzn-2019630x10q.htm",
+     "label": "2018-04-01 ~ 2018-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+     "label": "2018-04-01 ~ 2018-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000089/amzn-2019930x10q.htm",
+   "label": "FY2018 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000089/amzn-2019930x10q.htm",
+     "label": "2018-07-01 ~ 2018-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+     "label": "2018-07-01 ~ 2018-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+   "label": "FY2018 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872419000004/amzn-20181231x10k.htm",
+     "label": "2018-01-01 ~ 2018-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000004/0001018724-20-000004-index.html",
+     "label": "2018-10-01 ~ 2018-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000010/amzn-20200331x10q.htm",
+   "label": "FY2019 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000010/amzn-20200331x10q.htm",
+     "label": "2019-01-01 ~ 2019-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+     "label": "2019-01-01 ~ 2019-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000021/amzn-20200630.htm",
+   "label": "FY2019 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000021/amzn-20200630.htm",
+     "label": "2019-04-01 ~ 2019-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+     "label": "2019-04-01 ~ 2019-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000030/amzn-20200930.htm",
+   "label": "FY2019 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872420000030/amzn-20200930.htm",
+     "label": "2019-07-01 ~ 2019-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+     "label": "2019-07-01 ~ 2019-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+   "label": "FY2019 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm",
+     "label": "2019-01-01 ~ 2019-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+     "label": "2019-10-01 ~ 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/amzn-20210331.htm",
+   "label": "FY2020 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/amzn-20210331.htm",
+     "label": "2020-01-01 ~ 2020-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000010/0001018724-21-000010-index.html",
+     "label": "2020-01-01 ~ 2020-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/amzn-20210630.htm",
+   "label": "FY2020 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/amzn-20210630.htm",
+     "label": "2020-04-01 ~ 2020-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000020/0001018724-21-000020-index.html",
+     "label": "2020-04-01 ~ 2020-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/amzn-20210930.htm",
+   "label": "FY2020 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/amzn-20210930.htm",
+     "label": "2020-07-01 ~ 2020-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/0001018724-21-000028-index.html",
+     "label": "2020-07-01 ~ 2020-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+   "label": "FY2020 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm",
+     "label": "2020-01-01 ~ 2020-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000004/0001018724-21-000004-index.html",
+     "label": "2020-10-01 ~ 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm",
+   "label": "FY2021 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm",
+     "label": "2021-01-01 ~ 2021-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/0001018724-22-000013-index.html",
+     "label": "2021-01-01 ~ 2021-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/amzn-20220630.htm",
+   "label": "FY2021 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/amzn-20220630.htm",
+     "label": "2021-04-01 ~ 2021-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000019/0001018724-22-000019-index.html",
+     "label": "2021-04-01 ~ 2021-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/amzn-20220930.htm",
+   "label": "FY2021 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/amzn-20220930.htm",
+     "label": "2021-07-01 ~ 2021-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000023/0001018724-22-000023-index.html",
+     "label": "2021-07-01 ~ 2021-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+   "label": "FY2021 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+     "label": "2021-01-01 ~ 2021-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/0001018724-24-000008-index.html",
+     "label": "2021-01-01 ~ 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/amzn-20230331.htm",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/amzn-20230331.htm",
+     "label": "2022-01-01 ~ 2022-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/0001018724-23-000008-index.html",
+     "label": "2022-01-01 ~ 2022-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/amzn-20230630.htm",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/amzn-20230630.htm",
+     "label": "2022-04-01 ~ 2022-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/0001018724-23-000012-index.html",
+     "label": "2022-04-01 ~ 2022-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/amzn-20230930.htm",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/amzn-20230930.htm",
+     "label": "2022-07-01 ~ 2022-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/0001018724-23-000018-index.html",
+     "label": "2022-07-01 ~ 2022-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm",
+     "label": "2022-01-01 ~ 2022-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/0001018724-25-000004-index.html",
+     "label": "2022-01-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/amzn-20240331.htm",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/amzn-20240331.htm",
+     "label": "2023-01-01 ~ 2023-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/0001018724-24-000083-index.html",
+     "label": "2023-01-01 ~ 2023-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/amzn-20240630.htm",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/amzn-20240630.htm",
+     "label": "2023-04-01 ~ 2023-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/0001018724-24-000130-index.html",
+     "label": "2023-04-01 ~ 2023-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/amzn-20240930.htm",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/amzn-20240930.htm",
+     "label": "2023-07-01 ~ 2023-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/0001018724-24-000161-index.html",
+     "label": "2023-07-01 ~ 2023-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "2023-01-01 ~ 2023-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+     "label": "2023-01-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/amzn-20250331.htm",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/amzn-20250331.htm",
+     "label": "2024-01-01 ~ 2024-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/0001018724-25-000036-index.html",
+     "label": "2024-01-01 ~ 2024-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/amzn-20250630.htm",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/amzn-20250630.htm",
+     "label": "2024-04-01 ~ 2024-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/0001018724-25-000086-index.html",
+     "label": "2024-04-01 ~ 2024-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+     "label": "2024-07-01 ~ 2024-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/0001018724-25-000123-index.html",
+     "label": "2024-07-01 ~ 2024-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "label": "FY2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "2024-01-01 ~ 2024-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+     "label": "2024-01-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+     "label": "2025-01-01 ~ 2025-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/0001018724-26-000014-index.html",
+     "label": "2025-01-01 ~ 2025-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "label": "2025-04-01 ~ 2025-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/0001018724-26-000026-index.html",
+     "label": "2025-04-01 ~ 2025-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+     "label": "2025-07-01 ~ 2025-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/0001018724-26-000040-index.html",
+     "label": "2025-07-01 ~ 2025-09-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+     "label": "2025-01-01 ~ 2025-12-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html",
+     "label": "2025-01-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+     "label": "2026-01-01 ~ 2026-03-31"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/0001018724-26-000014-index.html",
+     "label": "2026-01-01 ~ 2026-03-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "label": "2026-04-01 ~ 2026-06-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/0001018724-26-000026-index.html",
+     "label": "2026-04-01 ~ 2026-06-30"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "label": "FY2026 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+     "label": "2026-07-01 ~ 2026-09-30"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/0001018724-26-000040-index.html",
+     "label": "2026-07-01 ~ 2026-09-30"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2014-03-31": [
+   "2014-01-01 ~ 2014-03-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,050.000 / 전사 19,741.000 × 100 = 5.3189%"
+  ],
+  "2014-06-30": [
+   "2014-04-01 ~ 2014-06-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,005.000 / 전사 19,340.000 × 100 = 5.1965%"
+  ],
+  "2014-09-30": [
+   "2014-07-01 ~ 2014-09-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,169.000 / 전사 20,579.000 × 100 = 5.6805%"
+  ],
+  "2014-12-31": [
+   "2014-10-01 ~ 2014-12-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,420.000 / 전사 29,328.000 × 100 = 4.8418%"
+  ],
+  "2015-03-31": [
+   "2015-01-01 ~ 2015-03-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,566.000 / 전사 22,717.000 × 100 = 6.8935%"
+  ],
+  "2015-06-30": [
+   "2015-04-01 ~ 2015-06-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 1,824.000 / 전사 23,185.000 × 100 = 7.8672%"
+  ],
+  "2015-09-30": [
+   "2015-07-01 ~ 2015-09-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 2,085.000 / 전사 25,358.000 × 100 = 8.2223%"
+  ],
+  "2015-12-31": [
+   "2015-10-01 ~ 2015-12-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 2,406.000 / 전사 35,747.000 × 100 = 6.7306%"
+  ],
+  "2016-03-31": [
+   "2016-01-01 ~ 2016-03-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 2,566.000 / 전사 29,128.000 × 100 = 8.8094%"
+  ],
+  "2016-06-30": [
+   "2016-04-01 ~ 2016-06-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 2,886.000 / 전사 30,404.000 × 100 = 9.4922%"
+  ],
+  "2016-09-30": [
+   "2016-07-01 ~ 2016-09-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 3,231.000 / 전사 32,714.000 × 100 = 9.8765%"
+  ],
+  "2016-12-31": [
+   "2016-10-01 ~ 2016-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 3,536.000 / 전사 43,741.000 × 100 = 8.0839%"
+  ],
+  "2017-03-31": [
+   "2017-01-01 ~ 2017-03-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 3,661.000 / 전사 35,714.000 × 100 = 10.2509%"
+  ],
+  "2017-06-30": [
+   "2017-04-01 ~ 2017-06-30",
+   "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 4,100.000 / 전사 37,955.000 × 100 = 10.8023%"
+  ],
+  "2017-09-30": [
+   "2017-07-01 ~ 2017-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 4,584.000 / 전사 43,744.000 × 100 = 10.4792%"
+  ],
+  "2017-12-31": [
+   "2017-10-01 ~ 2017-12-31",
+   "SalesRevenueNet · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 5,113.000 / 전사 60,453.000 × 100 = 8.4578%"
+  ],
+  "2018-03-31": [
+   "2018-01-01 ~ 2018-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 5,442.000 / 전사 51,042.000 × 100 = 10.6618%"
+  ],
+  "2018-06-30": [
+   "2018-04-01 ~ 2018-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 6,105.000 / 전사 52,886.000 × 100 = 11.5437%"
+  ],
+  "2018-09-30": [
+   "2018-07-01 ~ 2018-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 6,679.000 / 전사 56,576.000 × 100 = 11.8054%"
+  ],
+  "2018-12-31": [
+   "2018-10-01 ~ 2018-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesSegmentMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 7,430.000 / 전사 72,383.000 × 100 = 10.2648%"
+  ],
+  "2019-03-31": [
+   "2019-01-01 ~ 2019-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 7,696.000 / 전사 59,700.000 × 100 = 12.8911%"
+  ],
+  "2019-06-30": [
+   "2019-04-01 ~ 2019-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 8,381.000 / 전사 63,404.000 × 100 = 13.2184%"
+  ],
+  "2019-09-30": [
+   "2019-07-01 ~ 2019-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 8,995.000 / 전사 69,981.000 × 100 = 12.8535%"
+  ],
+  "2019-12-31": [
+   "2019-10-01 ~ 2019-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 9,954.000 / 전사 87,437.000 × 100 = 11.3842%"
+  ],
+  "2020-03-31": [
+   "2020-01-01 ~ 2020-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 10,219.000 / 전사 75,452.000 × 100 = 13.5437%"
+  ],
+  "2020-06-30": [
+   "2020-04-01 ~ 2020-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 10,808.000 / 전사 88,912.000 × 100 = 12.1558%"
+  ],
+  "2020-09-30": [
+   "2020-07-01 ~ 2020-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 11,601.000 / 전사 96,145.000 × 100 = 12.0662%"
+  ],
+  "2020-12-31": [
+   "2020-10-01 ~ 2020-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 12,742.000 / 전사 125,555.000 × 100 = 10.1485%"
+  ],
+  "2021-03-31": [
+   "2021-01-01 ~ 2021-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 13,503.000 / 전사 108,518.000 × 100 = 12.4431%"
+  ],
+  "2021-06-30": [
+   "2021-04-01 ~ 2021-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 14,809.000 / 전사 113,080.000 × 100 = 13.0960%"
+  ],
+  "2021-09-30": [
+   "2021-07-01 ~ 2021-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 16,110.000 / 전사 110,812.000 × 100 = 14.5381%"
+  ],
+  "2021-12-31": [
+   "2021-10-01 ~ 2021-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 17,780.000 / 전사 137,412.000 × 100 = 12.9392%"
+  ],
+  "2022-03-31": [
+   "2022-01-01 ~ 2022-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 18,441.000 / 전사 116,444.000 × 100 = 15.8368%"
+  ],
+  "2022-06-30": [
+   "2022-04-01 ~ 2022-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 19,739.000 / 전사 121,234.000 × 100 = 16.2817%"
+  ],
+  "2022-09-30": [
+   "2022-07-01 ~ 2022-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 20,538.000 / 전사 127,101.000 × 100 = 16.1588%"
+  ],
+  "2022-12-31": [
+   "2022-10-01 ~ 2022-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 21,378.000 / 전사 149,204.000 × 100 = 14.3280%"
+  ],
+  "2023-03-31": [
+   "2023-01-01 ~ 2023-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 21,354.000 / 전사 127,358.000 × 100 = 16.7669%"
+  ],
+  "2023-06-30": [
+   "2023-04-01 ~ 2023-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 22,140.000 / 전사 134,383.000 × 100 = 16.4753%"
+  ],
+  "2023-09-30": [
+   "2023-07-01 ~ 2023-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 23,059.000 / 전사 143,083.000 × 100 = 16.1158%"
+  ],
+  "2023-12-31": [
+   "2023-10-01 ~ 2023-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 24,204.000 / 전사 169,961.000 × 100 = 14.2409%"
+  ],
+  "2024-03-31": [
+   "2024-01-01 ~ 2024-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 25,037.000 / 전사 143,313.000 × 100 = 17.4702%"
+  ],
+  "2024-06-30": [
+   "2024-04-01 ~ 2024-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 26,281.000 / 전사 147,977.000 × 100 = 17.7602%"
+  ],
+  "2024-09-30": [
+   "2024-07-01 ~ 2024-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 27,452.000 / 전사 158,877.000 × 100 = 17.2788%"
+  ],
+  "2024-12-31": [
+   "2024-10-01 ~ 2024-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 28,786.000 / 전사 187,792.000 × 100 = 15.3287%"
+  ],
+  "2025-03-31": [
+   "2025-01-01 ~ 2025-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 29,267.000 / 전사 155,667.000 × 100 = 18.8010%"
+  ],
+  "2025-06-30": [
+   "2025-04-01 ~ 2025-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 30,873.000 / 전사 167,702.000 × 100 = 18.4094%"
+  ],
+  "2025-09-30": [
+   "2025-07-01 ~ 2025-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 33,006.000 / 전사 180,169.000 × 100 = 18.3195%"
+  ],
+  "2025-12-31": [
+   "2025-10-01 ~ 2025-12-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 35,579.000 / 전사 213,386.000 × 100 = 16.6735%"
+  ],
+  "2026-03-31": [
+   "2026-01-01 ~ 2026-03-31",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 37,587.000 / 전사 181,519.000 × 100 = 20.7069%"
+  ],
+  "2026-06-30": [
+   "2026-04-01 ~ 2026-06-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 42,232.000 / 전사 200,606.000 × 100 = 21.0522%"
+  ],
+  "2026-09-30": [
+   "2026-07-01 ~ 2026-09-30",
+   "RevenueFromContractWithCustomerExcludingAssessedTax · amzn:AmazonWebServicesMember",
+   "same actual period cloud revenue / consolidated revenue × 100",
+   "매출 비중 = 동일 기간 클라우드 매출 ÷ 전사 매출 × 100",
+   "클라우드 45,984.000 / 전사 201,944.000 × 100 = 22.7707%"
+  ]
+ },
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+ "updated": "2026-09-30",
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": false,
+ "comparison_dates": {
+  "2014-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2014-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-03-31"
+  },
+  "2014-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2014-06-30"
+  },
+  "2014-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2014-09-30"
+  },
+  "2015-03-31": {
+   "year_ago": "2014-03-31",
+   "quarter_ago": "2014-12-31"
+  },
+  "2015-06-30": {
+   "year_ago": "2014-06-30",
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": "2014-09-30",
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": "2014-12-31",
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": "2016-12-31",
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
+  }
+ },
+ "change_mode": "none",
+ "empty_message": "공시된 실제 분기 자료를 아직 확보하지 못했습니다. 미공개 기간을 추정하거나 0으로 채우지 않습니다."
+}

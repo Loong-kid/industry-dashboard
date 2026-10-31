@@ -1,0 +1,47 @@
+name: update-us-datacenter
+on:
+  schedule:
+    - cron: '50 0 * * *' # KST 09:50
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  hyperscalers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate fiscal periods, scope and cloud ratios
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_us_datacenter.py -v
+      - name: Refresh consolidated and native cloud disclosures
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_us_datacenter.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_us_datacenter.py -v
+      - name: Commit US hyperscaler data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/datacenter/us_dc_*.json data/datacenter/us_hyperscalers_state.json
+          git diff --cached --quiet || git commit -m "chore: refresh US hyperscaler financial history"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
