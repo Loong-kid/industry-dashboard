@@ -1,9 +1,5 @@
-.dc-company-comparison { grid-column: 1 / -1; min-width: 0; }
-.dc-company-comparison .chart-wrap { height: 300px; }
-.dc-company-comparison.dc-comparison-compact { grid-column: auto; }
-.dc-company-comparison.dc-comparison-compact .chart-wrap { height: 220px; }
+.dc-company-comparison { min-width: 0; }
 .dc-company-comparison .chip:has(input:disabled) { opacity: .6; cursor: default; }
 .dc-company-comparison .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .dc-company-comparison .data-table { overflow-x: auto; }
 .dc-company-comparison td small { display: block; color: var(--muted); font-size: 10px; white-space: nowrap; }
-@media (max-width: 480px) { .dc-company-comparison .chart-wrap { height: 260px; } }
