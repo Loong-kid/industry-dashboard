@@ -1,0 +1,3131 @@
+{
+ "id": "us_nc_nbis_financials",
+ "name": "Nebius · 매출·영업이익",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "neo_financials_nbis",
+ "financial_metric_selector": true,
+ "series_unavailable": {
+  "클라우드 영업이익": "AI cloud 별도 GAAP 영업이익 미공개 · 부문 Adjusted EBITDA나 전사 영업이익을 대입하지 않습니다."
+ },
+ "series_status": {
+  "클라우드 영업이익": "미공개"
+ },
+ "series_colors": {
+  "전사 매출": "#2a78d6",
+  "전사 영업이익": "#1baf7a",
+  "클라우드 매출": "#eda100",
+  "클라우드 영업이익": "#9085e9"
+ },
+ "source": "SEC · 공식 연결·사업 공시",
+ "fetched": "2026-11-01",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-01",
+  "message": "공시 조회 완료"
+ },
+ "description": "지표 이름을 클릭해 전사·클라우드 매출과 영업이익을 함께 보거나 필요한 항목만 선택하세요.",
+ "note": "미공개·해당 없음은 0으로 표시하지 않습니다. 숫자나 표의 값을 클릭하면 실제 기간과 출처를 확인할 수 있습니다.",
+ "basis_details": [
+  {
+   "label": "사업 범위",
+   "value": "전사 계속영업에는 AI cloud 외 Avride·TripleTen 등이 포함됩니다. 매각된 러시아 Yandex와 중단영업 Toloka를 현재 AI 클라우드 매출로 연결하지 않습니다. 과거 비교 수치가 재작성되면 최근 공시를 우선하며, 연간과 예전 분기 합계는 재분류 때문에 다를 수 있습니다. AI cloud의 Adjusted EBITDA를 GAAP 영업이익으로 대입하지 않습니다. CAPEX는 회사 현금흐름표의 유형·무형자산 취득액입니다."
+  },
+  {
+   "label": "분기·연간",
+   "value": "실제 회사 회계기간의 공시값입니다. 미공개 이력은 빈값이며 분기·연간 전환에도 선택 항목을 유지합니다. 영업이익률·CAPEX·RPO는 별도 카드에서 확인합니다."
+  },
+  {
+   "label": "확인 방법",
+   "value": "차트 호버는 기간·수치·단위만 표시합니다. 숫자 클릭과 표에서는 집계 근거·원문을, 이 펼침 영역에서는 공시 범위를 확인할 수 있습니다."
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 매출·영업이익",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {
+    "전사 매출": [
+     [
+      "2023-09-30",
+      5.0
+     ],
+     [
+      "2023-12-31",
+      6.7
+     ],
+     [
+      "2024-03-31",
+      11.4
+     ],
+     [
+      "2024-06-30",
+      14.5
+     ],
+     [
+      "2024-09-30",
+      32.1
+     ],
+     [
+      "2024-12-31",
+      35.2
+     ],
+     [
+      "2025-03-31",
+      50.9
+     ],
+     [
+      "2025-06-30",
+      105.1
+     ],
+     [
+      "2025-09-30",
+      146.1
+     ],
+     [
+      "2025-12-31",
+      227.7
+     ],
+     [
+      "2026-03-31",
+      399.0
+     ],
+     [
+      "2026-06-30",
+      582.3
+     ]
+    ],
+    "전사 영업이익": [
+     [
+      "2023-09-30",
+      -77.6
+     ],
+     [
+      "2023-12-31",
+      -93.5
+     ],
+     [
+      "2024-03-31",
+      -82.9
+     ],
+     [
+      "2024-06-30",
+      -112.2
+     ],
+     [
+      "2024-09-30",
+      -80.6
+     ],
+     [
+      "2024-12-31",
+      -136.5
+     ],
+     [
+      "2025-03-31",
+      -120.3
+     ],
+     [
+      "2025-06-30",
+      -111.2
+     ],
+     [
+      "2025-09-30",
+      -130.2
+     ],
+     [
+      "2025-12-31",
+      -234.5
+     ],
+     [
+      "2026-03-31",
+      -128.0
+     ],
+     [
+      "2026-06-30",
+      -175.9
+     ]
+    ],
+    "클라우드 매출": [
+     [
+      "2024-09-30",
+      27.1
+     ],
+     [
+      "2024-12-31",
+      23.8
+     ],
+     [
+      "2025-03-31",
+      41.4
+     ],
+     [
+      "2025-06-30",
+      93.7
+     ],
+     [
+      "2025-09-30",
+      131.1
+     ],
+     [
+      "2025-12-31",
+      214.2
+     ],
+     [
+      "2026-03-31",
+      389.7
+     ],
+     [
+      "2026-06-30",
+      574.9
+     ]
+    ],
+    "클라우드 영업이익": []
+   },
+   "series_sources": {
+    "전사 매출": {
+     "2023-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+      "filed": "2024-10-31",
+      "start": "2023-07-01",
+      "end": "2023-09-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+        "filed": "2024-10-31",
+        "start": "2023-07-01",
+        "end": "2023-09-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2023 Q3",
+      "observed_date": "2023-09-30",
+      "period_start": "2023-07-01"
+     },
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+      "filed": "2025-02-20",
+      "start": "2023-10-01",
+      "end": "2023-12-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+        "filed": "2025-02-20",
+        "start": "2023-10-01",
+        "end": "2023-12-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2023 Q4",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-10-01"
+     },
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+      "filed": "2025-05-20",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+        "filed": "2025-05-20",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+      "filed": "2025-08-07",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+        "filed": "2025-08-07",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "Nebius GAAP statement · Revenues"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "전사 영업이익": {
+     "2023-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+      "filed": "2024-10-31",
+      "start": "2023-07-01",
+      "end": "2023-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+        "filed": "2024-10-31",
+        "start": "2023-07-01",
+        "end": "2023-09-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2023 Q3",
+      "observed_date": "2023-09-30",
+      "period_start": "2023-07-01"
+     },
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+      "filed": "2025-02-20",
+      "start": "2023-10-01",
+      "end": "2023-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+        "filed": "2025-02-20",
+        "start": "2023-10-01",
+        "end": "2023-12-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2023 Q4",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-10-01"
+     },
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+      "filed": "2025-05-20",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+        "filed": "2025-05-20",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+      "filed": "2025-08-07",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+        "filed": "2025-08-07",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "Nebius GAAP statement · Loss from operations"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "클라우드 매출": {
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Nebius",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "Nebius GAAP statement · Nebius"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "Revenues · nebiussegmentmember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+        "filed": "2026-04-30",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "Revenues · nebiussegmentmember"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2024-01-01",
+        "end": "2024-09-30",
+        "tag": "Nebius GAAP statement · Nebius"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Nebius AI cloud",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "Nebius GAAP statement · Nebius AI cloud"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Nebius AI cloud",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "Nebius GAAP statement · Nebius AI cloud"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Nebius",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "Nebius GAAP statement · Nebius"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius shareholder letter · actual AI cloud revenue",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+        "filed": "2026-02-12",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "Nebius shareholder letter · actual AI cloud revenue"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Nebius AI cloud",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "Nebius GAAP statement · Nebius AI cloud"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Nebius AI cloud",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "Nebius GAAP statement · Nebius AI cloud"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "클라우드 영업이익": {}
+   },
+   "series_point_notes": {
+    "전사 매출": {
+     "2023-09-30": [
+      "전사 매출 · FY2023 Q3",
+      "2023-07-01 ~ 2023-09-30",
+      "전사 연결 전체",
+      "5.000 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2023-12-31": [
+      "전사 매출 · FY2023 Q4",
+      "2023-10-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "6.700 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2024-03-31": [
+      "전사 매출 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "전사 연결 전체",
+      "11.400 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2024-06-30": [
+      "전사 매출 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "전사 연결 전체",
+      "14.500 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2024-09-30": [
+      "전사 매출 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "전사 연결 전체",
+      "32.100 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2024-12-31": [
+      "전사 매출 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "35.200 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2025-03-31": [
+      "전사 매출 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "전사 연결 전체",
+      "50.900 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2025-06-30": [
+      "전사 매출 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "전사 연결 전체",
+      "105.100 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2025-09-30": [
+      "전사 매출 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "전사 연결 전체",
+      "146.100 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2025-12-31": [
+      "전사 매출 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "227.700 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2026-03-31": [
+      "전사 매출 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "전사 연결 전체",
+      "399.000 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ],
+     "2026-06-30": [
+      "전사 매출 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "전사 연결 전체",
+      "582.300 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Revenues"
+     ]
+    },
+    "전사 영업이익": {
+     "2023-09-30": [
+      "전사 영업이익 · FY2023 Q3",
+      "2023-07-01 ~ 2023-09-30",
+      "전사 연결 전체",
+      "-77.600 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2023-12-31": [
+      "전사 영업이익 · FY2023 Q4",
+      "2023-10-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "-93.500 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2024-03-31": [
+      "전사 영업이익 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "전사 연결 전체",
+      "-82.900 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2024-06-30": [
+      "전사 영업이익 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "전사 연결 전체",
+      "-112.200 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2024-09-30": [
+      "전사 영업이익 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "전사 연결 전체",
+      "-80.600 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2024-12-31": [
+      "전사 영업이익 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "-136.500 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2025-03-31": [
+      "전사 영업이익 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "전사 연결 전체",
+      "-120.300 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2025-06-30": [
+      "전사 영업이익 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "전사 연결 전체",
+      "-111.200 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2025-09-30": [
+      "전사 영업이익 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "전사 연결 전체",
+      "-130.200 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2025-12-31": [
+      "전사 영업이익 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "-234.500 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2026-03-31": [
+      "전사 영업이익 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "전사 연결 전체",
+      "-128.000 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ],
+     "2026-06-30": [
+      "전사 영업이익 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "전사 연결 전체",
+      "-175.900 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Loss from operations"
+     ]
+    },
+    "클라우드 매출": {
+     "2024-09-30": [
+      "클라우드 매출 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "Nebius AI cloud",
+      "27.100 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius"
+     ],
+     "2024-12-31": [
+      "클라우드 매출 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "Nebius AI cloud",
+      "23.800 백만 USD",
+      "same fiscal-year YTD minus prior YTD",
+      "Revenues · nebiussegmentmember"
+     ],
+     "2025-03-31": [
+      "클라우드 매출 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "Nebius AI cloud",
+      "41.400 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius AI cloud"
+     ],
+     "2025-06-30": [
+      "클라우드 매출 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "Nebius AI cloud",
+      "93.700 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius AI cloud"
+     ],
+     "2025-09-30": [
+      "클라우드 매출 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "Nebius AI cloud",
+      "131.100 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius"
+     ],
+     "2025-12-31": [
+      "클라우드 매출 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "Nebius AI cloud",
+      "214.200 백만 USD",
+      "reported quarter",
+      "Nebius shareholder letter · actual AI cloud revenue"
+     ],
+     "2026-03-31": [
+      "클라우드 매출 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "Nebius AI cloud",
+      "389.700 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius AI cloud"
+     ],
+     "2026-06-30": [
+      "클라우드 매출 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "Nebius AI cloud",
+      "574.900 백만 USD",
+      "reported quarter",
+      "Nebius GAAP statement · Nebius AI cloud"
+     ]
+    },
+    "클라우드 영업이익": {}
+   },
+   "point_sources": {
+    "2023-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+       "label": "전사 매출 · FY2023 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2023 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+       "label": "전사 매출 · FY2023 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2023 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+       "label": "전사 매출 · FY2024 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2024 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+       "label": "전사 매출 · FY2024 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2024 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "전사 매출 · FY2024 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "전사 영업이익 · FY2024 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "클라우드 매출 · FY2024 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "전사 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+       "label": "클라우드 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "클라우드 매출 · FY2024 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "전사 매출 · FY2025 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "전사 영업이익 · FY2025 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "클라우드 매출 · FY2025 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "전사 매출 · FY2025 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "전사 영업이익 · FY2025 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "클라우드 매출 · FY2025 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "전사 매출 · FY2025 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "전사 영업이익 · FY2025 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+       "label": "클라우드 매출 · FY2025 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "전사 매출 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "전사 영업이익 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+       "label": "클라우드 매출 · FY2025 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "전사 매출 · FY2026 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "전사 영업이익 · FY2026 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "클라우드 매출 · FY2026 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "전사 매출 · FY2026 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "전사 영업이익 · FY2026 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+       "label": "클라우드 매출 · FY2026 Q2"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "전사 매출",
+    "전사 영업이익",
+    "클라우드 매출"
+   ],
+   "period_labels": {
+    "2023-09-30": "FY2023 Q3",
+    "2023-12-31": "FY2023 Q4",
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "comparison_dates": {
+    "2023-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2023-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_profit_summary": true,
+   "change_mode": "none",
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 매출·영업이익",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "전사 매출": [
+     [
+      "2023-12-31",
+      9.8
+     ],
+     [
+      "2024-12-31",
+      91.5
+     ],
+     [
+      "2025-12-31",
+      529.8
+     ]
+    ],
+    "전사 영업이익": [
+     [
+      "2023-12-31",
+      -285.7
+     ],
+     [
+      "2024-12-31",
+      -399.6
+     ],
+     [
+      "2025-12-31",
+      -611.7
+     ]
+    ],
+    "클라우드 매출": [
+     [
+      "2023-12-31",
+      9.6
+     ],
+     [
+      "2024-12-31",
+      68.3
+     ],
+     [
+      "2025-12-31",
+      480.3
+     ]
+    ],
+    "클라우드 영업이익": []
+   },
+   "series_sources": {
+    "전사 매출": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:Revenues"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:Revenues"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:Revenues",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:Revenues"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "전사 영업이익": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "클라우드 매출": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "filed": "2026-04-30",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "Revenues · nebiussegmentmember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+        "filed": "2026-04-30",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "Revenues · nebiussegmentmember"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "Revenues · nebiussegmentmember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+        "filed": "2026-04-30",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "Revenues · nebiussegmentmember"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "filed": "2026-04-30",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "Revenues · nebiussegmentmember",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+        "filed": "2026-04-30",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "Revenues · nebiussegmentmember"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "클라우드 영업이익": {}
+   },
+   "series_point_notes": {
+    "전사 매출": {
+     "2023-12-31": [
+      "전사 매출 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "9.800 백만 USD",
+      "reported annual",
+      "us-gaap:Revenues"
+     ],
+     "2024-12-31": [
+      "전사 매출 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "91.500 백만 USD",
+      "reported annual",
+      "us-gaap:Revenues"
+     ],
+     "2025-12-31": [
+      "전사 매출 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "529.800 백만 USD",
+      "reported annual",
+      "us-gaap:Revenues"
+     ]
+    },
+    "전사 영업이익": {
+     "2023-12-31": [
+      "전사 영업이익 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "-285.700 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-12-31": [
+      "전사 영업이익 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "-399.600 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-12-31": [
+      "전사 영업이익 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "-611.700 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ]
+    },
+    "클라우드 매출": {
+     "2023-12-31": [
+      "클라우드 매출 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "Nebius AI cloud",
+      "9.600 백만 USD",
+      "reported annual",
+      "Revenues · nebiussegmentmember"
+     ],
+     "2024-12-31": [
+      "클라우드 매출 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "Nebius AI cloud",
+      "68.300 백만 USD",
+      "reported annual",
+      "Revenues · nebiussegmentmember"
+     ],
+     "2025-12-31": [
+      "클라우드 매출 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "Nebius AI cloud",
+      "480.300 백만 USD",
+      "reported annual",
+      "Revenues · nebiussegmentmember"
+     ]
+    },
+    "클라우드 영업이익": {}
+   },
+   "point_sources": {
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 매출 · FY2023"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 영업이익 · FY2023"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+       "label": "클라우드 매출 · FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 매출 · FY2024"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 영업이익 · FY2024"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+       "label": "클라우드 매출 · FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 매출 · FY2025"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "전사 영업이익 · FY2025"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+       "label": "클라우드 매출 · FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "전사 매출",
+    "전사 영업이익",
+    "클라우드 매출"
+   ],
+   "period_labels": {
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 매출·영업이익",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "series": {
+  "전사 매출": [
+   [
+    "2023-09-30",
+    5.0
+   ],
+   [
+    "2023-12-31",
+    6.7
+   ],
+   [
+    "2024-03-31",
+    11.4
+   ],
+   [
+    "2024-06-30",
+    14.5
+   ],
+   [
+    "2024-09-30",
+    32.1
+   ],
+   [
+    "2024-12-31",
+    35.2
+   ],
+   [
+    "2025-03-31",
+    50.9
+   ],
+   [
+    "2025-06-30",
+    105.1
+   ],
+   [
+    "2025-09-30",
+    146.1
+   ],
+   [
+    "2025-12-31",
+    227.7
+   ],
+   [
+    "2026-03-31",
+    399.0
+   ],
+   [
+    "2026-06-30",
+    582.3
+   ]
+  ],
+  "전사 영업이익": [
+   [
+    "2023-09-30",
+    -77.6
+   ],
+   [
+    "2023-12-31",
+    -93.5
+   ],
+   [
+    "2024-03-31",
+    -82.9
+   ],
+   [
+    "2024-06-30",
+    -112.2
+   ],
+   [
+    "2024-09-30",
+    -80.6
+   ],
+   [
+    "2024-12-31",
+    -136.5
+   ],
+   [
+    "2025-03-31",
+    -120.3
+   ],
+   [
+    "2025-06-30",
+    -111.2
+   ],
+   [
+    "2025-09-30",
+    -130.2
+   ],
+   [
+    "2025-12-31",
+    -234.5
+   ],
+   [
+    "2026-03-31",
+    -128.0
+   ],
+   [
+    "2026-06-30",
+    -175.9
+   ]
+  ],
+  "클라우드 매출": [
+   [
+    "2024-09-30",
+    27.1
+   ],
+   [
+    "2024-12-31",
+    23.8
+   ],
+   [
+    "2025-03-31",
+    41.4
+   ],
+   [
+    "2025-06-30",
+    93.7
+   ],
+   [
+    "2025-09-30",
+    131.1
+   ],
+   [
+    "2025-12-31",
+    214.2
+   ],
+   [
+    "2026-03-31",
+    389.7
+   ],
+   [
+    "2026-06-30",
+    574.9
+   ]
+  ],
+  "클라우드 영업이익": []
+ },
+ "series_sources": {
+  "전사 매출": {
+   "2023-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+    "filed": "2024-10-31",
+    "start": "2023-07-01",
+    "end": "2023-09-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+      "filed": "2024-10-31",
+      "start": "2023-07-01",
+      "end": "2023-09-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2023 Q3",
+    "observed_date": "2023-09-30",
+    "period_start": "2023-07-01"
+   },
+   "2023-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+    "filed": "2025-02-20",
+    "start": "2023-10-01",
+    "end": "2023-12-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+      "filed": "2025-02-20",
+      "start": "2023-10-01",
+      "end": "2023-12-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2023 Q4",
+    "observed_date": "2023-12-31",
+    "period_start": "2023-10-01"
+   },
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+    "filed": "2025-05-20",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+      "filed": "2025-05-20",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+    "filed": "2025-08-07",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+      "filed": "2025-08-07",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2024-10-01",
+    "end": "2024-12-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "Nebius GAAP statement · Revenues",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Revenues"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "전사 영업이익": {
+   "2023-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+    "filed": "2024-10-31",
+    "start": "2023-07-01",
+    "end": "2023-09-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+      "filed": "2024-10-31",
+      "start": "2023-07-01",
+      "end": "2023-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2023 Q3",
+    "observed_date": "2023-09-30",
+    "period_start": "2023-07-01"
+   },
+   "2023-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+    "filed": "2025-02-20",
+    "start": "2023-10-01",
+    "end": "2023-12-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+      "filed": "2025-02-20",
+      "start": "2023-10-01",
+      "end": "2023-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2023 Q4",
+    "observed_date": "2023-12-31",
+    "period_start": "2023-10-01"
+   },
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+    "filed": "2025-05-20",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+      "filed": "2025-05-20",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+    "filed": "2025-08-07",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+      "filed": "2025-08-07",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2024-10-01",
+    "end": "2024-12-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "Nebius GAAP statement · Loss from operations",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Loss from operations"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "클라우드 매출": {
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "Nebius GAAP statement · Nebius",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Nebius"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+    "filed": "2026-04-30",
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "tag": "Revenues · nebiussegmentmember",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "Revenues · nebiussegmentmember"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2024-01-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Nebius"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "Nebius GAAP statement · Nebius AI cloud",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Nebius AI cloud"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "Nebius GAAP statement · Nebius AI cloud",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Nebius AI cloud"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "Nebius GAAP statement · Nebius",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Nebius"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+    "filed": "2026-02-12",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "Nebius shareholder letter · actual AI cloud revenue",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius shareholder letter · actual AI cloud revenue"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "Nebius GAAP statement · Nebius AI cloud",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Nebius AI cloud"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "Nebius GAAP statement · Nebius AI cloud",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Nebius AI cloud"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "클라우드 영업이익": {}
+ },
+ "series_point_notes": {
+  "전사 매출": {
+   "2023-09-30": [
+    "전사 매출 · FY2023 Q3",
+    "2023-07-01 ~ 2023-09-30",
+    "전사 연결 전체",
+    "5.000 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2023-12-31": [
+    "전사 매출 · FY2023 Q4",
+    "2023-10-01 ~ 2023-12-31",
+    "전사 연결 전체",
+    "6.700 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2024-03-31": [
+    "전사 매출 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "전사 연결 전체",
+    "11.400 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2024-06-30": [
+    "전사 매출 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "전사 연결 전체",
+    "14.500 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2024-09-30": [
+    "전사 매출 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "전사 연결 전체",
+    "32.100 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2024-12-31": [
+    "전사 매출 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "전사 연결 전체",
+    "35.200 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2025-03-31": [
+    "전사 매출 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "전사 연결 전체",
+    "50.900 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2025-06-30": [
+    "전사 매출 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "전사 연결 전체",
+    "105.100 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2025-09-30": [
+    "전사 매출 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "전사 연결 전체",
+    "146.100 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2025-12-31": [
+    "전사 매출 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "전사 연결 전체",
+    "227.700 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2026-03-31": [
+    "전사 매출 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "전사 연결 전체",
+    "399.000 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ],
+   "2026-06-30": [
+    "전사 매출 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "전사 연결 전체",
+    "582.300 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Revenues"
+   ]
+  },
+  "전사 영업이익": {
+   "2023-09-30": [
+    "전사 영업이익 · FY2023 Q3",
+    "2023-07-01 ~ 2023-09-30",
+    "전사 연결 전체",
+    "-77.600 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2023-12-31": [
+    "전사 영업이익 · FY2023 Q4",
+    "2023-10-01 ~ 2023-12-31",
+    "전사 연결 전체",
+    "-93.500 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2024-03-31": [
+    "전사 영업이익 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "전사 연결 전체",
+    "-82.900 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2024-06-30": [
+    "전사 영업이익 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "전사 연결 전체",
+    "-112.200 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2024-09-30": [
+    "전사 영업이익 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "전사 연결 전체",
+    "-80.600 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2024-12-31": [
+    "전사 영업이익 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "전사 연결 전체",
+    "-136.500 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2025-03-31": [
+    "전사 영업이익 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "전사 연결 전체",
+    "-120.300 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2025-06-30": [
+    "전사 영업이익 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "전사 연결 전체",
+    "-111.200 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2025-09-30": [
+    "전사 영업이익 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "전사 연결 전체",
+    "-130.200 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2025-12-31": [
+    "전사 영업이익 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "전사 연결 전체",
+    "-234.500 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2026-03-31": [
+    "전사 영업이익 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "전사 연결 전체",
+    "-128.000 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ],
+   "2026-06-30": [
+    "전사 영업이익 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "전사 연결 전체",
+    "-175.900 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Loss from operations"
+   ]
+  },
+  "클라우드 매출": {
+   "2024-09-30": [
+    "클라우드 매출 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "Nebius AI cloud",
+    "27.100 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius"
+   ],
+   "2024-12-31": [
+    "클라우드 매출 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "Nebius AI cloud",
+    "23.800 백만 USD",
+    "same fiscal-year YTD minus prior YTD",
+    "Revenues · nebiussegmentmember"
+   ],
+   "2025-03-31": [
+    "클라우드 매출 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "Nebius AI cloud",
+    "41.400 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius AI cloud"
+   ],
+   "2025-06-30": [
+    "클라우드 매출 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "Nebius AI cloud",
+    "93.700 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius AI cloud"
+   ],
+   "2025-09-30": [
+    "클라우드 매출 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "Nebius AI cloud",
+    "131.100 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius"
+   ],
+   "2025-12-31": [
+    "클라우드 매출 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "Nebius AI cloud",
+    "214.200 백만 USD",
+    "reported quarter",
+    "Nebius shareholder letter · actual AI cloud revenue"
+   ],
+   "2026-03-31": [
+    "클라우드 매출 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "Nebius AI cloud",
+    "389.700 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius AI cloud"
+   ],
+   "2026-06-30": [
+    "클라우드 매출 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "Nebius AI cloud",
+    "574.900 백만 USD",
+    "reported quarter",
+    "Nebius GAAP statement · Nebius AI cloud"
+   ]
+  },
+  "클라우드 영업이익": {}
+ },
+ "point_sources": {
+  "2023-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+     "label": "전사 매출 · FY2023 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465924112875/tm2427209d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2023 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+     "label": "전사 매출 · FY2023 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925015480/tm257185d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2023 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+     "label": "전사 매출 · FY2024 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925050975/tm2515580d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2024 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+     "label": "전사 매출 · FY2024 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925075028/tm2522866d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2024 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "전사 매출 · FY2024 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "전사 영업이익 · FY2024 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "클라우드 매출 · FY2024 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "전사 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+     "label": "클라우드 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "클라우드 매출 · FY2024 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "전사 매출 · FY2025 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "전사 영업이익 · FY2025 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "클라우드 매출 · FY2025 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "전사 매출 · FY2025 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "전사 영업이익 · FY2025 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "클라우드 매출 · FY2025 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "전사 매출 · FY2025 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "전사 영업이익 · FY2025 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925110831/tm2531034d1_ex99-2.htm",
+     "label": "클라우드 매출 · FY2025 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "전사 매출 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "전사 영업이익 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-2.htm",
+     "label": "클라우드 매출 · FY2025 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "전사 매출 · FY2026 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "전사 영업이익 · FY2026 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "클라우드 매출 · FY2026 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "전사 매출 · FY2026 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "전사 영업이익 · FY2026 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+     "label": "클라우드 매출 · FY2026 Q2"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "전사 매출",
+  "전사 영업이익",
+  "클라우드 매출"
+ ],
+ "period_labels": {
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2023-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2023-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_profit_summary": true,
+ "change_mode": "none",
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+ "compact_tooltip": true
+}

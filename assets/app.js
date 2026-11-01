@@ -160,6 +160,7 @@ function route() {
   state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
   state.copperView = state.industry.id === "commodities" && state.subtab === "copper" && requestedView === "miners" ? "miners" : "indicators";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
+  state.datacenterView = state.industry.id === "datacenter" && state.subtab === "us" && requestedView === "neocloud" ? "neocloud" : "hyperscalers";
   document.querySelectorAll("#nav a").forEach((a) => {
     const selected = a.dataset.id === state.industry.id;
     a.classList.toggle("active", selected);
@@ -238,7 +239,8 @@ async function renderIndustry(options = {}) {
   const gasView = ind.id === "natgas" && state.subtab === "midstream" ? selectedTab.views?.find(view => view.id === state.natgasView) : null;
   const oilView = ind.id === "oil" && state.subtab === "offshore" ? selectedTab.views?.find(view => view.id === state.oilOffshoreView) : null;
   const copperView = ind.id === "commodities" && state.subtab === "copper" ? selectedTab.views?.find(view => view.id === state.copperView) : null;
-  const nestedView = gasView || oilView || copperView;
+  const datacenterView = ind.id === "datacenter" && state.subtab === "us" ? selectedTab.views?.find(view => view.id === state.datacenterView) : null;
+  const nestedView = gasView || oilView || copperView || datacenterView;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
   document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${nestedView ? " · " + nestedView.name : ""}`;
@@ -357,7 +359,7 @@ async function renderIndustry(options = {}) {
   if (nestedView) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs";
-    views.setAttribute("aria-label", copperView ? "구리 보기" : oilView ? "해양 시추 분류" : "미드스트림 분류");
+    views.setAttribute("aria-label", datacenterView ? "미국 클라우드 분류" : copperView ? "구리 보기" : oilView ? "해양 시추 분류" : "미드스트림 분류");
     for (const view of selectedTab.views) {
       const link = document.createElement("a");
       link.href = `#/${ind.id}/${state.subtab}/${view.id}`;
@@ -614,7 +616,8 @@ function renderFootStatus(latestUpdate, collected, ind) {
   // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
   // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
   const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab);
-  const cadence = cadenceTab?.cadence || ind?.cadence;
+  const cadenceView = ind?.id === "datacenter" && state.subtab === "us" ? cadenceTab?.views?.find(view => view.id === state.datacenterView) : null;
+  const cadence = cadenceView?.cadence || cadenceTab?.cadence || ind?.cadence;
   const cad = document.createElement("details");
   cad.className = "foot-cadence";
   const sum = document.createElement("summary");
@@ -622,7 +625,7 @@ function renderFootStatus(latestUpdate, collected, ind) {
   cad.appendChild(sum);
   const body = document.createElement("div");
   body.innerHTML =
-    `<div>자동 수집: <b>매일 ${escapeHtml(cadenceTab?.auto_collect_time || ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
+    `<div>자동 수집: <b>매일 ${escapeHtml(cadenceView?.auto_collect_time || cadenceTab?.auto_collect_time || ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
     (cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(cadence)}</div>` : "");
   cad.appendChild(body);
   foot.appendChild(cad);

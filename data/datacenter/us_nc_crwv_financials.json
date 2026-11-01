@@ -1,0 +1,3933 @@
+{
+ "id": "us_nc_crwv_financials",
+ "name": "CoreWeave · 매출·영업이익",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "neo_financials_crwv",
+ "financial_metric_selector": true,
+ "series_unavailable": {},
+ "series_status": {},
+ "series_colors": {
+  "전사 매출": "#2a78d6",
+  "전사 영업이익": "#1baf7a",
+  "클라우드 매출": "#eda100",
+  "클라우드 영업이익": "#9085e9"
+ },
+ "source": "SEC · 공식 연결·사업 공시",
+ "fetched": "2026-11-01",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-01",
+  "message": "공시 조회 완료"
+ },
+ "description": "지표 이름을 클릭해 전사·클라우드 매출과 영업이익을 함께 보거나 필요한 항목만 선택하세요.",
+ "note": "미공개·해당 없음은 0으로 표시하지 않습니다. 숫자나 표의 값을 클릭하면 실제 기간과 출처를 확인할 수 있습니다.",
+ "basis_details": [
+  {
+   "label": "사업 범위",
+   "value": "단일 보고 부문인 AI 클라우드 플랫폼의 연결 매출·GAAP 영업이익을 사용합니다. 전사와 클라우드 항목은 같은 범위이므로 선이 겹칩니다. 현금 CAPEX에는 GPU·데이터센터 등 전사 유형자산 취득이 포함되며 경영진의 금융리스 포함 CAPEX와 다릅니다. 수주잔고 비교에는 ASC 606 RPO만 사용하고 더 넓은 회사 정의 Revenue backlog를 대입하지 않습니다."
+  },
+  {
+   "label": "분기·연간",
+   "value": "실제 회사 회계기간의 공시값입니다. 미공개 이력은 빈값이며 분기·연간 전환에도 선택 항목을 유지합니다. 영업이익률·CAPEX·RPO는 별도 카드에서 확인합니다."
+  },
+  {
+   "label": "확인 방법",
+   "value": "차트 호버는 기간·수치·단위만 표시합니다. 숫자 클릭과 표에서는 집계 근거·원문을, 이 펼침 영역에서는 공시 범위를 확인할 수 있습니다."
+  }
+ ],
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 매출·영업이익",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "series": {
+    "전사 매출": [
+     [
+      "2024-03-31",
+      188.684
+     ],
+     [
+      "2024-06-30",
+      395.371
+     ],
+     [
+      "2024-09-30",
+      583.941
+     ],
+     [
+      "2024-12-31",
+      747.004
+     ],
+     [
+      "2025-03-31",
+      982.0
+     ],
+     [
+      "2025-06-30",
+      1212.0
+     ],
+     [
+      "2025-09-30",
+      1364.676
+     ],
+     [
+      "2025-12-31",
+      1571.904
+     ],
+     [
+      "2026-03-31",
+      2078.0
+     ],
+     [
+      "2026-06-30",
+      2575.0
+     ]
+    ],
+    "전사 영업이익": [
+     [
+      "2024-03-31",
+      16.847
+     ],
+     [
+      "2024-06-30",
+      77.721
+     ],
+     [
+      "2024-09-30",
+      117.116
+     ],
+     [
+      "2024-12-31",
+      112.316
+     ],
+     [
+      "2025-03-31",
+      -27.0
+     ],
+     [
+      "2025-06-30",
+      19.0
+     ],
+     [
+      "2025-09-30",
+      51.85
+     ],
+     [
+      "2025-12-31",
+      -89.589
+     ],
+     [
+      "2026-03-31",
+      -144.0
+     ],
+     [
+      "2026-06-30",
+      -49.0
+     ]
+    ],
+    "클라우드 매출": [
+     [
+      "2024-03-31",
+      188.684
+     ],
+     [
+      "2024-06-30",
+      395.371
+     ],
+     [
+      "2024-09-30",
+      583.941
+     ],
+     [
+      "2024-12-31",
+      747.004
+     ],
+     [
+      "2025-03-31",
+      982.0
+     ],
+     [
+      "2025-06-30",
+      1212.0
+     ],
+     [
+      "2025-09-30",
+      1364.676
+     ],
+     [
+      "2025-12-31",
+      1571.904
+     ],
+     [
+      "2026-03-31",
+      2078.0
+     ],
+     [
+      "2026-06-30",
+      2575.0
+     ]
+    ],
+    "클라우드 영업이익": [
+     [
+      "2024-03-31",
+      16.847
+     ],
+     [
+      "2024-06-30",
+      77.721
+     ],
+     [
+      "2024-09-30",
+      117.116
+     ],
+     [
+      "2024-12-31",
+      112.316
+     ],
+     [
+      "2025-03-31",
+      -27.0
+     ],
+     [
+      "2025-06-30",
+      19.0
+     ],
+     [
+      "2025-09-30",
+      51.85
+     ],
+     [
+      "2025-12-31",
+      -89.589
+     ],
+     [
+      "2026-03-31",
+      -144.0
+     ],
+     [
+      "2026-06-30",
+      -49.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "전사 매출": {
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+        "filed": "2025-05-15",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+        "filed": "2025-08-13",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-01-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "전사 영업이익": {
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+        "filed": "2025-05-15",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+        "filed": "2025-08-13",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-01-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "클라우드 매출": {
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+        "filed": "2025-05-15",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+        "filed": "2025-08-13",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-01-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    },
+    "클라우드 영업이익": {
+     "2024-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+        "filed": "2025-05-15",
+        "start": "2024-01-01",
+        "end": "2024-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2024 Q1",
+      "observed_date": "2024-03-31",
+      "period_start": "2024-01-01"
+     },
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+        "filed": "2025-08-13",
+        "start": "2024-04-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2024 Q2",
+      "observed_date": "2024-06-30",
+      "period_start": "2024-04-01"
+     },
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2024-01-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+        "filed": "2025-11-13",
+        "start": "2025-01-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "전사 매출": {
+     "2024-03-31": [
+      "전사 매출 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "전사 연결 전체",
+      "188.684 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-06-30": [
+      "전사 매출 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "전사 연결 전체",
+      "395.371 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-09-30": [
+      "전사 매출 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "전사 연결 전체",
+      "583.941 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-12-31": [
+      "전사 매출 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "747.004 백만 USD",
+      "same fiscal-year YTD minus prior YTD",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-03-31": [
+      "전사 매출 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "전사 연결 전체",
+      "982.000 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-06-30": [
+      "전사 매출 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "전사 연결 전체",
+      "1,212.000 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-09-30": [
+      "전사 매출 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "전사 연결 전체",
+      "1,364.676 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-12-31": [
+      "전사 매출 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "1,571.904 백만 USD",
+      "same fiscal-year YTD minus prior YTD",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2026-03-31": [
+      "전사 매출 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "전사 연결 전체",
+      "2,078.000 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2026-06-30": [
+      "전사 매출 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "전사 연결 전체",
+      "2,575.000 백만 USD",
+      "reported quarter",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ]
+    },
+    "전사 영업이익": {
+     "2024-03-31": [
+      "전사 영업이익 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "전사 연결 전체",
+      "16.847 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-06-30": [
+      "전사 영업이익 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "전사 연결 전체",
+      "77.721 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-09-30": [
+      "전사 영업이익 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "전사 연결 전체",
+      "117.116 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-12-31": [
+      "전사 영업이익 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "112.316 백만 USD",
+      "same fiscal-year YTD minus prior YTD",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-03-31": [
+      "전사 영업이익 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "전사 연결 전체",
+      "-27.000 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-06-30": [
+      "전사 영업이익 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "전사 연결 전체",
+      "19.000 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-09-30": [
+      "전사 영업이익 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "전사 연결 전체",
+      "51.850 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-12-31": [
+      "전사 영업이익 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "-89.589 백만 USD",
+      "same fiscal-year YTD minus prior YTD",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2026-03-31": [
+      "전사 영업이익 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "전사 연결 전체",
+      "-144.000 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2026-06-30": [
+      "전사 영업이익 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "전사 연결 전체",
+      "-49.000 백만 USD",
+      "reported quarter",
+      "us-gaap:OperatingIncomeLoss"
+     ]
+    },
+    "클라우드 매출": {
+     "2024-03-31": [
+      "클라우드 매출 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "AI Cloud Platform",
+      "188.684 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-06-30": [
+      "클라우드 매출 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "AI Cloud Platform",
+      "395.371 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-09-30": [
+      "클라우드 매출 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "AI Cloud Platform",
+      "583.941 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-12-31": [
+      "클라우드 매출 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "AI Cloud Platform",
+      "747.004 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-03-31": [
+      "클라우드 매출 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "AI Cloud Platform",
+      "982.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-06-30": [
+      "클라우드 매출 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "AI Cloud Platform",
+      "1,212.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-09-30": [
+      "클라우드 매출 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "AI Cloud Platform",
+      "1,364.676 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-12-31": [
+      "클라우드 매출 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "AI Cloud Platform",
+      "1,571.904 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2026-03-31": [
+      "클라우드 매출 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "AI Cloud Platform",
+      "2,078.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2026-06-30": [
+      "클라우드 매출 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "AI Cloud Platform",
+      "2,575.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ]
+    },
+    "클라우드 영업이익": {
+     "2024-03-31": [
+      "클라우드 영업이익 · FY2024 Q1",
+      "2024-01-01 ~ 2024-03-31",
+      "AI Cloud Platform",
+      "16.847 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-06-30": [
+      "클라우드 영업이익 · FY2024 Q2",
+      "2024-04-01 ~ 2024-06-30",
+      "AI Cloud Platform",
+      "77.721 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-09-30": [
+      "클라우드 영업이익 · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "AI Cloud Platform",
+      "117.116 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-12-31": [
+      "클라우드 영업이익 · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "AI Cloud Platform",
+      "112.316 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-03-31": [
+      "클라우드 영업이익 · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "AI Cloud Platform",
+      "-27.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-06-30": [
+      "클라우드 영업이익 · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "AI Cloud Platform",
+      "19.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-09-30": [
+      "클라우드 영업이익 · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "AI Cloud Platform",
+      "51.850 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-12-31": [
+      "클라우드 영업이익 · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "AI Cloud Platform",
+      "-89.589 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2026-03-31": [
+      "클라우드 영업이익 · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "AI Cloud Platform",
+      "-144.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2026-06-30": [
+      "클라우드 영업이익 · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "AI Cloud Platform",
+      "-49.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ]
+    }
+   },
+   "point_sources": {
+    "2024-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+       "label": "전사 매출 · FY2024 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+       "label": "전사 영업이익 · FY2024 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+       "label": "클라우드 매출 · FY2024 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+       "label": "클라우드 영업이익 · FY2024 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+       "label": "전사 매출 · FY2024 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+       "label": "전사 영업이익 · FY2024 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+       "label": "클라우드 매출 · FY2024 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+       "label": "클라우드 영업이익 · FY2024 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 매출 · FY2024 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 영업이익 · FY2024 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 매출 · FY2024 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 영업이익 · FY2024 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 영업이익 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 영업이익 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 매출 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 영업이익 · FY2024 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 영업이익 · FY2024 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "전사 매출 · FY2025 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "전사 영업이익 · FY2025 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "클라우드 매출 · FY2025 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "클라우드 영업이익 · FY2025 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "전사 매출 · FY2025 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "전사 영업이익 · FY2025 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "클라우드 매출 · FY2025 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "클라우드 영업이익 · FY2025 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 매출 · FY2025 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 영업이익 · FY2025 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 매출 · FY2025 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 영업이익 · FY2025 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 매출 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 매출 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 영업이익 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "전사 영업이익 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 매출 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 매출 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 영업이익 · FY2025 Q4"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+       "label": "클라우드 영업이익 · FY2025 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "전사 매출 · FY2026 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "전사 영업이익 · FY2026 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "클라우드 매출 · FY2026 Q1"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+       "label": "클라우드 영업이익 · FY2026 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "전사 매출 · FY2026 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "전사 영업이익 · FY2026 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "클라우드 매출 · FY2026 Q2"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "클라우드 영업이익 · FY2026 Q2"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "전사 매출",
+    "전사 영업이익",
+    "클라우드 매출",
+    "클라우드 영업이익"
+   ],
+   "period_labels": {
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "comparison_dates": {
+    "2024-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_profit_summary": true,
+   "change_mode": "none",
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html"
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 매출·영업이익",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "전사 매출": [
+     [
+      "2023-12-31",
+      229.0
+     ],
+     [
+      "2024-12-31",
+      1915.0
+     ],
+     [
+      "2025-12-31",
+      5131.0
+     ]
+    ],
+    "전사 영업이익": [
+     [
+      "2023-12-31",
+      -14.0
+     ],
+     [
+      "2024-12-31",
+      324.0
+     ],
+     [
+      "2025-12-31",
+      -46.0
+     ]
+    ],
+    "클라우드 매출": [
+     [
+      "2023-12-31",
+      229.0
+     ],
+     [
+      "2024-12-31",
+      1915.0
+     ],
+     [
+      "2025-12-31",
+      5131.0
+     ]
+    ],
+    "클라우드 영업이익": [
+     [
+      "2023-12-31",
+      -14.0
+     ],
+     [
+      "2024-12-31",
+      324.0
+     ],
+     [
+      "2025-12-31",
+      -46.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "전사 매출": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "전사 영업이익": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "클라우드 매출": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated revenue",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    },
+    "클라우드 영업이익": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+        "filed": "2026-03-02",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "single reportable AI cloud segment · same consolidated profit",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "전사 매출": {
+     "2023-12-31": [
+      "전사 매출 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "229.000 백만 USD",
+      "reported annual",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-12-31": [
+      "전사 매출 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "1,915.000 백만 USD",
+      "reported annual",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-12-31": [
+      "전사 매출 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "5,131.000 백만 USD",
+      "reported annual",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ]
+    },
+    "전사 영업이익": {
+     "2023-12-31": [
+      "전사 영업이익 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "전사 연결 전체",
+      "-14.000 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-12-31": [
+      "전사 영업이익 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "전사 연결 전체",
+      "324.000 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-12-31": [
+      "전사 영업이익 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "전사 연결 전체",
+      "-46.000 백만 USD",
+      "reported annual",
+      "us-gaap:OperatingIncomeLoss"
+     ]
+    },
+    "클라우드 매출": {
+     "2023-12-31": [
+      "클라우드 매출 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "AI Cloud Platform",
+      "229.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2024-12-31": [
+      "클라우드 매출 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "AI Cloud Platform",
+      "1,915.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ],
+     "2025-12-31": [
+      "클라우드 매출 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "AI Cloud Platform",
+      "5,131.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated revenue",
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     ]
+    },
+    "클라우드 영업이익": {
+     "2023-12-31": [
+      "클라우드 영업이익 · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "AI Cloud Platform",
+      "-14.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2024-12-31": [
+      "클라우드 영업이익 · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "AI Cloud Platform",
+      "324.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ],
+     "2025-12-31": [
+      "클라우드 영업이익 · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "AI Cloud Platform",
+      "-46.000 백만 USD",
+      "single reportable AI cloud segment · same consolidated profit",
+      "us-gaap:OperatingIncomeLoss"
+     ]
+    }
+   },
+   "point_sources": {
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 매출 · FY2023"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 영업이익 · FY2023"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 매출 · FY2023"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 영업이익 · FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 매출 · FY2024"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 영업이익 · FY2024"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 매출 · FY2024"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 영업이익 · FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 매출 · FY2025"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "전사 영업이익 · FY2025"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 매출 · FY2025"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+       "label": "클라우드 영업이익 · FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "전사 매출",
+    "전사 영업이익",
+    "클라우드 매출",
+    "클라우드 영업이익"
+   ],
+   "period_labels": {
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "change_mode": "none",
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html"
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 매출·영업이익",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "series": {
+  "전사 매출": [
+   [
+    "2024-03-31",
+    188.684
+   ],
+   [
+    "2024-06-30",
+    395.371
+   ],
+   [
+    "2024-09-30",
+    583.941
+   ],
+   [
+    "2024-12-31",
+    747.004
+   ],
+   [
+    "2025-03-31",
+    982.0
+   ],
+   [
+    "2025-06-30",
+    1212.0
+   ],
+   [
+    "2025-09-30",
+    1364.676
+   ],
+   [
+    "2025-12-31",
+    1571.904
+   ],
+   [
+    "2026-03-31",
+    2078.0
+   ],
+   [
+    "2026-06-30",
+    2575.0
+   ]
+  ],
+  "전사 영업이익": [
+   [
+    "2024-03-31",
+    16.847
+   ],
+   [
+    "2024-06-30",
+    77.721
+   ],
+   [
+    "2024-09-30",
+    117.116
+   ],
+   [
+    "2024-12-31",
+    112.316
+   ],
+   [
+    "2025-03-31",
+    -27.0
+   ],
+   [
+    "2025-06-30",
+    19.0
+   ],
+   [
+    "2025-09-30",
+    51.85
+   ],
+   [
+    "2025-12-31",
+    -89.589
+   ],
+   [
+    "2026-03-31",
+    -144.0
+   ],
+   [
+    "2026-06-30",
+    -49.0
+   ]
+  ],
+  "클라우드 매출": [
+   [
+    "2024-03-31",
+    188.684
+   ],
+   [
+    "2024-06-30",
+    395.371
+   ],
+   [
+    "2024-09-30",
+    583.941
+   ],
+   [
+    "2024-12-31",
+    747.004
+   ],
+   [
+    "2025-03-31",
+    982.0
+   ],
+   [
+    "2025-06-30",
+    1212.0
+   ],
+   [
+    "2025-09-30",
+    1364.676
+   ],
+   [
+    "2025-12-31",
+    1571.904
+   ],
+   [
+    "2026-03-31",
+    2078.0
+   ],
+   [
+    "2026-06-30",
+    2575.0
+   ]
+  ],
+  "클라우드 영업이익": [
+   [
+    "2024-03-31",
+    16.847
+   ],
+   [
+    "2024-06-30",
+    77.721
+   ],
+   [
+    "2024-09-30",
+    117.116
+   ],
+   [
+    "2024-12-31",
+    112.316
+   ],
+   [
+    "2025-03-31",
+    -27.0
+   ],
+   [
+    "2025-06-30",
+    19.0
+   ],
+   [
+    "2025-09-30",
+    51.85
+   ],
+   [
+    "2025-12-31",
+    -89.589
+   ],
+   [
+    "2026-03-31",
+    -144.0
+   ],
+   [
+    "2026-06-30",
+    -49.0
+   ]
+  ]
+ },
+ "series_sources": {
+  "전사 매출": {
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+    "filed": "2025-05-15",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+    "filed": "2025-08-13",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-01-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2025-01-01",
+    "end": "2025-12-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "전사 영업이익": {
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+    "filed": "2025-05-15",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+    "filed": "2025-08-13",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-01-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2025-01-01",
+    "end": "2025-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "클라우드 매출": {
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+    "filed": "2025-05-15",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+    "filed": "2025-08-13",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-01-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2025-01-01",
+    "end": "2025-12-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated revenue",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  },
+  "클라우드 영업이익": {
+   "2024-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+    "filed": "2025-05-15",
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+      "filed": "2025-05-15",
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2024 Q1",
+    "observed_date": "2024-03-31",
+    "period_start": "2024-01-01"
+   },
+   "2024-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+    "filed": "2025-08-13",
+    "start": "2024-04-01",
+    "end": "2024-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+      "filed": "2025-08-13",
+      "start": "2024-04-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2024 Q2",
+    "observed_date": "2024-06-30",
+    "period_start": "2024-04-01"
+   },
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2024-01-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+    "filed": "2025-11-13",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+    "filed": "2026-03-02",
+    "start": "2025-01-01",
+    "end": "2025-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+      "filed": "2026-03-02",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+      "filed": "2025-11-13",
+      "start": "2025-01-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+    "filed": "2026-05-08",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "single reportable AI cloud segment · same consolidated profit",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  }
+ },
+ "series_point_notes": {
+  "전사 매출": {
+   "2024-03-31": [
+    "전사 매출 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "전사 연결 전체",
+    "188.684 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-06-30": [
+    "전사 매출 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "전사 연결 전체",
+    "395.371 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-09-30": [
+    "전사 매출 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "전사 연결 전체",
+    "583.941 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-12-31": [
+    "전사 매출 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "전사 연결 전체",
+    "747.004 백만 USD",
+    "same fiscal-year YTD minus prior YTD",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-03-31": [
+    "전사 매출 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "전사 연결 전체",
+    "982.000 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-06-30": [
+    "전사 매출 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "전사 연결 전체",
+    "1,212.000 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-09-30": [
+    "전사 매출 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "전사 연결 전체",
+    "1,364.676 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-12-31": [
+    "전사 매출 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "전사 연결 전체",
+    "1,571.904 백만 USD",
+    "same fiscal-year YTD minus prior YTD",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2026-03-31": [
+    "전사 매출 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "전사 연결 전체",
+    "2,078.000 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2026-06-30": [
+    "전사 매출 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "전사 연결 전체",
+    "2,575.000 백만 USD",
+    "reported quarter",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ]
+  },
+  "전사 영업이익": {
+   "2024-03-31": [
+    "전사 영업이익 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "전사 연결 전체",
+    "16.847 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-06-30": [
+    "전사 영업이익 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "전사 연결 전체",
+    "77.721 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-09-30": [
+    "전사 영업이익 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "전사 연결 전체",
+    "117.116 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-12-31": [
+    "전사 영업이익 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "전사 연결 전체",
+    "112.316 백만 USD",
+    "same fiscal-year YTD minus prior YTD",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-03-31": [
+    "전사 영업이익 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "전사 연결 전체",
+    "-27.000 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-06-30": [
+    "전사 영업이익 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "전사 연결 전체",
+    "19.000 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-09-30": [
+    "전사 영업이익 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "전사 연결 전체",
+    "51.850 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-12-31": [
+    "전사 영업이익 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "전사 연결 전체",
+    "-89.589 백만 USD",
+    "same fiscal-year YTD minus prior YTD",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2026-03-31": [
+    "전사 영업이익 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "전사 연결 전체",
+    "-144.000 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2026-06-30": [
+    "전사 영업이익 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "전사 연결 전체",
+    "-49.000 백만 USD",
+    "reported quarter",
+    "us-gaap:OperatingIncomeLoss"
+   ]
+  },
+  "클라우드 매출": {
+   "2024-03-31": [
+    "클라우드 매출 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "AI Cloud Platform",
+    "188.684 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-06-30": [
+    "클라우드 매출 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "AI Cloud Platform",
+    "395.371 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-09-30": [
+    "클라우드 매출 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "AI Cloud Platform",
+    "583.941 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2024-12-31": [
+    "클라우드 매출 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "AI Cloud Platform",
+    "747.004 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-03-31": [
+    "클라우드 매출 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "AI Cloud Platform",
+    "982.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-06-30": [
+    "클라우드 매출 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "AI Cloud Platform",
+    "1,212.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-09-30": [
+    "클라우드 매출 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "AI Cloud Platform",
+    "1,364.676 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2025-12-31": [
+    "클라우드 매출 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "AI Cloud Platform",
+    "1,571.904 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2026-03-31": [
+    "클라우드 매출 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "AI Cloud Platform",
+    "2,078.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ],
+   "2026-06-30": [
+    "클라우드 매출 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "AI Cloud Platform",
+    "2,575.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated revenue",
+    "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+   ]
+  },
+  "클라우드 영업이익": {
+   "2024-03-31": [
+    "클라우드 영업이익 · FY2024 Q1",
+    "2024-01-01 ~ 2024-03-31",
+    "AI Cloud Platform",
+    "16.847 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-06-30": [
+    "클라우드 영업이익 · FY2024 Q2",
+    "2024-04-01 ~ 2024-06-30",
+    "AI Cloud Platform",
+    "77.721 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-09-30": [
+    "클라우드 영업이익 · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "AI Cloud Platform",
+    "117.116 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2024-12-31": [
+    "클라우드 영업이익 · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "AI Cloud Platform",
+    "112.316 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-03-31": [
+    "클라우드 영업이익 · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "AI Cloud Platform",
+    "-27.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-06-30": [
+    "클라우드 영업이익 · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "AI Cloud Platform",
+    "19.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-09-30": [
+    "클라우드 영업이익 · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "AI Cloud Platform",
+    "51.850 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2025-12-31": [
+    "클라우드 영업이익 · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "AI Cloud Platform",
+    "-89.589 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2026-03-31": [
+    "클라우드 영업이익 · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "AI Cloud Platform",
+    "-144.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ],
+   "2026-06-30": [
+    "클라우드 영업이익 · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "AI Cloud Platform",
+    "-49.000 백만 USD",
+    "single reportable AI cloud segment · same consolidated profit",
+    "us-gaap:OperatingIncomeLoss"
+   ]
+  }
+ },
+ "point_sources": {
+  "2024-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+     "label": "전사 매출 · FY2024 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+     "label": "전사 영업이익 · FY2024 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+     "label": "클라우드 매출 · FY2024 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000014/0001769628-25-000014-index.html",
+     "label": "클라우드 영업이익 · FY2024 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+     "label": "전사 매출 · FY2024 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+     "label": "전사 영업이익 · FY2024 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+     "label": "클라우드 매출 · FY2024 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000041/0001769628-25-000041-index.html",
+     "label": "클라우드 영업이익 · FY2024 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 매출 · FY2024 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 영업이익 · FY2024 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 매출 · FY2024 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 영업이익 · FY2024 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "전사 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "전사 영업이익 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 영업이익 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "클라우드 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 매출 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "클라우드 영업이익 · FY2024 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 영업이익 · FY2024 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "전사 매출 · FY2025 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "전사 영업이익 · FY2025 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "클라우드 매출 · FY2025 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "클라우드 영업이익 · FY2025 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "전사 매출 · FY2025 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "전사 영업이익 · FY2025 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "클라우드 매출 · FY2025 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "클라우드 영업이익 · FY2025 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 매출 · FY2025 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 영업이익 · FY2025 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 매출 · FY2025 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 영업이익 · FY2025 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "전사 매출 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 매출 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "전사 영업이익 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "전사 영업이익 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "클라우드 매출 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 매출 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/0001769628-26-000104-index.html",
+     "label": "클라우드 영업이익 · FY2025 Q4"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000062/0001769628-25-000062-index.html",
+     "label": "클라우드 영업이익 · FY2025 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "전사 매출 · FY2026 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "전사 영업이익 · FY2026 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "클라우드 매출 · FY2026 Q1"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000222/0001769628-26-000222-index.html",
+     "label": "클라우드 영업이익 · FY2026 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "전사 매출 · FY2026 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "전사 영업이익 · FY2026 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "클라우드 매출 · FY2026 Q2"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "클라우드 영업이익 · FY2026 Q2"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "전사 매출",
+  "전사 영업이익",
+  "클라우드 매출",
+  "클라우드 영업이익"
+ ],
+ "period_labels": {
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2024-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_profit_summary": true,
+ "change_mode": "none",
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+ "compact_tooltip": true
+}

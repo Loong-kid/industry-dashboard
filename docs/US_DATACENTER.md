@@ -21,6 +21,8 @@ Microsoft의 예전 Intelligent Cloud·현재 Agents and Infra는 Microsoft Clou
 
 미국 탭 앞쪽에는 **클라우드 매출·영업이익·영업이익률·RPO의 선 그래프와 CAPEX의 기업별 나란한 막대 그래프**가 있다. 각 그래프에서 기업 이름을 클릭해 여러 회사를 동시에 켜거나 끈다. 선택은 분기·연간 전환과 기간 변경에도 유지한다. Microsoft·Oracle의 클라우드 단독 영업이익과 Meta의 외부 클라우드 사업은 빈값으로 표시한다. Microsoft 이익률 비교에는 아래의 명시적 부문 대리치를 추가한다.
 
+미국 탭은 하이퍼스케일러와 네오클라우드로 구분한다. 기존 지표는 `#/datacenter/us/hyperscalers`에 유지하고 `#/datacenter/us`도 같은 보기로 연다. CoreWeave·Nebius·IREN의 구성·범위·독립 수집은 [NEOCLOUD.md](NEOCLOUD.md)를 참고한다.
+
 ### Microsoft 공시 범위
 
 회사별 전사 매출·영업이익과 클라우드 매출·영업이익은 **매출·영업이익 차트 하나**에 통합한다. 각 지표 이름을 클릭해 여러 항목을 동시에 켜거나 끌 수 있으며 분기·연간 전환과 전체 기간 변경에도 선택을 유지한다. 같은 USD 백만 단위를 사용하고, 영업이익률·비중·CAPEX·RPO는 별도 카드로 둔다. xAI는 SpaceX 전사와 AI/SI를 각각 표시한다. Microsoft·Oracle의 클라우드 단독 영업이익은 비활성 항목, Meta의 클라우드 항목은 해당 없음으로 유지한다. 통합 때문에 미공개 값을 0으로 만들거나 다른 사업부 이익을 대입하지 않는다. 기존 개별 지표 JSON과 원문 이력은 호환성을 위해 계속 갱신한다.

@@ -1,0 +1,1004 @@
+{
+ "id": "us_nc_nbis_capex",
+ "name": "Nebius · 전사 현금 CAPEX",
+ "unit": "USD 백만",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "compact_tooltip": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "nbis_capex",
+ "series_unavailable": {},
+ "series_colors": {
+  "Nebius": "#1baf7a"
+ },
+ "chart_type": "line",
+ "description": "미국 상장·네덜란드 본사 · 계속영업 연결과 Nebius AI cloud 구분",
+ "basis_details": [
+  {
+   "label": "Nebius 범위",
+   "value": "전사 계속영업에는 AI cloud 외 Avride·TripleTen 등이 포함됩니다. 매각된 러시아 Yandex와 중단영업 Toloka를 현재 AI 클라우드 매출로 연결하지 않습니다. 과거 비교 수치가 재작성되면 최근 공시를 우선하며, 연간과 예전 분기 합계는 재분류 때문에 다를 수 있습니다. AI cloud의 Adjusted EBITDA를 GAAP 영업이익으로 대입하지 않습니다. CAPEX는 회사 현금흐름표의 유형·무형자산 취득액입니다."
+  },
+  {
+   "label": "기간·지역",
+   "value": "미국 상장 기업의 글로벌 실적입니다. Nebius는 네덜란드, IREN은 호주 본사입니다. IREN은 6월, 나머지는 12월 결산이며 비교 차트는 실제 종료일이 속한 달력 분기·FY 결산연도로 정렬합니다. 표에서 실제 기간을 확인하세요."
+  },
+  {
+   "label": "참고",
+   "value": "실제 현금 투자액입니다. Nebius는 회사 공시의 유형·무형자산 취득, CoreWeave·IREN은 유형자산 취득입니다. 비현금 리스·미래 투자계획·가이던스는 합산하지 않습니다."
+  }
+ ],
+ "source": "SEC · 기업 공식 공시",
+ "fetched": "2026-11-01",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-01",
+  "message": "공시 조회 완료"
+ },
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 실제 회계기간",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "series": {
+    "Nebius": [
+     [
+      "2024-09-30",
+      172.1
+     ],
+     [
+      "2024-12-31",
+      417.5
+     ],
+     [
+      "2025-03-31",
+      543.9
+     ],
+     [
+      "2025-06-30",
+      510.6
+     ],
+     [
+      "2025-09-30",
+      955.5
+     ],
+     [
+      "2025-12-31",
+      2056.0
+     ],
+     [
+      "2026-03-31",
+      2472.9
+     ],
+     [
+      "2026-06-30",
+      5657.4
+     ]
+    ]
+   },
+   "series_sources": {
+    "Nebius": {
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+      "filed": "2025-11-12",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+        "filed": "2025-11-12",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q3",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2024 Q4",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q1",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+        "filed": "2026-08-12",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q2",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+      "filed": "2025-11-12",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+        "filed": "2025-11-12",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+        "filed": "2026-02-12",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+        "filed": "2026-05-20",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q1",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+        "filed": "2026-08-12",
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2026 Q2",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Nebius": {
+     "2024-09-30": [
+      "Nebius · FY2024 Q3",
+      "2024-07-01 ~ 2024-09-30",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "172.1000 USD 백만"
+     ],
+     "2024-12-31": [
+      "Nebius · FY2024 Q4",
+      "2024-10-01 ~ 2024-12-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "417.5000 USD 백만"
+     ],
+     "2025-03-31": [
+      "Nebius · FY2025 Q1",
+      "2025-01-01 ~ 2025-03-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "543.9000 USD 백만"
+     ],
+     "2025-06-30": [
+      "Nebius · FY2025 Q2",
+      "2025-04-01 ~ 2025-06-30",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "510.6000 USD 백만"
+     ],
+     "2025-09-30": [
+      "Nebius · FY2025 Q3",
+      "2025-07-01 ~ 2025-09-30",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "955.5000 USD 백만"
+     ],
+     "2025-12-31": [
+      "Nebius · FY2025 Q4",
+      "2025-10-01 ~ 2025-12-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "2,056.0000 USD 백만"
+     ],
+     "2026-03-31": [
+      "Nebius · FY2026 Q1",
+      "2026-01-01 ~ 2026-03-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "2,472.9000 USD 백만"
+     ],
+     "2026-06-30": [
+      "Nebius · FY2026 Q2",
+      "2026-04-01 ~ 2026-06-30",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported quarter",
+      "5,657.4000 USD 백만"
+     ]
+    }
+   },
+   "point_sources": {
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+       "label": "Nebius · FY2024 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "Nebius · FY2024 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "Nebius · FY2025 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+       "label": "Nebius · FY2025 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+       "label": "Nebius · FY2025 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+       "label": "Nebius · FY2025 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+       "label": "Nebius · FY2026 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+       "label": "Nebius · FY2026 Q2"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Nebius"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+   "comparison_dates": {
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": true,
+   "change_mode": "none",
+   "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 실제 회계기간",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "series": {
+    "Nebius": [
+     [
+      "2023-12-31",
+      82.9
+     ],
+     [
+      "2024-12-31",
+      807.5
+     ],
+     [
+      "2025-12-31",
+      4066.0
+     ]
+    ]
+   },
+   "series_sources": {
+    "Nebius": {
+     "2023-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2023",
+      "observed_date": "2023-12-31",
+      "period_start": "2023-01-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2024",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-01-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+      "filed": "2026-04-30",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+        "filed": "2026-04-30",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       }
+      ],
+      "calculation": "reported annual",
+      "period": "FY2025",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-01-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "Nebius": {
+     "2023-12-31": [
+      "Nebius · FY2023",
+      "2023-01-01 ~ 2023-12-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported annual",
+      "82.9000 USD 백만"
+     ],
+     "2024-12-31": [
+      "Nebius · FY2024",
+      "2024-01-01 ~ 2024-12-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported annual",
+      "807.5000 USD 백만"
+     ],
+     "2025-12-31": [
+      "Nebius · FY2025",
+      "2025-01-01 ~ 2025-12-31",
+      "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+      "reported annual",
+      "4,066.0000 USD 백만"
+     ]
+    }
+   },
+   "point_sources": {
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "Nebius · FY2023"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "Nebius · FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+       "label": "Nebius · FY2025"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "Nebius"
+   ],
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/0001104659-26-052948-index.html",
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none",
+   "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 실제 회계기간",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "series": {
+  "Nebius": [
+   [
+    "2024-09-30",
+    172.1
+   ],
+   [
+    "2024-12-31",
+    417.5
+   ],
+   [
+    "2025-03-31",
+    543.9
+   ],
+   [
+    "2025-06-30",
+    510.6
+   ],
+   [
+    "2025-09-30",
+    955.5
+   ],
+   [
+    "2025-12-31",
+    2056.0
+   ],
+   [
+    "2026-03-31",
+    2472.9
+   ],
+   [
+    "2026-06-30",
+    5657.4
+   ]
+  ]
+ },
+ "series_sources": {
+  "Nebius": {
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+    "filed": "2025-11-12",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+      "filed": "2025-11-12",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q3",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2024-10-01",
+    "end": "2024-12-31",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2024 Q4",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q1",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+    "filed": "2026-08-12",
+    "start": "2025-04-01",
+    "end": "2025-06-30",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+      "filed": "2026-08-12",
+      "start": "2025-04-01",
+      "end": "2025-06-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q2",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+    "filed": "2025-11-12",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+      "filed": "2025-11-12",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+    "filed": "2026-02-12",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+      "filed": "2026-02-12",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+    "filed": "2026-05-20",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+      "filed": "2026-05-20",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q1",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+    "filed": "2026-08-12",
+    "start": "2026-04-01",
+    "end": "2026-06-30",
+    "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+      "filed": "2026-08-12",
+      "start": "2026-04-01",
+      "end": "2026-06-30",
+      "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2026 Q2",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  }
+ },
+ "series_point_notes": {
+  "Nebius": {
+   "2024-09-30": [
+    "Nebius · FY2024 Q3",
+    "2024-07-01 ~ 2024-09-30",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "172.1000 USD 백만"
+   ],
+   "2024-12-31": [
+    "Nebius · FY2024 Q4",
+    "2024-10-01 ~ 2024-12-31",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "417.5000 USD 백만"
+   ],
+   "2025-03-31": [
+    "Nebius · FY2025 Q1",
+    "2025-01-01 ~ 2025-03-31",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "543.9000 USD 백만"
+   ],
+   "2025-06-30": [
+    "Nebius · FY2025 Q2",
+    "2025-04-01 ~ 2025-06-30",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "510.6000 USD 백만"
+   ],
+   "2025-09-30": [
+    "Nebius · FY2025 Q3",
+    "2025-07-01 ~ 2025-09-30",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "955.5000 USD 백만"
+   ],
+   "2025-12-31": [
+    "Nebius · FY2025 Q4",
+    "2025-10-01 ~ 2025-12-31",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "2,056.0000 USD 백만"
+   ],
+   "2026-03-31": [
+    "Nebius · FY2026 Q1",
+    "2026-01-01 ~ 2026-03-31",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "2,472.9000 USD 백만"
+   ],
+   "2026-06-30": [
+    "Nebius · FY2026 Q2",
+    "2026-04-01 ~ 2026-06-30",
+    "전사 계속영업 유형·무형자산 현금 취득 · 타사 PP&E 전용 범위와 차이",
+    "reported quarter",
+    "5,657.4000 USD 백만"
+   ]
+  }
+ },
+ "point_sources": {
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+     "label": "Nebius · FY2024 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "Nebius · FY2024 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "Nebius · FY2025 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+     "label": "Nebius · FY2025 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+     "label": "Nebius · FY2025 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926013946/tm266173d1_ex99-1.htm",
+     "label": "Nebius · FY2025 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926064092/nbis-20260331xex99d2.htm",
+     "label": "Nebius · FY2026 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+     "label": "Nebius · FY2026 Q2"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "Nebius"
+ ],
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+ "comparison_dates": {
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": true,
+ "change_mode": "none",
+ "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+}

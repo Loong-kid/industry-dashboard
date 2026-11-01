@@ -90,7 +90,8 @@ class HyperscalerTests(unittest.TestCase):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))
         dc=next(i for i in catalog['industries'] if i['id']=='datacenter')
         self.assertEqual([(t['id'],t['name']) for t in dc['tabs']],[('korea','한국'),('us','미국')])
-        korea=[s for s in dc['sections'] if s['tab']=='korea'];us=[s for s in dc['sections'] if s['tab']=='us']
+        korea=[s for s in dc['sections'] if s['tab']=='korea'];us=[s for s in dc['sections'] if s['tab']=='us' and s['view']=='hyperscalers']
+        self.assertEqual([v['id'] for v in dc['tabs'][1]['views']],['hyperscalers','neocloud'])
         self.assertEqual(len(korea),5);self.assertEqual({s.get('table_kind') for s in korea if s.get('type')=='table'},{'dc_summary','dc_facilities','dc_changes'})
         self.assertEqual([len(s['indicators']) for s in us],[5,4,7,4,4,3,4])
         ids=[i for s in us for i in s['indicators']];self.assertEqual(len(set(ids)),31)

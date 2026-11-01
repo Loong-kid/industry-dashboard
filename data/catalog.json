@@ -579,7 +579,8 @@
             "us_dc_compare_margin",
             "us_dc_compare_capex",
             "us_dc_compare_rpo"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -591,7 +592,8 @@
             "us_dc_amzn_cloud_share",
             "us_dc_amzn_capex",
             "us_dc_amzn_rpo"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -606,7 +608,8 @@
             "us_dc_msft_capex",
             "us_dc_msft_capex_extra",
             "us_dc_msft_rpo"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -618,7 +621,8 @@
             "us_dc_googl_cloud_share",
             "us_dc_googl_capex",
             "us_dc_googl_rpo"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -630,7 +634,8 @@
             "us_dc_orcl_cloud_share",
             "us_dc_orcl_capex",
             "us_dc_orcl_rpo"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -641,7 +646,8 @@
             "us_dc_meta_financials",
             "us_dc_meta_capex",
             "us_dc_meta_capex_extra"
-          ]
+          ],
+          "view": "hyperscalers"
         },
         {
           "tab": "us",
@@ -653,7 +659,63 @@
             "us_dc_xai_capex",
             "us_dc_xai_segment_share",
             "us_dc_xai_segment_capex"
-          ]
+          ],
+          "view": "hyperscalers"
+        },
+        {
+          "tab": "us",
+          "view": "neocloud",
+          "title": "네오클라우드 지표별 기업 비교",
+          "indicators": [
+            "us_nc_compare_revenue",
+            "us_nc_compare_profit",
+            "us_nc_compare_margin",
+            "us_nc_compare_capex",
+            "us_nc_compare_rpo"
+          ],
+          "layout": "financial"
+        },
+        {
+          "tab": "us",
+          "view": "neocloud",
+          "title": "CoreWeave · CRWV",
+          "description": "CoreWeave AI 클라우드 플랫폼 · 글로벌 연결 기준",
+          "indicators": [
+            "us_nc_crwv_financials",
+            "us_nc_crwv_cloud_share",
+            "us_nc_crwv_margin",
+            "us_nc_crwv_capex",
+            "us_nc_crwv_rpo"
+          ],
+          "layout": "financial"
+        },
+        {
+          "tab": "us",
+          "view": "neocloud",
+          "title": "Nebius · NBIS",
+          "description": "미국 상장·네덜란드 본사 · 계속영업 연결과 Nebius AI cloud 구분",
+          "indicators": [
+            "us_nc_nbis_financials",
+            "us_nc_nbis_cloud_share",
+            "us_nc_nbis_margin",
+            "us_nc_nbis_capex",
+            "us_nc_nbis_rpo"
+          ],
+          "layout": "financial"
+        },
+        {
+          "tab": "us",
+          "view": "neocloud",
+          "title": "IREN · IREN",
+          "description": "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+          "indicators": [
+            "us_nc_iren_financials",
+            "us_nc_iren_cloud_share",
+            "us_nc_iren_margin",
+            "us_nc_iren_capex",
+            "us_nc_iren_rpo"
+          ],
+          "layout": "financial"
         }
       ],
       "tabs": [
@@ -667,7 +729,22 @@
           "name": "미국",
           "default_range": "all",
           "auto_collect_time": "09:50",
-          "description": "클라우드 매출·영업이익·영업이익률·CAPEX·수주잔고(RPO)를 기업별로 비교합니다. Microsoft의 IC와 개편 후 Agents and Infra 이익률은 별도 대리치로 구분합니다. RPO는 회사별 공시 범위가 다른 기말 잔액입니다. 기업 이름을 클릭해 여러 회사를 함께 볼 수 있고, 아래에는 개별 실적이 이어집니다."
+          "description": "미국 상장 클라우드 기업의 글로벌 실적입니다. 하이퍼스케일러와 GPU 중심 네오클라우드를 구분해 비교합니다.",
+          "views": [
+            {
+              "id": "hyperscalers",
+              "name": "하이퍼스케일러",
+              "description": "클라우드 매출·영업이익·영업이익률·CAPEX·수주잔고(RPO)를 기업별로 비교합니다. Microsoft의 IC와 개편 후 Agents and Infra 이익률은 별도 대리치로 구분합니다. RPO는 회사별 공시 범위가 다른 기말 잔액입니다. 기업 이름을 클릭해 여러 회사를 함께 볼 수 있고, 아래에는 개별 실적이 이어집니다.",
+              "auto_collect_time": "09:50"
+            },
+            {
+              "id": "neocloud",
+              "name": "네오클라우드",
+              "description": "CoreWeave·Nebius·IREN의 AI 클라우드 매출과 전사 GAAP 실적·투자·RPO를 비교합니다. Nebius·IREN의 클라우드 단독 영업이익은 미공개이며, 전사에는 다른 사업도 포함됩니다. 분기·연간과 실제 공시 기간을 선택해 확인할 수 있습니다.",
+              "auto_collect_time": "10:10",
+              "cadence": "매일 공시를 조회하며 실적은 회사 발표 후 갱신합니다. RPO는 실제 공개된 결산일 잔액만 표시하며, 계약 총액·ARR·리스 계약과 구분합니다."
+            }
+          ]
         }
       ]
     },

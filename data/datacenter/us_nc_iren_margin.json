@@ -1,0 +1,1573 @@
+{
+ "id": "us_nc_iren_margin",
+ "name": "IREN · 전사 GAAP 영업이익률",
+ "unit": "%",
+ "company_kpi": true,
+ "compact_ticks": true,
+ "compact_tooltip": true,
+ "span_gaps": false,
+ "company_comparison": true,
+ "comparison_metric": "iren_margin",
+ "series_unavailable": {},
+ "series_colors": {
+  "IREN": "#eda100"
+ },
+ "chart_type": "line",
+ "description": "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+ "basis_details": [
+  {
+   "label": "IREN 범위",
+   "value": "6월 결산이며 FY는 종료 연도입니다. 전사 매출·영업이익에는 비트코인 채굴이 포함되고 AI Cloud Services 매출만 별도로 구분합니다. 클라우드 매출총이익이나 Adjusted EBITDA를 영업이익으로 대체하지 않습니다. US GAAP 기준 공개 이력만 표시하고 이전 IFRS 계열을 이어 붙이지 않습니다. 전사 CAPEX는 채굴·GPU·데이터센터를 모두 포함합니다. ASC 606 RPO와 ASC 842 리스 계약 가치는 다르며 리스 계약을 RPO에 합산하지 않습니다."
+  },
+  {
+   "label": "기간·지역",
+   "value": "미국 상장 기업의 글로벌 실적입니다. Nebius는 네덜란드, IREN은 호주 본사입니다. IREN은 6월, 나머지는 12월 결산이며 비교 차트는 실제 종료일이 속한 달력 분기·FY 결산연도로 정렬합니다. 표에서 실제 기간을 확인하세요."
+  },
+  {
+   "label": "참고",
+   "value": "전사 GAAP 영업이익 / 같은 기간 전사 매출 × 100입니다. 클라우드 단독 이익률이 아니며 연간 비율은 연간 공시값으로 계산합니다."
+  }
+ ],
+ "source": "SEC · 기업 공식 공시",
+ "fetched": "2026-11-01",
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-01",
+  "message": "공시 조회 완료"
+ },
+ "default_view": "quarter",
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · 실제 회계기간",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2024-09-30": "FY2025 Q1",
+    "2024-12-31": "FY2025 Q2",
+    "2025-03-31": "FY2025 Q3",
+    "2025-06-30": "FY2025 Q4",
+    "2025-09-30": "FY2026 Q1",
+    "2025-12-31": "FY2026 Q2",
+    "2026-03-31": "FY2026 Q3",
+    "2026-06-30": "FY2026 Q4"
+   },
+   "series": {
+    "IREN": [
+     [
+      "2024-09-30",
+      -89.23887499052383
+     ],
+     [
+      "2024-12-31",
+      14.903912384625981
+     ],
+     [
+      "2025-03-31",
+      20.17290071328449
+     ],
+     [
+      "2025-06-30",
+      9.550861755974628
+     ],
+     [
+      "2025-09-30",
+      -31.796333673193367
+     ],
+     [
+      "2025-12-31",
+      -63.025469430186476
+     ],
+     [
+      "2026-03-31",
+      -161.2783590593598
+     ],
+     [
+      "2026-06-30",
+      -452.0918200036437
+     ]
+    ]
+   },
+   "series_sources": {
+    "IREN": {
+     "2024-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+          "filed": "2025-11-06",
+          "start": "2024-07-01",
+          "end": "2024-09-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+          "filed": "2025-11-06",
+          "start": "2024-07-01",
+          "end": "2024-09-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2025 Q1",
+      "observed_date": "2024-09-30",
+      "period_start": "2024-07-01"
+     },
+     "2024-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+          "filed": "2026-02-05",
+          "start": "2024-10-01",
+          "end": "2024-12-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+          "filed": "2026-02-05",
+          "start": "2024-10-01",
+          "end": "2024-12-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2025 Q2",
+      "observed_date": "2024-12-31",
+      "period_start": "2024-10-01"
+     },
+     "2025-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2025-01-01",
+          "end": "2025-03-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2025-01-01",
+          "end": "2025-03-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2025 Q3",
+      "observed_date": "2025-03-31",
+      "period_start": "2025-01-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2024-07-01",
+          "end": "2025-03-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2024-07-01",
+          "end": "2025-03-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2025 Q4",
+      "observed_date": "2025-06-30",
+      "period_start": "2025-04-01"
+     },
+     "2025-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+          "filed": "2025-11-06",
+          "start": "2025-07-01",
+          "end": "2025-09-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+          "filed": "2025-11-06",
+          "start": "2025-07-01",
+          "end": "2025-09-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2026 Q1",
+      "observed_date": "2025-09-30",
+      "period_start": "2025-07-01"
+     },
+     "2025-12-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+          "filed": "2026-02-05",
+          "start": "2025-10-01",
+          "end": "2025-12-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+          "filed": "2026-02-05",
+          "start": "2025-10-01",
+          "end": "2025-12-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2026 Q2",
+      "observed_date": "2025-12-31",
+      "period_start": "2025-10-01"
+     },
+     "2026-03-31": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2026-01-01",
+          "end": "2026-03-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported quarter"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2026-01-01",
+          "end": "2026-03-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported quarter"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2026 Q3",
+      "observed_date": "2026-03-31",
+      "period_start": "2026-01-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2025-07-01",
+          "end": "2026-03-31",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         },
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+          "filed": "2026-05-08",
+          "start": "2025-07-01",
+          "end": "2026-03-31",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "same fiscal-year YTD minus prior YTD"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2026 Q4",
+      "observed_date": "2026-06-30",
+      "period_start": "2026-04-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "IREN": {
+     "2024-09-30": [
+      "IREN · FY2025 Q1",
+      "2024-07-01 ~ 2024-09-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-89.2389 %"
+     ],
+     "2024-12-31": [
+      "IREN · FY2025 Q2",
+      "2024-10-01 ~ 2024-12-31",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "14.9039 %"
+     ],
+     "2025-03-31": [
+      "IREN · FY2025 Q3",
+      "2025-01-01 ~ 2025-03-31",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "20.1729 %"
+     ],
+     "2025-06-30": [
+      "IREN · FY2025 Q4",
+      "2025-04-01 ~ 2025-06-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "9.5509 %"
+     ],
+     "2025-09-30": [
+      "IREN · FY2026 Q1",
+      "2025-07-01 ~ 2025-09-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-31.7963 %"
+     ],
+     "2025-12-31": [
+      "IREN · FY2026 Q2",
+      "2025-10-01 ~ 2025-12-31",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-63.0255 %"
+     ],
+     "2026-03-31": [
+      "IREN · FY2026 Q3",
+      "2026-01-01 ~ 2026-03-31",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-161.2784 %"
+     ],
+     "2026-06-30": [
+      "IREN · FY2026 Q4",
+      "2026-04-01 ~ 2026-06-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-452.0918 %"
+     ]
+    }
+   },
+   "point_sources": {
+    "2024-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+       "label": "IREN · FY2025 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+       "label": "IREN · FY2025 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+       "label": "IREN · FY2025 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+       "label": "IREN · FY2025 Q4"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+       "label": "IREN · FY2026 Q1"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+       "label": "IREN · FY2026 Q2"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+       "label": "IREN · FY2026 Q3"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+       "label": "IREN · FY2026 Q4"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "IREN"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+   "comparison_dates": {
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none",
+   "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 실제 회계기간",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2024-06-30": "FY2024",
+    "2025-06-30": "FY2025",
+    "2026-06-30": "FY2026"
+   },
+   "series": {
+    "IREN": [
+     [
+      "2024-06-30",
+      -14.548698662336
+     ],
+     [
+      "2025-06-30",
+      3.458324268546554
+     ],
+     [
+      "2026-06-30",
+      -148.04860489358663
+     ]
+    ]
+   },
+   "series_sources": {
+    "IREN": {
+     "2024-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2023-07-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2023-07-01",
+          "end": "2024-06-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported annual"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2023-07-01",
+        "end": "2024-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2023-07-01",
+          "end": "2024-06-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported annual"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2024",
+      "observed_date": "2024-06-30",
+      "period_start": "2023-07-01"
+     },
+     "2025-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported annual"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported annual"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2025",
+      "observed_date": "2025-06-30",
+      "period_start": "2024-07-01"
+     },
+     "2026-06-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "tag": "us-gaap:OperatingIncomeLoss"
+         }
+        ],
+        "calculation": "reported annual"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "components": [
+         {
+          "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+          "filed": "2026-08-27",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+         }
+        ],
+        "calculation": "reported annual"
+       }
+      ],
+      "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "period": "FY2026",
+      "observed_date": "2026-06-30",
+      "period_start": "2025-07-01"
+     }
+    }
+   },
+   "series_point_notes": {
+    "IREN": {
+     "2024-06-30": [
+      "IREN · FY2024",
+      "2023-07-01 ~ 2024-06-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-14.5487 %"
+     ],
+     "2025-06-30": [
+      "IREN · FY2025",
+      "2024-07-01 ~ 2025-06-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "3.4583 %"
+     ],
+     "2026-06-30": [
+      "IREN · FY2026",
+      "2025-07-01 ~ 2026-06-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+      "-148.0486 %"
+     ]
+    }
+   },
+   "point_sources": {
+    "2024-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+       "label": "IREN · FY2024"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+       "label": "IREN · FY2025"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+       "label": "IREN · FY2026"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "default_series": [
+    "IREN"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+   "comparison_dates": {},
+   "quarterly_profit_summary": false,
+   "quarterly_revenue_summary": false,
+   "change_mode": "none",
+   "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+  }
+ },
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 실제 회계기간",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2024-09-30": "FY2025 Q1",
+  "2024-12-31": "FY2025 Q2",
+  "2025-03-31": "FY2025 Q3",
+  "2025-06-30": "FY2025 Q4",
+  "2025-09-30": "FY2026 Q1",
+  "2025-12-31": "FY2026 Q2",
+  "2026-03-31": "FY2026 Q3",
+  "2026-06-30": "FY2026 Q4"
+ },
+ "series": {
+  "IREN": [
+   [
+    "2024-09-30",
+    -89.23887499052383
+   ],
+   [
+    "2024-12-31",
+    14.903912384625981
+   ],
+   [
+    "2025-03-31",
+    20.17290071328449
+   ],
+   [
+    "2025-06-30",
+    9.550861755974628
+   ],
+   [
+    "2025-09-30",
+    -31.796333673193367
+   ],
+   [
+    "2025-12-31",
+    -63.025469430186476
+   ],
+   [
+    "2026-03-31",
+    -161.2783590593598
+   ],
+   [
+    "2026-06-30",
+    -452.0918200036437
+   ]
+  ]
+ },
+ "series_sources": {
+  "IREN": {
+   "2024-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+    "filed": "2025-11-06",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2024-07-01",
+      "end": "2024-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2024-07-01",
+        "end": "2024-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2025 Q1",
+    "observed_date": "2024-09-30",
+    "period_start": "2024-07-01"
+   },
+   "2024-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+    "filed": "2026-02-05",
+    "start": "2024-10-01",
+    "end": "2024-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2024-10-01",
+      "end": "2024-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2024-10-01",
+        "end": "2024-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2025 Q2",
+    "observed_date": "2024-12-31",
+    "period_start": "2024-10-01"
+   },
+   "2025-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+    "filed": "2026-05-08",
+    "start": "2025-01-01",
+    "end": "2025-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-01-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2025 Q3",
+    "observed_date": "2025-03-31",
+    "period_start": "2025-01-01"
+   },
+   "2025-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+    "filed": "2026-08-27",
+    "start": "2024-07-01",
+    "end": "2025-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2024-07-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2024-07-01",
+        "end": "2025-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2024-07-01",
+        "end": "2025-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2025 Q4",
+    "observed_date": "2025-06-30",
+    "period_start": "2025-04-01"
+   },
+   "2025-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+    "filed": "2025-11-06",
+    "start": "2025-07-01",
+    "end": "2025-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+      "filed": "2025-11-06",
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+        "filed": "2025-11-06",
+        "start": "2025-07-01",
+        "end": "2025-09-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2026 Q1",
+    "observed_date": "2025-09-30",
+    "period_start": "2025-07-01"
+   },
+   "2025-12-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+    "filed": "2026-02-05",
+    "start": "2025-10-01",
+    "end": "2025-12-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+      "filed": "2026-02-05",
+      "start": "2025-10-01",
+      "end": "2025-12-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+        "filed": "2026-02-05",
+        "start": "2025-10-01",
+        "end": "2025-12-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2026 Q2",
+    "observed_date": "2025-12-31",
+    "period_start": "2025-10-01"
+   },
+   "2026-03-31": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+    "filed": "2026-05-08",
+    "start": "2026-01-01",
+    "end": "2026-03-31",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+      "filed": "2026-05-08",
+      "start": "2026-01-01",
+      "end": "2026-03-31",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2026-01-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "reported quarter"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2026 Q3",
+    "observed_date": "2026-03-31",
+    "period_start": "2026-01-01"
+   },
+   "2026-06-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+    "filed": "2026-08-27",
+    "start": "2025-07-01",
+    "end": "2026-06-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-07-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+      "filed": "2026-08-27",
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+        "filed": "2026-08-27",
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+        "filed": "2026-05-08",
+        "start": "2025-07-01",
+        "end": "2026-03-31",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD"
+     }
+    ],
+    "calculation": "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "period": "FY2026 Q4",
+    "observed_date": "2026-06-30",
+    "period_start": "2026-04-01"
+   }
+  }
+ },
+ "series_point_notes": {
+  "IREN": {
+   "2024-09-30": [
+    "IREN · FY2025 Q1",
+    "2024-07-01 ~ 2024-09-30",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "-89.2389 %"
+   ],
+   "2024-12-31": [
+    "IREN · FY2025 Q2",
+    "2024-10-01 ~ 2024-12-31",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "14.9039 %"
+   ],
+   "2025-03-31": [
+    "IREN · FY2025 Q3",
+    "2025-01-01 ~ 2025-03-31",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "20.1729 %"
+   ],
+   "2025-06-30": [
+    "IREN · FY2025 Q4",
+    "2025-04-01 ~ 2025-06-30",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "9.5509 %"
+   ],
+   "2025-09-30": [
+    "IREN · FY2026 Q1",
+    "2025-07-01 ~ 2025-09-30",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "-31.7963 %"
+   ],
+   "2025-12-31": [
+    "IREN · FY2026 Q2",
+    "2025-10-01 ~ 2025-12-31",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "-63.0255 %"
+   ],
+   "2026-03-31": [
+    "IREN · FY2026 Q3",
+    "2026-01-01 ~ 2026-03-31",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "-161.2784 %"
+   ],
+   "2026-06-30": [
+    "IREN · FY2026 Q4",
+    "2026-04-01 ~ 2026-06-30",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "consolidated GAAP operating profit / same-period consolidated revenue × 100",
+    "-452.0918 %"
+   ]
+  }
+ },
+ "point_sources": {
+  "2024-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "label": "IREN · FY2025 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+     "label": "IREN · FY2025 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+     "label": "IREN · FY2025 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "label": "IREN · FY2025 Q4"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "label": "IREN · FY2026 Q1"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000015/0001878848-26-000015-index.html",
+     "label": "IREN · FY2026 Q2"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000026/0001878848-26-000026-index.html",
+     "label": "IREN · FY2026 Q3"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+     "label": "IREN · FY2026 Q4"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "default_series": [
+  "IREN"
+ ],
+ "updated": "2026-06-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+ "comparison_dates": {
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": false,
+ "change_mode": "none",
+ "empty_message": "이 기간의 실제 공시값을 아직 확보하지 못했습니다. 미공개를 0으로 채우지 않습니다."
+}

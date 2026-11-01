@@ -28,7 +28,9 @@ const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "�
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
-  if (id === "datacenter" && subtab === "us") return {file: "data/datacenter/us_hyperscalers_state.json", label: "하이퍼스케일러 갱신", workflow: "update-us-datacenter.yml"};
+  if (id === "datacenter" && subtab === "us") return window.dashboard?.state?.datacenterView === "neocloud"
+    ? {file: "data/datacenter/us_neocloud_state.json", label: "네오클라우드 갱신", workflow: "update-neocloud.yml"}
+    : {file: "data/datacenter/us_hyperscalers_state.json", label: "하이퍼스케일러 갱신", workflow: "update-us-datacenter.yml"};
   if (id === "natgas" && subtab?.startsWith("containment")) return {file: "data/natgas/containment_state.json", label: "보냉재 갱신", workflow: "update-lng-containment.yml"};
   if (id === "shipbuilding" && ["engines", "engine_parts", "aftermarket"].includes(subtab)) return {file: "data/shipbuilding/equipment_state.json", label: "기자재 실적 갱신", workflow: "update-shipbuilding-equipment.yml"};
   if (id === "oil" && subtab === "offshore") return REFRESH_TARGETS.offshore;
