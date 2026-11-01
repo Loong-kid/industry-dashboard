@@ -247,6 +247,16 @@ jobs:
           python -m unittest discover -s scripts -p test_ess_batteries.py
           node scripts/test_ess_battery_cards.cjs
 
+      # 🌐 지구본 사이트 목록: GEM LNG 터미널·ESS 공장 원장·manual/sites.json을 다시 묶는다(네트워크 없음).
+      - name: 지구본 사이트 목록 검증
+        id: gate_sites
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_sites.py
+      - name: 지구본 사이트 목록 집계
+        if: steps.gate_sites.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/build_sites.py
+
       - name: 광물 국가별 생산량·매장량 파서 검증
         id: gate_mineral_supply
         continue-on-error: true

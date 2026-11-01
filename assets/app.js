@@ -192,6 +192,7 @@ function renderNav() {
   const nav = document.getElementById("nav");
   nav.innerHTML = "";
   const groups = [
+    {name: "지도", ids: ["globe"]},
     {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "quantum", "drone"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
@@ -226,6 +227,7 @@ function renderNav() {
 let renderSeq = 0;
 let ppiCleanup = null;
 let gamesCleanup = null;
+let globeCleanup = null;
 async function renderIndustry(options = {}) {
   const ind = state.industry;
   if (!ind) return;
@@ -233,6 +235,7 @@ async function renderIndustry(options = {}) {
   dismissFinancialMemo();
   if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
   if (gamesCleanup) { gamesCleanup(); gamesCleanup = null; }
+  if (globeCleanup) { globeCleanup(); globeCleanup = null; }
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
   const selectedCategory = ind.material_categories?.find(category => category.id === state.materialCategory);
@@ -248,7 +251,7 @@ async function renderIndustry(options = {}) {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -270,6 +273,15 @@ async function renderIndustry(options = {}) {
       if (mySeq !== renderSeq) return;
       loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", tabsRoot: pageTabs, createFinancialCard});
     } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임 시장을 불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
+  }
+
+  if (ind.id === "globe") {
+    try {
+      const globe = await import("./globe.js");
+      if (mySeq !== renderSeq) return;
+      globeCleanup = globe.mount(content);
+    } catch (e) { if (mySeq === renderSeq) content.textContent = "지구본을 불러오지 못했습니다. 새로고침해 주세요."; }
     return;
   }
 

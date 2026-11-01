@@ -1,0 +1,62 @@
+{
+ "description": "지구본 탭 \"내가 등록한 사이트\". 한 줄에 사이트 하나. 지구본 화면의 '사이트 추가'로 위치를 찍으면 이 형식의 JSON을 복사해 준다. 필수: id(영문·숫자·_), name, lat, lon. 선택: company, category(아래 categories 키), country, status(operating/construction/planned/inactive), accuracy(facility/town/city…), url, note, detail({항목: 값}).",
+ "categories": {
+  "shipyard": "조선소",
+  "factory": "공장",
+  "terminal": "터미널·항만",
+  "mine": "광산",
+  "datacenter": "데이터센터",
+  "office": "본사·사무소",
+  "other": "기타"
+ },
+ "sites": [
+  {
+   "id": "hhi_ulsan",
+   "name": "HD현대중공업 울산조선소",
+   "company": "HD현대중공업",
+   "category": "shipyard",
+   "country": "한국",
+   "lat": 35.5047,
+   "lon": 129.417,
+   "accuracy": "district",
+   "status": "operating",
+   "note": "울산 동구 · OSM \"동구, 울산\" 구 중심"
+  },
+  {
+   "id": "shi_geoje",
+   "name": "삼성중공업 거제조선소",
+   "company": "삼성중공업",
+   "category": "shipyard",
+   "country": "한국",
+   "lat": 34.9068,
+   "lon": 128.5859,
+   "accuracy": "facility",
+   "status": "operating",
+   "note": "거제시 장평동 · OSM 시설 검색"
+  },
+  {
+   "id": "hanwha_okpo",
+   "name": "한화오션 거제사업장(옥포)",
+   "company": "한화오션",
+   "category": "shipyard",
+   "country": "한국",
+   "lat": 34.8948,
+   "lon": 128.693,
+   "accuracy": "town",
+   "status": "operating",
+   "note": "거제시 옥포동 · OSM 동 중심"
+  },
+  {
+   "id": "kshipbuilding_haenam",
+   "name": "대한조선 해남조선소",
+   "company": "대한조선",
+   "category": "shipyard",
+   "country": "한국",
+   "lat": 34.6893,
+   "lon": 126.3074,
+   "accuracy": "town",
+   "status": "operating",
+   "note": "해남군 화원면 · OSM 면 중심"
+  }
+ ]
+}

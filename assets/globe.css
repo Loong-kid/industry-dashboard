@@ -1,0 +1,85 @@
+/* 🌐 지구본 탭 (assets/globe.js) */
+.gl-root { max-width: 1480px; margin: 0 auto; }
+.gl-root [hidden] { display: none !important; }
+.gl-intro { margin: 8px 0 18px; max-width: 900px; }
+.gl-intro h2 { font-size: clamp(21px, 2.3vw, 29px); font-weight: 650; letter-spacing: -.035em; line-height: 1.35; margin-bottom: 8px; }
+.gl-intro p, .gl-note { color: var(--ink-2); font-size: 13px; line-height: 1.75; }
+.gl-root a { color: var(--accent); text-underline-offset: 3px; }
+.gl-root button, .gl-root input, .gl-root select, .gl-root textarea {
+  font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--baseline); border-radius: 5px;
+}
+.gl-root button { padding: 7px 11px; min-height: 36px; cursor: pointer; }
+.gl-root button[aria-pressed=true] { border-color: var(--accent); color: var(--accent); font-weight: 650; }
+
+.gl-layout { display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.gl-panel { display: grid; gap: 14px; min-width: 0; max-height: min(78vh, 820px); overflow: auto; padding-right: 4px; }
+.gl-group { border: 0; display: grid; gap: 6px; }
+.gl-group legend { font-size: 12px; color: var(--ink-2); margin-bottom: 4px; }
+.gl-group > div { display: grid; gap: 4px; }
+.gl-chip { display: flex; align-items: center; gap: 8px; font-size: 13px; min-height: 28px; cursor: pointer; }
+.gl-chip small { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: auto; }
+.gl-chip input { accent-color: var(--accent); }
+.gl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+.gl-status-mark { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--ink-2); }
+.gl-st-construction { opacity: .8; }
+.gl-st-planned { opacity: .55; }
+.gl-st-inactive { opacity: .3; }
+.gl-search { display: grid; gap: 6px; font-size: 12px; color: var(--ink-2); }
+.gl-search input { padding: 8px 10px; min-height: 38px; }
+.gl-count { font-size: 12px; color: var(--muted); }
+
+.gl-list { list-style: none; display: grid; gap: 2px; }
+.gl-list button { width: 100%; display: flex; align-items: center; gap: 9px; text-align: left; border-color: transparent; background: transparent; padding: 6px 6px; }
+.gl-list button:hover, .gl-list button[aria-current=true] { border-color: var(--border); background: var(--surface); }
+.gl-li-main { display: grid; min-width: 0; flex: 1; }
+.gl-li-main b { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gl-li-main small, .gl-li-st { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gl-more { font-size: 12px; color: var(--muted); padding: 6px; }
+
+.gl-detail { border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 12px 14px; display: grid; gap: 10px; }
+.gl-detail-head { display: flex; gap: 10px; align-items: start; }
+.gl-detail-head .gl-dot { margin-top: 6px; }
+.gl-detail-head div { flex: 1; min-width: 0; }
+.gl-detail h3 { font-size: 15px; letter-spacing: -.02em; line-height: 1.4; }
+.gl-detail-head p { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+.gl-root .gl-close { min-height: 28px; padding: 0 8px; border-color: transparent; font-size: 18px; line-height: 1; }
+.gl-detail dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 12px; }
+.gl-detail dt { color: var(--muted); white-space: nowrap; }
+.gl-detail dd { color: var(--ink); overflow-wrap: anywhere; }
+.gl-detail p { font-size: 12px; }
+.gl-near { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; color: var(--ink-2); }
+.gl-root .gl-near button { min-height: 28px; padding: 2px 7px; font-size: 12px; }
+
+.gl-stage { position: relative; min-width: 0; }
+.gl-globe { height: min(78vh, 820px); min-height: 420px; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 45%, var(--surface), var(--page) 70%); touch-action: none; }
+.gl-globe.gl-picking { cursor: crosshair; outline: 2px dashed var(--accent); outline-offset: -2px; }
+.gl-loading { position: absolute; inset: 0; display: grid; place-content: center; margin: 0; }
+.gl-tools { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: end; }
+.gl-tools button { background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(4px); }
+.gl-form { position: absolute; left: 12px; right: 12px; bottom: 12px; max-width: 560px; border: 1px solid var(--border); border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(6px); padding: 12px 14px; display: grid; gap: 10px; }
+.gl-form-hint { font-size: 12px; color: var(--ink-2); }
+.gl-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.gl-form-grid label { display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); min-width: 0; }
+.gl-form-grid input, .gl-form-grid select { padding: 6px 8px; min-height: 34px; width: 100%; }
+.gl-form-grid .gl-wide { grid-column: 1 / -1; }
+.gl-form-actions { display: flex; gap: 8px; }
+.gl-form-actions button[type=submit] { border-color: var(--accent); color: var(--accent); font-weight: 650; }
+
+.gl-tip { display: grid; gap: 2px; font: 12px/1.45 system-ui, sans-serif; color: #fff; background: rgba(11, 11, 11, .86); padding: 6px 9px; border-radius: 5px; max-width: 280px; }
+.gl-tip b { font-weight: 650; }
+.gl-tip span { color: #d6d5cf; }
+
+.gl-foot { margin-top: 26px; padding-top: 16px; border-top: 2px solid var(--grid); display: grid; gap: 10px; }
+.gl-foot h3 { font-size: 16px; letter-spacing: -.02em; }
+.gl-local-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+.gl-local-list small { color: var(--muted); }
+.gl-json { width: 100%; font: 12px/1.5 ui-monospace, Consolas, monospace; padding: 8px; resize: vertical; }
+
+@media (max-width: 860px) {
+  .gl-layout { grid-template-columns: minmax(0, 1fr); }
+  .gl-stage { order: -1; }
+  .gl-globe { height: 62vh; min-height: 340px; }
+  .gl-panel { max-height: none; overflow: visible; }
+  .gl-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
