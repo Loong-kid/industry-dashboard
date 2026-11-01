@@ -696,6 +696,7 @@ function buildTableRangePicker(current, onPick) {
 
 // ── 지표 카드 ───────────────────────────────────────────────────
 function renderCard(doc, indicatorId, options = {}) {
+  if (doc?.id?.startsWith("us_dc_")) doc = {...doc, compact_tooltip: true};
   // Alternate views keep physical levels and growth rates on separate axes.
   if (doc?.series_views) {
     state.cardViews ??= {};
@@ -732,6 +733,7 @@ function renderCard(doc, indicatorId, options = {}) {
   if (doc?.company_comparison) return renderUsDatacenterComparison(doc);
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
+  if (doc?.compact_tooltip) card.dataset.compactHovers = "true";
   const dateLabel = date => (doc?.period_labels?.[date] ? `${doc.period_labels[date]} · ${date}`
     : doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual" ? periodLabel(doc, date) : date)
     + (doc?.forecast_from && date >= doc.forecast_from ? " · 전망" : "");
@@ -892,7 +894,7 @@ function renderCard(doc, indicatorId, options = {}) {
       const button = document.createElement("button");
       button.type = "button"; button.className = "stat-value gm-money";
       button.textContent = value.textContent; button.dataset.moneyNote = memo.join("\n");
-      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. ${memo.join(". ")}`);
+      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. ${doc.compact_tooltip ? "클릭해 집계 기준 보기" : memo.join(". ")}`);
       value.replaceWith(button);
     }
   };
@@ -952,16 +954,18 @@ function renderCard(doc, indicatorId, options = {}) {
     info.style.cssText = "font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px;overflow-wrap:anywhere";
     const parts = [];
     if (doc.description) parts.push(escapeHtml(doc.description));
-    if (doc.note) parts.push(`<span style="opacity:.85">※ ${escapeHtml(doc.note)}</span>`);
+    if (doc.note && !doc.compact_tooltip) parts.push(`<span style="opacity:.85">※ ${escapeHtml(doc.note)}</span>`);
     info.innerHTML = parts.join("<br>");
     card.appendChild(info);
   }
 
-  const basisDetails = doc.basis_details || doc.price_details;
+  const basisDetails = doc.compact_tooltip && doc.note
+    ? [...(doc.basis_details || doc.price_details || []), {label: "참고", value: doc.note}]
+    : doc.basis_details || doc.price_details;
   if (basisDetails?.length) {
     const details = document.createElement("details");
     details.className = "price-details";
-    details.innerHTML = `<summary>${doc.basis_details ? "집계 기준 자세히" : "가격 기준 자세히"}</summary><dl>${basisDetails.map(item =>
+    details.innerHTML = `<summary>${doc.basis_details || doc.compact_tooltip ? "집계 기준 자세히" : "가격 기준 자세히"}</summary><dl>${basisDetails.map(item =>
       `<dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd>`).join("")}</dl>${doc.methodology_url ?
       `<a href="${escapeHtml(doc.methodology_url)}" target="_blank" rel="noopener">기준 해설 원문 ↗</a>` : ""}`;
     card.appendChild(details);
@@ -1044,6 +1048,7 @@ function installFinancialMemos() {
   tip.setAttribute("role", "tooltip"); tip.hidden = true; document.body.append(tip);
   let active = null;
   const buttonFor = target => target instanceof Element ? target.closest(".tc-root .gm-money") : null;
+  const automatic = button => button && !button.closest("[data-compact-hovers]");
   const hide = () => { active?.removeAttribute("aria-describedby"); active = null; tip.hidden = true; };
   const position = () => {
     if (!active?.isConnected) { hide(); return; }
@@ -1053,9 +1058,9 @@ function installFinancialMemos() {
     tip.style.top = `${Math.max(12, r.bottom+tip.offsetHeight+12>innerHeight ? r.top-tip.offsetHeight-8 : r.bottom+8)}px`;
   };
   const show = button => { hide(); active=button; tip.textContent=button.dataset.moneyNote; tip.hidden=false; button.setAttribute("aria-describedby",tip.id); position(); };
-  document.addEventListener("mouseover", e => { const b=buttonFor(e.target); if(b&&!b.contains(e.relatedTarget)) show(b); });
+  document.addEventListener("mouseover", e => { const b=buttonFor(e.target); if(automatic(b)&&!b.contains(e.relatedTarget)) show(b); });
   document.addEventListener("mouseout", e => { const b=buttonFor(e.target); if(b&&!b.contains(e.relatedTarget)&&document.activeElement!==b) hide(); });
-  document.addEventListener("focusin", e => { const b=buttonFor(e.target); if(b) show(b); });
+  document.addEventListener("focusin", e => { const b=buttonFor(e.target); if(automatic(b)) show(b); });
   document.addEventListener("focusout", e => { if(buttonFor(e.target)) hide(); });
   document.addEventListener("click", e => { const b=buttonFor(e.target); if(b) show(b); else hide(); });
   document.addEventListener("keydown", e => { if(e.key==="Escape") hide(); });
@@ -1726,8 +1731,9 @@ function drawChart(canvas, doc, filtered) {
             title: (items) => items.length ? periodLabel(doc, items[0].label)
               + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
             label: (c) => ` ${c.dataset.label}: ${observationLabel(doc, c.label, c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
-            afterLabel: c => doc.point_notes?.[c.label] || [],
+            afterLabel: c => doc.compact_tooltip ? [] : doc.point_notes?.[c.label] || [],
             afterBody: (items) => {
+              if (doc.compact_tooltip) return [];
               const dates = doc.source_dates?.[items[0]?.label];
               const report = doc.series_sources?.[items[0]?.dataset?.label]?.[items[0]?.label] || doc.period_sources?.[items[0]?.label];
               const samples = items.filter(item => doc.sample_counts?.[item.dataset?.label]).map(item =>

@@ -16,11 +16,24 @@ function renderUsDatacenterComparison(doc) {
   card.dataset.dcComparison = doc.comparison_metric;
   const chart = Chart.getChart(card.querySelector("canvas"));
   const names = Object.keys(doc.series), e = escapeHtml;
-  chart.options.plugins.tooltip.callbacks.afterLabel = c => doc.series_point_notes[c.dataset.label]?.[c.label] || [];
+  chart.options.plugins.tooltip.callbacks.afterLabel = () => [];
   chart.options.plugins.tooltip.callbacks.afterBody = () => [];
+  const fitMetrics = () => {
+    if (!doc.financial_metric_selector) return;
+    const values = chart.data.datasets.flatMap((d,i) => chart.isDatasetVisible(i) ? d.data.filter(Number.isFinite) : []);
+    const scale = chart.options.scales.y;
+    if (!values.length) {delete scale.min; delete scale.max;}
+    else {
+      const low = Math.min(0,...values), high = Math.max(0,...values), span = high-low || 1;
+      scale.min = low < 0 ? low-span*.04 : 0;
+      scale.max = high > 0 ? high+span*.04 : low < 0 ? 0 : 1;
+    }
+    chart.update("none");
+  };
   const updateHeadline = () => {
+    fitMetrics();
     if (!chart.data.datasets.some((_,i) => chart.isDatasetVisible(i))) {
-      card.querySelector('.card-stat').innerHTML = '<span class="stat-unit">비교할 기업을 선택하세요</span>';
+      card.querySelector('.card-stat').innerHTML = `<span class="stat-unit">${doc.financial_metric_selector ? '표시할 지표를 선택하세요' : '비교할 기업을 선택하세요'}</span>`;
       return;
     }
     const name = card.querySelector(".stat-series")?.textContent || (names.length === 1 ? names[0] : null);
@@ -34,7 +47,7 @@ function renderUsDatacenterComparison(doc) {
       const button = document.createElement("button");
       button.type = "button"; button.className = "stat-value gm-money";
       button.textContent = value.textContent; button.dataset.moneyNote = memo.join("\n");
-      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. ${memo.join(". ")}`);
+      button.setAttribute("aria-label", `${value.textContent} ${doc.unit}. 클릭해 집계 기준 보기`);
       value.replaceWith(button);
     }
   };
@@ -43,8 +56,8 @@ function renderUsDatacenterComparison(doc) {
     const empty = !doc.series[name].some(([,v]) => v != null);
     input.disabled = empty;
     if (empty) {
-      chip.append(name === "Meta" ? " · 해당 없음" : " · 미공개");
-      chip.title = doc.series_unavailable[name] || "선택 기간에 공시된 자료가 없습니다.";
+      chip.append(" · " + (doc.series_status?.[name] || (name === "Meta" ? "해당 없음" : "미공개")));
+      chip.title = doc.compact_tooltip ? "범위·미공개 사유는 집계 기준에서 확인하세요." : doc.series_unavailable[name] || "선택 기간에 공시된 자료가 없습니다.";
     } else if (name.startsWith("xAI")) chip.title = "Grok·X·Cursor 등을 포함한 AI/SI 사업부";
     chip.tabIndex = empty ? -1 : 0;
     chip.setAttribute("role", "checkbox");

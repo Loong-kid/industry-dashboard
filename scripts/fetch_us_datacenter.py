@@ -10,6 +10,7 @@ from us_datacenter_sources import parse_instance
 from us_datacenter_xai import collect_xai
 from us_datacenter_contracts import collect as collect_contracts
 from us_datacenter_extra_presentations import rpo_document,proxy_margin_document
+from us_datacenter_financials import financial_document
 from us_datacenter_presentations import comparison_document,METRICS as COMPARISON_METRICS
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -208,6 +209,7 @@ def collect(full=False,offline=False):
     for key,spec in meta.items():
         for metric in metrics_for(key,spec):
             save(OUT/f'us_dc_{key}_{metric}.json',document(key,metric,spec,state['companies'][key]))
+        financial=financial_document(key,spec,state['companies'][key]);save(OUT/(financial['id']+'.json'),financial)
     for metric in COMPARISON_METRICS:
         comparison=comparison_document(metric,meta,state['companies']);save(OUT/(comparison['id']+'.json'),comparison)
     for key in ('amzn','msft','googl','orcl'):
@@ -216,7 +218,7 @@ def collect(full=False,offline=False):
         margin=proxy_margin_document(segment,state['companies']['msft']);save(OUT/(margin['id']+'.json'),margin)
     if not offline:state['updated']=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
     save(OUT/'us_hyperscalers_state.json',state)
-    print('Published',sum(len(metrics_for(k,s)) for k,s in meta.items())+len(COMPARISON_METRICS)+6,'hyperscaler metric cards',flush=True)
+    print('Published',sum(len(metrics_for(k,s)) for k,s in meta.items())+len(COMPARISON_METRICS)+6+len(meta),'hyperscaler documents',flush=True)
     return state
 
 

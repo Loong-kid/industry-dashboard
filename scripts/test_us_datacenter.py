@@ -8,6 +8,7 @@ from us_datacenter_sources import parse_spacex_bootstrap
 from us_datacenter_xai import BOOTSTRAP,periods
 from us_datacenter_presentations import comparison_document
 from us_datacenter_extra_presentations import rpo_document,proxy_margin_document
+from us_datacenter_financials import financial_document
 from us_datacenter_contracts import parse_instance as parse_contracts,snapshots,fiscal_snapshots,segment_income
 
 
@@ -71,7 +72,7 @@ class HyperscalerTests(unittest.TestCase):
                         self.assertLessEqual(ref['filed'],c['checked']);self.assertTrue(ref['url'].startswith('https://www.sec.gov/'))
             for path in (ROOT/'data/datacenter').glob('us_dc_'+key+'_*.json'):
                 metric=path.stem[len('us_dc_'+key+'_'):];d=json.loads(path.read_text(encoding='utf8'))
-                expected=rpo_document(key,self.meta[key],c) if metric=='rpo' else proxy_margin_document(metric[:2],c) if key=='msft' and metric in ('ic_margin','ai_margin') else document(key,metric,self.meta[key],c)
+                expected=financial_document(key,self.meta[key],c) if metric=='financials' else rpo_document(key,self.meta[key],c) if metric=='rpo' else proxy_margin_document(metric[:2],c) if key=='msft' and metric in ('ic_margin','ai_margin') else document(key,metric,self.meta[key],c)
                 self.assertEqual(d,expected)
                 if d.get('disclosure_status')=='not_disclosed':
                     self.assertNotIn('series',d);continue
@@ -91,8 +92,10 @@ class HyperscalerTests(unittest.TestCase):
         self.assertEqual([(t['id'],t['name']) for t in dc['tabs']],[('korea','한국'),('us','미국')])
         korea=[s for s in dc['sections'] if s['tab']=='korea'];us=[s for s in dc['sections'] if s['tab']=='us']
         self.assertEqual(len(korea),5);self.assertEqual({s.get('table_kind') for s in korea if s.get('type')=='table'},{'dc_summary','dc_facilities','dc_changes'})
-        self.assertEqual([len(s['indicators']) for s in us],[5,7,10,7,7,4,7])
-        ids=[i for s in us for i in s['indicators']];self.assertEqual(len(set(ids)),47)
+        self.assertEqual([len(s['indicators']) for s in us],[5,4,7,4,4,3,4])
+        ids=[i for s in us for i in s['indicators']];self.assertEqual(len(set(ids)),31)
+        self.assertEqual(len([i for i in ids if i.endswith('_financials')]),6)
+        self.assertFalse(any(i.endswith(('_revenue','_profit')) and not i.startswith('us_dc_compare_') for i in ids))
         self.assertFalse(any(i.endswith('_summary') for i in ids))
         for id in ids:self.assertTrue((ROOT/f'data/datacenter/{id}.json').exists())
 
@@ -186,6 +189,29 @@ class HyperscalerTests(unittest.TestCase):
         self.assertEqual(q4['refs']['profit']['filed'],'2023-07-27')
         self.assertEqual((annual['revenue'],annual['profit']),(72944,28411))
         self.assertEqual(annual['refs']['profit']['filed'],'2025-07-30')
+
+    def test_unified_financial_series_keep_values_losses_and_undisclosed_scopes(self):
+        companies=json.loads((ROOT/'data/datacenter/us_hyperscalers_state.json').read_text(encoding='utf8'))['companies']
+        amzn=financial_document('amzn',self.meta['amzn'],companies['amzn'])
+        self.assertEqual([dict(s)['2026-09-30'] for s in amzn['series'].values()],[201944,28076,45984,17773])
+        self.assertEqual(len(amzn['default_series']),4)
+        msft=financial_document('msft',self.meta['msft'],companies['msft'])
+        self.assertEqual(dict(msft['series']['클라우드 매출'])['2026-09-30'],63900)
+        self.assertEqual(msft['series']['클라우드 영업이익'],[])
+        self.assertEqual(msft['series_status']['클라우드 영업이익'],'미공개')
+        meta=financial_document('meta',self.meta['meta'],companies['meta'])
+        self.assertEqual(meta['series']['클라우드 매출'],[])
+        self.assertEqual(meta['series_status']['클라우드 매출'],'해당 없음')
+        goog=financial_document('googl',self.meta['googl'],companies['googl'])
+        self.assertTrue(any(v<0 for _,v in goog['series']['클라우드 영업이익'] if v is not None))
+        xai=financial_document('xai',self.meta['xai'],companies['xai'])
+        self.assertEqual([dict(s)['2026-09-30'] for s in xai['series'].values()],[14575,2791,7560,431])
+        self.assertNotIn('클라우드 매출',xai['series'])
+        for key,c in companies.items():
+            d=financial_document(key,self.meta[key],c)
+            for kind in ('quarter','annual'):
+                for refs in d['series_views'][kind]['series_sources'].values():
+                    self.assertTrue(all(r['url'].startswith('https://www.sec.gov/') for r in refs.values()))
 
     def test_spacex_public_native_and_ipo_history_keep_ai_scope(self):
         raw=(ROOT/'scripts/fixtures/us_datacenter/xai.xml').read_bytes()
