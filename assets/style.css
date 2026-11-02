@@ -228,7 +228,14 @@ html { scroll-padding-top: calc(var(--dashboard-header-height) + 16px); }
 .modal-status.ok { color: var(--up); }
 .modal-status.err { color: var(--down); }
 
-.range-picker { display: flex; gap: 4px; }
+.range-picker { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.range-dates { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; color: var(--muted); font-size: 12px; }
+.range-dates input {
+  font: inherit; font-size: 12px; padding: 3px 6px; width: 128px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--ink-2); color-scheme: light dark;
+}
+.range-dates input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .range-picker button {
   font: inherit; font-size: 12px;
   padding: 5px 12px;
@@ -708,6 +715,13 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .wafer-evidence .series-view-controls { flex-wrap: wrap; }
 
 /* ── 그래프 카드 너비 조절 (card-resize.js) ── */
+.card-size-reset {
+  font: inherit; font-size: 12px; padding: 5px 12px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--ink-2);
+}
+.card-size-reset:hover:not(:disabled) { background: var(--surface); color: var(--ink); }
+.card-size-reset:disabled { cursor: default; color: var(--muted); opacity: .6; }
 .card-resizable { position: relative; }
 .card-resize-free { display: flex !important; flex-wrap: wrap; }
 .card-resize-handle {
@@ -726,5 +740,5 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .card-resize-handle:focus-visible { outline: none; }
 body.card-resizing { cursor: ew-resize; user-select: none; }
 @media (hover: none), (max-width: 720px) {
-  .card-resize-handle { display: none; }
+  .card-resize-handle, .card-size-reset { display: none; }
 }

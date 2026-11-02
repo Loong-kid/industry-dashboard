@@ -150,6 +150,42 @@ if (typeof document !== "undefined") (() => {
     return `${routeKey()}|${name}|${Math.max(0, same.indexOf(item))}`;
   }
 
+  // 오른쪽 위 "크기 초기화": 지금 탭에서 바꾼 카드 크기를 모두 기본값으로 되돌린다.
+  function resetTab() {
+    const prefix = `${routeKey()}|`;
+    for (const key of Object.keys(saved)) if (key.startsWith(prefix)) delete saved[key];
+    persist();
+    const parents = new Set();
+    for (const item of document.querySelectorAll(".main .card-resizable")) {
+      const parent = layoutParent(item);
+      if (!item.dataset.cardWidth || !parent) continue;
+      delete item.dataset.cardWidth;
+      delete item.dataset.autoWidth;
+      parents.add(parent);
+    }
+    parents.forEach(layout);
+    updateResetButton();
+  }
+  function updateResetButton() {
+    const right = document.querySelector(".topbar-right");
+    if (!right) return;
+    let button = document.getElementById("card-size-reset");
+    if (!button) {
+      button = document.createElement("button");
+      button.id = "card-size-reset";
+      button.type = "button";
+      button.className = "card-size-reset";
+      button.textContent = "크기 초기화";
+      button.title = "이 탭의 그래프 크기를 기본값으로 되돌립니다";
+      button.addEventListener("click", resetTab);
+      right.insertBefore(button, document.getElementById("range-picker"));
+    }
+    const prefix = `${routeKey()}|`;
+    button.hidden = !document.querySelector(".main .card-resizable");
+    button.disabled = !document.querySelector(".main .card-resizable[data-card-width]")
+      && !Object.keys(saved).some(key => key.startsWith(prefix));
+  }
+
   function attachHandle(item) {
     const handle = document.createElement("div");
     handle.className = "card-resize-handle";
@@ -179,6 +215,7 @@ if (typeof document !== "undefined") (() => {
     function remember(parent) {
       const key = storageKey(item, parent);
       if (key) { saved[key] = Number(item.dataset.cardWidth); persist(); }
+      updateResetButton();
     }
     function reset() {
       const parent = parentOf();
@@ -186,6 +223,7 @@ if (typeof document !== "undefined") (() => {
       delete item.dataset.cardWidth;
       if (key) { delete saved[key]; persist(); }
       layout(parent);
+      updateResetButton();
     }
 
     handle.addEventListener("pointerdown", down => {
@@ -266,6 +304,7 @@ if (typeof document !== "undefined") (() => {
       }
     }
     dirty.forEach(layout);
+    updateResetButton();
     observer.takeRecords();
   }
 

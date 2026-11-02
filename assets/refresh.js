@@ -18,7 +18,7 @@ const REFRESH_TARGETS = {
   shipbuilding: { file: "data/shipbuilding/korea_orders.json", label: "수주 갱신" },
   institution: { file: "data/institution/major_holdings.json", label: "수급 갱신" },
   gifts: { file: "data/gifts/gift_plans.json", label: "증여 / 계획 갱신" },
-  semicon: { file: "data/semicon/semicon_import_ttm.json", label: "무역통계 갱신" },
+  semicon: { file: "data/semicon/blank_semi_amount.json", label: "무역통계 갱신" },
   ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
   offshore: { file: "data/offshore/offshore_fleet.json", label: "시추 지표 갱신", workflow: "update-offshore.yml" },
   oil: { file: "data/oil/state.json", label: "원유 실적 확인", workflow: "update-oil.yml" },
@@ -101,7 +101,7 @@ async function findRun(sinceMs, workflow = WORKFLOW) {
 
 async function waitForRun(run) {
   // status: queued | in_progress | completed / conclusion: success | failure | ...
-  for (let i = 0; i < 120; i++) { // 최대 ~20분
+  for (let i = 0; i < 360; i++) { // 최대 ~60분 (일일 수집은 17~40분 걸린다)
     const res = await fetch(`${API}/repos/${REPO}/actions/runs/${run.id}`, { headers: ghHeaders() });
     if (res.ok) {
       const r = await res.json();
@@ -112,14 +112,17 @@ async function waitForRun(run) {
   return null;
 }
 
-// 커밋 후 Pages 재배포까지 시간이 걸리므로, 대상 JSON의 updated가 바뀔 때까지 확인
+// 새 값이 없어도 수집하면 fetched는 바뀐다. 둘 중 하나라도 바뀌면 반영된 것으로 본다.
+const freshnessStamp = (j) => `${j.updated || ""}|${j.fetched || ""}`;
+
+// 커밋 후 Pages 재배포까지 시간이 걸리므로, 대상 JSON의 갱신 표시가 바뀔 때까지 확인
 async function waitForFreshData(prevUpdated, file) {
   for (let i = 0; i < 24; i++) { // 최대 ~2분
     try {
       const res = await fetch(`${file}?t=${Date.now()}`);
       if (res.ok) {
         const j = await res.json();
-        if (j.updated && j.updated !== prevUpdated) return true;
+        if (freshnessStamp(j) !== prevUpdated) return true;
       }
     } catch (e) { /* 재시도 */ }
     await sleep(5000);
@@ -130,7 +133,7 @@ async function waitForFreshData(prevUpdated, file) {
 async function currentUpdated(file) {
   try {
     const res = await fetch(`${file}?t=${Date.now()}`);
-    if (res.ok) return (await res.json()).updated || "";
+    if (res.ok) return freshnessStamp(await res.json());
   } catch (e) { /* noop */ }
   return "";
 }

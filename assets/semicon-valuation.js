@@ -37,6 +37,7 @@ export function createSession(index,{state,range}){
   const observer=new IntersectionObserver(entries=>{for(const entry of entries){const p=panels.get(entry.target);if(!p)continue;p.visible=entry.isIntersecting;if(p.visible)load(p);else for(const chart of [...p.charts]){destroy(chart);p.charts.delete(chart);}}},{rootMargin:'180px 0px'});
   function filter(doc){
     const all=doc.prices||[];if(range==='all'||!all.length)return all;
+    if(range==='custom')return all.filter(r=>(!state.rangeFrom||r[0]>=state.rangeFrom)&&(!state.rangeTo||r[0]<=state.rangeTo));
     const end=new Date(all.at(-1)[0]+'T00:00:00Z');const cutoff=new Date(end);if(range==='3m')cutoff.setUTCMonth(end.getUTCMonth()-3);else cutoff.setUTCFullYear(end.getUTCFullYear()-(range==='3y'?3:1));
     return all.filter(r=>r[0]>=cutoff.toISOString().slice(0,10));
   }
