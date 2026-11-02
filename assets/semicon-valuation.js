@@ -80,7 +80,7 @@ export function createSession(index,{state,range}){
       interaction:{intersect:false,mode:'index'},
       plugins:{legend:{display:metric!=='price',position:'bottom',labels:{color:ink,boxWidth:large?20:13,boxHeight:2,font:{size:large?12:10},padding:large?16:8}},
         tooltip:{callbacks:{title:items=>items[0]?.label||'',label:c=>`${c.dataset.label}: ${fmt(c.parsed.y)} ${doc.currency}`}}},
-      scales:{x:{grid:{display:false},ticks:{color:ink,maxTicksLimit:large?8:5,maxRotation:0,callback:function(value){return this.getLabelForValue(value).slice(large?0:2,7);}}},
+      scales:{x:{grid:{display:false},ticks:{color:ink,maxTicksLimit:large?Math.max(3,Math.min(8,Math.floor(canvas.parentElement.clientWidth/90))):5,maxRotation:0,callback:function(value){return this.getLabelForValue(value).slice(large?0:2,7);}}},
         y:{grid:{color:border},ticks:{color:ink,maxTicksLimit:large?8:5,callback:v=>Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1}).format(v)}}}
     }});
     chartSet.add(chart);state.charts.push(chart);return chart;
