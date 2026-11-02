@@ -8,6 +8,8 @@ const COUNTRIES = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m
 const LAYER_COLORS = {lng_export: "#eb6834", lng_import: "#2a78d6", ess_system: "#1baf7a", ess_cell: "#eda100", user: "#e34948"};
 const STATUS_ORDER = ["operating", "construction", "planned", "inactive"];
 const LOCAL_KEY = "globe_local_sites";
+const LABELS_KEY = "globe_labels";
+const PLACES = "data/sites/places.json"; // scripts/build_places.py (Natural Earth 한국어 지명)
 const prefs = {layers: new Set(["lng_export", "lng_import", "ess_system", "ess_cell", "user"]),
   statuses: new Set(["operating", "construction", "planned"]), query: ""};
 
@@ -36,6 +38,58 @@ function readLocal() {
 function writeLocal(rows) {
   try { localStorage.setItem(LOCAL_KEY, JSON.stringify(rows)); return true; } catch { return false; }
 }
+function readLabelsPref() {
+  try { return localStorage.getItem(LABELS_KEY) !== "off"; } catch { return true; }
+}
+function writeLabelsPref(on) {
+  try { localStorage.setItem(LABELS_KEY, on ? "on" : "off"); } catch { /* 저장 못 하면 이번 방문만 */ }
+}
+
+// 지명 라벨: 멀리서는 대양·큰 나라만, 다가갈수록 바다·작은 나라·도시를 더한다. 지평선 너머는 뺀다.
+const toRad = d => d * Math.PI / 180;
+function angDist(lat1, lon1, lat2, lon2) {
+  const a = Math.sin(toRad(lat2 - lat1) / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(toRad(lon2 - lon1) / 2) ** 2;
+  return 2 * Math.asin(Math.min(1, Math.sqrt(a))) * 180 / Math.PI;
+}
+function wantedPlaces(places, pov) {
+  const alt = pov.altitude;
+  const horizon = Math.acos(1 / (1 + alt)) * 180 / Math.PI * 0.85;
+  const countryRank = alt > 2.2 ? 2 : alt > 1.5 ? 3 : alt > 0.9 ? 5 : 9;
+  const cityTier = alt < 0.45 ? 2 : alt < 0.9 ? 1 : alt < 1.6 ? 0 : -1;
+  const seaTier = alt < 2.8 ? 1 : 0;
+  return [...places.seas.filter(p => p.t <= seaTier), ...places.countries.filter(p => p.r <= countryRank),
+    ...places.cities.filter(p => p.t <= cityTier)].filter(p => angDist(pov.lat, pov.lng, p.lat, p.lon) < horizon);
+}
+// 화면에서 겹치면 중요도가 낮은 라벨을 뺀다: 대양 → 큰 나라 → 큰 도시 → 수도 → 작은 나라 → 바다 → 나머지 도시.
+function placePriority(p) {
+  if (p.kind === "sea") return p.t === 0 ? 0 : 3.5;
+  if (p.kind === "country") return (p.r <= 3 ? 1 : 3) + p.r / 100;
+  return p.t === 0 ? 2 : p.cap ? 2.5 : 3.8 + p.t;
+}
+function labelBox(p, x, y) {
+  const fs = p.kind === "country" ? 12.3 : p.kind === "sea" ? (p.t === 0 ? 16 : 11.5) : 11; // 한글 한 자 폭 + 자간
+  const w = p.n.length * fs + 4, h = 15;
+  return p.kind === "city" ? [x - 4, y - h / 2, x + 6 + w, y + h / 2] : [x - w / 2, y - h / 2, x + w / 2, y + h / 2];
+}
+function declutter(rows, globe, width, height) {
+  const placed = [], kept = [];
+  for (const p of rows.slice().sort((a, b) => placePriority(a) - placePriority(b))) {
+    const {x, y} = globe.getScreenCoords(p.lat, p.lon, 0.008);
+    if (!(x > -40 && y > -20 && x < width + 40 && y < height + 20)) continue;
+    const b = labelBox(p, x, y);
+    if (placed.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1])) continue;
+    placed.push(b); kept.push(p);
+  }
+  return kept;
+}
+function placeElement(p) {
+  if (p.el) return p.el;
+  const el = document.createElement("div");
+  el.className = `gl-pl gl-pl-${p.kind}${p.kind === "sea" && p.t === 0 ? " gl-pl-ocean" : ""}${p.cap ? " gl-pl-cap" : ""}`;
+  el.innerHTML = `<span>${esc(p.n)}</span>`;
+  return (p.el = el);
+}
+
 function localToSite(row) {
   return {id: "local:" + row.id, layer: "user", name: row.name, company: row.company || null, country: row.country || null,
     lat: row.lat, lon: row.lon, accuracy: "facility", status: row.status || "operating", category: row.category,
@@ -72,6 +126,7 @@ export function mount(root) {
           <div id="gl-globe" class="gl-globe" role="application" aria-label="사이트 지구본. 끌어서 회전, 확대 가능"></div>
           <p id="gl-status" class="page-loading gl-loading">지구본 불러오는 중…</p>
           <div class="gl-tools">
+            <button type="button" id="gl-labels" aria-pressed="true">지명</button>
             <button type="button" id="gl-spin" aria-pressed="true">자동 회전</button>
             <button type="button" id="gl-home">전체 보기</button>
             <button type="button" id="gl-add" aria-pressed="false">＋ 사이트 추가</button>
@@ -103,6 +158,7 @@ export function mount(root) {
 
   const $ = id => root.querySelector("#" + id);
   let doc = null, globe = null, selected = null, addMode = false, pending = null, disposed = false;
+  let places = null, labelsOn = readLabelsPref(), shownPlaces = [], labelFrame = 0;
   let localRows = readLocal(), localSites = localRows.map(localToSite);
   const cleanups = [];
   const setLocal = rows => { localRows = rows; localSites = rows.map(localToSite); return writeLocal(rows); };
@@ -184,6 +240,17 @@ export function mount(root) {
     drawPoints();
   }
 
+  function drawLabels() {
+    labelFrame = 0;
+    if (!globe) return;
+    const el = $("gl-globe");
+    const rows = labelsOn && places ? declutter(wantedPlaces(places, globe.pointOfView()), globe, el.clientWidth, el.clientHeight) : [];
+    if (rows.length === shownPlaces.length && rows.every((p, i) => p === shownPlaces[i])) return;
+    shownPlaces = rows;
+    globe.htmlElementsData(rows);
+  }
+  const queueLabels = () => { labelFrame ||= requestAnimationFrame(drawLabels); };
+
   function stopSpin() {
     if (!globe) return;
     globe.controls().autoRotate = false;
@@ -239,6 +306,12 @@ export function mount(root) {
     const on = !globe.controls().autoRotate;
     globe.controls().autoRotate = on; $("gl-spin").setAttribute("aria-pressed", String(on));
   });
+  const labelsBtn = $("gl-labels");
+  labelsBtn.setAttribute("aria-pressed", String(labelsOn));
+  labelsBtn.addEventListener("click", () => {
+    labelsOn = !labelsOn; writeLabelsPref(labelsOn);
+    labelsBtn.setAttribute("aria-pressed", String(labelsOn)); drawLabels();
+  });
   // 좁은 화면은 지구가 폭을 넘지 않게 더 멀리서 본다.
   const homeView = () => ({lat: 25, lng: 125, altitude: $("gl-globe").clientWidth < 600 ? 3.4 : 2.4});
   $("gl-home").addEventListener("click", () => { select(null); globe?.pointOfView(homeView(), 900); });
@@ -266,13 +339,21 @@ export function mount(root) {
   cleanups.push(() => darkMq.removeEventListener("change", applyTheme));
 
   // ── 데이터 + 지구본 ──
-  Promise.all([fetch(`data/sites/sites.json?v=${Date.now()}`).then(r => { if (!r.ok) throw new Error("sites " + r.status); return r.json(); }), loadLibs()])
-    .then(([sites, countries]) => {
+  // 지명은 없어도 지구본은 뜨게, 실패하면 라벨만 빠진다.
+  const placesReq = fetch(PLACES).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([fetch(`data/sites/sites.json?v=${Date.now()}`).then(r => { if (!r.ok) throw new Error("sites " + r.status); return r.json(); }), loadLibs(), placesReq])
+    .then(([sites, countries, placeDoc]) => {
       if (disposed) return;
       doc = sites;
+      if (placeDoc) {
+        places = {countries: placeDoc.countries.map(p => ({...p, kind: "country"})),
+          cities: placeDoc.cities.map(p => ({...p, kind: "city"})), seas: placeDoc.seas.map(p => ({...p, kind: "sea"}))};
+      } else {
+        labelsBtn.hidden = true;
+      }
       $("gl-form").elements.category.innerHTML = Object.entries(doc.user_categories || {}).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("");
       $("gl-sources").innerHTML = "출처: " + doc.layers.map(l => l.source_url ? `<a href="${esc(l.source_url)}" target="_blank" rel="noopener">${esc(l.source)}</a>` : esc(l.source))
-        .filter((v, i, a) => a.indexOf(v) === i).join(" · ") + ` · 국경 Natural Earth(world-atlas) · 집계 ${esc(doc.updated)}. ${esc(doc.note)}`
+        .filter((v, i, a) => a.indexOf(v) === i).join(" · ") + ` · 국경·지명 Natural Earth · 집계 ${esc(doc.updated)}. ${esc(doc.note)}`
         + (doc.missing_coords?.length ? ` 좌표가 없어 지도에서 빠진 원장 행 ${doc.missing_coords.length}곳: ${esc(doc.missing_coords.map(m => m.id).join(", "))} — manual/site_coords.json에 추가하면 표시된다.` : "");
       document.getElementById("last-updated").textContent = `사이트 목록 집계 ${doc.updated}`;
       chips(); renderLocal();
@@ -289,14 +370,17 @@ export function mount(root) {
         // 육지를 누르면 국가 면(polygon)이 클릭을 받으므로 두 곳 모두에서 좌표를 받는다.
         .onGlobeClick(pickLocation)
         .onPolygonClick((country, event, coords) => pickLocation(coords))
-        .ringColor(() => t => `rgba(227,73,72,${1 - t})`).ringMaxRadius(3).ringPropagationSpeed(2).ringRepeatPeriod(900);
+        .ringColor(() => t => `rgba(227,73,72,${1 - t})`).ringMaxRadius(3).ringPropagationSpeed(2).ringRepeatPeriod(900)
+        .htmlLat("lat").htmlLng("lon").htmlAltitude(0.008).htmlElement(placeElement).htmlTransitionDuration(0)
+        .onZoom(queueLabels);
       const controls = globe.controls();
       controls.autoRotate = true; controls.autoRotateSpeed = 0.35;
       el.addEventListener("pointerdown", stopSpin, {once: true});
       globe.pointOfView(homeView());
       applyTheme();
+      drawLabels();
 
-      const fit = () => { if (globe) globe.width(el.clientWidth).height(el.clientHeight); };
+      const fit = () => { if (globe) { globe.width(el.clientWidth).height(el.clientHeight); queueLabels(); } };
       const ro = new ResizeObserver(fit); ro.observe(el); fit();
       cleanups.push(() => ro.disconnect());
       $("gl-status").remove();
@@ -309,6 +393,7 @@ export function mount(root) {
 
   return () => {
     disposed = true;
+    cancelAnimationFrame(labelFrame);
     cleanups.forEach(fn => fn());
     if (globe) { globe.pauseAnimation(); globe._destructor?.(); globe = null; }
   };

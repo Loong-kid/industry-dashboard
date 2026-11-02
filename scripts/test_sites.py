@@ -63,6 +63,20 @@ class SitesTests(unittest.TestCase):
         self.assertIn('import("./globe.js")', app)
         self.assertIn('assets/globe.css', (ROOT / 'index.html').read_text(encoding='utf-8'))
 
+    def test_place_labels_are_korean_and_on_the_globe(self):
+        places = json.loads((ROOT / 'data/sites/places.json').read_text(encoding='utf-8'))
+        self.assertGreater(len(places['countries']), 150)
+        self.assertGreater(len(places['cities']), 500)
+        self.assertTrue(places['seas'])
+        for kind in ('countries', 'cities', 'seas'):
+            for row in places[kind]:
+                with self.subTest(kind=kind, name=row['n']):
+                    self.assertRegex(row['n'], r'[가-힣]')
+                    self.assertTrue(-90 <= row['lat'] <= 90 and -180 <= row['lon'] <= 180)
+        names = {row['n'] for row in places['countries']}
+        self.assertTrue({'한국', '중국', '대만', '북한'} <= names)
+        self.assertIn('places.json', (ROOT / 'assets/globe.js').read_text(encoding='utf-8'))
+
 
 if __name__ == '__main__':
     unittest.main()

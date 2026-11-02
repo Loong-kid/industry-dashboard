@@ -66,6 +66,23 @@
 .gl-form-actions { display: flex; gap: 8px; }
 .gl-form-actions button[type=submit] { border-color: var(--accent); color: var(--accent); font-weight: 650; }
 
+/* 지명 라벨 (globe.gl HTML 레이어). 클릭은 지구본으로 통과시킨다. */
+.gl-globe { --pl-halo: rgba(251, 250, 245, .92); --pl-ink: #3a3a35; --pl-country: #6b6a61; --pl-sea: #4a7299; }
+.gl-pl { pointer-events: none; user-select: none; white-space: nowrap; line-height: 1; color: var(--pl-ink);
+  text-shadow: 0 0 2px var(--pl-halo), 0 0 3px var(--pl-halo), 0 0 5px var(--pl-halo); }
+.gl-pl-country { font-size: 11px; font-weight: 650; letter-spacing: .08em; color: var(--pl-country); }
+.gl-pl-sea { font-size: 10.5px; font-style: italic; letter-spacing: .14em; color: var(--pl-sea); text-shadow: none; opacity: .9; }
+.gl-pl-ocean { font-size: 13px; letter-spacing: .5em; }
+/* 도시: 크기 0인 기준점에 점을 찍고 이름은 오른쪽에 붙인다. */
+.gl-pl-city { width: 0; height: 0; position: relative; font-size: 10.5px; font-weight: 500; }
+.gl-pl-city::before { content: ""; position: absolute; left: -2px; top: -2px; width: 4px; height: 4px; border-radius: 50%; background: var(--pl-ink); }
+.gl-pl-city span { position: absolute; left: 5px; top: -.55em; }
+.gl-pl-cap { font-weight: 650; }
+.gl-pl-cap::before { left: -3px; top: -3px; width: 4px; height: 4px; background: var(--pl-halo); border: 1px solid var(--pl-ink); }
+@media (prefers-color-scheme: dark) {
+  .gl-globe { --pl-halo: rgba(19, 37, 56, .9); --pl-ink: #e4e3dc; --pl-country: #b9b8ae; --pl-sea: #87aed3; }
+}
+
 .gl-tip { display: grid; gap: 2px; font: 12px/1.45 system-ui, sans-serif; color: #fff; background: rgba(11, 11, 11, .86); padding: 6px 9px; border-radius: 5px; max-width: 280px; }
 .gl-tip b { font-weight: 650; }
 .gl-tip span { color: #d6d5cf; }
