@@ -1,0 +1,37 @@
+name: review-entertainment-sources
+on:
+  workflow_dispatch:
+    inputs:
+      preliminaries_only:
+        description: Check only issuer mappings and official preliminary income
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  statements:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Collect original entertainment financial statements
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          PRELIM_ONLY: ${{ inputs.preliminaries_only }}
+        run: |
+          if [ "$PRELIM_ONLY" = "true" ]; then
+            python -u scripts/collect_entertainment_sources.py --preliminaries-only
+          else
+            python -u scripts/collect_entertainment_sources.py --full-history
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: entertainment-original-statements
+          path: .cache/entertainment/
+          include-hidden-files: true
+          retention-days: 3
