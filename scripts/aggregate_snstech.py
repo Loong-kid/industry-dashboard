@@ -55,15 +55,20 @@ def load_snstech():
     return out
 
 
+def load_national_item(cid):
+    """{월: 수출액 백만$} — 품목 1개."""
+    p = SEMI_DIR / f"{cid}.json"
+    if not p.exists():
+        raise SystemExit(f"{p} 없음 — fetch_customs.py를 먼저 실행하세요.")
+    doc = json.loads(p.read_text(encoding="utf-8"))
+    return {m: v for m, v in doc["series"]["수출액"]}
+
+
 def load_national():
     """{월: 수출액 백만$} — 반도체용 + 디스플레이용 합산."""
     monthly = {}
     for cid in NATIONAL:
-        p = SEMI_DIR / f"{cid}.json"
-        if not p.exists():
-            raise SystemExit(f"{p} 없음 — fetch_customs.py를 먼저 실행하세요.")
-        doc = json.loads(p.read_text(encoding="utf-8"))
-        for m, v in doc["series"]["수출액"]:
+        for m, v in load_national_item(cid).items():
             monthly[m] = monthly.get(m, 0.0) + v
     return monthly
 
@@ -110,23 +115,38 @@ def pearson(xs, ys):
     return round(num / den, 4) if den else None
 
 
-def save(cid, name, unit, series, default, updated, note=None):
+def save(cid, name, unit, series, default, updated, note=None, extra=None):
     doc = {"id": cid, "name": name, "unit": unit, "frequency": "quarterly",
            "source": SOURCE, "source_url": SOURCE_URL,
            "updated": updated, "fetched": dt.date.today().isoformat(),
            "default_series": default, "series": series}
     if note:
         doc["note"] = note
+    doc.update(extra or {})
     (SEMI_DIR / f"{cid}.json").write_text(
         json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  {cid}: {len(series)}시리즈 {sum(len(v) for v in series.values())}점 (~{updated})")
+
+
+def export_stack_series(sns, semi, disp):
+    """회사 수출(선) + 전국 용도별 수출(스택 막대). 회사 수출 공시가 시작된 분기부터.
+
+    회사 공시가 관세청보다 늦게 나오므로 겹치는 분기로 자르지 않는다 — 최근 분기는 막대만 있을 수 있다."""
+    exports = sorted(d for d in sns if "수출" in sns[d])
+    start = exports[0]
+    return {
+        "에스앤에스텍 수출": [[d, sns[d]["수출"]] for d in exports],
+        "전국 반도체용": [[d, semi[d]] for d in sorted(semi) if d >= start],
+        "전국 디스플레이용": [[d, disp[d]] for d in sorted(disp) if d >= start],
+    }
 
 
 def run():
     sns = load_snstech()
     session = requests.Session()
     session.headers["User-Agent"] = "Mozilla/5.0"
-    nat = national_quarterly(load_national(), fetch_fx(session))
+    fx = fetch_fx(session)
+    nat = national_quarterly(load_national(), fx)
 
     # 1) 에스앤에스텍 실적
     series = {}
@@ -139,6 +159,19 @@ def run():
          ["매출", "수출"], last,
          "DART 분기보고서 매출 구성(수기입력). 내수+수출 합이 매출과 정확히 일치하지 않는 "
          "분기가 있다(기타 매출 등)")
+
+    # 수출 실적(선) + 전국 용도별 수출(스택 막대)
+    stack = export_stack_series(sns, national_quarterly(load_national_item(NATIONAL[0]), fx),
+                                national_quarterly(load_national_item(NATIONAL[1]), fx))
+    save("snstech_export_stack", "에스앤에스텍 수출 vs 전국 블랭크마스크 수출 (용도별)", "₩백만", stack,
+         list(stack), max(v[-1][0] for v in stack.values()),
+         "선 = 회사 공시 수출 매출(DART). 막대 = 관세청 전국 수출액을 월평균 원달러로 환산해 분기 합산, "
+         "반도체용(HS 3701991000)·디스플레이용(3701304000). 3개월이 다 채워진 분기만 막대로 표시. "
+         "회사 공시가 관세청보다 늦어 최근 분기는 막대만 있을 수 있다",
+         extra={"stacked_series": ["전국 반도체용", "전국 디스플레이용"],
+                "stack_total_label": "전국 합계", "bar_value_labels": True,
+                "series_palette_slots": {"에스앤에스텍 수출": 0, "전국 반도체용": 5, "전국 디스플레이용": 2},
+                "quarter_labels": True, "zero_baseline": True, "wide_card": True})
 
     # 2) 수출 실적 vs 전국 블랭크마스크 수출
     common = sorted(d for d in sns if "수출" in sns[d] and d in nat)

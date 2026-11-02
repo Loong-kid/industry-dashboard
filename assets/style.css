@@ -261,6 +261,10 @@ html { scroll-padding-top: calc(var(--dashboard-header-height) + 16px); }
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   gap: 14px;
 }
+/* 일반 카드 2칸 폭. 격자가 1칸인 폭에서 span 2를 쓰면 빈 칸이 생겨 넘치므로 2칸이 확보되는 폭부터 적용한다. */
+@media (min-width: 1200px) {
+  .card-wide { grid-column: span 2; }
+}
 
 /* ── 지표 카드 ─────────────────────────────────────────────────── */
 .card {
