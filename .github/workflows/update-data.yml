@@ -252,6 +252,11 @@ jobs:
         id: gate_sites
         continue-on-error: true
         run: python -m unittest discover -s scripts -p test_sites.py
+      # 새로 들어온 국내 데이터센터 주소만 좌표를 찾는다(OpenStreetMap, 키 없음).
+      - name: 국내 데이터센터 좌표 찾기
+        continue-on-error: true
+        run: python scripts/geocode_datacenters.py
+
       - name: 지구본 사이트 목록 집계
         if: steps.gate_sites.outcome == 'success'
         continue-on-error: true

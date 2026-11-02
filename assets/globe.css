@@ -78,6 +78,8 @@
 .gl-pl-city::before { content: ""; position: absolute; left: -2px; top: -2px; width: 4px; height: 4px; border-radius: 50%; background: var(--pl-ink); }
 .gl-pl-city span { position: absolute; left: 5px; top: -.55em; }
 .gl-pl-cap { font-weight: 650; }
+.gl-pl-adm1 { font-size: 11px; font-weight: 650; color: var(--pl-country); }
+.gl-pl-adm2 { font-size: 9.5px; font-weight: 500; }
 .gl-pl-cap::before { left: -3px; top: -3px; width: 4px; height: 4px; background: var(--pl-halo); border: 1px solid var(--pl-ink); }
 @media (prefers-color-scheme: dark) {
   .gl-globe { --pl-halo: rgba(19, 37, 56, .9); --pl-ink: #e4e3dc; --pl-country: #b9b8ae; --pl-sea: #87aed3; }
@@ -86,6 +88,7 @@
 .gl-tip { display: grid; gap: 2px; font: 12px/1.45 system-ui, sans-serif; color: #fff; background: rgba(11, 11, 11, .86); padding: 6px 9px; border-radius: 5px; max-width: 280px; }
 .gl-tip b { font-weight: 650; }
 .gl-tip span { color: #d6d5cf; }
+.gl-tip .gl-tip-height { color: #fff; border-top: 1px solid rgba(255, 255, 255, .25); margin-top: 2px; padding-top: 3px; }
 
 .gl-foot { margin-top: 26px; padding-top: 16px; border-top: 2px solid var(--grid); display: grid; gap: 10px; }
 .gl-foot h3 { font-size: 16px; letter-spacing: -.02em; }

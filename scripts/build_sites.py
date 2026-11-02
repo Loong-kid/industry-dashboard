@@ -9,6 +9,7 @@
 """
 import datetime as dt
 import json
+import re
 import math
 from pathlib import Path
 
@@ -21,6 +22,9 @@ ESS_LEDGERS = [ROOT / 'manual/ess_factories.json', ROOT / 'manual/ess_cell_facto
 COORDS = ROOT / 'manual/site_coords.json'
 USER_SITES = ROOT / 'manual/sites.json'
 OUT = ROOT / 'data/sites/sites.json'
+DC_FACILITIES = ROOT / 'data/datacenter/dc_facilities.json'
+DC_COORDS = ROOT / 'data/sites/dc_coords.json'
+DC_SOURCE_URL = 'https://blcm.go.kr/stat/customizedStatic/CustomizedStaticSupplyList.do'
 
 STATUS_LABEL = {'operating': '가동', 'construction': '건설 중', 'planned': '계획·제안', 'inactive': '중단·취소'}
 GEM_STATUS = {'operating': 'operating', 'construction': 'construction', 'proposed': 'planned',
@@ -42,6 +46,10 @@ LAYERS = [
      'source': 'ESS 탭 공장 원장(manual/ess_factories.json) · 좌표 OpenStreetMap Nominatim'},
     {'id': 'ess_cell', 'name': 'ESS 배터리 셀 공장', 'group': 'ESS',
      'source': 'ESS 탭 셀 공장 원장(manual/ess_cell_factories.json) · 좌표 OpenStreetMap Nominatim'},
+    {'id': 'dc_kr', 'name': '데이터센터 · 한국', 'group': '데이터센터',
+     'source': '데이터센터 탭 국내 원장(기준 정리자료 + 국토교통부 건축통계) · 좌표 OpenStreetMap Nominatim', 'source_url': DC_SOURCE_URL},
+    {'id': 'dc_kr_candidate', 'name': '데이터센터 · 한국 후보(미확인)', 'group': '데이터센터',
+     'source': '데이터센터 탭 국내 원장(기준 정리자료 + 국토교통부 건축통계) · 좌표 OpenStreetMap Nominatim', 'source_url': DC_SOURCE_URL},
     {'id': 'user', 'name': '내가 등록한 사이트', 'group': '내 사이트', 'source': 'manual/sites.json'},
 ]
 
@@ -151,6 +159,64 @@ def ess_factories(coords, missing):
     return sites
 
 
+def dc_status(dates, today):
+    """준공 → 가동, 착공 → 건설 중, 허가만 → 계획. 예정일·미확인 날짜는 단계로 치지 않는다."""
+    def happened(step):
+        date = dates.get(step) or {}
+        return date.get('kind') == 'confirmed' and date.get('date') and date['date'] <= today
+    completion = dates.get('completion') or {}
+    done_without_date = completion.get('kind') == 'uncertain' and (
+        '완료' in (completion.get('text') or '') or (completion.get('year') or 9999) < int(today[:4]))
+    if happened('completion') or done_without_date or happened('alteration'):
+        return 'operating'
+    return 'construction' if happened('start') else 'planned'
+
+
+def data_centers(today, missing):
+    records = json.loads(DC_FACILITIES.read_text(encoding='utf-8'))['records']
+    coords = json.loads(DC_COORDS.read_text(encoding='utf-8'))['coords'] if DC_COORDS.exists() else {}
+    sites, seen = [], set()
+    for row in records:
+        if row['id'] in seen:
+            continue
+        seen.add(row['id'])
+        key = row.get('address_key') or re.sub(r'[\s\xa0]+', '', row['location'])
+        geo = coords.get(key)
+        if not geo:
+            missing.append({'ledger': DC_FACILITIES.name, 'id': row['id'], 'location': row.get('location')})
+            continue
+        dates = row.get('dates') or {}
+        date_text = lambda step: (dates.get(step) or {}).get('date') or (dates.get(step) or {}).get('text') or None
+        status = dc_status(dates, today)
+        detail = [
+            ['위치(원장)', re.sub(r'[\s\xa0]+', ' ', row['location'])],
+            ['구분', row.get('type')],
+            ['허가', date_text('permit')],
+            ['착공', date_text('start')],
+            ['준공', date_text('completion')],
+            ['대수선·용도변경', date_text('alteration')],
+            ['연면적', f"{row['area']:,.0f} ㎡" if row.get('area') else None],
+            ['수전용량', f"{row['capacity']:g} MW" if row.get('capacity') else None],
+            ['IT 부하', row.get('it_load')],
+            ['임차', row.get('tenant')],
+            ['시공', row.get('contractor')],
+            ['분류 근거', row.get('classification_reason')],
+            ['좌표', f"{ACCURACY_KO.get(geo['accuracy'], geo['accuracy'])} · OSM 검색어 \"{geo['query']}\""],
+        ]
+        sources = row.get('sources') or []
+        sites.append({
+            'id': row['id'], 'layer': 'dc_kr' if row.get('classification') == 'confirmed' else 'dc_kr_candidate',
+            'name': row['name'], 'company': row.get('owner') or None, 'country': '한국',
+            'lat': geo['lat'], 'lon': geo['lon'], 'accuracy': geo['accuracy'], 'status': status,
+            'size': row.get('capacity') or None, 'size_unit': 'MW',
+            'detail': [d for d in detail if d[1]],
+            'url': row.get('url') or (sources[0].get('url') if sources else None) or DC_SOURCE_URL,
+            'url_label': '원문 보기' if row.get('url') else '국토교통부 건축통계',
+            'source': '데이터센터 원장',
+        })
+    return sites
+
+
 def user_sites():
     data = json.loads(USER_SITES.read_text(encoding='utf-8'))
     sites = []
@@ -172,12 +238,12 @@ def build():
     coords = json.loads(COORDS.read_text(encoding='utf-8'))['coords']
     missing = []
     mine, categories = user_sites()
-    sites = lng_terminals() + ess_factories(coords, missing) + mine
-    counts = {layer['id']: sum(s['layer'] == layer['id'] for s in sites) for layer in LAYERS}
     today = dt.date.today().isoformat()
+    sites = lng_terminals() + ess_factories(coords, missing) + data_centers(today, missing) + mine
+    counts = {layer['id']: sum(s['layer'] == layer['id'] for s in sites) for layer in LAYERS}
     return {
         'id': 'sites', 'name': '사이트 지도', 'updated': today,
-        'note': '좌표 정확도는 사이트마다 다르다(accuracy). ESS 공장은 원장 주소를 도시·지역 단위로 찾은 근사 위치.',
+        'note': '좌표 정확도는 사이트마다 다르다(accuracy). ESS 공장·데이터센터는 원장 주소를 지역 단위로 찾은 근사 위치가 많다.',
         'status_labels': STATUS_LABEL, 'accuracy_labels': ACCURACY_KO, 'layers': LAYERS, 'counts': counts,
         'user_categories': categories, 'missing_coords': missing, 'sites': sites,
     }

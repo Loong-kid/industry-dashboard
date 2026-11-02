@@ -77,6 +77,47 @@ class SitesTests(unittest.TestCase):
         self.assertTrue({'한국', '중국', '대만', '북한'} <= names)
         self.assertIn('places.json', (ROOT / 'assets/globe.js').read_text(encoding='utf-8'))
 
+    def test_korean_data_centers_are_on_the_map(self):
+        doc = json.loads((ROOT / 'data/sites/sites.json').read_text(encoding='utf-8'))
+        confirmed = [s for s in doc['sites'] if s['layer'] == 'dc_kr']
+        candidates = [s for s in doc['sites'] if s['layer'] == 'dc_kr_candidate']
+        self.assertGreaterEqual(len(confirmed), 100)
+        self.assertTrue(candidates)
+        for site in confirmed + candidates:
+            with self.subTest(site=site['id']):
+                self.assertTrue(33 < site['lat'] < 39 and 124 < site['lon'] < 132, '한반도 안')
+                self.assertEqual(site['size_unit'], 'MW')
+                self.assertIn(site['status'], ('operating', 'construction', 'planned'))
+        self.assertTrue(any(s['size'] for s in confirmed), '수전용량이 막대 높이가 된다')
+        globe = (ROOT / 'assets/globe.js').read_text(encoding='utf-8')
+        self.assertIn('"dc_kr", "user"', globe, '확정 레이어는 기본으로 켠다')
+        self.assertNotIn('"dc_kr_candidate", "user"', globe, '후보는 기본으로 끈다')
+        self.assertIn('막대 높이', globe)
+
+    def test_dc_status_follows_confirmed_steps_only(self):
+        from build_sites import dc_status
+        ok = lambda d: {'kind': 'confirmed', 'date': d}
+        self.assertEqual(dc_status({'completion': ok('2020-01-01')}, '2026-11-03'), 'operating')
+        self.assertEqual(dc_status({'completion': {'kind': 'planned', 'date': '2027-01-01'}, 'start': ok('2025-01-01')}, '2026-11-03'), 'construction')
+        self.assertEqual(dc_status({'permit': ok('2026-01-01')}, '2026-11-03'), 'planned')
+        self.assertEqual(dc_status({'completion': {'kind': 'uncertain', 'text': '2027.4Q', 'year': 2027}, 'permit': ok('2025-01-01')}, '2026-11-03'), 'planned')
+
+    def test_korea_admin_boundaries(self):
+        for name, count in (('korea_sido.json', 17), ('korea_sigungu.json', 250)):
+            doc = json.loads((ROOT / 'data/sites' / name).read_text(encoding='utf-8'))
+            self.assertEqual(len(doc['labels']), count)
+            self.assertEqual(sum(len(o['geometries']) for o in doc['topology']['objects'].values()), count)
+            for label in doc['labels']:
+                with self.subTest(name=label['n']):
+                    self.assertRegex(label['n'], r'[가-힣]')
+                    self.assertTrue(33 < label['lat'] < 39 and 124 < label['lon'] < 132)
+        sido = json.loads((ROOT / 'data/sites/korea_sido.json').read_text(encoding='utf-8'))['labels']
+        self.assertTrue({'강원특별자치도', '전북특별자치도'} <= {row['full'] for row in sido})
+        self.assertTrue({'경기', '충북'} <= {row['n'] for row in sido})
+        sigungu = {row['n'] for row in json.loads((ROOT / 'data/sites/korea_sigungu.json').read_text(encoding='utf-8'))['labels']}
+        self.assertIn('분당구', sigungu)
+        self.assertNotIn('성남시분당구', sigungu)
+
 
 if __name__ == '__main__':
     unittest.main()
