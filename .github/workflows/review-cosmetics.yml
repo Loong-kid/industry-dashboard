@@ -2,8 +2,8 @@ name: review-cosmetics-sources
 on:
   workflow_dispatch:
     inputs:
-      recent_only:
-        description: Collect two recent years and official preliminary quarters
+      preliminaries_only:
+        description: Collect only issuer mappings and official preliminary quarters
         type: boolean
         default: false
 permissions:
@@ -21,7 +21,13 @@ jobs:
       - name: Collect original cosmetics company statements
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/collect_cosmetics_sources.py ${{ inputs.recent_only && '' || '--full-history' }}
+          PRELIM_ONLY: ${{ inputs.preliminaries_only }}
+        run: |
+          if [ "$PRELIM_ONLY" = "true" ]; then
+            python -u scripts/collect_cosmetics_sources.py --preliminaries-only
+          else
+            python -u scripts/collect_cosmetics_sources.py --full-history
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

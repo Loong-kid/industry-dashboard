@@ -17,5 +17,9 @@ def collect(full=False):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--full-history',action='store_true');args=p.parse_args()
-    collect(args.full_history)
+    p=argparse.ArgumentParser();p.add_argument('--full-history',action='store_true');p.add_argument('--preliminaries-only',action='store_true');args=p.parse_args()
+    if args.preliminaries_only:
+        collect_dart(False,cache=CACHE,metadata=META,entities_only=True)
+        from cosmetics_preliminaries import collect as collect_preliminaries
+        collect_preliminaries(CACHE,json.loads(META.read_bytes()))
+    else:collect(args.full_history)

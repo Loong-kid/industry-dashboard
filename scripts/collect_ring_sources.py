@@ -26,7 +26,7 @@ def api(session,name,key,**params):
         raise ValueError('OpenDART original unavailable') from None
 
 
-def collect(full=False,*,cache=None,metadata=None):
+def collect(full=False,*,cache=None,metadata=None,entities_only=False):
     key=os.environ.get('DART_API_KEY')
     if not key:raise ValueError('DART_API_KEY not configured')
     cache=Path(cache) if cache is not None else CACHE
@@ -47,6 +47,7 @@ def collect(full=False,*,cache=None,metadata=None):
     except (ET.ParseError,zipfile.BadZipFile,KeyError,ValueError):
         raise ValueError('OpenDART issuer mapping needs review') from None
     save(cache/'entities.json',entities)
+    if entities_only:return entities
     def issuer(item):
         company,entity=item;own=requests.Session();status=dict(checked=asof,ok=True,reports=[]);errors=[];fails=0
         first=2015 if full else int(asof[:4])-1
