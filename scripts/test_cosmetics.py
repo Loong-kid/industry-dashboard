@@ -5,11 +5,15 @@ import unittest
 from unittest.mock import patch
 
 import fetch_cosmetics as cosmetics
+import fetch_cosmetics_global as global_cosmetics
+from cosmetics_global_sources import loreal_release,shiseido_statement
 from ring_financial_sources import accounts
 
 ROOT=Path(__file__).resolve().parents[1]
 META=cosmetics.read(ROOT/'manual/cosmetics/companies.json')
 STATE=cosmetics.read(ROOT/'data/cosmetics/state.json')
+GLOBAL=cosmetics.read(ROOT/'data/cosmetics/global_state.json')
+GLOBAL_META=cosmetics.read(ROOT/'manual/cosmetics/global-companies.json')
 ASOF=max(dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat(),'2026-11-02')
 
 
@@ -77,10 +81,11 @@ class CosmeticsFinancials(unittest.TestCase):
         docs=cosmetics.build(META,STATE)
         self.assertEqual(len(docs),27)
         industry=next(i for i in cosmetics.read(ROOT/'data/catalog.json')['industries'] if i['id']=='cosmetics')
-        for tab,count in [('overview',27),('brands',15),('odm',9),('distribution',3)]:
+        all_docs=dict(docs,**global_cosmetics.build(GLOBAL_META,GLOBAL))
+        for tab,count in [('overview',36),('brands',15),('odm',9),('distribution',3),('global',9)]:
             linked=[id for section in industry['sections'] if section.get('tab')==tab for id in section['indicators']]
             self.assertEqual(len(linked),count)
-            self.assertTrue(set(linked)<=docs.keys())
+            self.assertTrue(set(linked)<=all_docs.keys())
         for id,doc in docs.items():
             self.assertEqual(doc,cosmetics.read(ROOT/'data/cosmetics'/(id+'.json')))
             self.assertEqual(doc['unit'],'KRW 백만')
@@ -108,6 +113,36 @@ class CosmeticsFinancials(unittest.TestCase):
         for key,co in failed['companies'].items():
             self.assertFalse(co['ok'])
             for field in ['rows','annual','fetched']:self.assertEqual(co[field],STATE['companies'][key][field])
+
+    def test_global_actual_profit_periods_currency_and_sources(self):
+        docs=global_cosmetics.build(GLOBAL_META,GLOBAL)
+        self.assertEqual(len(docs),9)
+        for key,c in GLOBAL['companies'].items():global_cosmetics.validate(c,ASOF)
+        for id,doc in docs.items():self.assertEqual(doc,cosmetics.read(ROOT/'data/cosmetics'/(id+'.json')))
+        self.assertEqual(docs['company_cosmetics_loreal_revenue']['unit'],'EUR 백만')
+        self.assertEqual(docs['company_cosmetics_loreal_profit']['default_view'],'half')
+        self.assertNotIn('quarter',docs['company_cosmetics_loreal_profit']['series_views'])
+        self.assertNotIn('quarter',docs['company_cosmetics_loreal_capex']['series_views'])
+        self.assertEqual(docs['company_cosmetics_estee_profit']['period_labels']['2026-06-30'],'FY2026 Q4')
+        shiseido=next(r for r in GLOBAL['companies']['shiseido']['records'] if r['kind']=='annual' and r['date']=='2025-12-31')
+        self.assertEqual(shiseido['profit'],-28788)
+        self.assertNotEqual(shiseido['profit'],44520) # Core adjusted profit is a different measure.
+        self.assertIn('reported_annual',docs['company_cosmetics_shiseido_capex']['series_views'])
+        self.assertIn('transition',docs['company_cosmetics_shiseido_revenue']['series_views'])
+
+    def test_global_official_fixtures_and_no_forecast_or_quarterly_allocation(self):
+        fixture=cosmetics.read(ROOT/'manual/cosmetics/global-fixtures.json')
+        for case in fixture['loreal']:
+            rows=loreal_release(case['html'],case['meta'])
+            self.assertEqual({r['kind'] for r in rows},set(case['kinds']))
+            target=next(r for r in rows if r['kind']==case['target_kind'])
+            for metric,value in case['expected'].items():self.assertAlmostEqual(target[metric],value,places=6)
+        case=fixture['shiseido'];rows=shiseido_statement(case['text'],case['meta'])
+        current=next(r for r in rows if r['date']=='2025-12-31')
+        self.assertEqual((current['revenue'],current['profit'],current['capex']),(969992,-28788,25299))
+        # An H1 release creates one actual half, never two estimated quarters.
+        half=next(r for r in GLOBAL['companies']['loreal']['records'] if r['kind']=='half' and r['date']=='2026-06-30')
+        self.assertEqual((half['profit'],half['capex']),(5063,716.1))
 
 
 if __name__=='__main__':unittest.main()

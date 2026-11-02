@@ -25,3 +25,14 @@
 `fetch_cosmetics.py`는 원문 캐시를 정규화해 `data/cosmetics/state.json`과 27개 차트를 만든다. `--from-state`는 저장된 상태만으로 재생성한다. `--refresh`는 최근 2개 연도 정기 공시와 최신 잠정 공시를 확인하고 기존 과거 이력을 유지한다.
 
 `update-cosmetics.yml`이 매일 한국시간 09:45에 실행된다. 원문 수집·검증 실패 시 해당 회사의 마지막 성공 이력을 보존하고 확인 실패를 표시한다. 시험은 `python -m unittest discover -s scripts -p test_cosmetics.py`로 실행한다.
+
+## 글로벌 브랜드 3개사
+
+국내 9개사와 별도로 로레알·에스티로더·시세이도를 비교한다. `global-companies.json`에 사업·통화·결산 범위를 적고 `fetch_cosmetics_global.py`가 `global_state.json`과 9개 차트를 만든다. 자동 갱신은 같은 워크플로에서 진행하며 회사별 실패는 마지막 성공 이력을 보존한다. 국내와 합쳐 12개사·36개 차트다. 환율 변환이나 글로벌 시가총액 순위는 만들지 않는다.
+
+- 로레알은 공식 실적 보도자료 HTML 표와 Investments 금액을 사용한다. 매출 분기·연간과 이익·투자 연간은 2014년부터, 확보한 반기는 2019년부터다. H2는 연간−H1이며 이익·CAPEX를 분기로 나누어 추정하지 않는다. Operating profit은 회사가 공시하는 Other income and expenses 차감 전 지표로 Operational profit과 구분한다. Investments는 유형·무형자산을 포함하므로 다른 회사의 유형자산 현금지출과 정의가 다르다.
+- 에스티로더는 SEC 기업번호 1001250의 US GAAP 매출·OperatingIncomeLoss·PaymentsToAcquirePropertyPlantAndEquipment를 사용한다. 2014년부터이며 6월 결산, FY는 종료 연도다. FY2026 Q4는 2026년 4~6월이다. 조정 영업이익을 사용하지 않는다.
+- 시세이도는 공식 결산 PDF의 연결 Net sales, Operating profit, 유형자산 취득 현금지출을 읽는다. Core operating profit을 보고 영업이익으로 대체하지 않는다. 매출·영업이익 분기는 2020년부터 확인되는 실제 분기, 유형자산 현금지출 연간은 2020년부터·분기는 확인된 2021년부터다. 현금흐름 미공시 분기는 공백으로 남긴다. 과거 연간 매출·이익은 공식 IR 차트의 2014년까지 이력도 보존한다. 이 차트는 0.1십억 엔 단위 반올림 값을 백만 엔으로 환산한 값이다. PDF의 정밀 수치와 확인되는 IFRS 비교 수치를 우선한다.
+- 시세이도는 2022년 IFRS를 도입했으며 확인된 2021년 IFRS 비교표시와 이전 JGAAP를 구분한다. 2015년 12월 결산 변경 기간(국내 9개월·해외 12개월)은 완결 연간 보기와 분리한다. CAPEX 카드의 `회사 CAPEX · 연간` 보기는 2014년부터의 회사 공시 설비투자이며 무형자산 등을 포함한다. 기본 유형자산 취득 현금지출 보기와 별도 정의다.
+
+원문 발췌 시험 자료는 `global-fixtures.json`에 보관한다. 로레알 최초 연간·최신 반기의 단위/이익/투자, 시세이도 2025년 보고 영업손실(조정 Core 이익과 구분), 결산일·통화·빈도·카탈로그 연결을 검사한다. 공식 PDF는 읽기만 하며 번역·수정하지 않는다.

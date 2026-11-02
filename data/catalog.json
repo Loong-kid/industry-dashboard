@@ -4512,12 +4512,12 @@
       "name": "화장품",
       "default_range": "all",
       "auto_collect_time": "09:45",
-      "cadence": "매일 오전 9:45(KST) DART 정기보고서와 공식 잠정 공시를 확인합니다. 실제 보고기간·연결/별도·원통화(KRW 백만)를 보존하며 잠정실적은 표시 후 정기보고서 확보 시 교체합니다. CAPEX는 유형자산 취득 현금지출이고 잠정 값은 추정하지 않습니다.",
+      "cadence": "매일 오전 9:45(KST) 국내 DART 정기·잠정 공시와 글로벌 공식 IR·SEC를 확인합니다. 실제 보고기간·결산월·원통화(KRW/USD/EUR/JPY 백만)를 보존합니다. CAPEX는 유형자산 취득 현금지출을 기본으로 하며 회사 정의가 다른 로레알 Investments·시세이도 회사 CAPEX는 구분 표시합니다. 잠정 CAPEX는 추정하지 않습니다.",
       "tabs": [
         {
           "id": "overview",
           "name": "전체 비교",
-          "description": "국내 화장품 가치사슬 대표 9개사를 브랜드 → ODM 제조 → 유통 순서로 봅니다. 시총 순위가 아닌 사업 역할별 비교군이며, 회사 전체 실적과 사업 범위는 각 카드에서 구분합니다. 같은 가치사슬의 매출을 합산하면 중복될 수 있습니다.",
+          "description": "국내 브랜드·ODM·유통 9개사와 글로벌 브랜드 3개사, 총 12개사의 전사 실적을 봅니다. 사업 역할별 비교군이며 시총 순위표가 아닙니다. 원통화·공시 주기·결산월·CAPEX 정의가 달라 카드의 기준을 함께 확인합니다. 가치사슬 매출을 합산하면 중복될 수 있습니다.",
           "default_range": "all"
         },
         {
@@ -4536,6 +4536,12 @@
           "id": "distribution",
           "name": "유통·플랫폼",
           "description": "실리콘투의 해외 K-Beauty 유통·플랫폼 실적입니다. 브랜드사·제조사와 다른 매출 인식·물류·재고·설비 구조를 함께 고려합니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "global",
+          "name": "글로벌 브랜드",
+          "description": "로레알(EUR)·에스티로더(USD, 6월 결산)·시세이도(JPY). 매출·공시 영업이익·CAPEX의 실제 보고 주기로 표시합니다. 로레알 이익·투자는 반기이며 시세이도 Core 이익과 보고 영업이익, 회사 CAPEX와 유형자산 현금지출을 구분합니다.",
           "default_range": "all"
         }
       ],
@@ -4649,6 +4655,42 @@
           ]
         },
         {
+          "title": "L’Oréal · 로레알 · OR.PA",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-loreal",
+          "supply_note": "EUR 백만 · 스킨케어·색조·향수·헤어케어 등 로레알 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_loreal_revenue",
+            "company_cosmetics_loreal_profit",
+            "company_cosmetics_loreal_capex"
+          ]
+        },
+        {
+          "title": "Estée Lauder · 에스티로더 · EL",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-estee",
+          "supply_note": "USD 백만 · 스킨케어·메이크업·향수·헤어케어 등 에스티로더 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_estee_revenue",
+            "company_cosmetics_estee_profit",
+            "company_cosmetics_estee_capex"
+          ]
+        },
+        {
+          "title": "Shiseido · 시세이도 · 4911.T",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-shiseido",
+          "supply_note": "JPY 백만 · 프레스티지 뷰티 등 시세이도 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_shiseido_revenue",
+            "company_cosmetics_shiseido_profit",
+            "company_cosmetics_shiseido_capex"
+          ]
+        },
+        {
           "title": "아모레퍼시픽 · 090430",
           "tab": "brands",
           "layout": "financial",
@@ -4754,6 +4796,42 @@
             "company_cosmetics_silicon2_revenue",
             "company_cosmetics_silicon2_profit",
             "company_cosmetics_silicon2_capex"
+          ]
+        },
+        {
+          "title": "L’Oréal · 로레알 · OR.PA",
+          "tab": "global",
+          "layout": "financial",
+          "anchor": "cosmetics-loreal",
+          "supply_note": "EUR 백만 · 스킨케어·색조·향수·헤어케어 등 로레알 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_loreal_revenue",
+            "company_cosmetics_loreal_profit",
+            "company_cosmetics_loreal_capex"
+          ]
+        },
+        {
+          "title": "Estée Lauder · 에스티로더 · EL",
+          "tab": "global",
+          "layout": "financial",
+          "anchor": "cosmetics-estee",
+          "supply_note": "USD 백만 · 스킨케어·메이크업·향수·헤어케어 등 에스티로더 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_estee_revenue",
+            "company_cosmetics_estee_profit",
+            "company_cosmetics_estee_capex"
+          ]
+        },
+        {
+          "title": "Shiseido · 시세이도 · 4911.T",
+          "tab": "global",
+          "layout": "financial",
+          "anchor": "cosmetics-shiseido",
+          "supply_note": "JPY 백만 · 프레스티지 뷰티 등 시세이도 그룹 연결 전체.",
+          "indicators": [
+            "company_cosmetics_shiseido_revenue",
+            "company_cosmetics_shiseido_profit",
+            "company_cosmetics_shiseido_capex"
           ]
         }
       ]
