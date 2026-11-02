@@ -10,7 +10,7 @@ import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from fetch_gifts import date_chunks, CLS
-from gift_plan_document import parse_plan_document, PARSER_VERSION
+from gift_plan_document import GiftPlanParseError, parse_plan_document, PARSER_VERSION
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT/'data/_dart/gift_plan_reports.json'
@@ -128,7 +128,9 @@ def run(api_key,bgn,end,reports=None):
                 errors+=1
                 records[no]['status']='error'
                 records[no]['error_type']=type(exc).__name__
-                print(f'Receipt {no}: {type(exc).__name__}; preserved for retry',flush=True)
+                # Parser messages are safe to log; request errors can contain the API key.
+                detail=f': {exc}' if isinstance(exc,GiftPlanParseError) else ''
+                print(f'Receipt {no}: {type(exc).__name__}{detail}; preserved for retry',flush=True)
             if index%100==0:
                 save_db(db)
                 print(f'Validated {index}/{len(targets)} documents',flush=True)

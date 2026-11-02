@@ -7,6 +7,7 @@ import datetime as dt
 import hashlib
 import json
 import re
+import time
 
 import requests
 
@@ -65,13 +66,25 @@ def build_document(records, today):
             dict(label='확보 범위',value=f'{first}~{last}, {len(records):,}개 원문 발표일. 원문 차트의 날짜와 값을 일대일 대응하며 평균·보간·전일 값 이월을 하지 않습니다.')])
 
 
+def fetch_chart(attempts=3, wait=20):
+    """The API is abroad and occasionally refuses one connection from CI; the next try usually works."""
+    for attempt in range(1, attempts + 1):
+        try:
+            response = requests.get(API,params={'indexCodes':CODE,'startTime':'2000-01-01'},timeout=(8,25))
+            response.raise_for_status()
+            return response
+        except requests.RequestException:
+            if attempt == attempts:
+                raise
+            time.sleep(wait)
+
+
 def run(today=None):
     today = today or dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat()
     path = OUT / (ID+'.json')
     old = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
     try:
-        response = requests.get(API,params={'indexCodes':CODE,'startTime':'2000-01-01'},timeout=(8,25))
-        response.raise_for_status()
+        response = fetch_chart()
         rows = parse_chart(response.json(),today)
         previous = {r['date']:r for r in old.get('source_records',[])}
         if old and rows[-1]['date'] < old['updated']:

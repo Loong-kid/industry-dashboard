@@ -1,4 +1,4 @@
-"""MOCVD indicators from official AIXTRON PDFs and Coherent releases.
+"""MOCVD indicators from official AIXTRON PDFs and Coherent releases (SEC 8-K exhibits).
 
 Reviewed disclosures live in manual/mocvd.json. --backfill fetches the archive;
 normal runs fetch the latest year. --offline rebuilds charts without network.
@@ -17,18 +17,20 @@ import pymupdf
 import requests
 from bs4 import BeautifulSoup
 
+import sec_earnings
+
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / 'data/_mocvd/facts.json'
 MANUAL = ROOT / 'manual/mocvd.json'
 HISTORY = ROOT / 'manual/mocvd_history.json'
 GAN = ROOT / 'manual/mocvd_gan_financials.json'
 AIX = 'https://www.aixtron.com/en/investors/publications'
-COHR = 'https://ir.coherent.com/financial-information/quarterly-results'
+COHR_CIK = 820318
 VECO = 'https://s1.q4cdn.com/522285864/files/doc_presentations/2026/May/Investor-Presentation-May-2026-FINAl.pdf'
 
 
 def get(url):
-    r = requests.get(url, timeout=(10, 25))
+    r = requests.get(url, timeout=(10, 25), headers=sec_earnings.HEADERS if url.startswith('https://www.sec.gov/') else None)
     r.raise_for_status()
     return r
 
@@ -139,37 +141,6 @@ def extract_coherent(html, url, fy, quarter):
                          capex_ytd=v,url=url,fetched=dt.date.today().isoformat())
                     for f,y,v in [(fy,year,nums[0]),(fy-1,year-1,nums[1])]]
     raise ValueError('Coherent cash CAPEX table missing')
-
-
-def extract_coherent_pdf(data,url,fy,quarter):
-    with pymupdf.open(stream=data,filetype='pdf') as pdf:
-        alltext=' '.join(p.get_text() for p in pdf)
-        month={1:'September',2:'December',3:'March',4:'June'}[quarter]
-        year=fy-1 if quarter<3 else fy
-        if not re.search(fr'{month}\s+\d+,?\s+{year}',alltext,re.I):
-            raise ValueError('Coherent PDF fiscal period not confirmed')
-        for i,p in enumerate(pdf):
-            t=p.get_text()
-            if 'Statements of Cash Flows' not in t or 'Millions' not in t:continue
-            m=re.search(r'Additions to property,\s*plant\s*&\s*equipment\s+\(([\d,.]+)\)\s+\(([\d,.]+)\)',t)
-            if not m:continue
-            return [dict(date=end_date(y,{1:3,2:4,3:1,4:2}[quarter]),year=f,quarter=quarter,
-                         capex_ytd=float(v.replace(',','')),url=url,pdf_page=i+1,
-                         fetched=dt.date.today().isoformat())
-                    for f,y,v in [(fy,year,m[1]),(fy-1,year-1,m[2])]]
-    raise ValueError('Coherent PDF cash CAPEX row missing')
-
-
-def fetch_coherent(url,fy,q):
-    html=get(url).text
-    try:return extract_coherent(html,url,fy,q)
-    except ValueError as original:
-        soup=BeautifulSoup(html,'html.parser')
-        for a in soup.select('a[href]'):
-            if '/static-files/' not in a['href']:continue
-            pdfurl=urljoin(url,a['href'])
-            return extract_coherent_pdf(get(pdfurl).content,pdfurl,fy,q)
-        raise original
 
 
 def merge(old,new):
@@ -329,25 +300,20 @@ def collect(facts,backfill=False):
         try:facts['veeco']=merge(facts.get('veeco',[]),extract_veeco(get(VECO).content,VECO))
         except Exception as e:errors.append(f'Veeco: {e}')
     try:
-        soup=BeautifulSoup(get(COHR).text,'html.parser')
-        urls=[]
+        # ir.coherent.com answers 403 to scripts; SEC carries the same release as an 8-K exhibit.
+        since='2024-07-01' if backfill else (dt.date.today()-dt.timedelta(days=200)).isoformat()
         ordinal={'first':1,'second':2,'third':3,'fourth':4}
-        for a in soup.select('a[href]'):
-            h=a['href']
-            m=re.search(r'coherent-corp-(?:reports|releases)-(first|second|third|fourth)-quarter-(?:and-full-(?:fiscal-)?year-)?(?:fiscal-(?:year-)?)?(20\d\d)',h)
-            if m:urls.append((urljoin(COHR,h),int(m[2]),ordinal[m[1]]))
-        # The current quarterly archive can lag the financial releases page.
-        releases=BeautifulSoup(get('https://ir.coherent.com/news-events/financial-releases').text,'html.parser')
-        for a in releases.select('a[href]'):
-            m=re.search(r'coherent-corp-reports-(first|second|third|fourth)-quarter-(?:and-full-year-)?fiscal-(20\d\d)',a['href'])
-            if m:urls.append((urljoin(COHR,a['href']),int(m[2]),ordinal[m[1]]))
-        if not urls:raise ValueError('No Coherent quarterly releases discovered')
-        newest=max(y for _,y,_ in urls)
-        for url,fy,q in sorted(set(urls),key=lambda x:(x[1],x[2])):
-            if fy<2025 or (not backfill and fy<newest):continue
+        for release in sec_earnings.earnings_exhibits(COHR_CIK,since):
+            html=get(release['url']).text
+            m=re.search(r'(First|Second|Third|Fourth) Quarter(?: and Full[- ](?:Fiscal[- ])?Year)?(?: of)?(?: Fiscal)?(?: Year)? (20\d\d)',
+                        BeautifulSoup(html,'html.parser').get_text(' ',strip=True),re.I)
+            if not m:
+                errors.append(f"Coherent {release['filed']}: fiscal period not found")
+                continue
+            fy,q=int(m[2]),ordinal[m[1].lower()]
+            if fy<2024:continue
             try:
-                rows=fetch_coherent(url,fy,q)
-                facts['coherent']=merge(facts.get('coherent',[]),rows)
+                facts['coherent']=merge(facts.get('coherent',[]),extract_coherent(html,release['url'],fy,q))
                 print('Coherent',fy,q)
             except Exception as e:errors.append(f'Coherent FY{fy}Q{q}: {e}')
     except Exception as e:errors.append(f'Coherent archive: {e}')

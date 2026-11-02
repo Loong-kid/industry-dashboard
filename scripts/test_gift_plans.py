@@ -52,6 +52,17 @@ class GiftPlansTest(unittest.TestCase):
         new.find(attrs={'acode':'RMK'}).string='-'
         self.assertEqual(len(self.parse(str(soup))['events']),1,'Ignore otherwise blank repeated gift template row')
 
+    def test_bad_ownership_ratio_only_matters_on_gift_rows(self):
+        table = """<TABLE><TR><TE ACODE="MDF_STR_DT">2026.11.20</TE><TE ACODE="MDF_END_DT">2026.12.18</TE>
+        <TE ACODE="MDF_MT">{method}</TE><TE ACODE="STR_KND">{security}</TE><TE ACODE="STR_STK_CNT">10</TE><TE ACODE="RMK">-</TE></TR></TABLE>"""
+        head = """<TE ACODE="IFR_NM">A</TE><TE ACODE="CRP_CD">000001</TE><TE ACODE="FLT_SUM">1,000</TE>
+        <TE ACODE="HLD_CMT_RT">33.33</TE><TE ACODE="OWN_HLD_CMT_RT">34,292,708</TE>"""
+        listing = {"report_nm": "임원ㆍ주요주주특정증권등거래계획보고서", "stock_code": "000001"}
+        other = parse_plan_document(head + table.format(method="기타(-)", security="교환사채권"), listing)
+        self.assertEqual(other["events"], [])
+        with self.assertRaises(GiftPlanParseError):
+            parse_plan_document(head + table.format(method="증여(-)", security="보통주"), listing)
+
     def test_no_cb_as_stock_or_missing_number_as_zero(self):
         self.assertEqual(self.parse(FIXTURE.replace('보통주','전환사채권'))['events'],[])
         self.assertEqual(self.parse(FIXTURE.replace('-500,000','500,000'))['events'][0]['gift_shares'],500000)

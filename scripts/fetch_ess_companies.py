@@ -2,7 +2,7 @@
 
 Historical reports are cached as normalized observations, not as source binaries.
 New Tesla financial releases are discovered through its SEC catalogue;
-Fluence through issuer RSS; Sungrow through CNINFO disclosures. A failed company
+Fluence through SEC 8-K exhibits; Sungrow through CNINFO disclosures. A failed company
 refresh preserves its last validated publication and does not block the others.
 """
 import argparse
@@ -21,6 +21,7 @@ import pymupdf
 import requests
 from bs4 import BeautifulSoup
 
+import sec_earnings
 from fetch_mineral_prices import korea_today
 from fetch_mineral_supply import atomic_json
 from fetch_mineral_companies import preserve_history
@@ -29,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / 'data/_ess_companies/observations.json'
 REGISTRY = ROOT / 'scripts/ess_company_sources.json'
 OUT = ROOT / 'data/ess'
+FLUENCE_CIK = 1868941
 NAMES = {'tesla': '테슬라 에너지', 'sungrow': '선그로우', 'fluence': '플루언스 에너지'}
 NUM = r'\(?\s*-?\d[\d,]*(?:\.\d+)?\s*\)?'
 MONTHS = {name: i for i, name in enumerate(calendar.month_name) if name}
@@ -64,7 +66,7 @@ def download(url, raw_dir=None, reuse=False):
     path = raw_dir / hashlib.sha256(url.encode()).hexdigest() if raw_dir else None
     if reuse and path and path.exists():
         return path.read_bytes()
-    headers = {'User-Agent': 'industry-dashboard (personal research) wkorotk@gmail.com'} if url.startswith('https://data.sec.gov/') else None
+    headers = {'User-Agent': 'industry-dashboard (personal research) wkorotk@gmail.com'} if url.startswith(('https://data.sec.gov/', 'https://www.sec.gov/')) else None
     response = requests.get(url, headers=headers, timeout=30)
     response.raise_for_status()
     if path:
@@ -249,29 +251,29 @@ def parse_sungrow(content, report):
     return result
 
 
-def rss_reports(company, raw_dir=None, reuse=False):
-    url = 'https://ir.fluenceenergy.com/rss/news-releases.xml' if company == 'fluence' else 'https://ir.tesla.com/rss.xml'
-    root = ET.fromstring(download(url, raw_dir, reuse))
+def fluence_report(title, url):
+    """Earnings release headline -> report row, or None for anything else."""
+    match = re.search(r'Reports (First|Second|Third|Fourth)(?: Fiscal)? Quarter(?: Fiscal)? (20\d{2}) Results', title, re.I)
+    if match:
+        q = ['first', 'second', 'third', 'fourth'].index(match[1].lower()) + 1
+        fy = int(match[2]); date = quarter_end(fy - (q == 1), 4 if q == 1 else q - 1)
+        return {'company': 'fluence', 'url': url, 'period': date, 'quarter': q, 'parser': 'fluence', 'label': match[0]}
+    annual = re.search(r'Reports (?:Record Performance in |(?:Fourth Quarter and Full Fiscal Year )?)(20\d{2}).{0,80}?(?:Results|Initiates)', title, re.I)
+    if annual:
+        return {'company': 'fluence', 'url': url, 'period': f'{annual[1]}-09-30', 'quarter': 4, 'parser': 'fluence', 'label': annual[0]}
+    return None
+
+
+def sec_fluence_reports(existing, raw_dir=None, reuse=False):
+    """Releases for periods not cached yet. ir.fluenceenergy.com answers 403 to scripts."""
+    known = {row.get('period') for row in existing.values()}
+    since = (korea_today() - dt.timedelta(days=200)).isoformat()
     reports = []
-    for item in root.findall('.//item'):
-        title, link = item.findtext('title', ''), item.findtext('link', '')
-        if company == 'fluence':
-            match = re.search(r'Reports (First|Second|Third|Fourth)(?: Fiscal)? Quarter(?: Fiscal)? (20\d{2}) Results', title, re.I)
-            if not match:
-                annual = re.search(r'Reports (?:Record Performance in |(?:Fourth Quarter and Full Fiscal Year )?)(20\d{2}).*(?:Results|Initiates)', title, re.I)
-                if annual:
-                    reports.append({'company': company, 'url': link, 'period': f'{annual[1]}-09-30',
-                                    'quarter': 4, 'parser': company, 'label': title})
-                continue
-            q = ['first', 'second', 'third', 'fourth'].index(match[1].lower()) + 1
-            fy = int(match[2]); date = quarter_end(fy - (q == 1), 4 if q == 1 else q - 1)
-            reports.append({'company': company, 'url': link, 'period': date, 'quarter': q, 'parser': company, 'label': title})
-        else:
-            match = re.search(r'(First|Second|Third|Fourth) Quarter (20\d{2}) Production', title, re.I)
-            if match:
-                q = ['first', 'second', 'third', 'fourth'].index(match[1].lower()) + 1
-                reports.append({'company': company, 'url': link, 'period': quarter_end(int(match[2]), q),
-                                'parser': 'tesla_deployment', 'label': title})
+    for release in sec_earnings.earnings_exhibits(FLUENCE_CIK, since):
+        content = download(release['url'], raw_dir, reuse)
+        report = fluence_report(BeautifulSoup(content, 'html.parser').get_text(' ', strip=True), release['url'])
+        if report and report['period'] not in known:
+            reports.append({**report, '_content': content})
     return reports
 
 
@@ -529,20 +531,22 @@ def collect(raw_dir=None, reuse=False, offline=False, only=None):
         reports = {url: dict(row) for url, row in before.items()}
         candidates = [row for row in registry['reports'] if row['company'] == company]
         discovery_error = None
+        discovered = []
         if not offline:
             try:
-                discovered = latest_sungrow(raw_dir, reuse) if company == 'sungrow' else latest_tesla(before, raw_dir, reuse) if company == 'tesla' else rss_reports(company, raw_dir, reuse)
+                discovered = latest_sungrow(raw_dir, reuse) if company == 'sungrow' else latest_tesla(before, raw_dir, reuse) if company == 'tesla' else sec_fluence_reports(before, raw_dir, reuse)
                 candidates.extend(discovered)
             except Exception as error:
                 failures.append(f'{company} discovery: {error}')
                 discovery_error = str(error)
                 print(f'{company}: discovery failed; checking registered sources: {error}', flush=True)
         try:
+            discovered_urls = {row['url'] for row in discovered} if not offline and not discovery_error else set()
             latest = max(row['period'] for row in candidates)
             for report in sorted(candidates, key=lambda row: row['period']):
                 url = report['url']
                 parser_version = 2 if report['parser'] == 'tesla_rpo' else 1
-                if url in reports and reports[url].get('parser_version', 1) == parser_version and (offline or report['period'] < latest):
+                if url in reports and reports[url].get('parser_version', 1) == parser_version and (offline or report['period'] < latest or url not in discovered_urls):
                     continue
                 content = report.pop('_content', None) or download(url, raw_dir, reuse)
                 parser = parse_sungrow if company == 'sungrow' else parse_fluence if company == 'fluence' else parse_tesla

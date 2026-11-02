@@ -70,7 +70,9 @@ def read_export(content, source):
         if not count or not stats['date_min']:
             raise ValueError('Export contains no dated data-centre observations')
         period = declared_period(source['title'])
-        if period and not (period[0] <= stats['date_min'] <= stats['date_max'] <= period[1]):
+        # Exports can carry earlier permits that changed inside the window (export 1905: titled Jul-Sep,
+        # permits from Jun 4). Only a last date outside the window means the title is for another file.
+        if period and not period[0] <= stats['date_max'] <= period[1]:
             raise ValueError('Permit dates disagree with export title; refusing snapshot')
         stats['declared_period'] = list(period) if period else None
         return observations, stats

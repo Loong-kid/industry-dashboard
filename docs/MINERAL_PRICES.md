@@ -1,5 +1,7 @@
 # 우라늄·농축서비스·희토류 가격
 
+> 2026-10 KOMIS가 품목 번호를 다시 매겼다. 같은 가격 기준인지 겹치는 날짜로 대조해 `scripts/komis_prices.json`을 새 번호로 옮겼고, 시리즈는 이어 붙이지 않고 새 번호의 전체 이력으로 교체했다. 단위가 바뀐 품목(USD/kg→USD/t·USD/lb)은 원문 단위를 따른다. 후속 품목이 없는 3개는 `retired`로 옮겨 마지막 값까지만 표시한다. `comm_lithium`은 CIF에서 Delivered 중국 기준으로 바뀌었다.
+
 `scripts/fetch_mineral_prices.py`가 Cameco·EIA 가격과 `fetch_komis_prices.py`의 전체 광물 수집을 실행한다. KOMIS는 49개 광종·79개 가격 기준을 수집한다. 화면은 `normal` / `구리` / `희토류` 세부 탭으로 분류하고, 각 광물의 모든 가격과 생산량·매장량을 함께 배치한다. 비철·철·에너지·귀금속·흑연과 희토류 외 희소금속은 normal, 구리 가격은 구리, 희토류 14종 가격은 희토류에 표시한다.
 API 키나 로그인이 필요하지 않으며 일일 `update-data.yml`에서 실행한다.
 

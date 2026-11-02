@@ -21,21 +21,21 @@ class KomisPriceTests(unittest.TestCase):
                 {'crtrYmd': '20260924', 'cmercPrc': '19.35', 'lowstPrc': '19.10', 'hghstPrc': '19.60'},
                 {'crtrYmd': '20180108', 'cmercPrc': '10.5', 'lowstPrc': '0', 'hghstPrc': '0'}]},
         }
-        self.options = {773: {'product': self.card['product'], 'specification': self.card['specification']}}
+        self.options = {self.card['reference']: {'product': self.card['product'], 'specification': self.card['specification']}}
 
     def test_registry_covers_all_minerals_distinct_references_and_empty_options(self):
         cards = self.registry['cards']
         all_options = cards + self.registry['excluded']
-        self.assertEqual(len(cards), 79)
-        self.assertEqual(len(all_options), 83)
-        self.assertEqual(len({(card['group'], card['mineral_code']) for card in all_options}), 49)
+        self.assertEqual(len(cards), 83)
+        self.assertEqual(len(all_options), 87)
+        self.assertEqual(len({(card['group'], card['mineral_code']) for card in all_options}), 54)
         self.assertEqual(len({komis.identity(card) for card in all_options}), len(all_options))
         self.assertEqual(len({card['id'] for card in cards}), len(cards))
-        self.assertEqual(len([card for card in cards if card['mineral_code'] == 'MNRL0001']), 3)
+        self.assertEqual(len([card for card in cards if card['mineral_code'] == 'MNRL0001']), 4)
         self.assertTrue(all(card['explanation'] and card['methodology_url'].startswith('https://') for card in cards))
 
     def test_distinct_currencies_units_products_and_attributions_are_pinned(self):
-        for key, value in [('prcUnitCdNm', 'CNY'), ('weigUnitCd', 'mt'), ('prcCrtr', '99.5%min EXW China'),
+        for key, value in [('prcUnitCdNm', 'CNY'), ('weigUnitCd', 'kg'), ('prcCrtr', '99.5%min EXW China'),
                            ('mnrkndKornNm', '코발트'), ('isISE', 'N')]:
             payload = copy.deepcopy(self.payload)
             payload['dataAvg']['INFO'][key] = value
@@ -45,7 +45,7 @@ class KomisPriceTests(unittest.TestCase):
         payload['dataAvg']['INFO']['prcCrtr'] += '  '
         self.assertEqual(komis.parse_payload(payload, self.card, self.today)[0][-1], ['2026-09-24', 19.35])
         changed = copy.deepcopy(self.options)
-        changed[773]['specification'] = '99'
+        changed[self.card['reference']]['specification'] = '99'
         with self.assertRaises(ValueError):
             komis.validate_option(self.card, changed)
 
@@ -85,7 +85,7 @@ class KomisPriceTests(unittest.TestCase):
                 komis.fetch_card(Mock(), self.today, self.card, self.options)
             self.assertEqual(request.call_args.kwargs['data']['srchStartDate'], 1987)
             doc = json.loads(path.read_text(encoding='utf-8'))
-            self.assertEqual(doc['unit'], 'USD/kg')
+            self.assertEqual(doc['unit'], 'USD/t')
             self.assertNotIn('manual', doc)
             placeholder['series'] = {'旧': [['2025-01-01', 100]]}
             path.write_text(json.dumps(placeholder), encoding='utf-8')
@@ -109,7 +109,7 @@ class KomisPriceTests(unittest.TestCase):
     def test_incremental_update_preserves_older_quality_and_history(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(komis.common, 'OUT', Path(directory)):
             path = Path(directory) / 'comm_lithium.json'
-            old = {'id': self.card['id'], 'unit': 'USD/kg', 'price_reference': self.card['price_reference'],
+            old = {'id': self.card['id'], 'unit': 'USD/t', 'price_reference': self.card['price_reference'],
                    'series': {'기준가격': [['2020-01-01', 9], ['2026-09-24', 19]]},
                    'data_quality': {'range_mismatch_dates': ['2020-01-01', '2026-09-24'], 'omitted_dates': []}}
             path.write_text(json.dumps(old), encoding='utf-8')
@@ -131,7 +131,7 @@ class KomisPriceTests(unittest.TestCase):
         response.json.return_value = {'data': [{'cdKey': self.card['mineral_code']}]}
         with patch.object(komis, 'load_registry', return_value=registry), patch.object(komis, 'GROUPS', {'HP002': ()}), \
                 patch.object(komis.common, 'request', return_value=response), \
-                patch.object(komis, 'options_for', return_value={773: {}, 772: {}, 999: {}}), \
+                patch.object(komis, 'options_for', return_value={self.card['reference']: {}, 772: {}, 999: {}}), \
                 patch.object(komis, 'fetch_card', side_effect=[ValueError('bad price'), None]) as fetch:
             with self.assertRaises(RuntimeError):
                 komis.run(session=Mock(headers={}), today=self.today)

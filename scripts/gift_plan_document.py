@@ -88,9 +88,6 @@ def parse_plan_document(raw, listing):
     total = number(field(soup, 'FLT_SUM'), integer=True)
     before_rate = number(field(soup, 'HLD_CMT_RT'))
     after_rate = number(field(soup, 'OWN_HLD_CMT_RT'))
-    for value in (before_rate, after_rate):
-        if value is not None and not 0 <= value <= 100:
-            raise GiftPlanParseError('ownership ratio outside expected range')
     if total is not None and total <= 0:
         raise GiftPlanParseError('invalid issued shares')
     base = {
@@ -143,6 +140,10 @@ def parse_plan_document(raw, listing):
                                counterparty=counterparty(remark), remark=remark))
     if empty_gift_rows and not events:
         raise GiftPlanParseError('missing gift share count')
+    # Only a gift row publishes these ratios. Filers sometimes type share counts into them on
+    # unrelated plans (receipt 20261021000437, a convertible bond), which is not our concern.
+    if events and any(value is not None and not 0 <= value <= 100 for value in (before_rate, after_rate)):
+        raise GiftPlanParseError('ownership ratio outside expected range')
     return {'events': events, 'reporter': reporter, 'purpose': base['purpose'],
             'parser_version': PARSER_VERSION, 'sha256': hashlib.sha256(raw.encode('utf-8')).hexdigest()}
 

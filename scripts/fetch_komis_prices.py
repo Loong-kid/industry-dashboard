@@ -116,6 +116,10 @@ def quotation_details(card, quality):
         details.append({'label': '중량 단위', 'value': '미터톤(t) 기준, 1톤 = 1,000kg. kg 단위 가격으로 환산하지 않았습니다.'})
     elif unit in ('troz', 'ozt'):
         details.append({'label': '중량 단위', 'value': '트로이온스 기준, 1 트로이온스 ≈ 31.1035g.'})
+    elif unit == 'lb':
+        details.append({'label': '중량 단위', 'value': '파운드 기준, 1 lb ≈ 0.4536kg. kg 단위 가격으로 환산하지 않았습니다.'})
+    elif unit == 'dt':
+        details.append({'label': '중량 단위', 'value': '건조톤(수분 제외 1톤) 기준입니다.'})
     elif unit == 'mtu':
         details.append({'label': '함유량 단위', 'value': 'mtu는 metric tonne unit(1톤의 1%, 함유량 10kg)입니다. 제품 1톤당 가격과 다릅니다.'})
     if quality['range_mismatch_dates']:
@@ -144,8 +148,6 @@ def fetch_card(session, today, card, options, backfill=False):
     info = card['info']
     unit = {'ton': 't', 'mt': 't', 'troz': '트로이oz', 'ozt': '트로이oz'}.get(info['weigUnitCd'], info['weigUnitCd'])
     unit = f"{info['prcUnitCdNm']}/{unit}"
-    if card['id'] in ('comm_neodymium', 'comm_dysprosium', 'comm_terbium', 'comm_praseodymium'):
-        unit = '$/kg'  # Keep the existing four references and histories intact.
     doc = {'id': card['id'], 'name': card['name'], 'unit': unit, 'frequency': card['frequency'],
            'source': 'KOMIS · ' + card['attribution'], 'source_url': BASE + GROUPS[card['group']][2],
            'price_reference': card['price_reference'], 'komis_info': info, 'komis_group': card['group'],
