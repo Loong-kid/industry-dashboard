@@ -38,7 +38,7 @@ def collect_htc(prior,asof,full=False):
     for page in pages:
         for item in htc_links(cached(page,True),page):
             if f"{item['year']}-{item['quarter']*3:02d}-01"<=asof:specs[item['year'],item['quarter']]=item
-    reports={(r['year'],r['quarter']):r for r in prior.get('htc_reports',[])};errors=[]
+    reports={(r['year'],r['quarter']):r for r in prior.get('htc_reports',[])};errors=[];fresh=[];verified=set()
     def parse(item):
         try:
             raw=cached(item['url'])
@@ -50,14 +50,16 @@ def collect_htc(prior,asof,full=False):
     with ThreadPoolExecutor(max_workers=3) as pool:
         for report,error in pool.map(parse,specs.values()):
             if error:errors.append(error);print('HTC source review:',error[1],flush=True)
-            else:reports[report['year'],report['quarter']]=report;print('HTC',report['year'],report['quarter'],'original PDF',flush=True)
+            else:
+                reports[report['year'],report['quarter']]=report;fresh.append(report);verified.add((report['year'],report['quarter']))
+                print('HTC',report['year'],report['quarter'],'original PDF',flush=True)
     # Some historical IR links point to a press release instead of the labeled
     # statement. Use the following year's actual comparative columns when the
     # original period is missing; never substitute rounded press-release sales.
-    for r in list(reports.values()):
+    for r in fresh:
         for c in r.get('comparatives',[]):
-            if c['year']>=2014:reports.setdefault((c['year'],c['quarter']),c)
-    errors=[message for identity,message in errors if identity not in reports]
+            if c['year']>=2014:reports.setdefault((c['year'],c['quarter']),c);verified.add((c['year'],c['quarter']))
+    errors=[message for identity,message in errors if identity not in verified]
     if not reports:raise ValueError('No HTC original statements')
     result=htc_accounts(list(reports.values()))
     if not result['annual'] or not result['rows']:raise ValueError('HTC annual/quarter history missing')

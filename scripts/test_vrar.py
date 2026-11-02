@@ -1,8 +1,10 @@
 """XR reporting scopes, original source amounts and quarter derivations."""
 import copy,datetime as dt,json,math,unittest
+from unittest.mock import patch
+import requests
 from pathlib import Path
 from vrar_sources import reality_labs,parse_htc_text,htc_accounts,htc_links
-from fetch_vrar import build
+from fetch_vrar import build,collect_htc
 
 ROOT=Path(__file__).resolve().parents[1];FIX=ROOT/'scripts/fixtures/vrar'
 def read(path):return json.loads(path.read_text(encoding='utf-8'))
@@ -105,6 +107,16 @@ class PublishedHistory(unittest.TestCase):
         self.assertIn('update-vrar.yml',(ROOT/'assets/refresh.js').read_text(encoding='utf-8'))
         serialized=json.dumps(self.state)
         self.assertNotIn('crtfc_key',serialized)
+
+    def test_failed_current_htc_query_keeps_history_and_failure_status(self):
+        prior=self.state['companies']['htc']
+        def source(url,refresh=False):
+            if url.endswith('/quarterly-results/'):return b'<a href="2026-quarterly-results">Learn More</a>'
+            if '2026-quarterly-results' in url:return b'<tr><td>2026 Q3 Financial Results - Consolidated Financial Report (IFRS)</td><td><a href="https://investors.htc.com/documents/latest.pdf">PDF</a></td></tr>'
+            raise requests.Timeout('source unavailable')
+        with patch('fetch_vrar.cached',source):result=collect_htc(prior,'2026-11-03')
+        self.assertFalse(result['ok']);self.assertTrue(result['source_errors'])
+        self.assertEqual(result['rows'],prior['rows']);self.assertEqual(result['annual'],prior['annual'])
 
 
 if __name__=='__main__':unittest.main()
