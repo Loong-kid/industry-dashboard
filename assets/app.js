@@ -760,6 +760,7 @@ function renderCard(doc, indicatorId, options = {}) {
   if (doc?.company_comparison) return renderUsDatacenterComparison(doc);
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
+  if (doc?.full_width) card.style.gridColumn = "1 / -1";
   if (doc?.compact_tooltip) card.dataset.compactHovers = "true";
   const dateLabel = date => (doc?.period_labels?.[date] ? `${doc.period_labels[date]} · ${date}`
     : doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual" ? periodLabel(doc, date) : date)
@@ -1640,6 +1641,35 @@ const crosshair = {
   },
 };
 
+// 막대 조각 안쪽 위에 값 표시(가운데는 함께 그린 선과 겹친다). 조각이 글자보다 좁거나 낮으면(좁은 화면 등) 생략한다 — 툴팁·표에는 남아 있다.
+const barValueLabels = {
+  id: "barValueLabels",
+  afterDatasetsDraw(chart) {
+    const {ctx} = chart;
+    ctx.save();
+    ctx.font = "600 10px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.lineWidth = 3;
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = css("--surface");
+    ctx.fillStyle = css("--ink");
+    chart.data.datasets.forEach((dataset, i) => {
+      if (dataset.type !== "bar" || !chart.isDatasetVisible(i)) return;
+      chart.getDatasetMeta(i).data.forEach((bar, index) => {
+        const value = dataset.data[index];
+        if (value == null) return;
+        const text = Math.round(value).toLocaleString("ko-KR");
+        const {x, y, base, width} = bar.getProps(["x", "y", "base", "width"], true);
+        if (ctx.measureText(text).width + 2 > width || Math.abs(base - y) < 12) return;
+        ctx.strokeText(text, x, y + 8);
+        ctx.fillText(text, x, y + 8);
+      });
+    });
+    ctx.restore();
+  },
+};
+
 function drawChart(canvas, doc, filtered) {
   const palette = SERIES_COLORS[isDark() ? "dark" : "light"];
   const names = Object.keys(filtered);
@@ -1693,16 +1723,20 @@ function drawChart(canvas, doc, filtered) {
       const [start, end] = gapBounds(ctx);
       return gapMonths(ctx) === 2 && start.slice(5, 7) === "12" && end.slice(5, 7) === "02";
     };
-    const color = doc.series_colors?.[n] || palette[i % palette.length];
+    const color = doc.series_colors?.[n] || palette[(doc.series_palette_slots?.[n] ?? i) % palette.length];
     const count = data.filter((v) => v != null).length;
+    const stackedBar = doc.stacked_series?.includes(n);
     return {
+      // 스택 막대 + 선 조합: 막대만 쌓고 선은 그 위에 그린다.
+      ...(doc.stacked_series ? {type: stackedBar ? "bar" : "line"} : {}),
+      ...(stackedBar ? {stack: "stack", barPercentage: 0.82, categoryPercentage: 0.9, hoverBackgroundColor: color} : {}),
       label: n,
       data,
       borderColor: color,
       backgroundColor: color,
-      borderWidth: 2,
+      borderWidth: stackedBar ? 0 : 2,
       borderDash: doc.series_dashes?.[n],
-      order: doc.series_dashes?.[n] ? -1 : undefined,
+      order: doc.series_dashes?.[n] ? -1 : doc.stacked_series ? (stackedBar ? 1 : 0) : undefined,
       pointRadius: count < 8 ? 3 : 0, // 점이 적을 땐(수집 초기) 마커로 표시
 
       pointHoverRadius: 5,
@@ -1759,6 +1793,11 @@ function drawChart(canvas, doc, filtered) {
               + (doc.forecast_from && items[0].label >= doc.forecast_from ? ` · ${doc.forecast_label || "전망"}` : "") : "",
             label: (c) => ` ${c.dataset.label}: ${observationLabel(doc, c.label, c.parsed.y)}${doc.unit ? " " + doc.unit : ""}${doc.point_annotations?.[c.label] ? " · 추정" : ""}`,
             afterLabel: c => doc.compact_tooltip ? [] : doc.point_notes?.[c.label] || [],
+            footer: (items) => {
+              if (!doc.stack_total_label) return "";
+              const bars = items.filter(item => doc.stacked_series.includes(item.dataset.label) && item.parsed.y != null);
+              return bars.length ? `${doc.stack_total_label}: ${fmt(bars.reduce((sum, item) => sum + item.parsed.y, 0))} ${doc.unit || ""}` : "";
+            },
             afterBody: (items) => {
               if (doc.compact_tooltip) return [];
               const dates = doc.source_dates?.[items[0]?.label];
@@ -1773,9 +1812,10 @@ function drawChart(canvas, doc, filtered) {
       },
       scales: {
         x: {
+          stacked: !!doc.stacked_series,
           ticks: {
             color: css("--muted"),
-            maxTicksLimit: doc.komis_info || doc.month_labels || doc.compact_ticks ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
+            maxTicksLimit: doc.stacked_series ? 40 : doc.komis_info || doc.month_labels || doc.compact_ticks ? ctx => ctx.chart.width < 420 ? 3 : 6 : 6,
             maxRotation: 0, autoSkip: true,
             font: { size: 11 },
             callback: function(value) { return periodLabel(doc, this.getLabelForValue(value)); },
@@ -1784,6 +1824,7 @@ function drawChart(canvas, doc, filtered) {
           border: { color: css("--baseline") },
         },
         y: {
+          stacked: !!doc.stacked_series,
           beginAtZero: doc.zero_baseline || false,
           ticks: {
             color: css("--muted"),
@@ -1796,7 +1837,7 @@ function drawChart(canvas, doc, filtered) {
         },
       },
     },
-    plugins: [crosshair],
+    plugins: doc.bar_value_labels ? [crosshair, barValueLabels] : [crosshair],
   });
   state.charts.push(chart);
   return chart;
