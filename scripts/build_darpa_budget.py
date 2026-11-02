@@ -436,7 +436,7 @@ def build(pdf_dir):
             "count": {y: sum(1 for p in mine if p["request"].get(y, 0) > 0) for y in req_years},
         })
     for p in programs:   # 신규 = 처음 돈이 붙은 해가 첫 예산서 해 이후(그 전 해 실적이 보이므로 그 전부터 있던 것은 기존 사업)
-        p["new_fy"] = p["first_fy"] if p["kind"] == "program" and p["first_fy"] and p["first_fy"] >= first_book else None
+        p["new_fy"] = p["first_fy"] if p["kind"] == "program" and p["sector"] != "support" and p["first_fy"] and p["first_fy"] >= first_book else None
     ba = defaultdict(lambda: defaultdict(float))
     for pe, s in pe_series.items():
         for y, v in s["request"].items():
