@@ -24,6 +24,32 @@
 .sv-card .sv-table-wrap { margin-top: 10px; max-height: 280px; }
 .sv-card .sv-pages { display: flex; gap: 8px; align-items: center; margin-top: 8px; font-size: 11px; color: var(--muted); }
 .sv-card button:focus-visible,.sv-summary button:focus-visible,.sv-summary input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sv-head-tools { display: flex; align-items: center; gap: 8px; }
+.sv-card .sv-enlarge { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; min-height: 28px; }
+.sv-enlarge svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.sv-enlarge:disabled { opacity: .5; cursor: wait; }
+.sv-zoom-dialog { box-sizing: border-box; margin: auto; width: min(1280px,calc(100vw - 40px)); height: min(88dvh,900px); max-width: none; max-height: calc(100dvh - 24px); padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--ink); overflow: auto; }
+.sv-zoom-dialog[open] { display: flex; flex-direction: column; gap: 12px; }
+.sv-zoom-dialog::backdrop { background: rgba(0,0,0,.48); }
+.sv-zoom-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sv-zoom-head h2 { font-size: 18px; margin: 0; }
+.sv-zoom-head p { margin: 4px 0 0; }
+.sv-zoom-dialog button,.sv-zoom-dialog input { font: inherit; font-size: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 5px; padding: 6px 10px; }
+.sv-zoom-dialog button { cursor: pointer; min-height: 32px; }
+.sv-zoom-dialog .sv-zoom-close { flex-shrink: 0; min-width: 36px; min-height: 36px; }
+.sv-zoom-dialog button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.sv-zoom-dialog button:focus-visible,.sv-zoom-dialog input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sv-zoom-controls,.sv-zoom-ranges,.sv-zoom-dates { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sv-zoom-controls { justify-content: space-between; }
+.sv-zoom-dates label { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+.sv-zoom-dates input { width: 132px; min-width: 0; box-sizing: border-box; color-scheme: light dark; }
+.sv-zoom-status { margin: 0; }
+.sv-zoom-chart { position: relative; flex: 1; min-height: 220px; }
+.sv-zoom-foot { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; }
+@media(max-width:600px){
+  .sv-zoom-dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); height: 92dvh; padding: 12px; }
+  .sv-zoom-head h2 { font-size: 16px; }
+}
 @media(max-width:480px){
   #content:has(.sv-summary) .card-head { flex-wrap: wrap; }
   #content:has(.sv-summary) .card-freq { white-space: normal; overflow-wrap: anywhere; }
