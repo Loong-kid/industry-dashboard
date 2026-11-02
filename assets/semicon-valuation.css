@@ -1,0 +1,30 @@
+.sv-summary { padding: 16px; margin-bottom: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); min-width: 0; }
+.sv-summary .sv-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.sv-summary input { width: 220px; max-width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--ink); }
+.sv-note,.sv-caption { font-size: 12px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.sv-table-wrap { max-height: 410px; overflow: auto; }
+.sv-table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sv-table th,.sv-table td { height: 34px; box-sizing: border-box; padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+.sv-table th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.sv-table th:first-child,.sv-table td:first-child { text-align: left; }
+.sv-table button { border: 0; background: transparent; color: var(--accent); cursor: pointer; font: inherit; padding: 0; }
+.sv-company { scroll-margin-top: calc(var(--dashboard-header-height) + 12px); margin: 12px 0 22px; min-width: 0; }
+.sv-company .sv-company-title { margin: 10px 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+.sv-card { min-width: 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.sv-card .sv-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.sv-card h3 { margin: 0; font-size: 14px; }
+.sv-card .sv-number { font-size: 25px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.sv-card .sv-value { margin: 12px 0 4px; }
+.sv-card .chart-wrap { height: 220px; margin-top: 14px; }
+.sv-card .sv-placeholder { display: grid; place-items: center; height: 100%; color: var(--muted); font-size: 12px; }
+.sv-card .sv-actions { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: 12px; }
+.sv-card button { color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 11px; }
+.sv-card .sv-details { color: var(--muted); font-size: 12px; line-height: 1.65; margin-top: 12px; }
+.sv-card .sv-details p { margin: 8px 0; }
+.sv-card .sv-table-wrap { margin-top: 10px; max-height: 280px; }
+.sv-card .sv-pages { display: flex; gap: 8px; align-items: center; margin-top: 8px; font-size: 11px; color: var(--muted); }
+.sv-card button:focus-visible,.sv-summary button:focus-visible,.sv-summary input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media(max-width:480px){
+  #content:has(.sv-summary) .card-head { flex-wrap: wrap; }
+  #content:has(.sv-summary) .card-freq { white-space: normal; overflow-wrap: anywhere; }
+}

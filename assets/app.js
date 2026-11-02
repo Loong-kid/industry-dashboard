@@ -228,6 +228,7 @@ function renderNav() {
 let renderSeq = 0;
 let ppiCleanup = null;
 let gamesCleanup = null;
+let semiconValuationCleanup = null;
 let globeCleanup = null;
 let darpaCleanup = null;
 async function renderIndustry(options = {}) {
@@ -237,6 +238,7 @@ async function renderIndustry(options = {}) {
   dismissFinancialMemo();
   if (ppiCleanup) { ppiCleanup(); ppiCleanup = null; }
   if (gamesCleanup) { gamesCleanup(); gamesCleanup = null; }
+  if (semiconValuationCleanup) { semiconValuationCleanup(); semiconValuationCleanup = null; }
   if (globeCleanup) { globeCleanup(); globeCleanup = null; }
   if (darpaCleanup) { darpaCleanup(); darpaCleanup = null; }
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
@@ -449,6 +451,20 @@ async function renderIndustry(options = {}) {
 
   let latestUpdate = "";
   const collected = []; // 수집 상태 판정용 { name, fetched }
+  let valuationSession = null;
+  const valuationNode = async (mode, ids) => {
+    try {
+      if (!valuationSession) {
+        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc("semicon/valuation", "valuation_index")]);
+        if (mySeq !== renderSeq) return null;
+        if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
+        valuationSession = module.createSession(doc, {state, range: state.range});
+        semiconValuationCleanup = () => valuationSession.destroy();
+        collected.push({name: "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+      }
+      return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);
+    } catch (e) { return mySeq === renderSeq ? errorCard("semicon/valuation", "valuation_index", e.message) : null; }
+  };
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
     if (nestedView && section.view !== nestedView.id) continue;
@@ -458,6 +474,15 @@ async function renderIndustry(options = {}) {
     if (section.anchor) h.id = section.anchor;
     h.textContent = section.title;
     content.appendChild(h);
+
+    if (section.type === "valuation_summary" || section.type === "valuation_charts") {
+      for (const ids of section.type === "valuation_summary" ? [section.valuation_companies] : section.valuation_companies) {
+        const node = await valuationNode(section.type === "valuation_summary" ? "summary" : "company", ids);
+        if (mySeq !== renderSeq) return;
+        if (node) content.appendChild(node);
+      }
+      continue;
+    }
 
     if (section.type === "table") {
       const renderer = section.table_kind === "offshore_overview" ? renderOffshoreOverview
@@ -522,6 +547,11 @@ async function renderIndustry(options = {}) {
       grid.appendChild(err ? errorCard(dataIndustry, indicatorId, err) : renderCard(doc, indicatorId));
       if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
       if (doc) collected.push({ name: doc.name || indicatorId, fetched: doc.fetched, stale: staleDays(doc) });
+    }
+    if (section.valuation_company) {
+      const node = await valuationNode("company", section.valuation_company);
+      if (mySeq !== renderSeq) return;
+      if (node) content.appendChild(node);
     }
     if (section.minerals?.length) {
       const indicatorId = "comm_mineral_supply";
