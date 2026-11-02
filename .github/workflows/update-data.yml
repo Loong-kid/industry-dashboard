@@ -257,6 +257,12 @@ jobs:
         continue-on-error: true
         run: python scripts/build_sites.py
 
+      # 🛰️ DARPA 예산: 예산서 PDF는 연 1회 손으로 다시 집계한다(scripts/build_darpa_budget.py). 여기선 결과 파일만 검증.
+      - name: DARPA 예산 집계 검증
+        id: gate_darpa_budget
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_darpa_budget.py
+
       - name: 광물 국가별 생산량·매장량 파서 검증
         id: gate_mineral_supply
         continue-on-error: true
