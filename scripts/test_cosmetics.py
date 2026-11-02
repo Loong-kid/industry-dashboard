@@ -129,6 +129,13 @@ class CosmeticsFinancials(unittest.TestCase):
         self.assertNotEqual(shiseido['profit'],44520) # Core adjusted profit is a different measure.
         self.assertIn('reported_annual',docs['company_cosmetics_shiseido_capex']['series_views'])
         self.assertIn('transition',docs['company_cosmetics_shiseido_revenue']['series_views'])
+        from cosmetics_global_sources import quarterly_from_ytd
+        co=GLOBAL['companies']['shiseido']
+        row=next(r for r in quarterly_from_ytd(co['records'],co['versions']) if r['date']=='2025-09-30')
+        self.assertEqual(row['profit'],-51434)
+        refs=row['refs']['profit']['components']
+        self.assertLessEqual(refs[1]['filed'],refs[0]['filed'])
+        self.assertEqual(refs[1]['filed'],'2025-08-06')
 
     def test_global_official_fixtures_and_no_forecast_or_quarterly_allocation(self):
         fixture=cosmetics.read(ROOT/'manual/cosmetics/global-fixtures.json')

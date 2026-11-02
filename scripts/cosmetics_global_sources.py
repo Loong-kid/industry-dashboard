@@ -103,7 +103,7 @@ def shiseido_statement(text,meta):
     return list(rows.values())
 
 
-def quarterly_from_ytd(rows):
+def quarterly_from_ytd(rows,versions=()):
     result=[];index={(r['year'],r['quarter']):r for r in rows if r['kind'] in ['ytd','annual']}
     for (year,q),row in sorted(index.items()):
         r=dict(kind='quarter',date=row['date'],year=year,quarter=q,refs={},basis=row['basis'])
@@ -113,7 +113,10 @@ def quarterly_from_ytd(rows):
             prior=index.get((year,q-1))
             if not prior or metric not in prior or prior['basis']!=row['basis']:continue
             a,b=row['refs'][metric],prior['refs'][metric]
-            if b['filed']>a['filed']:continue
+            if b['filed']>a['filed']:
+                candidates=[r for r in versions if r['year']==year and r['quarter']==q-1 and r['basis']==row['basis'] and metric in r and r['refs'][metric]['filed']<=a['filed']]
+                if not candidates:continue
+                prior=max(candidates,key=lambda r:r['refs'][metric]['filed']);b=prior['refs'][metric]
             value=row[metric]-prior[metric]
             if metric!='profit' and value<0:continue
             r[metric]=value;r['refs'][metric]=dict(a,start=f'{year}-{q*3-2:02d}-01',components=[a,b],calculation='same fiscal year/basis YTD minus prior YTD')

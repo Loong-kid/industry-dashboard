@@ -84,15 +84,22 @@ def collect(old,asof,offline=False):
                     if m['filed']>asof:continue
                     # Existing normalized originals do not require downloading
                     # every historical PDF on each scheduled collection.
-                    if not offline and any(f['url']==m['url'] for r in previous.get('records',[]) for f in r['refs'].values()):continue
+                    if not offline and any(f['url']==m['url'] for r in previous.get('versions',[]) for f in r['refs'].values()):continue
                     raw=fetch(m['url'],m['path'],immutable=True)
                     with pymupdf.open(stream=raw,filetype='pdf') as pdf:text='\n\n'.join(p.get_text(sort=True) for p in pdf)
                     records+=shiseido_statement(text,m)
                 for name,jgaap in [('data3_en.js',True),('data_en.js',False)]:
                     path='jgaap-'+name if jgaap else name;url='https://irpocket.com/4911/chart_ver2_hc6/'+name
                     records+=shiseido_chart(fetch(url,path).decode('utf8'),url,asof,jgaap)
+            if key=='shiseido':
+                versions={}
+                for row in previous.get('versions',[])+records:
+                    if not any(f['url'].endswith('.pdf') for f in row['refs'].values()):continue
+                    identity=(row['kind'],row['date'],row['basis'],tuple(sorted((m,f['filed'],f['url']) for m,f in row['refs'].items())))
+                    versions[identity]=row
             records=merge(previous.get('records',[]),records)
             co=dict(records=records,ok=True,checked=asof,fetched=asof);validate(co,asof)
+            if key=='shiseido':co['versions']=list(versions.values())
             if previous.get('records') and max(r['date'] for r in records)<max(r['date'] for r in previous['records']):raise ValueError('Global history regressed')
             result[key]=co;print(key,len(records),'original periods',flush=True)
         except (ValueError,KeyError,OSError,requests.RequestException,RuntimeError) as error:
@@ -137,7 +144,7 @@ def build(meta,state):
     docs={}
     for key,spec in meta['companies'].items():
         co=state['companies'][key];records=co['records'];quarters=[r for r in records if r['kind']=='quarter']
-        if key=='shiseido':quarters=quarterly_from_ytd(records)
+        if key=='shiseido':quarters=quarterly_from_ytd(records,co.get('versions',[]))
         half=[r for r in records if r['kind']=='half']
         if key=='loreal':
             index={(r['year'],r['kind']):r for r in records}
