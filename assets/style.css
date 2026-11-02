@@ -706,3 +706,25 @@ th.sort-desc::after { content: " \25BC"; font-size: 9px; opacity: 1; }
 .wafer-evidence img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--border); border-radius: 6px; }
 .wafer-evidence figcaption { margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.7; }
 .wafer-evidence .series-view-controls { flex-wrap: wrap; }
+
+/* ── 그래프 카드 너비 조절 (card-resize.js) ── */
+.card-resizable { position: relative; }
+.card-resize-free { display: flex !important; flex-wrap: wrap; }
+.card-resize-handle {
+  position: absolute; top: 12px; bottom: 12px; right: -6px; width: 12px;
+  cursor: ew-resize; touch-action: none; z-index: 2; border-radius: 4px;
+}
+.card-resize-handle::after {
+  content: ""; position: absolute; top: 50%; left: 4px; width: 4px; height: 40px;
+  transform: translateY(-50%); border-radius: 2px;
+  background: var(--muted); opacity: 0; transition: opacity .12s;
+}
+.card-resizable:hover > .card-resize-handle::after { opacity: .5; }
+.card-resize-handle:hover::after, .card-resize-handle:focus-visible::after, .card-resize-handle.is-dragging::after {
+  background: var(--accent); opacity: 1;
+}
+.card-resize-handle:focus-visible { outline: none; }
+body.card-resizing { cursor: ew-resize; user-select: none; }
+@media (hover: none), (max-width: 720px) {
+  .card-resize-handle { display: none; }
+}

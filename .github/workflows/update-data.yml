@@ -405,6 +405,10 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_snstech.py
 
+      - name: 그래프 카드 너비 조절 검증
+        continue-on-error: true
+        run: node scripts/test_card_resize.cjs
+
       - name: 에스앤에스텍 수출 비교 카드 검증
         continue-on-error: true
         run: python -m unittest discover -s scripts -p test_snstech_export_stack.py

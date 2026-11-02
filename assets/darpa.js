@@ -120,7 +120,11 @@ export function mount(root) {
       });
       card.append(bars(v, ys, {max: shared, highlight: L, tip}));
       card.addEventListener("click", () => openSector(s.id));
-      grid.append(card);
+      // 너비 조절 손잡이가 버튼 안에 들어가지 않도록 감싼다.
+      const item = document.createElement("div");
+      item.className = "dp-card-wrap";
+      item.append(card);
+      grid.append(item);
     }
   }
 
