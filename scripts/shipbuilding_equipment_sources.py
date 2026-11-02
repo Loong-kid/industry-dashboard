@@ -105,7 +105,7 @@ def accounts(reports, asof):
     return sorted(rows,key=lambda r:(r['date'],r['kind']))
 
 
-def provisional(raw, receipt, fs, asof):
+def provisional(raw, receipt, fs, asof, required_metrics=None):
     """Only actual single-quarter results, never cumulative/guidance/parent net."""
     soup=BeautifulSoup(raw,'html.parser');text=soup.get_text(' ',strip=True)
     actual_fs='CFS' if '1. 연결실적내용' in text or '연결재무제표 기준' in text else 'OFS'
@@ -131,5 +131,5 @@ def provisional(raw, receipt, fs, asof):
         row[metric]=value*scale
         row['refs'][metric]=dict(url=f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={receipt}',filed=f'{receipt[:4]}-{receipt[4:6]}-{receipt[6:8]}',
             start=row['start'],end=row['date'],tag=cells[0],fs_div=fs,location='연결 잠정실적' if fs=='CFS' else '별도 잠정실적',calculation='reported provisional quarter')
-    if set(row['refs'])!=set(METRICS):raise ValueError('incomplete provisional income statement')
+    if not set(required_metrics or METRICS).issubset(row['refs']):raise ValueError('incomplete provisional income statement')
     return row

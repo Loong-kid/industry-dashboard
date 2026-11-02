@@ -1,6 +1,11 @@
 name: review-cosmetics-sources
 on:
   workflow_dispatch:
+    inputs:
+      recent_only:
+        description: Collect two recent years and official preliminary quarters
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -16,7 +21,7 @@ jobs:
       - name: Collect original cosmetics company statements
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/collect_cosmetics_sources.py --full-history
+        run: python -u scripts/collect_cosmetics_sources.py ${{ inputs.recent_only && '' || '--full-history' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
