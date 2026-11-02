@@ -760,7 +760,7 @@ function renderCard(doc, indicatorId, options = {}) {
   if (doc?.company_comparison) return renderUsDatacenterComparison(doc);
   const card = document.createElement("div");
   card.className = "card" + (doc?.point_sources ? " ir-chart" : "");
-  if (doc?.full_width) card.style.gridColumn = "1 / -1";
+  if (doc?.wide_card) card.classList.add("card-wide");
   if (doc?.compact_tooltip) card.dataset.compactHovers = "true";
   const dateLabel = date => (doc?.period_labels?.[date] ? `${doc.period_labels[date]} · ${date}`
     : doc?.quarter_labels || doc?.year_labels || doc?.frequency === "semiannual" ? periodLabel(doc, date) : date)
@@ -1641,7 +1641,8 @@ const crosshair = {
   },
 };
 
-// 막대 조각 안쪽 위에 값 표시(가운데는 함께 그린 선과 겹친다). 조각이 글자보다 좁거나 낮으면(좁은 화면 등) 생략한다 — 툴팁·표에는 남아 있다.
+// 막대 조각 안쪽 위에 값 표시(가운데는 함께 그린 선과 겹친다). 가장 긴 값이 분기 칸에 안 들어가면(좁은 화면) 전부 생략하고,
+// 조각이 글자보다 낮으면 그 값만 생략한다 — 툴팁·표에는 남아 있다.
 const barValueLabels = {
   id: "barValueLabels",
   afterDatasetsDraw(chart) {
@@ -1654,14 +1655,19 @@ const barValueLabels = {
     ctx.lineJoin = "round";
     ctx.strokeStyle = css("--surface");
     ctx.fillStyle = css("--ink");
+    const label = value => Math.round(value).toLocaleString("ko-KR");
+    const bars = chart.data.datasets.filter((dataset, i) => dataset.type === "bar" && chart.isDatasetVisible(i));
+    const widest = Math.max(0, ...bars.flatMap(dataset => dataset.data.filter(value => value != null).map(value => ctx.measureText(label(value)).width)));
+    const slot = chart.scales.x.width / Math.max(chart.data.labels.length, 1);
+    if (widest + 4 > slot) { ctx.restore(); return; }
     chart.data.datasets.forEach((dataset, i) => {
       if (dataset.type !== "bar" || !chart.isDatasetVisible(i)) return;
       chart.getDatasetMeta(i).data.forEach((bar, index) => {
         const value = dataset.data[index];
         if (value == null) return;
-        const text = Math.round(value).toLocaleString("ko-KR");
-        const {x, y, base, width} = bar.getProps(["x", "y", "base", "width"], true);
-        if (ctx.measureText(text).width + 2 > width || Math.abs(base - y) < 12) return;
+        const text = label(value);
+        const {x, y, base} = bar.getProps(["x", "y", "base"], true);
+        if (Math.abs(base - y) < 12) return;
         ctx.strokeText(text, x, y + 8);
         ctx.fillText(text, x, y + 8);
       });

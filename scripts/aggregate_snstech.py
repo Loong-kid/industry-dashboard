@@ -171,7 +171,7 @@ def run():
          extra={"stacked_series": ["전국 반도체용", "전국 디스플레이용"],
                 "stack_total_label": "전국 합계", "bar_value_labels": True,
                 "series_palette_slots": {"에스앤에스텍 수출": 0, "전국 반도체용": 5, "전국 디스플레이용": 2},
-                "quarter_labels": True, "zero_baseline": True, "full_width": True})
+                "quarter_labels": True, "zero_baseline": True, "wide_card": True})
 
     # 2) 수출 실적 vs 전국 블랭크마스크 수출
     common = sorted(d for d in sns if "수출" in sns[d] and d in nat)
