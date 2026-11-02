@@ -5,12 +5,18 @@ const LIBS = [
   "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js",
 ];
 const COUNTRIES = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json";
-const LAYER_COLORS = {lng_export: "#eb6834", lng_import: "#2a78d6", ess_system: "#1baf7a", ess_cell: "#eda100", user: "#e34948"};
+const LAYER_COLORS = {lng_export: "#eb6834", lng_import: "#2a78d6", ess_system: "#1baf7a", ess_cell: "#eda100",
+  dc_kr: "#4a3aa7", dc_kr_candidate: "#9085e9", user: "#e34948"};
 const STATUS_ORDER = ["operating", "construction", "planned", "inactive"];
 const LOCAL_KEY = "globe_local_sites";
 const LABELS_KEY = "globe_labels";
 const PLACES = "data/sites/places.json"; // scripts/build_places.py (Natural Earth 한국어 지명)
-const prefs = {layers: new Set(["lng_export", "lng_import", "ess_system", "ess_cell", "user"]),
+// scripts/build_korea_admin.py. 시·도는 처음부터, 시·군·구는 그만큼 다가갔을 때 받는다.
+const KOREA_SIDO = "data/sites/korea_sido.json";
+const KOREA_SIGUNGU = "data/sites/korea_sigungu.json";
+const ADM1_ALT = 0.8, ADM2_ALT = 0.22; // 이 고도 아래에서 시·도 / 시·군·구를 보여 준다
+const KOREA_ID = "410"; // world-atlas의 대한민국: 110m 해안선이 거칠어 확대하면 통계청 경계로 바꿔 그린다
+const prefs = {layers: new Set(["lng_export", "lng_import", "ess_system", "ess_cell", "dc_kr", "user"]),
   statuses: new Set(["operating", "construction", "planned"]), query: ""};
 
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
@@ -58,16 +64,19 @@ function wantedPlaces(places, pov) {
   const cityTier = alt < 0.45 ? 2 : alt < 0.9 ? 1 : alt < 1.6 ? 0 : -1;
   const seaTier = alt < 2.8 ? 1 : 0;
   return [...places.seas.filter(p => p.t <= seaTier), ...places.countries.filter(p => p.r <= countryRank),
-    ...places.cities.filter(p => p.t <= cityTier)].filter(p => angDist(pov.lat, pov.lng, p.lat, p.lon) < horizon);
+    ...places.cities.filter(p => p.t <= cityTier), ...(alt < ADM1_ALT ? places.adm1 : []), ...(alt < ADM2_ALT ? places.adm2 : [])]
+    .filter(p => angDist(pov.lat, pov.lng, p.lat, p.lon) < horizon);
 }
 // 화면에서 겹치면 중요도가 낮은 라벨을 뺀다: 대양 → 큰 나라 → 큰 도시 → 수도 → 작은 나라 → 바다 → 나머지 도시.
 function placePriority(p) {
   if (p.kind === "sea") return p.t === 0 ? 0 : 3.5;
+  if (p.kind === "adm1") return 1.9;
+  if (p.kind === "adm2") return 3.7;
   if (p.kind === "country") return (p.r <= 3 ? 1 : 3) + p.r / 100;
   return p.t === 0 ? 2 : p.cap ? 2.5 : 3.8 + p.t;
 }
 function labelBox(p, x, y) {
-  const fs = p.kind === "country" ? 12.3 : p.kind === "sea" ? (p.t === 0 ? 16 : 11.5) : 11; // 한글 한 자 폭 + 자간
+  const fs = p.kind === "country" ? 12.3 : p.kind === "sea" ? (p.t === 0 ? 16 : 11.5) : p.kind === "adm2" ? 10 : 11; // 한글 한 자 폭 + 자간
   const w = p.n.length * fs + 4, h = 15;
   return p.kind === "city" ? [x - 4, y - h / 2, x + 6 + w, y + h / 2] : [x - w / 2, y - h / 2, x + w / 2, y + h / 2];
 }
@@ -102,7 +111,7 @@ function theme() {
   return {
     dark, ink: css.getPropertyValue("--ink").trim(), muted: css.getPropertyValue("--muted").trim(),
     ocean: dark ? "#132538" : "#a9c6e2", land: dark ? "#34372f" : "#fbfaf5", border: dark ? "#5b6057" : "#a8a79c",
-    atmosphere: dark ? "#3987e5" : "#9cc2ea",
+    atmosphere: dark ? "#3987e5" : "#9cc2ea", adminFine: dark ? "rgba(255,255,255,.28)" : "rgba(60,60,50,.3)",
   };
 }
 
@@ -117,6 +126,7 @@ export function mount(root) {
         <aside class="gl-panel" aria-label="사이트 필터">
           <fieldset class="gl-group"><legend>레이어</legend><div id="gl-layers"></div></fieldset>
           <fieldset class="gl-group"><legend>상태</legend><div id="gl-statuses"></div></fieldset>
+          <p class="gl-note">막대 높이는 규모다(제곱근 눈금, 막대에 마우스를 올리면 값이 나온다). LNG는 Mtpa, ESS는 GWh/년, 데이터센터는 수전용량 MW이고 단위가 달라 서로 비교하지 않는다. 규모 자료가 없으면 가장 낮게 그린다.</p>
           <label class="gl-search">찾기<input id="gl-query" type="search" placeholder="이름·회사·국가" autocomplete="off"></label>
           <div id="gl-detail" class="gl-detail" hidden></div>
           <p id="gl-count" class="gl-count" aria-live="polite"></p>
@@ -159,6 +169,8 @@ export function mount(root) {
   const $ = id => root.querySelector("#" + id);
   let doc = null, globe = null, selected = null, addMode = false, pending = null, disposed = false;
   let places = null, labelsOn = readLabelsPref(), shownPlaces = [], labelFrame = 0;
+  // 한국 행정구역: 경계선(mesh)과 지금 그리는 단계. 막대 굵기도 고도 단계에 맞춘다.
+  let sidoLines = [], sigunguLines = [], sigunguReq = null, adminLevel = 0, radiusScale = 1, heightScale = 1;
   let localRows = readLocal(), localSites = localRows.map(localToSite);
   const cleanups = [];
   const setLocal = rows => { localRows = rows; localSites = rows.map(localToSite); return writeLocal(rows); };
@@ -184,18 +196,25 @@ export function mount(root) {
   }
 
   function siteHeight(s) {
-    if (!s.size) return 0.012;
-    const k = s.size_unit === "Mtpa" ? 0.012 : 0.004; // 대형 액화 77Mtpa≈0.1, ESS 40GWh≈0.04
-    return Math.min(0.12, 0.012 + Math.sqrt(s.size) * k);
+    if (!s.size) return 0.012 * heightScale;
+    const k = s.size_unit === "Mtpa" ? 0.012 : s.size_unit === "MW" ? 0.006 : 0.004; // 대형 액화 77Mtpa≈0.1, ESS 40GWh≈0.04, 데이터센터 100MW≈0.07
+    return Math.min(0.12, 0.012 + Math.sqrt(s.size) * k) * heightScale;
   }
   function siteColor(s) {
     const c = LAYER_COLORS[s.layer] || "#888";
     const alpha = {operating: "ff", construction: "dd", planned: "99", inactive: "55"}[s.status] || "ff";
     return s === selected ? (theme().dark ? "#ffffff" : "#0b0b0b") : c + alpha;
   }
-  function tooltip(s) {
-    return `<div class="gl-tip"><b>${esc(s.name)}</b><span>${esc(layerName(s.layer))} · ${esc(statusName(s.status))}</span>${s.company ? `<span>${esc(s.company)}</span>` : ""}</div>`;
+  // 막대 높이가 뜻하는 값. 규모 자료가 없으면 가장 낮게 그린다.
+  function heightMeaning(s) {
+    if (!s.size) return "규모 자료 없음 (가장 낮게 표시)";
+    const what = s.layer === "lng_export" ? "액화 능력" : s.layer === "lng_import" ? "재기화 능력" : s.size_unit === "MW" ? "수전용량" : "연간 생산능력";
+    return `${what} ${fmt(s.size)} ${s.size_unit}`;
   }
+  function tooltip(s) {
+    return `<div class="gl-tip"><b>${esc(s.name)}</b><span>${esc(layerName(s.layer))} · ${esc(statusName(s.status))}</span>${s.company ? `<span>${esc(s.company)}</span>` : ""}<span class="gl-tip-height">막대 높이: ${esc(heightMeaning(s))}</span></div>`;
+  }
+  const pointRadius = s => (s.layer === "user" || s.local ? 0.42 : s.layer.startsWith("ess") ? 0.34 : s.layer.startsWith("dc_") ? 0.3 : 0.26) * radiusScale;
 
   function drawPoints() {
     if (!globe) return;
@@ -224,7 +243,7 @@ export function mount(root) {
       <div class="gl-detail-head"><span class="gl-dot" style="--c:${LAYER_COLORS[s.layer]}"></span>
         <div><h3>${esc(s.name)}</h3><p>${esc(layerName(s.layer))} · ${esc(statusName(s.status))}${s.status_detail ? ` (${esc(s.status_detail)})` : ""}</p></div>
         <button type="button" class="gl-close" aria-label="상세 닫기">×</button></div>
-      <dl>${s.company ? `<dt>회사</dt><dd>${esc(s.company)}</dd>` : ""}${s.country ? `<dt>국가</dt><dd>${esc(s.country)}</dd>` : ""}
+      <dl><dt>막대 높이</dt><dd>${esc(heightMeaning(s))}</dd>${s.company ? `<dt>회사</dt><dd>${esc(s.company)}</dd>` : ""}${s.country ? `<dt>국가</dt><dd>${esc(s.country)}</dd>` : ""}
         ${(s.detail || []).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}
         <dt>좌표</dt><dd>${s.lat.toFixed(4)}, ${s.lon.toFixed(4)} · ${esc(acc)}</dd></dl>
       ${s.url ? `<p><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url_label || "원문 보기")} ↗</a></p>` : ""}
@@ -240,9 +259,40 @@ export function mount(root) {
     drawPoints();
   }
 
+  // 고도에 따라 행정구역 경계와 막대 굵기를 바꾼다. 단계가 바뀔 때만 다시 그린다.
+  function applyZoom() {
+    const alt = globe.pointOfView().altitude;
+    if (alt < ADM2_ALT * 2 && labelsOn) loadSigungu();
+    const level = !labelsOn ? 0 : alt < ADM2_ALT && sigunguLines.length ? 2 : alt < ADM1_ALT ? 1 : 0;
+    if (level !== adminLevel) { adminLevel = level; drawAdminLines(); }
+    // 막대는 지구 기준 크기라 그대로 두면 다가갈수록 화면을 덮는다. 굵기와 높이를 함께 줄인다.
+    const scale = alt < 0.08 ? 0.12 : alt < 0.22 ? 0.25 : alt < 0.5 ? 0.45 : alt < 1 ? 0.7 : 1;
+    if (scale !== radiusScale) {
+      radiusScale = scale; heightScale = scale * (alt < 0.22 ? 0.7 : 1);
+      globe.pointRadius(pointRadius).pointAltitude(siteHeight);
+    }
+  }
+  function drawAdminLines() {
+    globe.pathsData(adminLevel === 2 ? [...sigunguLines, ...sidoLines] : adminLevel === 1 ? sidoLines : []);
+  }
+  // 시·도 경계와 겹치는 선은 빼지 않는다. 시·도 선을 위에 더 진하게 그려 구분한다.
+  const meshLines = (topology, kind) => {
+    const object = Object.values(topology.objects)[0];
+    return topojson.mesh(topology, object, (a, b) => a !== b).coordinates.map(pts => ({pts, kind}));
+  };
+  function loadSigungu() {
+    sigunguReq ||= fetch(KOREA_SIGUNGU).then(r => r.ok ? r.json() : null).then(d => {
+      if (disposed || !d) return;
+      sigunguLines = meshLines(d.topology, "sigungu");
+      if (places) places.adm2 = d.labels.map(p => ({...p, kind: "adm2"}));
+      queueLabels();
+    }).catch(() => {});
+  }
+
   function drawLabels() {
     labelFrame = 0;
     if (!globe) return;
+    applyZoom();
     const el = $("gl-globe");
     const rows = labelsOn && places ? declutter(wantedPlaces(places, globe.pointOfView()), globe, el.clientWidth, el.clientHeight) : [];
     if (rows.length === shownPlaces.length && rows.every((p, i) => p === shownPlaces[i])) return;
@@ -261,7 +311,8 @@ export function mount(root) {
     if (!globe) return;
     const t = theme();
     globe.backgroundColor("rgba(0,0,0,0)").atmosphereColor(t.atmosphere).atmosphereAltitude(0.16)
-      .polygonCapColor(() => t.land).polygonSideColor(() => "rgba(0,0,0,0)").polygonStrokeColor(() => t.border);
+      .polygonCapColor(() => t.land).polygonSideColor(() => "rgba(0,0,0,0)").polygonStrokeColor(() => t.border)
+      .pathColor(d => d.kind === "sido" ? t.border : t.adminFine);
     globe.globeMaterial().color.set(t.ocean);
     drawPoints();
   }
@@ -341,29 +392,40 @@ export function mount(root) {
   // ── 데이터 + 지구본 ──
   // 지명은 없어도 지구본은 뜨게, 실패하면 라벨만 빠진다.
   const placesReq = fetch(PLACES).then(r => r.ok ? r.json() : null).catch(() => null);
-  Promise.all([fetch(`data/sites/sites.json?v=${Date.now()}`).then(r => { if (!r.ok) throw new Error("sites " + r.status); return r.json(); }), loadLibs(), placesReq])
-    .then(([sites, countries, placeDoc]) => {
+  const sidoReq = fetch(KOREA_SIDO).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([fetch(`data/sites/sites.json?v=${Date.now()}`).then(r => { if (!r.ok) throw new Error("sites " + r.status); return r.json(); }), loadLibs(), placesReq, sidoReq])
+    .then(([sites, countries, placeDoc, sidoDoc]) => {
       if (disposed) return;
       doc = sites;
       if (placeDoc) {
         places = {countries: placeDoc.countries.map(p => ({...p, kind: "country"})),
-          cities: placeDoc.cities.map(p => ({...p, kind: "city"})), seas: placeDoc.seas.map(p => ({...p, kind: "sea"}))};
+          cities: placeDoc.cities.map(p => ({...p, kind: "city"})), seas: placeDoc.seas.map(p => ({...p, kind: "sea"})),
+          adm2: []};
+        // 광역시는 도시 지명이 이미 있다. 같은 이름을 두 번 쓰지 않는다.
+        const cityNames = new Set(places.cities.map(p => p.n));
+        places.adm1 = (sidoDoc?.labels || []).filter(p => !cityNames.has(p.n)).map(p => ({...p, kind: "adm1"}));
       } else {
         labelsBtn.hidden = true;
       }
       $("gl-form").elements.category.innerHTML = Object.entries(doc.user_categories || {}).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("");
       $("gl-sources").innerHTML = "출처: " + doc.layers.map(l => l.source_url ? `<a href="${esc(l.source_url)}" target="_blank" rel="noopener">${esc(l.source)}</a>` : esc(l.source))
-        .filter((v, i, a) => a.indexOf(v) === i).join(" · ") + ` · 국경·지명 Natural Earth · 집계 ${esc(doc.updated)}. ${esc(doc.note)}`
-        + (doc.missing_coords?.length ? ` 좌표가 없어 지도에서 빠진 원장 행 ${doc.missing_coords.length}곳: ${esc(doc.missing_coords.map(m => m.id).join(", "))} — manual/site_coords.json에 추가하면 표시된다.` : "");
+        .filter((v, i, a) => a.indexOf(v) === i).join(" · ") + ` · 국경·지명 Natural Earth${sidoDoc ? ` · 한국 행정구역 <a href="${esc(sidoDoc.source_url)}" target="_blank" rel="noopener">${esc(sidoDoc.source)}</a>(이후 개편은 경계에 미반영)` : ""} · 집계 ${esc(doc.updated)}. ${esc(doc.note)}`
+        + (doc.missing_coords?.length ? ` 좌표가 없어 지도에서 빠진 원장 행 ${doc.missing_coords.length}곳: ${esc(doc.missing_coords.map(m => m.id).join(", "))} — manual/site_coords.json 또는 data/sites/dc_coords.json에 추가하면 표시된다.` : "");
       document.getElementById("last-updated").textContent = `사이트 목록 집계 ${doc.updated}`;
       chips(); renderLocal();
 
+      // 대한민국만 통계청 경계로 바꿔 그려 확대해도 해안선이 거칠지 않게 한다.
+      const korea = sidoDoc && {type: "Feature", id: KOREA_ID, properties: {name: "South Korea"},
+        geometry: topojson.merge(sidoDoc.topology, Object.values(sidoDoc.topology.objects)[0].geometries)};
+      if (sidoDoc) sidoLines = meshLines(sidoDoc.topology, "sido");
       const el = $("gl-globe");
       globe = Globe({animateIn: true})(el)
         .showGraticules(true)
-        .polygonsData(countries).polygonAltitude(0.004)
+        .polygonsData(korea ? [...countries.filter(c => String(c.id) !== KOREA_ID), korea] : countries).polygonAltitude(0.004)
+        .pathPoints("pts").pathPointLat(p => p[1]).pathPointLng(p => p[0]).pathPointAlt(0.0048)
+        .pathStroke(null).pathTransitionDuration(0)
         .pointLat("lat").pointLng("lon").pointColor(siteColor).pointAltitude(siteHeight)
-        .pointRadius(s => s.layer === "user" || s.local ? 0.42 : s.layer.startsWith("ess") ? 0.34 : 0.26)
+        .pointRadius(pointRadius)
         .pointResolution(8).pointsTransitionDuration(300)
         .pointLabel(tooltip)
         .onPointClick(s => { if (addMode) { pending = null; } select(s, false); stopSpin(); })
