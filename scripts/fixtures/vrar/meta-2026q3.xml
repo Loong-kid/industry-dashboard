@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:xbrl xmlns:ns0="http://www.xbrl.org/2003/instance" xmlns:ns1="http://xbrl.org/2006/xbrldi" xmlns:ns2="http://fasb.org/us-gaap/2026" xml:lang="en-US"><ns0:unit id="shares">
+        <ns0:measure>shares</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usd">
+        <ns0:measure>iso4217:USD</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="usdPerShare">
+        <ns0:divide>
+            <ns0:unitNumerator>
+                <ns0:measure>iso4217:USD</ns0:measure>
+            </ns0:unitNumerator>
+            <ns0:unitDenominator>
+                <ns0:measure>shares</ns0:measure>
+            </ns0:unitDenominator>
+        </ns0:divide>
+    </ns0:unit>
+    <ns0:unit id="number">
+        <ns0:measure>pure</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="venture">
+        <ns0:measure>meta:venture</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="series">
+        <ns0:measure>meta:series</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="stateandterritory">
+        <ns0:measure>meta:stateAndTerritory</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="violation">
+        <ns0:measure>meta:violation</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="judicialcase">
+        <ns0:measure>meta:judicialCase</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="eur">
+        <ns0:measure>iso4217:EUR</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="member">
+        <ns0:measure>meta:member</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="mediacompany">
+        <ns0:measure>meta:mediaCompany</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="radioandtelevisionpublisher">
+        <ns0:measure>meta:radioAndTelevisionPublisher</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="classaction">
+        <ns0:measure>meta:classAction</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="plaintiff">
+        <ns0:measure>meta:plaintiff</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="trial">
+        <ns0:measure>meta:trial</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="attorneygeneral">
+        <ns0:measure>meta:attorneyGeneral</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="reportable_segment">
+        <ns0:measure>meta:reportable_segment</ns0:measure>
+    </ns0:unit>
+    <ns0:unit id="employee">
+        <ns0:measure>meta:employee</ns0:measure>
+    </ns0:unit>
+    <ns0:context id="c-59">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2026-07-01</ns0:startDate>
+            <ns0:endDate>2026-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-60">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2025-07-01</ns0:startDate>
+            <ns0:endDate>2025-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-61">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2026-01-01</ns0:startDate>
+            <ns0:endDate>2026-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-62">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:startDate>2025-01-01</ns0:startDate>
+            <ns0:endDate>2025-09-30</ns0:endDate>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-179">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2025-12-31</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns0:context id="c-181">
+        <ns0:entity>
+            <ns0:identifier scheme="http://www.sec.gov/CIK">0001326801</ns0:identifier>
+            <ns0:segment>
+                <ns1:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">meta:RealityLabsMember</ns1:explicitMember>
+            </ns0:segment>
+        </ns0:entity>
+        <ns0:period>
+            <ns0:instant>2026-09-30</ns0:instant>
+        </ns0:period>
+    </ns0:context>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-59" decimals="-6" id="f-385" unitRef="usd">443000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-60" decimals="-6" id="f-386" unitRef="usd">470000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-61" decimals="-6" id="f-387" unitRef="usd">1276000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-62" decimals="-6" id="f-388" unitRef="usd">1252000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-59" decimals="-6" id="f-953" unitRef="usd">443000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-60" decimals="-6" id="f-954" unitRef="usd">470000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-61" decimals="-6" id="f-955" unitRef="usd">1276000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="c-62" decimals="-6" id="f-956" unitRef="usd">1252000000</ns2:RevenueFromContractWithCustomerExcludingAssessedTax>
+    <ns2:OperatingIncomeLoss contextRef="c-59" decimals="-6" id="f-965" unitRef="usd">-4129000000</ns2:OperatingIncomeLoss>
+    <ns2:OperatingIncomeLoss contextRef="c-60" decimals="-6" id="f-966" unitRef="usd">-4432000000</ns2:OperatingIncomeLoss>
+    <ns2:OperatingIncomeLoss contextRef="c-61" decimals="-6" id="f-967" unitRef="usd">-12775000000</ns2:OperatingIncomeLoss>
+    <ns2:OperatingIncomeLoss contextRef="c-62" decimals="-6" id="f-968" unitRef="usd">-13171000000</ns2:OperatingIncomeLoss>
+    </ns0:xbrl>

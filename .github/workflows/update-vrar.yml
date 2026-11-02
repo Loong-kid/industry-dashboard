@@ -1,0 +1,54 @@
+name: update-vrar
+on:
+  schedule:
+    - cron: '5 1 * * *' # KST 10:05
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pymupdf
+      - name: Validate VRAR source and period definitions
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_vrar.py -v
+      - uses: actions/cache@v4
+        with:
+          path: .cache/vrar
+          key: vrar-originals-v1-${{ github.run_id }}
+          restore-keys: vrar-originals-v1-
+      - name: Refresh original company and Reality Labs accounts
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_vrar.py --refresh
+      - name: Validate published financial history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_vrar.py -v
+      - name: Commit VRAR data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/vrar/
+          git diff --cached --quiet || git commit -m "chore: refresh VRAR issuer accounts"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
