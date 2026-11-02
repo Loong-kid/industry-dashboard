@@ -39,20 +39,22 @@ def with_preliminaries(regular,prior,fresh,asof):
     return [r for date,r in sorted(pending.items()) if date not in confirmed]
 
 
-def offline(meta,old,asof,status=None):
-    entities=read(CACHE/'entities.json',{});result={}
+def offline(meta,old,asof,status=None,*,cache=None,normalize_report=None):
+    cache=Path(cache) if cache is not None else CACHE
+    normalize_report=normalize_report or normalize
+    entities=read(cache/'entities.json',{});result={}
     for key,spec in meta['companies'].items():
         prior=old.get('companies',{}).get(key,{})
         try:
             if status is not None and not status.get(key,{}).get('ok'):raise ValueError('Original source check failed')
-            entity=entities[key];originals=read(CACHE/(key+'-status.json'))
+            entity=entities[key];originals=read(cache/(key+'-status.json'))
             reports={(r['year'],r['quarter']):r for r in prior.get('reports',[])}
             for entry in originals['reports']:
-                raw=read(CACHE/entry['path'])
-                r=normalize(raw['list'],entry['year'],entry['quarter'],entity['corp_code'],entry['fs_div'],spec)
+                raw=read(cache/entry['path'])
+                r=normalize_report(raw['list'],entry['year'],entry['quarter'],entity['corp_code'],entry['fs_div'],spec)
                 if all(f['filed']<=asof for f in r['fields'].values()):reports[r['year'],r['quarter']]=r
             co=accounts(list(reports.values()),asof)
-            prelim=read(CACHE/(key+'-preliminaries.json'),dict(rows=[],errors=[]))
+            prelim=read(cache/(key+'-preliminaries.json'),dict(rows=[],errors=[]))
             pending=with_preliminaries(co['rows'],prior.get('provisional_rows',[]),prelim['rows'],asof)
             co['rows']=sorted(co['rows']+pending,key=lambda r:r['date'])
             validate(co,asof)
@@ -60,7 +62,7 @@ def offline(meta,old,asof,status=None):
             co.update(reports=[r for _,r in sorted(reports.items())],entity=entity,provisional_rows=pending,preliminary_errors=prelim.get('errors',[]),ok=True,checked=asof,fetched=asof)
             print(key,'OK',len(co['rows']),'quarters',len(co['annual']),'annual periods',len(pending),'preliminary quarters',flush=True)
         except Exception as error:
-            if not prior:raise RuntimeError(key+': no successful cosmetics accounts') from error
+            if not prior:raise RuntimeError(key+': no successful financial accounts') from error
             co=copy.deepcopy(prior);co.update(ok=False,checked=asof)
             print(key,'preserved successful history:',type(error).__name__,flush=True)
         result[key]=co

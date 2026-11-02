@@ -193,7 +193,7 @@ function renderNav() {
   nav.innerHTML = "";
   const groups = [
     {name: "지도", ids: ["globe"]},
-    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "cosmetics", "quantum", "drone"]},
+    {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "cosmetics", "entertainment", "quantum", "drone"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급", ids: ["institution", "gifts"]},
     {name: "정책·예산", ids: ["darpa"]},
@@ -253,7 +253,7 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -262,7 +262,7 @@ async function renderIndustry(options = {}) {
   const content = document.getElementById("content");
   content.classList.toggle("ng-root", ind.id === "natgas");
   content.classList.toggle("sb-root", ind.id === "shipbuilding");
-  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || (ind.id === "datacenter" && state.subtab === "us") || (ind.id === "shipbuilding" && state.subtab !== "market") || (ind.id === "natgas" && (state.subtab === "overview" || state.subtab?.startsWith("containment"))));
+  content.classList.toggle("tc-root", ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || (ind.id === "datacenter" && state.subtab === "us") || (ind.id === "shipbuilding" && state.subtab !== "market") || (ind.id === "natgas" && (state.subtab === "overview" || state.subtab?.startsWith("containment"))));
   if (!options?.preserveScroll) content.style.minHeight = "";
   content.innerHTML = "";
   const pageTabs = document.getElementById("page-tabs");
@@ -362,7 +362,7 @@ async function renderIndustry(options = {}) {
       row.append(label, tabs);
       pageTabs.appendChild(row);
     } else pageTabs.appendChild(tabs);
-    if (ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "shipbuilding" || ind.id === "natgas" || ind.id === "datacenter") {
+    if (ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "shipbuilding" || ind.id === "natgas" || ind.id === "datacenter") {
       tabs.classList.add("tc-tabs");
       requestAnimationFrame(revealTelecomTab);
     }

@@ -4842,6 +4842,143 @@
           ]
         }
       ]
+    },
+    {
+      "id": "entertainment",
+      "name": "엔터테인먼트",
+      "default_range": "all",
+      "auto_collect_time": "09:55",
+      "cadence": "매일 오전 9:55(KST) DART 정기보고서와 공식 잠정 공시를 확인합니다. KRW 백만, 연결 우선이며 공시 확보 기간부터 분기·연간을 구분합니다. CAPEX는 유형자산 취득 현금지출로 무형자산·음악 IP·M&A를 포함하지 않습니다. 잠정 CAPEX는 추정하지 않습니다.",
+      "tabs": [
+        {
+          "id": "overview",
+          "name": "전체 비교",
+          "description": "국내 대표 4대 기획사 HYBE·SM·JYP·YG의 연결 전체 매출·영업이익·유형자산 취득 현금지출을 비교합니다. 음반·공연·MD·플랫폼과 해당 기간 종속기업을 포함하며 아티스트별 실적은 추정하지 않습니다. CAPEX는 음악 IP·계약권·M&A와 구분합니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "hybe",
+          "name": "HYBE",
+          "description": "국내외 레이블·음반/음원·공연·MD·팬 플랫폼 등 하이브 연결 전체. 상장 전 빅히트 시기의 실제 공시 확보 기간부터 표시합니다. 인수·연결 범위 변경과 해외 사업을 포함하며, 회사 전체 매출을 BTS 또는 특정 아티스트의 매출로 해석하지 않습니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "sm",
+          "name": "SM",
+          "description": "음반/음원·공연·MD·콘텐츠 등 에스엠과 해당 기간 종속기업을 포함한 연결 전체. 음악 레이블 단독 실적이 아닌 연결 전체입니다. 사업 매각·재편·연결 범위 변경과 계속사업 재분류에 따라 과거 수치의 범위가 달라질 수 있습니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "jyp",
+          "name": "JYP",
+          "description": "음반/음원·공연·MD·매니지먼트와 국내외 종속기업을 포함한 JYP 연결 전체. 아티스트별 실적은 분리 추정하지 않습니다. 사옥·시설 등 유형자산 투자는 분기별 변동이 크며 음악 IP·콘텐츠 제작비·인수 금액과 구분합니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "yg",
+          "name": "YG",
+          "description": "음반/음원·공연·광고·MD 등 YG와 해당 기간 종속기업을 포함한 연결 전체. YG PLUS 등 관계사·종속기업의 연결 범위는 보고기간마다 달라질 수 있습니다. 상장 자회사·관계사 매출과 모회사 연결 매출을 단순 합산하지 않습니다.",
+          "default_range": "all"
+        }
+      ],
+      "sections": [
+        {
+          "title": "HYBE · 하이브 · 352820",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "entertainment-hybe",
+          "supply_note": "멀티 레이블 · 음악·공연·팬 플랫폼 · 국내외 레이블·음반/음원·공연·MD·팬 플랫폼 등 하이브 연결 전체.",
+          "indicators": [
+            "company_entertainment_hybe_revenue",
+            "company_entertainment_hybe_profit",
+            "company_entertainment_hybe_capex"
+          ]
+        },
+        {
+          "title": "SM Entertainment · 에스엠 · 041510",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "entertainment-sm",
+          "supply_note": "음악 IP · 공연·MD·관련 사업 · 음반/음원·공연·MD·콘텐츠 등 에스엠과 해당 기간 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_entertainment_sm_revenue",
+            "company_entertainment_sm_profit",
+            "company_entertainment_sm_capex"
+          ]
+        },
+        {
+          "title": "JYP Entertainment · 035900",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "entertainment-jyp",
+          "supply_note": "음악 IP · 공연·MD·매니지먼트 · 음반/음원·공연·MD·매니지먼트와 국내외 종속기업을 포함한 JYP 연결 전체.",
+          "indicators": [
+            "company_entertainment_jyp_revenue",
+            "company_entertainment_jyp_profit",
+            "company_entertainment_jyp_capex"
+          ]
+        },
+        {
+          "title": "YG Entertainment · 122870",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "entertainment-yg",
+          "supply_note": "음악 IP · 공연·MD·관련 사업 · 음반/음원·공연·광고·MD 등 YG와 해당 기간 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_entertainment_yg_revenue",
+            "company_entertainment_yg_profit",
+            "company_entertainment_yg_capex"
+          ]
+        },
+        {
+          "title": "HYBE · 하이브 · 352820",
+          "tab": "hybe",
+          "layout": "financial",
+          "anchor": "entertainment-hybe",
+          "supply_note": "멀티 레이블 · 음악·공연·팬 플랫폼 · 국내외 레이블·음반/음원·공연·MD·팬 플랫폼 등 하이브 연결 전체.",
+          "indicators": [
+            "company_entertainment_hybe_revenue",
+            "company_entertainment_hybe_profit",
+            "company_entertainment_hybe_capex"
+          ]
+        },
+        {
+          "title": "SM Entertainment · 에스엠 · 041510",
+          "tab": "sm",
+          "layout": "financial",
+          "anchor": "entertainment-sm",
+          "supply_note": "음악 IP · 공연·MD·관련 사업 · 음반/음원·공연·MD·콘텐츠 등 에스엠과 해당 기간 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_entertainment_sm_revenue",
+            "company_entertainment_sm_profit",
+            "company_entertainment_sm_capex"
+          ]
+        },
+        {
+          "title": "JYP Entertainment · 035900",
+          "tab": "jyp",
+          "layout": "financial",
+          "anchor": "entertainment-jyp",
+          "supply_note": "음악 IP · 공연·MD·매니지먼트 · 음반/음원·공연·MD·매니지먼트와 국내외 종속기업을 포함한 JYP 연결 전체.",
+          "indicators": [
+            "company_entertainment_jyp_revenue",
+            "company_entertainment_jyp_profit",
+            "company_entertainment_jyp_capex"
+          ]
+        },
+        {
+          "title": "YG Entertainment · 122870",
+          "tab": "yg",
+          "layout": "financial",
+          "anchor": "entertainment-yg",
+          "supply_note": "음악 IP · 공연·MD·관련 사업 · 음반/음원·공연·광고·MD 등 YG와 해당 기간 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_entertainment_yg_revenue",
+            "company_entertainment_yg_profit",
+            "company_entertainment_yg_capex"
+          ]
+        }
+      ]
     }
   ]
 }

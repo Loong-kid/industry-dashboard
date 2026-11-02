@@ -1,0 +1,44 @@
+name: update-entertainment
+on:
+  schedule:
+    - cron: '55 0 * * *' # KST 09:55
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate entertainment reporting basis
+        id: definitions
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_entertainment.py
+      - name: Refresh actual and official preliminary entertainment accounts
+        if: steps.definitions.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_entertainment.py --refresh
+      - name: Validate collected financial histories
+        if: steps.definitions.outcome == 'success'
+        run: python -m unittest discover -s scripts -p test_entertainment.py
+      - name: Commit entertainment documents only
+        if: steps.definitions.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/entertainment/
+          git diff --cached --quiet || git commit -m "chore: refresh entertainment issuer financials"
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then break; fi
+            [ "$attempt" = 3 ] && exit 1
+            sleep $((attempt * 15))
+          done
