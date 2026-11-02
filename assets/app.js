@@ -66,26 +66,35 @@ async function boot() {
     return;
   }
   renderNav();
-  document.querySelectorAll("#range-picker button").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const content = document.getElementById("content");
-      const scrollTop = window.scrollY;
-      // Charts are rebuilt below. Keep the page tall while the old cards are
-      // removed, so the browser cannot clamp a lower scroll position to zero.
-      content.style.minHeight = `${content.getBoundingClientRect().height}px`;
-      state.range = btn.dataset.range;
-      document.querySelectorAll("#range-picker button").forEach((b) => b.classList.toggle("active", b === btn));
-      const rendering = renderIndustry({preserveScroll: true});
-      const sequence = renderSeq;
-      try { await rendering; }
-      finally {
-        if (sequence === renderSeq) {
-          content.style.minHeight = "";
-          window.scrollTo({top: scrollTop, behavior: "instant"});
-        }
+  const applyRange = async (change) => {
+    const content = document.getElementById("content");
+    const scrollTop = window.scrollY;
+    // Charts are rebuilt below. Keep the page tall while the old cards are
+    // removed, so the browser cannot clamp a lower scroll position to zero.
+    content.style.minHeight = `${content.getBoundingClientRect().height}px`;
+    change();
+    const rendering = renderIndustry({preserveScroll: true});
+    const sequence = renderSeq;
+    try { await rendering; }
+    finally {
+      if (sequence === renderSeq) {
+        content.style.minHeight = "";
+        window.scrollTo({top: scrollTop, behavior: "instant"});
       }
-    });
+    }
+  };
+  document.querySelectorAll("#range-picker button").forEach((btn) => {
+    btn.addEventListener("click", () => applyRange(() => setRange(btn.dataset.range)));
   });
+  const rangeFrom = document.getElementById("range-from"), rangeTo = document.getElementById("range-to");
+  for (const input of [rangeFrom, rangeTo]) {
+    input.addEventListener("change", () => {
+      // 연도를 직접 입력하는 중에도 change가 온다(0002-01-01 등). 네 자리가 찰 때까지 기다린다.
+      if ([rangeFrom, rangeTo].some(el => el.value && el.value < "1900-01-01")) return;
+      applyRange(() => setCustomRange(rangeFrom.value, rangeTo.value));
+    });
+  }
+  syncRangeInputs();
   darkMq.addEventListener("change", renderIndustry);
   window.addEventListener("hashchange", route);
   route();
@@ -186,6 +195,29 @@ function route() {
 function setRange(range) {
   state.range = range;
   document.querySelectorAll("#range-picker button").forEach((b) => b.classList.toggle("active", b.dataset.range === range));
+  syncRangeInputs();
+}
+
+// 달력 입력. 시작이 종료보다 늦으면 뒤바꾸고, 둘 다 비우면 전체로 돌아간다.
+function normalizeCustomRange(from, to) {
+  if (!from && !to) return null;
+  return from && to && from > to ? [to, from] : [from, to];
+}
+
+function setCustomRange(from, to) {
+  const range = normalizeCustomRange(from, to);
+  if (!range) { setRange("all"); return; }
+  [state.rangeFrom, state.rangeTo] = range;
+  setRange("custom");
+}
+
+// 버튼으로 고른 기간도 달력 칸에 실제 날짜로 보여 준다.
+function syncRangeInputs() {
+  const from = document.getElementById("range-from"), to = document.getElementById("range-to");
+  if (!from || !to) return;
+  const custom = state.range === "custom", all = state.range === "all";
+  from.value = custom ? state.rangeFrom : all ? "" : cutoffFor(state.range);
+  to.value = custom ? state.rangeTo : all ? "" : new Date().toISOString().slice(0, 10);
 }
 
 function renderNav() {
@@ -718,6 +750,7 @@ window.dashboard = { reloadData, state, GH_REPO: "Loong-kid/industry-dashboard" 
 // ── 기간 필터 ───────────────────────────────────────────────────
 function cutoffFor(range) {
   if (range === "all") return "0000-00-00";
+  if (range === "custom") return state.rangeFrom || "0000-00-00";
   const months = { "3m": 3, "1y": 12, "3y": 36 }[range];
   const d = new Date();
   d.setMonth(d.getMonth() - months);
@@ -816,13 +849,17 @@ function renderCard(doc, indicatorId, options = {}) {
   // full_range: 전역 기간 버튼을 무시하고 전체를 그린다. 연 단위로 듬성듬성한 지표(LNG 프로젝트
   // 준공연도 등)는 '3년'을 걸면 과거 실적 시리즈가 통째로 비어 사라진다 — 그 카드의 요점이 긴 궤적인데.
   const cutoff = doc.full_range ? "0000-00-00" : rangeCutoff();
+  // 달력으로 직접 고른 기간은 끝 날짜도 지키고, 데이터가 없어도 그 기간을 그대로 보여 준다.
+  const picked = globalThis.dashboard?.state;
+  const customRange = !doc.full_range && picked?.range === "custom";
+  const rangeLast = customRange && picked.rangeTo || "9999-12-31";
   const seriesNames = Object.keys(doc.series);
   let filtered = {};
   for (const s of seriesNames) {
-    filtered[s] = doc.series[s].filter((p) => p[0] >= cutoff);
+    filtered[s] = doc.series[s].filter((p) => p[0] >= cutoff && p[0] <= rangeLast);
   }
   // 선택 기간에 데이터가 하나도 없으면(오래된 지표) 전체 기간으로 대체
-  if (!doc.strict_range && seriesNames.every((s) => filtered[s].length === 0)) {
+  if (!doc.strict_range && !customRange && seriesNames.every((s) => filtered[s].length === 0)) {
     filtered = Object.fromEntries(seriesNames.map((s) => [s, doc.series[s]]));
   }
 
@@ -922,7 +959,7 @@ function renderCard(doc, indicatorId, options = {}) {
         ${seriesNames.length > 1 ? `<span class="stat-series">${escapeHtml(seriesName)}</span>` : ""}
         <span class="stat-value">${last[1] == null ? "—" : fmt(last[1])}</span>
         <span class="stat-unit">${doc.unit || ""}</span>
-        <span class="stat-date">${doc.month_labels ? periodLabel(doc, last[0]) : last[0]}</span>
+        <span class="stat-date">${doc.month_labels || doc.frequency === "monthly" ? periodLabel(doc, last[0]) : last[0]}</span>
         <span class="stat-unit">YoY ${change(previousYear)} · MoM ${change(previousMonth)}</span>`;
       return;
     }
@@ -941,7 +978,7 @@ function renderCard(doc, indicatorId, options = {}) {
       <span class="stat-value">${observationLabel(doc, last[0], last[1])}</span>
       <span class="stat-unit">${doc.unit || ""}</span>
       ${delta !== null ? `<span class="stat-delta ${dir}">${arrow} ${fmt(Math.abs(delta))}${pointsChange ? "p · 전월 대비" : ""}${pct !== null ? ` (${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%)` : ""}</span>` : ""}
-      <span class="stat-date">${doc.cumulative_since ? `${doc.cumulative_since}년부터 누적 · ${last[0].slice(0, 7)}` : doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels ? periodLabel(doc, last[0]) : dateLabel(last[0])}${doc.point_annotations?.[last[0]] ? " · 추정" : ""}</span>
+      <span class="stat-date">${doc.cumulative_since ? `${doc.cumulative_since}년부터 누적 · ${last[0].slice(0, 7)}` : doc.cumulative ? `${last[0].slice(0, 4)}년 1~${Number(last[0].slice(5, 7))}월 누적` : doc.month_labels || doc.frequency === "monthly" ? periodLabel(doc, last[0]) : dateLabel(last[0])}${doc.point_annotations?.[last[0]] ? " · 추정" : ""}</span>
       ${doc.sample_counts ? `<span class="stat-unit">표본 ${new Map(doc.sample_counts[seriesName] || []).get(last[0]) ?? 0}건</span>` : ""}`;
   };
   const setStat = seriesName => {
@@ -1177,7 +1214,7 @@ function periodLabel(doc, date) {
   }
   if (doc.frequency === "semiannual") return `${date.slice(0, 4)} ${Number(date.slice(5, 7)) <= 6 ? "상반기" : "하반기"}`;
   if (doc.year_labels) return date.slice(0, 4);
-  if (doc.month_labels) return date.slice(0, 7);
+  if (doc.month_labels || (doc.frequency === "monthly" && !doc.quarter_labels)) return date.slice(0, 7);
   return doc.quarter_labels ? `${date.slice(0, 4)} Q${Math.ceil(Number(date.slice(5, 7)) / 3)}` : date;
 }
 

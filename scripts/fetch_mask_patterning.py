@@ -1,6 +1,7 @@
 """Photronics SEC product revenue tables -> cached facts and mask-patterning charts.
 
-Public company IR PDFs, no API key. Q1-Q3 use reported three-month values;
+SEC EDGAR filings, no API key (the company IR site answers 403 to scripts; filings
+cached from it earlier keep their PDF links). Q1-Q3 use reported three-month values;
 Q4 = annual product revenue - the same year's reported nine-month revenue.
 Tekscend facts are reviewed snapshots. Mix amounts are explicitly approximate
 allocations of consolidated photomask-business revenue, not disclosed product sales.
@@ -11,9 +12,7 @@ import datetime as dt
 import json
 import re
 from pathlib import Path
-from urllib.parse import urljoin
 
-import pymupdf
 import requests
 from bs4 import BeautifulSoup
 
@@ -24,6 +23,8 @@ TEKSCEND_FINANCIALS = ROOT / "manual/tekscend_financials.json"
 OUT = ROOT / "data/semicon"
 BASE = "https://photronicsinc.gcs-web.com"
 START_YEAR = 2021
+SEC_CIK = 810136
+SEC_HEADERS = {"User-Agent": "industry-dashboard personal research wkorotk@gmail.com"}
 MONTHS = "January February March April May June July August September October November December".split()
 DATE_RE = r"(" + "|".join(MONTHS) + r")\s+(\d{1,2}),?\s+(\d{4})"
 PRODUCTS = ("ic_high", "ic_main", "ic_total", "fpd_high", "fpd_main", "fpd_total")
@@ -39,14 +40,23 @@ def iso_date(match):
     return dt.date(int(year), MONTHS.index(month) + 1, int(day)).isoformat()
 
 
-def read_pdf(url):
-    response = requests.get(url, timeout=60)
+def filing_pages(html):
+    """SEC filing HTML -> text chunks: the cover part, then one per product table heading."""
+    soup = BeautifulSoup(html, "html.parser")
+    for hidden in soup.find_all("ix:header"):
+        hidden.decompose()
+    text = re.sub(r"\s+", " ", soup.get_text(" "))
+    return re.split(r"(?=Revenue by Product Type)", text)
+
+
+def read_filing(url):
+    response = requests.get(url, headers=SEC_HEADERS, timeout=90)
     response.raise_for_status()
-    return pymupdf.open(stream=response.content, filetype="pdf")
+    return filing_pages(response.text)
 
 
-def parse_photronics(pdf, filing):
-    cover = pdf[0].get_text()
+def parse_photronics(pages, filing):
+    cover = pages[0]
     end_match = re.search(r"(?:quarterly period|fiscal year) ended\s+" + DATE_RE, cover, re.I)
     if not end_match:
         raise ValueError("Missing fiscal period on SEC cover")
@@ -55,15 +65,14 @@ def parse_photronics(pdf, filing):
     quarter = 4 if filing["form"] == "10-K" else {1: 1, 2: 1, 4: 2, 5: 2, 7: 3, 8: 3}.get(month)
     if not quarter:
         raise ValueError(f"Unexpected fiscal quarter end: {date}")
-    all_text = " ".join(p.get_text() for p in pdf)
+    all_text = " ".join(pages)
     if not re.search(r"\(in\s+(?:\$\s*)?thousands", all_text, re.I):
         raise ValueError("Unverified SEC financial statement unit")
-    for page_index, page in enumerate(pdf):
-        text = page.get_text()
-        if "Revenue by Product Type" not in text or "Changes in Revenue" in text:
+    for text in pages:
+        if "Revenue by Product Type" not in text:
             continue
         block = text.split("Revenue by Product Type", 1)[1].split("Revenue by Geographic", 1)[0]
-        if "Percent" in block or re.search(r"\d+\.\d+", block):
+        if "Changes in Revenue" in block or "Percent" in block or re.search(r"\d+\.\d+", block):
             continue  # MD&A tables are rounded $millions; use the financial note.
         # The note's numeric table is in $thousands (not the rounded MD&A table).
         rows = re.split(r"High[-\s]end|Mainstream|Total\s+IC|Total\s+FPD", block, flags=re.I)
@@ -81,32 +90,26 @@ def parse_photronics(pdf, filing):
                 if numbers[prefix + "_high"][col] + numbers[prefix + "_main"][col] != numbers[prefix + "_total"][col]:
                     raise ValueError("High-end + mainstream does not reconcile with reported total")
         return {**filing, "fiscal_year": year, "quarter": quarter, "period_end": date,
-                "pdf_page": page_index + 1, "unit": "thousand_usd", "table": numbers}
+                "pdf_page": None, "unit": "thousand_usd", "table": numbers}
     raise ValueError("SEC product revenue note not found")
 
 
 def list_filings(backfill=False):
+    response = requests.get(f"https://data.sec.gov/submissions/CIK{SEC_CIK:010d}.json",
+                            headers=SEC_HEADERS, timeout=45)
+    response.raise_for_status()
+    recent = response.json()["filings"]["recent"]
     filings = []
-    for group in ("496", "471"):
-        response = requests.get(BASE + "/financial-information/sec-filings", params={
-            "field_nir_sec_form_group_target_id[]": group, "items_per_page": 100,
-        }, timeout=45)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        for row in soup.select("tbody tr"):
-            form_link = row.select_one('a[href*="/sec-filing/10-q/"], a[href*="/sec-filing/10-k/"]')
-            pdf_link = next((a for a in row.select("a[href]") if ".pdf" in a.get_text()), None)
-            if not form_link or not pdf_link:
-                continue
-            filed = dt.datetime.strptime(row.select_one("td").get_text(strip=True), "%b %d, %Y").date().isoformat()
-            if int(filed[:4]) < START_YEAR:
-                continue
-            if form_link.get_text(strip=True) == "10-K" and filed < f"{START_YEAR}-10-01":
-                continue
-            if not backfill and int(filed[:4]) < dt.date.today().year - 1:
-                continue
-            filings.append({"url": urljoin(BASE, pdf_link["href"]), "filed": filed,
-                            "form": form_link.get_text(strip=True)})
+    for form, filed, accession, document in zip(recent["form"], recent["filingDate"],
+                                                recent["accessionNumber"], recent["primaryDocument"]):
+        if form not in ("10-Q", "10-K") or int(filed[:4]) < START_YEAR:
+            continue
+        if form == "10-K" and filed < f"{START_YEAR}-10-01":
+            continue
+        if not backfill and int(filed[:4]) < dt.date.today().year - 1:
+            continue
+        filings.append({"url": f"https://www.sec.gov/Archives/edgar/data/{SEC_CIK}/{accession.replace('-', '')}/{document}",
+                        "filed": filed, "form": form})
     if not filings:
         raise ValueError("No Photronics SEC filings found")
     return sorted(filings, key=lambda f: (f["filed"], f["url"]))
@@ -328,12 +331,13 @@ def run():
     args = parser.parse_args()
     cache = json.loads(CACHE.read_text(encoding="utf8")) if CACHE.exists() else {"filings": []}
     if not args.offline:
-        known = {f["url"]: f for f in cache["filings"]}
+        # Same filing = same form and date: older entries keep their IR site URL.
+        known = {(f["form"], f["filed"]): f for f in cache["filings"]}
         for filing in list_filings(args.backfill or not known):
-            if filing["url"] in known:
+            key = (filing["form"], filing["filed"])
+            if key in known:
                 continue
-            with read_pdf(filing["url"]) as pdf:
-                known[filing["url"]] = parse_photronics(pdf, filing)
+            known[key] = parse_photronics(read_filing(filing["url"]), filing)
             print(f"Parsed {filing['filed']} {filing['form']}")
         cache = {**cache, "checked": dt.date.today().isoformat(), "filings": sorted(known.values(), key=lambda f: f["filed"])}
     tek = json.loads(TEKSCEND.read_text(encoding="utf8"))

@@ -3,7 +3,21 @@ import copy
 import json
 import unittest
 
-from fetch_mask_patterning import CACHE, TEKSCEND, TEKSCEND_FINANCIALS, PRODUCTS, build_documents, photronics_quarters
+from fetch_mask_patterning import (CACHE, TEKSCEND, TEKSCEND_FINANCIALS, PRODUCTS, build_documents, filing_pages,
+                                   parse_photronics, photronics_quarters)
+
+
+SEC_FILING = """<html><body><ix:header>Revenue by Product Type 9.9 hidden</ix:header>
+<p>For the quarterly period ended  August&nbsp;2, 2026</p><p>(in thousands)</p>
+<p>Revenue by Product Type</p><table><tr><td>Percent</td><td>25.5</td></tr></table><p>Revenue by Geographic Area</p>
+<p>Revenue by Product Type</p><table>
+<tr><td>High-end</td><td>$</td><td>10</td><td>$</td><td>9</td><td>$</td><td>1,030</td><td>$</td><td>29</td></tr>
+<tr><td>Mainstream</td><td>20</td><td>19</td><td>40</td><td>39</td></tr>
+<tr><td>Total IC</td><td>30</td><td>28</td><td>1,070</td><td>68</td></tr>
+<tr><td>High-end</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td>Mainstream</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+<tr><td>Total FPD</td><td>6</td><td>8</td><td>10</td><td>12</td></tr></table>
+<p>Revenue by Geographic Area</p><p>Changes in Revenue</p></body></html>"""
 
 
 class MaskPatterningTests(unittest.TestCase):
@@ -13,6 +27,14 @@ class MaskPatterningTests(unittest.TestCase):
         cls.tek = json.loads(TEKSCEND.read_text(encoding="utf8"))
         cls.financials = json.loads(TEKSCEND_FINANCIALS.read_text(encoding="utf8"))
         cls.docs = build_documents(cls.cache, cls.tek)
+
+    def test_parses_sec_html_filing(self):
+        filing = {"url": "https://www.sec.gov/x.htm", "filed": "2026-09-10", "form": "10-Q"}
+        parsed = parse_photronics(filing_pages(SEC_FILING), filing)
+        self.assertEqual((parsed["fiscal_year"], parsed["quarter"], parsed["period_end"]), (2026, 3, "2026-08-02"))
+        self.assertEqual(parsed["table"]["ic_high"], [10, 9, 1030, 29])
+        self.assertEqual(parsed["table"]["fpd_total"], [6, 8, 10, 12])
+        self.assertIsNone(parsed["pdf_page"])
 
     def test_latest_reported_revenue_and_history(self):
         rows = photronics_quarters(self.cache)
