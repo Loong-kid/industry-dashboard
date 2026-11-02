@@ -4506,6 +4506,257 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cosmetics",
+      "name": "화장품",
+      "default_range": "all",
+      "auto_collect_time": "09:45",
+      "cadence": "매일 오전 9:45(KST) DART 정기보고서와 공식 잠정 공시를 확인합니다. 실제 보고기간·연결/별도·원통화(KRW 백만)를 보존하며 잠정실적은 표시 후 정기보고서 확보 시 교체합니다. CAPEX는 유형자산 취득 현금지출이고 잠정 값은 추정하지 않습니다.",
+      "tabs": [
+        {
+          "id": "overview",
+          "name": "전체 비교",
+          "description": "국내 화장품 가치사슬 대표 9개사를 브랜드 → ODM 제조 → 유통 순서로 봅니다. 시총 순위가 아닌 사업 역할별 비교군이며, 회사 전체 실적과 사업 범위는 각 카드에서 구분합니다. 같은 가치사슬의 매출을 합산하면 중복될 수 있습니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "brands",
+          "name": "브랜드",
+          "description": "아모레퍼시픽·LG생활건강·에이피알·클리오·브이티. 생활용품·음료·뷰티 디바이스·과거 비화장품 사업을 포함하는 전사 연결 실적입니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "odm",
+          "name": "ODM 제조",
+          "description": "코스맥스·한국콜마·코스메카코리아. 연구개발·생산을 맡는 제조사이며 제약·음료·용기·해외 종속기업의 연결 범위를 회사별로 표시합니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "distribution",
+          "name": "유통·플랫폼",
+          "description": "실리콘투의 해외 K-Beauty 유통·플랫폼 실적입니다. 브랜드사·제조사와 다른 매출 인식·물류·재고·설비 구조를 함께 고려합니다.",
+          "default_range": "all"
+        }
+      ],
+      "sections": [
+        {
+          "title": "아모레퍼시픽 · 090430",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-amorepacific",
+          "supply_note": "브랜드 · 프리미엄·글로벌 · 설화수·라네즈 등 브랜드와 관련 사업을 포함한 아모레퍼시픽 연결 전체.",
+          "indicators": [
+            "company_cosmetics_amorepacific_revenue",
+            "company_cosmetics_amorepacific_profit",
+            "company_cosmetics_amorepacific_capex"
+          ]
+        },
+        {
+          "title": "LG생활건강 · 051900",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-lghnh",
+          "supply_note": "브랜드 · 뷰티·생활용품·음료 · Beauty·생활용품·음료 사업과 종속기업을 포함한 LG생활건강 연결 전체.",
+          "indicators": [
+            "company_cosmetics_lghnh_revenue",
+            "company_cosmetics_lghnh_profit",
+            "company_cosmetics_lghnh_capex"
+          ]
+        },
+        {
+          "title": "에이피알 · 278470",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-apr",
+          "supply_note": "브랜드 · 스킨케어·뷰티 디바이스 · 메디큐브 등 화장품·AGE-R 뷰티 디바이스·기타 사업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_apr_revenue",
+            "company_cosmetics_apr_profit",
+            "company_cosmetics_apr_capex"
+          ]
+        },
+        {
+          "title": "클리오 · 237880",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-clio",
+          "supply_note": "브랜드 · 색조·스킨케어 · 클리오·페리페라·구달 등 브랜드와 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_clio_revenue",
+            "company_cosmetics_clio_profit",
+            "company_cosmetics_clio_capex"
+          ]
+        },
+        {
+          "title": "브이티 · 018290",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-vt",
+          "supply_note": "브랜드 · 스킨케어·기타 사업 · 화장품 및 해당 기간 기타 사업·종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_vt_revenue",
+            "company_cosmetics_vt_profit",
+            "company_cosmetics_vt_capex"
+          ]
+        },
+        {
+          "title": "코스맥스 · 192820",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-cosmax",
+          "supply_note": "화장품 ODM · 한국·중국·미국 등 · 화장품 ODM과 해외 종속기업을 포함한 코스맥스 연결 전체.",
+          "indicators": [
+            "company_cosmetics_cosmax_revenue",
+            "company_cosmetics_cosmax_profit",
+            "company_cosmetics_cosmax_capex"
+          ]
+        },
+        {
+          "title": "한국콜마 · 161890",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-kolmar_korea",
+          "supply_note": "화장품 ODM · 제약·용기 포함 · 화장품 ODM·HK이노엔 등 제약·음료·용기 사업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_kolmar_korea_revenue",
+            "company_cosmetics_kolmar_korea_profit",
+            "company_cosmetics_kolmar_korea_capex"
+          ]
+        },
+        {
+          "title": "코스메카코리아 · 241710",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-cosmecca",
+          "supply_note": "화장품 ODM · 한국·미국 등 · 화장품 ODM과 잉글우드랩 등 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_cosmecca_revenue",
+            "company_cosmetics_cosmecca_profit",
+            "company_cosmetics_cosmecca_capex"
+          ]
+        },
+        {
+          "title": "실리콘투 · 257720",
+          "tab": "overview",
+          "layout": "financial",
+          "anchor": "cosmetics-silicon2",
+          "supply_note": "K-Beauty 해외 유통·물류 플랫폼 · K-Beauty 브랜드 해외 유통·플랫폼·물류 및 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_silicon2_revenue",
+            "company_cosmetics_silicon2_profit",
+            "company_cosmetics_silicon2_capex"
+          ]
+        },
+        {
+          "title": "아모레퍼시픽 · 090430",
+          "tab": "brands",
+          "layout": "financial",
+          "anchor": "cosmetics-amorepacific",
+          "supply_note": "브랜드 · 프리미엄·글로벌 · 설화수·라네즈 등 브랜드와 관련 사업을 포함한 아모레퍼시픽 연결 전체.",
+          "indicators": [
+            "company_cosmetics_amorepacific_revenue",
+            "company_cosmetics_amorepacific_profit",
+            "company_cosmetics_amorepacific_capex"
+          ]
+        },
+        {
+          "title": "LG생활건강 · 051900",
+          "tab": "brands",
+          "layout": "financial",
+          "anchor": "cosmetics-lghnh",
+          "supply_note": "브랜드 · 뷰티·생활용품·음료 · Beauty·생활용품·음료 사업과 종속기업을 포함한 LG생활건강 연결 전체.",
+          "indicators": [
+            "company_cosmetics_lghnh_revenue",
+            "company_cosmetics_lghnh_profit",
+            "company_cosmetics_lghnh_capex"
+          ]
+        },
+        {
+          "title": "에이피알 · 278470",
+          "tab": "brands",
+          "layout": "financial",
+          "anchor": "cosmetics-apr",
+          "supply_note": "브랜드 · 스킨케어·뷰티 디바이스 · 메디큐브 등 화장품·AGE-R 뷰티 디바이스·기타 사업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_apr_revenue",
+            "company_cosmetics_apr_profit",
+            "company_cosmetics_apr_capex"
+          ]
+        },
+        {
+          "title": "클리오 · 237880",
+          "tab": "brands",
+          "layout": "financial",
+          "anchor": "cosmetics-clio",
+          "supply_note": "브랜드 · 색조·스킨케어 · 클리오·페리페라·구달 등 브랜드와 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_clio_revenue",
+            "company_cosmetics_clio_profit",
+            "company_cosmetics_clio_capex"
+          ]
+        },
+        {
+          "title": "브이티 · 018290",
+          "tab": "brands",
+          "layout": "financial",
+          "anchor": "cosmetics-vt",
+          "supply_note": "브랜드 · 스킨케어·기타 사업 · 화장품 및 해당 기간 기타 사업·종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_vt_revenue",
+            "company_cosmetics_vt_profit",
+            "company_cosmetics_vt_capex"
+          ]
+        },
+        {
+          "title": "코스맥스 · 192820",
+          "tab": "odm",
+          "layout": "financial",
+          "anchor": "cosmetics-cosmax",
+          "supply_note": "화장품 ODM · 한국·중국·미국 등 · 화장품 ODM과 해외 종속기업을 포함한 코스맥스 연결 전체.",
+          "indicators": [
+            "company_cosmetics_cosmax_revenue",
+            "company_cosmetics_cosmax_profit",
+            "company_cosmetics_cosmax_capex"
+          ]
+        },
+        {
+          "title": "한국콜마 · 161890",
+          "tab": "odm",
+          "layout": "financial",
+          "anchor": "cosmetics-kolmar_korea",
+          "supply_note": "화장품 ODM · 제약·용기 포함 · 화장품 ODM·HK이노엔 등 제약·음료·용기 사업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_kolmar_korea_revenue",
+            "company_cosmetics_kolmar_korea_profit",
+            "company_cosmetics_kolmar_korea_capex"
+          ]
+        },
+        {
+          "title": "코스메카코리아 · 241710",
+          "tab": "odm",
+          "layout": "financial",
+          "anchor": "cosmetics-cosmecca",
+          "supply_note": "화장품 ODM · 한국·미국 등 · 화장품 ODM과 잉글우드랩 등 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_cosmecca_revenue",
+            "company_cosmetics_cosmecca_profit",
+            "company_cosmetics_cosmecca_capex"
+          ]
+        },
+        {
+          "title": "실리콘투 · 257720",
+          "tab": "distribution",
+          "layout": "financial",
+          "anchor": "cosmetics-silicon2",
+          "supply_note": "K-Beauty 해외 유통·물류 플랫폼 · K-Beauty 브랜드 해외 유통·플랫폼·물류 및 종속기업을 포함한 연결 전체.",
+          "indicators": [
+            "company_cosmetics_silicon2_revenue",
+            "company_cosmetics_silicon2_profit",
+            "company_cosmetics_silicon2_capex"
+          ]
+        }
+      ]
     }
   ]
 }
