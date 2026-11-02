@@ -26,11 +26,13 @@ def api(session,name,key,**params):
         raise ValueError('OpenDART original unavailable') from None
 
 
-def collect(full=False):
+def collect(full=False,*,cache=None,metadata=None):
     key=os.environ.get('DART_API_KEY')
     if not key:raise ValueError('DART_API_KEY not configured')
-    CACHE.mkdir(parents=True,exist_ok=True)
-    meta=json.loads(META.read_bytes())['companies'];session=requests.Session()
+    cache=Path(cache) if cache is not None else CACHE
+    metadata=Path(metadata) if metadata is not None else META
+    cache.mkdir(parents=True,exist_ok=True)
+    meta=json.loads(metadata.read_bytes())['companies'];session=requests.Session()
     asof=dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).date().isoformat()
     raw=api(session,'corpCode.xml',key).content
     try:
@@ -44,7 +46,7 @@ def collect(full=False):
             entities[company]=dict(corp_code=r.findtext('corp_code'),name=name,ticker=spec['ticker'])
     except (ET.ParseError,zipfile.BadZipFile,KeyError,ValueError):
         raise ValueError('OpenDART issuer mapping needs review') from None
-    save(CACHE/'entities.json',entities)
+    save(cache/'entities.json',entities)
     def issuer(item):
         company,entity=item;own=requests.Session();status=dict(checked=asof,ok=True,reports=[]);errors=[];fails=0
         first=2015 if full else int(asof[:4])-1
@@ -59,7 +61,7 @@ def collect(full=False):
                         code_status=payload.get('status')
                         if code_status not in ['000','013']:raise ValueError('OpenDART report check failed')
                         if any(r.get('corp_code',entity['corp_code'])!=entity['corp_code'] for r in payload.get('list',[])):raise ValueError('issuer mismatch')
-                        save(CACHE/filename,dict(status=code_status,list=payload.get('list',[])))
+                        save(cache/filename,dict(status=code_status,list=payload.get('list',[])))
                         if code_status=='000':
                             status['reports'].append(dict(year=year,quarter=q,fs_div=fs,path=filename));break
                         time.sleep(.15)
@@ -72,11 +74,11 @@ def collect(full=False):
             print(company,year,'checked',flush=True)
             if fails>=3:break
         status.update(ok=not errors,errors=errors)
-        save(CACHE/(company+'-status.json'),status)
+        save(cache/(company+'-status.json'),status)
         print(company,len(status['reports']),'statement reports',len(errors),'source failures',flush=True)
         return company,status
     with ThreadPoolExecutor(max_workers=3) as pool:status=dict(pool.map(issuer,entities.items()))
-    save(CACHE/'status.json',status)
+    save(cache/'status.json',status)
     if not all(s['ok'] for s in status.values()):print('Some source checks failed; retained history must be preserved.',flush=True)
     return status
 
