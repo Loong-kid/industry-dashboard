@@ -39,7 +39,7 @@ for (const id of ['comm_uranium', 'comm_swu', 'comm_neodymium', 'comm_dysprosium
   const card = context.renderCard(doc, id);
   const chart = charts.at(-1);
   const stat = card.children.find(child => child.className === 'card-stat');
-  const displayDate = doc.year_labels ? doc.updated.slice(0, 4) : doc.updated;
+  const displayDate = doc.year_labels ? doc.updated.slice(0, 4) : doc.frequency === 'monthly' ? doc.updated.slice(0, 7) : doc.updated;
   assert(stat.innerHTML.includes(displayDate), 'Headline must show data period, not fetch date');
   assert(stat.innerHTML.includes(doc.unit));
   assert(chart.data.labels.length >= (doc.year_labels ? 2 : 10));

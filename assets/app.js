@@ -757,7 +757,6 @@ function cutoffFor(range) {
   return d.toISOString().slice(0, 10);
 }
 function rangeCutoff() { return cutoffFor(state.range); } // 전역(차트용)
-function rangeEnd() { return state.range === "custom" && state.rangeTo || "9999-12-31"; }
 
 // 정렬 헤더 클릭 3단계 순환: (미정렬) → 내림차순 → 오름차순 → 미정렬(원래 순서)
 function cycleSortState(filt, key) {
@@ -850,15 +849,17 @@ function renderCard(doc, indicatorId, options = {}) {
   // full_range: 전역 기간 버튼을 무시하고 전체를 그린다. 연 단위로 듬성듬성한 지표(LNG 프로젝트
   // 준공연도 등)는 '3년'을 걸면 과거 실적 시리즈가 통째로 비어 사라진다 — 그 카드의 요점이 긴 궤적인데.
   const cutoff = doc.full_range ? "0000-00-00" : rangeCutoff();
-  const rangeLast = doc.full_range ? "9999-12-31" : rangeEnd();
+  // 달력으로 직접 고른 기간은 끝 날짜도 지키고, 데이터가 없어도 그 기간을 그대로 보여 준다.
+  const picked = globalThis.dashboard?.state;
+  const customRange = !doc.full_range && picked?.range === "custom";
+  const rangeLast = customRange && picked.rangeTo || "9999-12-31";
   const seriesNames = Object.keys(doc.series);
   let filtered = {};
   for (const s of seriesNames) {
     filtered[s] = doc.series[s].filter((p) => p[0] >= cutoff && p[0] <= rangeLast);
   }
   // 선택 기간에 데이터가 하나도 없으면(오래된 지표) 전체 기간으로 대체
-  // 달력으로 직접 고른 기간은 그대로 존중한다.
-  if (!doc.strict_range && state.range !== "custom" && seriesNames.every((s) => filtered[s].length === 0)) {
+  if (!doc.strict_range && !customRange && seriesNames.every((s) => filtered[s].length === 0)) {
     filtered = Object.fromEntries(seriesNames.map((s) => [s, doc.series[s]]));
   }
 
