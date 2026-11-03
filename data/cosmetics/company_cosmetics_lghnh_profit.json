@@ -3,7 +3,7 @@
  "name": "LG생활건강 · 영업이익",
  "unit": "KRW 백만",
  "source": "DART · LG생활건강 공식 공시",
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "description": "Beauty·생활용품·음료 사업과 종속기업을 포함한 LG생활건강 연결 전체. 전사 매출·영업이익·CAPEX입니다. 전체 매출을 화장품 매출이나 Beauty 부문 실적으로 간주하지 않습니다. 정기보고서 확정 실적을 우선하고, 이후 공개된 공식 잠정 분기는 잠정 표시 후 정기보고서 확보 시 교체합니다.",
  "company_kpi": true,
  "span_gaps": false,
@@ -12,7 +12,7 @@
   "quarter": {
    "label": "분기",
    "frequency": "quarterly",
-   "frequency_label": "분기 · DART 정기 공시",
+   "frequency_label": "분기 · DART 확정·잠정",
    "quarter_labels": true,
    "year_labels": false,
    "annual_axis": false,
@@ -62,7 +62,8 @@
     "2025-09-30": "FY2025 Q3",
     "2025-12-31": "FY2025 Q4",
     "2026-03-31": "FY2026 Q1",
-    "2026-06-30": "FY2026 Q2"
+    "2026-06-30": "FY2026 Q2",
+    "2026-09-30": "FY2026 Q3 · 잠정"
    },
    "comparison_dates": {
     "2015-03-31": {
@@ -248,6 +249,10 @@
     "2026-06-30": {
      "year_ago": "2025-06-30",
      "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
     }
    },
    "quarterly_revenue_summary": false,
@@ -437,14 +442,18 @@
      [
       "2026-06-30",
       102782.128736
+     ],
+     [
+      "2026-09-30",
+      70400.0
      ]
     ]
    },
    "default_series": [
     "공시 영업이익"
    ],
-   "updated": "2026-06-30",
-   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002412",
+   "updated": "2026-09-30",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
    "point_sources": {
     "2015-03-31": {
      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516002695",
@@ -995,6 +1004,17 @@
       }
      ],
      "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
+     "label": "FY2026 Q3 · 잠정",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
+       "label": "2026-07-01 ~ 2026-09-30 · 2026-11-03"
+      }
+     ],
+     "source_separator": " / "
     }
    },
    "point_notes": {
@@ -1277,6 +1297,13 @@
      "공시 항목: 영업이익",
      "산식: reported three-month income",
      "원화 금액: 102,782,128,736원"
+    ],
+    "2026-09-30": [
+     "공식 잠정 공시 · 정기보고서 확인 시 확정 값으로 교체합니다.",
+     "재무제표: 연결",
+     "공시 항목: 영업이익",
+     "산식: reported provisional quarter",
+     "원화 금액: 70,400,000,000원"
     ]
    }
   },
@@ -1596,11 +1623,11 @@
   },
   {
    "label": "갱신 확인",
-   "value": "2026-11-02 · 정상"
+   "value": "2026-11-03 · 정상"
   }
  ],
  "frequency": "quarterly",
- "frequency_label": "분기 · DART 정기 공시",
+ "frequency_label": "분기 · DART 확정·잠정",
  "quarter_labels": true,
  "year_labels": false,
  "annual_axis": false,
@@ -1650,7 +1677,8 @@
   "2025-09-30": "FY2025 Q3",
   "2025-12-31": "FY2025 Q4",
   "2026-03-31": "FY2026 Q1",
-  "2026-06-30": "FY2026 Q2"
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3 · 잠정"
  },
  "comparison_dates": {
   "2015-03-31": {
@@ -1836,6 +1864,10 @@
   "2026-06-30": {
    "year_ago": "2025-06-30",
    "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
   }
  },
  "quarterly_revenue_summary": false,
@@ -2025,14 +2057,18 @@
    [
     "2026-06-30",
     102782.128736
+   ],
+   [
+    "2026-09-30",
+    70400.0
    ]
   ]
  },
  "default_series": [
   "공시 영업이익"
  ],
- "updated": "2026-06-30",
- "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002412",
+ "updated": "2026-09-30",
+ "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
  "point_sources": {
   "2015-03-31": {
    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516002695",
@@ -2583,6 +2619,17 @@
     }
    ],
    "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
+   "label": "FY2026 Q3 · 잠정",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261103800407",
+     "label": "2026-07-01 ~ 2026-09-30 · 2026-11-03"
+    }
+   ],
+   "source_separator": " / "
   }
  },
  "point_notes": {
@@ -2865,6 +2912,13 @@
    "공시 항목: 영업이익",
    "산식: reported three-month income",
    "원화 금액: 102,782,128,736원"
+  ],
+  "2026-09-30": [
+   "공식 잠정 공시 · 정기보고서 확인 시 확정 값으로 교체합니다.",
+   "재무제표: 연결",
+   "공시 항목: 영업이익",
+   "산식: reported provisional quarter",
+   "원화 금액: 70,400,000,000원"
   ]
  }
 }
