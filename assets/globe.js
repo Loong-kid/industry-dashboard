@@ -1,12 +1,17 @@
 /* 🌐 지구본: 등록한 사이트(LNG 터미널·ESS 공장·내 사이트)를 3D 지구 위에 찍는다.
    data/sites/sites.json (scripts/build_sites.py) + 이 브라우저에 임시 저장한 사이트(localStorage). */
 import {FULL_RANGE, LABEL_ALT, LAND_ALT, MAX_RANGE, MAX_TILT, MIN_RANGE, NEAR_RANGE, autoTilt, barAltitude, barScale, cameraFrame, panFocus, viewFade} from "./globe-view.js";
+import {fitFrame, frameTransform, fromScreen, lerpFrame, mercY, nearestPoint, toScreen, unwrapRing, worldFrame} from "./globe-map.js";
 
 const LIBS = [
   "https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/globe.gl.min.js",
   "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js",
 ];
 const COUNTRIES = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json";
+const COUNTRIES_FINE = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json"; // 전체 지도를 당겼을 때만 받는다
+const ANTARCTICA_ID = "010"; // 전체 지도 범위 밖이고, 극을 도는 고리라 평면에 그릴 수 없다
+const FINE_LAND_SCALE = 6; // 전체 지도가 이 배율(px/도)을 넘으면 고운 해안선을 쓴다
+const MAP_SITE_RANGE = 0.3, MAP_AREA_RANGE = 0.7; // 지도에서 점·지역을 눌렀을 때 지구본이 내려가는 거리
 const LAYER_COLORS = {lng_export: "#eb6834", lng_import: "#2a78d6", ess_system: "#1baf7a", ess_cell: "#eda100",
   dc_kr: "#4a3aa7", dc_kr_candidate: "#9085e9", user: "#e34948"};
 const STATUS_ORDER = ["operating", "construction", "planned", "inactive"];
@@ -18,7 +23,8 @@ const KOREA_SIDO = "data/sites/korea_sido.json";
 const KOREA_SIGUNGU = "data/sites/korea_sigungu.json";
 const ADM1_ALT = 0.8, ADM2_ALT = 0.22; // 이 고도 아래에서 시·도 / 시·군·구를 보여 준다
 const KOREA_ID = "410"; // world-atlas의 대한민국: 110m 해안선이 거칠어 확대하면 통계청 경계로 바꿔 그린다
-const prefs = {layers: new Set(["lng_export", "lng_import", "ess_system", "ess_cell", "dc_kr", "user"]),
+// 처음에는 아무 레이어도 켜지 않는다. 고른 것만 지도와 지구본에 찍는다.
+const prefs = {layers: new Set(),
   statuses: new Set(["operating", "construction", "planned"]), query: ""};
 
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
@@ -121,18 +127,28 @@ export function mount(root) {
     <div class="gl-root">
       <section class="gl-intro">
         <h2>등록한 사이트를 지구본 위에서 본다</h2>
-        <p>지구를 끌어서 돌리고, 휠·두 손가락으로 확대한다. 다가가면 비스듬히 기울어져 막대 높이가 보인다. 이때 왼쪽 버튼으로 끌면 이동하고, 오른쪽 버튼(또는 Ctrl)으로 끌면 돌리고 기울인다. 점을 누르면 상세가 열린다.</p>
+        <p>위 지도에서 어디에 있는지 한눈에 보고, 점이나 지역을 누르면 아래 지구본이 그곳으로 간다. 지구를 끌어서 돌리고, 휠·두 손가락으로 확대한다. 다가가면 비스듬히 기울어져 막대 높이가 보인다. 이때 왼쪽 버튼으로 끌면 이동하고, 오른쪽 버튼(또는 Ctrl)으로 끌면 돌리고 기울인다. 점을 누르면 상세가 열린다.</p>
       </section>
       <div class="gl-layout">
         <aside class="gl-panel" aria-label="사이트 필터">
-          <fieldset class="gl-group"><legend>레이어</legend><div id="gl-layers"></div></fieldset>
-          <fieldset class="gl-group"><legend>상태</legend><div id="gl-statuses"></div></fieldset>
+          <fieldset class="gl-group gl-group-layers"><legend>레이어 <button type="button" id="gl-layers-all" class="gl-legend-btn">모두 켜기</button></legend><div id="gl-layers"></div></fieldset>
+          <fieldset class="gl-group gl-group-status"><legend>상태</legend><div id="gl-statuses"></div></fieldset>
           <p class="gl-note">막대 높이는 규모다(제곱근 눈금, 막대에 마우스를 올리면 값이 나온다). LNG는 Mtpa, ESS는 GWh/년, 데이터센터는 수전용량 MW이고 단위가 달라 서로 비교하지 않는다. 규모 자료가 없으면 가장 낮게 그린다.</p>
           <label class="gl-search">찾기<input id="gl-query" type="search" placeholder="이름·회사·국가" autocomplete="off"></label>
           <div id="gl-detail" class="gl-detail" hidden></div>
           <p id="gl-count" class="gl-count" aria-live="polite"></p>
           <ol id="gl-list" class="gl-list"></ol>
         </aside>
+        <div class="gl-views">
+        <figure class="gl-map-box">
+          <div id="gl-map" class="gl-map">
+            <canvas id="gl-map-canvas" role="img" aria-label="표시 중인 사이트의 위치를 찍은 메르카토르 세계 지도. 같은 사이트 목록을 필터 패널에서 볼 수 있다."></canvas>
+            <span id="gl-map-focus" class="gl-map-focus" hidden></span>
+            <p id="gl-map-empty" class="gl-map-empty" hidden></p>
+            <div id="gl-map-tip" class="gl-map-tip" hidden></div>
+          </div>
+          <figcaption class="gl-map-caption"><span class="gl-map-focus-key"></span> 지금 지구본이 보는 곳 · 점이나 지역을 누르면 지구본이 그곳으로 간다</figcaption>
+        </figure>
         <div class="gl-stage">
           <div id="gl-globe" class="gl-globe" role="application" aria-label="사이트 지구본. 끌어서 회전, 확대 가능"></div>
           <p id="gl-status" class="page-loading gl-loading">지구본 불러오는 중…</p>
@@ -165,6 +181,7 @@ export function mount(root) {
             <button type="button" id="gl-turn-right" aria-label="오른쪽으로 돌리기" title="오른쪽으로 돌리기">⟳</button>
           </div>
         </div>
+        </div>
       </div>
       <section class="gl-foot">
         <h3>이 브라우저에 저장한 사이트</h3>
@@ -181,6 +198,9 @@ export function mount(root) {
   let sidoLines = [], sigunguLines = [], sigunguReq = null, adminLevel = 0, radiusScale = 1, heightScale = 1;
   let localRows = readLocal(), localSites = localRows.map(localToSite);
   const cleanups = [];
+  // 전체 지도: 지금 범위(frame)에서 목표 범위(goal)로 부드럽게 옮겨 간다.
+  const map = {land: null, fineLand: null, fineReq: null, koreaFeature: null, korea: null, rows: [], frame: worldFrame(), goal: worldFrame(), from: null, start: 0, anim: 0,
+    hover: null, screen: [], transform: null, width: 0, height: 0};
   const setLocal = rows => { localRows = rows; localSites = rows.map(localToSite); return writeLocal(rows); };
 
   const allSites = () => [...(doc?.sites || []), ...localSites];
@@ -222,13 +242,20 @@ export function mount(root) {
   function tooltip(s) {
     return `<div class="gl-tip"><b>${esc(s.name)}</b><span>${esc(layerName(s.layer))} · ${esc(statusName(s.status))}</span>${s.company ? `<span>${esc(s.company)}</span>` : ""}<span class="gl-tip-height">막대 높이: ${esc(heightMeaning(s))}</span></div>`;
   }
+  const allLayersOn = () => !!doc && doc.layers.every(l => prefs.layers.has(l.id));
+  function emptyMessage() {
+    if (!prefs.layers.size) return "레이어를 고르면 여기에 점이 찍힌다";
+    if (!prefs.statuses.size) return "상태를 하나 이상 고르면 점이 찍힌다";
+    return "조건에 맞는 사이트가 없다";
+  }
   const pointRadius = s => (s.layer === "user" || s.local ? 0.42 : s.layer.startsWith("ess") ? 0.34 : s.layer.startsWith("dc_") ? 0.3 : 0.26) * radiusScale;
 
   function drawPoints() {
-    if (!globe) return;
     const rows = visible();
+    updateMap(rows);
+    if (!globe) return;
     globe.pointsData(rows);
-    $("gl-count").textContent = `${fmt(rows.length)}곳 표시 중`;
+    $("gl-count").textContent = rows.length ? `${fmt(rows.length)}곳 표시 중` : emptyMessage();
     const list = rows.slice().sort((a, b) => (b.layer === "user") - (a.layer === "user") || (b.size || 0) - (a.size || 0) || a.name.localeCompare(b.name, "ko"));
     const shown = list.slice(0, 200);
     $("gl-list").innerHTML = shown.map((s, i) => `
@@ -238,6 +265,162 @@ export function mount(root) {
         <small class="gl-li-st">${esc(statusName(s.status))}</small></button></li>`).join("")
       + (list.length > shown.length ? `<li class="gl-more">외 ${fmt(list.length - shown.length)}곳 — 찾기로 좁히기</li>` : "");
     $("gl-list").querySelectorAll("button[data-i]").forEach(b => b.addEventListener("click", () => select(shown[+b.dataset.i], true)));
+  }
+
+  // ── 전체 지도 ──
+  const traceRing = (ring, path, shift = 0) => ring.forEach(([lon, lat], i) => {
+    const y = -mercY(lat);
+    if (i) path.lineTo(lon + shift, y); else path.moveTo(lon + shift, y);
+  });
+  function buildLand(features) {
+    const path = new Path2D();
+    const add = geometry => {
+      const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+      for (const polygon of polygons) for (const raw of polygon) {
+        const ring = unwrapRing(raw), lons = ring.map(p => p[0]);
+        // 날짜변경선을 넘어간 부분은 지도 반대쪽에도 그린다. 지도 밖은 그릴 때 잘린다.
+        const shifts = [0, ...(Math.max(...lons) > 180 ? [-360] : []), ...(Math.min(...lons) < -180 ? [360] : [])];
+        for (const shift of shifts) { traceRing(ring, path, shift); path.closePath(); }
+      }
+    };
+    for (const f of features) {
+      const id = String(f.id);
+      if (id !== ANTARCTICA_ID && (id !== KOREA_ID || !map.koreaFeature)) add(f.geometry);
+    }
+    if (map.koreaFeature) add(map.koreaFeature.geometry);
+    return path;
+  }
+  function buildMapShapes(features, koreaFeature) {
+    map.koreaFeature = koreaFeature || null;
+    map.land = buildLand(features);
+    if (sidoLines.length) {
+      map.korea = new Path2D();
+      for (const line of sidoLines) traceRing(line.pts, map.korea);
+    }
+  }
+  // 한 나라로 당기면 110m 해안선은 너무 거칠다. 필요할 때 한 번만 받고, 실패하면 거친 선을 그대로 쓴다.
+  function loadFineLand() {
+    map.fineReq ||= fetch(COUNTRIES_FINE).then(r => r.ok ? r.json() : null).then(topo => {
+      if (disposed || !topo) return;
+      map.fineLand = buildLand(topojson.feature(topo, topo.objects.countries).features);
+      drawMap();
+    }).catch(() => {});
+  }
+  function updateMap(rows = visible()) {
+    const empty = $("gl-map-empty");
+    empty.hidden = rows.length > 0 || !doc;
+    empty.textContent = emptyMessage();
+    map.rows = rows;
+    if (map.hover && !rows.includes(map.hover)) map.hover = null;
+    const goal = fitFrame(rows);
+    const same = ["x0", "x1", "y0", "y1"].every(k => Math.abs(goal[k] - map.goal[k]) < 1e-6);
+    map.goal = goal;
+    if (!same && map.width && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      map.from = map.frame; map.start = performance.now();
+      if (!map.anim) map.anim = requestAnimationFrame(stepMap);
+      return;
+    }
+    if (!same) map.frame = goal;
+    if (!map.anim) drawMap();
+  }
+  function stepMap(now) {
+    map.anim = 0;
+    if (disposed) return;
+    const k = Math.min(1, Math.max(0, (now - map.start) / 450));
+    map.frame = lerpFrame(map.from, map.goal, k * (2 - k));
+    drawMap();
+    if (k < 1) map.anim = requestAnimationFrame(stepMap);
+  }
+  function drawMap() {
+    const canvas = $("gl-map-canvas"), box = $("gl-map");
+    const width = box.clientWidth, height = box.clientHeight;
+    if (!width || !height) return;
+    const ratio = window.devicePixelRatio || 1;
+    if (canvas.width !== Math.round(width * ratio) || canvas.height !== Math.round(height * ratio)) {
+      canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
+    }
+    map.width = width; map.height = height;
+    const t = theme(), c = canvas.getContext("2d"), tf = frameTransform(map.frame, width, height);
+    map.transform = tf;
+    c.setTransform(ratio, 0, 0, ratio, 0, 0);
+    c.fillStyle = t.ocean; c.fillRect(0, 0, width, height);
+    if (map.land) {
+      const zoomed = tf.scale > FINE_LAND_SCALE;
+      if (zoomed) loadFineLand();
+      const land = zoomed && map.fineLand ? map.fineLand : map.land;
+      c.save();
+      c.translate(tf.tx, tf.ty); c.scale(tf.scale, tf.scale);
+      c.beginPath(); c.rect(-180, -360, 360, 720); c.clip();
+      c.fillStyle = t.land; c.fill(land, "evenodd");
+      c.lineWidth = 0.6 / tf.scale; c.strokeStyle = t.border; c.stroke(land);
+      if (map.korea && tf.scale > 12) { c.lineWidth = 0.5 / tf.scale; c.strokeStyle = t.adminFine; c.stroke(map.korea); }
+      c.restore();
+    }
+    // 큰 시설을 먼저 그려 작은 점이 묻히지 않게 하고, 고른 점은 맨 위에 올린다.
+    const rows = map.rows.slice().sort((a, b) => (b.size || 0) - (a.size || 0));
+    map.screen = rows.map(s => { const [x, y] = toScreen(tf, s.lat, s.lon); return {x, y, site: s}; });
+    const ring = t.dark ? "rgba(19,37,56,.9)" : "rgba(255,255,255,.9)";
+    const dot = (p, r, fill) => {
+      c.beginPath(); c.arc(p.x, p.y, r, 0, Math.PI * 2);
+      c.fillStyle = fill; c.fill();
+      c.lineWidth = 1; c.strokeStyle = ring; c.stroke();
+    };
+    const lit = [];
+    for (const p of map.screen) {
+      if (p.site === selected || p.site === map.hover) lit.push(p);
+      else dot(p, width < 600 ? 2.6 : 3.2, siteColor(p.site));
+    }
+    for (const p of lit) dot(p, 5.5, p.site === selected ? siteColor(p.site) : LAYER_COLORS[p.site.layer] || "#888");
+    moveMapFocus();
+  }
+  // 지구본이 보는 곳 표시. 돌 때마다 움직이므로 지도를 다시 그리지 않고 표식만 옮긴다.
+  function moveMapFocus() {
+    if (!globe || !map.transform) return;
+    const mark = $("gl-map-focus"), pov = view.on ? view : globe.pointOfView();
+    const [x, y] = toScreen(map.transform, pov.lat, ((pov.lng + 540) % 360) - 180);
+    const inside = x >= 0 && y >= 0 && x <= map.width && y <= map.height;
+    mark.hidden = !inside;
+    if (inside) mark.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+  }
+  function mapPointer(e) {
+    const r = $("gl-map").getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  }
+  function onMapMove(e) {
+    if (e.pointerType === "touch") return;
+    const [x, y] = mapPointer(e);
+    const hit = nearestPoint(map.screen, x, y);
+    const site = hit?.point.site || null;
+    const tip = $("gl-map-tip");
+    $("gl-map").classList.toggle("gl-map-hit", !!site);
+    if (site !== map.hover) { map.hover = site; drawMap(); }
+    tip.hidden = !site;
+    if (!site) return;
+    tip.innerHTML = tooltip(site) + (hit.nearby > 1 ? `<p class="gl-map-tip-more">이 근처 ${fmt(hit.nearby - 1)}곳 더 · 누르면 지구본이 가까이 간다</p>` : "");
+    const flip = x > map.width - 300;
+    tip.style.left = flip ? "auto" : `${x + 14}px`;
+    tip.style.right = flip ? `${map.width - x + 14}px` : "auto";
+    tip.style.top = `${Math.max(6, Math.min(y - 10, map.height - tip.offsetHeight - 6))}px`;
+  }
+  function onMapLeave() {
+    $("gl-map-tip").hidden = true;
+    $("gl-map").classList.remove("gl-map-hit");
+    if (map.hover) { map.hover = null; drawMap(); }
+  }
+  function onMapClick(e) {
+    if (!map.transform) return;
+    const [x, y] = mapPointer(e);
+    const hit = nearestPoint(map.screen, x, y, e.pointerType === "touch" ? 20 : undefined);
+    const spot = fromScreen(map.transform, x, y);
+    if (spot.lng < -180 || spot.lng > 180) return; // 세계 지도 양옆의 빈 바다
+    if (addMode) { pickLocation(hit ? {lat: hit.point.site.lat, lng: hit.point.site.lon} : spot); return; }
+    if (hit) select(hit.point.site, false);
+    if (!globe) return;
+    // 멀리 있어도 근접 시점으로 들어가 내려간다. 도착하면 기울어져 막대 높이가 보인다.
+    if (!view.on) enterView(globe.pointOfView());
+    const place = hit ? {lat: hit.point.site.lat, lng: hit.point.site.lon} : spot;
+    flyView({...place, range: Math.min(view.goal.range, hit ? MAP_SITE_RANGE : MAP_AREA_RANGE)});
+    $("gl-globe").scrollIntoView({behavior: "smooth", block: "nearest"});
   }
 
   function select(s, fly) {
@@ -268,6 +451,9 @@ export function mount(root) {
     }
     if (fly) stopSpin();
     drawPoints();
+    // 필터 아래에 있는 상세가 패널 밖으로 잘리지 않게 한다.
+    const panel = box.closest(".gl-panel");
+    if (panel && getComputedStyle(panel).display !== "contents") panel.scrollTop = box.offsetTop - panel.offsetTop;
   }
 
   // ── 근접 시점 ──
@@ -444,7 +630,7 @@ export function mount(root) {
     shownPlaces = rows;
     globe.htmlElementsData(rows);
   }
-  const queueLabels = () => { labelFrame ||= requestAnimationFrame(drawLabels); };
+  const queueLabels = () => { labelFrame ||= requestAnimationFrame(() => { moveMapFocus(); drawLabels(); }); };
   // 기울이면 지평선 쪽 지명이 한 줄로 몰린다. 시군구·도시는 보는 곳 둘레까지만 쓴다.
   const nearFocus = p => p.kind === "country" || p.kind === "sea" || angDist(view.lat, view.lng, p.lat, p.lon) < view.range * 172;
   // 기울이면 카메라 뒤쪽 라벨도 화면 안 좌표로 계산돼 앞쪽 라벨을 밀어낸다.
@@ -469,6 +655,7 @@ export function mount(root) {
       .pathColor(d => d.kind === "sido" ? t.border : t.adminFine);
     globe.globeMaterial().color.set(t.ocean);
     drawPoints();
+    drawMap();
   }
 
   function renderLocal() {
@@ -503,7 +690,17 @@ export function mount(root) {
   }
 
   // ── 이벤트 ──
-  $("gl-layers").addEventListener("change", e => { e.target.checked ? prefs.layers.add(e.target.value) : prefs.layers.delete(e.target.value); drawPoints(); });
+  const syncLayersButton = () => { $("gl-layers-all").textContent = allLayersOn() ? "모두 끄기" : "모두 켜기"; };
+  $("gl-layers").addEventListener("change", e => { e.target.checked ? prefs.layers.add(e.target.value) : prefs.layers.delete(e.target.value); syncLayersButton(); drawPoints(); });
+  $("gl-layers-all").addEventListener("click", () => {
+    if (!doc) return;
+    prefs.layers = new Set(allLayersOn() ? [] : doc.layers.map(l => l.id));
+    chips(); syncLayersButton(); drawPoints();
+  });
+  const mapBox = $("gl-map");
+  mapBox.addEventListener("pointermove", onMapMove);
+  mapBox.addEventListener("pointerleave", onMapLeave);
+  mapBox.addEventListener("click", onMapClick);
   $("gl-statuses").addEventListener("change", e => { e.target.checked ? prefs.statuses.add(e.target.value) : prefs.statuses.delete(e.target.value); drawPoints(); });
   $("gl-query").addEventListener("input", e => { prefs.query = e.target.value; drawPoints(); });
   $("gl-spin").addEventListener("click", () => {
@@ -557,7 +754,7 @@ export function mount(root) {
     const saved = setLocal([...localRows, row]);
     $("gl-form").reset(); setAddMode(false);
     prefs.layers.add("user"); prefs.statuses.add("operating");
-    chips(); renderLocal(); select(localSites.at(-1), true);
+    chips(); syncLayersButton(); renderLocal(); select(localSites.at(-1), true);
     if (!saved) $("gl-local").insertAdjacentHTML("afterbegin", `<p class="gl-note">이 브라우저가 저장을 막고 있어 새로고침하면 사라진다. JSON을 복사해 두자.</p>`);
   });
 
@@ -588,12 +785,17 @@ export function mount(root) {
         .filter((v, i, a) => a.indexOf(v) === i).join(" · ") + ` · 국경·지명 Natural Earth${sidoDoc ? ` · 한국 행정구역 <a href="${esc(sidoDoc.source_url)}" target="_blank" rel="noopener">${esc(sidoDoc.source)}</a>(이후 개편은 경계에 미반영)` : ""} · 집계 ${esc(doc.updated)}. ${esc(doc.note)}`
         + (doc.missing_coords?.length ? ` 좌표가 없어 지도에서 빠진 원장 행 ${doc.missing_coords.length}곳: ${esc(doc.missing_coords.map(m => m.id).join(", "))} — manual/site_coords.json 또는 data/sites/dc_coords.json에 추가하면 표시된다.` : "");
       document.getElementById("last-updated").textContent = `사이트 목록 집계 ${doc.updated}`;
-      chips(); renderLocal();
+      chips(); syncLayersButton(); renderLocal();
 
       // 대한민국만 통계청 경계로 바꿔 그려 확대해도 해안선이 거칠지 않게 한다.
       const korea = sidoDoc && {type: "Feature", id: KOREA_ID, properties: {name: "South Korea"},
         geometry: topojson.merge(sidoDoc.topology, Object.values(sidoDoc.topology.objects)[0].geometries)};
       if (sidoDoc) sidoLines = meshLines(sidoDoc.topology, "sido");
+      buildMapShapes(countries, korea);
+      const mapObserver = new ResizeObserver(() => drawMap());
+      mapObserver.observe($("gl-map"));
+      cleanups.push(() => { mapObserver.disconnect(); cancelAnimationFrame(map.anim); });
+      updateMap();
       const el = $("gl-globe");
       globe = Globe({animateIn: true})(el)
         .showGraticules(true)

@@ -12,7 +12,8 @@
 .gl-root button[aria-pressed=true] { border-color: var(--accent); color: var(--accent); font-weight: 650; }
 
 .gl-layout { display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); gap: 20px; align-items: start; }
-.gl-panel { display: grid; gap: 14px; min-width: 0; max-height: min(78vh, 820px); overflow: auto; padding-right: 4px; }
+/* 지도와 지구본을 위아래로 오가도 필터와 상세가 보이게 상단 표시줄 아래에 붙인다. */
+.gl-panel { display: grid; gap: 14px; min-width: 0; position: sticky; top: 74px; max-height: calc(100vh - 86px); overflow: auto; padding-right: 4px; }
 .gl-group { border: 0; display: grid; gap: 6px; }
 .gl-group legend { font-size: 12px; color: var(--ink-2); margin-bottom: 4px; }
 .gl-group > div { display: grid; gap: 4px; }
@@ -50,8 +51,26 @@
 .gl-near { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; color: var(--ink-2); }
 .gl-root .gl-near button { min-height: 28px; padding: 2px 7px; font-size: 12px; }
 
+.gl-group legend { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.gl-root .gl-legend-btn { min-height: 26px; padding: 1px 8px; font-size: 12px; color: var(--ink-2); }
+
+/* 전체 지도: 어디에 있는지 한눈에, 지구본은 아래에서 자세히. */
+.gl-views { display: grid; gap: 14px; min-width: 0; }
+.gl-map-box { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.gl-map { position: relative; height: clamp(200px, 40vh, 440px); border-radius: 10px; overflow: hidden; cursor: crosshair; }
+.gl-map.gl-map-hit { cursor: pointer; }
+.gl-map canvas { display: block; width: 100%; height: 100%; }
+.gl-map-focus, .gl-map-focus-key { border-radius: 50%; border: 2px solid var(--ink); box-shadow: 0 0 0 1px var(--surface); box-sizing: border-box; }
+.gl-map-focus { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; pointer-events: none; will-change: transform; }
+.gl-map-focus-key { display: inline-block; width: 10px; height: 10px; vertical-align: -1px; margin-right: 2px; }
+.gl-map-caption { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+.gl-map-empty { position: absolute; inset: 0; margin: auto; width: fit-content; height: fit-content; max-width: 86%; padding: 7px 13px; border-radius: 6px; pointer-events: none;
+  font-size: 13px; color: var(--ink); background: color-mix(in srgb, var(--surface) 92%, transparent); text-align: center; }
+.gl-map-tip { position: absolute; z-index: 2; pointer-events: none; max-width: 280px; }
+.gl-map-tip-more { font: 12px/1.45 system-ui, sans-serif; color: #fff; background: rgba(11, 11, 11, .86); padding: 0 9px 6px; border-radius: 0 0 5px 5px; margin-top: -3px; }
+
 .gl-stage { position: relative; min-width: 0; }
-.gl-globe { height: min(78vh, 820px); min-height: 420px; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 45%, var(--surface), var(--page) 70%); touch-action: none; isolation: isolate; /* 지명 라벨이 도구 버튼 위로 올라오지 않게 */ }
+.gl-globe { height: min(70vh, 760px); min-height: 420px; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 45%, var(--surface), var(--page) 70%); touch-action: none; isolation: isolate; /* 지명 라벨이 도구 버튼 위로 올라오지 않게 */ }
 .gl-globe.gl-picking { cursor: crosshair; outline: 2px dashed var(--accent); outline-offset: -2px; }
 .gl-loading { position: absolute; inset: 0; display: grid; place-content: center; margin: 0; }
 .gl-tools { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: end; }
@@ -104,8 +123,15 @@
 
 @media (max-width: 860px) {
   .gl-layout { grid-template-columns: minmax(0, 1fr); }
+  /* 좁은 화면: 지도 → 레이어·상태 → 지구본 → 찾기·목록. 레이어를 켜자마자 지도에서 보이게 한다. */
+  .gl-panel, .gl-views { display: contents; }
+  .gl-map-box { order: -4; }
+  .gl-map { height: clamp(190px, 56vw, 40vh); }
+  .gl-group-layers { order: -3; }
+  .gl-group-status { order: -2; }
   .gl-stage { order: -1; }
+  .gl-group-layers > div, .gl-group-status > div { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+  .gl-group-layers .gl-chip small { margin-left: 0; }
   .gl-globe { height: 62vh; min-height: 340px; }
-  .gl-panel { max-height: none; overflow: visible; }
   .gl-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

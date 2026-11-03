@@ -415,6 +415,8 @@ jobs:
         run: node scripts/test_card_resize.cjs
       - name: Test globe view
         run: node scripts/test_globe_view.cjs
+      - name: Test globe map
+        run: node scripts/test_globe_map.cjs
 
       - name: 기간 달력·갱신 버튼 대상 검증
         continue-on-error: true

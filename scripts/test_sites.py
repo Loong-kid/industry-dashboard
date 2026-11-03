@@ -90,8 +90,7 @@ class SitesTests(unittest.TestCase):
                 self.assertIn(site['status'], ('operating', 'construction', 'planned'))
         self.assertTrue(any(s['size'] for s in confirmed), '수전용량이 막대 높이가 된다')
         globe = (ROOT / 'assets/globe.js').read_text(encoding='utf-8')
-        self.assertIn('"dc_kr", "user"', globe, '확정 레이어는 기본으로 켠다')
-        self.assertNotIn('"dc_kr_candidate", "user"', globe, '후보는 기본으로 끈다')
+        self.assertIn('layers: new Set(),', globe, '처음에는 아무 레이어도 켜지 않는다')
         self.assertIn('막대 높이', globe)
 
     def test_dc_status_follows_confirmed_steps_only(self):
