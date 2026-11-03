@@ -19,4 +19,11 @@ assert.ok(fs.readFileSync('assets/card-resize.js', 'utf8').includes('card-size-r
 const refresh = fs.readFileSync('assets/refresh.js', 'utf8');
 for (const [, file] of refresh.matchAll(/file:\s*"([^"]+)"/g)) assert.ok(fs.existsSync(file), `갱신 대상 없음: ${file}`);
 for (const [, wf] of refresh.matchAll(/workflow:\s*"([^"]+)"/g)) assert.ok(fs.existsSync(`.github/workflows/${wf}`), `워크플로 없음: ${wf}`);
+const targetStart = refresh.indexOf('function currentTarget()');
+const target = new Function('window', `${refresh.slice(targetStart, refresh.indexOf('const PAT_KEY', targetStart))}\nreturn currentTarget();`);
+for (const [subtab, workflow] of [['cleaning_summary', 'update-semicon-cleaning.yml'], ['equipment_summary', 'update-equipment.yml'], ['cpu', 'update-cpu.yml']]) {
+  const current = target({dashboard: {state: {industry: {id: 'semicon'}, subtab}}});
+  assert.equal(current.workflow, workflow);
+  assert.ok(fs.existsSync(current.file));
+}
 console.log('range and refresh OK');
