@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "updated": "2026-11-02",
+ "updated": "2026-11-03",
  "companies": {
   "xom": {
    "rows": [
@@ -5727,15 +5727,15 @@
      "quarter": 3,
      "refs": {
       "revenue": {
-       "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000061/xom-20250930.htm",
-       "filed": "2025-11-03",
+       "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+       "filed": "2026-11-02",
        "start": "2025-07-01",
        "end": "2025-09-30",
        "tag": "original statement row: ^Sales and other operating revenues?\\b",
        "components": [
         {
-         "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000061/xom-20250930.htm",
-         "filed": "2025-11-03",
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+         "filed": "2026-11-02",
          "start": "2025-07-01",
          "end": "2025-09-30",
          "tag": "original statement row: ^Sales and other operating revenues?\\b"
@@ -5744,8 +5744,8 @@
        "calculation": "reported quarter"
       },
       "profit": {
-       "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000061/xom-20250930.htm",
-       "filed": "2025-11-03",
+       "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+       "filed": "2026-11-02",
        "start": "2025-07-01",
        "end": "2025-09-30",
        "tag": "original statement row: ^Sales and other operating revenues?\\b",
@@ -5763,20 +5763,20 @@
          "end": "2025-09-30",
          "val": 74362000000.0,
          "source_tag": "us-gaap:CostsAndExpenses",
-         "location": "Total costs and other deductions 74,362 76,990 216,693 227,099"
+         "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
         },
         {
          "start": "2025-07-01",
          "end": "2025-09-30",
          "val": 90000000.0,
          "source_tag": "us-gaap:InterestExpense",
-         "location": "Interest expense 90 207 440 699"
+         "location": "Interest expense 183 90 705 440"
         }
        ],
        "components": [
         {
-         "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000061/xom-20250930.htm",
-         "filed": "2025-11-03",
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+         "filed": "2026-11-02",
          "start": "2025-07-01",
          "end": "2025-09-30",
          "tag": "original statement row: ^Sales and other operating revenues?\\b",
@@ -5794,14 +5794,14 @@
            "end": "2025-09-30",
            "val": 74362000000.0,
            "source_tag": "us-gaap:CostsAndExpenses",
-           "location": "Total costs and other deductions 74,362 76,990 216,693 227,099"
+           "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
           },
           {
            "start": "2025-07-01",
            "end": "2025-09-30",
            "val": 90000000.0,
            "source_tag": "us-gaap:InterestExpense",
-           "location": "Interest expense 90 207 440 699"
+           "location": "Interest expense 183 90 705 440"
           }
          ]
         }
@@ -6218,6 +6218,123 @@
      "revenue": 114529.0,
      "profit": 18163.0,
      "capex": 6527.0
+    },
+    {
+     "date": "2026-09-30",
+     "start": "2026-07-01",
+     "year": 2026,
+     "quarter": 3,
+     "refs": {
+      "revenue": {
+       "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+       "filed": "2026-11-02",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+         "filed": "2026-11-02",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "original statement row: ^Sales and other operating revenues?\\b"
+        }
+       ],
+       "calculation": "reported quarter"
+      },
+      "profit": {
+       "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+       "filed": "2026-11-02",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+       "inputs": [
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 110503000000.0,
+         "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+         "location": "^Sales and other operating revenues?\\b"
+        },
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 91928000000.0,
+         "source_tag": "us-gaap:CostsAndExpenses",
+         "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+        },
+        {
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "val": 183000000.0,
+         "source_tag": "us-gaap:InterestExpense",
+         "location": "Interest expense 183 90 705 440"
+        }
+       ],
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+         "filed": "2026-11-02",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "tag": "original statement row: ^Sales and other operating revenues?\\b",
+         "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+         "inputs": [
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 110503000000.0,
+           "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+           "location": "^Sales and other operating revenues?\\b"
+          },
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 91928000000.0,
+           "source_tag": "us-gaap:CostsAndExpenses",
+           "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+          },
+          {
+           "start": "2026-07-01",
+           "end": "2026-09-30",
+           "val": 183000000.0,
+           "source_tag": "us-gaap:InterestExpense",
+           "location": "Interest expense 183 90 705 440"
+          }
+         ]
+        }
+       ],
+       "calculation": "derived GAAP operating subtotal"
+      },
+      "capex": {
+       "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+       "filed": "2026-11-02",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+       "components": [
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+         "filed": "2026-11-02",
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+        },
+        {
+         "url": "https://www.sec.gov/Archives/edgar/data/2115436/000003408826000093/xom-20260630.htm",
+         "filed": "2026-08-03",
+         "start": "2026-01-01",
+         "end": "2026-06-30",
+         "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+        }
+       ],
+       "calculation": "same fiscal-year YTD minus prior YTD"
+      }
+     },
+     "revenue": 110503.0,
+     "profit": 18758.0,
+     "capex": 7178.0
     }
    ],
    "annual": [
@@ -7519,6 +7636,222 @@
     }
    ],
    "facts": [
+    {
+     "start": "2026-07-01",
+     "end": "2026-09-30",
+     "val": 110503000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "revenue",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2025-07-01",
+     "end": "2025-09-30",
+     "val": 83331000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "revenue",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 308193000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "revenue",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2025-01-01",
+     "end": "2025-09-30",
+     "val": 243866000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "revenue",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 20175000000.0,
+     "source_tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "location": "Additions to property, plant and equipment ( 20,175 ) ( 20,908 )",
+     "metric": "capex",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2025-01-01",
+     "end": "2025-09-30",
+     "val": 20908000000.0,
+     "source_tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "location": "Additions to property, plant and equipment ( 20,175 ) ( 20,908 )",
+     "metric": "capex",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm"
+    },
+    {
+     "start": "2026-07-01",
+     "end": "2026-09-30",
+     "val": 18758000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "profit",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+     "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+     "inputs": [
+      {
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "val": 110503000000.0,
+       "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "location": "^Sales and other operating revenues?\\b"
+      },
+      {
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "val": 91928000000.0,
+       "source_tag": "us-gaap:CostsAndExpenses",
+       "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+      },
+      {
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "val": 183000000.0,
+       "source_tag": "us-gaap:InterestExpense",
+       "location": "Interest expense 183 90 705 440"
+      }
+     ]
+    },
+    {
+     "start": "2025-07-01",
+     "end": "2025-09-30",
+     "val": 9059000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "profit",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+     "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+     "inputs": [
+      {
+       "start": "2025-07-01",
+       "end": "2025-09-30",
+       "val": 83331000000.0,
+       "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "location": "^Sales and other operating revenues?\\b"
+      },
+      {
+       "start": "2025-07-01",
+       "end": "2025-09-30",
+       "val": 74362000000.0,
+       "source_tag": "us-gaap:CostsAndExpenses",
+       "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+      },
+      {
+       "start": "2025-07-01",
+       "end": "2025-09-30",
+       "val": 90000000.0,
+       "source_tag": "us-gaap:InterestExpense",
+       "location": "Interest expense 183 90 705 440"
+      }
+     ]
+    },
+    {
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "val": 42206000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "profit",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+     "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+     "inputs": [
+      {
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "val": 308193000000.0,
+       "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "location": "^Sales and other operating revenues?\\b"
+      },
+      {
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "val": 266692000000.0,
+       "source_tag": "us-gaap:CostsAndExpenses",
+       "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+      },
+      {
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "val": 705000000.0,
+       "source_tag": "us-gaap:InterestExpense",
+       "location": "Interest expense 183 90 705 440"
+      }
+     ]
+    },
+    {
+     "start": "2025-01-01",
+     "end": "2025-09-30",
+     "val": 27613000000.0,
+     "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+     "location": "^Sales and other operating revenues?\\b",
+     "metric": "profit",
+     "filed": "2026-11-02",
+     "accn": "0002115436-26-000020",
+     "form": "10-Q",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/2115436/000211543626000020/xom-20260930.htm",
+     "derivation": "Sales and other operating revenues − total costs and deductions/expenses + interest expense. Equity earnings and other non-sales income excluded; other non-interest deductions remain.",
+     "inputs": [
+      {
+       "start": "2025-01-01",
+       "end": "2025-09-30",
+       "val": 243866000000.0,
+       "source_tag": "original statement row: ^Sales and other operating revenues?\\b",
+       "location": "^Sales and other operating revenues?\\b"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-09-30",
+       "val": 216693000000.0,
+       "source_tag": "us-gaap:CostsAndExpenses",
+       "location": "Total costs and other deductions 91,928 74,362 266,692 216,693"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-09-30",
+       "val": 440000000.0,
+       "source_tag": "us-gaap:InterestExpense",
+       "location": "Interest expense 183 90 705 440"
+      }
+     ]
+    },
     {
      "start": "2026-04-01",
      "end": "2026-06-30",
@@ -16856,8 +17189,8 @@
      ]
     }
    ],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   },
   "cvx": {
@@ -33498,8 +33831,8 @@
      ]
     }
    ],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   },
   "shell": {
@@ -45438,7 +45771,7 @@
     }
    ],
    "fetched": "2026-10-29",
-   "checked": "2026-11-02",
+   "checked": "2026-11-03",
    "ok": false
   },
   "bp": {
@@ -52690,8 +53023,8 @@
      "statement_period": "2013-12-31"
     }
    ],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   },
   "tte": {
@@ -57149,8 +57482,8 @@
     }
    ],
    "facts": [],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   },
   "cop": {
@@ -73791,8 +74124,8 @@
      ]
     }
    ],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   },
   "equinor": {
@@ -77683,8 +78016,8 @@
     }
    ],
    "facts": [],
-   "fetched": "2026-11-02",
-   "checked": "2026-11-02",
+   "fetched": "2026-11-03",
+   "checked": "2026-11-03",
    "ok": true
   }
  }
