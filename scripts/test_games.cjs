@@ -23,6 +23,7 @@ const fs = require('node:fs');
   assert(m.csvText(['x'],[['a,"b']]).startsWith('\uFEFF"x"\r\n"a,""b"'));
   const catalog=JSON.parse(fs.readFileSync('data/catalog.json'));
   assert.equal(catalog.industries.filter(i=>i.id==='games').length,1);
+  assert.equal(catalog.industries.find(i=>i.id==='games').name,'게임');
   const read=name=>JSON.parse(fs.readFileSync(`data/games/${name}.json`));
   assert.equal(catalog.industries.find(i=>i.id==='games').tabs.find(t=>t.id==='mobile').name,'Google Play');
   assert(catalog.industries.find(i=>i.id==='games').tabs.some(t=>t.id==='revenue'));
@@ -119,6 +120,21 @@ const fs = require('node:fs');
     assert.equal(sparse[1].row,undefined); // missing quarters must break the chart
     assert(companies.length>=25);
     assert(companies.every(c=>c.region&&c.country&&c.roles?.length&&c.scope));
+    const countryTabs=m.companyCountryTabs(companies);
+    assert.deepEqual(countryTabs.map(([id])=>id),['all','kr','us','jp','cn','sg','pl','il']);
+    const grouped=countryTabs.slice(1).flatMap(([id,country])=>{
+      assert.equal(m.companyCountryId(country),id);
+      const rows=m.directoryRows(companies,{country});
+      assert(rows.length>0&&rows.every(c=>c.country===country));
+      return rows.map(c=>c.id);
+    });
+    assert.deepEqual(grouped.sort(),companies.map(c=>c.id).sort()); // every company exactly once, including private operators
+    assert(m.directoryRows(companies,{country:'일본'}).some(c=>c.id==='nexon'));
+    assert(m.directoryRows(companies,{country:'한국'}).some(c=>c.id==='gravity')); // listing currency does not decide country
+    assert.deepEqual(m.directoryRows(companies,{country:'미국',role:'engine',query:'언리얼'}).map(c=>c.id),['epic']);
+    assert.equal(m.directoryRows(companies,{country:'한국',query:'Steam'}).length,0);
+    assert.deepEqual(m.companyCountryTabs([{country:'새 국가'}]),[['all','전체'],['새 국가','새 국가']]);
+    assert.equal(m.companyCountryId('새 국가'),'새 국가'); // future countries stay discoverable
     assert(m.directoryRows(companies,{region:'日本'}).length===0); // filters are explicit, not fuzzy currency inference
     assert(m.directoryRows(companies,{region:'일본'}).some(c=>c.id==='nintendo'));
     assert(m.directoryRows(companies,{query:'Steam'}).some(c=>c.id==='valve'));

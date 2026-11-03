@@ -166,6 +166,7 @@ function route() {
     state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
   }
+  state.gamesCompanyCountry = state.industry.id === "games" && state.subtab === "companies" ? requestedView || "all" : "all";
   state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
   state.copperView = state.industry.id === "commodities" && state.subtab === "copper" && requestedView === "miners" ? "miners" : "indicators";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
@@ -304,12 +305,12 @@ async function renderIndustry(options = {}) {
 
   if (ind.id === "games") {
     const loading = document.createElement("p");
-    loading.className = "page-loading"; loading.textContent = "게임 시장 불러오는 중…"; content.appendChild(loading);
+    loading.className = "page-loading"; loading.textContent = "게임 불러오는 중…"; content.appendChild(loading);
     try {
       const games = await import("./games.js");
       if (mySeq !== renderSeq) return;
-      loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", tabsRoot: pageTabs, createFinancialCard});
-    } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임 시장을 불러오지 못했습니다. 새로고침해 주세요."; }
+      loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", companyCountry: state.gamesCompanyCountry, tabsRoot: pageTabs, createFinancialCard});
+    } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임을 불러오지 못했습니다. 새로고침해 주세요."; }
     return;
   }
 
