@@ -76,7 +76,7 @@ class EquipmentCompanies(unittest.TestCase):
         industry=next(i for i in catalog['industries'] if i['id']=='semicon')
         self.assertEqual([(c['id'],c['default_tab']) for c in industry['material_categories']],
             [('equipment','equipment_summary'),('components','snstech'),('raw_materials','wafer')])
-        linked={id for s in industry['sections'] if s.get('tab')=='equipment_summary' for id in s['indicators']}
+        linked={id for s in industry['sections'] if s.get('tab')=='equipment_summary' for id in s['indicators'] if not id.startswith('company_kr_equipment_')}
         docs={}
         for key,company in equipment.COMPANIES.items():
             docs.update(equipment.build_company(key,self.state['companies'][key],company))
@@ -172,7 +172,9 @@ Purchases of property, plant and equipment (5,649) (9,852)
         tabs={t['id']:t for t in industry['tabs']}
         self.assertEqual(tabs['mocvd']['parent_tab'],'equipment_frontend')
         counts={'equipment_summary':39,'equipment_frontend':21,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
+        korean=equipment.load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         for tab,count in counts.items():
+            count+=3*sum(tab=='equipment_summary' or tab in c['tabs'] for c in korean.values())
             ids=[i for s in industry['sections'] if s.get('tab')==tab for i in s['indicators']]
             self.assertEqual(len(ids),count)
             for identifier in ids:self.assertTrue((ROOT/f'data/semicon/{identifier}.json').exists(),identifier)

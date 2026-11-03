@@ -1,0 +1,14 @@
+.ke-guide { margin: 0 0 22px; font-size: 13px; min-width: 0; }
+.ke-guide > summary { cursor: pointer; font-weight: 600; padding: 10px 0; color: var(--ink); }
+.ke-note { color: var(--muted); font-size: 12px; line-height: 1.7; margin-top: 8px; }
+.ke-table-wrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--border); border-radius: 10px; }
+.ke-table { width: 100%; min-width: 940px; border-collapse: collapse; }
+.ke-table th { text-align: left; padding: 11px 13px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 500; }
+.ke-table td { height: 56px; box-sizing: border-box; padding: 8px 13px; vertical-align: middle; white-space: nowrap; border-bottom: 1px solid var(--border); }
+.ke-table tr:last-child td { border-bottom: 0; }
+.ke-table small { display: block; color: var(--muted); font-size: 11px; margin-top: 3px; }
+.ke-table .ke-role { max-width: 260px; }
+.ke-role span { display: block; overflow: hidden; text-overflow: ellipsis; }
+.ke-cap,.ke-date { font-variant-numeric: tabular-nums; }
+.ke-cap { text-align: right; }
+.ke-guide summary:focus-visible,.ke-table-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

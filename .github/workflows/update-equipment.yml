@@ -47,3 +47,41 @@ jobs:
             [ "$attempt" = 3 ] && exit 1
             sleep $((attempt * 15))
           done
+  korea:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - name: Validate Korean equipment definitions
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_korea_equipment.py -v
+      - name: Refresh original Korean equipment accounts
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_korea_equipment.py --refresh
+      - name: Validate refreshed Korean equipment history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_korea_equipment.py -v
+      - name: Commit Korean equipment documents only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/company_kr_equipment_*.json data/semicon/korea_equipment_state.json data/semicon/korea_equipment_universe.json
+          git diff --cached --quiet || git commit -m "chore: refresh Korean equipment issuer financials"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report Korean equipment validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
