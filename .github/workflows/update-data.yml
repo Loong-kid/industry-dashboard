@@ -413,6 +413,8 @@ jobs:
       - name: 그래프 카드 너비 조절 검증
         continue-on-error: true
         run: node scripts/test_card_resize.cjs
+      - name: Test globe view
+        run: node scripts/test_globe_view.cjs
 
       - name: 기간 달력·갱신 버튼 대상 검증
         continue-on-error: true

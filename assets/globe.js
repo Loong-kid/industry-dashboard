@@ -1,5 +1,7 @@
 /* 🌐 지구본: 등록한 사이트(LNG 터미널·ESS 공장·내 사이트)를 3D 지구 위에 찍는다.
    data/sites/sites.json (scripts/build_sites.py) + 이 브라우저에 임시 저장한 사이트(localStorage). */
+import {FULL_RANGE, LABEL_ALT, LAND_ALT, MAX_RANGE, MAX_TILT, MIN_RANGE, NEAR_RANGE, autoTilt, barAltitude, barScale, cameraFrame, panFocus, viewFade} from "./globe-view.js";
+
 const LIBS = [
   "https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/globe.gl.min.js",
   "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js",
@@ -57,8 +59,7 @@ function angDist(lat1, lon1, lat2, lon2) {
   const a = Math.sin(toRad(lat2 - lat1) / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(toRad(lon2 - lon1) / 2) ** 2;
   return 2 * Math.asin(Math.min(1, Math.sqrt(a))) * 180 / Math.PI;
 }
-function wantedPlaces(places, pov) {
-  const alt = pov.altitude;
+function wantedPlaces(places, pov, alt = pov.altitude) {
   const horizon = Math.acos(1 / (1 + alt)) * 180 / Math.PI * 0.85;
   const countryRank = alt > 2.2 ? 2 : alt > 1.5 ? 3 : alt > 0.9 ? 5 : 9;
   const cityTier = alt < 0.45 ? 2 : alt < 0.9 ? 1 : alt < 1.6 ? 0 : -1;
@@ -83,7 +84,7 @@ function labelBox(p, x, y) {
 function declutter(rows, globe, width, height) {
   const placed = [], kept = [];
   for (const p of rows.slice().sort((a, b) => placePriority(a) - placePriority(b))) {
-    const {x, y} = globe.getScreenCoords(p.lat, p.lon, 0.008);
+    const {x, y} = globe.getScreenCoords(p.lat, p.lon, LABEL_ALT);
     if (!(x > -40 && y > -20 && x < width + 40 && y < height + 20)) continue;
     const b = labelBox(p, x, y);
     if (placed.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1])) continue;
@@ -120,7 +121,7 @@ export function mount(root) {
     <div class="gl-root">
       <section class="gl-intro">
         <h2>등록한 사이트를 지구본 위에서 본다</h2>
-        <p>지구를 끌어서 돌리고, 휠·두 손가락으로 확대한다. 점을 누르면 상세가 열린다. 막대 높이는 LNG 가동·건설 용량(Mtpa)이나 ESS 설치 능력(GWh/년)에 비례한다.</p>
+        <p>지구를 끌어서 돌리고, 휠·두 손가락으로 확대한다. 다가가면 비스듬히 기울어져 막대 높이가 보인다. 이때 왼쪽 버튼으로 끌면 이동하고, 오른쪽 버튼(또는 Ctrl)으로 끌면 돌리고 기울인다. 점을 누르면 상세가 열린다.</p>
       </section>
       <div class="gl-layout">
         <aside class="gl-panel" aria-label="사이트 필터">
@@ -156,6 +157,13 @@ export function mount(root) {
               <button type="button" id="gl-cancel">닫기</button>
             </div>
           </form>
+          <div id="gl-view" class="gl-view" role="group" aria-label="시점" hidden>
+            <span id="gl-view-hint" class="gl-view-hint"></span>
+            <button type="button" id="gl-tilt" aria-pressed="false">기울이기</button>
+            <button type="button" id="gl-turn-left" aria-label="왼쪽으로 돌리기" title="왼쪽으로 돌리기">⟲</button>
+            <button type="button" id="gl-north" aria-label="북쪽을 위로" title="북쪽을 위로"><span id="gl-north-mark">▲</span> 북</button>
+            <button type="button" id="gl-turn-right" aria-label="오른쪽으로 돌리기" title="오른쪽으로 돌리기">⟳</button>
+          </div>
         </div>
       </div>
       <section class="gl-foot">
@@ -169,7 +177,7 @@ export function mount(root) {
   const $ = id => root.querySelector("#" + id);
   let doc = null, globe = null, selected = null, addMode = false, pending = null, disposed = false;
   let places = null, labelsOn = readLabelsPref(), shownPlaces = [], labelFrame = 0;
-  // 한국 행정구역: 경계선(mesh)과 지금 그리는 단계. 막대 굵기도 고도 단계에 맞춘다.
+  // 한국 행정구역: 경계선(mesh)과 지금 그리는 단계. 막대 크기도 거리에 맞춘다.
   let sidoLines = [], sigunguLines = [], sigunguReq = null, adminLevel = 0, radiusScale = 1, heightScale = 1;
   let localRows = readLocal(), localSites = localRows.map(localToSite);
   const cleanups = [];
@@ -196,9 +204,9 @@ export function mount(root) {
   }
 
   function siteHeight(s) {
-    if (!s.size) return 0.012 * heightScale;
+    if (!s.size) return barAltitude(0.012, heightScale);
     const k = s.size_unit === "Mtpa" ? 0.012 : s.size_unit === "MW" ? 0.006 : 0.004; // 대형 액화 77Mtpa≈0.1, ESS 40GWh≈0.04, 데이터센터 100MW≈0.07
-    return Math.min(0.12, 0.012 + Math.sqrt(s.size) * k) * heightScale;
+    return barAltitude(Math.min(0.12, 0.012 + Math.sqrt(s.size) * k), heightScale);
   }
   function siteColor(s) {
     const c = LAYER_COLORS[s.layer] || "#888";
@@ -254,21 +262,156 @@ export function mount(root) {
     box.querySelector(".gl-remove")?.addEventListener("click", () => {
       setLocal(localRows.filter(r => "local:" + r.id !== s.id)); select(null); chips(); renderLocal();
     });
-    if (fly && globe) globe.pointOfView({lat: s.lat, lng: s.lon, altitude: Math.min(globe.pointOfView().altitude, 1.4)}, 900);
+    if (fly && globe) {
+      if (view.on) flyView({lat: s.lat, lng: s.lon});
+      else globe.pointOfView({lat: s.lat, lng: s.lon, altitude: Math.min(globe.pointOfView().altitude, 1.4)}, 900);
+    }
     if (fly) stopSpin();
     drawPoints();
   }
 
-  // 고도에 따라 행정구역 경계와 막대 굵기를 바꾼다. 단계가 바뀔 때만 다시 그린다.
+  // ── 근접 시점 ──
+  // 라이브러리 컨트롤은 움직일 때마다 바라보는 점을 지구 중심으로 되돌려 비스듬히 볼 수 없다.
+  // NEAR_RANGE 아래에서는 컨트롤을 세우고, 지표의 한 점을 중심으로 카메라를 직접 움직인다.
+  const view = {on: false, lat: 0, lng: 0, range: 1, heading: 0, tilt: 0, userTilt: null, spin: false, flying: false,
+    goal: null, frame: 0, last: 0, camera: null};
+  const goalTilt = () => view.userTilt ?? autoTilt(view.goal.range);
+
+  function enterView(pov) {
+    const range = Math.max(MIN_RANGE, pov.altitude - LAND_ALT);
+    Object.assign(view, {on: true, lat: pov.lat, lng: pov.lng, range, heading: 0, tilt: 0, userTilt: null, flying: false,
+      goal: {lat: pov.lat, lng: pov.lng, range, heading: 0}});
+    stopSpin();
+    const controls = globe.controls();
+    controls.update = () => {}; // 렌더 루프가 매 프레임 부른다. 세워 두지 않으면 카메라를 지구 중심으로 돌려놓는다.
+    controls.enabled = false;
+    $("gl-view").hidden = false;
+    placeCamera();
+  }
+  function leaveView() {
+    cancelAnimationFrame(view.frame);
+    Object.assign(view, {on: false, frame: 0, flying: false});
+    const controls = globe.controls();
+    delete controls.update;
+    controls.enabled = true;
+    globe.camera().up.set(0, 1, 0);
+    if (view.spin) { controls.autoRotate = true; view.spin = false; }
+    $("gl-view").hidden = true;
+  }
+  function placeCamera() {
+    const fade = viewFade(view.range);
+    view.camera = cameraFrame({lat: view.lat, lng: view.lng, range: view.range, tilt: view.tilt * fade, heading: view.heading * fade});
+    const camera = globe.camera();
+    camera.position.set(...view.camera.position);
+    camera.up.set(...view.camera.up);
+    camera.lookAt(...view.camera.target);
+    camera.updateMatrixWorld();
+    globe.controls().dispatchEvent({type: "change"}); // 지평선 뒤 판정과 라벨을 라이브러리 경로 그대로 갱신한다
+    $("gl-tilt").setAttribute("aria-pressed", String(goalTilt() > 1));
+    $("gl-north-mark").style.transform = `rotate(${-view.heading * fade}deg)`;
+  }
+  function stepView(now) {
+    view.frame = 0;
+    if (!view.on || !globe) return;
+    const dt = Math.min(12, (now - view.last) / 16.7 || 1); // 느린 기기에서도 같은 시간에 도착한다
+    view.last = now;
+    const ease = 1 - (1 - (view.flying ? 0.08 : 0.25)) ** dt;
+    const g = view.goal;
+    if (view.spin) g.heading += 0.06 * dt;
+    const dLng = ((g.lng - view.lng + 540) % 360 + 360) % 360 - 180;
+    const dLat = g.lat - view.lat, dHeading = g.heading - view.heading, dTilt = goalTilt() - view.tilt;
+    const ratio = g.range / view.range;
+    const settled = Math.abs(dLng) < 1e-4 && Math.abs(dLat) < 1e-4 && Math.abs(dHeading) < 0.02 && Math.abs(dTilt) < 0.02 && Math.abs(ratio - 1) < 1e-3;
+    if (settled) {
+      Object.assign(view, {lat: g.lat, lng: g.lng, heading: g.heading, tilt: goalTilt(), range: g.range, flying: false});
+    } else {
+      view.lat += dLat * ease; view.lng += dLng * ease; view.heading += dHeading * ease; view.tilt += dTilt * ease;
+      view.range *= ratio ** ease;
+    }
+    placeCamera();
+    if (settled && g.range >= NEAR_RANGE) { leaveView(); return; }
+    if (!settled || view.spin) view.frame = requestAnimationFrame(stepView);
+  }
+  function wakeView() {
+    if (!view.on || view.frame) return;
+    view.last = performance.now();
+    view.frame = requestAnimationFrame(stepView);
+  }
+  function flyView(goal) {
+    Object.assign(view.goal, goal);
+    view.flying = true;
+    wakeView();
+  }
+
+  // 끌기·휠. 멀리 있을 때는 라이브러리 컨트롤이 그대로 받는다.
+  const pointers = new Map();
+  function dragView(dx, dy, turn) {
+    const g = view.goal;
+    if (turn) {
+      g.heading -= dx * 0.25;
+      view.userTilt = Math.min(MAX_TILT, Math.max(0, goalTilt() - dy * 0.3));
+    } else {
+      Object.assign(g, panFocus({...g, tilt: view.tilt}, dx, dy, $("gl-globe").clientHeight, globe.camera().fov));
+    }
+    view.flying = false;
+    wakeView();
+  }
+  function zoomView(ratio, focusX = 0, focusY = 0) {
+    const g = view.goal, range = Math.min(MAX_RANGE, Math.max(MIN_RANGE, g.range * ratio));
+    // 커서 아래 지점이 제자리에 있도록 중심을 그쪽으로 옮긴다. 라이브러리 컨트롤도 커서 기준으로 확대한다.
+    if (range < FULL_RANGE) {
+      const pull = 1 - range / g.range;
+      Object.assign(g, panFocus({...g, tilt: view.tilt}, -focusX * pull, -focusY * pull, $("gl-globe").clientHeight, globe.camera().fov));
+    }
+    g.range = range;
+    view.flying = false;
+    wakeView();
+  }
+  function onViewPointerDown(e) {
+    pointers.set(e.pointerId, {x: e.clientX, y: e.clientY, turn: e.button === 2 || e.ctrlKey || e.shiftKey});
+    if (view.on && view.spin) stopSpin();
+  }
+  function onViewPointerMove(e) {
+    const p = pointers.get(e.pointerId);
+    if (!p) return;
+    const others = [...pointers.entries()].filter(([id]) => id !== e.pointerId).map(([, o]) => o);
+    const dx = e.clientX - p.x, dy = e.clientY - p.y;
+    if (view.on && others.length === 1) {
+      // 두 손가락: 벌리면 확대, 비틀면 회전, 함께 위아래로 움직이면 기울기.
+      const o = others[0];
+      const before = Math.hypot(p.x - o.x, p.y - o.y), after = Math.hypot(e.clientX - o.x, e.clientY - o.y);
+      if (before > 10 && after > 10) zoomView(before / after);
+      const turned = Math.atan2(e.clientY - o.y, e.clientX - o.x) - Math.atan2(p.y - o.y, p.x - o.x);
+      view.goal.heading -= (((turned + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI) * 180 / Math.PI;
+      view.userTilt = Math.min(MAX_TILT, Math.max(0, goalTilt() - dy * 0.15));
+      wakeView();
+    } else if (view.on && !others.length) {
+      dragView(dx, dy, p.turn);
+    }
+    p.x = e.clientX; p.y = e.clientY;
+  }
+  const onViewPointerUp = e => pointers.delete(e.pointerId);
+  function onViewWheel(e) {
+    if (!view.on) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = e.deltaY * (e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? rect.height : 1);
+    zoomView(Math.exp(px * 0.001), e.clientX - rect.left - rect.width / 2, e.clientY - rect.top - rect.height / 2);
+  }
+  const onViewMenu = e => { if (view.on) e.preventDefault(); };
+
+  // 거리에 따라 행정구역 경계와 막대 크기를 바꾼다. 단계가 바뀔 때만 다시 그린다.
   function applyZoom() {
-    const alt = globe.pointOfView().altitude;
+    const pov = globe.pointOfView();
+    if (!view.on && pov.altitude < NEAR_RANGE) enterView(pov);
+    const alt = view.on ? view.range : pov.altitude;
     if (alt < ADM2_ALT * 2 && labelsOn) loadSigungu();
     const level = !labelsOn ? 0 : alt < ADM2_ALT && sigunguLines.length ? 2 : alt < ADM1_ALT ? 1 : 0;
     if (level !== adminLevel) { adminLevel = level; drawAdminLines(); }
-    // 막대는 지구 기준 크기라 그대로 두면 다가갈수록 화면을 덮는다. 굵기와 높이를 함께 줄인다.
-    const scale = alt < 0.08 ? 0.12 : alt < 0.22 ? 0.25 : alt < 0.5 ? 0.45 : alt < 1 ? 0.7 : 1;
-    if (scale !== radiusScale) {
-      radiusScale = scale; heightScale = scale * (alt < 0.22 ? 0.7 : 1);
+    const bars = barScale(alt);
+    if (bars.radius !== radiusScale || bars.height !== heightScale) {
+      radiusScale = bars.radius; heightScale = bars.height;
       globe.pointRadius(pointRadius).pointAltitude(siteHeight);
     }
   }
@@ -294,16 +437,27 @@ export function mount(root) {
     if (!globe) return;
     applyZoom();
     const el = $("gl-globe");
-    const rows = labelsOn && places ? declutter(wantedPlaces(places, globe.pointOfView()), globe, el.clientWidth, el.clientHeight) : [];
+    const pov = globe.pointOfView();
+    const wanted = labelsOn && places ? wantedPlaces(places, pov, view.on ? view.range : pov.altitude) : [];
+    const rows = declutter(view.on ? wanted.filter(p => inFrontOfCamera(p) && nearFocus(p)) : wanted, globe, el.clientWidth, el.clientHeight);
     if (rows.length === shownPlaces.length && rows.every((p, i) => p === shownPlaces[i])) return;
     shownPlaces = rows;
     globe.htmlElementsData(rows);
   }
   const queueLabels = () => { labelFrame ||= requestAnimationFrame(drawLabels); };
+  // 기울이면 지평선 쪽 지명이 한 줄로 몰린다. 시군구·도시는 보는 곳 둘레까지만 쓴다.
+  const nearFocus = p => p.kind === "country" || p.kind === "sea" || angDist(view.lat, view.lng, p.lat, p.lon) < view.range * 172;
+  // 기울이면 카메라 뒤쪽 라벨도 화면 안 좌표로 계산돼 앞쪽 라벨을 밀어낸다.
+  function inFrontOfCamera(p) {
+    const {x, y, z} = globe.getCoords(p.lat, p.lon, LABEL_ALT);
+    const [cx, cy, cz] = view.camera.position, [tx, ty, tz] = view.camera.target;
+    return (x - cx) * (tx - cx) + (y - cy) * (ty - cy) + (z - cz) * (tz - cz) > 0;
+  }
 
   function stopSpin() {
     if (!globe) return;
     globe.controls().autoRotate = false;
+    view.spin = false;
     $("gl-spin").setAttribute("aria-pressed", "false");
   }
 
@@ -354,8 +508,9 @@ export function mount(root) {
   $("gl-query").addEventListener("input", e => { prefs.query = e.target.value; drawPoints(); });
   $("gl-spin").addEventListener("click", () => {
     if (!globe) return;
-    const on = !globe.controls().autoRotate;
-    globe.controls().autoRotate = on; $("gl-spin").setAttribute("aria-pressed", String(on));
+    const on = view.on ? !view.spin : !globe.controls().autoRotate;
+    if (view.on) { view.spin = on; wakeView(); } else globe.controls().autoRotate = on;
+    $("gl-spin").setAttribute("aria-pressed", String(on));
   });
   const labelsBtn = $("gl-labels");
   labelsBtn.setAttribute("aria-pressed", String(labelsOn));
@@ -365,7 +520,28 @@ export function mount(root) {
   });
   // 좁은 화면은 지구가 폭을 넘지 않게 더 멀리서 본다.
   const homeView = () => ({lat: 25, lng: 125, altitude: $("gl-globe").clientWidth < 600 ? 3.4 : 2.4});
-  $("gl-home").addEventListener("click", () => { select(null); globe?.pointOfView(homeView(), 900); });
+  $("gl-home").addEventListener("click", () => {
+    select(null);
+    if (!view.on) { globe?.pointOfView(homeView(), 900); return; }
+    const home = homeView();
+    view.userTilt = null;
+    flyView({lat: home.lat, lng: home.lng, range: home.altitude, heading: 0});
+  });
+  $("gl-tilt").addEventListener("click", () => {
+    if (!view.on) return;
+    view.userTilt = goalTilt() > 1 ? 0 : Math.max(45, autoTilt(view.goal.range));
+    wakeView();
+  });
+  $("gl-turn-left").addEventListener("click", () => { if (view.on) { view.goal.heading += 45; wakeView(); } });
+  $("gl-turn-right").addEventListener("click", () => { if (view.on) { view.goal.heading -= 45; wakeView(); } });
+  $("gl-north").addEventListener("click", () => {
+    if (!view.on) return;
+    view.goal.heading = Math.round(view.goal.heading / 360) * 360; // 가까운 쪽으로 돈다
+    view.spin = false; $("gl-spin").setAttribute("aria-pressed", "false");
+    wakeView();
+  });
+  $("gl-view-hint").textContent = window.matchMedia("(pointer: coarse)").matches
+    ? "두 손가락으로 돌리고, 위아래로 움직여 기울인다" : "오른쪽 버튼(또는 Ctrl)으로 끌면 돌리고 기울인다";
   $("gl-add").addEventListener("click", () => setAddMode(!addMode));
   $("gl-cancel").addEventListener("click", () => setAddMode(false));
   $("gl-form").addEventListener("input", () => {
@@ -433,11 +609,23 @@ export function mount(root) {
         .onGlobeClick(pickLocation)
         .onPolygonClick((country, event, coords) => pickLocation(coords))
         .ringColor(() => t => `rgba(227,73,72,${1 - t})`).ringMaxRadius(3).ringPropagationSpeed(2).ringRepeatPeriod(900)
-        .htmlLat("lat").htmlLng("lon").htmlAltitude(0.008).htmlElement(placeElement).htmlTransitionDuration(0)
+        .htmlLat("lat").htmlLng("lon").htmlAltitude(LABEL_ALT).htmlElement(placeElement).htmlTransitionDuration(0)
         .onZoom(queueLabels);
       const controls = globe.controls();
       controls.autoRotate = true; controls.autoRotateSpeed = 0.35;
       el.addEventListener("pointerdown", stopSpin, {once: true});
+      el.addEventListener("pointerdown", onViewPointerDown, true);
+      el.addEventListener("wheel", onViewWheel, {capture: true, passive: false});
+      el.addEventListener("contextmenu", onViewMenu);
+      window.addEventListener("pointermove", onViewPointerMove);
+      window.addEventListener("pointerup", onViewPointerUp);
+      window.addEventListener("pointercancel", onViewPointerUp);
+      cleanups.push(() => {
+        cancelAnimationFrame(view.frame);
+        window.removeEventListener("pointermove", onViewPointerMove);
+        window.removeEventListener("pointerup", onViewPointerUp);
+        window.removeEventListener("pointercancel", onViewPointerUp);
+      });
       globe.pointOfView(homeView());
       applyTheme();
       drawLabels();
