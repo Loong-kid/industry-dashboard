@@ -65,8 +65,10 @@ class ValuationTests(unittest.TestCase):
         self.assertIsNone(missing['per'])
 
     def test_coverage_and_cached_documents_reconcile_to_summary(self):
-        self.assertEqual(len(self.spec),69);self.assertEqual(len({c['id'] for c in self.spec}),69)
-        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65)
+        added=load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
+        self.assertEqual(len(self.spec),69+len(added));self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
+        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added))
+        self.assertEqual(len(self.index['companies']),len(self.spec))
         for s,c in zip(self.spec,self.index['companies']):
             self.assertEqual(s['id'],c['id'])
             if s['status']!='listed':self.assertIsNone(c['price']);continue

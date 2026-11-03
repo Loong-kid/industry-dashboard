@@ -1,0 +1,2854 @@
+{
+ "id": "company_kr_equipment_pskholdings_capex",
+ "name": "피에스케이홀딩스 · CAPEX",
+ "unit": "KRW 백만",
+ "company_kpi": true,
+ "compact_tooltip": true,
+ "span_gaps": false,
+ "table_limit": 120,
+ "source": "DART · 피에스케이홀딩스 정기 공시",
+ "fetched": "2026-11-03",
+ "description": "반도체 후공정 장비와 종속기업·관련 지분을 포함한 피에스케이홀딩스 공시 전체. Descum·Reflow 장비를 기준으로 패키징·후공정에 분류합니다. 2019년 전공정 사업을 피에스케이(319660)로 인적분할했고 이후 합병·연결 범위 변화가 있습니다. 현재 피에스케이와 별도 상장사이며 두 회사 수치를 그룹 매출로 단순 합산하지 않습니다.",
+ "basis_details": [
+  {
+   "label": "주력 공정·분류",
+   "value": "후공정 · Descum·Fluxless Reflow. Descum·Reflow 장비를 기준으로 패키징·후공정에 분류합니다. 2019년 전공정 사업을 피에스케이(319660)로 인적분할했고 이후 합병·연결 범위 변화가 있습니다. 현재 피에스케이와 별도 상장사이며 두 회사 수치를 그룹 매출로 단순 합산하지 않습니다."
+  },
+  {
+   "label": "실적 범위",
+   "value": "반도체 후공정 장비와 종속기업·관련 지분을 포함한 피에스케이홀딩스 공시 전체. 회사 자신의 CAPEX이며 고객사 투자나 장비 수주액이 아닙니다."
+  },
+  {
+   "label": "분기·연간·연결 기준",
+   "value": "실제 3개월·완결 회계연도를 구분합니다. 연결 우선이며 연결 미공시 기간은 별도로 표시합니다. 4분기는 연간−9개월, CAPEX는 동일 연도 누적−직전 누적입니다. 연결/별도와 누적 기준이 다르거나 지출 누적이 역전되면 공백입니다."
+  },
+  {
+   "label": "CAPEX",
+   "value": "유형자산 취득 현금지출입니다. 총액을 우선하고 세부 항목만 공시하면 합산합니다. 무형자산·투자부동산·M&A·비현금 리스·공급받는 파운드리의 투자를 제외합니다."
+  },
+  {
+   "label": "확보 이력",
+   "value": "연간 2014-12-31부터 · 분기 2015-03-31부터. 법인 신설·분할 전 타 법인의 이력을 이어 붙이지 않으며 미확인 분기를 연간의 1/4이나 0으로 채우지 않습니다."
+  },
+  {
+   "label": "기업 선정",
+   "value": "국내 상장 장비 후보 22개사의 네이버증권 시가총액을 조회하고 주력 공정·제품과 공개 재무의 비교 가능성을 함께 검토해 10개사를 추가했습니다. 기존 한미반도체는 중복 등록하지 않습니다. 국내 모든 상장사의 공식 시총 상위 10위 순위표가 아니며 선정 시점 이후 시가총액은 변합니다."
+  },
+  {
+   "label": "갱신",
+   "value": "2026-11-03 · 원문 확인 완료"
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-03",
+  "message": "DART 원문 확인 완료"
+ },
+ "series_views": {
+  "quarter": {
+   "label": "분기",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · DART 정기 공시",
+   "quarter_labels": true,
+   "year_labels": false,
+   "annual_axis": false,
+   "period_labels": {
+    "2015-03-31": "FY2015 Q1",
+    "2015-06-30": "FY2015 Q2",
+    "2015-09-30": "FY2015 Q3",
+    "2015-12-31": "FY2015 Q4",
+    "2016-03-31": "FY2016 Q1",
+    "2016-06-30": "FY2016 Q2",
+    "2016-09-30": "FY2016 Q3",
+    "2016-12-31": "FY2016 Q4",
+    "2017-03-31": "FY2017 Q1",
+    "2017-06-30": "FY2017 Q2",
+    "2017-09-30": "FY2017 Q3",
+    "2017-12-31": "FY2017 Q4",
+    "2018-03-31": "FY2018 Q1",
+    "2018-06-30": "FY2018 Q2",
+    "2018-09-30": "FY2018 Q3",
+    "2018-12-31": "FY2018 Q4",
+    "2019-03-31": "FY2019 Q1",
+    "2019-06-30": "FY2019 Q2",
+    "2019-09-30": "FY2019 Q3",
+    "2019-12-31": "FY2019 Q4",
+    "2020-03-31": "FY2020 Q1",
+    "2020-06-30": "FY2020 Q2",
+    "2020-09-30": "FY2020 Q3",
+    "2020-12-31": "FY2020 Q4",
+    "2021-03-31": "FY2021 Q1",
+    "2021-06-30": "FY2021 Q2",
+    "2021-09-30": "FY2021 Q3",
+    "2021-12-31": "FY2021 Q4",
+    "2022-03-31": "FY2022 Q1",
+    "2022-06-30": "FY2022 Q2",
+    "2022-09-30": "FY2022 Q3",
+    "2022-12-31": "FY2022 Q4",
+    "2023-03-31": "FY2023 Q1",
+    "2023-06-30": "FY2023 Q2",
+    "2023-09-30": "FY2023 Q3",
+    "2023-12-31": "FY2023 Q4",
+    "2024-03-31": "FY2024 Q1",
+    "2024-06-30": "FY2024 Q2",
+    "2024-09-30": "FY2024 Q3",
+    "2024-12-31": "FY2024 Q4",
+    "2025-03-31": "FY2025 Q1",
+    "2025-06-30": "FY2025 Q2",
+    "2025-09-30": "FY2025 Q3",
+    "2025-12-31": "FY2025 Q4",
+    "2026-03-31": "FY2026 Q1",
+    "2026-06-30": "FY2026 Q2"
+   },
+   "comparison_dates": {
+    "2015-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2015-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2015-03-31"
+    },
+    "2015-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2015-06-30"
+    },
+    "2015-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2015-09-30"
+    },
+    "2016-03-31": {
+     "year_ago": "2015-03-31",
+     "quarter_ago": "2015-12-31"
+    },
+    "2016-06-30": {
+     "year_ago": "2015-06-30",
+     "quarter_ago": "2016-03-31"
+    },
+    "2016-09-30": {
+     "year_ago": "2015-09-30",
+     "quarter_ago": "2016-06-30"
+    },
+    "2016-12-31": {
+     "year_ago": "2015-12-31",
+     "quarter_ago": "2016-09-30"
+    },
+    "2017-03-31": {
+     "year_ago": "2016-03-31",
+     "quarter_ago": "2016-12-31"
+    },
+    "2017-06-30": {
+     "year_ago": "2016-06-30",
+     "quarter_ago": "2017-03-31"
+    },
+    "2017-09-30": {
+     "year_ago": "2016-09-30",
+     "quarter_ago": "2017-06-30"
+    },
+    "2017-12-31": {
+     "year_ago": "2016-12-31",
+     "quarter_ago": "2017-09-30"
+    },
+    "2018-03-31": {
+     "year_ago": "2017-03-31",
+     "quarter_ago": "2017-12-31"
+    },
+    "2018-06-30": {
+     "year_ago": "2017-06-30",
+     "quarter_ago": "2018-03-31"
+    },
+    "2018-09-30": {
+     "year_ago": "2017-09-30",
+     "quarter_ago": "2018-06-30"
+    },
+    "2018-12-31": {
+     "year_ago": "2017-12-31",
+     "quarter_ago": "2018-09-30"
+    },
+    "2019-03-31": {
+     "year_ago": "2018-03-31",
+     "quarter_ago": "2018-12-31"
+    },
+    "2019-06-30": {
+     "year_ago": "2018-06-30",
+     "quarter_ago": "2019-03-31"
+    },
+    "2019-09-30": {
+     "year_ago": "2018-09-30",
+     "quarter_ago": "2019-06-30"
+    },
+    "2019-12-31": {
+     "year_ago": "2018-12-31",
+     "quarter_ago": "2019-09-30"
+    },
+    "2020-03-31": {
+     "year_ago": "2019-03-31",
+     "quarter_ago": "2019-12-31"
+    },
+    "2020-06-30": {
+     "year_ago": "2019-06-30",
+     "quarter_ago": "2020-03-31"
+    },
+    "2020-09-30": {
+     "year_ago": "2019-09-30",
+     "quarter_ago": "2020-06-30"
+    },
+    "2020-12-31": {
+     "year_ago": "2019-12-31",
+     "quarter_ago": "2020-09-30"
+    },
+    "2021-03-31": {
+     "year_ago": "2020-03-31",
+     "quarter_ago": "2020-12-31"
+    },
+    "2021-06-30": {
+     "year_ago": "2020-06-30",
+     "quarter_ago": "2021-03-31"
+    },
+    "2021-09-30": {
+     "year_ago": "2020-09-30",
+     "quarter_ago": "2021-06-30"
+    },
+    "2021-12-31": {
+     "year_ago": "2020-12-31",
+     "quarter_ago": "2021-09-30"
+    },
+    "2022-03-31": {
+     "year_ago": "2021-03-31",
+     "quarter_ago": "2021-12-31"
+    },
+    "2022-06-30": {
+     "year_ago": "2021-06-30",
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": "2021-09-30",
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": "2021-12-31",
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    }
+   },
+   "quarterly_revenue_summary": true,
+   "quarterly_profit_summary": false,
+   "series": {
+    "유형자산 취득 현금지출": [
+     [
+      "2015-03-31",
+      2128.483131
+     ],
+     [
+      "2015-06-30",
+      1747.2379409999999
+     ],
+     [
+      "2015-09-30",
+      835.659588
+     ],
+     [
+      "2015-12-31",
+      2325.5828659999997
+     ],
+     [
+      "2016-03-31",
+      535.763418
+     ],
+     [
+      "2016-06-30",
+      1111.989749
+     ],
+     [
+      "2016-09-30",
+      null
+     ],
+     [
+      "2016-12-31",
+      1057.0029450000002
+     ],
+     [
+      "2017-03-31",
+      192.179784
+     ],
+     [
+      "2017-06-30",
+      2000.6619530000003
+     ],
+     [
+      "2017-09-30",
+      1063.6762589999998
+     ],
+     [
+      "2017-12-31",
+      3208.1435720000004
+     ],
+     [
+      "2018-03-31",
+      24186.257934
+     ],
+     [
+      "2018-06-30",
+      null
+     ],
+     [
+      "2018-09-30",
+      5664.252561000001
+     ],
+     [
+      "2018-12-31",
+      3077.719100999999
+     ],
+     [
+      "2019-03-31",
+      5659.661244
+     ],
+     [
+      "2019-06-30",
+      30.685593000000154
+     ],
+     [
+      "2019-09-30",
+      1916.4504349999997
+     ],
+     [
+      "2019-12-31",
+      319.40009499999996
+     ],
+     [
+      "2020-03-31",
+      3342.138299
+     ],
+     [
+      "2020-06-30",
+      null
+     ],
+     [
+      "2020-09-30",
+      2017.7117790000002
+     ],
+     [
+      "2020-12-31",
+      null
+     ],
+     [
+      "2021-03-31",
+      465.494534
+     ],
+     [
+      "2021-06-30",
+      155.124522
+     ],
+     [
+      "2021-09-30",
+      4488.1358230000005
+     ],
+     [
+      "2021-12-31",
+      550.1538520000004
+     ],
+     [
+      "2022-03-31",
+      674.174847
+     ],
+     [
+      "2022-06-30",
+      2326.2730540000002
+     ],
+     [
+      "2022-09-30",
+      2340.631288
+     ],
+     [
+      "2022-12-31",
+      5519.027604000001
+     ],
+     [
+      "2023-03-31",
+      2717.344368
+     ],
+     [
+      "2023-06-30",
+      5800.992998
+     ],
+     [
+      "2023-09-30",
+      3444.232209
+     ],
+     [
+      "2023-12-31",
+      5856.771349000001
+     ],
+     [
+      "2024-03-31",
+      97.72
+     ],
+     [
+      "2024-06-30",
+      11898.428856
+     ],
+     [
+      "2024-09-30",
+      5357.127499000002
+     ],
+     [
+      "2024-12-31",
+      null
+     ],
+     [
+      "2025-03-31",
+      102.899239
+     ],
+     [
+      "2025-06-30",
+      75.013272
+     ],
+     [
+      "2025-09-30",
+      509.770612
+     ],
+     [
+      "2025-12-31",
+      813.5745420000001
+     ],
+     [
+      "2026-03-31",
+      951.354284
+     ],
+     [
+      "2026-06-30",
+      392.0331490000001
+     ]
+    ]
+   },
+   "default_series": [
+    "유형자산 취득 현금지출"
+   ],
+   "updated": "2026-06-30",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+   "point_sources": {
+    "2015-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "FY2015 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+       "label": "2015-01-01 ~ 2015-03-31 · 2016-05-16"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+     "label": "FY2015 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+       "label": "2015-01-01 ~ 2015-06-30 · 2016-08-16"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+       "label": "2015-01-01 ~ 2015-03-31 · 2016-05-16"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2015-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+     "label": "FY2015 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+       "label": "2015-01-01 ~ 2015-09-30 · 2016-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+       "label": "2015-01-01 ~ 2015-06-30 · 2016-08-16"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2015-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+     "label": "FY2015 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+       "label": "2015-01-01 ~ 2015-12-31 · 2018-03-30"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+       "label": "2015-01-01 ~ 2015-09-30 · 2016-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2016-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "FY2016 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+       "label": "2016-01-01 ~ 2016-03-31 · 2016-05-16"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+     "label": "FY2016 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+       "label": "2016-01-01 ~ 2016-06-30 · 2016-08-16"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+       "label": "2016-01-01 ~ 2016-03-31 · 2016-05-16"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2016-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+     "label": "FY2016 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+       "label": "2016-01-01 ~ 2016-12-31 · 2017-03-30"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+       "label": "2016-01-01 ~ 2016-09-30 · 2016-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2017-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+     "label": "FY2017 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+       "label": "2017-01-01 ~ 2017-03-31 · 2017-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+     "label": "FY2017 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+       "label": "2017-01-01 ~ 2017-06-30 · 2017-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+       "label": "2017-01-01 ~ 2017-03-31 · 2017-05-15"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2017-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+     "label": "FY2017 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+       "label": "2017-01-01 ~ 2017-09-30 · 2017-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+       "label": "2017-01-01 ~ 2017-06-30 · 2017-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2017-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+     "label": "FY2017 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+       "label": "2017-01-01 ~ 2017-12-31 · 2018-03-30"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+       "label": "2017-01-01 ~ 2017-09-30 · 2017-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2018-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180515000780",
+     "label": "FY2018 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180515000780",
+       "label": "2018-01-01 ~ 2018-03-31 · 2018-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+     "label": "FY2018 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+       "label": "2018-01-01 ~ 2018-09-30 · 2018-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180814001930",
+       "label": "2018-01-01 ~ 2018-06-30 · 2018-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2018-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+     "label": "FY2018 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+       "label": "2018-01-01 ~ 2018-12-31 · 2019-03-29"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+       "label": "2018-01-01 ~ 2018-09-30 · 2018-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2019-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+     "label": "FY2019 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+       "label": "2019-01-01 ~ 2019-03-31 · 2019-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+     "label": "FY2019 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+       "label": "2019-01-01 ~ 2019-06-30 · 2019-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+       "label": "2019-01-01 ~ 2019-03-31 · 2019-05-15"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2019-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+     "label": "FY2019 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+       "label": "2019-01-01 ~ 2019-09-30 · 2019-11-13"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+       "label": "2019-01-01 ~ 2019-06-30 · 2019-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2019-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+     "label": "FY2019 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+       "label": "2019-01-01 ~ 2019-12-31 · 2020-03-30"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+       "label": "2019-01-01 ~ 2019-09-30 · 2019-11-13"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2020-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200515002468",
+     "label": "FY2020 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200515002468",
+       "label": "2020-01-01 ~ 2020-03-31 · 2020-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20201113000520",
+     "label": "FY2020 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20201113000520",
+       "label": "2020-01-01 ~ 2020-09-30 · 2020-11-13"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200814001863",
+       "label": "2020-01-01 ~ 2020-06-30 · 2020-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2021-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+     "label": "FY2021 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+       "label": "2021-01-01 ~ 2021-03-31 · 2021-05-13"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+     "label": "FY2021 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+       "label": "2021-01-01 ~ 2021-06-30 · 2021-08-17"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+       "label": "2021-01-01 ~ 2021-03-31 · 2021-05-13"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2021-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+     "label": "FY2021 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+       "label": "2021-01-01 ~ 2021-09-30 · 2021-11-15"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+       "label": "2021-01-01 ~ 2021-06-30 · 2021-08-17"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2021-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+     "label": "FY2021 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+       "label": "2021-01-01 ~ 2021-12-31 · 2022-08-08"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+       "label": "2021-01-01 ~ 2021-09-30 · 2021-11-15"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2022-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+     "label": "FY2022 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+       "label": "2022-01-01 ~ 2022-03-31 · 2022-05-13"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+     "label": "FY2022 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+       "label": "2022-01-01 ~ 2022-06-30 · 2022-08-12"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+       "label": "2022-01-01 ~ 2022-03-31 · 2022-05-13"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2022-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+     "label": "FY2022 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+       "label": "2022-01-01 ~ 2022-09-30 · 2022-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+       "label": "2022-01-01 ~ 2022-06-30 · 2022-08-12"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2022-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+     "label": "FY2022 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+       "label": "2022-01-01 ~ 2022-12-31 · 2023-03-21"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+       "label": "2022-01-01 ~ 2022-09-30 · 2022-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2023-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+     "label": "FY2023 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+       "label": "2023-01-01 ~ 2023-03-31 · 2023-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+     "label": "FY2023 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+       "label": "2023-01-01 ~ 2023-06-30 · 2023-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+       "label": "2023-01-01 ~ 2023-03-31 · 2023-05-15"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2023-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+     "label": "FY2023 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+       "label": "2023-01-01 ~ 2023-09-30 · 2023-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+       "label": "2023-01-01 ~ 2023-06-30 · 2023-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2023-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+     "label": "FY2023 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+       "label": "2023-01-01 ~ 2023-12-31 · 2024-03-21"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+       "label": "2023-01-01 ~ 2023-09-30 · 2023-11-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2024-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+     "label": "FY2024 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+       "label": "2024-01-01 ~ 2024-03-31 · 2024-05-16"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+     "label": "FY2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+       "label": "2024-01-01 ~ 2024-06-30 · 2024-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+       "label": "2024-01-01 ~ 2024-03-31 · 2024-05-16"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2024-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241114000061",
+     "label": "FY2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241114000061",
+       "label": "2024-01-01 ~ 2024-09-30 · 2024-11-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+       "label": "2024-01-01 ~ 2024-06-30 · 2024-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+     "label": "FY2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+       "label": "2025-01-01 ~ 2025-03-31 · 2025-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+     "label": "FY2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+       "label": "2025-01-01 ~ 2025-06-30 · 2025-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+       "label": "2025-01-01 ~ 2025-03-31 · 2025-05-15"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+     "label": "FY2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+       "label": "2025-01-01 ~ 2025-09-30 · 2025-11-13"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+       "label": "2025-01-01 ~ 2025-06-30 · 2025-08-14"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2025-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+     "label": "FY2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+       "label": "2025-01-01 ~ 2025-12-31 · 2026-03-20"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+       "label": "2025-01-01 ~ 2025-09-30 · 2025-11-13"
+      }
+     ],
+     "source_separator": " − "
+    },
+    "2026-03-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+     "label": "FY2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+       "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+     "label": "FY2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+       "label": "2026-01-01 ~ 2026-06-30 · 2026-08-14"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+       "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+      }
+     ],
+     "source_separator": " − "
+    }
+   },
+   "point_notes": {
+    "2015-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 2,128,483,131원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2015-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 1,747,237,941원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2015-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 835,659,588원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2015-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 2,325,582,866원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2016-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 535,763,418원"
+    ],
+    "2016-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 1,111,989,749원"
+    ],
+    "2016-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 1,057,002,945원"
+    ],
+    "2017-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 192,179,784원"
+    ],
+    "2017-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 2,000,661,953원"
+    ],
+    "2017-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 1,063,676,259원"
+    ],
+    "2017-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 3,208,143,572원"
+    ],
+    "2018-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 24,186,257,934원"
+    ],
+    "2018-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 5,664,252,561원"
+    ],
+    "2018-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 3,077,719,101원"
+    ],
+    "2019-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 5,659,661,244원"
+    ],
+    "2019-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 30,685,593원"
+    ],
+    "2019-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 1,916,450,435원"
+    ],
+    "2019-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 319,400,095원"
+    ],
+    "2020-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 3,342,138,299원"
+    ],
+    "2020-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 2,017,711,779원"
+    ],
+    "2021-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 465,494,534원"
+    ],
+    "2021-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 155,124,522원"
+    ],
+    "2021-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 4,488,135,823원"
+    ],
+    "2021-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 550,153,852원"
+    ],
+    "2022-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 674,174,847원"
+    ],
+    "2022-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 2,326,273,054원"
+    ],
+    "2022-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 2,340,631,288원"
+    ],
+    "2022-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 5,519,027,604원"
+    ],
+    "2023-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 2,717,344,368원"
+    ],
+    "2023-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 5,800,992,998원"
+    ],
+    "2023-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 3,444,232,209원"
+    ],
+    "2023-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 5,856,771,349원"
+    ],
+    "2024-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 97,720,000원"
+    ],
+    "2024-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 11,898,428,856원"
+    ],
+    "2024-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 5,357,127,499원"
+    ],
+    "2025-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 102,899,239원"
+    ],
+    "2025-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 75,013,272원"
+    ],
+    "2025-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 509,770,612원"
+    ],
+    "2025-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 813,574,542원"
+    ],
+    "2026-03-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported first-quarter cash flow",
+     "원화 금액: 951,354,284원"
+    ],
+    "2026-06-30": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 392,033,149원"
+    ]
+   }
+  },
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · DART 사업보고서",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "period_labels": {
+    "2014-12-31": "FY2014",
+    "2015-12-31": "FY2015",
+    "2016-12-31": "FY2016",
+    "2017-12-31": "FY2017",
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "comparison_dates": {},
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "series": {
+    "유형자산 취득 현금지출": [
+     [
+      "2014-12-31",
+      4377.717943
+     ],
+     [
+      "2015-12-31",
+      7036.963526
+     ],
+     [
+      "2016-12-31",
+      2220.337003
+     ],
+     [
+      "2017-12-31",
+      6464.661568
+     ],
+     [
+      "2018-12-31",
+      23536.668909
+     ],
+     [
+      "2019-12-31",
+      7926.197367
+     ],
+     [
+      "2020-12-31",
+      5036.174236
+     ],
+     [
+      "2021-12-31",
+      5658.908731
+     ],
+     [
+      "2022-12-31",
+      10860.106793
+     ],
+     [
+      "2023-12-31",
+      17819.340924
+     ],
+     [
+      "2024-12-31",
+      0.0
+     ],
+     [
+      "2025-12-31",
+      1501.257665
+     ]
+    ]
+   },
+   "default_series": [
+    "유형자산 취득 현금지출"
+   ],
+   "updated": "2025-12-31",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+   "point_sources": {
+    "2014-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160330003421",
+     "label": "FY2014",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160330003421",
+       "label": "2014-01-01 ~ 2014-12-31 · 2016-03-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2015-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160330003421",
+     "label": "FY2015",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160330003421",
+       "label": "2015-01-01 ~ 2015-12-31 · 2016-03-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2016-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+     "label": "FY2016",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+       "label": "2016-01-01 ~ 2016-12-31 · 2017-03-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2017-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+     "label": "FY2017",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+       "label": "2017-01-01 ~ 2017-12-31 · 2018-03-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2018-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+       "label": "2018-01-01 ~ 2018-12-31 · 2019-03-29"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+       "label": "2019-01-01 ~ 2019-12-31 · 2020-03-30"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210416000519",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210416000519",
+       "label": "2020-01-01 ~ 2020-12-31 · 2021-04-16"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+       "label": "2021-01-01 ~ 2021-12-31 · 2022-08-08"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+       "label": "2022-01-01 ~ 2022-12-31 · 2023-03-21"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+       "label": "2023-01-01 ~ 2023-12-31 · 2024-03-21"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250321001638",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250321001638",
+       "label": "2024-01-01 ~ 2024-12-31 · 2025-03-21"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+       "label": "2025-01-01 ~ 2025-12-31 · 2026-03-20"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2014-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 4,377,717,943원",
+     "후속 보고서의 전기 비교표시 금액"
+    ],
+    "2015-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 7,036,963,526원"
+    ],
+    "2016-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 2,220,337,003원"
+    ],
+    "2017-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 6,464,661,568원"
+    ],
+    "2018-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 23,536,668,909원"
+    ],
+    "2019-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 7,926,197,367원"
+    ],
+    "2020-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 5,036,174,236원"
+    ],
+    "2021-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 5,658,908,731원"
+    ],
+    "2022-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 10,860,106,793원"
+    ],
+    "2023-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 17,819,340,924원"
+    ],
+    "2024-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 0원"
+    ],
+    "2025-12-31": [
+     "재무제표: 연결",
+     "공시 항목: 유형자산의 취득",
+     "산식: reported annual",
+     "원화 금액: 1,501,257,665원"
+    ]
+   }
+  }
+ },
+ "default_view": "quarter",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · DART 정기 공시",
+ "quarter_labels": true,
+ "year_labels": false,
+ "annual_axis": false,
+ "period_labels": {
+  "2015-03-31": "FY2015 Q1",
+  "2015-06-30": "FY2015 Q2",
+  "2015-09-30": "FY2015 Q3",
+  "2015-12-31": "FY2015 Q4",
+  "2016-03-31": "FY2016 Q1",
+  "2016-06-30": "FY2016 Q2",
+  "2016-09-30": "FY2016 Q3",
+  "2016-12-31": "FY2016 Q4",
+  "2017-03-31": "FY2017 Q1",
+  "2017-06-30": "FY2017 Q2",
+  "2017-09-30": "FY2017 Q3",
+  "2017-12-31": "FY2017 Q4",
+  "2018-03-31": "FY2018 Q1",
+  "2018-06-30": "FY2018 Q2",
+  "2018-09-30": "FY2018 Q3",
+  "2018-12-31": "FY2018 Q4",
+  "2019-03-31": "FY2019 Q1",
+  "2019-06-30": "FY2019 Q2",
+  "2019-09-30": "FY2019 Q3",
+  "2019-12-31": "FY2019 Q4",
+  "2020-03-31": "FY2020 Q1",
+  "2020-06-30": "FY2020 Q2",
+  "2020-09-30": "FY2020 Q3",
+  "2020-12-31": "FY2020 Q4",
+  "2021-03-31": "FY2021 Q1",
+  "2021-06-30": "FY2021 Q2",
+  "2021-09-30": "FY2021 Q3",
+  "2021-12-31": "FY2021 Q4",
+  "2022-03-31": "FY2022 Q1",
+  "2022-06-30": "FY2022 Q2",
+  "2022-09-30": "FY2022 Q3",
+  "2022-12-31": "FY2022 Q4",
+  "2023-03-31": "FY2023 Q1",
+  "2023-06-30": "FY2023 Q2",
+  "2023-09-30": "FY2023 Q3",
+  "2023-12-31": "FY2023 Q4",
+  "2024-03-31": "FY2024 Q1",
+  "2024-06-30": "FY2024 Q2",
+  "2024-09-30": "FY2024 Q3",
+  "2024-12-31": "FY2024 Q4",
+  "2025-03-31": "FY2025 Q1",
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "comparison_dates": {
+  "2015-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2015-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2015-03-31"
+  },
+  "2015-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2015-06-30"
+  },
+  "2015-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2015-09-30"
+  },
+  "2016-03-31": {
+   "year_ago": "2015-03-31",
+   "quarter_ago": "2015-12-31"
+  },
+  "2016-06-30": {
+   "year_ago": "2015-06-30",
+   "quarter_ago": "2016-03-31"
+  },
+  "2016-09-30": {
+   "year_ago": "2015-09-30",
+   "quarter_ago": "2016-06-30"
+  },
+  "2016-12-31": {
+   "year_ago": "2015-12-31",
+   "quarter_ago": "2016-09-30"
+  },
+  "2017-03-31": {
+   "year_ago": "2016-03-31",
+   "quarter_ago": "2016-12-31"
+  },
+  "2017-06-30": {
+   "year_ago": "2016-06-30",
+   "quarter_ago": "2017-03-31"
+  },
+  "2017-09-30": {
+   "year_ago": "2016-09-30",
+   "quarter_ago": "2017-06-30"
+  },
+  "2017-12-31": {
+   "year_ago": "2016-12-31",
+   "quarter_ago": "2017-09-30"
+  },
+  "2018-03-31": {
+   "year_ago": "2017-03-31",
+   "quarter_ago": "2017-12-31"
+  },
+  "2018-06-30": {
+   "year_ago": "2017-06-30",
+   "quarter_ago": "2018-03-31"
+  },
+  "2018-09-30": {
+   "year_ago": "2017-09-30",
+   "quarter_ago": "2018-06-30"
+  },
+  "2018-12-31": {
+   "year_ago": "2017-12-31",
+   "quarter_ago": "2018-09-30"
+  },
+  "2019-03-31": {
+   "year_ago": "2018-03-31",
+   "quarter_ago": "2018-12-31"
+  },
+  "2019-06-30": {
+   "year_ago": "2018-06-30",
+   "quarter_ago": "2019-03-31"
+  },
+  "2019-09-30": {
+   "year_ago": "2018-09-30",
+   "quarter_ago": "2019-06-30"
+  },
+  "2019-12-31": {
+   "year_ago": "2018-12-31",
+   "quarter_ago": "2019-09-30"
+  },
+  "2020-03-31": {
+   "year_ago": "2019-03-31",
+   "quarter_ago": "2019-12-31"
+  },
+  "2020-06-30": {
+   "year_ago": "2019-06-30",
+   "quarter_ago": "2020-03-31"
+  },
+  "2020-09-30": {
+   "year_ago": "2019-09-30",
+   "quarter_ago": "2020-06-30"
+  },
+  "2020-12-31": {
+   "year_ago": "2019-12-31",
+   "quarter_ago": "2020-09-30"
+  },
+  "2021-03-31": {
+   "year_ago": "2020-03-31",
+   "quarter_ago": "2020-12-31"
+  },
+  "2021-06-30": {
+   "year_ago": "2020-06-30",
+   "quarter_ago": "2021-03-31"
+  },
+  "2021-09-30": {
+   "year_ago": "2020-09-30",
+   "quarter_ago": "2021-06-30"
+  },
+  "2021-12-31": {
+   "year_ago": "2020-12-31",
+   "quarter_ago": "2021-09-30"
+  },
+  "2022-03-31": {
+   "year_ago": "2021-03-31",
+   "quarter_ago": "2021-12-31"
+  },
+  "2022-06-30": {
+   "year_ago": "2021-06-30",
+   "quarter_ago": "2022-03-31"
+  },
+  "2022-09-30": {
+   "year_ago": "2021-09-30",
+   "quarter_ago": "2022-06-30"
+  },
+  "2022-12-31": {
+   "year_ago": "2021-12-31",
+   "quarter_ago": "2022-09-30"
+  },
+  "2023-03-31": {
+   "year_ago": "2022-03-31",
+   "quarter_ago": "2022-12-31"
+  },
+  "2023-06-30": {
+   "year_ago": "2022-06-30",
+   "quarter_ago": "2023-03-31"
+  },
+  "2023-09-30": {
+   "year_ago": "2022-09-30",
+   "quarter_ago": "2023-06-30"
+  },
+  "2023-12-31": {
+   "year_ago": "2022-12-31",
+   "quarter_ago": "2023-09-30"
+  },
+  "2024-03-31": {
+   "year_ago": "2023-03-31",
+   "quarter_ago": "2023-12-31"
+  },
+  "2024-06-30": {
+   "year_ago": "2023-06-30",
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": "2023-09-30",
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": "2023-12-31",
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  }
+ },
+ "quarterly_revenue_summary": true,
+ "quarterly_profit_summary": false,
+ "series": {
+  "유형자산 취득 현금지출": [
+   [
+    "2015-03-31",
+    2128.483131
+   ],
+   [
+    "2015-06-30",
+    1747.2379409999999
+   ],
+   [
+    "2015-09-30",
+    835.659588
+   ],
+   [
+    "2015-12-31",
+    2325.5828659999997
+   ],
+   [
+    "2016-03-31",
+    535.763418
+   ],
+   [
+    "2016-06-30",
+    1111.989749
+   ],
+   [
+    "2016-09-30",
+    null
+   ],
+   [
+    "2016-12-31",
+    1057.0029450000002
+   ],
+   [
+    "2017-03-31",
+    192.179784
+   ],
+   [
+    "2017-06-30",
+    2000.6619530000003
+   ],
+   [
+    "2017-09-30",
+    1063.6762589999998
+   ],
+   [
+    "2017-12-31",
+    3208.1435720000004
+   ],
+   [
+    "2018-03-31",
+    24186.257934
+   ],
+   [
+    "2018-06-30",
+    null
+   ],
+   [
+    "2018-09-30",
+    5664.252561000001
+   ],
+   [
+    "2018-12-31",
+    3077.719100999999
+   ],
+   [
+    "2019-03-31",
+    5659.661244
+   ],
+   [
+    "2019-06-30",
+    30.685593000000154
+   ],
+   [
+    "2019-09-30",
+    1916.4504349999997
+   ],
+   [
+    "2019-12-31",
+    319.40009499999996
+   ],
+   [
+    "2020-03-31",
+    3342.138299
+   ],
+   [
+    "2020-06-30",
+    null
+   ],
+   [
+    "2020-09-30",
+    2017.7117790000002
+   ],
+   [
+    "2020-12-31",
+    null
+   ],
+   [
+    "2021-03-31",
+    465.494534
+   ],
+   [
+    "2021-06-30",
+    155.124522
+   ],
+   [
+    "2021-09-30",
+    4488.1358230000005
+   ],
+   [
+    "2021-12-31",
+    550.1538520000004
+   ],
+   [
+    "2022-03-31",
+    674.174847
+   ],
+   [
+    "2022-06-30",
+    2326.2730540000002
+   ],
+   [
+    "2022-09-30",
+    2340.631288
+   ],
+   [
+    "2022-12-31",
+    5519.027604000001
+   ],
+   [
+    "2023-03-31",
+    2717.344368
+   ],
+   [
+    "2023-06-30",
+    5800.992998
+   ],
+   [
+    "2023-09-30",
+    3444.232209
+   ],
+   [
+    "2023-12-31",
+    5856.771349000001
+   ],
+   [
+    "2024-03-31",
+    97.72
+   ],
+   [
+    "2024-06-30",
+    11898.428856
+   ],
+   [
+    "2024-09-30",
+    5357.127499000002
+   ],
+   [
+    "2024-12-31",
+    null
+   ],
+   [
+    "2025-03-31",
+    102.899239
+   ],
+   [
+    "2025-06-30",
+    75.013272
+   ],
+   [
+    "2025-09-30",
+    509.770612
+   ],
+   [
+    "2025-12-31",
+    813.5745420000001
+   ],
+   [
+    "2026-03-31",
+    951.354284
+   ],
+   [
+    "2026-06-30",
+    392.0331490000001
+   ]
+  ]
+ },
+ "default_series": [
+  "유형자산 취득 현금지출"
+ ],
+ "updated": "2026-06-30",
+ "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+ "point_sources": {
+  "2015-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+   "label": "FY2015 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "2015-01-01 ~ 2015-03-31 · 2016-05-16"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2015-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+   "label": "FY2015 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+     "label": "2015-01-01 ~ 2015-06-30 · 2016-08-16"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "2015-01-01 ~ 2015-03-31 · 2016-05-16"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2015-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+   "label": "FY2015 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+     "label": "2015-01-01 ~ 2015-09-30 · 2016-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+     "label": "2015-01-01 ~ 2015-06-30 · 2016-08-16"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2015-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+   "label": "FY2015 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+     "label": "2015-01-01 ~ 2015-12-31 · 2018-03-30"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+     "label": "2015-01-01 ~ 2015-09-30 · 2016-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2016-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+   "label": "FY2016 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "2016-01-01 ~ 2016-03-31 · 2016-05-16"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2016-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+   "label": "FY2016 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160816000521",
+     "label": "2016-01-01 ~ 2016-06-30 · 2016-08-16"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20160516001909",
+     "label": "2016-01-01 ~ 2016-03-31 · 2016-05-16"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2016-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+   "label": "FY2016 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170330000808",
+     "label": "2016-01-01 ~ 2016-12-31 · 2017-03-30"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20161114000879",
+     "label": "2016-01-01 ~ 2016-09-30 · 2016-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2017-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+   "label": "FY2017 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+     "label": "2017-01-01 ~ 2017-03-31 · 2017-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2017-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+   "label": "FY2017 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+     "label": "2017-01-01 ~ 2017-06-30 · 2017-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515002091",
+     "label": "2017-01-01 ~ 2017-03-31 · 2017-05-15"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2017-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+   "label": "FY2017 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+     "label": "2017-01-01 ~ 2017-09-30 · 2017-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170814000892",
+     "label": "2017-01-01 ~ 2017-06-30 · 2017-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2017-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+   "label": "FY2017 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180330001776",
+     "label": "2017-01-01 ~ 2017-12-31 · 2018-03-30"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20171114000320",
+     "label": "2017-01-01 ~ 2017-09-30 · 2017-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2018-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180515000780",
+   "label": "FY2018 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180515000780",
+     "label": "2018-01-01 ~ 2018-03-31 · 2018-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2018-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+   "label": "FY2018 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+     "label": "2018-01-01 ~ 2018-09-30 · 2018-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20180814001930",
+     "label": "2018-01-01 ~ 2018-06-30 · 2018-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2018-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+   "label": "FY2018 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190329003338",
+     "label": "2018-01-01 ~ 2018-12-31 · 2019-03-29"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20181114001050",
+     "label": "2018-01-01 ~ 2018-09-30 · 2018-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+   "label": "FY2019 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+     "label": "2019-01-01 ~ 2019-03-31 · 2019-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+   "label": "FY2019 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+     "label": "2019-01-01 ~ 2019-06-30 · 2019-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190515001190",
+     "label": "2019-01-01 ~ 2019-03-31 · 2019-05-15"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+   "label": "FY2019 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+     "label": "2019-01-01 ~ 2019-09-30 · 2019-11-13"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20190814002819",
+     "label": "2019-01-01 ~ 2019-06-30 · 2019-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2019-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+   "label": "FY2019 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200330003592",
+     "label": "2019-01-01 ~ 2019-12-31 · 2020-03-30"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20191113000509",
+     "label": "2019-01-01 ~ 2019-09-30 · 2019-11-13"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2020-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200515002468",
+   "label": "FY2020 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200515002468",
+     "label": "2020-01-01 ~ 2020-03-31 · 2020-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20201113000520",
+   "label": "FY2020 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20201113000520",
+     "label": "2020-01-01 ~ 2020-09-30 · 2020-11-13"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200814001863",
+     "label": "2020-01-01 ~ 2020-06-30 · 2020-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2021-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+   "label": "FY2021 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+     "label": "2021-01-01 ~ 2021-03-31 · 2021-05-13"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+   "label": "FY2021 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+     "label": "2021-01-01 ~ 2021-06-30 · 2021-08-17"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210513000425",
+     "label": "2021-01-01 ~ 2021-03-31 · 2021-05-13"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2021-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+   "label": "FY2021 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+     "label": "2021-01-01 ~ 2021-09-30 · 2021-11-15"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210817000520",
+     "label": "2021-01-01 ~ 2021-06-30 · 2021-08-17"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2021-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+   "label": "FY2021 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220808000122",
+     "label": "2021-01-01 ~ 2021-12-31 · 2022-08-08"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211115001634",
+     "label": "2021-01-01 ~ 2021-09-30 · 2021-11-15"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2022-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+   "label": "FY2022 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+     "label": "2022-01-01 ~ 2022-03-31 · 2022-05-13"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+   "label": "FY2022 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+     "label": "2022-01-01 ~ 2022-06-30 · 2022-08-12"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220513000930",
+     "label": "2022-01-01 ~ 2022-03-31 · 2022-05-13"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2022-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+   "label": "FY2022 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+     "label": "2022-01-01 ~ 2022-09-30 · 2022-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220812001013",
+     "label": "2022-01-01 ~ 2022-06-30 · 2022-08-12"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2022-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+   "label": "FY2022 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230321001350",
+     "label": "2022-01-01 ~ 2022-12-31 · 2023-03-21"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221114000153",
+     "label": "2022-01-01 ~ 2022-09-30 · 2022-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2023-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+   "label": "FY2023 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+     "label": "2023-01-01 ~ 2023-03-31 · 2023-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+   "label": "FY2023 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+     "label": "2023-01-01 ~ 2023-06-30 · 2023-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230515001703",
+     "label": "2023-01-01 ~ 2023-03-31 · 2023-05-15"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2023-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+   "label": "FY2023 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+     "label": "2023-01-01 ~ 2023-09-30 · 2023-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230814000326",
+     "label": "2023-01-01 ~ 2023-06-30 · 2023-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2023-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+   "label": "FY2023 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240321001868",
+     "label": "2023-01-01 ~ 2023-12-31 · 2024-03-21"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114001618",
+     "label": "2023-01-01 ~ 2023-09-30 · 2023-11-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2024-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+   "label": "FY2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+     "label": "2024-01-01 ~ 2024-03-31 · 2024-05-16"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+   "label": "FY2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+     "label": "2024-01-01 ~ 2024-06-30 · 2024-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240516000613",
+     "label": "2024-01-01 ~ 2024-03-31 · 2024-05-16"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2024-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241114000061",
+   "label": "FY2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241114000061",
+     "label": "2024-01-01 ~ 2024-09-30 · 2024-11-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240814004332",
+     "label": "2024-01-01 ~ 2024-06-30 · 2024-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+   "label": "FY2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+     "label": "2025-01-01 ~ 2025-03-31 · 2025-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+   "label": "FY2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+     "label": "2025-01-01 ~ 2025-06-30 · 2025-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250515000240",
+     "label": "2025-01-01 ~ 2025-03-31 · 2025-05-15"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+   "label": "FY2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+     "label": "2025-01-01 ~ 2025-09-30 · 2025-11-13"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250814002558",
+     "label": "2025-01-01 ~ 2025-06-30 · 2025-08-14"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2025-12-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+   "label": "FY2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000819",
+     "label": "2025-01-01 ~ 2025-12-31 · 2026-03-20"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000408",
+     "label": "2025-01-01 ~ 2025-09-30 · 2025-11-13"
+    }
+   ],
+   "source_separator": " − "
+  },
+  "2026-03-31": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+   "label": "FY2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+     "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+   "label": "FY2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000743",
+     "label": "2026-01-01 ~ 2026-06-30 · 2026-08-14"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001546",
+     "label": "2026-01-01 ~ 2026-03-31 · 2026-05-15"
+    }
+   ],
+   "source_separator": " − "
+  }
+ },
+ "point_notes": {
+  "2015-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 2,128,483,131원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2015-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 1,747,237,941원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2015-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 835,659,588원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2015-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 2,325,582,866원",
+   "후속 보고서의 전기 비교표시 금액"
+  ],
+  "2016-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 535,763,418원"
+  ],
+  "2016-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 1,111,989,749원"
+  ],
+  "2016-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 1,057,002,945원"
+  ],
+  "2017-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 192,179,784원"
+  ],
+  "2017-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 2,000,661,953원"
+  ],
+  "2017-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 1,063,676,259원"
+  ],
+  "2017-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 3,208,143,572원"
+  ],
+  "2018-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 24,186,257,934원"
+  ],
+  "2018-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 5,664,252,561원"
+  ],
+  "2018-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 3,077,719,101원"
+  ],
+  "2019-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 5,659,661,244원"
+  ],
+  "2019-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 30,685,593원"
+  ],
+  "2019-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 1,916,450,435원"
+  ],
+  "2019-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 319,400,095원"
+  ],
+  "2020-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 3,342,138,299원"
+  ],
+  "2020-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 2,017,711,779원"
+  ],
+  "2021-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 465,494,534원"
+  ],
+  "2021-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 155,124,522원"
+  ],
+  "2021-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 4,488,135,823원"
+  ],
+  "2021-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 550,153,852원"
+  ],
+  "2022-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 674,174,847원"
+  ],
+  "2022-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 2,326,273,054원"
+  ],
+  "2022-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 2,340,631,288원"
+  ],
+  "2022-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 5,519,027,604원"
+  ],
+  "2023-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 2,717,344,368원"
+  ],
+  "2023-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 5,800,992,998원"
+  ],
+  "2023-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 3,444,232,209원"
+  ],
+  "2023-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 5,856,771,349원"
+  ],
+  "2024-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 97,720,000원"
+  ],
+  "2024-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 11,898,428,856원"
+  ],
+  "2024-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 5,357,127,499원"
+  ],
+  "2025-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 102,899,239원"
+  ],
+  "2025-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 75,013,272원"
+  ],
+  "2025-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 509,770,612원"
+  ],
+  "2025-12-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 813,574,542원"
+  ],
+  "2026-03-31": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: reported first-quarter cash flow",
+   "원화 금액: 951,354,284원"
+  ],
+  "2026-06-30": [
+   "재무제표: 연결",
+   "공시 항목: 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 392,033,149원"
+  ]
+ }
+}

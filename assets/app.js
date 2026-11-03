@@ -435,6 +435,18 @@ async function renderIndustry(options = {}) {
     content.appendChild(intro);
   }
 
+  if (ind.id === "semicon" && state.subtab?.startsWith("equipment_")) {
+    try {
+      const [doc, module] = await Promise.all([loadDoc("semicon", "korea_equipment_universe"), import("./korea-equipment.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("korea_equipment_universe");
+      const guide = err ? errorCard("semicon", "korea_equipment_universe", err) : module.renderGuide(doc, state.subtab);
+      if (guide) content.appendChild(guide);
+    } catch (e) {
+      if (mySeq === renderSeq) content.appendChild(errorCard("semicon", "korea_equipment_universe", e.message));
+    }
+  }
+
   if (ind.id === "vrar" && state.subtab === "overview") {
     try {
       const [doc, vrar] = await Promise.all([loadDoc("vrar", "universe"), import("./vrar.js")]);
