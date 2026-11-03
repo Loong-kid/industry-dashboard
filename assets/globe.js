@@ -11,7 +11,7 @@ const COUNTRIES = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m
 const COUNTRIES_FINE = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json"; // 전체 지도를 당겼을 때만 받는다
 const ANTARCTICA_ID = "010"; // 전체 지도 범위 밖이고, 극을 도는 고리라 평면에 그릴 수 없다
 const FINE_LAND_SCALE = 6; // 전체 지도가 이 배율(px/도)을 넘으면 고운 해안선을 쓴다
-const MAP_SITE_RANGE = 0.3, MAP_AREA_RANGE = 0.7; // 지도에서 점·지역을 눌렀을 때 지구본이 내려가는 거리
+const MAP_SITE_RANGE = 0.1, MAP_AREA_RANGE = 0.7; // 지도에서 점·지역을 눌렀을 때 지구본이 내려가는 거리
 const LAYER_COLORS = {lng_export: "#eb6834", lng_import: "#2a78d6", ess_system: "#1baf7a", ess_cell: "#eda100",
   dc_kr: "#4a3aa7", dc_kr_candidate: "#9085e9", user: "#e34948"};
 const STATUS_ORDER = ["operating", "construction", "planned", "inactive"];
@@ -175,10 +175,12 @@ export function mount(root) {
           </form>
           <div id="gl-view" class="gl-view" role="group" aria-label="시점" hidden>
             <span id="gl-view-hint" class="gl-view-hint"></span>
+            <span class="gl-view-btns">
             <button type="button" id="gl-tilt" aria-pressed="false">기울이기</button>
             <button type="button" id="gl-turn-left" aria-label="왼쪽으로 돌리기" title="왼쪽으로 돌리기">⟲</button>
             <button type="button" id="gl-north" aria-label="북쪽을 위로" title="북쪽을 위로"><span id="gl-north-mark">▲</span> 북</button>
             <button type="button" id="gl-turn-right" aria-label="오른쪽으로 돌리기" title="오른쪽으로 돌리기">⟳</button>
+            </span>
           </div>
         </div>
         </div>

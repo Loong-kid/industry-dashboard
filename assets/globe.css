@@ -78,6 +78,7 @@
 /* 근접 시점 도구: 다가갔을 때만 나타난다. */
 .gl-view { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: end; }
 .gl-view[hidden], .gl-form:not([hidden]) ~ .gl-view { display: none; }
+.gl-view-btns { display: flex; gap: 6px; }
 .gl-view button { background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(4px); }
 .gl-view-hint { font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 92%, transparent); padding: 3px 8px; border-radius: 5px; }
 #gl-north-mark { display: inline-block; font-size: 10px; }
