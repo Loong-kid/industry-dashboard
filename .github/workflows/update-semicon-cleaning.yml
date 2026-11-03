@@ -1,0 +1,49 @@
+name: update-semicon-cleaning
+on:
+  schedule:
+    - cron: '50 23 * * *' # KST 08:50
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  cleaning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate cleaning classifications and accounting
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_semicon_cleaning.py -v
+      - name: Refresh original DART and SEC statements
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/fetch_semicon_cleaning.py --refresh
+      - name: Validate refreshed cleaning history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_semicon_cleaning.py -v
+      - name: Commit cleaning accounts only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/cleaning_state.json data/semicon/company_cleaning_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh semiconductor cleaning issuer financials"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report cleaning validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1

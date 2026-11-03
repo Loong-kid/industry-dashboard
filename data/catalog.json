@@ -2523,6 +2523,11 @@
           "id": "raw_materials",
           "name": "소재",
           "default_tab": "wafer"
+        },
+        {
+          "id": "cleaning",
+          "name": "세정",
+          "default_tab": "cleaning_summary"
         }
       ],
       "tabs": [
@@ -2598,6 +2603,15 @@
           "category": "raw_materials",
           "default_range": "all",
           "description": "글로벌 출하 → 고객 재고 → 공급사 실적 → 증설·가동 흐름을 봅니다. 연간·분기·월간 주기와 현금/검수/발생 기준 CAPEX를 구분합니다."
+        },
+        {
+          "id": "cleaning_summary",
+          "name": "기업 실적",
+          "category": "cleaning",
+          "default_range": "all",
+          "auto_collect_time": "08:50",
+          "cadence": "국내 DART·미국 SEC 공시를 매일 오전 8:50 확인합니다. 주가와 실적 TTM PER·PBR은 기존 오전 8:10 수집에 포함합니다. 신규·정정 공시를 반영하고 조회 실패 시 마지막 성공 자료를 유지합니다.",
+          "description": "반도체 장비 부품의 정밀 세정·코팅·재생 서비스를 영위하는 국내 3사와 미국 2사입니다. 웨이퍼 세정 장비는 장비 분류에 유지합니다. 매출·영업이익·CAPEX는 각 상장사 전사 연결 기준으로 세정 단독 실적이 아니며 원익QnC·Ultra Clean·Enpro는 다른 사업도 포함합니다. 각 기업 아래에서 주가·실적 TTM PER·PBR 밴드를 확대해 볼 수 있습니다."
         }
       ],
       "sections": [
@@ -4218,6 +4232,84 @@
             "topec"
           ],
           "indicators": []
+        },
+        {
+          "tab": "cleaning_summary",
+          "title": "주가 · PER · PBR 비교",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "cleaning_komico",
+            "cleaning_hansoliones",
+            "cleaning_wonikqnc",
+            "cleaning_uct",
+            "cleaning_enpro"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "코미코 / 183300",
+          "tab": "cleaning_summary",
+          "layout": "financial",
+          "anchor": "cleaning-komico",
+          "supply_note": "정밀 세정·특수 코팅 / 세라믹 부품 / KRW 백만 / 코미코 연결 전체 · 세정·코팅과 미코세라믹스 등 포함",
+          "indicators": [
+            "company_cleaning_komico_revenue",
+            "company_cleaning_komico_profit",
+            "company_cleaning_komico_capex"
+          ],
+          "valuation_company": "cleaning_komico"
+        },
+        {
+          "title": "한솔아이원스 / 114810",
+          "tab": "cleaning_summary",
+          "layout": "financial",
+          "anchor": "cleaning-hansoliones",
+          "supply_note": "정밀 세정·특수 코팅 / 정밀 부품 가공 / KRW 백만 / 한솔아이원스 연결 전체 · 정밀가공·세정·코팅 등 포함",
+          "indicators": [
+            "company_cleaning_hansoliones_revenue",
+            "company_cleaning_hansoliones_profit",
+            "company_cleaning_hansoliones_capex"
+          ],
+          "valuation_company": "cleaning_hansoliones"
+        },
+        {
+          "title": "원익QnC / 074600",
+          "tab": "cleaning_summary",
+          "layout": "financial",
+          "anchor": "cleaning-wonikqnc",
+          "supply_note": "부품 세정·코팅 / 쿼츠·세라믹·원재료 / KRW 백만 / 원익QnC 연결 전체 · 쿼츠·세라믹·세정·쿼츠 원재료 등 포함",
+          "indicators": [
+            "company_cleaning_wonikqnc_revenue",
+            "company_cleaning_wonikqnc_profit",
+            "company_cleaning_wonikqnc_capex"
+          ],
+          "valuation_company": "cleaning_wonikqnc"
+        },
+        {
+          "title": "Ultra Clean · UCTT / UCTT",
+          "tab": "cleaning_summary",
+          "layout": "financial",
+          "anchor": "cleaning-uct",
+          "supply_note": "Services · 초고순도 세정·코팅·분석 / Products · 서브시스템 / USD 백만 / Ultra Clean Holdings 전사 연결 · Products·Services 포함",
+          "indicators": [
+            "company_cleaning_uct_revenue",
+            "company_cleaning_uct_profit",
+            "company_cleaning_uct_capex"
+          ],
+          "valuation_company": "cleaning_uct"
+        },
+        {
+          "title": "Enpro · NPO / NPO",
+          "tab": "cleaning_summary",
+          "layout": "financial",
+          "anchor": "cleaning-enpro",
+          "supply_note": "LeanTeq·NxEdge · 세정·코팅·재생 / 산업 기술 / USD 백만 / Enpro 전사 연결 · Advanced Surface Technologies와 Sealing Technologies 등 포함",
+          "indicators": [
+            "company_cleaning_enpro_revenue",
+            "company_cleaning_enpro_profit",
+            "company_cleaning_enpro_capex"
+          ],
+          "valuation_company": "cleaning_enpro"
         }
       ],
       "groups": [

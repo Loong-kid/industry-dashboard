@@ -63,6 +63,7 @@ def collect(refresh=False,full_history=False,from_state=False):
                 rows=parse_facts(payload,spec,asof);annual=parse_annual(payload,spec,asof)
                 if not rows or not annual or any(not any(m in r for r in rows) for m in ('revenue','profit','capex')):raise ValueError('Incomplete SEC history')
                 if prior.get('rows') and (rows[-1]['date']<prior['rows'][-1]['date'] or len(rows)<len(prior['rows'])):raise ValueError('SEC history regressed')
+                if prior.get('annual') and (annual[-1]['date']<prior['annual'][-1]['date'] or len(annual)<len(prior['annual'])):raise ValueError('SEC annual history regressed')
                 state['companies'][key]=dict(rows=rows,annual=annual,checked=asof,fetched=asof,ok=True)
                 print(key,len(rows),'quarters',len(annual),'fiscal years',flush=True)
             except Exception as error:

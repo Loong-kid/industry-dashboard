@@ -66,8 +66,10 @@ class ValuationTests(unittest.TestCase):
 
     def test_coverage_and_cached_documents_reconcile_to_summary(self):
         added=load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
-        self.assertEqual(len(self.spec),69+len(added));self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
-        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added))
+        cleaning=load(ROOT/'manual/semicon-cleaning/companies.json',{})
+        peers=len(cleaning['companies'])+len(cleaning['global_companies'])
+        self.assertEqual(len(self.spec),69+len(added)+peers);self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
+        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added)+peers)
         self.assertEqual(len(self.index['companies']),len(self.spec))
         for s,c in zip(self.spec,self.index['companies']):
             self.assertEqual(s['id'],c['id'])
