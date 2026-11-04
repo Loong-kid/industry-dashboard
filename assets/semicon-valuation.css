@@ -5,6 +5,27 @@
 .sv-loss-note { display: block; margin-top: 4px; }
 .sv-loss-note::before { content: ''; display: inline-block; width: 10px; height: 9px; margin-right: 5px; background: rgba(137,135,129,.10); }
 .sv-loss-label { color: var(--muted); font-size: 11px; margin-left: 6px; }
+.sv-per-extrema { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 12px 0; padding: 10px 0; border-block: 1px solid var(--border); }
+.sv-per-extrema dt { color: var(--muted); font-size: 11px; }
+.sv-per-extrema dd { margin: 4px 0 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.sv-per-extrema strong { font-size: 16px; font-weight: 600; }
+.sv-per-extrema small { display: block; color: var(--muted); font-size: 11px; line-height: 1.5; margin-top: 4px; }
+.sv-extreme-reason { margin-left: 5px; color: var(--muted); font-size: 11px; }
+.sv-band-settings { margin: 10px 0; min-width: 0; font-size: 12px; }
+.sv-band-settings summary { cursor: pointer; width: fit-content; }
+.sv-band-mode { color: var(--muted); font-size: 11px; margin-left: 5px; }
+.sv-band-settings form { margin-top: 10px; max-width: 380px; }
+.sv-band-settings label { display: grid; gap: 6px; font-size: 11px; color: var(--muted); }
+.sv-band-settings .sv-band-input { box-sizing: border-box; width: 100%; min-width: 0; padding: 7px 9px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--ink); font: inherit; }
+.sv-band-input[aria-invalid="true"] { border-color: var(--warn); }
+.sv-band-hint,.sv-band-status { font-size: 11px; color: var(--muted); line-height: 1.5; margin: 6px 0; }
+.sv-band-status:empty { display: none; }
+.sv-band-status[role="alert"] { color: var(--warn); }
+.sv-band-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+.sv-band-settings summary:focus-visible,.sv-band-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sv-zoom-per-tools { display: grid; grid-template-columns: minmax(0,1fr) minmax(160px,280px); gap: 20px; align-items: start; }
+.sv-zoom-per-tools .sv-per-extrema { margin: 0; padding: 8px 0; }
+.sv-zoom-per-tools .sv-band-settings { margin: 8px 0 0; }
 .sv-table-wrap { max-height: 410px; overflow: auto; }
 .sv-table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .sv-table th,.sv-table td { height: 34px; box-sizing: border-box; padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--border); }
@@ -53,6 +74,8 @@
 @media(max-width:600px){
   .sv-zoom-dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); height: 92dvh; padding: 12px; }
   .sv-zoom-head h2 { font-size: 16px; }
+  .sv-zoom-per-tools { grid-template-columns: minmax(0,1fr); gap: 0; }
+  .sv-zoom-per-tools .sv-per-extrema { padding: 6px 0; }
 }
 @media(max-width:480px){
   #content:has(.sv-summary) .card-head { flex-wrap: wrap; }

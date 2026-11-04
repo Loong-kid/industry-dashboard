@@ -30,13 +30,62 @@ export function basisState(value){
   return !Number.isFinite(value)?'missing':value<0?'loss':value===0?'zero':'positive';
 }
 
+export const perBandStorageKey='semicon-per-bands-v1';
+function canonicalBands(values){
+  if(!Array.isArray(values)||!values.length||values.length>8||values.some(v=>!Number.isFinite(v)||v<=0))throw new Error('0보다 큰 배수를 1~8개 입력해 주세요.');
+  return [...new Set(values)].sort((a,b)=>a-b);
+}
+export function parsePerBands(text){
+  const parts=String(text).trim().split(/[,;，\s]+/).filter(Boolean);
+  if(parts.some(p=>!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(p)))throw new Error('배수는 숫자로 입력하고 쉼표로 구분해 주세요.');
+  return canonicalBands(parts.map(Number));
+}
+export function readPerBandPreferences(storage){
+  const result=new Map();
+  try{
+    const saved=JSON.parse(storage?.getItem(perBandStorageKey)||'null');
+    if(saved?.version!==1||!saved.companies||typeof saved.companies!=='object'||Array.isArray(saved.companies))return result;
+    for(const [id,values] of Object.entries(saved.companies))try{result.set(id,canonicalBands(values));}catch{}
+  }catch{}
+  return result;
+}
+export function savePerBandPreferences(preferences,storage){
+  try{
+    if(!storage)return false;
+    if(preferences.size)storage.setItem(perBandStorageKey,JSON.stringify({version:1,companies:Object.fromEntries(preferences)}));
+    else storage.removeItem(perBandStorageKey);
+    return true;
+  }catch{return false;}
+}
+
+// Price extrema are chosen from every displayed close, not from PER extrema
+// or sampled chart points. Equal closes use the most recent occurrence.
+export function perPriceExtrema(doc,rows){
+  let high=null,low=null;
+  for(const row of rows){
+    if(!Number.isFinite(row[1])||row[1]<=0)continue;
+    if(!high||row[1]>high[1]||row[1]===high[1]&&row[0]>high[0])high=row;
+    if(!low||row[1]<low[1]||row[1]===low[1]&&row[0]>low[0])low=row;
+  }
+  const point=row=>{
+    if(!row)return null;
+    const [date,price]=row,source=valueAt(doc.fundamentals?.eps||[],date),eps=basisValue(doc,'eps',date);
+    const ratio=basisState(eps)==='positive'?price/eps:null;
+    const per=Number.isFinite(ratio)?ratio:null;
+    const reason=per!=null?'':basisState(source?.[1])==='loss'?'적자':source?.[1]===0?'EPS 0':Number.isFinite(source?.[1])?(Number.isFinite(eps)?'계산 불가':'환율 없음'):'EPS 없음';
+    return {date,price,per,reason,eps,epsDate:source?.[0]||null};
+  };
+  return {high:point(high),low:point(low)};
+}
+
 // Retain both sides of every basis-status boundary, even for a one-day loss
 // inside a sampled price bucket or a stale/missing FX observation.
-export function valuationChartData(doc,metric,rows,large=false){
+export function valuationChartData(doc,metric,rows,large=false,perBands=null){
   const field=metric==='per'?'eps':'bps';
   const values=metric==='price'?[]:rows.map(r=>basisValue(doc,field,r[0]));
   const lossFlags=metric==='per'?rows.map(r=>basisState(valueAt(doc.fundamentals?.eps||[],r[0])?.[1])==='loss'):[];
   const selected=new Map((large?rows:sampleRows(rows)).map(r=>[r[0],r]));
+  if(metric==='per')for(const point of Object.values(perPriceExtrema(doc,rows)))if(point)selected.set(point.date,[point.date,point.price]);
   const keep=i=>{if(i>=0&&i<rows.length)selected.set(rows[i][0],rows[i]);};
   if(!large&&metric!=='price'){
     for(const f of doc.fundamentals?.[field]||[]){const i=rows.findIndex(r=>r[0]>=f[0]);if(i>=0){keep(i-1);keep(i);}}
@@ -51,7 +100,8 @@ export function valuationChartData(doc,metric,rows,large=false){
     const start=i++;while(i<points.length&&byDate.get(points[i][0]).loss)i++;
     losses.push({start,end:i});
   }
-  const bands=metric==='price'?[]:(doc.bands?.[metric]||[]).filter(m=>Number.isFinite(m)&&m>0).map(multiple=>({multiple,
+  const multiples=metric==='per'&&perBands!==null?perBands:doc.bands?.[metric]||[];
+  const bands=metric==='price'?[]:multiples.filter(m=>Number.isFinite(m)&&m>0).map(multiple=>({multiple,
     values:basis.map(v=>{const value=v*multiple;return basisState(v)==='positive'&&Number.isFinite(value)?value:null;})
   })).filter(b=>metric!=='per'||b.values.some(Number.isFinite));
   return {points,basis,bands,losses};
@@ -63,6 +113,8 @@ export function createSession(index,{state,range}){
     const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./semicon-valuation.css',import.meta.url).href;link.dataset.semiconValuationStyle='true';document.head.append(link);
   }
   let alive=true,zoom=null;const chartSet=new Set(),panels=new Map();
+  let storage;try{storage=window.localStorage;}catch{}
+  const perBandPreferences=readPerBandPreferences(storage);
   const companies=new Map((index?.companies||[]).map(c=>[c.id,c]));
   const destroy=chart=>{if(chart.canvas)chart.destroy();chartSet.delete(chart);state.charts=state.charts.filter(c=>c!==chart);};
   const observer=new IntersectionObserver(entries=>{for(const entry of entries){const p=panels.get(entry.target);if(!p)continue;p.visible=entry.isIntersecting;if(p.visible)load(p);else for(const chart of [...p.charts]){destroy(chart);p.charts.delete(chart);}}},{rootMargin:'180px 0px'});
@@ -83,10 +135,50 @@ export function createSession(index,{state,range}){
     }catch(e){if(alive)for(const c of panel.cards)c.querySelector('.chart-wrap').textContent='주가·밴드를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.';}
     finally{panel.loading=false;}
   }
-  function draw(panel,doc){
+  function renderPerExtrema(target,doc,rows){
+    const extrema=perPriceExtrema(doc,rows);
+    target.innerHTML=Object.entries(extrema).map(([key,p])=>`<div data-per-extreme="${key}"><dt>기간 ${key==='high'?'최고':'최저'} 종가일 PER</dt><dd><strong>${p?(p.per==null?'N/M':fmt(p.per)+'배'):'—'}</strong>${p?.reason?`<span class="sv-extreme-reason">${esc(p.reason)}</span>`:''}<small>${p?`${esc(p.date)}<br>${fmt(p.price)} ${esc(doc.currency)}`:'조회 기간에 종가 없음'}</small></dd></div>`).join('');
+  }
+  function syncBandSettings(host,doc){
+    const tools=host.querySelector('.sv-band-settings');if(!tools)return;
+    const custom=perBandPreferences.get(doc.id);
+    tools.querySelector('.sv-band-input').value=(custom||doc.bands?.per||[]).join(', ');
+    tools.querySelector('.sv-band-input').removeAttribute('aria-invalid');
+    tools.querySelector('.sv-band-mode').textContent=custom?'직접 설정':'자동';
+    const status=tools.querySelector('.sv-band-status');status.textContent='';status.setAttribute('role','status');
+  }
+  function setPerBands(doc,values){
+    if(values===null)perBandPreferences.delete(doc.id);else perBandPreferences.set(doc.id,values);
+    const saved=savePerBandPreferences(perBandPreferences,storage);
+    for(const panel of panels.values())if(panel.company.id===doc.id&&panel.doc){
+      syncBandSettings(panel.cards[1],doc);
+      if(panel.visible&&panel.root.isConnected)draw(panel,doc,'per');
+    }
+    if(zoom?.companyId===doc.id&&zoom.metric==='per'){syncBandSettings(zoom.dialog,doc);zoom.render();}
+    return saved;
+  }
+  function installBandSettings(host,doc,before){
+    if(host.querySelector('.sv-band-settings'))return;
+    const tools=document.createElement('details');tools.className='sv-band-settings';
+    tools.innerHTML='<summary>밴드 설정 <span class="sv-band-mode"></span></summary><form novalidate><label>PER 배수<input class="sv-band-input" type="text" autocomplete="off" placeholder="10, 15, 20, 25, 30" maxlength="160"></label><p class="sv-band-hint">양수 1~8개 · 쉼표로 구분 · 기업별로 이 브라우저에 저장</p><div class="sv-band-buttons"><button type="submit">적용</button><button type="button" class="sv-band-reset">자동으로 복원</button></div><p class="sv-band-status" role="status" aria-live="polite"></p></form>';
+    if(before)before.before(tools);else host.append(tools);
+    const form=tools.querySelector('form'),input=tools.querySelector('input'),status=tools.querySelector('.sv-band-status');
+    input.setAttribute('aria-label',(companies.get(doc.id)?.name||doc.symbol)+' PER 밴드 배수');
+    syncBandSettings(host,doc);
+    form.onsubmit=event=>{
+      event.preventDefault();
+      let values;try{values=parsePerBands(input.value);}catch(error){input.setAttribute('aria-invalid','true');status.setAttribute('role','alert');status.textContent=error.message;input.focus();return;}
+      const saved=setPerBands(doc,values);status.setAttribute('role','status');status.textContent=saved?'적용됨 · 기업별 저장':'적용됨 · 현재 화면에서 유지';
+    };
+    tools.querySelector('.sv-band-reset').onclick=()=>{const saved=setPerBands(doc,null);status.setAttribute('role','status');status.textContent=saved?'자동 기준으로 복원됨':'자동 기준으로 복원됨 · 현재 화면에서 유지';};
+    input.oninput=()=>{input.removeAttribute('aria-invalid');status.textContent='';};
+  }
+  function draw(panel,doc,only=null){
     const all=filter(doc);
     for(let k=0;k<panel.cards.length;k++){
-      const card=panel.cards[k],metric=['price','per','pbr'][k],wrap=card.querySelector('.chart-wrap');wrap.replaceChildren();
+      const card=panel.cards[k],metric=['price','per','pbr'][k];if(only&&metric!==only)continue;
+      const wrap=card.querySelector('.chart-wrap'),previous=wrap.querySelector('canvas'),old=previous&&Chart.getChart(previous);
+      if(old){destroy(old);panel.charts.delete(old);}wrap.replaceChildren();
       const metricRows=rowsForMetric(doc,metric,all);
       const canvas=document.createElement('canvas');wrap.append(canvas);canvas.setAttribute('aria-label',panel.company.name+' '+({price:'주가',per:'PER 밴드',pbr:'PBR 밴드'}[metric]));canvas.setAttribute('role','img');
       const chart=makeChart(canvas,doc,metric,metricRows);panel.charts.add(chart);
@@ -94,9 +186,14 @@ export function createSession(index,{state,range}){
       card.querySelector('.sv-chart-caption').textContent=metric==='price'?`${doc.currency} · ${all[0]?.[0]||'—'} ~ ${all.at(-1)?.[0]||'—'} · 일별 종가`:`주가 ${doc.currency} · 실적 기준 참고 밴드 · ${metric==='per'?doc.fundamentals?.eps_basis:doc.fundamentals?.bps_basis}`;
       if(metric==='per'){
         const note=document.createElement('span');note.className='sv-loss-note';note.textContent='옅은 음영: 적자(TTM EPS < 0) · EPS가 0 이하이면 밴드 미표시';card.querySelector('.sv-chart-caption').append(note);
+        let extrema=card.querySelector('.sv-per-extrema');
+        if(!extrema){extrema=document.createElement('dl');extrema.className='sv-per-extrema';wrap.after(extrema);}
+        renderPerExtrema(extrema,doc,metricRows);installBandSettings(card,doc,card.querySelector('.sv-actions'));
       }
       const tableButton=card.querySelector('.sv-table-button');tableButton.onclick=()=>showTable(card,doc,metric,metricRows,tableButton);
-      card.querySelector('.sv-details-body').textContent=doc.methodology+(doc.note?' '+doc.note:'')+(doc.errors?.length?' 최근 수집 확인 필요: '+doc.errors.join(' / '):'');
+      const custom=metric==='per'&&perBandPreferences.get(doc.id);
+      const bandNote=metric==='per'?`현재 PER 밴드: ${custom?'직접 설정 '+custom.join('·')+'배':'자동 기준'}. 아래 중앙값 설명은 자동 기준에 해당합니다. `:'';
+      card.querySelector('.sv-details-body').textContent=bandNote+doc.methodology+(doc.note?' '+doc.note:'')+(doc.errors?.length?' 최근 수집 확인 필요: '+doc.errors.join(' / '):'');
     }
   }
   function rowsForMetric(doc,metric,rows){
@@ -104,9 +201,10 @@ export function createSession(index,{state,range}){
   }
   function makeChart(canvas,doc,metric,rows,large=false){
     const colors=['#575e70','#7d8494','#a4a9b4','#bfc3cc','#d6d9df'];
-    const {points,bands,losses}=valuationChartData(doc,metric,rows,large);
-    const datasets=[{label:'주가',data:points.map(r=>r[1]),borderColor:'#18bf53',borderWidth:large?1.8:1.6,pointRadius:points.length<8?3:0,pointHoverRadius:3,order:0}];
-    for(const [i,band] of bands.entries())datasets.push({label:fmt(band.multiple)+'배',data:band.values,borderColor:colors[i%colors.length],borderWidth:1,pointRadius:points.length<8?2:0,stepped:!Object.keys(doc.fx||{}).length,spanGaps:false,order:i+1});
+    const {points,bands,losses}=valuationChartData(doc,metric,rows,large,perBandPreferences.get(doc.id)||null);
+    const extrema=metric==='per'?new Set(Object.values(perPriceExtrema(doc,rows)).filter(Boolean).map(p=>p.date)):new Set();
+    const datasets=[{label:'주가',data:points.map(r=>r[1]),borderColor:'#18bf53',borderWidth:large?1.8:1.6,pointRadius:points.map(r=>extrema.has(r[0])?3:points.length<8?3:0),pointHoverRadius:3,order:0}];
+    for(const [i,band] of bands.entries())datasets.push({label:new Intl.NumberFormat('ko-KR',{maximumSignificantDigits:8}).format(band.multiple)+'배',data:band.values,borderColor:colors[i%colors.length],borderWidth:1,pointRadius:points.length<8?2:0,stepped:!Object.keys(doc.fx||{}).length,spanGaps:false,order:i+1});
     const style=getComputedStyle(document.documentElement),ink=style.getPropertyValue('--muted').trim(),border=style.getPropertyValue('--border').trim();
     const lossNote=i=>{
       const eps=valueAt(doc.fundamentals?.eps||[],points[i]?.[0]||'');
@@ -140,12 +238,18 @@ export function createSession(index,{state,range}){
     dialog.className='sv-zoom-dialog';dialog.id='sv-zoom-window';dialog.setAttribute('aria-labelledby','sv-zoom-title');
     dialog.innerHTML=`<div class="sv-zoom-head"><div><h2 id="sv-zoom-title">${esc(company.name)} · ${label}</h2><p class="sv-caption">${esc(doc.symbol)} · 주가 ${esc(doc.currency)}</p></div><button type="button" class="sv-zoom-close" aria-label="확대 창 닫기" autofocus>✕</button></div><div class="sv-zoom-controls"><div class="sv-zoom-ranges" role="group" aria-label="확대 차트 기간">${[['3m','3개월'],['1y','1년'],['3y','3년'],['5y','5년'],['all','전체']].map(([value,text])=>`<button type="button" data-zoom-range="${value}" aria-pressed="false">${text}</button>`).join('')}</div><div class="sv-zoom-dates"><label>시작 <input type="date" class="sv-zoom-from" aria-label="확대 차트 시작일"></label><label>종료 <input type="date" class="sv-zoom-to" aria-label="확대 차트 종료일"></label></div></div><p class="sv-zoom-status sv-caption" role="status"></p><div class="sv-zoom-chart"></div><div class="sv-zoom-foot"><span class="sv-caption">일별 종가${metric==='price'?'':' · 실적 기준 참고 밴드'}${metric==='per'?'<span class="sv-loss-note">옅은 음영: 적자(TTM EPS &lt; 0) · EPS가 0 이하이면 밴드 미표시</span>':''}</span><a href="${esc(metric==='price'?doc.price_source:doc.financial_source)}" target="_blank" rel="noopener">출처 ↗</a></div>`;
     const start=dialog.querySelector('.sv-zoom-from'),end=dialog.querySelector('.sv-zoom-to'),status=dialog.querySelector('.sv-zoom-status'),wrap=dialog.querySelector('.sv-zoom-chart');
+    let perTools=null;
+    if(metric==='per'){
+      perTools=document.createElement('div');perTools.className='sv-zoom-per-tools';
+      const extrema=document.createElement('dl');extrema.className='sv-per-extrema';perTools.append(extrema);status.after(perTools);
+      installBandSettings(perTools,doc);
+    }
     const current=metric==='price'?doc.prices?.at(-1)?.[1]:doc.latest?.[metric];
     dialog.querySelector('.sv-zoom-head .sv-caption').textContent=metric==='price'?`${doc.symbol} · 종가 ${fmt(current)} ${doc.currency}`:`${doc.symbol} · ${metric.toUpperCase()} ${current==null?'N/M':fmt(current)+'배'} · 주가축 ${doc.currency}`;
     for(const input of [start,end]){input.min=all[0]?.[0]||'';input.max=all.at(-1)?.[0]||'';}
     const previousOverflow=document.body.style.overflow;let chart=null,ended=false;
     const finish=()=>{if(ended)return;ended=true;if(chart)destroy(chart);dialog.remove();document.body.style.overflow=previousOverflow;if(zoom?.dialog===dialog)zoom=null;if(alive&&opener.isConnected)opener.focus({preventScroll:true});};
-    zoom={dialog,finish};dialog.addEventListener('close',finish);dialog.querySelector('.sv-zoom-close').onclick=closeZoom;
+    zoom={dialog,finish,companyId:doc.id,metric};dialog.addEventListener('close',finish);dialog.querySelector('.sv-zoom-close').onclick=closeZoom;
     dialog.addEventListener('keydown',event=>{
       if(event.key!=='Tab'||event.ctrlKey||event.metaKey)return;
       const items=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href]')].filter(e=>e.getClientRects().length),first=items[0],last=items.at(-1);
@@ -157,8 +261,10 @@ export function createSession(index,{state,range}){
       if(!start.value||!end.value||start.value>end.value||!start.checkValidity()||!end.checkValidity()){status.textContent='조회 가능한 기간 안에서 시작일과 종료일을 확인해 주세요.';return;}
       const rows=all.filter(r=>r[0]>=start.value&&r[0]<=end.value);if(chart){destroy(chart);chart=null;}wrap.replaceChildren();
       status.textContent=rows.length?`${rows[0][0]} ~ ${rows.at(-1)[0]} · ${fmt(rows.length,0)}거래일`:'선택한 기간에는 거래일 데이터가 없습니다.';
+      if(perTools)renderPerExtrema(perTools.querySelector('.sv-per-extrema'),doc,rows);
       if(rows.length){const canvas=document.createElement('canvas');canvas.setAttribute('role','img');canvas.setAttribute('aria-label',company.name+' '+label+' 확대 차트');wrap.append(canvas);chart=makeChart(canvas,doc,metric,rows,true);}
     };
+    zoom.render=render;
     const setRange=choice=>{const rows=rowsForMetric(doc,metric,filter(doc,choice));start.value=rows[0]?.[0]||all[0]?.[0]||'';end.value=rows.at(-1)?.[0]||all.at(-1)?.[0]||'';dialog.querySelectorAll('[data-zoom-range]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.zoomRange===choice)));render();};
     for(const input of [start,end])input.onchange=()=>{dialog.querySelectorAll('[data-zoom-range]').forEach(b=>b.setAttribute('aria-pressed','false'));render();};
     dialog.querySelectorAll('[data-zoom-range]').forEach(b=>b.onclick=()=>setRange(b.dataset.zoomRange));
