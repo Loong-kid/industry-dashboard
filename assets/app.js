@@ -298,7 +298,7 @@ async function renderIndustry(options = {}) {
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "vrar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -532,18 +532,21 @@ async function renderIndustry(options = {}) {
   let latestUpdate = "";
   const collected = []; // 수집 상태 판정용 { name, fetched }
   let valuationSession = null;
+  const valuationPath = ind.id === "commodities" ? "commodities/valuation" : "semicon/valuation";
+  const valuationIndex = ind.id === "commodities" ? "copper_valuation_index" : "valuation_index";
   const valuationNode = async (mode, ids) => {
     try {
       if (!valuationSession) {
-        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc("semicon/valuation", "valuation_index")]);
+        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc(valuationPath, valuationIndex)]);
         if (mySeq !== renderSeq) return null;
         if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
-        valuationSession = module.createSession(doc, {state, range: state.range});
+        valuationSession = module.createSession(doc, {state, range: state.range, dataPath: valuationPath});
         semiconValuationCleanup = () => valuationSession.destroy();
-        collected.push({name: "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        collected.push({name: ind.id === "commodities" ? "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        if (doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);
-    } catch (e) { return mySeq === renderSeq ? errorCard("semicon/valuation", "valuation_index", e.message) : null; }
+    } catch (e) { return mySeq === renderSeq ? errorCard(valuationPath, valuationIndex, e.message) : null; }
   };
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
@@ -565,6 +568,7 @@ async function renderIndustry(options = {}) {
     }
 
     if (section.type === "table") {
+      const aiCompaniesRenderer = section.table_kind === "ai_companies" ? (await import("./ai-companies.js")).renderAICompanies : null;
       const renderer = section.table_kind === "offshore_overview" ? renderOffshoreOverview
         : section.table_kind === "offshore_market" ? renderOffshoreMarket
         : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
@@ -575,6 +579,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "memory_specs" ? renderGPUSpecs
         : section.table_kind === "asic_specs" ? renderGPUSpecs
         : section.table_kind === "ai_overview" ? (await import("./ai-overview.js")).renderAIOverview
+        : section.table_kind === "ai_companies" ? doc => aiCompaniesRenderer(doc, {registerChart: chart => state.charts.push(chart)})
         : section.table_kind === "dc_summary" ? renderKoreaDataCenterSummary
         : section.table_kind === "dc_facilities" ? renderKoreaDataCenters
         : section.table_kind === "dc_changes" ? renderKoreaDataCenterChanges
@@ -676,6 +681,11 @@ async function renderIndustry(options = {}) {
         companyGrid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
         if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
+      }
+      if (company.valuation_company) {
+        const node = await valuationNode("company", company.valuation_company);
+        if (mySeq !== renderSeq) return;
+        if (node) panel.appendChild(node);
       }
     }
   }

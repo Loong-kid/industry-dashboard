@@ -734,6 +734,15 @@
           "indicators": [
             "dc_ai_overview2"
           ]
+        },
+        {
+          "tab": "ai_companies",
+          "title": "Anthropic · OpenAI",
+          "type": "table",
+          "table_kind": "ai_companies",
+          "indicators": [
+            "dc_ai_companies"
+          ]
         }
       ],
       "tabs": [
@@ -769,6 +778,12 @@
           "name": "AI Overview",
           "description": "구글 시트의 AI 모델 비교표입니다. 시트에 기재된 가격·사양·평가 조건을 함께 확인합니다.",
           "cadence": "개인 시트에서 가져온 자료입니다. 가져온 날짜와 원본 시트 수정일을 표 상단에 표시합니다."
+        },
+        {
+          "id": "ai_companies",
+          "name": "AI 기업",
+          "description": "Anthropic·OpenAI의 회사 발표 ARR와 대표 데이터센터 계획·가동 현황입니다. 실제 수전·컴퓨팅·계약 용량의 기준을 구분합니다.",
+          "cadence": "비정기 회사 발표와 개발·운영사 공식 자료를 검토해 갱신합니다. 검토일과 각 발표의 기준일을 구분합니다."
         }
       ]
     },
@@ -1878,6 +1893,18 @@
           "view": "indicators"
         },
         {
+          "title": "구리 기업 · 주가·PER·PBR 비교",
+          "tab": "copper",
+          "view": "miners",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "scco",
+            "fcx",
+            "ero"
+          ],
+          "indicators": []
+        },
+        {
           "title": "구리 기업 지표",
           "tab": "copper",
           "indicators": [],
@@ -1887,20 +1914,20 @@
               "name": "서던코퍼 (NYSE SCCO)",
               "description": "Mined 자체 광산 생산량입니다. 외부 정광 처리분·제련량·정련량·판매량을 더하지 않습니다.",
               "indicators": [
-                "comm_company_scco_price",
                 "comm_company_scco_profit",
                 "comm_company_scco_production"
-              ]
+              ],
+              "valuation_company": "scco"
             },
             {
               "id": "fcx",
               "name": "프리포트 맥모란 (NYSE FCX)",
               "description": "연결 광산의 회수가능 구리 생산량입니다. FCX 귀속 지분량으로 환산하지 않았습니다.",
               "indicators": [
-                "comm_company_fcx_price",
                 "comm_company_fcx_profit",
                 "comm_company_fcx_production"
-              ]
+              ],
+              "valuation_company": "fcx"
             }
           ],
           "view": "miners"
@@ -2064,7 +2091,8 @@
             "company_mining_ero_capex"
           ],
           "anchor": "mining-ero",
-          "view": "miners"
+          "view": "miners",
+          "valuation_company": "ero"
         },
         {
           "title": "광산기업 순위와 매출 구성",

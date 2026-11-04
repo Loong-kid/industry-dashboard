@@ -107,7 +107,7 @@ export function valuationChartData(doc,metric,rows,large=false,perBands=null){
   return {points,basis,bands,losses};
 }
 
-export function createSession(index,{state,range}){
+export function createSession(index,{state,range,dataPath='semicon/valuation'}){
   if(cacheEpoch!==state.bust){dataCache.clear();cacheEpoch=state.bust;}
   if(!document.querySelector('[data-semicon-valuation-style]')){
     const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./semicon-valuation.css',import.meta.url).href;link.dataset.semiconValuationStyle='true';document.head.append(link);
@@ -128,8 +128,8 @@ export function createSession(index,{state,range}){
     if(!alive||panel.loading||panel.charts.size)return;
     panel.loading=true;
     try{
-      const cacheKey=panel.company.id+':'+(state.bust||'');
-      if(!dataCache.has(cacheKey))dataCache.set(cacheKey,fetch(`data/semicon/valuation/${panel.company.id}.json${state.bust?'?t='+state.bust:''}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).catch(e=>{dataCache.delete(cacheKey);throw e;}));
+      const cacheKey=dataPath+':'+panel.company.id+':'+(state.bust||'');
+      if(!dataCache.has(cacheKey))dataCache.set(cacheKey,fetch(`data/${dataPath}/${panel.company.id}.json${state.bust?'?t='+state.bust:''}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).catch(e=>{dataCache.delete(cacheKey);throw e;}));
       const doc=await dataCache.get(cacheKey);panel.doc=doc;
       if(alive&&panel.visible&&panel.root.isConnected)draw(panel,doc);
     }catch(e){if(alive)for(const c of panel.cards)c.querySelector('.chart-wrap').textContent='주가·밴드를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.';}
@@ -298,7 +298,7 @@ export function createSession(index,{state,range}){
   }
   function summary(ids){
     const root=document.createElement('section');root.className='sv-summary';root.dataset.svSummary='true';
-    root.innerHTML=`<div class="sv-tools"><input type="search" aria-label="주가·밸류에이션 기업 검색" placeholder="기업명·종목 검색"><span class="sv-caption">실적 TTM · 거래 통화 기준 · 수집 ${esc(index?.checked||'—')}</span></div><div class="sv-table-wrap"></div><p class="sv-note">PER은 실적 EPS, PBR은 기말 BPS 기준입니다. 적자·0 이하 순자산은 N/M으로 표시합니다. 기업 이름을 누르면 해당 차트로 이동합니다. 자동 수집: 매일 08:10 KST.</p>`;
+    root.innerHTML=`<div class="sv-tools"><input type="search" aria-label="주가·밸류에이션 기업 검색" placeholder="기업명·종목 검색"><span class="sv-caption">실적 TTM · 거래 통화 기준 · 수집 ${esc(index?.checked||'—')}</span></div><div class="sv-table-wrap"></div><p class="sv-note">PER은 실적 EPS, PBR은 기말 BPS 기준입니다. 적자·0 이하 순자산은 N/M으로 표시합니다. 기업 이름을 누르면 해당 차트로 이동합니다. 자동 수집: 매일 ${esc(index?.auto_collect_time||'08:10')} KST.</p>`;
     let sortKey=null,ascending=true;
     const render=()=>{
       const q=root.querySelector('input').value.trim().toLowerCase();let rows=ids.map(id=>companies.get(id)).filter(Boolean).filter(c=>(c.name+' '+(c.symbol||'')).toLowerCase().includes(q));

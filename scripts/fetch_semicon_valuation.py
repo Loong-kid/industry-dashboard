@@ -16,18 +16,21 @@ def save(path,value):
     tmp.write_text(json.dumps(value,ensure_ascii=False,separators=(',',':'),allow_nan=False)+'\n',encoding='utf8');tmp.replace(path)
 
 
-def collect(offline=False):
+def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_path=None,
+            fundamentals_parser=yahoo_fundamentals, kind='semicon_valuation', methodology=None,
+            collect_time='08:10', index_id='semicon_valuation_index', index_filename='valuation_index.json'):
+    out=out or OUT;cache=cache or CACHE
     now=dt.datetime.now(dt.timezone.utc);asof=now.astimezone(dt.timezone(dt.timedelta(hours=9))).date().isoformat()
-    registry=load(ROOT/'manual/semicon-valuation/companies.json',[]);summaries=[];session=requests.Session();session.headers['User-Agent']='Mozilla/5.0'
-    reviews=load(ROOT/'manual/semicon-valuation/ttm_split_reviews.json',{})
+    registry=load(registry_path or ROOT/'manual/semicon-valuation/companies.json',[]);summaries=[];session=requests.Session();session.headers['User-Agent']='Mozilla/5.0'
+    reviews=load(reviews_path or ROOT/'manual/semicon-valuation/ttm_split_reviews.json',{})
     fx_cache={}
     def get(name,url,params=None):
-        path=CACHE/(name+'.json')
+        path=cache/(name+'.json')
         if offline:return load(path,{})
         r=session.get(url,params=params,timeout=35);r.raise_for_status();data=r.json();save(path,data);time.sleep(.12);return data
     price_params=dict(period1=1388534400,period2=int(now.timestamp()),interval='1d',events='splits,div')
     for spec in registry:
-        key=spec['id'];path=OUT/(key+'.json');old=load(path,{})
+        key=spec['id'];path=out/(key+'.json');old=load(path,{})
         if spec['status']!='listed':summaries.append(dict(spec,price=None,per=None,pbr=None));continue
         errors=[];c=copy.deepcopy(old);symbol=spec['symbol'];currency=spec['currency']
         try:
@@ -43,7 +46,7 @@ def collect(offline=False):
             else:
                 payload=get(symbol+'_fund','https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/'+symbol,
                     dict(type=TYPES,period1=1388534400,period2=int(now.timestamp())))
-                fund=yahoo_fundamentals(payload,symbol,asof,c.get('splits',[]),reviews.get(symbol));source='https://finance.yahoo.com/quote/'+symbol+'/financials/'
+                fund=fundamentals_parser(payload,symbol,asof,c.get('splits',[]),reviews.get(symbol));source='https://finance.yahoo.com/quote/'+symbol+'/financials/'
             if not fund['eps'] and not fund['bps']:raise ValueError('No reported EPS or BPS')
             if old.get('fundamentals'):
                 for field in ('eps','bps'):
@@ -70,9 +73,10 @@ def collect(offline=False):
             except Exception as e:
                 if pair in old.get('fx',{}):fx[pair]=old['fx'][pair]
                 errors.append('환율 '+pair+': '+type(e).__name__)
-        c.update(spec,kind='semicon_valuation',checked=asof,errors=errors,ok=not errors,fx=fx,
+        c.update(spec,kind=kind,checked=asof,errors=errors,ok=not errors,fx=fx,
             price_source='https://finance.yahoo.com/quote/'+symbol+'/history/',
             methodology='분할 반영 종가(배당 재투자 미반영). EPS는 실적 TTM(완결 연간 포함), BPS는 공시 기반 기말 값. 상장 법인 전사 기준이며 반도체·개별 사업부만의 배수가 아닙니다. 과거 밴드는 재작성된 회계기간 기준 참고치이며 공시일 당시의 투자 가능 정보를 재현하지 않습니다. 기준 배수는 2022년 이후 양의 유효 PER/PBR 중앙값이며 밴드는 그 배수의 0.5·0.75·1·1.25·1.5배입니다. 적자·0 이하 EPS 또는 순자산은 배수를 계산하지 않습니다.')
+        if methodology:c['methodology']=methodology
         fund=c.get('fundamentals',dict(eps=[],bps=[]));prices=c.get('prices',[])
         latest,bands=analytics(prices,fund,currency,fx);c.update(latest=latest,bands=bands)
         save(path,c)
@@ -81,7 +85,7 @@ def collect(offline=False):
             price_source=c['price_source'],financial_source=c.get('financial_source'),price_count=len(prices),eps_count=len(fund['eps']),bps_count=len(fund['bps'])))
         print(key,len(prices),'closes;',len(fund['eps']),'EPS;',len(fund['bps']),'BPS;',len(errors),'warnings',flush=True)
     fetched=min((c.get(f) for c in summaries for f in ('price_fetched','financial_fetched') if c.get(f)),default=asof)
-    save(OUT/'valuation_index.json',dict(id='semicon_valuation_index',updated=max((c.get('price_date') or '' for c in summaries),default=''),generated=now.isoformat(timespec='seconds'),fetched=fetched,checked=asof,companies=summaries,auto_collect_time='08:10'))
+    save(out/index_filename,dict(id=index_id,updated=max((c.get('price_date') or '' for c in summaries),default=''),generated=now.isoformat(timespec='seconds'),fetched=fetched,checked=asof,companies=summaries,auto_collect_time=collect_time))
     return summaries
 
 
