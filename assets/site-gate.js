@@ -16,8 +16,10 @@
   const remember = value => { try { localStorage.setItem(STORAGE_KEY, value); } catch { /* 이번 방문만 통과 */ } };
 
   window.SiteGate = {derive};
+  // 내 PC의 미리보기와 화면 시험은 입력창 없이 연다. 배포 주소에는 영향이 없다.
+  const local = () => /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && !config.test_local;
   // 비밀번호를 정하지 않았거나 이 기기에서 이미 통과했으면 바로 연다. 비밀번호를 바꾸면 기억도 무효가 된다.
-  if (!config?.hash || remembered() === config.hash) {
+  if (!config?.hash || local() || remembered() === config.hash) {
     window.siteGateReady = Promise.resolve();
     return;
   }

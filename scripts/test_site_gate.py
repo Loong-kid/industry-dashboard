@@ -48,6 +48,11 @@ class SiteGateTest(unittest.TestCase):
             self.assertRegex(values["salt"], r"^[0-9a-f]{32}$")
             self.assertGreaterEqual(values["iterations"], gate.ITERATIONS)
 
+    def test_local_preview_skips_gate(self):
+        script = (ROOT / "assets/site-gate.js").read_text(encoding="utf-8")
+        self.assertIn(r"^(localhost|127\.0\.0\.1|\[::1\])$", script, "로컬 화면 시험이 입력창에서 멈추지 않게 한다")
+        self.assertIn("!config.test_local", script)
+
     def test_gate_runs_before_app_and_holds_boot(self):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
         order = [html.index(f"assets/{name}") for name in ("site-gate-config.js", "site-gate.js", "app.js")]
