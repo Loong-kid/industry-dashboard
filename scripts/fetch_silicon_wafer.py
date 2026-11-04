@@ -134,8 +134,8 @@ def build(snapshot,monthly=None):
     shin=json.loads((ROOT/'data/semicon/shinetsu_materials_revenue.json').read_text(encoding='utf-8'))
     shin.update(id='wafer_shinetsu_reference',name='참고 · 신에츠 전자재료 매출',description='웨이퍼 외 포토레지스트·블랭크마스크·희토류 자석 등을 포함하는 상위 사업부입니다. 웨이퍼 단독 매출·이익·시장점유율로 해석하지 않습니다.')
     shin['note']=shin['note'].replace('블랭크마스크','실리콘 웨이퍼');docs[shin['id']]=shin
-    docs['wafer_customer_evidence']=dict(id='wafer_customer_evidence',name='구경별 수요와 고객 재고 · SUMCO 원문 그래프',description='SUMCO의 추정이며 업계 전체 확정 통계가 아닙니다. 재고 그래프에 수치 축이 없어 절대 수치를 추출하지 않고 원문을 제공합니다. 상단 기간 선택은 아래 원문 이미지에 적용되지 않습니다.',figures=snapshot['figures'],updated=max(f['date'] for f in snapshot['figures']),fetched=fetched)
-    docs['wafer_supply_events']=dict(id='wafer_supply_events',name='공급·증설·가동 기록',description='공표일 당시 확인된 사실·회사 전망을 구분합니다. 개장·고객 인증·완전가동은 다른 단계입니다.',columns=[['company','기업'],['date','공표일'],['project','대상'],['stage','단계'],['detail','공표 내용'],['timing','실적·목표 시점']],rows=snapshot['events'],note='계획·전망은 목표일이 지났다는 이유로 완료 처리하지 않습니다. 숫자가 없는 가동률·생산능력은 임의 추정하지 않습니다.',updated=max(r['date'] for r in snapshot['events']),fetched=fetched)
+    docs['wafer_customer_evidence']=dict(id='wafer_customer_evidence',manual=True,name='구경별 수요와 고객 재고 · SUMCO 원문 그래프',description='SUMCO의 추정이며 업계 전체 확정 통계가 아닙니다. 재고 그래프에 수치 축이 없어 절대 수치를 추출하지 않고 원문을 제공합니다. 상단 기간 선택은 아래 원문 이미지에 적용되지 않습니다.',figures=snapshot['figures'],updated=max(f['date'] for f in snapshot['figures']),fetched=fetched)
+    docs['wafer_supply_events']=dict(id='wafer_supply_events',manual=True,name='공급·증설·가동 기록',description='공표일 당시 확인된 사실·회사 전망을 구분합니다. 개장·고객 인증·완전가동은 다른 단계입니다.',columns=[['company','기업'],['date','공표일'],['project','대상'],['stage','단계'],['detail','공표 내용'],['timing','실적·목표 시점']],rows=snapshot['events'],note='계획·전망은 목표일이 지났다는 이유로 완료 처리하지 않습니다. 숫자가 없는 가동률·생산능력은 임의 추정하지 않습니다.',updated=max(r['date'] for r in snapshot['events']),fetched=fetched)
     return docs
 
 

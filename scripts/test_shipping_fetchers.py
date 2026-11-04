@@ -16,6 +16,10 @@ class ShippingTests(unittest.TestCase):
     def test_stockq_history_uses_price_not_moving_average_and_checks_recent_overlap(self):
         chart = "window.stockQChartRangeData('sma', '5y', google.visualization.arrayToDataTable([['Time', 'Price', 'MA20', 'MA60'], [new Date('Dec 7, 2021'), 764, 768.1, 726.2], [new Date('Oct 2, 2026'), 6586, 5771.6, 3306.55]]));"
         self.assertEqual(stockq.parse_chart(chart), [('2021-12-07', 764), ('2026-10-02', 6586)])
+        labeled = chart.replace("['Time', 'Price', 'MA20', 'MA60']", "[{label:'Time',type:'date'}, {label:'Price',type:'number'}, {label:'MA20',type:'number'}, {label:'MA60',type:'number'}]")
+        self.assertEqual(stockq.parse_chart(labeled), [('2021-12-07', 764), ('2026-10-02', 6586)], '2026-10 바뀐 머리글 형식')
+        with self.assertRaises(ValueError):
+            stockq.parse_chart(labeled.replace("label:'Price'", "label:'Other'"))
         for wrong in [chart.replace('764,', 'null,'), chart.replace('Dec 7, 2021', 'Dec 7, 2035'), chart.replace("'Price'", "'Other'")]:
             with self.assertRaises(ValueError):
                 stockq.parse_chart(wrong)

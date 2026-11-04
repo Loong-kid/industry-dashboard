@@ -101,7 +101,8 @@ def parse_page(html):
 
 def parse_chart(script):
     """공개 5년 차트의 Price 열만 읽는다. MA 열이나 JS 코드는 실행하지 않는다."""
-    if not re.search(r"\['Time',\s*'Price',\s*'MA20'", script):
+    # 머리글은 ['Time', 'Price', ...] 또는 [{label:'Time',type:'date'}, {label:'Price',...}, ...] 형식이다.
+    if not re.search(r"\[(?:\{label:)?'Time'[^\]]*?,\s*(?:\{label:)?'Price'[^\]]*?,\s*(?:\{label:)?'MA20'", script):
         raise ValueError("StockQ 과거 차트 열 구조 변경")
     rows = re.findall(r"\[new Date\('([^']+)'\),\s*([^,\]]+),[^\]]*\]", script)
     if not rows or len(rows) != script.count("new Date("):

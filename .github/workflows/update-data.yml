@@ -93,6 +93,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: 운임 파서·실패 격리 검증
         run: python -m unittest discover -s scripts -p test_shipping_fetchers.py -v
+      - name: Test stale card rule
+        run: node scripts/test_stale_rule.cjs
       - name: 해운 시장지표 수집
         run: python scripts/fetch_all.py
       - name: Commit & push if changed

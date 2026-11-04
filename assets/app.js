@@ -28,6 +28,8 @@ let dismissFinancialMemo = () => {};
 // doc.updated는 스크립트에 따라 데이터 날짜(공시 접수일 등)를 담기도 해서 stale 판정에 쓰면 오탐이 난다.
 // 워크플로는 매일 KST 07:30 1회 실행 — 실행 실패·주말 슬랙을 감안해 3일부터 지연으로 본다.
 const STALE_DAYS = 3;
+// 기간 말부터 다음 기간 공시까지: 분기 92일 + 공시 45일, 연간 365일 + 공시 92일.
+const DISCLOSURE_DUE_DAYS = {quarterly: 137, yearly: 457};
 
 function daysSince(isoDate) {
   if (!isoDate) return null;
@@ -44,7 +46,10 @@ function staleDays(doc) {
   if (!doc || doc.manual) return null;
   const d = daysSince(doc.fetched);
   const limit = doc.stale_days || STALE_DAYS;
-  return d != null && d >= limit ? d : null;
+  if (d == null || d < limit) return null;
+  // 분기·연간 공시는 새 공시가 없으면 수집일이 그대로다. 다음 기간이 나올 때가 지나야 지연으로 본다.
+  const due = doc.stale_days ? null : DISCLOSURE_DUE_DAYS[doc.frequency];
+  return due && daysSince(doc.updated) <= due ? null : d;
 }
 
 const darkMq = window.matchMedia("(prefers-color-scheme: dark)");

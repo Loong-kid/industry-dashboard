@@ -135,7 +135,7 @@ def build_docs(meta,cohorts):
             else:doc.pop('collection_status',None)
             docs[indicator]=doc
     universe=copy.deepcopy(meta);universe.pop('ero')
-    universe.update(id='mining_universe',name='글로벌 광산기업 · 순위와 매출 구성',updated=meta['ranking_date'],fetched=meta['ranking_date'],
+    universe.update(id='mining_universe',name='글로벌 광산기업 · 순위와 매출 구성',updated=meta['ranking_date'],fetched=meta['ranking_date'],manual=True,
         source='CompaniesMarketCap · 각 회사 공식 연차보고서',source_url=meta['ranking_source_url'])
     docs['mining_universe']=universe
     return docs
