@@ -361,6 +361,11 @@ jobs:
         continue-on-error: true
         run: python scripts/aggregate_flng.py
 
+      # 미국 프로젝트·FLNG 원장(수기 대조) → 기업별 용량 막대.
+      - name: LNG 기업별 용량 집계
+        continue-on-error: true
+        run: python scripts/build_lng_capacity.py
+
       # 광산별 공시 검토 명부: 검토일을 자동 갱신하지 않고 검증 후 변환한다.
       - name: 구리 광산 명부 검증·집계
         id: gate_copper_mines
@@ -417,6 +422,8 @@ jobs:
         run: node scripts/test_globe_view.cjs
       - name: Test globe map
         run: node scripts/test_globe_map.cjs
+      - name: Test LNG capacity
+        run: python -m unittest discover -s scripts -p test_lng_capacity.py
 
       - name: 기간 달력·갱신 버튼 대상 검증
         continue-on-error: true

@@ -79,16 +79,23 @@ def year_month_day(v):
     return v.date().isoformat() if isinstance(v, dt.datetime) else (str(v)[:10] if v else None)
 
 
+def built_capacity(r):
+    """기준 용량 칸은 대개 행 전체 값이지만 Woodside처럼 트레인당 값만 적힌 행이 있다(기준 5.52, 피크 16.56).
+    피크가 두 배를 넘으면 기준 칸이 트레인당이라고 보고 합계를 쓴다."""
+    base, peak = num(r[3]), num(r[5])
+    return peak if base and peak and peak > 2 * base else base
+
+
 def parse_built(ws):
     """FID 완료 시트: train 단위. 각주 문단이 표 아래 붙어 있어 상태가 없는 행은 버린다."""
     rows = []
-    for r in ws.iter_rows(min_row=5, values_only=True):
+    for r in ws.iter_rows(min_row=4, values_only=True):  # 2·3행이 머리글이고 4행부터 자료(Sabine Pass T1)
         status = clean_status(r[6])
         if not r[0] or not status:
             continue
         rows.append({
             "project": str(r[0]).strip(), "train": str(r[1] or "").strip(),
-            "mtpa": num(r[3]), "status": status, "year": year_of(r[7]),
+            "mtpa": built_capacity(r), "status": status, "year": year_of(r[7]),
             "state": str(r[9] or "").strip() if len(r) > 9 else "",
             # 운영사는 21번째 열(오른쪽 끝)에 있다 — DOE/FERC 허가 컬럼들 뒤라 눈에 잘 안 띈다.
             "operator": str(r[20] or "").strip() if len(r) > 20 else "",

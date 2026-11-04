@@ -35,19 +35,22 @@ def run():
                 "start_year": int(r["start_year"]) if r["start_year"].strip() else None,
                 "mtpa": float(r["mtpa"]) if r["mtpa"].strip() else None,
                 "note": r.get("note", "").strip(),
+                "source_url": r.get("source_url", "").strip(),
             })
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     today = dt.date.today().isoformat()
     live = [r for r in rows if r["status"] == "가동중"]
-    building = [r for r in rows if r["status"] != "가동중"]
+    building = [r for r in rows if r["status"] in ("건조중", "개조중")]
+    pending = [r for r in rows if r["status"] == "FID 전"]
     live_cap = sum(r["mtpa"] for r in live if r["mtpa"])
     build_cap = sum(r["mtpa"] for r in building if r["mtpa"])
+    pending_cap = sum(r["mtpa"] for r in pending if r["mtpa"])
 
     (OUT_DIR / "flng_fleet.json").write_text(json.dumps({
         "id": "flng_fleet", "name": "전세계 FLNG 선단",
         "source": SOURCE, "source_url": "", "updated": today, "fetched": today,
         "manual": True,
-        "note": (f"가동중 {len(live)}기 {live_cap:.1f} MTPA · 건조중 {len(building)}기 {build_cap:.1f} MTPA. "
+        "note": (f"가동중 {len(live)}기 {live_cap:.1f} MTPA · 건조·개조중 {len(building)}기 {build_cap:.1f} MTPA · FID 전 {len(pending)}건 {pending_cap:.1f} MTPA. "
                  "사업모델이 '자가 액화용'이면 가스전 보유사가 자기 가스를 액화하는 것이고, "
                  "'액화 서비스'면 선주가 배만 빌려주고 수수료를 받는 구조다(Golar가 이 방식). "
                  "수기 관리 파일이라 새 호선·용선 변경은 manual/flng_fleet.csv에 직접 추가한다."),
@@ -67,10 +70,12 @@ def run():
 
     # 연도별 누적: FLNG가 실제로 얼마나 빠르게 늘었는지 (건조중은 예정연도에 얹는다)
     cum, total = [], 0.0
+    # FID 전·보류는 가동 연도가 없어 빠진다.
     for r in sorted([r for r in rows if r["start_year"] and r["mtpa"]], key=lambda r: r["start_year"]):
         total = round(total + r["mtpa"], 2)
         cum.append([f"{r['start_year']}-01-01", total, r["status"]])
-    live_pts = [[d, v] for d, v, s in cum if s == "가동중"]
+    # Hilli는 개조 중이지만 2018년부터 가동한 이력이므로 과거 누적에 남긴다.
+    live_pts = [[d, v] for d, v, s in cum if s in ("가동중", "개조중")]
     all_pts = [[d, v] for d, v, _ in cum]
     (OUT_DIR / "flng_capacity.json").write_text(json.dumps({
         "id": "flng_capacity", "name": "FLNG 누적 액화용량", "unit": "MTPA", "frequency": "yearly", "full_range": True,
@@ -81,11 +86,11 @@ def run():
             "다른 가스전으로 옮겨갈 수 있고, 그래서 매장량이 작거나 육상 부지가 어려운 곳을 연다. "
             "위 미국 육상 프로젝트(단일 트레인 5 MTPA 안팎)와 견주면 한 기의 크기를 가늠할 수 있다."
         ),
-        "note": "첫 가동연도에 그 배의 설계용량을 한꺼번에 얹은 단순 누적이다. 램프업 기간은 반영하지 않았다.",
+        "note": "첫 가동연도에 그 배의 설계용량을 한꺼번에 얹은 단순 누적이다. 램프업 기간은 반영하지 않았다. Hilli(2.4)는 2026-07 카메룬 계약을 끝내고 개조 중이지만 가동 누적에 남겼다.",
         "series": {"가동중 누적": live_pts, "건조중 포함": all_pts},
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    print(f"  FLNG {len(rows)}기 (가동 {len(live)}/{live_cap:.1f} MTPA · 건조 {len(building)}/{build_cap:.1f} MTPA)")
+    print(f"  FLNG {len(rows)}건 (가동 {len(live)}/{live_cap:.1f} · 건조·개조 {len(building)}/{build_cap:.1f} · FID 전 {len(pending)}/{pending_cap:.1f} MTPA)")
 
 
 if __name__ == "__main__":

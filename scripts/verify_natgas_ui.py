@@ -58,7 +58,7 @@ def verify(base):
             page.goto(base+'#/natgas/midstream/invalid');wait('summary')
             page.goto(base+'#/natgas')
             page.wait_for_function('state.subtab==="overview" && !document.querySelector(".page-loading")')
-            assert page.locator('#page-tabs a.active').inner_text()=='가격·LNG'
+            assert page.locator('#page-tabs a.active').inner_text()=='LNG'
             assert page.get_by_role('navigation',name='미드스트림 분류').count()==0
             assert page.locator('#refresh-label').inner_text()=='천연가스 갱신'
             assert page.locator('#content .is-error').count()==0

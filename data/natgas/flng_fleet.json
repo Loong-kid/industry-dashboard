@@ -3,10 +3,10 @@
  "name": "전세계 FLNG 선단",
  "source": "수기입력 (참고: EA Global LNG Capacity Tracker 도표 · 용량·연도는 공개 보도 대조)",
  "source_url": "",
- "updated": "2026-11-03",
- "fetched": "2026-11-03",
+ "updated": "2026-11-04",
+ "fetched": "2026-11-04",
  "manual": true,
- "note": "가동중 9기 19.0 MTPA · 건조중 1기 3.5 MTPA. 사업모델이 '자가 액화용'이면 가스전 보유사가 자기 가스를 액화하는 것이고, '액화 서비스'면 선주가 배만 빌려주고 수수료를 받는 구조다(Golar가 이 방식). 수기 관리 파일이라 새 호선·용선 변경은 manual/flng_fleet.csv에 직접 추가한다.",
+ "note": "가동중 8기 16.8 MTPA · 건조·개조중 9기 24.6 MTPA · FID 전 12건 64.5 MTPA. 사업모델이 '자가 액화용'이면 가스전 보유사가 자기 가스를 액화하는 것이고, '액화 서비스'면 선주가 배만 빌려주고 수수료를 받는 구조다(Golar가 이 방식). 수기 관리 파일이라 새 호선·용선 변경은 manual/flng_fleet.csv에 직접 추가한다.",
  "cols": [
   {
    "key": "vessel",
@@ -58,18 +58,20 @@
    "status": "가동중",
    "start_year": 2022,
    "mtpa": 3.4,
-   "note": "첫 화물 2022-11"
+   "note": "첫 화물 2022-11",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   },
   {
    "vessel": "Hilli Episeyo",
    "operator": "Golar",
-   "country": "카메룬",
-   "field": "Kribi",
+   "country": "카메룬 → 아르헨티나",
+   "field": "Kribi → Vaca Muerta",
    "model": "액화 서비스",
-   "status": "가동중",
+   "status": "개조중",
    "start_year": 2018,
    "mtpa": 2.4,
-   "note": "현 용선 2026 종료 · 이후 아르헨티나 20년 용선 계약"
+   "note": "2026-07 카메룬 계약 종료 · 싱가포르 개조 후 SESA 20년 계약 2027 하반기 시작",
+   "source_url": "https://mfn.se/one/a/golar-lng/golar-lng-limited-interim-results-for-the-period-ended-june-30-2026-b168e773"
   },
   {
    "vessel": "Gimi",
@@ -79,8 +81,9 @@
    "model": "액화 서비스",
    "status": "가동중",
    "start_year": 2025,
-   "mtpa": 2.5,
-   "note": "설계용량 기준 램프업 중"
+   "mtpa": 2.7,
+   "note": "Golar 70% · Hilli와 합쳐 5.1이라는 회사 표기 기준",
+   "source_url": "https://mfn.se/one/a/golar-lng/golar-lng-limited-interim-results-for-the-period-ended-june-30-2026-b168e773"
   },
   {
    "vessel": "Tango FLNG",
@@ -91,7 +94,8 @@
    "status": "가동중",
    "start_year": 2023,
    "mtpa": 0.6,
-   "note": "Congo LNG 1단계"
+   "note": "Congo LNG 1단계",
+   "source_url": "https://www.ogj.com/pipelines-transportation/lng/news/55357459/eni-delivers-congo-lng-phase-2-with-first-cargo-from-nguya-vessel"
   },
   {
    "vessel": "Nguya FLNG",
@@ -102,10 +106,11 @@
    "status": "가동중",
    "start_year": 2026,
    "mtpa": 2.4,
-   "note": "Congo LNG 2단계 · Tango 합산 3.0"
+   "note": "Congo LNG 2단계 · 2026-02 첫 화물 · Tango 합산 3.0",
+   "source_url": "https://www.ogj.com/pipelines-transportation/lng/news/55357459/eni-delivers-congo-lng-phase-2-with-first-cargo-from-nguya-vessel"
   },
   {
-   "vessel": "Fast LNG Altamira",
+   "vessel": "Fast LNG Altamira 1",
    "operator": "New Fortress Energy",
    "country": "멕시코",
    "field": "Altamira",
@@ -113,7 +118,8 @@
    "status": "가동중",
    "start_year": 2024,
    "mtpa": 1.4,
-   "note": "설계 1.4 · 실적 1.67까지 기록"
+   "note": "설계 1.4",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   },
   {
    "vessel": "PFLNG Satu",
@@ -124,7 +130,8 @@
    "status": "가동중",
    "start_year": 2017,
    "mtpa": 1.2,
-   "note": "세계 첫 FLNG · 가스전 이동 배치"
+   "note": "세계 첫 FLNG · 가스전 이동 배치",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   },
   {
    "vessel": "PFLNG Dua",
@@ -135,29 +142,320 @@
    "status": "가동중",
    "start_year": 2021,
    "mtpa": 1.5,
-   "note": "심해 FLNG"
+   "note": "심해 FLNG",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   },
   {
    "vessel": "Prelude FLNG",
-   "operator": "Shell JV",
+   "operator": "Shell",
    "country": "호주",
    "field": "Browse",
    "model": "자가 액화용",
    "status": "가동중",
    "start_year": 2019,
    "mtpa": 3.6,
-   "note": "LNG 3.6 외 LPG 0.4 · 콘덴세이트 1.3"
+   "note": "LNG 3.6 외 LPG 0.4 · 콘덴세이트 1.3",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   },
   {
-   "vessel": "Fuji LNG (MKII)",
+   "vessel": "FLNG Esperanza (MKII)",
    "operator": "Golar",
    "country": "아르헨티나",
-   "field": "Río Negro",
+   "field": "Vaca Muerta",
    "model": "액화 서비스",
    "status": "건조중",
    "start_year": 2028,
    "mtpa": 3.5,
-   "note": "CIMC Raffles 인도 2027 4Q 예정 · 2028 상반기 가동 목표"
+   "note": "옛 이름 Fuji LNG · 2027 4분기 완공 · SESA 계약 2028 하반기 시작",
+   "source_url": "https://mfn.se/one/a/golar-lng/golar-lng-limited-interim-results-for-the-period-ended-june-30-2026-b168e773"
+  },
+  {
+   "vessel": "Golar 4호 FLNG (MKII)",
+   "operator": "Golar",
+   "country": "미정",
+   "field": "미정",
+   "model": "액화 서비스",
+   "status": "건조중",
+   "start_year": 2030,
+   "mtpa": 3.5,
+   "note": "2026-08 FID · EPC 체결 · 2029년 말 인도 · 용선처 미정(가동 연도는 인도 다음 해로 잡음)",
+   "source_url": "https://mfn.se/one/a/golar-lng/golar-lng-limited-interim-results-for-the-period-ended-june-30-2026-b168e773"
+  },
+  {
+   "vessel": "Coral Norte FLNG",
+   "operator": "Eni",
+   "country": "모잠비크",
+   "field": "Area 4 (Rovuma)",
+   "model": "자가 액화용",
+   "status": "건조중",
+   "start_year": 2028,
+   "mtpa": 3.6,
+   "note": "2025 FID · 2026-01 선체 진수",
+   "source_url": "https://jpt.spe.org/mozambique-greenlights-enis-coral-norte-flng"
+  },
+  {
+   "vessel": "Delfin FLNG 1",
+   "operator": "Delfin Midstream",
+   "country": "미국",
+   "field": "Gulf of Mexico",
+   "model": "액화 서비스",
+   "status": "건조중",
+   "start_year": 2030,
+   "mtpa": 4.4,
+   "note": "2026-06 FID",
+   "source_url": "https://www.ogj.com/pipelines-transportation/lng/news/55382099/delfin-midstream-takes-5-billion-fid-for-first-flng-vessel"
+  },
+  {
+   "vessel": "Cedar LNG",
+   "operator": "Pembina·Haisla",
+   "country": "캐나다",
+   "field": "Kitimat",
+   "model": "액화 서비스",
+   "status": "건조중",
+   "start_year": 2028,
+   "mtpa": 3.3,
+   "note": "2028년 말 가동 목표",
+   "source_url": "https://naturalgasintel.com/news/cedar-lng-construction-advances-with-flng-vessel-nearing-completion-midpoint/"
+  },
+  {
+   "vessel": "ZLNG (Sabah)",
+   "operator": "Petronas",
+   "country": "말레이시아",
+   "field": "Sabah",
+   "model": "자가 액화용",
+   "status": "건조중",
+   "start_year": 2027,
+   "mtpa": 2.0,
+   "note": "2027 중반 인도 · 하반기 시운전",
+   "source_url": "https://jpt.spe.org/baker-hughes-to-provide-compressor-train-duo-to-petronas"
+  },
+  {
+   "vessel": "Alam Guyub FLNG",
+   "operator": "Genting",
+   "country": "인도네시아",
+   "field": "Teluk Bintuni (West Papua)",
+   "model": "자가 액화용",
+   "status": "건조중",
+   "start_year": 2027,
+   "mtpa": 1.2,
+   "note": "2026-01 선체 진수 · 가동 연도는 GEM·IEA 표기",
+   "source_url": "https://www.oedigital.com/amp/news/514710-wison-secures-1b-contract-from-genting-to-build-indonesia-s-first-flng-unit"
+  },
+  {
+   "vessel": "Cap Lopez FLNG",
+   "operator": "Perenco",
+   "country": "가봉",
+   "field": "Cap Lopez",
+   "model": "자가 액화용",
+   "status": "건조중",
+   "start_year": 2027,
+   "mtpa": 0.7,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Ksi Lisims LNG",
+   "operator": "Western LNG",
+   "country": "캐나다",
+   "field": "Nisga'a 부지",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 12.0,
+   "note": "2026 FID 목표 · 구속력 없는 물량 포함",
+   "source_url": "https://thedeepdive.ca/ksi-lisims-hits-lower-end-of-pre-fid-sales-target-with-santos-deal/"
+  },
+  {
+   "vessel": "Argentina LNG",
+   "operator": "YPF·Eni·XRG",
+   "country": "아르헨티나",
+   "field": "Vaca Muerta",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 12.0,
+   "note": "2026년 말 FID 목표 · 2030 첫 생산 목표",
+   "source_url": "https://pgjonline.com/news/2026/february/ypf-eni-xrg-advance-12-mmtpy-argentina-lng-toward-fid"
+  },
+  {
+   "vessel": "Delfin FLNG 2-3",
+   "operator": "Delfin Midstream",
+   "country": "미국",
+   "field": "Gulf of Mexico",
+   "model": "액화 서비스",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 8.8,
+   "note": "GEM 3척 13.2에서 1호선을 뺀 값",
+   "source_url": "https://worldoil.com/news/2026/7/15/delfin-advances-flng2-toward-fid-with-midocean-siemens-agreements/"
+  },
+  {
+   "vessel": "ST LNG",
+   "operator": "ST LNG",
+   "country": "미국",
+   "field": "Matagorda",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 8.4,
+   "note": "FID 2027 중·하반기 목표",
+   "source_url": "https://www.bicmagazine.com/projects-expansions/midstream/st-lng-to-decide-on-us-offshore-lng-facility/"
+  },
+  {
+   "vessel": "AGP LNG",
+   "operator": "American Gas Partners",
+   "country": "미국",
+   "field": "Gulf of Mexico",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 7.2,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "NewMed FLNG",
+   "operator": "NewMed·Chevron",
+   "country": "이스라엘",
+   "field": "Leviathan",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 5.14,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "GTA 2단계",
+   "operator": "bp·Kosmos",
+   "country": "모리타니·세네갈",
+   "field": "GTA (Greater Tortue Ahmeyim)",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 3.0,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Transoceanic Nigeria FLNG",
+   "operator": "Transoceanic Gas & Power",
+   "country": "나이지리아",
+   "field": "미정",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 3.0,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "UTM FLNG",
+   "operator": "UTM Offshore",
+   "country": "나이지리아",
+   "field": "Yoho",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 1.5,
+   "note": "CEO가 2026 착공 추진을 언급 · GEM 표기는 2.1",
+   "source_url": "https://www.thisdaylive.com/2026/02/11/nigerias-first-flng-gets-2026-construction-timeline-as-julius-rone-bags-sun-investor-award/"
+  },
+  {
+   "vessel": "Fast LNG Altamira 3",
+   "operator": "New Fortress Energy",
+   "country": "멕시코",
+   "field": "Altamira",
+   "model": "자가 액화용",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 1.4,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Etinde FLNG",
+   "operator": "New Age·Lukoil",
+   "country": "카메룬",
+   "field": "Etinde",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 1.3,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Pasca FLNG",
+   "operator": "Twinza",
+   "country": "파푸아뉴기니",
+   "field": "Pasca",
+   "model": "미정",
+   "status": "FID 전",
+   "start_year": null,
+   "mtpa": 0.75,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Fast LNG Altamira 2",
+   "operator": "New Fortress Energy",
+   "country": "멕시코",
+   "field": "Altamira",
+   "model": "자가 액화용",
+   "status": "보류",
+   "start_year": null,
+   "mtpa": 1.4,
+   "note": "2026-04 추적 DB에 보류로 표기 · 회사 공시로는 미확인",
+   "source_url": "https://chemxplore.com/companies/nfe"
+  },
+  {
+   "vessel": "Grand Isle 해상 터미널",
+   "operator": "Grand Isle LNG",
+   "country": "미국",
+   "field": "Gulf of Mexico",
+   "model": "미정",
+   "status": "보류",
+   "start_year": null,
+   "mtpa": 4.2,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Placentia Bay FLNG",
+   "operator": "LNG Newfoundland and Labrador",
+   "country": "캐나다",
+   "field": "Placentia Bay",
+   "model": "미정",
+   "status": "보류",
+   "start_year": null,
+   "mtpa": 4.0,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Rovuma FLNG",
+   "operator": "Eni·ExxonMobil",
+   "country": "모잠비크",
+   "field": "Rovuma",
+   "model": "미정",
+   "status": "보류",
+   "start_year": null,
+   "mtpa": 3.0,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
+  },
+  {
+   "vessel": "Lakach FLNG",
+   "operator": "New Fortress Energy",
+   "country": "멕시코",
+   "field": "Lakach",
+   "model": "미정",
+   "status": "보류",
+   "start_year": null,
+   "mtpa": 1.4,
+   "note": "",
+   "source_url": "https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/"
   }
  ]
 }

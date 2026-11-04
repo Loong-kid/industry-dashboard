@@ -572,6 +572,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "ess_batteries" ? doc => renderESSBatteries(doc, {view: section.battery_view})
         : section.table_kind === "ti_fixtures" ? renderTIFixtures
         : section.table_kind === "copper_mines" ? renderCopperMines
+        : section.table_kind === "lng_capacity" ? renderLngCapacity
         : section.table_kind === "mining_companies" ? renderMiningCompanies
         : renderOrderTable;
       for (const indicatorId of section.indicators) {
