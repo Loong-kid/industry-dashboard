@@ -62,7 +62,7 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert.equal(state.copperView,'miners');
   assert(loaded.includes('company_mining_ero_revenue'));
   assert(loaded.includes('comm_company_scco_profit') && loaded.includes('comm_company_fcx_profit'));
-  assert(loaded.includes('valuation_index'));
+  assert(loaded.includes('copper_valuation_index'));
   assert.deepEqual(valuations, [['summary','scco','fcx','ero'], ['company','scco'], ['company','fcx'], ['company','ero']]);
   assert(!loaded.includes('comm_company_scco_price') && !loaded.includes('comm_company_fcx_price'), 'One shared price chart per company');
   assert(!loaded.includes('comm_copper_total_inventory'));
@@ -78,5 +78,16 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert(commodity.sections.every(s => commodity.tabs.some(t => t.id === s.tab)));
   for (const section of commodity.sections) for (const id of [...section.indicators, ...(section.companies || []).flatMap(c => c.indicators)])
     assert(fs.existsSync(`data/commodities/${id}.json`));
+  // loadDoc caches by indicator ID: each industry's summary needs a distinct
+  // ID as well as its own directory when navigating without a page reload.
+  const settings = new Function('ind', source.slice(source.indexOf('  const valuationPath ='), source.indexOf('  const valuationNode =')) + '\nreturn {valuationPath, valuationIndex};');
+  const cachedState = {docs: new Map(), docErrors: new Map()};
+  const cachedLoader = new Function('state', 'fetch', source.slice(source.indexOf('async function loadDoc('), source.indexOf('// refresh.js')) + '\nreturn loadDoc;')(
+    cachedState, async url => ({ok:true, json:async()=>({url})}));
+  for (const industry of ['commodities','semicon','commodities']) {
+    const {valuationPath, valuationIndex} = settings({id:industry});
+    const doc = await cachedLoader(valuationPath, valuationIndex);
+    assert.equal(doc.url, `data/${valuationPath}/${valuationIndex}.json`);
+  }
   console.log('PASS: five commodity tabs, separate copper market/miners, Ero, old links and data isolation');
 })().catch(e => { console.error(e); process.exitCode = 1; });

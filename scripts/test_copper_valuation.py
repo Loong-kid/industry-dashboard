@@ -1,13 +1,11 @@
-import copy
 import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from fetch_copper_valuation import ROOT, REGISTRY, OUT, CACHE, run, copper_fundamentals
+from fetch_copper_valuation import ROOT, REGISTRY, OUT, run, copper_fundamentals
 from fetch_semicon_valuation import load, analytics
-from semicon_valuation_sources import price_rows
 
 FIX = ROOT / 'scripts/fixtures/copper_valuation'
 
@@ -19,7 +17,7 @@ class CopperValuationTests(unittest.TestCase):
                          [('scco', 'SCCO', 'USD'), ('fcx', 'FCX', 'USD'), ('ero', 'ERO', 'USD')])
         semi = load(ROOT/'manual/semicon-valuation/companies.json', [])
         self.assertFalse({'scco', 'fcx', 'ero'} & {s['id'] for s in semi})
-        index = load(OUT/'valuation_index.json', {})
+        index = load(OUT/'copper_valuation_index.json', {})
         self.assertEqual(index['id'], 'copper_valuation_index')
         self.assertEqual(index['auto_collect_time'], '08:20')
         self.assertEqual([c['id'] for c in index['companies']], [s['id'] for s in specs])

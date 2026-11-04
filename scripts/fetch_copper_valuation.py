@@ -57,7 +57,8 @@ def copper_fundamentals(payload, symbol, asof, splits=(), review=None):
 def run(offline=False):
     return collect(offline, registry_path=REGISTRY, out=OUT, cache=CACHE,
                    fundamentals_parser=copper_fundamentals, kind='copper_valuation',
-                   methodology=METHODOLOGY, collect_time='08:20', index_id='copper_valuation_index')
+                   methodology=METHODOLOGY, collect_time='08:20', index_id='copper_valuation_index',
+                   index_filename='copper_valuation_index.json')
 
 
 if __name__ == '__main__':

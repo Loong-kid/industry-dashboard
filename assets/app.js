@@ -518,10 +518,11 @@ async function renderIndustry(options = {}) {
   const collected = []; // 수집 상태 판정용 { name, fetched }
   let valuationSession = null;
   const valuationPath = ind.id === "commodities" ? "commodities/valuation" : "semicon/valuation";
+  const valuationIndex = ind.id === "commodities" ? "copper_valuation_index" : "valuation_index";
   const valuationNode = async (mode, ids) => {
     try {
       if (!valuationSession) {
-        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc(valuationPath, "valuation_index")]);
+        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc(valuationPath, valuationIndex)]);
         if (mySeq !== renderSeq) return null;
         if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
         valuationSession = module.createSession(doc, {state, range: state.range, dataPath: valuationPath});
@@ -530,7 +531,7 @@ async function renderIndustry(options = {}) {
         if (doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);
-    } catch (e) { return mySeq === renderSeq ? errorCard(valuationPath, "valuation_index", e.message) : null; }
+    } catch (e) { return mySeq === renderSeq ? errorCard(valuationPath, valuationIndex, e.message) : null; }
   };
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;

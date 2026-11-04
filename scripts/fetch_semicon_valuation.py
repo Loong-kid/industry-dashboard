@@ -18,7 +18,7 @@ def save(path,value):
 
 def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_path=None,
             fundamentals_parser=yahoo_fundamentals, kind='semicon_valuation', methodology=None,
-            collect_time='08:10', index_id='semicon_valuation_index'):
+            collect_time='08:10', index_id='semicon_valuation_index', index_filename='valuation_index.json'):
     out=out or OUT;cache=cache or CACHE
     now=dt.datetime.now(dt.timezone.utc);asof=now.astimezone(dt.timezone(dt.timedelta(hours=9))).date().isoformat()
     registry=load(registry_path or ROOT/'manual/semicon-valuation/companies.json',[]);summaries=[];session=requests.Session();session.headers['User-Agent']='Mozilla/5.0'
@@ -85,7 +85,7 @@ def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_
             price_source=c['price_source'],financial_source=c.get('financial_source'),price_count=len(prices),eps_count=len(fund['eps']),bps_count=len(fund['bps'])))
         print(key,len(prices),'closes;',len(fund['eps']),'EPS;',len(fund['bps']),'BPS;',len(errors),'warnings',flush=True)
     fetched=min((c.get(f) for c in summaries for f in ('price_fetched','financial_fetched') if c.get(f)),default=asof)
-    save(out/'valuation_index.json',dict(id=index_id,updated=max((c.get('price_date') or '' for c in summaries),default=''),generated=now.isoformat(timespec='seconds'),fetched=fetched,checked=asof,companies=summaries,auto_collect_time=collect_time))
+    save(out/index_filename,dict(id=index_id,updated=max((c.get('price_date') or '' for c in summaries),default=''),generated=now.isoformat(timespec='seconds'),fetched=fetched,checked=asof,companies=summaries,auto_collect_time=collect_time))
     return summaries
 
 
