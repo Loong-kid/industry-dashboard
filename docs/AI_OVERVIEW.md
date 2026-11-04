@@ -1,6 +1,6 @@
 # AI 모델 비교표
 
-데이터센터의 `AI Overview`와 `AI Overview 2`는 사용자가 관리하는 **산업(AI_Datacenter)_밸류에이션** Google Sheet의 두 탭을 읽기 전용으로 가져온 자료다.
+데이터센터의 `AI Overview`는 사용자가 관리하는 **산업(AI_Datacenter)_밸류에이션** Google Sheet의 두 탭을 읽기 전용으로 가져온 자료다. 대시보드에서는 하나의 탭 안에 언어모델 → 이미지 모델 → 영상 모델 순으로 배치하며, 아래로 스크롤하면 이어서 볼 수 있다. 예전 `#/datacenter/ai_overview2` 주소도 통합 탭으로 연결한다.
 
 - 원본: https://docs.google.com/spreadsheets/d/1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs/edit
 - `AI Overview` (gid 1087266006): 언어모델 110개, 44개 열. 가격·사양·여러 벤치마크를 열 묶음으로 선택하거나 전체 열로 볼 수 있다.

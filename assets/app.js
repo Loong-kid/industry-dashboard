@@ -141,6 +141,10 @@ function route() {
     history.replaceState(null, "", `#/oil/offshore/${requestedView}`);
   }
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
+  if (id === "datacenter" && requestedTab === "ai_overview2") {
+    requestedTab = "ai_overview";
+    history.replaceState(null, "", "#/datacenter/ai_overview");
+  }
   if (id === "natgas" && requestedTab === "containment_kpis") {
     requestedTab = "containment";
     history.replaceState(null, "", "#/natgas/containment");

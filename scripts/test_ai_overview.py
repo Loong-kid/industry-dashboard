@@ -66,14 +66,16 @@ class AIOverviewTests(unittest.TestCase):
         self.assertIn('1M token',llm['unit_note'])
         self.assertEqual(letter(63),'BK')
 
-    def test_catalog_routes_use_isolated_tables(self):
+    def test_catalog_combines_both_source_tables_in_source_order(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf-8'))
         dc=next(i for i in catalog['industries'] if i['id']=='datacenter')
-        for tab in ['ai_overview','ai_overview2']:
-            self.assertIn(tab,{t['id'] for t in dc['tabs']})
-            section=next(s for s in dc['sections'] if s['tab']==tab)
+        self.assertIn('ai_overview',{t['id'] for t in dc['tabs']})
+        self.assertNotIn('ai_overview2',{t['id'] for t in dc['tabs']})
+        sections=[s for s in dc['sections'] if s['tab']=='ai_overview']
+        self.assertEqual([s['indicators'] for s in sections],[['dc_ai_overview'],['dc_ai_overview2']])
+        self.assertFalse(any(s['tab']=='ai_overview2' for s in dc['sections']))
+        for section in sections:
             self.assertEqual(section['table_kind'],'ai_overview')
-            self.assertEqual(section['indicators'],['dc_'+tab])
         self.assertTrue(any(t['id']=='us' and len(t['views'])==2 for t in dc['tabs']))
 
 
