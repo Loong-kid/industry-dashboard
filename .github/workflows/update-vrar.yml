@@ -8,6 +8,10 @@ on:
         description: Collect original Sapien contract filings for review only
         type: boolean
         default: false
+      contracts_only:
+        description: Refresh contract follow-up without financial accounts
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -15,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   accounts:
-    if: ${{ !inputs.review_contracts_only }}
+    if: ${{ !inputs.review_contracts_only && !inputs.contracts_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -48,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/vrar/
+          git add data/vrar/company_vrar_*.json data/vrar/state.json data/vrar/korea_state.json data/vrar/universe.json
           git diff --cached --quiet || git commit -m "chore: refresh VRAR issuer accounts"
           for attempt in 1 2 3; do
             git pull --rebase origin "$GITHUB_REF_NAME"
@@ -56,6 +60,47 @@ jobs:
           done
           exit 1
       - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
+  contracts:
+    if: ${{ !inputs.review_contracts_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate XR tables and contract source rules
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_vrar_reference.py -v
+      - name: Refresh device snapshot and original contract history
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: |
+          python scripts/build_vrar_reference.py
+          python -u scripts/fetch_vrar_contracts.py --refresh
+      - name: Validate refreshed contract history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_vrar_reference.py -v
+      - name: Commit reference tables and contract history only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/vrar/reference_tables.json data/vrar/contract_watch.json data/vrar/contract_source_state.json
+          git diff --cached --quiet || git commit -m "chore: refresh Sapien contract follow-up"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report contract validation failure
         if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
         run: exit 1
   contract-originals:

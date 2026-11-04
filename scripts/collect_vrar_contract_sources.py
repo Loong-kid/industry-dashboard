@@ -27,6 +27,7 @@ def collect():
             if '단일판매' in row['report_nm'] or '공급계약' in row['report_nm']:entries.append(row)
         if page>=int(payload.get('total_page',1)):break
         page+=1
+    if not entries:raise ValueError('Contract list unexpectedly empty')
     save(CACHE/'list.json',dict(checked=asof,corp_code=CORP,stock_code=TICKER,entries=entries))
     existing=load(STATE,dict(disclosures=[]));prior={r['receipt']:r for r in existing.get('disclosures',[])}
     def original(entry):

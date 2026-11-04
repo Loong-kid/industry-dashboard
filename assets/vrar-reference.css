@@ -1,0 +1,48 @@
+.xrr-reference { min-width: 0; margin: 0 0 34px; }
+.xrr-reference h2 { margin: 0 0 8px; font-size: 18px; font-weight: 650; }
+.xrr-intro { max-width: 100ch; font-size: 13px; line-height: 1.7; color: var(--ink-2); }
+.xrr-source, .xrr-count { margin: 8px 0 12px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.xrr-reference a { color: var(--accent); text-underline-offset: 3px; }
+.xrr-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 16px; }
+.xrr-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.xrr-choices button, .xrr-maker-label select { font: inherit; font-size: 12px; padding: 8px 10px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--border); border-radius: 5px; }
+.xrr-choices button { cursor: pointer; }
+.xrr-choices button.active { color: var(--accent); border-color: var(--accent); }
+.xrr-maker-label { font-size: 12px; color: var(--ink-2); }
+.xrr-scroll { overflow: auto; max-width: 100%; border: 1px solid var(--border); border-radius: 8px; }
+.xrr-table { width: 100%; min-width: 1090px; border-collapse: separate; border-spacing: 0; font-size: 12px; color: var(--ink); }
+.xrr-table th, .xrr-table td { padding: 12px 13px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; line-height: 1.65; }
+.xrr-table thead th { font-size: 11px; color: var(--ink-2); font-weight: 600; background: var(--surface); white-space: nowrap; }
+.xrr-table tbody th { font-weight: 600; }
+.xrr-table tbody tr:last-child > * { border-bottom: 0; }
+.xrr-table small { display: block; color: var(--muted); font-size: 11px; font-weight: 400; margin-top: 4px; }
+.xrr-table .xrr-model { min-width: 175px; max-width: 225px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
+.xrr-date { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.xrr-price { min-width: 115px; font-variant-numeric: tabular-nums; }
+.xrr-device-main { min-width: 180px; max-width: 260px; overflow-wrap: anywhere; }
+.xrr-detail { min-width: 100px; font-size: 12px; font-weight: 400; }
+.xrr-detail summary { cursor: pointer; color: var(--accent); line-height: 1.7; }
+.xrr-detail[open] { min-width: min(320px, 70vw); max-width: 580px; }
+.xrr-detail p { margin: 8px 0; }
+.xrr-detail h4 { font-size: 12px; margin: 12px 0 6px; }
+.xrr-specs { margin: 10px 0; min-width: 220px; white-space: normal; overflow-wrap: anywhere; }
+.xrr-specs dt { color: var(--muted); font-size: 11px; margin-top: 8px; }
+.xrr-specs dd { margin: 2px 0 0; color: var(--ink-2); }
+.xrr-contracts { min-width: 1450px; }
+.xrr-contract-title { min-width: 240px; max-width: 300px; overflow-wrap: anywhere; }
+.xrr-contracts .xrr-contract-title small { color: var(--ink-2); }
+.xrr-amount { min-width: 130px; text-align: right !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.xrr-amount strong { font-weight: 600; }
+.xrr-period { min-width: 190px; }
+.xrr-change { min-width: 165px; }
+.xrr-change p { margin: 0 0 6px; color: var(--ink-2); font-size: 11px; }
+.xrr-memo { min-width: 180px; max-width: 310px; }
+.xrr-memo-label { color: var(--muted); font-size: 11px; }
+.xrr-links a { display: block; white-space: nowrap; margin-bottom: 6px; }
+.xrr-status.is-due, .xrr-status.is-elapsed, .xrr-review { color: var(--warn); }
+.xrr-status.is-cancelled { color: var(--down); }
+.xrr-history { min-width: 820px; font-size: 11px; }
+.xrr-history-reason { min-width: 220px; max-width: 400px; overflow-wrap: anywhere; }
+.xrr-review { font-size: 12px; margin: 8px 0 12px; }
+.xrr-scroll:focus-visible, .xrr-reference button:focus-visible, .xrr-reference select:focus-visible, .xrr-reference summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+@media(max-width: 640px) { .xrr-controls { align-items: stretch; gap: 10px; } .xrr-choices { gap: 5px; } .xrr-choices button { padding: 7px 8px; } .xrr-reference h2 { font-size: 17px; } .xrr-table .xrr-model { min-width: 140px; max-width: 180px; } }

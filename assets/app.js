@@ -457,6 +457,21 @@ async function renderIndustry(options = {}) {
     }
   }
 
+  if (ind.id === "vrar" && ["overview", "korea"].includes(state.subtab)) {
+    try {
+      const tables = await import("./vrar-reference.js");
+      const ids = state.subtab === "overview" ? ["reference_tables", "contract_watch"] : ["contract_watch"];
+      const docs = await Promise.all(ids.map(id => loadDoc("vrar", id)));
+      if (mySeq !== renderSeq) return;
+      ids.forEach((id, i) => {
+        const error = state.docErrors.get(id);
+        if (error || !docs[i]) content.appendChild(errorCard("vrar", id, error || "자료를 불러오지 못했습니다."));
+        else content.appendChild(id === "reference_tables" ? tables.renderDevices(docs[i]) : tables.renderContracts(docs[i]));
+      });
+    } catch (e) {
+      if (mySeq === renderSeq) content.appendChild(errorCard("vrar", "reference_tables", e.message));
+    }
+  }
   if (ind.id === "vrar" && state.subtab === "overview") {
     try {
       const [doc, vrar] = await Promise.all([loadDoc("vrar", "universe"), import("./vrar.js")]);
