@@ -95,6 +95,8 @@ jobs:
         run: python -m unittest discover -s scripts -p test_shipping_fetchers.py -v
       - name: Test stale card rule
         run: node scripts/test_stale_rule.cjs
+      - name: Test blank mask share
+        run: python -m unittest discover -s scripts -p test_blank_share.py
       - name: Test site gate
         run: python -m unittest discover -s scripts -p test_site_gate.py
       - name: 해운 시장지표 수집
@@ -418,6 +420,11 @@ jobs:
       - name: 일본 블랭크마스크 관련 무역통계 수집
         continue-on-error: true
         run: python scripts/fetch_japan_customs.py
+
+      # 한국·일본 블랭크마스크 수출을 달러로 맞춰 분기 비교.
+      - name: 블랭크마스크 한일 수출 비교 집계
+        continue-on-error: true
+        run: python scripts/derive_blank_share.py
 
       # 에스앤에스텍 분기 실적(수기입력 CSV) x 전국 블랭크마스크 수출 비교. 키 불필요.
       - name: 에스앤에스텍 비교 집계

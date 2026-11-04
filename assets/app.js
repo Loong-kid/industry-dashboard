@@ -1743,7 +1743,7 @@ const crosshair = {
 // 조각이 글자보다 낮으면 그 값만 생략한다 — 툴팁·표에는 남아 있다.
 const barValueLabels = {
   id: "barValueLabels",
-  afterDatasetsDraw(chart) {
+  afterDatasetsDraw(chart, args, options) {
     const {ctx} = chart;
     ctx.save();
     ctx.font = "600 10px sans-serif";
@@ -1753,21 +1753,28 @@ const barValueLabels = {
     ctx.lineJoin = "round";
     ctx.strokeStyle = css("--surface");
     ctx.fillStyle = css("--ink");
-    const label = value => Math.round(value).toLocaleString("ko-KR");
+    const digits = options.digits || 0;
+    const label = value => value.toLocaleString("ko-KR", {minimumFractionDigits: digits, maximumFractionDigits: digits}) + (options.suffix || "");
     const bars = chart.data.datasets.filter((dataset, i) => dataset.type === "bar" && chart.isDatasetVisible(i));
     const widest = Math.max(0, ...bars.flatMap(dataset => dataset.data.filter(value => value != null).map(value => ctx.measureText(label(value)).width)));
     const slot = chart.scales.x.width / Math.max(chart.data.labels.length, 1);
-    if (widest + 4 > slot) { ctx.restore(); return; }
+    // 칸이 좁으면 값을 생략한다. thin이면 가장 최근 칸을 기준으로 건너뛰며 남긴다.
+    const step = widest + 4 <= slot ? 1 : options.thin ? Math.ceil((widest + 4) / slot) : 0;
+    if (!step) { ctx.restore(); return; }
+    const lastIndex = chart.data.labels.length - 1;
     chart.data.datasets.forEach((dataset, i) => {
       if (dataset.type !== "bar" || !chart.isDatasetVisible(i)) return;
       chart.getDatasetMeta(i).data.forEach((bar, index) => {
         const value = dataset.data[index];
-        if (value == null) return;
+        if (value == null || (lastIndex - index) % step) return;
         const text = label(value);
         const {x, y, base} = bar.getProps(["x", "y", "base"], true);
-        if (Math.abs(base - y) < 12) return;
-        ctx.strokeText(text, x, y + 8);
-        ctx.fillText(text, x, y + 8);
+        // 조각이 글자보다 낮으면 생략한다. thin이면 조각 바로 위에 적어 값을 남긴다.
+        const short = Math.abs(base - y) < 12;
+        if (short && !options.thin) return;
+        const textX = Math.min(x, chart.width - ctx.measureText(text).width / 2 - 1), textY = short ? y - 8 : y + 8;
+        ctx.strokeText(text, textX, textY);
+        ctx.fillText(text, textX, textY);
       });
     });
     ctx.restore();
@@ -1882,6 +1889,7 @@ function drawChart(canvas, doc, filtered) {
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: { display: false }, // 범례는 체크박스 칩(buildChips)으로 대체
+        barValueLabels: { digits: doc.bar_value_digits, suffix: doc.bar_value_suffix, thin: doc.bar_value_thin },
 
         tooltip: {
           backgroundColor: isDark() ? "#2c2c2a" : "#ffffff",
