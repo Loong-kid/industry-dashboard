@@ -517,18 +517,20 @@ async function renderIndustry(options = {}) {
   let latestUpdate = "";
   const collected = []; // 수집 상태 판정용 { name, fetched }
   let valuationSession = null;
+  const valuationPath = ind.id === "commodities" ? "commodities/valuation" : "semicon/valuation";
   const valuationNode = async (mode, ids) => {
     try {
       if (!valuationSession) {
-        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc("semicon/valuation", "valuation_index")]);
+        const [module, doc] = await Promise.all([import("./semicon-valuation.js"), loadDoc(valuationPath, "valuation_index")]);
         if (mySeq !== renderSeq) return null;
         if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
-        valuationSession = module.createSession(doc, {state, range: state.range});
+        valuationSession = module.createSession(doc, {state, range: state.range, dataPath: valuationPath});
         semiconValuationCleanup = () => valuationSession.destroy();
-        collected.push({name: "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        collected.push({name: ind.id === "commodities" ? "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        if (doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);
-    } catch (e) { return mySeq === renderSeq ? errorCard("semicon/valuation", "valuation_index", e.message) : null; }
+    } catch (e) { return mySeq === renderSeq ? errorCard(valuationPath, "valuation_index", e.message) : null; }
   };
   for (const section of ind.sections) {
     if (ind.tabs && section.tab !== state.subtab) continue;
@@ -661,6 +663,11 @@ async function renderIndustry(options = {}) {
         companyGrid.appendChild(err ? errorCard(ind.id, indicatorId, err) : renderCard(doc, indicatorId));
         if (doc && doc.updated > latestUpdate) latestUpdate = doc.updated;
         if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
+      }
+      if (company.valuation_company) {
+        const node = await valuationNode("company", company.valuation_company);
+        if (mySeq !== renderSeq) return;
+        if (node) panel.appendChild(node);
       }
     }
   }

@@ -30,7 +30,13 @@ assert.equal(companies.length, 6);
 assert.deepEqual(companies.filter(c => c.tab === 'copper').map(c => c.id), ['scco', 'fcx']);
 assert.deepEqual(companies.filter(c => c.tab === 'rare_earth').map(c => c.id), ['mp']);
 for (const company of companies) {
-  assert.equal(company.indicators.length, 3);
+  assert.equal(company.indicators.length, company.valuation_company ? 2 : 3);
+  if (company.valuation_company) {
+    assert.equal(company.valuation_company, company.id);
+    const valuation = JSON.parse(fs.readFileSync(`data/commodities/valuation/${company.id}.json`, 'utf8'));
+    assert.equal(valuation.currency, 'USD');
+    assert(valuation.prices.length > 1000);
+  }
   for (const id of company.indicators) {
     const doc = JSON.parse(fs.readFileSync(`data/commodities/${id}.json`, 'utf8'));
     assert.equal(doc.id, id);
@@ -67,4 +73,4 @@ for (const [base, current, label] of [[-20, 5, '흑자전환'], [20, -5, '적자
 }
 assert(transition(null, 5).includes('자료 없음'));
 assert(transition(5, null).includes('—'));
-console.log('PASS: 18 company cards, mineral placement, units, period views, sparse histories and profit transitions');
+console.log('PASS: mineral cards and copper valuation prices, placement, units, period views, sparse histories and profit transitions');

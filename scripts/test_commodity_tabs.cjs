@@ -17,12 +17,19 @@ const document = {createElement: () => new Element(), querySelectorAll: () => []
   querySelector: () => new Element()};
 const location = {hash: '#/commodities/copper'};
 const loaded = [];
-const renderCode = source.slice(source.indexOf('let renderSeq = 0;'), source.indexOf('\nfunction renderFootStatus'));
+const valuations = [];
+const valuationModule = {createSession(doc, options) {
+  assert.equal(options.dataPath, 'commodities/valuation');
+  return {summary(ids) { valuations.push(['summary', ...ids]); return new Element(); },
+    company(id) { valuations.push(['company', id]); return new Element(); }, destroy() {}};
+}};
+const renderCode = source.slice(source.indexOf('let renderSeq = 0;'), source.indexOf('\nfunction renderFootStatus'))
+  .replace('import("./semicon-valuation.js")', 'Promise.resolve(valuationModule)');
 const routeCode = source.slice(source.indexOf('function route()'), source.indexOf('\nfunction setRange'));
 const api = new Function('state', 'document', 'window', 'location', 'loadDoc', 'renderCard', 'staleDays',
-  'renderFootStatus', 'setRange', 'renderMineralSupply', 'renderKoreaMineralTrade', 'renderCopperMines', 'dismissFinancialMemo', 'renderMiningCompanies', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
+  'renderFootStatus', 'setRange', 'renderMineralSupply', 'renderKoreaMineralTrade', 'renderCopperMines', 'dismissFinancialMemo', 'renderMiningCompanies', 'valuationModule', renderCode + '\n' + routeCode + '\nreturn {route, renderIndustry};')(
   state, document, {}, location, async (industry, id) => {loaded.push(id); return {name:id, updated:'2026-10-01'};},
-  () => new Element(), () => null, () => {}, () => {}, () => new Element(), () => new Element(), () => new Element(), () => {}, () => new Element());
+  () => new Element(), () => null, () => {}, () => {}, () => new Element(), () => new Element(), () => new Element(), () => {}, () => new Element(), valuationModule);
 (async () => {
   api.route();
   await api.renderIndustry();
@@ -55,6 +62,9 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert.equal(state.copperView,'miners');
   assert(loaded.includes('company_mining_ero_revenue'));
   assert(loaded.includes('comm_company_scco_profit') && loaded.includes('comm_company_fcx_profit'));
+  assert(loaded.includes('valuation_index'));
+  assert.deepEqual(valuations, [['summary','scco','fcx','ero'], ['company','scco'], ['company','fcx'], ['company','ero']]);
+  assert(!loaded.includes('comm_company_scco_price') && !loaded.includes('comm_company_fcx_price'), 'One shared price chart per company');
   assert(!loaded.includes('comm_copper_total_inventory'));
   location.hash='#/commodities/copper/invalid';api.route();assert.equal(state.copperView,'indicators');
   const aliases = {overview:'normal', komis_base:'normal', komis_minor:'rare_earth', komis_energy:'normal', komis_other:'normal', mineral_supply:'copper'};
