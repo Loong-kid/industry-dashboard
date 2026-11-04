@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '5 1 * * *' # KST 10:05
   workflow_dispatch:
+    inputs:
+      review_contracts_only:
+        description: Collect original Sapien contract filings for review only
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -10,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   accounts:
+    if: ${{ !inputs.review_contracts_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -52,3 +58,24 @@ jobs:
       - name: Report validation failure
         if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
         run: exit 1
+  contract-originals:
+    if: ${{ inputs.review_contracts_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Review original Sapien contracts and amendments
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python -u scripts/collect_vrar_contract_sources.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vrar-contract-originals
+          path: .cache/vrar/contracts/
+          include-hidden-files: true
+          retention-days: 3
