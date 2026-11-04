@@ -95,6 +95,8 @@ jobs:
         run: python -m unittest discover -s scripts -p test_shipping_fetchers.py -v
       - name: Test stale card rule
         run: node scripts/test_stale_rule.cjs
+      - name: Test site gate
+        run: python -m unittest discover -s scripts -p test_site_gate.py
       - name: 해운 시장지표 수집
         run: python scripts/fetch_all.py
       - name: Commit & push if changed
