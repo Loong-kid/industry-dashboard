@@ -1,0 +1,25 @@
+const fs=require('node:fs'),assert=require('node:assert/strict');
+(async()=>{
+  const url=source=>'data:text/javascript;base64,'+Buffer.from(source).toString('base64');
+  const dependency=url(fs.readFileSync('assets/ai-overview.js','utf8'));
+  const code=fs.readFileSync('assets/ai-companies.js','utf8').replace("'./ai-overview.js'",JSON.stringify(dependency));
+  const {quantity,arrRows,filterEvents,periodBounds,BASIS_LABELS}=await import(url(code));
+  const doc=JSON.parse(fs.readFileSync('data/datacenter/dc_ai_companies.json'));
+  assert.equal(quantity(null),'미공개');assert.equal(quantity(0,'eq','MW'),'0 MW');
+  assert.equal(quantity(1000,'gt','MW'),'>1,000 MW');assert.equal(quantity(5000,'le','MW'),'≤5,000 MW');
+  assert.equal(arrRows(doc).length,10);assert.equal(arrRows(doc,'',true).length,11);
+  assert(arrRows(doc,'anthropic').every(r=>r.company==='anthropic'));
+  assert(!arrRows(doc,'openai').some(r=>r.usd_bn===24));
+  assert(arrRows(doc,'openai',true).some(r=>r.usd_bn===24&&r.basis==='monthly_annualized'));
+  assert.deepEqual(periodBounds('2024'),['2024-01-01','2024-12-31']);
+  assert.deepEqual(periodBounds('2024-02'),['2024-02-01','2024-02-29']);
+  assert.deepEqual(periodBounds('2026-09-23'),['2026-09-23','2026-09-23']);
+  const september=filterEvents(doc,{from:'2026-09-15',to:'2026-09-20'});
+  assert(september.some(r=>r.id==='oa-abi75'));
+  assert(!filterEvents(doc,{from:'2026-10-01'}).some(r=>r.id==='oa-abi75'));
+  assert(filterEvents(doc,{company:'anthropic',kind:'supply'}).every(r=>r.company==='anthropic'&&r.kind==='supply'));
+  assert.equal(filterEvents(doc,{query:' CEREBRAS '}).length,1);
+  assert.equal(filterEvents(doc,{query:'no-results-xyz'}).length,0);
+  assert.notEqual(BASIS_LABELS.power_available,BASIS_LABELS.energized_buildings);
+  console.log('AI companies: ARR basis, bounds, unknown power and date precision passed');
+})().catch(err=>{console.error(err);process.exit(1)});

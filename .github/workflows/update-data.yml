@@ -124,11 +124,13 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
 
-      - name: AI Overview 시트 원본·비교표 검증
+      - name: AI 모델·기업 공개자료 비교표 검증
         continue-on-error: true
         run: |
           python -m unittest discover -s scripts -p test_ai_overview.py
           node scripts/test_ai_overview.cjs
+          python -m unittest discover -s scripts -p test_ai_companies.py
+          node scripts/test_ai_companies.cjs
       - name: 국내 데이터센터 수집기·표 검증
         id: gate_korea_datacenter
         continue-on-error: true

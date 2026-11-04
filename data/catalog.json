@@ -734,6 +734,15 @@
           "indicators": [
             "dc_ai_overview2"
           ]
+        },
+        {
+          "tab": "ai_companies",
+          "title": "Anthropic · OpenAI",
+          "type": "table",
+          "table_kind": "ai_companies",
+          "indicators": [
+            "dc_ai_companies"
+          ]
         }
       ],
       "tabs": [
@@ -769,6 +778,12 @@
           "name": "AI Overview",
           "description": "구글 시트의 AI 모델 비교표입니다. 시트에 기재된 가격·사양·평가 조건을 함께 확인합니다.",
           "cadence": "개인 시트에서 가져온 자료입니다. 가져온 날짜와 원본 시트 수정일을 표 상단에 표시합니다."
+        },
+        {
+          "id": "ai_companies",
+          "name": "AI 기업",
+          "description": "Anthropic·OpenAI의 회사 발표 ARR와 대표 데이터센터 계획·가동 현황입니다. 실제 수전·컴퓨팅·계약 용량의 기준을 구분합니다.",
+          "cadence": "비정기 회사 발표와 개발·운영사 공식 자료를 검토해 갱신합니다. 검토일과 각 발표의 기준일을 구분합니다."
         }
       ]
     },
