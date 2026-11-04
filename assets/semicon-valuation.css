@@ -2,6 +2,9 @@
 .sv-summary .sv-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
 .sv-summary input { width: 220px; max-width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--ink); }
 .sv-note,.sv-caption { font-size: 12px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.sv-loss-note { display: block; margin-top: 4px; }
+.sv-loss-note::before { content: ''; display: inline-block; width: 10px; height: 9px; margin-right: 5px; background: rgba(137,135,129,.10); }
+.sv-loss-label { color: var(--muted); font-size: 11px; margin-left: 6px; }
 .sv-table-wrap { max-height: 410px; overflow: auto; }
 .sv-table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .sv-table th,.sv-table td { height: 34px; box-sizing: border-box; padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--border); }

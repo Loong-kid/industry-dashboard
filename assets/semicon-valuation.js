@@ -26,6 +26,37 @@ export function sampleRows(rows,limit=640){
   return [...selected].sort((a,b)=>a[0]-b[0]).map(([,r])=>r);
 }
 
+export function basisState(value){
+  return !Number.isFinite(value)?'missing':value<0?'loss':value===0?'zero':'positive';
+}
+
+// Retain both sides of every basis-status boundary, even for a one-day loss
+// inside a sampled price bucket or a stale/missing FX observation.
+export function valuationChartData(doc,metric,rows,large=false){
+  const field=metric==='per'?'eps':'bps';
+  const values=metric==='price'?[]:rows.map(r=>basisValue(doc,field,r[0]));
+  const lossFlags=metric==='per'?rows.map(r=>basisState(valueAt(doc.fundamentals?.eps||[],r[0])?.[1])==='loss'):[];
+  const selected=new Map((large?rows:sampleRows(rows)).map(r=>[r[0],r]));
+  const keep=i=>{if(i>=0&&i<rows.length)selected.set(rows[i][0],rows[i]);};
+  if(!large&&metric!=='price'){
+    for(const f of doc.fundamentals?.[field]||[]){const i=rows.findIndex(r=>r[0]>=f[0]);if(i>=0){keep(i-1);keep(i);}}
+    for(let i=1;i<rows.length;i++)if(basisState(values[i])!==basisState(values[i-1])||lossFlags[i]!==lossFlags[i-1]){keep(i-1);keep(i);}
+  }
+  const points=[...selected.values()].sort((a,b)=>a[0].localeCompare(b[0]));
+  const byDate=new Map(rows.map((r,i)=>[r[0],{value:values[i],loss:lossFlags[i]}]));
+  const basis=points.map(r=>byDate.get(r[0]).value);
+  const losses=[];
+  if(metric==='per')for(let i=0;i<points.length;){
+    if(!byDate.get(points[i][0]).loss){i++;continue;}
+    const start=i++;while(i<points.length&&byDate.get(points[i][0]).loss)i++;
+    losses.push({start,end:i});
+  }
+  const bands=metric==='price'?[]:(doc.bands?.[metric]||[]).filter(m=>Number.isFinite(m)&&m>0).map(multiple=>({multiple,
+    values:basis.map(v=>{const value=v*multiple;return basisState(v)==='positive'&&Number.isFinite(value)?value:null;})
+  })).filter(b=>metric!=='per'||b.values.some(Number.isFinite));
+  return {points,basis,bands,losses};
+}
+
 export function createSession(index,{state,range}){
   if(cacheEpoch!==state.bust){dataCache.clear();cacheEpoch=state.bust;}
   if(!document.querySelector('[data-semicon-valuation-style]')){
@@ -55,12 +86,15 @@ export function createSession(index,{state,range}){
   function draw(panel,doc){
     const all=filter(doc);
     for(let k=0;k<panel.cards.length;k++){
-      const card=panel.cards[k],metric=['price','per','pbr'][k],field=metric==='per'?'eps':'bps',wrap=card.querySelector('.chart-wrap');wrap.replaceChildren();
+      const card=panel.cards[k],metric=['price','per','pbr'][k],wrap=card.querySelector('.chart-wrap');wrap.replaceChildren();
       const metricRows=rowsForMetric(doc,metric,all);
       const canvas=document.createElement('canvas');wrap.append(canvas);canvas.setAttribute('aria-label',panel.company.name+' '+({price:'주가',per:'PER 밴드',pbr:'PBR 밴드'}[metric]));canvas.setAttribute('role','img');
       const chart=makeChart(canvas,doc,metric,metricRows);panel.charts.add(chart);
       const enlarge=card.querySelector('.sv-enlarge');enlarge.disabled=false;enlarge.onclick=()=>openZoom(doc,metric,panel.company,enlarge);
       card.querySelector('.sv-chart-caption').textContent=metric==='price'?`${doc.currency} · ${all[0]?.[0]||'—'} ~ ${all.at(-1)?.[0]||'—'} · 일별 종가`:`주가 ${doc.currency} · 실적 기준 참고 밴드 · ${metric==='per'?doc.fundamentals?.eps_basis:doc.fundamentals?.bps_basis}`;
+      if(metric==='per'){
+        const note=document.createElement('span');note.className='sv-loss-note';note.textContent='옅은 음영: 적자(TTM EPS < 0) · EPS가 0 이하이면 밴드 미표시';card.querySelector('.sv-chart-caption').append(note);
+      }
       const tableButton=card.querySelector('.sv-table-button');tableButton.onclick=()=>showTable(card,doc,metric,metricRows,tableButton);
       card.querySelector('.sv-details-body').textContent=doc.methodology+(doc.note?' '+doc.note:'')+(doc.errors?.length?' 최근 수집 확인 필요: '+doc.errors.join(' / '):'');
     }
@@ -69,17 +103,31 @@ export function createSession(index,{state,range}){
     const field=metric==='per'?'eps':'bps';return metric==='price'?rows:rows.filter(r=>r[0]>=(doc.fundamentals?.[field]?.[0]?.[0]||'9999'));
   }
   function makeChart(canvas,doc,metric,rows,large=false){
-    const field=metric==='per'?'eps':'bps',colors=['#575e70','#7d8494','#a4a9b4','#bfc3cc','#d6d9df'];
-    const selected=new Map((large?rows:sampleRows(rows)).map(r=>[r[0],r]));
-    if(!large&&metric!=='price')for(const f of doc.fundamentals?.[field]||[]){const i=rows.findIndex(r=>r[0]>=f[0]);if(i>=0)for(const j of [Math.max(0,i-1),i])selected.set(rows[j][0],rows[j]);}
-    const points=[...selected.values()].sort((a,b)=>a[0].localeCompare(b[0]));
+    const colors=['#575e70','#7d8494','#a4a9b4','#bfc3cc','#d6d9df'];
+    const {points,bands,losses}=valuationChartData(doc,metric,rows,large);
     const datasets=[{label:'주가',data:points.map(r=>r[1]),borderColor:'#18bf53',borderWidth:large?1.8:1.6,pointRadius:points.length<8?3:0,pointHoverRadius:3,order:0}];
-    if(metric!=='price')for(const [i,multiple] of (doc.bands?.[metric]||[]).entries())datasets.push({label:fmt(multiple)+'배',data:points.map(r=>{const v=basisValue(doc,field,r[0]);return Number.isFinite(v)&&v>0?v*multiple:null;}),borderColor:colors[i],borderWidth:1,pointRadius:points.length<8?2:0,stepped:!Object.keys(doc.fx||{}).length,spanGaps:false,order:i+1});
+    for(const [i,band] of bands.entries())datasets.push({label:fmt(band.multiple)+'배',data:band.values,borderColor:colors[i%colors.length],borderWidth:1,pointRadius:points.length<8?2:0,stepped:!Object.keys(doc.fx||{}).length,spanGaps:false,order:i+1});
     const style=getComputedStyle(document.documentElement),ink=style.getPropertyValue('--muted').trim(),border=style.getPropertyValue('--border').trim();
-    const chart=new Chart(canvas,{type:'line',data:{labels:points.map(r=>r[0]),datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,normalized:true,
+    const lossNote=i=>{
+      const eps=valueAt(doc.fundamentals?.eps||[],points[i]?.[0]||'');
+      return basisState(eps?.[1])==='loss'?`TTM EPS ${fmt(eps[1])} ${eps[2]} · 적자`:'';
+    };
+    const plugins=metric==='per'?[{id:'sv-loss-periods',beforeDatasetsDraw(chart){
+      const {ctx,chartArea:area,scales:{x}}=chart;if(!area||!losses.length)return;
+      ctx.save();ctx.beginPath();ctx.rect(area.left,area.top,area.right-area.left,area.bottom-area.top);ctx.clip();
+      for(const period of losses){
+        const left=period.start===0?area.left:Math.max(area.left,x.getPixelForValue(period.start));
+        const right=Math.min(area.right,period.end>=points.length?area.right:x.getPixelForValue(period.end));
+        ctx.fillStyle=ink;ctx.globalAlpha=.10;ctx.fillRect(left,area.top,right-left,area.bottom-area.top);
+        if(right-left>=46){ctx.globalAlpha=.7;ctx.font=`${large?11:10}px ${Chart.defaults.font.family}`;ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText('적자',(left+right)/2,area.top+7);}
+      }
+      ctx.restore();
+    }}]:[];
+    const chart=new Chart(canvas,{type:'line',plugins,data:{labels:points.map(r=>r[0]),datasets},options:{responsive:true,maintainAspectRatio:false,animation:false,normalized:true,
       interaction:{intersect:false,mode:'index'},
       plugins:{legend:{display:metric!=='price',position:'bottom',labels:{color:ink,boxWidth:large?20:13,boxHeight:2,font:{size:large?12:10},padding:large?16:8}},
-        tooltip:{callbacks:{title:items=>items[0]?.label||'',label:c=>`${c.dataset.label}: ${fmt(c.parsed.y)} ${doc.currency}`}}},
+        tooltip:{callbacks:{title:items=>items[0]?.label||'',label:c=>`${c.dataset.label}: ${fmt(c.parsed?.y)} ${doc.currency}`,
+          afterBody:items=>metric==='per'?lossNote(items[0]?.dataIndex):''}}},
       scales:{x:{grid:{display:false},ticks:{color:ink,maxTicksLimit:large?Math.max(3,Math.min(8,Math.floor(canvas.parentElement.clientWidth/90))):5,maxRotation:0,callback:function(value){return this.getLabelForValue(value).slice(large?0:2,7);}}},
         y:{grid:{color:border},ticks:{color:ink,maxTicksLimit:large?8:5,callback:v=>Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1}).format(v)}}}
     }});
@@ -90,7 +138,7 @@ export function createSession(index,{state,range}){
     if(!alive)return;closeZoom();
     const all=rowsForMetric(doc,metric,doc.prices||[]),dialog=document.createElement('dialog'),label=metric==='price'?'주가':metric.toUpperCase()+' 밴드';
     dialog.className='sv-zoom-dialog';dialog.id='sv-zoom-window';dialog.setAttribute('aria-labelledby','sv-zoom-title');
-    dialog.innerHTML=`<div class="sv-zoom-head"><div><h2 id="sv-zoom-title">${esc(company.name)} · ${label}</h2><p class="sv-caption">${esc(doc.symbol)} · 주가 ${esc(doc.currency)}</p></div><button type="button" class="sv-zoom-close" aria-label="확대 창 닫기" autofocus>✕</button></div><div class="sv-zoom-controls"><div class="sv-zoom-ranges" role="group" aria-label="확대 차트 기간">${[['3m','3개월'],['1y','1년'],['3y','3년'],['5y','5년'],['all','전체']].map(([value,text])=>`<button type="button" data-zoom-range="${value}" aria-pressed="false">${text}</button>`).join('')}</div><div class="sv-zoom-dates"><label>시작 <input type="date" class="sv-zoom-from" aria-label="확대 차트 시작일"></label><label>종료 <input type="date" class="sv-zoom-to" aria-label="확대 차트 종료일"></label></div></div><p class="sv-zoom-status sv-caption" role="status"></p><div class="sv-zoom-chart"></div><div class="sv-zoom-foot"><span class="sv-caption">일별 종가${metric==='price'?'':' · 실적 기준 참고 밴드'}</span><a href="${esc(metric==='price'?doc.price_source:doc.financial_source)}" target="_blank" rel="noopener">출처 ↗</a></div>`;
+    dialog.innerHTML=`<div class="sv-zoom-head"><div><h2 id="sv-zoom-title">${esc(company.name)} · ${label}</h2><p class="sv-caption">${esc(doc.symbol)} · 주가 ${esc(doc.currency)}</p></div><button type="button" class="sv-zoom-close" aria-label="확대 창 닫기" autofocus>✕</button></div><div class="sv-zoom-controls"><div class="sv-zoom-ranges" role="group" aria-label="확대 차트 기간">${[['3m','3개월'],['1y','1년'],['3y','3년'],['5y','5년'],['all','전체']].map(([value,text])=>`<button type="button" data-zoom-range="${value}" aria-pressed="false">${text}</button>`).join('')}</div><div class="sv-zoom-dates"><label>시작 <input type="date" class="sv-zoom-from" aria-label="확대 차트 시작일"></label><label>종료 <input type="date" class="sv-zoom-to" aria-label="확대 차트 종료일"></label></div></div><p class="sv-zoom-status sv-caption" role="status"></p><div class="sv-zoom-chart"></div><div class="sv-zoom-foot"><span class="sv-caption">일별 종가${metric==='price'?'':' · 실적 기준 참고 밴드'}${metric==='per'?'<span class="sv-loss-note">옅은 음영: 적자(TTM EPS &lt; 0) · EPS가 0 이하이면 밴드 미표시</span>':''}</span><a href="${esc(metric==='price'?doc.price_source:doc.financial_source)}" target="_blank" rel="noopener">출처 ↗</a></div>`;
     const start=dialog.querySelector('.sv-zoom-from'),end=dialog.querySelector('.sv-zoom-to'),status=dialog.querySelector('.sv-zoom-status'),wrap=dialog.querySelector('.sv-zoom-chart');
     const current=metric==='price'?doc.prices?.at(-1)?.[1]:doc.latest?.[metric];
     dialog.querySelector('.sv-zoom-head .sv-caption').textContent=metric==='price'?`${doc.symbol} · 종가 ${fmt(current)} ${doc.currency}`:`${doc.symbol} · ${metric.toUpperCase()} ${current==null?'N/M':fmt(current)+'배'} · 주가축 ${doc.currency}`;
@@ -121,7 +169,7 @@ export function createSession(index,{state,range}){
     target.hidden=false;button.textContent='표 닫기';let page=0;const data=rows.slice().reverse(),size=50;
     const render=()=>{
       const field=metric==='pbr'?'bps':'eps';
-      target.innerHTML=`<div class="sv-table-wrap"><table class="sv-table"><thead><tr><th>일자</th><th>종가 (${esc(doc.currency)})</th>${metric==='price'?'':`<th>${metric.toUpperCase()}</th><th>${field.toUpperCase()}</th><th>실적 기준</th>`}</tr></thead><tbody>${data.slice(page*size,(page+1)*size).map(([date,price])=>{const value=basisValue(doc,field,date),ref=valueAt(doc.fundamentals?.[field]||[],date),ratio=value>0?price/value:null;return `<tr><td>${date}</td><td>${fmt(price)}</td>${metric==='price'?'':`<td>${ratio==null?'N/M':fmt(ratio)+'배'}</td><td>${fmt(value)}</td><td>${ref?.[0]||'—'}</td>`}</tr>`;}).join('')}</tbody></table></div><div class="sv-pages"><button class="sv-prev" ${page===0?'disabled':''}>이전</button><span>${page+1} / ${Math.max(1,Math.ceil(data.length/size))}</span><button class="sv-next" ${(page+1)*size>=data.length?'disabled':''}>다음</button></div>`;
+      target.innerHTML=`<div class="sv-table-wrap"><table class="sv-table"><thead><tr><th>일자</th><th>종가 (${esc(doc.currency)})</th>${metric==='price'?'':`<th>${metric.toUpperCase()}</th><th>${field.toUpperCase()}</th><th>실적 기준</th>`}</tr></thead><tbody>${data.slice(page*size,(page+1)*size).map(([date,price])=>{const value=basisValue(doc,field,date),ref=valueAt(doc.fundamentals?.[field]||[],date),ratio=basisState(value)==='positive'?price/value:null,loss=metric==='per'&&basisState(ref?.[1])==='loss';return `<tr><td>${date}</td><td>${fmt(price)}</td>${metric==='price'?'':`<td>${ratio==null?'N/M'+(loss?'<span class="sv-loss-label">적자</span>':''):fmt(ratio)+'배'}</td><td>${fmt(value)}</td><td>${ref?.[0]||'—'}</td>`}</tr>`;}).join('')}</tbody></table></div><div class="sv-pages"><button class="sv-prev" ${page===0?'disabled':''}>이전</button><span>${page+1} / ${Math.max(1,Math.ceil(data.length/size))}</span><button class="sv-next" ${(page+1)*size>=data.length?'disabled':''}>다음</button></div>`;
       target.querySelector('.sv-prev').onclick=()=>{page--;render();};target.querySelector('.sv-next').onclick=()=>{page++;render();};
     };render();
   }
