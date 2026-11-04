@@ -4022,4 +4022,4 @@ function renderBADetail(doc) {
   return card;
 }
 
-boot();
+(window.siteGateReady || Promise.resolve()).then(boot);

@@ -1,0 +1,11 @@
+/* 접속 비밀번호 입력창 (assets/site-gate.js) */
+.site-gate-locked body > :not(#site-gate) { display: none !important; }
+#site-gate { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; background: var(--page); }
+.site-gate-form { width: min(100%, 340px); display: grid; gap: 10px; padding: 28px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.site-gate-form h1 { font-size: 21px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin: 0 0 8px; }
+.site-gate-form label { font-size: 13px; color: var(--ink-2); }
+.site-gate-form input { font: inherit; font-size: 16px; min-height: 44px; padding: 8px 12px; color: var(--ink); background: var(--page); border: 1px solid var(--baseline); border-radius: 6px; }
+.site-gate-form button { font: inherit; font-weight: 650; min-height: 44px; color: #fff; background: var(--accent); border: 0; border-radius: 6px; cursor: pointer; }
+.site-gate-form button:disabled { opacity: .6; cursor: default; }
+.site-gate-error { font-size: 13px; line-height: 1.5; color: var(--ink); margin: 0; }
+.site-gate-error[hidden] { display: none; }
