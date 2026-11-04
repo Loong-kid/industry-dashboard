@@ -716,6 +716,24 @@
             "us_nc_iren_rpo"
           ],
           "layout": "financial"
+        },
+        {
+          "tab": "ai_overview",
+          "title": "AI Overview",
+          "type": "table",
+          "table_kind": "ai_overview",
+          "indicators": [
+            "dc_ai_overview"
+          ]
+        },
+        {
+          "tab": "ai_overview2",
+          "title": "AI Overview 2",
+          "type": "table",
+          "table_kind": "ai_overview",
+          "indicators": [
+            "dc_ai_overview2"
+          ]
         }
       ],
       "tabs": [
@@ -745,6 +763,18 @@
               "cadence": "매일 공시를 조회하며 실적은 회사 발표 후 갱신합니다. RPO는 실제 공개된 결산일 잔액만 표시하며, 계약 총액·ARR·리스 계약과 구분합니다."
             }
           ]
+        },
+        {
+          "id": "ai_overview",
+          "name": "AI Overview",
+          "description": "구글 시트의 AI 모델 비교표입니다. 시트에 기재된 가격·사양·평가 조건을 함께 확인합니다.",
+          "cadence": "개인 시트에서 가져온 자료입니다. 가져온 날짜와 원본 시트 수정일을 표 상단에 표시합니다."
+        },
+        {
+          "id": "ai_overview2",
+          "name": "AI Overview 2",
+          "description": "구글 시트의 AI 모델 비교표입니다. 시트에 기재된 가격·사양·평가 조건을 함께 확인합니다.",
+          "cadence": "개인 시트에서 가져온 자료입니다. 가져온 날짜와 원본 시트 수정일을 표 상단에 표시합니다."
         }
       ]
     },

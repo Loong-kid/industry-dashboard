@@ -1,0 +1,6127 @@
+{
+ "id": "dc_ai_overview",
+ "name": "AI Overview",
+ "manual": true,
+ "updated": "2026-11-04",
+ "fetched": "2026-11-04",
+ "imported": "2026-11-04",
+ "source": {
+  "id": "1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs",
+  "title": "산업(AI_Datacenter)_밸류에이션",
+  "url": "https://docs.google.com/spreadsheets/d/1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs/edit",
+  "modified_at": "2026-10-06T14:35:59.262Z",
+  "sheet": "AI Overview",
+  "sheet_id": 1087266006,
+  "tab_url": "https://docs.google.com/spreadsheets/d/1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs/edit#gid=1087266006"
+ },
+ "tables": [
+  {
+   "id": "llm",
+   "title": "언어모델 · 가격·사양·벤치마크",
+   "unit_note": "입력·출력 가격은 1M token 기준입니다. 점수와 평가 조건은 시트 기재값입니다.",
+   "provider_key": "A",
+   "model_key": "B",
+   "date_key": "C",
+   "columns": [
+    {
+     "key": "A",
+     "index": 1,
+     "label": "기업",
+     "source_label": "1M token 당",
+     "note": "",
+     "width": 104
+    },
+    {
+     "key": "B",
+     "index": 2,
+     "label": "Model",
+     "source_label": "Model",
+     "note": "",
+     "width": 210
+    },
+    {
+     "key": "C",
+     "index": 3,
+     "label": "출시일",
+     "source_label": "출시일",
+     "note": "",
+     "width": 112
+    },
+    {
+     "key": "D",
+     "index": 4,
+     "label": "입력",
+     "source_label": "입력",
+     "note": "",
+     "width": 84
+    },
+    {
+     "key": "E",
+     "index": 5,
+     "label": "출력",
+     "source_label": "출력",
+     "note": "",
+     "width": 84
+    },
+    {
+     "key": "F",
+     "index": 6,
+     "label": "총 파라미터",
+     "source_label": "총 파라미터",
+     "note": "",
+     "width": 100
+    },
+    {
+     "key": "G",
+     "index": 7,
+     "label": "활성 파라미터",
+     "source_label": "활성 파라미터",
+     "note": "",
+     "width": 100
+    },
+    {
+     "key": "H",
+     "index": 8,
+     "label": "아키텍쳐",
+     "source_label": "아키텍쳐",
+     "note": "",
+     "width": 100
+    },
+    {
+     "key": "I",
+     "index": 9,
+     "label": "비고",
+     "source_label": "비고",
+     "note": "",
+     "width": 210
+    },
+    {
+     "key": "J",
+     "index": 10,
+     "label": "AA Index (Best)",
+     "source_label": "AA Index (Best)",
+     "note": "Artificial Analysis Intelligence Index v4.3.x 기준 (2026-10-02). Best는 해당 릴리스에서 확인 가능한 최고 reasoning-effort 점수. 공란은 현행 동일 릴리스 점수가 미공개이거나 신뢰성 있게 매칭되지 않은 경우.",
+     "width": 84
+    },
+    {
+     "key": "K",
+     "index": 11,
+     "label": "AA Index (Med)",
+     "source_label": "AA Index (Med)",
+     "note": "Artificial Analysis의 Medium reasoning-effort 점수가 별도로 확인되는 모델만 기입.",
+     "width": 84
+    },
+    {
+     "key": "L",
+     "index": 12,
+     "label": "AA Index (High)",
+     "source_label": "AA Index (High)",
+     "note": "Artificial Analysis의 High reasoning-effort 점수가 별도로 확인되는 모델만 기입.",
+     "width": 84
+    },
+    {
+     "key": "M",
+     "index": 13,
+     "label": "HLE (Best)",
+     "source_label": "HLE (Best)",
+     "note": "Humanity's Last Exam. 전문가 수준의 추론·지식 문제. Artificial Analysis의 동일 평가 환경 기준. Best는 해당 모델에서 확인 가능한 최고/대표 reasoning configuration. 공란은 0점이 아니라 현재 동일 기준의 독립 평가값이 없거나 직접 비교가 어려운 경우.",
+     "width": 84
+    },
+    {
+     "key": "N",
+     "index": 14,
+     "label": "Terminal -Bench 4.0 (Best)",
+     "source_label": "Terminal\n-Bench 4.0\n(Best)",
+     "note": "실제 터미널/agentic coding 작업 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
+     "width": 84
+    },
+    {
+     "key": "O",
+     "index": 15,
+     "label": "SciCode (Best)",
+     "source_label": "SciCode\n(Best)",
+     "note": "과학·기술 코딩 문제 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
+     "width": 84
+    },
+    {
+     "key": "P",
+     "index": 16,
+     "label": "AutomationBench -AA (Best)",
+     "source_label": "AutomationBench\n-AA (Best)",
+     "note": "SaaS/도구 사용 기반 agentic workflow 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
+     "width": 84
+    },
+    {
+     "key": "Q",
+     "index": 17,
+     "label": "ARC-AGI-3 Standard (Best)",
+     "source_label": "ARC-AGI-3\nStandard\n(Best)",
+     "note": "ARC Prize Semi-Private ARC-AGI-3. Standard harness는 provider-neutral 공통 인터페이스라 모델 간 비교에 더 적합. 각 모델에서 공개된 reasoning effort 중 최고 점수.",
+     "width": 84
+    },
+    {
+     "key": "R",
+     "index": 18,
+     "label": "ARC-AGI-3 Provider Adapter (Best)",
+     "source_label": "ARC-AGI-3\nProvider Adapter\n(Best)",
+     "note": "ARC Prize Semi-Private ARC-AGI-3. Provider Adapter는 각 제공사의 context-management/opaque reasoning state 유지 기능을 활용. GPT-6 Astra의 99.9%로 알려진 결과는 이 열이며, Standard harness 62.7%와 같은 조건은 아님.",
+     "width": 84
+    },
+    {
+     "key": "S",
+     "index": 19,
+     "label": "SWE-bench Verified (Reported Best)",
+     "source_label": "SWE-bench Verified (Reported Best)",
+     "note": "2024~2026 대표 실전 소프트웨어 엔지니어링 벤치마크. 실제 GitHub 이슈를 수정해 테스트 통과율을 측정. Agent scaffold/도구/실행 가능한 subset 차이로 점수가 크게 달라질 수 있어 'Reported Best'로 표시. OpenAI는 2026년에 테스트 설계·오염 문제를 이유로 frontier 모델 평가에서 사용 중단을 설명함.",
+     "width": 84
+    },
+    {
+     "key": "T",
+     "index": 20,
+     "label": "GPQA Diamond (Best)",
+     "source_label": "GPQA Diamond (Best)",
+     "note": "대학원 수준 과학 추론 벤치마크. 2024~2026 핵심 reasoning 지표였으나 frontier 모델이 90%대에 진입하며 포화. Artificial Analysis는 2026-09 v4.2에서 Intelligence Index 구성요소에서 제거.",
+     "width": 84
+    },
+    {
+     "key": "U",
+     "index": 21,
+     "label": "AIME 2025 (Best)",
+     "source_label": "AIME 2025 (Best)",
+     "note": "경시수학형 고난도 추론 지표. 2025 reasoning 모델 비교에서 대표적으로 사용됐으나 빠르게 90~100%에 근접해 포화. Artificial Analysis Intelligence Index v4.0에서 제거.",
+     "width": 84
+    },
+    {
+     "key": "V",
+     "index": 22,
+     "label": "MMLU-Pro (Legacy)",
+     "source_label": "MMLU-Pro (Legacy)",
+     "note": "MMLU보다 어려운 14개 분야, 10지선다 지식·추론 benchmark. 2024~2025에 널리 사용됐지만 frontier 구분력이 줄어 Artificial Analysis v4.0에서 Index에서 제거.",
+     "width": 84
+    },
+    {
+     "key": "W",
+     "index": 23,
+     "label": "MMLU (Legacy)",
+     "source_label": "MMLU (Legacy)",
+     "note": "2020년대 초 대표 범용 지식 benchmark. 57개 학문 분야. GPT-4/Claude 3 시기까지 매우 중요한 지표였으나 최신 모델에서는 포화되어 세대 비교용 역사 지표로 보는 것이 적절.",
+     "width": 84
+    },
+    {
+     "key": "X",
+     "index": 24,
+     "label": "GSM8K (Legacy)",
+     "source_label": "GSM8K (Legacy)",
+     "note": "초·중등 수준 문장형 수학 추론 benchmark. Chain-of-Thought 발전기인 2022~2024에 핵심이었지만 frontier 모델에서 사실상 포화.",
+     "width": 84
+    },
+    {
+     "key": "Y",
+     "index": 25,
+     "label": "HumanEval (Legacy)",
+     "source_label": "HumanEval (Legacy)",
+     "note": "Python 함수 생성 pass@1 benchmark. 2021~2024 코딩 모델 비교의 대표 지표였지만 최신 모델에는 지나치게 쉬워져 SWE-bench/Terminal-Bench 계열로 중심이 이동.",
+     "width": 84
+    },
+    {
+     "key": "AA",
+     "index": 27,
+     "label": "Vals Index (Reported)",
+     "source_label": "Vals Index (Reported)",
+     "note": "Scores come from public Vals snapshots/current leaderboard. Vals Index versions changed over 2026; each populated historical cell carries its source/version in the note.",
+     "width": 84
+    },
+    {
+     "key": "AB",
+     "index": 28,
+     "label": "AutomationBench (Reported)",
+     "source_label": "AutomationBench (Reported)",
+     "note": "Public/provider-reported AutomationBench results. Harness/version changed during 2026, so compare cells with their notes rather than assuming one frozen run.",
+     "width": 84
+    },
+    {
+     "key": "AC",
+     "index": 29,
+     "label": "Vals Finance Agent v2",
+     "source_label": "Vals Finance Agent v2",
+     "note": "Vals Finance Agent v2, realistic financial-analyst work. v2 was in use by late May 2026. Snapshot values from Google Gemini 4 Argon launch comparison.",
+     "width": 84
+    },
+    {
+     "key": "AD",
+     "index": 30,
+     "label": "Harvey Legal Agent Benchmark",
+     "source_label": "Harvey Legal Agent Benchmark",
+     "note": "Harvey's Legal Agent Benchmark launched 2026-05-06 (Opus 4.8 / Fable 5 transition era). Strict all-pass legal agent work.",
+     "width": 84
+    },
+    {
+     "key": "AE",
+     "index": 31,
+     "label": "DeepSWE v1.1",
+     "source_label": "DeepSWE v1.1",
+     "note": "Released 2026-05-26. Original long-horizon software-engineering tasks across real open-source repositories.",
+     "width": 84
+    },
+    {
+     "key": "AF",
+     "index": 32,
+     "label": "FrontierSWE v2",
+     "source_label": "FrontierSWE v2",
+     "note": "FrontierSWE v2 released Sep 2026. Ultra-long-horizon engineering/research tasks, up to ~20h per run.",
+     "width": 84
+    },
+    {
+     "key": "AG",
+     "index": 33,
+     "label": "Vibe Code Bench",
+     "source_label": "Vibe Code Bench",
+     "note": "Vals public benchmark launched Nov 2025; academic paper Mar 2026. Zero-to-one web app development from specs.",
+     "width": 84
+    },
+    {
+     "key": "AH",
+     "index": 34,
+     "label": "Terminal-Bench 4.0 (Reported)",
+     "source_label": "Terminal-Bench 4.0 (Reported)",
+     "note": "Public/provider-reported Terminal-Bench 4.0. Harness and agent scaffold can materially change scores; each historical cell carries the source in its note.",
+     "width": 84
+    },
+    {
+     "key": "AI",
+     "index": 35,
+     "label": "PostTrainBench",
+     "source_label": "PostTrainBench",
+     "note": "Autonomous LLM post-training benchmark. Public leaderboard already active by Feb-Mar 2026; v1.1 Jul 2026, v1.2 Sep 2026.",
+     "width": 84
+    },
+    {
+     "key": "AJ",
+     "index": 36,
+     "label": "Terminal-Bench Science 0.1",
+     "source_label": "Terminal-Bench Science 0.1",
+     "note": "Released 2026-08-27. Scientist-authored terminal workflows across life/physical/earth/math/engineering sciences.",
+     "width": 84
+    },
+    {
+     "key": "AK",
+     "index": 37,
+     "label": "LABBench 2",
+     "source_label": "LABBench 2",
+     "note": "2026-generation biology research benchmark; evaluates realistic biology research tasks with multimodal/research artifacts.",
+     "width": 84
+    },
+    {
+     "key": "AL",
+     "index": 38,
+     "label": "RiemannBench",
+     "source_label": "RiemannBench",
+     "note": "2026 frontier research-math benchmark aimed above olympiad-style tests; very small, very difficult research-level math set.",
+     "width": 84
+    },
+    {
+     "key": "AM",
+     "index": 39,
+     "label": "GraphWalks ≤128K (BFS F1)",
+     "source_label": "GraphWalks ≤128K (BFS F1)",
+     "note": "Long-context graph reasoning. Became a prominent frontier-model metric around GPT-5.5 / early-2026 long-context releases. Score is F1, not task pass-rate.",
+     "width": 84
+    },
+    {
+     "key": "AN",
+     "index": 40,
+     "label": "GraphWalks 256K–1M (BFS F1)",
+     "source_label": "GraphWalks 256K–1M (BFS F1)",
+     "note": "Extreme long-context graph reasoning. Google Gemini 4 comparison groups 256K–1M context; score is BFS F1.",
+     "width": 84
+    },
+    {
+     "key": "AO",
+     "index": 41,
+     "label": "Agent's Last Exam",
+     "source_label": "Agent's Last Exam",
+     "note": "Introduced Jun 2026. Long-horizon professional digital work across many occupations; computer-use / agent benchmark.",
+     "width": 84
+    },
+    {
+     "key": "AP",
+     "index": 42,
+     "label": "OSWorld-2.0 (Partial score)",
+     "source_label": "OSWorld-2.0 (Partial score)",
+     "note": "OSWorld 2.0 released 2026-06-26. Long-horizon real computer-use workflows. Google table reports OFFLINE SUBSET PARTIAL SCORE, not binary task completion.",
+     "width": 84
+    },
+    {
+     "key": "AQ",
+     "index": 43,
+     "label": "Chartography",
+     "source_label": "Chartography",
+     "note": "Introduced Aug 2026. Professional chart-understanding benchmark using domain-specific charts from real practice.",
+     "width": 84
+    },
+    {
+     "key": "AR",
+     "index": 44,
+     "label": "LVBench",
+     "source_label": "LVBench",
+     "note": "Long-video benchmark originally released 2024-06-11; reused in Gemini 4 to measure up-to-2-hour video understanding.",
+     "width": 84
+    },
+    {
+     "key": "AS",
+     "index": 45,
+     "label": "CWE-bench v1",
+     "source_label": "CWE-bench v1",
+     "note": "Defensive cybersecurity benchmark. v1 live Sep 2026; 120 held-out audit-and-patch tasks across 73 CWE classes.",
+     "width": 84
+    }
+   ],
+   "views": [
+    {
+     "id": "summary",
+     "label": "요약",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "J",
+      "M",
+      "N"
+     ]
+    },
+    {
+     "id": "specs",
+     "label": "가격·사양",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I"
+     ]
+    },
+    {
+     "id": "core",
+     "label": "주요 벤치마크",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R"
+     ]
+    },
+    {
+     "id": "extended",
+     "label": "확장 벤치마크",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "AO",
+      "AP",
+      "AQ",
+      "AR",
+      "AS"
+     ]
+    },
+    {
+     "id": "legacy",
+     "label": "기존 벤치마크",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y"
+     ]
+    },
+    {
+     "id": "all",
+     "label": "전체 열",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "AA",
+      "AB",
+      "AC",
+      "AD",
+      "AE",
+      "AF",
+      "AG",
+      "AH",
+      "AI",
+      "AJ",
+      "AK",
+      "AL",
+      "AM",
+      "AN",
+      "AO",
+      "AP",
+      "AQ",
+      "AR",
+      "AS"
+     ]
+    }
+   ],
+   "rows": [
+    {
+     "id": "llm-r2",
+     "source_row": 2,
+     "raw_provider": "",
+     "model": "Claude Opus 5.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 5.5"
+      },
+      "C": {
+       "text": "2026-09-22",
+       "number": 46287
+      },
+      "D": {
+       "text": "$4.00"
+      },
+      "E": {
+       "text": "$20.00"
+      },
+      "J": {
+       "text": "58",
+       "number": 58
+      },
+      "K": {
+       "text": "51",
+       "number": 51
+      },
+      "L": {
+       "text": "54",
+       "number": 54
+      },
+      "M": {
+       "text": "61%",
+       "number": 0.61
+      },
+      "N": {
+       "text": "60%",
+       "number": 0.6
+      },
+      "O": {
+       "text": "67%",
+       "number": 0.67
+      },
+      "P": {
+       "text": "70%",
+       "number": 0.7
+      },
+      "AA": {
+       "text": "67.0%",
+       "number": 0.67
+      },
+      "AB": {
+       "text": "42.5%",
+       "number": 0.425
+      },
+      "AC": {
+       "text": "58.6%",
+       "number": 0.586
+      },
+      "AD": {
+       "text": "3.8%",
+       "number": 0.038
+      },
+      "AE": {
+       "text": "74.2%",
+       "number": 0.742
+      },
+      "AF": {
+       "text": "62.3%",
+       "number": 0.623
+      },
+      "AG": {
+       "text": "90.3%",
+       "number": 0.903
+      },
+      "AH": {
+       "text": "66.4%",
+       "number": 0.664
+      },
+      "AI": {
+       "text": "49.3%",
+       "number": 0.493
+      },
+      "AJ": {
+       "text": "63.3%",
+       "number": 0.633
+      },
+      "AK": {
+       "text": "73.1%",
+       "number": 0.731
+      },
+      "AL": {
+       "text": "69.6%",
+       "number": 0.696
+      },
+      "AM": {
+       "text": "90.6%",
+       "number": 0.9059999999999999
+      },
+      "AN": {
+       "text": "66.8%",
+       "number": 0.6679999999999999
+      },
+      "AO": {
+       "text": "38.2%",
+       "number": 0.382
+      },
+      "AQ": {
+       "text": "66.3%",
+       "number": 0.6629999999999999
+      },
+      "AR": {
+       "text": "83.7%",
+       "number": 0.8370000000000001
+      },
+      "AS": {
+       "text": "67.0%",
+       "number": 0.67
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r3",
+     "source_row": 3,
+     "raw_provider": "",
+     "model": "Claude Fable 5.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Fable 5.1"
+      },
+      "C": {
+       "text": "2026-09-01",
+       "number": 46266
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$50.00"
+      },
+      "AA": {
+       "text": "65.8%",
+       "number": 0.6579999999999999
+      },
+      "AB": {
+       "text": "31.4%",
+       "number": 0.314
+      },
+      "AC": {
+       "text": "58.9%",
+       "number": 0.589
+      },
+      "AD": {
+       "text": "6.7%",
+       "number": 0.067
+      },
+      "AE": {
+       "text": "67.4%",
+       "number": 0.674
+      },
+      "AF": {
+       "text": "56.3%",
+       "number": 0.563
+      },
+      "AG": {
+       "text": "90.3%",
+       "number": 0.903
+      },
+      "AH": {
+       "text": "57.9%",
+       "number": 0.579
+      },
+      "AI": {
+       "text": "40.2%",
+       "number": 0.402
+      },
+      "AJ": {
+       "text": "52.6%",
+       "number": 0.526
+      },
+      "AK": {
+       "text": "68.6%",
+       "number": 0.6859999999999999
+      },
+      "AL": {
+       "text": "65.6%",
+       "number": 0.6559999999999999
+      },
+      "AM": {
+       "text": "91.4%",
+       "number": 0.914
+      },
+      "AN": {
+       "text": "65.0%",
+       "number": 0.65
+      },
+      "AQ": {
+       "text": "46.2%",
+       "number": 0.462
+      },
+      "AR": {
+       "text": "79.7%",
+       "number": 0.797
+      },
+      "AS": {
+       "text": "58.0%",
+       "number": 0.58
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r4",
+     "source_row": 4,
+     "raw_provider": "Anthropic",
+     "model": "Claude Opus 5",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Anthropic"
+      },
+      "B": {
+       "text": "Claude Opus 5"
+      },
+      "C": {
+       "text": "2026-07-24",
+       "number": 46227
+      },
+      "D": {
+       "text": "$5.00"
+      },
+      "E": {
+       "text": "$25.00"
+      },
+      "J": {
+       "text": "51",
+       "number": 51
+      },
+      "K": {
+       "text": "45",
+       "number": 45
+      },
+      "L": {
+       "text": "48",
+       "number": 48
+      },
+      "M": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "N": {
+       "text": "49%",
+       "number": 0.49
+      },
+      "O": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "P": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "Q": {
+       "text": "30.16%",
+       "number": 0.3016
+      },
+      "S": {
+       "text": "96.0%",
+       "number": 0.96,
+       "note": "Anthropic Opus 5 system card; adaptive thinking/max effort. https://www-cdn.anthropic.com/b514064af1408018e64b1ad24e7d5e75850b4ffd/Claude%20Opus%205%20System%20Card.pdf"
+      },
+      "T": {
+       "text": "93.7%",
+       "number": 0.937,
+       "note": "OpenAI GPT-6 Astra release comparison table; no-tools GPQA Diamond. https://openai.com/index/gpt-6-astra/"
+      },
+      "AA": {
+       "text": "74.8%",
+       "number": 0.7482,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "58.6%",
+       "number": 0.5863,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AI": {
+       "text": "35.7%",
+       "number": 0.35700000000000004,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AJ": {
+       "text": "29.0%",
+       "number": 0.29,
+       "note": "Anthropic Fable 5.1 launch comparison. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AL": {
+       "text": "79.0%",
+       "number": 0.79,
+       "note": "RiemannBench public/system-card result; with-tools score. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "31.6%",
+       "number": 0.316,
+       "note": "Agents' Last Exam official leaderboard; Claude Code. Metric is pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "68.3%",
+       "number": 0.6829999999999999,
+       "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r5",
+     "source_row": 5,
+     "raw_provider": "",
+     "model": "Claude Sonnet 5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Sonnet 5"
+      },
+      "C": {
+       "text": "2026-06-30",
+       "number": 46203
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "38",
+       "number": 38
+      },
+      "K": {
+       "text": "28",
+       "number": 28
+      },
+      "L": {
+       "text": "32",
+       "number": 32
+      },
+      "M": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "N": {
+       "text": "14%",
+       "number": 0.14
+      },
+      "O": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "P": {
+       "text": "37%",
+       "number": 0.37
+      },
+      "S": {
+       "text": "85.2%",
+       "number": 0.852,
+       "note": "Anthropic Claude Sonnet 5 system card, reported best configuration."
+      },
+      "AC": {
+       "text": "53.9%",
+       "number": 0.5390999999999999,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AE": {
+       "text": "54.0%",
+       "number": 0.54,
+       "note": "DeepSWE v1.1 public results snapshot. This is an older benchmark run than Gemini 4's launch comparison."
+      },
+      "AH": {
+       "text": "14.1%",
+       "number": 0.141,
+       "note": "Public Terminal-Bench 4.0 leaderboard snapshot; harness differs from Google's Gemini 4 comparison. https://agentbreaking.com/benchmarks/terminalbench_40"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r6",
+     "source_row": 6,
+     "raw_provider": "",
+     "model": "Claude Fable 5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Fable 5"
+      },
+      "C": {
+       "text": "2026-06-09",
+       "number": 46182
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$50.00"
+      },
+      "J": {
+       "text": "50",
+       "number": 50
+      },
+      "M": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "N": {
+       "text": "42%",
+       "number": 0.42
+      },
+      "O": {
+       "text": "61%",
+       "number": 0.61
+      },
+      "P": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "S": {
+       "text": "95.0%",
+       "number": 0.95,
+       "note": "Anthropic Fable 5 system card; average over 5 trials. https://www.anthropic.com/claude-fable-5-mythos-5-system-card"
+      },
+      "T": {
+       "text": "92.6%",
+       "number": 0.9259999999999999,
+       "note": "OpenAI GPT-6 Astra release comparison table. https://openai.com/index/gpt-6-astra/"
+      },
+      "AA": {
+       "text": "75.1%",
+       "number": 0.7514,
+       "note": "Vals Index v1.2 snapshot (2026-08-11). https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "17.1%",
+       "number": 0.171,
+       "note": "Anthropic cross-model table at Fable 5.1 launch; different harness/snapshot from Gemini 4 table. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AD": {
+       "text": "11.3%",
+       "number": 0.1125,
+       "note": "Vals current Harvey held-out leaderboard. Fable 5 used fallback on some tasks; no-fallback score slightly lower. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AE": {
+       "text": "69.7%",
+       "number": 0.6970000000000001,
+       "note": "OpenAI GPT-5.6 launch cross-model table, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AG": {
+       "text": "90.4%",
+       "number": 0.9035,
+       "note": "Vals public leaderboard/update; Fable 5 led Vibe Code Bench v1.1 around Sep 2026. https://www.vals.ai/home"
+      },
+      "AH": {
+       "text": "42.0%",
+       "number": 0.42,
+       "note": "Anthropic Fable 5.1 launch comparison table; provider-reported Terminal-Bench 4.0. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AI": {
+       "text": "37.3%",
+       "number": 0.373,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AJ": {
+       "text": "24.7%",
+       "number": 0.247,
+       "note": "Anthropic Fable 5.1 launch comparison, Terminal-Bench-Science 0.1. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AL": {
+       "text": "55.0%",
+       "number": 0.55,
+       "note": "RiemannBench reported in Anthropic Fable/Mythos system-card lineage. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "25.7%",
+       "number": 0.257,
+       "note": "Agents' Last Exam official leaderboard; Claude Code harness. Metric is pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "72.9%",
+       "number": 0.7290000000000001,
+       "note": "Anthropic Fable 5.1 launch; OSWorld 2.0 partial score. Provider-reported, not the original paper harness. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AQ": {
+       "text": "34.8%",
+       "number": 0.348,
+       "note": "Chartography launch leaderboard, max/adaptive configuration. https://arxiv.org/abs/2608.10677"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r7",
+     "source_row": 7,
+     "raw_provider": "",
+     "model": "Claude Opus 4.8",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4.8"
+      },
+      "C": {
+       "text": "2026-05-28",
+       "number": 46170
+      },
+      "D": {
+       "text": "$5.00"
+      },
+      "E": {
+       "text": "$25.00"
+      },
+      "J": {
+       "text": "42",
+       "number": 42
+      },
+      "S": {
+       "text": "88.6%",
+       "number": 0.8859999999999999,
+       "note": "Anthropic Fable 5 system card comparison table. https://www.anthropic.com/claude-fable-5-mythos-5-system-card"
+      },
+      "AA": {
+       "text": "70.4%",
+       "number": 0.7036,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "15.5%",
+       "number": 0.155,
+       "note": "OpenAI GPT-5.6 launch cross-model AutomationBench table. https://openai.com/index/gpt-5-6/"
+      },
+      "AC": {
+       "text": "53.9%",
+       "number": 0.5392,
+       "note": "Vals public update for Opus 4.8, Finance Agent v2. https://www.vals.ai/home"
+      },
+      "AE": {
+       "text": "59.0%",
+       "number": 0.59,
+       "note": "OpenAI GPT-5.6 launch cross-model table, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AG": {
+       "text": "82.7%",
+       "number": 0.8271999999999999,
+       "note": "Vals public update, Vibe Code Bench. https://www.vals.ai/home"
+      },
+      "AH": {
+       "text": "21.7%",
+       "number": 0.217,
+       "note": "Public Terminal-Bench 4.0 leaderboard snapshot; harness differs from Gemini 4 table. https://agentbreaking.com/benchmarks/terminalbench_40"
+      },
+      "AI": {
+       "text": "31.0%",
+       "number": 0.31,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AL": {
+       "text": "34.0%",
+       "number": 0.34,
+       "note": "RiemannBench historical public/system-card result. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "27.0%",
+       "number": 0.27,
+       "note": "Agents' Last Exam official leaderboard; Claude Code. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "54.8%",
+       "number": 0.5479999999999999,
+       "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r8",
+     "source_row": 8,
+     "raw_provider": "",
+     "model": "Claude Opus 4.7",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4.7"
+      },
+      "C": {
+       "text": "2026-04-16",
+       "number": 46128
+      },
+      "D": {
+       "text": "$5.00"
+      },
+      "E": {
+       "text": "$25.00"
+      },
+      "J": {
+       "text": "41",
+       "number": 41
+      },
+      "AA": {
+       "text": "66.1%",
+       "number": 0.6609999999999999,
+       "note": "Vals Index v1.2/v1.1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "51.5%",
+       "number": 0.5151,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AD": {
+       "text": "6.7%",
+       "number": 0.0667,
+       "note": "Vals current Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AG": {
+       "text": "71.0%",
+       "number": 0.71,
+       "note": "Vals current Vibe Code Bench v1.1 comparison result. https://www.vals.ai/home"
+      },
+      "AI": {
+       "text": "24.3%",
+       "number": 0.243,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AO": {
+       "text": "21.1%",
+       "number": 0.21100000000000002,
+       "note": "Agents' Last Exam official leaderboard; best listed Cursor CLI run. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "48.9%",
+       "number": 0.489,
+       "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r9",
+     "source_row": 9,
+     "raw_provider": "",
+     "model": "Claude Sonnet 4.6",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Sonnet 4.6"
+      },
+      "C": {
+       "text": "2026-02-17",
+       "number": 46070
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "30",
+       "number": 30
+      },
+      "AA": {
+       "text": "60.1%",
+       "number": 0.6006,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "51.0%",
+       "number": 0.5103,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AE": {
+       "text": "30.0%",
+       "number": 0.3,
+       "note": "DeepSWE v1.1 public snapshot, high reasoning."
+      },
+      "AP": {
+       "text": "41.5%",
+       "number": 0.415,
+       "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r10",
+     "source_row": 10,
+     "raw_provider": "",
+     "model": "Claude Opus 4.6",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4.6"
+      },
+      "C": {
+       "text": "2026-02-05",
+       "number": 46058
+      },
+      "D": {
+       "text": "$5.00"
+      },
+      "E": {
+       "text": "$25.00"
+      },
+      "J": {
+       "text": "32",
+       "number": 32
+      },
+      "AA": {
+       "text": "66.0%",
+       "number": 0.66,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r11",
+     "source_row": 11,
+     "raw_provider": "",
+     "model": "Claude Opus 4.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4.5"
+      },
+      "C": {
+       "text": "2025-11-24",
+       "number": 45985
+      },
+      "D": {
+       "text": "$5.00"
+      },
+      "E": {
+       "text": "$25.00"
+      },
+      "J": {
+       "text": "29",
+       "number": 29
+      },
+      "S": {
+       "text": "80.9%",
+       "number": 0.809,
+       "note": "Anthropic Opus 4.5 system card; no-thinking run is the slightly higher of the published Verified results. https://www-cdn.anthropic.com/bf10f64990cfda0ba858290be7b8cc6317685f47.pdf"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r12",
+     "source_row": 12,
+     "raw_provider": "",
+     "model": "Claude Haiku 4.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Haiku 4.5"
+      },
+      "C": {
+       "text": "2025-10-15",
+       "number": 45945
+      },
+      "D": {
+       "text": "$1.00"
+      },
+      "E": {
+       "text": "$5.00"
+      },
+      "J": {
+       "text": "17",
+       "number": 17
+      },
+      "S": {
+       "text": "73.3%",
+       "number": 0.733,
+       "note": "Anthropic Claude Haiku 4.5 launch methodology; full 500-problem set. https://www.anthropic.com/news/claude-haiku-4-5"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r13",
+     "source_row": 13,
+     "raw_provider": "",
+     "model": "Claude Sonnet 4.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Sonnet 4.5"
+      },
+      "C": {
+       "text": "2025-09-29",
+       "number": 45929
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "21",
+       "number": 21
+      },
+      "S": {
+       "text": "77.2%",
+       "number": 0.772,
+       "note": "Anthropic Sonnet 4.5 launch result; simple bash/file-edit scaffold, 10-trial average. https://www.anthropic.com/news/claude-sonnet-4-5"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r14",
+     "source_row": 14,
+     "raw_provider": "",
+     "model": "Claude Opus 4.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4.1"
+      },
+      "C": {
+       "text": "2025-08-05",
+       "number": 45874
+      },
+      "D": {
+       "text": "$15.00"
+      },
+      "E": {
+       "text": "$75.00"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r15",
+     "source_row": 15,
+     "raw_provider": "",
+     "model": "Claude Opus 4",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Opus 4"
+      },
+      "C": {
+       "text": "2025-05-22",
+       "number": 45799
+      },
+      "D": {
+       "text": "$15.00"
+      },
+      "E": {
+       "text": "$75.00"
+      },
+      "S": {
+       "text": "67.6%",
+       "number": 0.6759999999999999,
+       "note": "Official SWE-bench Verified leaderboard, mini-SWE-agent historical result. https://www.swebench.com/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r16",
+     "source_row": 16,
+     "raw_provider": "",
+     "model": "Claude Sonnet 4",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Sonnet 4"
+      },
+      "C": {
+       "text": "2025-05-22",
+       "number": 45799
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "S": {
+       "text": "64.9%",
+       "number": 0.649,
+       "note": "Official SWE-bench Verified leaderboard, mini-SWE-agent historical result. https://www.swebench.com/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r17",
+     "source_row": 17,
+     "raw_provider": "",
+     "model": "Claude 3.7 Sonnet",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3.7 Sonnet"
+      },
+      "C": {
+       "text": "2025-02-24",
+       "number": 45712
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "18",
+       "number": 18
+      },
+      "M": {
+       "text": "10%",
+       "number": 0.1
+      },
+      "S": {
+       "text": "52.8%",
+       "number": 0.528,
+       "note": "Official SWE-bench Verified leaderboard historical result. https://www.swebench.com/"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r18",
+     "source_row": 18,
+     "raw_provider": "",
+     "model": "Claude 3.5 Haiku",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3.5 Haiku"
+      },
+      "C": {
+       "text": "2024-11-04",
+       "number": 45600
+      },
+      "D": {
+       "text": "$0.80"
+      },
+      "E": {
+       "text": "$4.00"
+      },
+      "J": {
+       "text": "9",
+       "number": 9
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r19",
+     "source_row": 19,
+     "raw_provider": "",
+     "model": "Claude 3.5 Sonnet v2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3.5 Sonnet v2"
+      },
+      "C": {
+       "text": "2024-10-22",
+       "number": 45587
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "8",
+       "number": 8
+      },
+      "S": {
+       "text": "49.0%",
+       "number": 0.49,
+       "note": "Anthropic SWE-bench engineering post; upgraded Claude 3.5 Sonnet. https://www.anthropic.com/engineering/swe-bench-sonnet"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r20",
+     "source_row": 20,
+     "raw_provider": "",
+     "model": "Claude 3.5 Sonnet",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3.5 Sonnet"
+      },
+      "C": {
+       "text": "2024-06-21",
+       "number": 45464
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "S": {
+       "text": "33.0%",
+       "number": 0.33,
+       "note": "Anthropic SWE-bench engineering post; original Claude 3.5 Sonnet. https://www.anthropic.com/engineering/swe-bench-sonnet"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r21",
+     "source_row": 21,
+     "raw_provider": "",
+     "model": "Claude 3 Haiku",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3 Haiku"
+      },
+      "C": {
+       "text": "2024-03-13",
+       "number": 45364
+      },
+      "D": {
+       "text": "$0.25"
+      },
+      "E": {
+       "text": "$1.25"
+      },
+      "J": {
+       "text": "6",
+       "number": 6
+      },
+      "T": {
+       "text": "33.3%",
+       "number": 0.33299999999999996,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "W": {
+       "text": "75.2%",
+       "number": 0.752,
+       "note": "Anthropic Claude 3 model card, 5-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "X": {
+       "text": "88.9%",
+       "number": 0.889,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "Y": {
+       "text": "75.9%",
+       "number": 0.759,
+       "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r22",
+     "source_row": 22,
+     "raw_provider": "",
+     "model": "Claude 3 Opus",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3 Opus"
+      },
+      "C": {
+       "text": "2024-03-04",
+       "number": 45355
+      },
+      "D": {
+       "text": "$15.00"
+      },
+      "E": {
+       "text": "$75.00"
+      },
+      "J": {
+       "text": "9",
+       "number": 9
+      },
+      "S": {
+       "text": "22.0%",
+       "number": 0.22,
+       "note": "Anthropic historical SWE-bench agent result. https://www.anthropic.com/engineering/swe-bench-sonnet"
+      },
+      "T": {
+       "text": "50.4%",
+       "number": 0.504,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "W": {
+       "text": "86.8%",
+       "number": 0.868,
+       "note": "Anthropic Claude 3 model card, 5-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "X": {
+       "text": "95.0%",
+       "number": 0.95,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "Y": {
+       "text": "84.9%",
+       "number": 0.8490000000000001,
+       "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r23",
+     "source_row": 23,
+     "raw_provider": "",
+     "model": "Claude 3 Sonnet",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 3 Sonnet"
+      },
+      "C": {
+       "text": "2024-03-04",
+       "number": 45355
+      },
+      "D": {
+       "text": "$3.00"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "6",
+       "number": 6
+      },
+      "T": {
+       "text": "40.4%",
+       "number": 0.40399999999999997,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "W": {
+       "text": "79.0%",
+       "number": 0.79,
+       "note": "Anthropic Claude 3 model card, 5-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "X": {
+       "text": "92.3%",
+       "number": 0.9229999999999999,
+       "note": "Anthropic Claude 3 model card, 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "Y": {
+       "text": "73.0%",
+       "number": 0.73,
+       "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r24",
+     "source_row": 24,
+     "raw_provider": "",
+     "model": "Claude 2.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 2.1"
+      },
+      "C": {
+       "text": "2023-11-21",
+       "number": 45251
+      },
+      "D": {
+       "text": "$8.00"
+      },
+      "E": {
+       "text": "$24.00"
+      },
+      "J": {
+       "text": "6",
+       "number": 6
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r25",
+     "source_row": 25,
+     "raw_provider": "",
+     "model": "Claude Instant 1.2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Instant 1.2"
+      },
+      "C": {
+       "text": "2023-08-09",
+       "number": 45147
+      },
+      "D": {
+       "text": "$0.80"
+      },
+      "E": {
+       "text": "$2.40"
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r26",
+     "source_row": 26,
+     "raw_provider": "",
+     "model": "Claude 2.0",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude 2.0"
+      },
+      "C": {
+       "text": "2023-07-11",
+       "number": 45118
+      },
+      "D": {
+       "text": "$8.00"
+      },
+      "E": {
+       "text": "$24.00"
+      },
+      "J": {
+       "text": "6",
+       "number": 6
+      }
+     },
+     "provider": "Anthropic",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r28",
+     "source_row": 28,
+     "raw_provider": "OpenAI",
+     "model": "GPT 6.1 Sol",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "OpenAI"
+      },
+      "B": {
+       "text": "GPT 6.1 Sol"
+      },
+      "C": {
+       "text": "2026-09-29",
+       "number": 46294
+      },
+      "D": {
+       "text": "$2"
+      },
+      "E": {
+       "text": "$10"
+      },
+      "J": {
+       "text": "52",
+       "number": 52
+      },
+      "K": {
+       "text": "48",
+       "number": 48
+      },
+      "L": {
+       "text": "50",
+       "number": 50
+      },
+      "M": {
+       "text": "53%",
+       "number": 0.53
+      },
+      "N": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "O": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "P": {
+       "text": "65%",
+       "number": 0.65
+      },
+      "Q": {
+       "text": "52.73%",
+       "number": 0.5273
+      },
+      "R": {
+       "text": "96.37%",
+       "number": 0.9637
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r29",
+     "source_row": 29,
+     "raw_provider": "OpenAI",
+     "model": "GPT 6 Sol",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "OpenAI"
+      },
+      "B": {
+       "text": "GPT 6 Sol"
+      },
+      "C": {
+       "text": "2026-09-22",
+       "number": 46287
+      },
+      "D": {
+       "text": "$2"
+      },
+      "E": {
+       "text": "$10"
+      },
+      "I": {
+       "text": "1.05M context window, 최대 출력 128K"
+      },
+      "J": {
+       "text": "48",
+       "number": 48
+      },
+      "K": {
+       "text": "40",
+       "number": 40
+      },
+      "L": {
+       "text": "42",
+       "number": 42
+      },
+      "M": {
+       "text": "48%",
+       "number": 0.48
+      },
+      "N": {
+       "text": "44%",
+       "number": 0.44
+      },
+      "O": {
+       "text": "58%",
+       "number": 0.58
+      },
+      "P": {
+       "text": "62%",
+       "number": 0.62
+      },
+      "Q": {
+       "text": "4.62%",
+       "number": 0.0462
+      },
+      "R": {
+       "text": "23.03%",
+       "number": 0.2303
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r30",
+     "source_row": 30,
+     "raw_provider": "",
+     "model": "GPT 6 Luna",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 6 Luna"
+      },
+      "C": {
+       "text": "2026-09-22",
+       "number": 46287
+      },
+      "D": {
+       "text": "$0.10"
+      },
+      "E": {
+       "text": "$0.50"
+      },
+      "I": {
+       "text": "1.05M context window, 최대 출력 128K"
+      },
+      "J": {
+       "text": "38",
+       "number": 38
+      },
+      "K": {
+       "text": "30",
+       "number": 30
+      },
+      "L": {
+       "text": "33",
+       "number": 33
+      },
+      "M": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "N": {
+       "text": "13%",
+       "number": 0.13
+      },
+      "O": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "P": {
+       "text": "53%",
+       "number": 0.53
+      },
+      "Q": {
+       "text": "0.19%",
+       "number": 0.0019
+      },
+      "R": {
+       "text": "0.59%",
+       "number": 0.0059
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r31",
+     "source_row": 31,
+     "raw_provider": "",
+     "model": "GPT 6 Astra",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 6 Astra"
+      },
+      "C": {
+       "text": "2026-09-03",
+       "number": 46268
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$50"
+      },
+      "J": {
+       "text": "53",
+       "number": 53
+      },
+      "K": {
+       "text": "50",
+       "number": 50
+      },
+      "L": {
+       "text": "51",
+       "number": 51
+      },
+      "M": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "N": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "O": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "P": {
+       "text": "68%",
+       "number": 0.68
+      },
+      "Q": {
+       "text": "62.71%",
+       "number": 0.6271
+      },
+      "R": {
+       "text": "99.95%",
+       "number": 0.9995
+      },
+      "T": {
+       "text": "96.0%",
+       "number": 0.96,
+       "note": "OpenAI GPT-6 Astra launch, no-tools GPQA Diamond. https://openai.com/index/gpt-6-astra/"
+      },
+      "AA": {
+       "text": "63.1%",
+       "number": 0.631
+      },
+      "AB": {
+       "text": "41.4%",
+       "number": 0.414
+      },
+      "AC": {
+       "text": "53.5%",
+       "number": 0.535
+      },
+      "AD": {
+       "text": "5.4%",
+       "number": 0.054000000000000006
+      },
+      "AE": {
+       "text": "74.1%",
+       "number": 0.741
+      },
+      "AF": {
+       "text": "65.5%",
+       "number": 0.655
+      },
+      "AG": {
+       "text": "89.6%",
+       "number": 0.8959999999999999
+      },
+      "AH": {
+       "text": "58.2%",
+       "number": 0.5820000000000001
+      },
+      "AI": {
+       "text": "44.3%",
+       "number": 0.44299999999999995
+      },
+      "AJ": {
+       "text": "68.1%",
+       "number": 0.6809999999999999
+      },
+      "AK": {
+       "text": "85.4%",
+       "number": 0.8540000000000001
+      },
+      "AL": {
+       "text": "72.0%",
+       "number": 0.72
+      },
+      "AM": {
+       "text": "98.7%",
+       "number": 0.987
+      },
+      "AN": {
+       "text": "71.8%",
+       "number": 0.718
+      },
+      "AO": {
+       "text": "34.2%",
+       "number": 0.342
+      },
+      "AP": {
+       "text": "72.6%",
+       "number": 0.726
+      },
+      "AQ": {
+       "text": "71.0%",
+       "number": 0.71
+      },
+      "AR": {
+       "text": "87.5%",
+       "number": 0.875
+      },
+      "AS": {
+       "text": "68.0%",
+       "number": 0.68
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r32",
+     "source_row": 32,
+     "raw_provider": "",
+     "model": "GPT 5.6 Sol",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 5.6 Sol"
+      },
+      "C": {
+       "text": "2026-07-09",
+       "number": 46212
+      },
+      "D": {
+       "text": "$5.0"
+      },
+      "E": {
+       "text": "$30"
+      },
+      "J": {
+       "text": "47",
+       "number": 47
+      },
+      "K": {
+       "text": "39",
+       "number": 39
+      },
+      "L": {
+       "text": "42",
+       "number": 42
+      },
+      "M": {
+       "text": "49%",
+       "number": 0.49
+      },
+      "N": {
+       "text": "40%",
+       "number": 0.4
+      },
+      "O": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "P": {
+       "text": "60%",
+       "number": 0.6
+      },
+      "Q": {
+       "text": "7.78%",
+       "number": 0.07780000000000001
+      },
+      "T": {
+       "text": "94.6%",
+       "number": 0.946,
+       "note": "OpenAI GPT-6 Astra launch comparison table, GPT-5.6 Sol. https://openai.com/index/gpt-6-astra/"
+      },
+      "AA": {
+       "text": "73.1%",
+       "number": 0.7312000000000001,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "19.6%",
+       "number": 0.196,
+       "note": "Anthropic Fable 5.1 launch cross-model AutomationBench result. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AC": {
+       "text": "53.8%",
+       "number": 0.5376,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AD": {
+       "text": "2.5%",
+       "number": 0.025,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AE": {
+       "text": "72.7%",
+       "number": 0.727,
+       "note": "OpenAI GPT-5.6 launch, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AI": {
+       "text": "31.0%",
+       "number": 0.31,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AJ": {
+       "text": "22.4%",
+       "number": 0.22399999999999998,
+       "note": "Anthropic Fable 5.1 launch comparison. https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      "AK": {
+       "text": "82.1%",
+       "number": 0.821,
+       "note": "LABBench 2 result reported in Gemini 3.8 Flash model-card comparison; external documented result."
+      },
+      "AL": {
+       "text": "74.4%",
+       "number": 0.7440000000000001,
+       "note": "RiemannBench current public aggregate, max reasoning. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "30.6%",
+       "number": 0.306,
+       "note": "Agents' Last Exam official leaderboard; Codex. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "62.7%",
+       "number": 0.627,
+       "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "AQ": {
+       "text": "45.0%",
+       "number": 0.45,
+       "note": "Chartography launch leaderboard, max reasoning. https://arxiv.org/abs/2608.10677"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r33",
+     "source_row": 33,
+     "raw_provider": "",
+     "model": "GPT 5.6 Terra",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 5.6 Terra"
+      },
+      "C": {
+       "text": "2026-07-09",
+       "number": 46212
+      },
+      "D": {
+       "text": "$2.5"
+      },
+      "E": {
+       "text": "$15"
+      },
+      "J": {
+       "text": "42",
+       "number": 42
+      },
+      "K": {
+       "text": "30",
+       "number": 30
+      },
+      "L": {
+       "text": "34",
+       "number": 34
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "35%",
+       "number": 0.35
+      },
+      "O": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "P": {
+       "text": "60%",
+       "number": 0.6
+      },
+      "Q": {
+       "text": "0.80%",
+       "number": 0.008
+      },
+      "AA": {
+       "text": "65.1%",
+       "number": 0.6514,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "15.2%",
+       "number": 0.152,
+       "note": "OpenAI GPT-5.6 launch AutomationBench table. https://openai.com/index/gpt-5-6/"
+      },
+      "AE": {
+       "text": "69.6%",
+       "number": 0.696,
+       "note": "OpenAI GPT-5.6 launch, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AL": {
+       "text": "66.4%",
+       "number": 0.664,
+       "note": "RiemannBench public aggregate, max reasoning. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "28.0%",
+       "number": 0.28,
+       "note": "Agents' Last Exam official leaderboard; Codex. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "50.2%",
+       "number": 0.502,
+       "note": "OpenAI GPT-5.6 launch OSWorld 2.0 partial score. https://openai.com/index/gpt-5-6/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r34",
+     "source_row": 34,
+     "raw_provider": "",
+     "model": "GPT 5.6 Luna",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 5.6 Luna"
+      },
+      "C": {
+       "text": "2026-07-09",
+       "number": 46212
+      },
+      "D": {
+       "text": "$1.0"
+      },
+      "E": {
+       "text": "$6"
+      },
+      "J": {
+       "text": "37",
+       "number": 37
+      },
+      "K": {
+       "text": "25",
+       "number": 25
+      },
+      "L": {
+       "text": "32",
+       "number": 32
+      },
+      "M": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "N": {
+       "text": "12%",
+       "number": 0.12
+      },
+      "O": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "P": {
+       "text": "50%",
+       "number": 0.5
+      },
+      "Q": {
+       "text": "0.18%",
+       "number": 0.0018
+      },
+      "AA": {
+       "text": "69.9%",
+       "number": 0.6988,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "14.9%",
+       "number": 0.149,
+       "note": "OpenAI GPT-5.6 launch AutomationBench table. https://openai.com/index/gpt-5-6/"
+      },
+      "AE": {
+       "text": "67.2%",
+       "number": 0.672,
+       "note": "OpenAI GPT-5.6 launch, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AO": {
+       "text": "30.3%",
+       "number": 0.303,
+       "note": "Agents' Last Exam official leaderboard; Codex. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "45.6%",
+       "number": 0.456,
+       "note": "OpenAI GPT-5.6 launch OSWorld 2.0 partial score. https://openai.com/index/gpt-5-6/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r35",
+     "source_row": 35,
+     "raw_provider": "",
+     "model": "GPT-5.5 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.5 Pro"
+      },
+      "C": {
+       "text": "2026-04-23",
+       "number": 46135
+      },
+      "D": {
+       "text": "$30"
+      },
+      "E": {
+       "text": "$180"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r36",
+     "source_row": 36,
+     "raw_provider": "",
+     "model": "GPT 5.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT 5.5"
+      },
+      "C": {
+       "text": "2026-04-23",
+       "number": 46135
+      },
+      "D": {
+       "text": "$5.0"
+      },
+      "E": {
+       "text": "$30"
+      },
+      "J": {
+       "text": "39",
+       "number": 39
+      },
+      "K": {
+       "text": "34",
+       "number": 34
+      },
+      "L": {
+       "text": "37",
+       "number": 37
+      },
+      "M": {
+       "text": "46%",
+       "number": 0.46
+      },
+      "N": {
+       "text": "15%",
+       "number": 0.15
+      },
+      "O": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "P": {
+       "text": "47%",
+       "number": 0.47
+      },
+      "AA": {
+       "text": "68.0%",
+       "number": 0.6795,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "12.9%",
+       "number": 0.129,
+       "note": "OpenAI GPT-5.6 launch AutomationBench table. https://openai.com/index/gpt-5-6/"
+      },
+      "AC": {
+       "text": "51.8%",
+       "number": 0.5176,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AD": {
+       "text": "3.8%",
+       "number": 0.0375,
+       "note": "Vals Harvey leaderboard; DeepSeek V4 noted as matching GPT-5.5 at this final score. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AE": {
+       "text": "67.0%",
+       "number": 0.67,
+       "note": "OpenAI GPT-5.6 launch, DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AG": {
+       "text": "69.8%",
+       "number": 0.698,
+       "note": "Vals public update for GPT-5.5. https://www.vals.ai/home"
+      },
+      "AH": {
+       "text": "14.6%",
+       "number": 0.146,
+       "note": "Public Terminal-Bench 4.0 leaderboard snapshot; harness differs from Google table. https://agentbreaking.com/benchmarks/terminalbench_40"
+      },
+      "AI": {
+       "text": "23.9%",
+       "number": 0.239,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AL": {
+       "text": "55.2%",
+       "number": 0.552,
+       "note": "RiemannBench public aggregate, xHigh. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "26.6%",
+       "number": 0.266,
+       "note": "Agents' Last Exam official leaderboard; Codex. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "47.5%",
+       "number": 0.475,
+       "note": "OSWorld 2.0 official leaderboard, xhigh, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "AQ": {
+       "text": "31.0%",
+       "number": 0.31,
+       "note": "Chartography launch leaderboard, xHigh. https://arxiv.org/abs/2608.10677"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r37",
+     "source_row": 37,
+     "raw_provider": "",
+     "model": "GPT-5.4 mini",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.4 mini"
+      },
+      "C": {
+       "text": "2026-03-17",
+       "number": 46098
+      },
+      "D": {
+       "text": "$0.75"
+      },
+      "E": {
+       "text": "$4.50"
+      },
+      "J": {
+       "text": "25",
+       "number": 25
+      },
+      "K": {
+       "text": "20",
+       "number": 20
+      },
+      "M": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "N": {
+       "text": "2%",
+       "number": 0.02
+      },
+      "O": {
+       "text": "52%",
+       "number": 0.52
+      },
+      "P": {
+       "text": "26%",
+       "number": 0.26
+      },
+      "AG": {
+       "text": "48.0%",
+       "number": 0.4797,
+       "note": "Vals comparison result, Vibe Code Bench v1.1."
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r38",
+     "source_row": 38,
+     "raw_provider": "",
+     "model": "GPT-5.4 nano",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.4 nano"
+      },
+      "C": {
+       "text": "2026-03-17",
+       "number": 46098
+      },
+      "D": {
+       "text": "$0.20"
+      },
+      "E": {
+       "text": "$1.25"
+      },
+      "J": {
+       "text": "21",
+       "number": 21
+      },
+      "K": {
+       "text": "20",
+       "number": 20
+      },
+      "M": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "N": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "O": {
+       "text": "47%",
+       "number": 0.47
+      },
+      "P": {
+       "text": "6%",
+       "number": 0.06
+      },
+      "AA": {
+       "text": "51.9%",
+       "number": 0.5188,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "AG": {
+       "text": "26.1%",
+       "number": 0.261,
+       "note": "Vals comparison result, Vibe Code Bench v1.1."
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r39",
+     "source_row": 39,
+     "raw_provider": "",
+     "model": "GPT-5.4 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.4 Pro"
+      },
+      "C": {
+       "text": "2026-03-05",
+       "number": 46086
+      },
+      "D": {
+       "text": "$30.00"
+      },
+      "E": {
+       "text": "$180.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r40",
+     "source_row": 40,
+     "raw_provider": "",
+     "model": "GPT-5.4",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.4"
+      },
+      "C": {
+       "text": "2026-03-05",
+       "number": 46086
+      },
+      "D": {
+       "text": "$2.50"
+      },
+      "E": {
+       "text": "$15.00"
+      },
+      "J": {
+       "text": "39",
+       "number": 39
+      },
+      "M": {
+       "text": "44%",
+       "number": 0.44
+      },
+      "AA": {
+       "text": "66.1%",
+       "number": 0.6613,
+       "note": "Vals Index v1 snapshot, xhigh. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "AE": {
+       "text": "52.0%",
+       "number": 0.52,
+       "note": "DeepSWE v1.1 public snapshot, xhigh."
+      },
+      "AI": {
+       "text": "17.8%",
+       "number": 0.17800000000000002,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AL": {
+       "text": "41.6%",
+       "number": 0.41600000000000004,
+       "note": "RiemannBench public aggregate, xHigh. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "20.5%",
+       "number": 0.205,
+       "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r41",
+     "source_row": 41,
+     "raw_provider": "",
+     "model": "GPT-5.3 Instant",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.3 Instant"
+      },
+      "C": {
+       "text": "2026-03-03",
+       "number": 46084
+      },
+      "D": {
+       "text": "$1.75"
+      },
+      "E": {
+       "text": "$14.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r42",
+     "source_row": 42,
+     "raw_provider": "",
+     "model": "GPT-5.2 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.2 Pro"
+      },
+      "C": {
+       "text": "2025-12-11",
+       "number": 46002
+      },
+      "D": {
+       "text": "$21.00"
+      },
+      "E": {
+       "text": "$168.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r43",
+     "source_row": 43,
+     "raw_provider": "",
+     "model": "GPT-5.2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.2"
+      },
+      "C": {
+       "text": "2025-12-11",
+       "number": 46002
+      },
+      "D": {
+       "text": "$1.75"
+      },
+      "E": {
+       "text": "$14.00"
+      },
+      "J": {
+       "text": "30",
+       "number": 30
+      },
+      "K": {
+       "text": "27",
+       "number": 27
+      },
+      "M": {
+       "text": "38%",
+       "number": 0.38
+      },
+      "S": {
+       "text": "80.0%",
+       "number": 0.8,
+       "note": "OpenAI GPT-5.2 Thinking; OpenAI SWE-bench harness. https://openai.com/index/introducing-gpt-5-2/"
+      },
+      "T": {
+       "text": "92.4%",
+       "number": 0.924,
+       "note": "OpenAI GPT-5.2 Thinking, no tools. https://openai.com/index/introducing-gpt-5-2/"
+      },
+      "U": {
+       "text": "100.0%",
+       "number": 1,
+       "note": "OpenAI GPT-5.2 Thinking, AIME 2025 no-tools. https://openai.com/index/introducing-gpt-5-2/"
+      },
+      "AG": {
+       "text": "46.9%",
+       "number": 0.469,
+       "note": "Vals public historical VibeCodeBench result."
+      },
+      "AL": {
+       "text": "37.6%",
+       "number": 0.376,
+       "note": "RiemannBench public aggregate, xHigh. https://theaggregate.ai/benchmark?slug=riemannbench"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r44",
+     "source_row": 44,
+     "raw_provider": "",
+     "model": "GPT-5.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5.1"
+      },
+      "C": {
+       "text": "2025-11-13",
+       "number": 45974
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$10.00"
+      },
+      "J": {
+       "text": "25",
+       "number": 25
+      },
+      "L": {
+       "text": "25",
+       "number": 25
+      },
+      "M": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "S": {
+       "text": "76.3%",
+       "number": 0.763,
+       "note": "OpenAI GPT-5.1 high; full 500-task SWE-bench Verified. https://openai.com/index/gpt-5-1-for-developers/"
+      },
+      "T": {
+       "text": "88.1%",
+       "number": 0.8809999999999999,
+       "note": "OpenAI GPT-5.1 high, GPQA Diamond no-tools. https://openai.com/index/gpt-5-1-for-developers/"
+      },
+      "U": {
+       "text": "94.0%",
+       "number": 0.94,
+       "note": "OpenAI GPT-5.1 high, AIME 2025 no-tools. https://openai.com/index/gpt-5-1-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r45",
+     "source_row": 45,
+     "raw_provider": "",
+     "model": "GPT-5 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5 Pro"
+      },
+      "C": {
+       "text": "2025-10-06",
+       "number": 45936
+      },
+      "D": {
+       "text": "$15.00"
+      },
+      "E": {
+       "text": "$120.00"
+      },
+      "T": {
+       "text": "88.4%",
+       "number": 0.884,
+       "note": "OpenAI GPT-5 Pro, extended reasoning, GPQA no tools. https://openai.com/index/introducing-gpt-5/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r46",
+     "source_row": 46,
+     "raw_provider": "",
+     "model": "GPT-5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5"
+      },
+      "C": {
+       "text": "2025-08-07",
+       "number": 45876
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$10.00"
+      },
+      "J": {
+       "text": "23",
+       "number": 23
+      },
+      "K": {
+       "text": "23",
+       "number": 23
+      },
+      "L": {
+       "text": "23",
+       "number": 23
+      },
+      "M": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "S": {
+       "text": "74.9%",
+       "number": 0.7490000000000001,
+       "note": "OpenAI GPT-5 high; n=477 executable Verified tasks. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "T": {
+       "text": "85.7%",
+       "number": 0.857,
+       "note": "OpenAI GPT-5 high comparison reported in GPT-5.1 launch. https://openai.com/index/gpt-5-1-for-developers/"
+      },
+      "U": {
+       "text": "94.6%",
+       "number": 0.946,
+       "note": "OpenAI GPT-5 high, AIME 2025 no-tools. https://openai.com/index/introducing-gpt-5/"
+      },
+      "AA": {
+       "text": "49.0%",
+       "number": 0.4899,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r47",
+     "source_row": 47,
+     "raw_provider": "",
+     "model": "GPT-5 mini",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5 mini"
+      },
+      "C": {
+       "text": "2025-08-07",
+       "number": 45876
+      },
+      "D": {
+       "text": "$0.25"
+      },
+      "E": {
+       "text": "$2.00"
+      },
+      "J": {
+       "text": "21",
+       "number": 21
+      },
+      "K": {
+       "text": "21",
+       "number": 21
+      },
+      "L": {
+       "text": "17",
+       "number": 17
+      },
+      "M": {
+       "text": "21%",
+       "number": 0.21
+      },
+      "N": {
+       "text": "0%",
+       "number": 0
+      },
+      "O": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "P": {
+       "text": "6%",
+       "number": 0.06
+      },
+      "S": {
+       "text": "71.0%",
+       "number": 0.71,
+       "note": "OpenAI GPT-5 mini high; n=477 executable Verified tasks. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "AA": {
+       "text": "44.5%",
+       "number": 0.4447,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r48",
+     "source_row": 48,
+     "raw_provider": "",
+     "model": "GPT-5 nano",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-5 nano"
+      },
+      "C": {
+       "text": "2025-08-07",
+       "number": 45876
+      },
+      "D": {
+       "text": "$0.05"
+      },
+      "E": {
+       "text": "$0.40"
+      },
+      "J": {
+       "text": "13",
+       "number": 13
+      },
+      "K": {
+       "text": "12",
+       "number": 12
+      },
+      "L": {
+       "text": "13",
+       "number": 13
+      },
+      "S": {
+       "text": "54.7%",
+       "number": 0.547,
+       "note": "OpenAI GPT-5 nano high; n=477 executable Verified tasks. https://openai.com/index/introducing-gpt-5-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r49",
+     "source_row": 49,
+     "raw_provider": "",
+     "model": "o3-pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "o3-pro"
+      },
+      "C": {
+       "text": "2025-06-10",
+       "number": 45818
+      },
+      "D": {
+       "text": "$20.00"
+      },
+      "E": {
+       "text": "$80.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r50",
+     "source_row": 50,
+     "raw_provider": "",
+     "model": "o3",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "o3"
+      },
+      "C": {
+       "text": "2025-04-16",
+       "number": 45763
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$8.00"
+      },
+      "J": {
+       "text": "20",
+       "number": 20
+      },
+      "M": {
+       "text": "20%",
+       "number": 0.2
+      },
+      "S": {
+       "text": "69.1%",
+       "number": 0.691,
+       "note": "OpenAI o3 high; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r51",
+     "source_row": 51,
+     "raw_provider": "",
+     "model": "o4-mini",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "o4-mini"
+      },
+      "C": {
+       "text": "2025-04-16",
+       "number": 45763
+      },
+      "D": {
+       "text": "$1.10"
+      },
+      "E": {
+       "text": "$4.40"
+      },
+      "J": {
+       "text": "17",
+       "number": 17
+      },
+      "L": {
+       "text": "17",
+       "number": 17
+      },
+      "S": {
+       "text": "68.1%",
+       "number": 0.6809999999999999,
+       "note": "OpenAI o4-mini high; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r52",
+     "source_row": 52,
+     "raw_provider": "",
+     "model": "GPT-4.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4.1"
+      },
+      "C": {
+       "text": "2025-04-14",
+       "number": 45761
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$8.00"
+      },
+      "J": {
+       "text": "13",
+       "number": 13
+      },
+      "M": {
+       "text": "4%",
+       "number": 0.04
+      },
+      "S": {
+       "text": "54.6%",
+       "number": 0.546,
+       "note": "OpenAI GPT-4.1; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r53",
+     "source_row": 53,
+     "raw_provider": "",
+     "model": "GPT-4.1 mini",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4.1 mini"
+      },
+      "C": {
+       "text": "2025-04-14",
+       "number": 45761
+      },
+      "D": {
+       "text": "$0.40"
+      },
+      "E": {
+       "text": "$1.60"
+      },
+      "J": {
+       "text": "10",
+       "number": 10
+      },
+      "S": {
+       "text": "23.6%",
+       "number": 0.23600000000000002,
+       "note": "OpenAI GPT-4.1 mini; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r54",
+     "source_row": 54,
+     "raw_provider": "",
+     "model": "GPT-4.1 nano",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4.1 nano"
+      },
+      "C": {
+       "text": "2025-04-14",
+       "number": 45761
+      },
+      "D": {
+       "text": "$0.10"
+      },
+      "E": {
+       "text": "$0.40"
+      },
+      "J": {
+       "text": "8",
+       "number": 8
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r55",
+     "source_row": 55,
+     "raw_provider": "",
+     "model": "GPT-4 Turbo",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4 Turbo"
+      },
+      "C": {
+       "text": "2024-04-09",
+       "number": 45391
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$30.00"
+      },
+      "J": {
+       "text": "7",
+       "number": 7
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r56",
+     "source_row": 56,
+     "raw_provider": "",
+     "model": "GPT-3.5 Turbo ",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-3.5 Turbo "
+      },
+      "C": {
+       "text": "2024-02-01",
+       "number": 45323
+      },
+      "D": {
+       "text": "$0.50"
+      },
+      "E": {
+       "text": "$1.50"
+      },
+      "J": {
+       "text": "5",
+       "number": 5
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r57",
+     "source_row": 57,
+     "raw_provider": "",
+     "model": "GPT-4 Turbo Preview",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4 Turbo Preview"
+      },
+      "C": {
+       "text": "2024-01-25",
+       "number": 45316
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$30.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r58",
+     "source_row": 58,
+     "raw_provider": "",
+     "model": "GPT-4 Turbo Preview",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4 Turbo Preview"
+      },
+      "C": {
+       "text": "2023-11-06",
+       "number": 45236
+      },
+      "D": {
+       "text": "$10.00"
+      },
+      "E": {
+       "text": "$30.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r59",
+     "source_row": 59,
+     "raw_provider": "",
+     "model": "GPT-3.5 Turbo",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-3.5 Turbo"
+      },
+      "C": {
+       "text": "2023-11-06",
+       "number": 45236
+      },
+      "D": {
+       "text": "$1.00"
+      },
+      "E": {
+       "text": "$2.00"
+      },
+      "J": {
+       "text": "5",
+       "number": 5
+      },
+      "T": {
+       "text": "28.1%",
+       "number": 0.281,
+       "note": "Anthropic Claude 3 comparison table; GPT-3.5 family baseline, not exact dated snapshot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "W": {
+       "text": "70.0%",
+       "number": 0.7,
+       "note": "OpenAI GPT-4 Technical Report; GPT-3.5 family baseline, 5-shot. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "X": {
+       "text": "57.1%",
+       "number": 0.5710000000000001,
+       "note": "OpenAI GPT-4 Technical Report; GPT-3.5 family baseline, 5-shot. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "Y": {
+       "text": "48.1%",
+       "number": 0.48100000000000004,
+       "note": "OpenAI GPT-4 Technical Report; GPT-3.5 family baseline, 0-shot. https://cdn.openai.com/papers/gpt-4.pdf"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r60",
+     "source_row": 60,
+     "raw_provider": "",
+     "model": "GPT-3.5 Turbo Instruct",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-3.5 Turbo Instruct"
+      },
+      "C": {
+       "text": "2023-09-18",
+       "number": 45187
+      },
+      "D": {
+       "text": "$1.50"
+      },
+      "E": {
+       "text": "$2.00"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r61",
+     "source_row": 61,
+     "raw_provider": "",
+     "model": "GPT-4",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-4"
+      },
+      "C": {
+       "text": "2023-03-14",
+       "number": 44999
+      },
+      "D": {
+       "text": "$30.00"
+      },
+      "E": {
+       "text": "$60.00"
+      },
+      "F": {
+       "text": "1760B",
+       "note": "추정"
+      },
+      "G": {
+       "text": "280B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "7",
+       "number": 7
+      },
+      "T": {
+       "text": "35.7%",
+       "number": 0.35700000000000004,
+       "note": "Anthropic Claude 3 comparison table, GPT-4 0-shot CoT. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "W": {
+       "text": "86.4%",
+       "number": 0.8640000000000001,
+       "note": "OpenAI GPT-4 Technical Report, 5-shot MMLU. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "X": {
+       "text": "92.0%",
+       "number": 0.92,
+       "note": "OpenAI GPT-4 Technical Report, 5-shot CoT GSM8K. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "Y": {
+       "text": "67.0%",
+       "number": 0.67,
+       "note": "OpenAI GPT-4 Technical Report, 0-shot HumanEval. https://cdn.openai.com/papers/gpt-4.pdf"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r62",
+     "source_row": 62,
+     "raw_provider": "",
+     "model": "GPT-3",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-3"
+      },
+      "C": {
+       "text": "2020-06-11",
+       "number": 43993
+      },
+      "D": {
+       "text": "$60.00"
+      },
+      "E": {
+       "text": "$60.00"
+      },
+      "F": {
+       "text": "175B"
+      },
+      "H": {
+       "text": "Dense"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r63",
+     "source_row": 63,
+     "raw_provider": "",
+     "model": "GPT-2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-2"
+      },
+      "C": {
+       "text": "2019-02-14",
+       "number": 43510
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "1.5B"
+      },
+      "H": {
+       "text": "Dense"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r65",
+     "source_row": 65,
+     "raw_provider": "Google",
+     "model": "Gemini 4 Argon",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Google"
+      },
+      "B": {
+       "text": "Gemini 4 Argon"
+      },
+      "C": {
+       "text": "2026-09-30",
+       "number": 46295
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$10.00"
+      },
+      "I": {
+       "text": "1M context; phased / limited rollout at launch"
+      },
+      "J": {
+       "text": "53",
+       "number": 53
+      },
+      "L": {
+       "text": "53",
+       "number": 53
+      },
+      "M": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "N": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "O": {
+       "text": "62%",
+       "number": 0.62
+      },
+      "P": {
+       "text": "78%",
+       "number": 0.78
+      },
+      "AA": {
+       "text": "68.9%",
+       "number": 0.6890000000000001
+      },
+      "AB": {
+       "text": "51.3%",
+       "number": 0.513
+      },
+      "AC": {
+       "text": "65.4%",
+       "number": 0.654
+      },
+      "AD": {
+       "text": "19.6%",
+       "number": 0.196
+      },
+      "AE": {
+       "text": "77.9%",
+       "number": 0.779
+      },
+      "AF": {
+       "text": "55.0%",
+       "number": 0.55
+      },
+      "AG": {
+       "text": "91.9%",
+       "number": 0.919
+      },
+      "AH": {
+       "text": "57.4%",
+       "number": 0.574
+      },
+      "AI": {
+       "text": "45.3%",
+       "number": 0.45299999999999996
+      },
+      "AJ": {
+       "text": "57.6%",
+       "number": 0.5760000000000001
+      },
+      "AK": {
+       "text": "88.8%",
+       "number": 0.888
+      },
+      "AL": {
+       "text": "76.0%",
+       "number": 0.76
+      },
+      "AM": {
+       "text": "99.7%",
+       "number": 0.997
+      },
+      "AN": {
+       "text": "84.2%",
+       "number": 0.8420000000000001
+      },
+      "AO": {
+       "text": "39.5%",
+       "number": 0.395
+      },
+      "AP": {
+       "text": "69.2%",
+       "number": 0.6920000000000001
+      },
+      "AQ": {
+       "text": "71.6%",
+       "number": 0.716
+      },
+      "AR": {
+       "text": "91.7%",
+       "number": 0.917
+      },
+      "AS": {
+       "text": "68.0%",
+       "number": 0.68
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r66",
+     "source_row": 66,
+     "raw_provider": "",
+     "model": "Gemini 3.8 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.8 Flash"
+      },
+      "C": {
+       "text": "2026-09-02",
+       "number": 46267
+      },
+      "D": {
+       "text": "$0.75"
+      },
+      "E": {
+       "text": "$3.75"
+      },
+      "J": {
+       "text": "41",
+       "number": 41
+      },
+      "K": {
+       "text": "40",
+       "number": 40
+      },
+      "L": {
+       "text": "41",
+       "number": 41
+      },
+      "M": {
+       "text": "48%",
+       "number": 0.48
+      },
+      "N": {
+       "text": "20%",
+       "number": 0.2
+      },
+      "O": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "P": {
+       "text": "60%",
+       "number": 0.6
+      },
+      "T": {
+       "text": "95.3%",
+       "number": 0.953,
+       "note": "OpenAI GPT-6 Astra launch comparison table; Gemini 3.8 Flash. https://openai.com/index/gpt-6-astra/"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r67",
+     "source_row": 67,
+     "raw_provider": "",
+     "model": "Gemini 3.7 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.7 Flash"
+      },
+      "C": {
+       "text": "2026-08-13",
+       "number": 46247
+      },
+      "D": {
+       "text": "$0.75"
+      },
+      "E": {
+       "text": "$3.75"
+      },
+      "J": {
+       "text": "40",
+       "number": 40
+      },
+      "K": {
+       "text": "40",
+       "number": 40
+      },
+      "L": {
+       "text": "39",
+       "number": 39
+      },
+      "M": {
+       "text": "48%",
+       "number": 0.48
+      },
+      "N": {
+       "text": "14%",
+       "number": 0.14
+      },
+      "O": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "P": {
+       "text": "62%",
+       "number": 0.62
+      },
+      "T": {
+       "text": "94.5%",
+       "number": 0.945,
+       "note": "OpenAI GPT-6 Astra launch comparison table; Gemini 3.7 Flash. https://openai.com/index/gpt-6-astra/"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r68",
+     "source_row": 68,
+     "raw_provider": "",
+     "model": "Gemini 3.6 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.6 Flash"
+      },
+      "C": {
+       "text": "2026-07-21",
+       "number": 46224
+      },
+      "D": {
+       "text": "$0.75"
+      },
+      "E": {
+       "text": "$3.75"
+      },
+      "J": {
+       "text": "34",
+       "number": 34
+      },
+      "L": {
+       "text": "34",
+       "number": 34
+      },
+      "M": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "N": {
+       "text": "7%",
+       "number": 0.07
+      },
+      "O": {
+       "text": "53%",
+       "number": 0.53
+      },
+      "P": {
+       "text": "53%",
+       "number": 0.53
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r69",
+     "source_row": 69,
+     "raw_provider": "",
+     "model": "Gemini 3.5 Flash-Lite",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.5 Flash-Lite"
+      },
+      "C": {
+       "text": "2026-07-21",
+       "number": 46224
+      },
+      "D": {
+       "text": "$0.30"
+      },
+      "E": {
+       "text": "$2.50"
+      },
+      "J": {
+       "text": "22",
+       "number": 22
+      },
+      "M": {
+       "text": "19%",
+       "number": 0.19
+      },
+      "N": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "O": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "P": {
+       "text": "25%",
+       "number": 0.25
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r70",
+     "source_row": 70,
+     "raw_provider": "",
+     "model": "Gemini 3.5 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.5 Flash"
+      },
+      "C": {
+       "text": "2026-05-19",
+       "number": 46161
+      },
+      "D": {
+       "text": "$1.5"
+      },
+      "E": {
+       "text": "$9"
+      },
+      "J": {
+       "text": "34",
+       "number": 34
+      },
+      "K": {
+       "text": "34",
+       "number": 34
+      },
+      "L": {
+       "text": "33",
+       "number": 33
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "7%",
+       "number": 0.07
+      },
+      "O": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "P": {
+       "text": "42%",
+       "number": 0.42
+      },
+      "AA": {
+       "text": "62.8%",
+       "number": 0.6275,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AB": {
+       "text": "14.5%",
+       "number": 0.145,
+       "note": "OpenAI GPT-5.6 launch AutomationBench comparison. https://openai.com/index/gpt-5-6/"
+      },
+      "AC": {
+       "text": "57.9%",
+       "number": 0.5786,
+       "note": "Vals July update: Muse Spark 1.1 at 57.21%, 0.65 points behind Gemini 3.5 Flash."
+      },
+      "AE": {
+       "text": "37.0%",
+       "number": 0.37,
+       "note": "DeepSWE v1.1 public snapshot, medium reasoning."
+      },
+      "AL": {
+       "text": "36.8%",
+       "number": 0.368,
+       "note": "RiemannBench public aggregate, high reasoning. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AQ": {
+       "text": "35.9%",
+       "number": 0.359,
+       "note": "Chartography launch leaderboard. https://arxiv.org/abs/2608.10677"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r71",
+     "source_row": 71,
+     "raw_provider": "",
+     "model": "Gemini 3.1 Flash-Lite",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.1 Flash-Lite"
+      },
+      "C": {
+       "text": "2026-05-07",
+       "number": 46149
+      },
+      "D": {
+       "text": "$0.25"
+      },
+      "E": {
+       "text": "$1.5"
+      },
+      "J": {
+       "text": "16",
+       "number": 16
+      },
+      "M": {
+       "text": "17%",
+       "number": 0.17
+      },
+      "N": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "O": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "P": {
+       "text": "7%",
+       "number": 0.07
+      },
+      "AA": {
+       "text": "40.8%",
+       "number": 0.4077,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r72",
+     "source_row": 72,
+     "raw_provider": "",
+     "model": "Gemini 3.1 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 3.1 Pro"
+      },
+      "C": {
+       "text": "2026-02-19",
+       "number": 46072
+      },
+      "D": {
+       "text": "$2.0"
+      },
+      "E": {
+       "text": "$12"
+      },
+      "J": {
+       "text": "30",
+       "number": 30
+      },
+      "M": {
+       "text": "47%",
+       "number": 0.47
+      },
+      "N": {
+       "text": "4%",
+       "number": 0.04
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "35%",
+       "number": 0.35
+      },
+      "AE": {
+       "text": "11.8%",
+       "number": 0.11800000000000001,
+       "note": "OpenAI GPT-5.6 launch cross-model DeepSWE v1.1. https://openai.com/index/gpt-5-6/"
+      },
+      "AI": {
+       "text": "18.1%",
+       "number": 0.18100000000000002,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AO": {
+       "text": "16.4%",
+       "number": 0.16399999999999998,
+       "note": "Agents' Last Exam official leaderboard; Gemini CLI high. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r73",
+     "source_row": 73,
+     "raw_provider": "",
+     "model": "Gemini 2.5 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 2.5 Pro"
+      },
+      "C": {
+       "text": "2025-06-17",
+       "number": 45825
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$10.00"
+      },
+      "J": {
+       "text": "17",
+       "number": 17
+      },
+      "AA": {
+       "text": "39.3%",
+       "number": 0.3932,
+       "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r74",
+     "source_row": 74,
+     "raw_provider": "",
+     "model": "Gemini 2.5 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 2.5 Flash"
+      },
+      "C": {
+       "text": "2025-06-17",
+       "number": 45825
+      },
+      "D": {
+       "text": "$0.30"
+      },
+      "E": {
+       "text": "$2.50"
+      },
+      "J": {
+       "text": "13",
+       "number": 13
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r75",
+     "source_row": 75,
+     "raw_provider": "",
+     "model": "Gemini 2.0 Flash-Lite",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 2.0 Flash-Lite"
+      },
+      "C": {
+       "text": "2025-02-25",
+       "number": 45713
+      },
+      "D": {
+       "text": "$0.075"
+      },
+      "E": {
+       "text": "$0.30"
+      },
+      "J": {
+       "text": "9",
+       "number": 9
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r76",
+     "source_row": 76,
+     "raw_provider": "",
+     "model": "Gemini 2.0 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 2.0 Flash"
+      },
+      "C": {
+       "text": "2025-02-05",
+       "number": 45693
+      },
+      "D": {
+       "text": "$0.10"
+      },
+      "E": {
+       "text": "$0.40"
+      },
+      "J": {
+       "text": "9",
+       "number": 9
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r77",
+     "source_row": 77,
+     "raw_provider": "",
+     "model": "Gemini 1.5 Flash-8B",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 1.5 Flash-8B"
+      },
+      "C": {
+       "text": "2024-10-03",
+       "number": 45568
+      },
+      "D": {
+       "text": "$0.0375"
+      },
+      "E": {
+       "text": "$0.15"
+      },
+      "J": {
+       "text": "1",
+       "number": 1
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r78",
+     "source_row": 78,
+     "raw_provider": "",
+     "model": "Gemini 1.5 Pro",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 1.5 Pro"
+      },
+      "C": {
+       "text": "2024-05-23",
+       "number": 45435
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$5.00"
+      },
+      "J": {
+       "text": "8",
+       "number": 8
+      },
+      "AR": {
+       "text": "33.1%",
+       "number": 0.331,
+       "note": "Original LVBench official leaderboard, Gemini 1.5 Pro with 3600 frames. https://lvbench.github.io/"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r79",
+     "source_row": 79,
+     "raw_provider": "",
+     "model": "Gemini 1.5 Flash",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 1.5 Flash"
+      },
+      "C": {
+       "text": "2024-05-23",
+       "number": 45435
+      },
+      "D": {
+       "text": "$0.075"
+      },
+      "E": {
+       "text": "$0.30"
+      },
+      "J": {
+       "text": "7",
+       "number": 7
+      }
+     },
+     "provider": "Google",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r81",
+     "source_row": 81,
+     "raw_provider": "xAI / SpaceXAI",
+     "model": "Grok 4.7",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "xAI / SpaceXAI"
+      },
+      "B": {
+       "text": "Grok 4.7"
+      },
+      "C": {
+       "text": "2026-09-21",
+       "number": 46286
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$6.00"
+      },
+      "J": {
+       "text": "46",
+       "number": 46
+      },
+      "L": {
+       "text": "46",
+       "number": 46
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "26%",
+       "number": 0.26
+      },
+      "O": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "P": {
+       "text": "66%",
+       "number": 0.66
+      },
+      "AS": {
+       "text": "68.0%",
+       "number": 0.68,
+       "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      }
+     },
+     "provider": "xAI / SpaceXAI",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r82",
+     "source_row": 82,
+     "raw_provider": "",
+     "model": "Grok 4.6",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Grok 4.6"
+      },
+      "C": {
+       "text": "2026-08-12",
+       "number": 46246
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$6.00"
+      },
+      "J": {
+       "text": "44",
+       "number": 44
+      },
+      "L": {
+       "text": "44",
+       "number": 44
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "21%",
+       "number": 0.21
+      },
+      "O": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "P": {
+       "text": "67%",
+       "number": 0.67
+      },
+      "AD": {
+       "text": "15.8%",
+       "number": 0.1583,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AS": {
+       "text": "57.0%",
+       "number": 0.57,
+       "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      }
+     },
+     "provider": "xAI / SpaceXAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r83",
+     "source_row": 83,
+     "raw_provider": "",
+     "model": "Grok 4.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Grok 4.5"
+      },
+      "C": {
+       "text": "2026-07-16",
+       "number": 46219
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$6.00"
+      },
+      "J": {
+       "text": "39",
+       "number": 39
+      },
+      "L": {
+       "text": "39",
+       "number": 39
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "11%",
+       "number": 0.11
+      },
+      "O": {
+       "text": "55%",
+       "number": 0.55
+      },
+      "P": {
+       "text": "58%",
+       "number": 0.58
+      },
+      "AD": {
+       "text": "12.9%",
+       "number": 0.1292,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AI": {
+       "text": "22.6%",
+       "number": 0.226,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AL": {
+       "text": "38.4%",
+       "number": 0.384,
+       "note": "RiemannBench public aggregate, high reasoning. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "27.0%",
+       "number": 0.27,
+       "note": "Agents' Last Exam official leaderboard; Grok Build high. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "xAI / SpaceXAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r84",
+     "source_row": 84,
+     "raw_provider": "",
+     "model": "Grok 4.3",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Grok 4.3"
+      },
+      "C": {
+       "text": "2026-05-01",
+       "number": 46143
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$2.5"
+      },
+      "J": {
+       "text": "25",
+       "number": 25
+      },
+      "K": {
+       "text": "25",
+       "number": 25
+      },
+      "L": {
+       "text": "25",
+       "number": 25
+      },
+      "M": {
+       "text": "37%",
+       "number": 0.37
+      },
+      "N": {
+       "text": "0%",
+       "number": 0
+      },
+      "O": {
+       "text": "48%",
+       "number": 0.48
+      },
+      "P": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "AO": {
+       "text": "7.2%",
+       "number": 0.07200000000000001,
+       "note": "Agents' Last Exam official leaderboard; Grok CLI run. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "xAI / SpaceXAI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r86",
+     "source_row": 86,
+     "raw_provider": "Meta",
+     "model": "Muse Spark 1.3",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Meta"
+      },
+      "B": {
+       "text": "Muse Spark 1.3"
+      },
+      "C": {
+       "text": "2026-09-02",
+       "number": 46267
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$4.25"
+      },
+      "I": {
+       "text": "Best = Max reasoning"
+      },
+      "J": {
+       "text": "48",
+       "number": 48
+      },
+      "M": {
+       "text": "49%",
+       "number": 0.49
+      },
+      "N": {
+       "text": "33%",
+       "number": 0.33
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "58%",
+       "number": 0.58
+      },
+      "AD": {
+       "text": "22.9%",
+       "number": 0.22920000000000001,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AS": {
+       "text": "55.0%",
+       "number": 0.55,
+       "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r87",
+     "source_row": 87,
+     "raw_provider": "",
+     "model": "Muse Spark 1.2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Muse Spark 1.2"
+      },
+      "C": {
+       "text": "2026-08-05",
+       "number": 46239
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$4.25"
+      },
+      "I": {
+       "text": "Best = Xhigh"
+      },
+      "J": {
+       "text": "40",
+       "number": 40
+      },
+      "M": {
+       "text": "45%",
+       "number": 0.45
+      },
+      "N": {
+       "text": "7%",
+       "number": 0.07
+      },
+      "O": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "P": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "AA": {
+       "text": "71.9%",
+       "number": 0.7188,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "60.6%",
+       "number": 0.606,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AD": {
+       "text": "25.4%",
+       "number": 0.25420000000000004,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r88",
+     "source_row": 88,
+     "raw_provider": "",
+     "model": "Muse Spark 1.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Muse Spark 1.1"
+      },
+      "C": {
+       "text": "2026-07-10",
+       "number": 46213
+      },
+      "D": {
+       "text": "$1.25"
+      },
+      "E": {
+       "text": "$4.25"
+      },
+      "J": {
+       "text": "34",
+       "number": 34
+      },
+      "M": {
+       "text": "46%",
+       "number": 0.46
+      },
+      "N": {
+       "text": "6%",
+       "number": 0.06
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "AA": {
+       "text": "68.4%",
+       "number": 0.6840999999999999,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "57.2%",
+       "number": 0.5721,
+       "note": "Vals July Muse Spark 1.1 update, Finance Agent v2."
+      },
+      "AD": {
+       "text": "20.0%",
+       "number": 0.2,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AG": {
+       "text": "72.2%",
+       "number": 0.7216,
+       "note": "Vals Muse Spark 1.1 update, Vibe Code Bench."
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r89",
+     "source_row": 89,
+     "raw_provider": "",
+     "model": "Code Llama 70B (Base)",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Code Llama 70B (Base)"
+      },
+      "C": {
+       "text": "2024-01-29"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "70B"
+      },
+      "G": {
+       "text": "70B"
+      },
+      "H": {
+       "text": "Dense Transformer (Llama 2-based)"
+      },
+      "I": {
+       "text": "Base code model; Llama 2 Community License; 16K training sequence, long-context research up to ~100K; HumanEval pass@1 53.0%."
+      },
+      "Y": {
+       "text": "53.0%"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r90",
+     "source_row": 90,
+     "raw_provider": "",
+     "model": "Code Llama 34B (Base)",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Code Llama 34B (Base)"
+      },
+      "C": {
+       "text": "2023-08-24"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "34B"
+      },
+      "G": {
+       "text": "34B"
+      },
+      "H": {
+       "text": "Dense Transformer (Llama 2-based)"
+      },
+      "I": {
+       "text": "Base code model; Llama 2 Community License; 16K training sequence; HumanEval pass@1 48.8%."
+      },
+      "Y": {
+       "text": "48.8%"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r91",
+     "source_row": 91,
+     "raw_provider": "",
+     "model": "Code Llama 13B (Base)",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Code Llama 13B (Base)"
+      },
+      "C": {
+       "text": "2023-08-24"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "13B"
+      },
+      "G": {
+       "text": "13B"
+      },
+      "H": {
+       "text": "Dense Transformer (Llama 2-based)"
+      },
+      "I": {
+       "text": "Base code model; Llama 2 Community License; 16K training sequence; HumanEval pass@1 36.0%."
+      },
+      "Y": {
+       "text": "36.0%"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r92",
+     "source_row": 92,
+     "raw_provider": "",
+     "model": "Code Llama 7B (Base)",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Code Llama 7B (Base)"
+      },
+      "C": {
+       "text": "2023-08-24"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "7B"
+      },
+      "G": {
+       "text": "7B"
+      },
+      "H": {
+       "text": "Dense Transformer (Llama 2-based)"
+      },
+      "I": {
+       "text": "Base code model; Llama 2 Community License; 16K training sequence; HumanEval pass@1 33.5%."
+      },
+      "Y": {
+       "text": "33.5%"
+      }
+     },
+     "provider": "Meta",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r94",
+     "source_row": 94,
+     "raw_provider": "CodeMate Inc.",
+     "model": "CodeMate-v0.1",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "CodeMate Inc."
+      },
+      "B": {
+       "text": "CodeMate-v0.1"
+      },
+      "C": {
+       "text": "2024-01"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "34B"
+      },
+      "G": {
+       "text": "34B"
+      },
+      "H": {
+       "text": "Dense (Code Llama 34B fine-tune)"
+      },
+      "I": {
+       "text": "Open-weight; Llama 2 Community License (not OSI open-source). Proprietary 1.8B-token programming fine-tune; seq. length 8,096; HumanEval 74.9% is self-reported."
+      },
+      "W": {
+       "text": "55.31%"
+      },
+      "X": {
+       "text": "40.18%"
+      },
+      "Y": {
+       "text": "74.9%"
+      }
+     },
+     "provider": "CodeMate Inc.",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r95",
+     "source_row": 95,
+     "raw_provider": "",
+     "model": "CAC-v0.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "CAC-v0.1"
+      },
+      "C": {
+       "text": "2024-09-21"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "6.7B"
+      },
+      "G": {
+       "text": "6.7B"
+      },
+      "H": {
+       "text": "Dense (DeepSeek-Coder 6.7B Base fine-tune)"
+      },
+      "I": {
+       "text": "Code completion-focused CodeMate model; base: deepseek-ai/deepseek-coder-6.7b-base. Fine-tuned on CodeMate proprietary 1.8B-token programming dataset; sequence length 8,096. HF public repo updated 2024-09-21; no official benchmark table published on model card."
+      }
+     },
+     "provider": "CodeMate Inc.",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r97",
+     "source_row": 97,
+     "raw_provider": "BigCode",
+     "model": "StarCoder2-15B",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "BigCode"
+      },
+      "B": {
+       "text": "StarCoder2-15B"
+      },
+      "C": {
+       "text": "2024-02-28"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "15B"
+      },
+      "G": {
+       "text": "15B"
+      },
+      "H": {
+       "text": "Dense Transformer (GQA + FIM)"
+      },
+      "I": {
+       "text": "The Stack v2; 16K context; BigCode OpenRAIL-M; HumanEval 46.3%, GSM8K(PAL) 65.1% self-reported."
+      },
+      "X": {
+       "text": "65.1%"
+      },
+      "Y": {
+       "text": "46.3%"
+      }
+     },
+     "provider": "BigCode",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r98",
+     "source_row": 98,
+     "raw_provider": "",
+     "model": "StarCoder 15.5B",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "StarCoder 15.5B"
+      },
+      "C": {
+       "text": "2023-05-04"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "15.5B"
+      },
+      "G": {
+       "text": "15.5B"
+      },
+      "H": {
+       "text": "Dense Transformer (MQA + FIM)"
+      },
+      "I": {
+       "text": "BigCode; The Stack + 35B Python fine-tune; ~8K context; OpenRAIL; HumanEval 33.6% unprompted (40.8% with special prompt)."
+      },
+      "Y": {
+       "text": "33.6%"
+      }
+     },
+     "provider": "BigCode",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r101",
+     "source_row": 101,
+     "raw_provider": "Xiaomi",
+     "model": "MiMo-V2.6-Pro",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "Xiaomi"
+      },
+      "B": {
+       "text": "MiMo-V2.6-Pro"
+      },
+      "C": {
+       "text": "2026-09-21",
+       "number": 46286
+      },
+      "D": {
+       "text": "$0.435"
+      },
+      "E": {
+       "text": "$0.87"
+      },
+      "F": {
+       "text": "1.0T"
+      },
+      "G": {
+       "text": "42B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "46",
+       "number": 46
+      },
+      "M": {
+       "text": "49%",
+       "number": 0.49
+      },
+      "N": {
+       "text": "35%",
+       "number": 0.35
+      },
+      "O": {
+       "text": "61%",
+       "number": 0.61
+      },
+      "P": {
+       "text": "59%",
+       "number": 0.59
+      }
+     },
+     "provider": "Xiaomi",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r102",
+     "source_row": 102,
+     "raw_provider": "",
+     "model": "MiMo-V2.6-Flash",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "MiMo-V2.6-Flash"
+      },
+      "C": {
+       "text": "2026-09-21",
+       "number": 46286
+      },
+      "D": {
+       "text": "$0.14"
+      },
+      "E": {
+       "text": "$0.28"
+      },
+      "F": {
+       "text": "309B"
+      },
+      "G": {
+       "text": "15B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "38",
+       "number": 38
+      },
+      "M": {
+       "text": "35%",
+       "number": 0.35
+      },
+      "N": {
+       "text": "23%",
+       "number": 0.23
+      },
+      "O": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "P": {
+       "text": "64%",
+       "number": 0.64
+      }
+     },
+     "provider": "Xiaomi",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r104",
+     "source_row": 104,
+     "raw_provider": "StepFun",
+     "model": "Step 5 Preview",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "StepFun"
+      },
+      "B": {
+       "text": "Step 5 Preview"
+      },
+      "C": {
+       "text": "2026-09-18",
+       "number": 46283
+      },
+      "D": {
+       "text": "$1.00"
+      },
+      "E": {
+       "text": "$2.70"
+      },
+      "F": {
+       "text": "600B"
+      },
+      "G": {
+       "text": "27B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "44",
+       "number": 44
+      },
+      "M": {
+       "text": "46%",
+       "number": 0.46
+      },
+      "N": {
+       "text": "33%",
+       "number": 0.33
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "AA": {
+       "text": "49.4%",
+       "number": 0.4935,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "AC": {
+       "text": "50.7%",
+       "number": 0.5067,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "AD": {
+       "text": "9.2%",
+       "number": 0.0917,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "AG": {
+       "text": "70.4%",
+       "number": 0.7040000000000001,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "AH": {
+       "text": "31.8%",
+       "number": 0.3182,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "AJ": {
+       "text": "2.9%",
+       "number": 0.0286,
+       "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      }
+     },
+     "provider": "StepFun",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r106",
+     "source_row": 106,
+     "raw_provider": "DeepSeek",
+     "model": "DeepSeek V4.1 Flash",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "DeepSeek"
+      },
+      "B": {
+       "text": "DeepSeek V4.1 Flash"
+      },
+      "C": {
+       "text": "2026-09-10",
+       "number": 46275
+      },
+      "D": {
+       "text": "$0.30"
+      },
+      "E": {
+       "text": "$1.20"
+      },
+      "F": {
+       "text": "552B"
+      },
+      "G": {
+       "text": "16B (output)"
+      },
+      "H": {
+       "text": "MoE / Causal Encoder-Decoder"
+      },
+      "J": {
+       "text": "39",
+       "number": 39
+      },
+      "M": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "N": {
+       "text": "27%",
+       "number": 0.27
+      },
+      "O": {
+       "text": "52%",
+       "number": 0.52
+      },
+      "P": {
+       "text": "69%",
+       "number": 0.69
+      },
+      "T": {
+       "text": "90.9%",
+       "number": 0.909,
+       "note": "DeepSeek V4.1 Flash official changelog. https://api-docs.deepseek.com/updates/"
+      },
+      "AC": {
+       "text": "53.5%",
+       "number": 0.5347999999999999,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AS": {
+       "text": "55.0%",
+       "number": 0.55,
+       "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r107",
+     "source_row": 107,
+     "raw_provider": "",
+     "model": "DeepSeek V4 Pro 0813",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek V4 Pro 0813"
+      },
+      "C": {
+       "text": "2026-08-13",
+       "number": 46247
+      },
+      "D": {
+       "text": "$1.32"
+      },
+      "E": {
+       "text": "$3.96"
+      },
+      "F": {
+       "text": "1.6T"
+      },
+      "G": {
+       "text": "49B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "36",
+       "number": 36
+      },
+      "M": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "N": {
+       "text": "14%",
+       "number": 0.14
+      },
+      "O": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "P": {
+       "text": "57%",
+       "number": 0.57
+      },
+      "AC": {
+       "text": "50.4%",
+       "number": 0.5039,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AL": {
+       "text": "38.4%",
+       "number": 0.384,
+       "note": "RiemannBench public aggregate, max. https://theaggregate.ai/benchmark?slug=riemannbench"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r108",
+     "source_row": 108,
+     "raw_provider": "",
+     "model": "DeepSeek V4 Flash 0731",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek V4 Flash 0731"
+      },
+      "C": {
+       "text": "2026-07-31",
+       "number": 46234
+      },
+      "D": {
+       "text": "$0.44"
+      },
+      "E": {
+       "text": "$1.32"
+      },
+      "J": {
+       "text": "34",
+       "number": 34
+      },
+      "M": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "N": {
+       "text": "12%",
+       "number": 0.12
+      },
+      "O": {
+       "text": "50%",
+       "number": 0.5
+      },
+      "P": {
+       "text": "54%",
+       "number": 0.54
+      },
+      "AA": {
+       "text": "64.0%",
+       "number": 0.6395000000000001,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r109",
+     "source_row": 109,
+     "raw_provider": "",
+     "model": "DeepSeek V4 Pro 0424",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek V4 Pro 0424"
+      },
+      "C": {
+       "text": "2026-04-24",
+       "number": 46136
+      },
+      "D": {
+       "text": "$0.435"
+      },
+      "E": {
+       "text": "$0.87"
+      },
+      "J": {
+       "text": "30",
+       "number": 30
+      },
+      "M": {
+       "text": "38%",
+       "number": 0.38
+      },
+      "N": {
+       "text": "15%",
+       "number": 0.15
+      },
+      "O": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "P": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "AG": {
+       "text": "49.9%",
+       "number": 0.4993,
+       "note": "Vals comparison result for DeepSeek V4, Vibe Code Bench v1.1."
+      },
+      "AO": {
+       "text": "12.4%",
+       "number": 0.124,
+       "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r110",
+     "source_row": 110,
+     "raw_provider": "",
+     "model": "DeepSeek-Coder-V2-Instruct",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek-Coder-V2-Instruct"
+      },
+      "C": {
+       "text": "2024-06-17"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "236B"
+      },
+      "G": {
+       "text": "21B"
+      },
+      "H": {
+       "text": "MoE / MLA"
+      },
+      "I": {
+       "text": "128K context; 338 programming languages; DeepSeek License; 6T-token continued pretraining; HumanEval 90.2%, MMLU 79.2%, GSM8K 94.9%."
+      },
+      "W": {
+       "text": "79.2%"
+      },
+      "X": {
+       "text": "94.9%"
+      },
+      "Y": {
+       "text": "90.2%"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r111",
+     "source_row": 111,
+     "raw_provider": "",
+     "model": "DeepSeek-Coder-33B-Instruct",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek-Coder-33B-Instruct"
+      },
+      "C": {
+       "text": "2023-11"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "33B"
+      },
+      "G": {
+       "text": "33B"
+      },
+      "H": {
+       "text": "Dense Transformer"
+      },
+      "I": {
+       "text": "16K context; trained from scratch on 2T tokens (87% code), then 2B instruction-tuning tokens; DeepSeek License; HumanEval 79.3%."
+      },
+      "Y": {
+       "text": "79.3%"
+      }
+     },
+     "provider": "DeepSeek",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r113",
+     "source_row": 113,
+     "raw_provider": "Alibaba / Qwen",
+     "model": "Qwen3.8 Max (0902)",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "Alibaba / Qwen"
+      },
+      "B": {
+       "text": "Qwen3.8 Max (0902)"
+      },
+      "C": {
+       "text": "2026-09-02",
+       "number": 46267
+      },
+      "D": {
+       "text": "$2.00"
+      },
+      "E": {
+       "text": "$6.00"
+      },
+      "J": {
+       "text": "45",
+       "number": 45
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.43
+      },
+      "N": {
+       "text": "39%",
+       "number": 0.39
+      },
+      "O": {
+       "text": "52%",
+       "number": 0.52
+      },
+      "P": {
+       "text": "56%",
+       "number": 0.56
+      },
+      "AC": {
+       "text": "50.6%",
+       "number": 0.5059,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AO": {
+       "text": "27.0%",
+       "number": 0.27,
+       "note": "Agents' Last Exam official leaderboard; Qwen 3.8 Max Claude Code run. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "Alibaba / Qwen",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r114",
+     "source_row": 114,
+     "raw_provider": "",
+     "model": "Qwen3.8-Flash-Next",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Qwen3.8-Flash-Next"
+      },
+      "C": {
+       "text": "2026-08-26",
+       "number": 46260
+      },
+      "D": {
+       "text": "$0.15"
+      },
+      "E": {
+       "text": "$0.47"
+      },
+      "F": {
+       "text": "180B"
+      },
+      "G": {
+       "text": "6B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "40",
+       "number": 40
+      },
+      "M": {
+       "text": "38%",
+       "number": 0.38
+      },
+      "N": {
+       "text": "25%",
+       "number": 0.25
+      },
+      "O": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "P": {
+       "text": "56%",
+       "number": 0.56
+      }
+     },
+     "provider": "Alibaba / Qwen",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r115",
+     "source_row": 115,
+     "raw_provider": "",
+     "model": "Qwen3.6 Plus",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Qwen3.6 Plus"
+      },
+      "C": {
+       "text": "2026-04-02",
+       "number": 46114
+      },
+      "D": {
+       "text": "$0.325"
+      },
+      "E": {
+       "text": "$1.95"
+      },
+      "J": {
+       "text": "27",
+       "number": 27
+      },
+      "M": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "AO": {
+       "text": "8.6%",
+       "number": 0.086,
+       "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "Alibaba / Qwen",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r116",
+     "source_row": 116,
+     "raw_provider": "",
+     "model": "Qwen2.5-Coder-32B-Instruct",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Qwen2.5-Coder-32B-Instruct"
+      },
+      "C": {
+       "text": "2024-11-12"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "32.5B"
+      },
+      "G": {
+       "text": "32.5B"
+      },
+      "H": {
+       "text": "Dense Transformer (Qwen2 / GQA)"
+      },
+      "I": {
+       "text": "128K context; Apache 2.0; Qwen2.5-Coder family trained on 5.5T code-related tokens; HumanEval 92.7% reported for Instruct."
+      },
+      "Y": {
+       "text": "92.7%"
+      }
+     },
+     "provider": "Alibaba / Qwen",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r117",
+     "source_row": 117,
+     "raw_provider": "",
+     "model": "Qwen2.5-Coder-7B-Instruct",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Qwen2.5-Coder-7B-Instruct"
+      },
+      "C": {
+       "text": "2024-09-19"
+      },
+      "D": {
+       "text": "N/A"
+      },
+      "E": {
+       "text": "N/A"
+      },
+      "F": {
+       "text": "7.61B"
+      },
+      "G": {
+       "text": "7.61B"
+      },
+      "H": {
+       "text": "Dense Transformer (Qwen2 / GQA)"
+      },
+      "I": {
+       "text": "128K context; Apache 2.0; 5.5T code-related training tokens; MMLU 68.7%, GSM8K 86.7%, HumanEval 88.4% (Instruct)."
+      },
+      "W": {
+       "text": "68.7%"
+      },
+      "X": {
+       "text": "86.7%"
+      },
+      "Y": {
+       "text": "88.4%"
+      }
+     },
+     "provider": "Alibaba / Qwen",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r119",
+     "source_row": 119,
+     "raw_provider": "Z.AI",
+     "model": "GLM-5.3 Flash",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "Z.AI"
+      },
+      "B": {
+       "text": "GLM-5.3 Flash"
+      },
+      "C": {
+       "text": "2026-08-26",
+       "number": 46260
+      },
+      "D": {
+       "text": "$0.15"
+      },
+      "E": {
+       "text": "$0.50"
+      },
+      "F": {
+       "text": "320B"
+      },
+      "G": {
+       "text": "18B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "42",
+       "number": 42
+      },
+      "M": {
+       "text": "40%",
+       "number": 0.4
+      },
+      "N": {
+       "text": "33%",
+       "number": 0.33
+      },
+      "O": {
+       "text": "52%",
+       "number": 0.52
+      },
+      "P": {
+       "text": "60%",
+       "number": 0.6
+      }
+     },
+     "provider": "Z.AI",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r120",
+     "source_row": 120,
+     "raw_provider": "",
+     "model": "GLM-5.3",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "GLM-5.3"
+      },
+      "C": {
+       "text": "2026-08-14",
+       "number": 46248
+      },
+      "D": {
+       "text": "$1.40"
+      },
+      "E": {
+       "text": "$4.40"
+      },
+      "F": {
+       "text": "753B"
+      },
+      "G": {
+       "text": "40B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "45",
+       "number": 45
+      },
+      "M": {
+       "text": "42%",
+       "number": 0.42
+      },
+      "N": {
+       "text": "42%",
+       "number": 0.42
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "62%",
+       "number": 0.62
+      },
+      "T": {
+       "text": "91.8%",
+       "number": 0.9179,
+       "note": "NVIDIA GLM-5.3 FP8 baseline evaluation; max reasoning. https://huggingface.co/nvidia/GLM-5.3-NVFP4"
+      },
+      "U": {
+       "text": "99.4%",
+       "number": 0.9937999999999999,
+       "note": "NVIDIA GLM-5.3 FP8 baseline evaluation; AIME 2025. https://huggingface.co/nvidia/GLM-5.3-NVFP4"
+      },
+      "V": {
+       "text": "87.8%",
+       "number": 0.8781,
+       "note": "NVIDIA GLM-5.3 FP8 baseline evaluation; MMLU-Pro. https://huggingface.co/nvidia/GLM-5.3-NVFP4"
+      }
+     },
+     "provider": "Z.AI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r121",
+     "source_row": 121,
+     "raw_provider": "",
+     "model": "GLM-5.2",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "GLM-5.2"
+      },
+      "C": {
+       "text": "2026-06-16",
+       "number": 46189
+      },
+      "D": {
+       "text": "$1.4"
+      },
+      "E": {
+       "text": "$4.4"
+      },
+      "J": {
+       "text": "39",
+       "number": 39
+      },
+      "M": {
+       "text": "41%",
+       "number": 0.41
+      },
+      "N": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "O": {
+       "text": "51%",
+       "number": 0.51
+      },
+      "P": {
+       "text": "28%",
+       "number": 0.28
+      },
+      "AA": {
+       "text": "65.0%",
+       "number": 0.6502,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AI": {
+       "text": "30.4%",
+       "number": 0.304,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AO": {
+       "text": "20.4%",
+       "number": 0.204,
+       "note": "Agents' Last Exam official leaderboard; Claude Code max. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "Z.AI",
+     "provider_derived": true
+    },
+    {
+     "id": "llm-r123",
+     "source_row": 123,
+     "raw_provider": "Moonshot",
+     "model": "Kimi K3",
+     "group": "중국",
+     "cells": {
+      "A": {
+       "text": "Moonshot"
+      },
+      "B": {
+       "text": "Kimi K3"
+      },
+      "C": {
+       "text": "2026-07-16",
+       "number": 46219
+      },
+      "D": {
+       "text": "$3.0"
+      },
+      "E": {
+       "text": "$15"
+      },
+      "F": {
+       "text": "2.8T"
+      },
+      "G": {
+       "text": "104B"
+      },
+      "H": {
+       "text": "MoE"
+      },
+      "J": {
+       "text": "44",
+       "number": 44
+      },
+      "M": {
+       "text": "47%",
+       "number": 0.47
+      },
+      "N": {
+       "text": "13%",
+       "number": 0.13
+      },
+      "O": {
+       "text": "59%",
+       "number": 0.59
+      },
+      "P": {
+       "text": "58%",
+       "number": 0.58
+      },
+      "AA": {
+       "text": "74.7%",
+       "number": 0.747,
+       "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "AC": {
+       "text": "53.1%",
+       "number": 0.5311,
+       "note": "Vals Finance Agent v2 current leaderboard. https://www.vals.ai/benchmarks/fabv2"
+      },
+      "AD": {
+       "text": "10.8%",
+       "number": 0.10830000000000001,
+       "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "AI": {
+       "text": "31.5%",
+       "number": 0.315,
+       "note": "PostTrainBench v1.2 recomputed score. https://posttrainbench.com/blog/posttrainbench-1-2/"
+      },
+      "AL": {
+       "text": "37.6%",
+       "number": 0.376,
+       "note": "RiemannBench public aggregate. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "AO": {
+       "text": "28.3%",
+       "number": 0.28300000000000003,
+       "note": "Agents' Last Exam official leaderboard; Kimi Code max. Pass rate. https://agents-last-exam.org/leaderboard"
+      }
+     },
+     "provider": "Moonshot",
+     "provider_derived": false
+    },
+    {
+     "id": "llm-r124",
+     "source_row": 124,
+     "raw_provider": "",
+     "model": "Kimi K2.6",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Kimi K2.6"
+      },
+      "C": {
+       "text": "2026-04-20",
+       "number": 46132
+      },
+      "D": {
+       "text": "$0.95"
+      },
+      "E": {
+       "text": "$4"
+      },
+      "J": {
+       "text": "31",
+       "number": 31
+      },
+      "M": {
+       "text": "37%",
+       "number": 0.37
+      },
+      "N": {
+       "text": "1%",
+       "number": 0.01
+      },
+      "O": {
+       "text": "52%",
+       "number": 0.52
+      },
+      "P": {
+       "text": "13%",
+       "number": 0.13
+      },
+      "AO": {
+       "text": "9.2%",
+       "number": 0.092,
+       "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AP": {
+       "text": "22.1%",
+       "number": 0.221,
+       "note": "OSWorld 2.0 partial leaderboard, Kimi K2.6. https://osworld-v2.xlang.ai/"
+      }
+     },
+     "provider": "Moonshot",
+     "provider_derived": true
+    }
+   ]
+  }
+ ],
+ "note": "시트에 저장된 값·메모를 가져온 자료입니다. 빈칸은 미기재이며 0으로 채우지 않습니다. 시트 변경은 다음 재가져오기에 반영됩니다. 가격·벤치마크의 기준일·단위·평가 조건은 원문 메모를 확인해 주세요."
+}

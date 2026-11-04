@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+(async()=>{
+  const source=fs.readFileSync('assets/ai-overview.js','utf8');
+  const {selectRows,valueOf,csvText,safeURL,escapeHTML}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+  const llm=JSON.parse(fs.readFileSync('data/datacenter/dc_ai_overview.json')).tables[0];
+  assert.equal(selectRows(llm).length,110);
+  const anthropic=selectRows(llm,{provider:'Anthropic',search:' CLAUDE '});
+  assert(anthropic.length>1);assert(anthropic.every(r=>r.provider==='Anthropic'));
+  assert.equal(selectRows(llm,{search:'no-model-matches-this'}).length,0);
+  const synthetic={provider_key:'A',rows:[{provider:'test',cells:{J:{text:'10%',number:.1}}},{provider:'test',cells:{J:{text:'2%',number:.02}}},{provider:'test',cells:{}}]};
+  assert.deepEqual(selectRows(synthetic,{sort:'J'}).map(r=>valueOf(r,'J',synthetic)),['2%','10%','']);
+  assert.deepEqual(selectRows(synthetic,{sort:'J',direction:-1}).map(r=>valueOf(r,'J',synthetic)),['10%','2%','']);
+  const video=JSON.parse(fs.readFileSync('data/datacenter/dc_ai_overview2.json')).tables[1];
+  const row=video.rows.find(r=>r.model==='Gen-4.5');assert.equal(valueOf(row,'P',video),'0');
+  assert(csvText(video,[row],video.columns).includes('"0"'));
+  assert.equal(safeURL('javascript:alert(1)'), '');assert.equal(safeURL('https://example.com'),'https://example.com');
+  assert.equal(escapeHTML('<script>"&'), '&lt;script&gt;&quot;&amp;');
+  assert(csvText(synthetic,[{provider:'=malicious',cells:{}}],[{key:'A',label:'Company'}]).includes('"\'=malicious"'));
+  const catalog=JSON.parse(fs.readFileSync('data/catalog.json'));
+  assert(catalog.industries.find(i=>i.id==='datacenter').tabs.some(t=>t.id==='ai_overview2'));
+  console.log('AI overview: search, numeric sort, blanks, zero, CSV and safe display passed');
+})().catch(err=>{console.error(err);process.exit(1)});

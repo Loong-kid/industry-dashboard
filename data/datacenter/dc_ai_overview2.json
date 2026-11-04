@@ -1,0 +1,803 @@
+{
+ "id": "dc_ai_overview2",
+ "name": "AI Overview 2",
+ "manual": true,
+ "updated": "2026-11-04",
+ "fetched": "2026-11-04",
+ "imported": "2026-11-04",
+ "source": {
+  "id": "1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs",
+  "title": "산업(AI_Datacenter)_밸류에이션",
+  "url": "https://docs.google.com/spreadsheets/d/1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs/edit",
+  "modified_at": "2026-10-06T14:35:59.262Z",
+  "sheet": "AI Overview2",
+  "sheet_id": 296217995,
+  "tab_url": "https://docs.google.com/spreadsheets/d/1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs/edit#gid=296217995"
+ },
+ "tables": [
+  {
+   "id": "image",
+   "title": "이미지 AI",
+   "unit_note": "가격은 구독·토큰·크레딧 등 원문 단위입니다. 모델별 상세에서 가격 조건을 확인하세요.",
+   "provider_key": "A",
+   "model_key": "B",
+   "date_key": "C",
+   "columns": [
+    {
+     "key": "A",
+     "index": 1,
+     "label": "기업",
+     "source_label": "Image AI",
+     "note": "",
+     "width": 104
+    },
+    {
+     "key": "B",
+     "index": 2,
+     "label": "Model",
+     "source_label": "Model",
+     "note": "",
+     "width": 210
+    },
+    {
+     "key": "C",
+     "index": 3,
+     "label": "Release / Availability",
+     "source_label": "Release / Availability",
+     "note": "",
+     "width": 112
+    },
+    {
+     "key": "D",
+     "index": 4,
+     "label": "Price",
+     "source_label": "Price",
+     "note": "",
+     "width": 310
+    },
+    {
+     "key": "E",
+     "index": 5,
+     "label": "Notes",
+     "source_label": "Notes",
+     "note": "",
+     "width": 310
+    }
+   ],
+   "views": [
+    {
+     "id": "all",
+     "label": "전체 열",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+     ]
+    }
+   ],
+   "rows": [
+    {
+     "id": "image-r4",
+     "source_row": 4,
+     "raw_provider": "OpenAI",
+     "model": "GPT Image 2",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "OpenAI"
+      },
+      "B": {
+       "text": "GPT Image 2"
+      },
+      "C": {
+       "text": "2026-04-21",
+       "number": 46133
+      },
+      "D": {
+       "text": "API 토큰형: Standard 기준 image input $8/M, output $30/M, text input $5/M. Batch는 image input $4/M, output $15/M, text input $2.5/M"
+      },
+      "E": {
+       "text": "ChatGPT 이미지 2.0 계열. 정액 “1장당 얼마”가 아니라 토큰형이라 원가 계산 방식이 다름"
+      }
+     },
+     "provider": "OpenAI",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r6",
+     "source_row": 6,
+     "raw_provider": "Google",
+     "model": "Gemini 2.5 Flash Image (nano-banana)",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Google"
+      },
+      "B": {
+       "text": "Gemini 2.5 Flash Image (nano-banana)"
+      },
+      "C": {
+       "text": "2025-08-26",
+       "number": 45895
+      },
+      "D": {
+       "text": "Google이 블로그에서 $30 / 1M output tokens, 이미지 1장당 약 1290 output tokens ≈ $0.039/image라고 설명"
+      },
+      "E": {
+       "text": "빠르고 실용적인 이미지 편집용으로 강점"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r7",
+     "source_row": 7,
+     "raw_provider": "Google",
+     "model": "Gemini 3 Pro Image (Nano Banana Pro)",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Google"
+      },
+      "B": {
+       "text": "Gemini 3 Pro Image (Nano Banana Pro)"
+      },
+      "C": {
+       "text": "2026-07-17",
+       "number": 46220
+      },
+      "D": {
+       "text": "텍스트 가격은 Gemini 3.1 Pro와 동일. Paid tier 기준 input $2.70/M, output $16.20/M"
+      },
+      "E": {
+       "text": "Google이 “native image generation model”로 설명"
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r9",
+     "source_row": 9,
+     "raw_provider": "Midjourney",
+     "model": "V7",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Midjourney"
+      },
+      "B": {
+       "text": "V7"
+      },
+      "C": {
+       "text": "2025-04-03",
+       "number": 45750
+      },
+      "D": {
+       "text": "구독형: Basic $10/mo, Standard $30/mo, Pro $60/mo, Mega $120/mo"
+      },
+      "E": {
+       "text": "API형보다 “창작 툴” 성격이 강함. Draft mode는 V7에서 half GPU cost"
+      }
+     },
+     "provider": "Midjourney",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r12",
+     "source_row": 12,
+     "raw_provider": "Runway",
+     "model": "Gen-4 Image",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Runway"
+      },
+      "B": {
+       "text": "Gen-4 Image"
+      },
+      "C": {
+       "text": "2025-05-16 (API), 2025-04-30 (web references)"
+      },
+      "D": {
+       "text": "Runway API 기준 720p 5 credits / 1080p 8 credits, 1 credit = $0.01 → 약 $0.05 / $0.08 per image"
+      },
+      "E": {
+       "text": "Runway 생태계 안에서 이미지/비디오 워크플로우 연결이 쉬움"
+      }
+     },
+     "provider": "Runway",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r13",
+     "source_row": 13,
+     "raw_provider": "Black Forest Labs",
+     "model": "FLUX.1 Kontext [pro]",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Black Forest Labs"
+      },
+      "B": {
+       "text": "FLUX.1 Kontext [pro]"
+      },
+      "C": {
+       "text": "2025-06-26",
+       "number": 45834
+      },
+      "D": {
+       "text": "4 credits = $0.04/image. [max]는 8 credits = $0.08/image"
+      },
+      "E": {
+       "text": "이미지 편집과 일관성 작업에 강함. 현재는 “previous-generation”으로 분류"
+      }
+     },
+     "provider": "Black Forest Labs",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r14",
+     "source_row": 14,
+     "raw_provider": "Recraft",
+     "model": "V4.1",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Recraft"
+      },
+      "B": {
+       "text": "V4.1"
+      },
+      "C": {
+       "text": "2026-05-14",
+       "number": 46156
+      },
+      "D": {
+       "text": "구독형 from $10/month billed annually ($120/year), 1,000 credits"
+      },
+      "E": {
+       "text": "V4.1 / Utility / Vector 계열로 확장성 좋음"
+      }
+     },
+     "provider": "Recraft",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r15",
+     "source_row": 15,
+     "raw_provider": "Ideogram",
+     "model": "4",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Ideogram"
+      },
+      "B": {
+       "text": "4",
+       "number": 4
+      },
+      "C": {
+       "text": "2026-06-03",
+       "number": 46176
+      },
+      "D": {
+       "text": "Hosted access는 ideogram.ai와 API에서 제공, enterprise/commercial license 별도"
+      },
+      "E": {
+       "text": "Typography / bounding-box layout / 2K photoreal output / open-weight가 핵심"
+      }
+     },
+     "provider": "Ideogram",
+     "provider_derived": false
+    },
+    {
+     "id": "image-r17",
+     "source_row": 17,
+     "raw_provider": "",
+     "model": "stable diffusion",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "stable diffusion"
+      }
+     },
+     "provider": "",
+     "provider_derived": false
+    }
+   ]
+  },
+  {
+   "id": "video",
+   "title": "영상 AI",
+   "unit_note": "가격은 초·클립·크레딧 등 원문 단위입니다. 서로 다른 과금 기준을 환산하지 않았습니다.",
+   "provider_key": "J",
+   "model_key": "K",
+   "date_key": "L",
+   "columns": [
+    {
+     "key": "J",
+     "index": 10,
+     "label": "기업",
+     "source_label": "Video AI",
+     "note": "",
+     "width": 104
+    },
+    {
+     "key": "K",
+     "index": 11,
+     "label": "Model",
+     "source_label": "Model",
+     "note": "",
+     "width": 210
+    },
+    {
+     "key": "L",
+     "index": 12,
+     "label": "Release / Availability",
+     "source_label": "Release / Availability",
+     "note": "",
+     "width": 112
+    },
+    {
+     "key": "M",
+     "index": 13,
+     "label": "가격 · 원문 단위",
+     "source_label": "Price(/sec)",
+     "note": "1credit = $0.1",
+     "width": 290
+    },
+    {
+     "key": "N",
+     "index": 14,
+     "label": "최대 길이",
+     "source_label": "최대 길이",
+     "note": "",
+     "width": 84
+    },
+    {
+     "key": "O",
+     "index": 15,
+     "label": "Image Ref",
+     "source_label": "Image Ref",
+     "note": "",
+     "width": 84
+    },
+    {
+     "key": "P",
+     "index": 16,
+     "label": "Video Ref",
+     "source_label": "Video Ref",
+     "note": "",
+     "width": 84
+    },
+    {
+     "key": "Q",
+     "index": 17,
+     "label": "Audio Ref",
+     "source_label": "Audio Ref",
+     "note": "",
+     "width": 84
+    }
+   ],
+   "views": [
+    {
+     "id": "all",
+     "label": "전체 열",
+     "keys": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q"
+     ]
+    }
+   ],
+   "rows": [
+    {
+     "id": "video-r3",
+     "source_row": 3,
+     "raw_provider": "Runway",
+     "model": "Gen-4.5",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Runway"
+      },
+      "K": {
+       "text": "Gen-4.5"
+      },
+      "L": {
+       "text": "2025-12-11",
+       "number": 46002
+      },
+      "M": {
+       "text": "$0.12"
+      },
+      "N": {
+       "text": "10",
+       "number": 10
+      },
+      "O": {
+       "text": "1",
+       "number": 1
+      },
+      "P": {
+       "text": "0",
+       "number": 0
+      },
+      "Q": {
+       "text": "0",
+       "number": 0
+      }
+     },
+     "provider": "Runway",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r4",
+     "source_row": 4,
+     "raw_provider": "Runway",
+     "model": "Gen-4 Turbo",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Runway"
+      },
+      "K": {
+       "text": "Gen-4 Turbo"
+      },
+      "L": {
+       "text": "2025-04-01",
+       "number": 45748
+      },
+      "M": {
+       "text": "$0.05"
+      },
+      "N": {
+       "text": "10",
+       "number": 10
+      },
+      "O": {
+       "text": "1",
+       "number": 1
+      },
+      "P": {
+       "text": "0",
+       "number": 0
+      },
+      "Q": {
+       "text": "0",
+       "number": 0
+      }
+     },
+     "provider": "Runway",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r6",
+     "source_row": 6,
+     "raw_provider": "Google",
+     "model": "Gemini Omni Flash",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Google"
+      },
+      "K": {
+       "text": "Gemini Omni Flash",
+       "note": "생성보다는 일반적인 수정/생성, 편집 전용으로 Veo와 구분됨\n"
+      },
+      "L": {
+       "text": "2026-05-19",
+       "number": 46161
+      },
+      "M": {
+       "text": "720p $0.10"
+      },
+      "N": {
+       "text": "10",
+       "number": 10
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r7",
+     "source_row": 7,
+     "raw_provider": "Google",
+     "model": "Veo 3.1 Fast",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Google"
+      },
+      "K": {
+       "text": "Veo 3.1 Fast"
+      },
+      "L": {
+       "text": "2025-10-15",
+       "number": 45945
+      },
+      "M": {
+       "text": "$0.15, no audio = $0.10"
+      },
+      "N": {
+       "text": "8",
+       "number": 8
+      },
+      "O": {
+       "text": "3",
+       "number": 3
+      },
+      "P": {
+       "text": "1",
+       "number": 1
+      },
+      "Q": {
+       "text": "0",
+       "number": 0
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r8",
+     "source_row": 8,
+     "raw_provider": "Google",
+     "model": "Veo 3.1",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Google"
+      },
+      "K": {
+       "text": "Veo 3.1"
+      },
+      "L": {
+       "text": "2025-10-15",
+       "number": 45945
+      },
+      "M": {
+       "text": "$0.40/sec, no audio = $0.20"
+      },
+      "N": {
+       "text": "8",
+       "number": 8
+      },
+      "O": {
+       "text": "3",
+       "number": 3
+      },
+      "P": {
+       "text": "1",
+       "number": 1
+      },
+      "Q": {
+       "text": "0",
+       "number": 0
+      }
+     },
+     "provider": "Google",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r10",
+     "source_row": 10,
+     "raw_provider": "ByteDance",
+     "model": "Seedance 2.5",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "ByteDance"
+      },
+      "K": {
+       "text": "Seedance 2.5"
+      },
+      "L": {
+       "text": "2026-07-31",
+       "number": 46234
+      },
+      "M": {
+       "text": "720p = $0.30/sec, 1080p = $0.68/sec",
+       "note": "최소 80 credits/generation"
+      },
+      "N": {
+       "text": "30",
+       "number": 30
+      },
+      "O": {
+       "text": "30",
+       "number": 30
+      },
+      "P": {
+       "text": "10",
+       "number": 10
+      },
+      "Q": {
+       "text": "10",
+       "number": 10
+      }
+     },
+     "provider": "ByteDance",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r11",
+     "source_row": 11,
+     "raw_provider": "ByteDance",
+     "model": "Seedance 2.0",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "ByteDance"
+      },
+      "K": {
+       "text": "Seedance 2.0"
+      },
+      "L": {
+       "text": "2026-02-12",
+       "number": 46065
+      },
+      "M": {
+       "text": "480/720p = $0.36/sec, 1080p 40 = $0.40/sec"
+      },
+      "N": {
+       "text": "15",
+       "number": 15
+      },
+      "O": {
+       "text": "9",
+       "number": 9
+      },
+      "P": {
+       "text": "3",
+       "number": 3
+      },
+      "Q": {
+       "text": "3",
+       "number": 3
+      }
+     },
+     "provider": "ByteDance",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r13",
+     "source_row": 13,
+     "raw_provider": "MiniMax",
+     "model": "MiniMax H3",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "MiniMax"
+      },
+      "K": {
+       "text": "MiniMax H3"
+      },
+      "L": {
+       "text": "2026-07-31",
+       "number": 46234
+      },
+      "M": {
+       "text": "768p $0.08, 2K $0.13"
+      },
+      "N": {
+       "text": "15",
+       "number": 15
+      },
+      "O": {
+       "text": "9",
+       "number": 9
+      },
+      "P": {
+       "text": "3",
+       "number": 3
+      },
+      "Q": {
+       "text": "3",
+       "number": 3
+      }
+     },
+     "provider": "MiniMax",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r14",
+     "source_row": 14,
+     "raw_provider": "MiniMax",
+     "model": "MiniMax-Hailuo-2.3",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "MiniMax"
+      },
+      "K": {
+       "text": "MiniMax-Hailuo-2.3"
+      },
+      "L": {
+       "text": "2025-10-28",
+       "number": 45958
+      },
+      "M": {
+       "text": "768p 6s $0.28, 10s $0.56, 1080p 6s $0.49",
+       "note": "/clip"
+      },
+      "N": {
+       "text": "10",
+       "number": 10
+      }
+     },
+     "provider": "MiniMax",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r15",
+     "source_row": 15,
+     "raw_provider": "MiniMax",
+     "model": "MiniMax-Hailuo-02",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "MiniMax"
+      },
+      "K": {
+       "text": "MiniMax-Hailuo-02"
+      },
+      "L": {
+       "text": "2025-06-18",
+       "number": 45826
+      },
+      "M": {
+       "text": "768p 6s $0.28, 10s $0.56, 1080p 6s $0.49",
+       "note": "/clip"
+      },
+      "N": {
+       "text": "10",
+       "number": 10
+      }
+     },
+     "provider": "MiniMax",
+     "provider_derived": false
+    },
+    {
+     "id": "video-r17",
+     "source_row": 17,
+     "raw_provider": "Black Forest Labs",
+     "model": "FLUX 3 Video",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Black Forest Labs"
+      },
+      "K": {
+       "text": "FLUX 3 Video"
+      },
+      "L": {
+       "text": "2026-08-04",
+       "number": 46238
+      },
+      "M": {
+       "text": "HD $0.17/sec, FHD $0.29/sec, Draft $0.06/sec"
+      },
+      "N": {
+       "text": "20",
+       "number": 20
+      }
+     },
+     "provider": "Black Forest Labs",
+     "provider_derived": false
+    }
+   ]
+  }
+ ],
+ "note": "시트에 저장된 값·메모를 가져온 자료입니다. 빈칸은 미기재이며 0으로 채우지 않습니다. 시트 변경은 다음 재가져오기에 반영됩니다. 가격·벤치마크의 기준일·단위·평가 조건은 원문 메모를 확인해 주세요."
+}
