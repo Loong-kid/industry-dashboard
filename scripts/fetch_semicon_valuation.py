@@ -16,6 +16,16 @@ def save(path,value):
     tmp.write_text(json.dumps(value,ensure_ascii=False,separators=(',',':'),allow_nan=False)+'\n',encoding='utf8');tmp.replace(path)
 
 
+def fx_quote(source,target):
+    """FX quotes use major currency units; London equities can quote pence."""
+    units={'GBp':('GBP',100),'GBX':('GBP',100),'ZAc':('ZAR',100)}
+    base_source,source_units=units.get(source,(source,1))
+    base_target,target_units=units.get(target,(target,1))
+    pair=base_source+base_target
+    quote={'USDAUD':'AUD'}.get(pair,pair) # Yahoo's canonical USD/AUD ticker.
+    return quote,base_target,target_units/source_units,base_source==base_target
+
+
 def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_path=None,
             fundamentals_parser=yahoo_fundamentals, kind='semicon_valuation', methodology=None,
             collect_time='08:10', index_id='semicon_valuation_index', index_filename='valuation_index.json'):
@@ -67,8 +77,11 @@ def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_
             pair=financial_currency+currency
             try:
                 if pair not in fx_cache:
-                    p=get(pair+'_fx','https://query1.finance.yahoo.com/v8/finance/chart/'+pair+'=X',price_params)
-                    fx_cache[pair]=price_rows(p,pair+'=X',currency,asof,int(now.timestamp()))[0]
+                    quote,quote_currency,scale,identity=fx_quote(financial_currency,currency)
+                    if identity:fx_cache[pair]=[[date,scale] for date,_ in c.get('prices',[])]
+                    else:
+                        p=get(quote+'_fx','https://query1.finance.yahoo.com/v8/finance/chart/'+quote+'=X',price_params)
+                        fx_cache[pair]=[[date,value*scale] for date,value in price_rows(p,quote+'=X',quote_currency,asof,int(now.timestamp()))[0]]
                 fx[pair]=fx_cache[pair]
             except Exception as e:
                 if pair in old.get('fx',{}):fx[pair]=old['fx'][pair]
