@@ -1,6 +1,11 @@
 name: review-ring-sources
 on:
   workflow_dispatch:
+    inputs:
+      osat:
+        description: Review packaging and test service issuers instead
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -16,11 +21,17 @@ jobs:
       - name: Collect original Si and SiC parts issuer accounts
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/collect_ring_sources.py --full-history
+          REVIEW_OSAT: ${{ inputs.osat }}
+        run: |
+          if [ "$REVIEW_OSAT" = "true" ]; then
+            python -u scripts/collect_osat_sources.py --full-history
+          else
+            python -u scripts/collect_ring_sources.py --full-history
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ring-original-statements
-          path: .cache/rings/
+          name: ${{ inputs.osat && 'osat-original-statements' || 'ring-original-statements' }}
+          path: ${{ inputs.osat && '.cache/osat/' || '.cache/rings/' }}
           include-hidden-files: true
           retention-days: 3

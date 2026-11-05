@@ -100,12 +100,19 @@ class MOCVDTests(unittest.TestCase):
 
     def test_later_collector_quarters_survive_history_merge(self):
         facts=copy.deepcopy(self.facts)
+        # Keep this scenario independent of the live archive advancing to the
+        # synthetic collector date. The archive deliberately precedes it here.
+        facts['coherent']=[r for r in facts['coherent'] if r['date']<'2026-09-30']
         facts['coherent'].append(dict(date='2026-09-30',year=2027,quarter=1,
             capex_ytd=123.4,url='https://example.com/new-report',fetched='2026-11-04'))
         manual=copy.deepcopy(self.manual)
+        manual['veeco_quarters']=[r for r in manual['veeco_quarters'] if r['date']<'2026-09-30']
         manual['veeco_quarters'].append(dict(date='2026-09-30',revenue=200,compound=30,
             url='https://example.com/new-veeco-report',fetched='2026-11-04'))
-        docs=build(facts,manual)
+        history=copy.deepcopy(self.history)
+        for key in ['coherent','veeco']:
+            history['companies'][key]['quarters']=[r for r in history['companies'][key]['quarters'] if r['date']<'2026-09-30']
+        docs=build(facts,manual,history)
         cohr=docs['mocvd_coherent_capex']['series_views']['quarter']
         self.assertEqual(cohr['series']['유형자산 취득 현금지출'][-1],['2026-09-30',123.4])
         self.assertEqual(cohr['comparison_dates']['2026-09-30']['quarter_ago'],'2026-06-30')
