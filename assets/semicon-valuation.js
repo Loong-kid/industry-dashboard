@@ -128,8 +128,9 @@ export function createSession(index,{state,range,dataPath='semicon/valuation'}){
     if(!alive||panel.loading||panel.charts.size)return;
     panel.loading=true;
     try{
-      const cacheKey=dataPath+':'+panel.company.id+':'+(state.bust||'');
-      if(!dataCache.has(cacheKey))dataCache.set(cacheKey,fetch(`data/${dataPath}/${panel.company.id}.json${state.bust?'?t='+state.bust:''}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).catch(e=>{dataCache.delete(cacheKey);throw e;}));
+      const companyPath=panel.company.data_path||dataPath;
+      const cacheKey=companyPath+':'+panel.company.id+':'+(state.bust||'');
+      if(!dataCache.has(cacheKey))dataCache.set(cacheKey,fetch(`data/${companyPath}/${panel.company.id}.json${state.bust?'?t='+state.bust:''}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).catch(e=>{dataCache.delete(cacheKey);throw e;}));
       const doc=await dataCache.get(cacheKey);panel.doc=doc;
       if(alive&&panel.visible&&panel.root.isConnected)draw(panel,doc);
     }catch(e){if(alive)for(const c of panel.cards)c.querySelector('.chart-wrap').textContent='주가·밴드를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.';}

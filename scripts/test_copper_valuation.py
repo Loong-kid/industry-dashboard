@@ -80,6 +80,7 @@ class CopperValuationTests(unittest.TestCase):
         industry = next(i for i in load(ROOT/'data/catalog.json', {})['industries'] if i['id']=='commodities')
         links = []
         for section in industry['sections']:
+            if section.get('tab') != 'copper':continue
             ids = ([section['valuation_company']] if section.get('valuation_company') else [])
             ids += section.get('valuation_companies', [])
             ids += [c['valuation_company'] for c in section.get('companies', []) if c.get('valuation_company')]

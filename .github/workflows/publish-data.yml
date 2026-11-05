@@ -2,7 +2,7 @@ name: publish-updated-data
 
 on:
   workflow_run:
-    workflows: [update-data, update-ppi, update-games, update-offshore, update-cpu, update-equipment, update-telecom, update-natgas, update-oil, update-refining, update-quantum, update-shipbuilding-equipment, update-lng-containment, update-drone, update-mining, update-rings, update-solar, update-us-datacenter, update-neocloud, update-cosmetics, update-entertainment, update-semicon-valuation, update-copper-valuation, update-vrar, update-semicon-cleaning, update-semicon-osat]
+    workflows: [update-data, update-ppi, update-games, update-offshore, update-cpu, update-equipment, update-telecom, update-natgas, update-oil, update-refining, update-quantum, update-shipbuilding-equipment, update-lng-containment, update-drone, update-mining, update-rings, update-solar, update-us-datacenter, update-neocloud, update-cosmetics, update-entertainment, update-semicon-valuation, update-copper-valuation, update-mining-valuation, update-vrar, update-semicon-cleaning, update-semicon-osat]
     types: [completed]
     branches: [main]
   workflow_dispatch:
