@@ -23,4 +23,6 @@ BHP의 NYSE ADS는 보통주 2주에 해당하므로 ASX 보통주를 선택해 
 
 SCCO/FCX는 `data/commodities/valuation/`의 기존 구리 자료를 재사용한다. 새로운 수집이 두 파일을 덮어쓰지 않으며 같은 기업의 사용자 PER 배수 설정도 두 탭에서 공유한다. 신규 8개사 파일과 10개사 목록은 `data/commodities/mining-valuation/`에 둔다. 독립 `update-mining-valuation.yml`은 매일 **08:25 KST**, 기존 구리 갱신은 08:20 KST다. 원자료 실패 시 마지막 성공 이력·환율을 유지하고 확인 필요 상태를 표시한다. 회사 파일은 화면 근처에서만 불러와 큰 탭에서도 초기 비용을 줄이고 화면 밖 차트를 정리한다.
 
+USD 환율은 공급자가 `CAD=X`/`USDCAD=X`, `GBP=X`/`USDGBP=X`처럼 같은 쌍을 두 이름으로 반환할 수 있다. 동일 USD 환율의 확인된 별칭만 허용하며 다른 통화쌍·표시 통화가 오면 검증 실패로 보존 처리한다.
+
 수집 `python scripts/fetch_mining_valuation.py`, 검증 `python -m unittest discover -s scripts -p test_mining_valuation.py -v`. 공개 원본 캐시는 `.cache/mining-valuation/`, API 키나 유료 데이터는 필요 없다.

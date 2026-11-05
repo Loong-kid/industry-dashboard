@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from fetch_semicon_valuation import ROOT, load, fx_quote, analytics
+from fetch_semicon_valuation import ROOT, load, fx_quote, fx_price_rows, analytics
 from fetch_mining_valuation import OUT, REGISTRY, INDEX, REUSED_IDS, combine_index, run
 from semicon_valuation_sources import converted
 
@@ -35,7 +35,7 @@ class MiningValuationTests(unittest.TestCase):
                 self.assertTrue(all(r[0]<=d['checked'] for r in rows))
 
     def test_pence_scaling_and_native_reporting_currencies(self):
-        self.assertEqual(fx_quote('USD','GBp'),('USDGBP','GBP',100,False))
+        self.assertEqual(fx_quote('USD','GBp'),('GBP','GBP',100,False))
         self.assertEqual(fx_quote('USD','AUD'),('AUD','AUD',1,False))
         self.assertEqual(fx_quote('GBP','GBp'),('GBPGBP','GBP',100,True))
         self.assertEqual(fx_quote('USD','USD'),('USDUSD','USD',1,True))
@@ -50,6 +50,19 @@ class MiningValuationTests(unittest.TestCase):
         self.assertEqual(load(OUT/'bhp.json',{})['symbol'],'BHP.AX')
         self.assertEqual(load(OUT/'barrick.json',{})['symbol'],'ABX.TO')
         self.assertEqual(load(OUT/'zijin.json',{})['fundamentals']['eps'][-1][2],'CNY')
+
+    def test_equivalent_yahoo_fx_aliases_without_accepting_a_different_pair(self):
+        def payload(symbol,currency,value):
+            return {'chart':{'result':[{'meta':{'symbol':symbol,'currency':currency,'dataGranularity':'1d',
+                'exchangeTimezoneName':'UTC','currentTradingPeriod':{'regular':{'end':1793923140}}},
+                'timestamp':[1767312000],'indicators':{'quote':[{'close':[value]}]}}]}}
+        for symbol in ('CAD=X','USDCAD=X'):
+            self.assertEqual(fx_price_rows(payload(symbol,'CAD',1.4),'USD','CAD','2026-11-06',1794009600),[['2026-01-02',1.4]])
+        self.assertEqual(fx_price_rows(payload('USDGBP=X','GBP',.75),'USD','GBp','2026-11-06',1794009600),[['2026-01-02',75.]])
+        with self.assertRaisesRegex(ValueError,'identity'):
+            fx_price_rows(payload('USDMXN=X','CAD',1.4),'USD','CAD','2026-11-06',1794009600)
+        with self.assertRaisesRegex(ValueError,'identity/currency'):
+            fx_price_rows(payload('CAD=X','MXN',1.4),'USD','CAD','2026-11-06',1794009600)
 
     def test_reused_copper_data_is_not_copied_or_overwritten(self):
         index=load(OUT/INDEX,{})
