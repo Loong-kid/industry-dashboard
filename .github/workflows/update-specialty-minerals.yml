@@ -1,0 +1,60 @@
+name: update-specialty-minerals
+on:
+  schedule:
+    - cron: '35 23 * * *' # KST 08:35
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  specialty-minerals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 lxml pymupdf tzdata
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .cache/specialty-minerals
+            .cache/specialty-valuation
+          key: specialty-sources-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: specialty-sources-v1-${{ runner.os }}-
+      - name: Validate original-statement parsers and definitions
+        id: precheck
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_specialty_minerals.py -v
+          node scripts/test_commodity_tabs.cjs
+          node scripts/test_semicon_valuation.cjs
+      - name: Refresh official accounts
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_specialty_minerals.py
+      - name: Refresh prices and actual TTM valuation
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_specialty_valuation.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_specialty_minerals.py -v
+      - name: Commit specialty data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/commodities/company_specialty_*.json data/commodities/specialty_financial_history.json data/commodities/specialty-valuation/*.json
+          git diff --cached --quiet || git commit -m "chore: refresh specialty mineral companies"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1

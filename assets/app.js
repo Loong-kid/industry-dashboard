@@ -533,8 +533,9 @@ async function renderIndustry(options = {}) {
   const collected = []; // 수집 상태 판정용 { name, fetched }
   let valuationSession = null;
   const miningValuation = ind.id === "commodities" && state.subtab === "mining";
-  const valuationPath = ind.id === "commodities" ? miningValuation ? "commodities/mining-valuation" : "commodities/valuation" : "semicon/valuation";
-  const valuationIndex = ind.id === "commodities" ? miningValuation ? "mining_valuation_index" : "copper_valuation_index" : "valuation_index";
+  const specialtyValuation = ind.id === "commodities" && ["aluminum", "tungsten", "bismuth", "antimony", "tin"].includes(state.subtab);
+  const valuationPath = ind.id === "commodities" ? specialtyValuation ? "commodities/specialty-valuation" : miningValuation ? "commodities/mining-valuation" : "commodities/valuation" : "semicon/valuation";
+  const valuationIndex = ind.id === "commodities" ? specialtyValuation ? "specialty_valuation_index" : miningValuation ? "mining_valuation_index" : "copper_valuation_index" : "valuation_index";
   const valuationNode = async (mode, ids) => {
     try {
       if (!valuationSession) {
@@ -543,7 +544,7 @@ async function renderIndustry(options = {}) {
         if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
         valuationSession = module.createSession(doc, {state, range: state.range, dataPath: valuationPath});
         semiconValuationCleanup = () => valuationSession.destroy();
-        collected.push({name: ind.id === "commodities" ? miningValuation ? "광산기업 주가·밸류에이션" : "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        collected.push({name: ind.id === "commodities" ? specialtyValuation ? "광물 기업 주가·밸류에이션" : miningValuation ? "광산기업 주가·밸류에이션" : "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
         if (doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);

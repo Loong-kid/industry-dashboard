@@ -19,7 +19,7 @@ const location = {hash: '#/commodities/copper'};
 const loaded = [];
 const valuations = [];
 const valuationModule = {createSession(doc, options) {
-  assert.equal(options.dataPath, state.subtab === 'mining' ? 'commodities/mining-valuation' : 'commodities/valuation');
+  assert.equal(options.dataPath, ['aluminum','tungsten','bismuth','antimony','tin'].includes(state.subtab) ? 'commodities/specialty-valuation' : state.subtab === 'mining' ? 'commodities/mining-valuation' : 'commodities/valuation');
   return {summary(ids) { valuations.push(['summary', ...ids]); return new Element(); },
     company(id) { valuations.push(['company', id]); return new Element(); }, destroy() {}};
 }};
@@ -45,14 +45,14 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   assert.equal(state.subtab, 'normal');
   assert(!loaded.some(id => id.startsWith('comm_copper')));
   assert(loaded.includes('comm_gold'));
-  for (const tab of ['normal', 'copper', 'mining', 'rare_earth', 'korea_trade']) {
+  for (const tab of ['normal', 'copper', 'mining', 'rare_earth', 'korea_trade', 'aluminum', 'tungsten', 'bismuth', 'antimony', 'tin']) {
     loaded.length = 0;
     location.hash = '#/commodities/' + tab;
     api.route();
     await api.renderIndustry();
     assert.equal(state.subtab, tab);
     const expected = catalog.industries.find(i => i.id === 'commodities').sections
-      .filter(section => section.tab === tab && (tab !== 'copper' || section.view === 'indicators')).flatMap(section => [...(section.type === 'valuation_summary' ? ['mining_valuation_index'] : []), ...section.indicators, ...(section.minerals?.length ? ['comm_mineral_supply'] : []), ...(section.minerals?.includes('MNRL0008') ? ['comm_copper_world_supply'] : []), ...(section.companies || []).flatMap(c => c.indicators)]);
+      .filter(section => section.tab === tab && (tab !== 'copper' || section.view === 'indicators')).flatMap(section => [...(section.type === 'valuation_summary' ? [tab === 'mining' ? 'mining_valuation_index' : 'specialty_valuation_index'] : []), ...section.indicators, ...(section.minerals?.length ? ['comm_mineral_supply'] : []), ...(section.minerals?.includes('MNRL0008') ? ['comm_copper_world_supply'] : []), ...(section.companies || []).flatMap(c => c.indicators)]);
     assert.deepEqual([...new Set(loaded)], [...new Set(expected)], 'Each tab must load only its own prices and supply');
     assert(expected.length > 0);
     assert(elements.get('content').children.some(child => child.className === 'tab-description'));
@@ -84,10 +84,10 @@ const api = new Function('state', 'document', 'window', 'location', 'loadDoc', '
   const cachedState = {docs: new Map(), docErrors: new Map()};
   const cachedLoader = new Function('state', 'fetch', source.slice(source.indexOf('async function loadDoc('), source.indexOf('// refresh.js')) + '\nreturn loadDoc;')(
     cachedState, async url => ({ok:true, json:async()=>({url})}));
-  for (const [industry, subtab] of [['commodities','copper'],['commodities','mining'],['semicon','memory'],['commodities','copper']]) {
+  for (const [industry, subtab] of [['commodities','copper'],['commodities','mining'],['commodities','aluminum'],['commodities','tin'],['semicon','memory'],['commodities','copper']]) {
     const {valuationPath, valuationIndex} = settings({id:industry}, {subtab});
     const doc = await cachedLoader(valuationPath, valuationIndex);
     assert.equal(doc.url, `data/${valuationPath}/${valuationIndex}.json`);
   }
-  console.log('PASS: five commodity tabs, separate copper market/miners, Ero, old links and data isolation');
+  console.log('PASS: ten commodity tabs, separate copper market/miners, Ero, old links and data isolation');
 })().catch(e => { console.error(e); process.exitCode = 1; });

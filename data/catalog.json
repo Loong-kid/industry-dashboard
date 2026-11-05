@@ -1105,6 +1105,36 @@
           "description": "희토류 전체 생산량·매장량과 개별 원소의 가격입니다. 전체 물량은 산화물(REO) 환산 기준이며 개별 원소별 생산량으로 나누지 않습니다."
         },
         {
+          "id": "aluminum",
+          "name": "알루미늄",
+          "default_range": "all",
+          "description": "알루미늄 가격·공급과 관련 기업의 전사 실적·주가·실적 TTM PER·PBR을 함께 봅니다. 공시 통화와 각 회사의 사업 범위를 확인하세요."
+        },
+        {
+          "id": "tungsten",
+          "name": "텅스텐",
+          "default_range": "all",
+          "description": "텅스텐 가격·공급과 관련 기업의 전사 실적·주가·실적 TTM PER·PBR을 함께 봅니다. 공시 통화와 각 회사의 사업 범위를 확인하세요."
+        },
+        {
+          "id": "bismuth",
+          "name": "비스무트",
+          "default_range": "all",
+          "description": "비스무트 가격·공급과 관련 기업의 전사 실적·주가·실적 TTM PER·PBR을 함께 봅니다. 공시 통화와 각 회사의 사업 범위를 확인하세요."
+        },
+        {
+          "id": "antimony",
+          "name": "안티모니",
+          "default_range": "all",
+          "description": "안티모니 가격·공급과 관련 기업의 전사 실적·주가·실적 TTM PER·PBR을 함께 봅니다. 공시 통화와 각 회사의 사업 범위를 확인하세요."
+        },
+        {
+          "id": "tin",
+          "name": "주석",
+          "default_range": "all",
+          "description": "주석 가격·공급과 관련 기업의 전사 실적·주가·실적 TTM PER·PBR을 함께 봅니다. 공시 통화와 각 회사의 사업 범위를 확인하세요."
+        },
+        {
           "id": "korea_trade",
           "default_range": "all",
           "name": "한국 수출입",
@@ -2240,6 +2270,234 @@
           ],
           "anchor": "mining-barrick",
           "valuation_company": "barrick"
+        },
+        {
+          "title": "알루미늄 · 시장 지표",
+          "tab": "aluminum",
+          "indicators": [
+            "comm_komis_aluminum_495",
+            "comm_komis_aluminum_496"
+          ],
+          "minerals": [
+            "MNRL0009"
+          ]
+        },
+        {
+          "title": "알루미늄 기업 · 주가·PER·PBR 비교",
+          "tab": "aluminum",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "aa",
+            "cenx"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "Alcoa (AA)",
+          "tab": "aluminum",
+          "layout": "financial",
+          "anchor": "specialty-aa",
+          "valuation_company": "aa",
+          "supply_note": "알루미늄·알루미나·보크사이트 연결 전체 · USD. 영업손익은 세전손익·이자·순영업외손익으로 계산합니다.",
+          "indicators": [
+            "company_specialty_aa_revenue",
+            "company_specialty_aa_profit",
+            "company_specialty_aa_capex"
+          ]
+        },
+        {
+          "title": "Alcoa · 생산량",
+          "tab": "aluminum",
+          "indicators": [
+            "comm_company_aa_production"
+          ]
+        },
+        {
+          "title": "Century Aluminum (CENX)",
+          "tab": "aluminum",
+          "layout": "financial",
+          "anchor": "specialty-cenx",
+          "valuation_company": "cenx",
+          "supply_note": "1차 알루미늄 제련·알루미나 등 연결 전체 · USD.",
+          "indicators": [
+            "company_specialty_cenx_revenue",
+            "company_specialty_cenx_profit",
+            "company_specialty_cenx_capex"
+          ]
+        },
+        {
+          "title": "텅스텐 · 시장 지표",
+          "tab": "tungsten",
+          "indicators": [
+            "comm_komis_tungsten_796",
+            "comm_komis_tungsten_800",
+            "comm_komis_tungsten_799",
+            "comm_komis_tungsten_816",
+            "comm_komis_tungsten_798"
+          ],
+          "minerals": [
+            "MNRL0018"
+          ]
+        },
+        {
+          "title": "텅스텐 기업 · 주가·PER·PBR 비교",
+          "tab": "tungsten",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "alm"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "Almonty Industries (ALM)",
+          "tab": "tungsten",
+          "layout": "financial",
+          "anchor": "specialty-alm",
+          "valuation_company": "alm",
+          "supply_note": "텅스텐 광산·상동 개발 등 연결 전체 · CAD. 영업손익은 광산손익−일반관리비−주식보상 계산값입니다. 주가 ALM은 USD입니다.",
+          "indicators": [
+            "company_specialty_alm_revenue",
+            "company_specialty_alm_profit",
+            "company_specialty_alm_capex"
+          ]
+        },
+        {
+          "title": "비스무트 · 시장 지표",
+          "tab": "bismuth",
+          "indicators": [
+            "comm_komis_bismuth_789",
+            "comm_komis_bismuth_790"
+          ],
+          "minerals": [
+            "MNRL0020"
+          ]
+        },
+        {
+          "title": "비스무트 기업 · 주가·PER·PBR 비교",
+          "tab": "bismuth",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "vnp"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "5N Plus (VNP.TO)",
+          "tab": "bismuth",
+          "layout": "financial",
+          "anchor": "specialty-vnp",
+          "valuation_company": "vnp",
+          "supply_note": "특수반도체·Performance Materials 연결 전체 · USD. 비스무트 단일 광산기업이 아닙니다. 주가 VNP.TO는 CAD입니다.",
+          "indicators": [
+            "company_specialty_vnp_revenue",
+            "company_specialty_vnp_profit",
+            "company_specialty_vnp_capex"
+          ]
+        },
+        {
+          "title": "안티모니 · 시장 지표",
+          "tab": "antimony",
+          "indicators": [
+            "comm_komis_antimony_780",
+            "comm_komis_antimony_781"
+          ],
+          "minerals": [
+            "MNRL0019"
+          ]
+        },
+        {
+          "title": "안티모니 기업 · 주가·PER·PBR 비교",
+          "tab": "antimony",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "uamy"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "United States Antimony (UAMY)",
+          "tab": "antimony",
+          "layout": "financial",
+          "anchor": "specialty-uamy",
+          "valuation_company": "uamy",
+          "supply_note": "안티모니·제올라이트 등 연결 전체 · USD.",
+          "indicators": [
+            "company_specialty_uamy_revenue",
+            "company_specialty_uamy_profit",
+            "company_specialty_uamy_capex"
+          ]
+        },
+        {
+          "title": "주석 · 시장 지표",
+          "tab": "tin",
+          "indicators": [
+            "comm_komis_tin_493",
+            "comm_komis_tin_494",
+            "comm_komis_tin_498"
+          ],
+          "minerals": [
+            "MNRL0016"
+          ]
+        },
+        {
+          "title": "주석 기업 · 주가·PER·PBR 비교",
+          "tab": "tin",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "afm"
+          ],
+          "indicators": []
+        },
+        {
+          "title": "Alphamin Resources (AFM.V)",
+          "tab": "tin",
+          "layout": "financial",
+          "anchor": "specialty-afm",
+          "valuation_company": "afm",
+          "supply_note": "DR콩고 Bisie 주석 광산 연결 전체 · USD. 주가 AFM.V는 CAD입니다. CAPEX는 장비 현금취득으로 별도 탐사투자를 제외합니다.",
+          "indicators": [
+            "company_specialty_afm_revenue",
+            "company_specialty_afm_profit",
+            "company_specialty_afm_capex"
+          ]
+        },
+        {
+          "title": "기업 생산·판매 지표 · 원문 검토 스냅샷",
+          "tab": "aluminum",
+          "anchor": "specialty-operations-aluminum",
+          "supply_note": "전사 재무제표·주가와 별도로 검토한 운영 공시입니다. 미공개 분기는 공백으로 남기며 지표별 출처와 검토일을 표시합니다.",
+          "indicators": [
+            "company_specialty_cenx_shipments"
+          ]
+        },
+        {
+          "title": "기업 생산·판매 지표 · 원문 검토 스냅샷",
+          "tab": "antimony",
+          "anchor": "specialty-operations-antimony",
+          "supply_note": "전사 재무제표·주가와 별도로 검토한 운영 공시입니다. 미공개 분기는 공백으로 남기며 지표별 출처와 검토일을 표시합니다.",
+          "indicators": [
+            "company_specialty_uamy_sales",
+            "company_specialty_uamy_asp"
+          ]
+        },
+        {
+          "title": "기업 생산·판매 지표 · 원문 검토 스냅샷",
+          "tab": "bismuth",
+          "anchor": "specialty-operations-bismuth",
+          "supply_note": "전사 재무제표·주가와 별도로 검토한 운영 공시입니다. 미공개 분기는 공백으로 남기며 지표별 출처와 검토일을 표시합니다.",
+          "indicators": [
+            "company_specialty_vnp_materials"
+          ]
+        },
+        {
+          "title": "기업 생산·판매 지표 · 원문 검토 스냅샷",
+          "tab": "tin",
+          "anchor": "specialty-operations-tin",
+          "supply_note": "전사 재무제표·주가와 별도로 검토한 운영 공시입니다. 미공개 분기는 공백으로 남기며 지표별 출처와 검토일을 표시합니다.",
+          "indicators": [
+            "company_specialty_afm_volume",
+            "company_specialty_afm_price"
+          ]
         }
       ]
     },

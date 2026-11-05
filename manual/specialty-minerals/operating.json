@@ -1,0 +1,49 @@
+{
+  "reviewed": "2026-11-06",
+  "note": "공식 원문을 확인한 초기 운영지표 스냅샷입니다. 금융 실적·주가 자동 수집과 별도이며, 새 운영 공시의 항목·단위를 검토한 뒤 추가합니다. 전망·가이던스는 제외합니다.",
+  "charts": [
+    {
+      "id": "company_specialty_cenx_shipments", "tab": "aluminum",
+      "name": "Century Aluminum · 1차 알루미늄 출하량", "unit": "톤",
+      "description": "미국·아이슬란드 합산 1차 알루미늄 출하량입니다. 알루미나 판매량이나 생산능력과 구분합니다.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/949157/000162828026054300/a20260630q2ex991earningsre.htm",
+      "series": {"알루미늄 출하량": [["2025-03-31",168672],["2025-06-30",175741],["2026-03-31",122865],["2026-06-30",130632]]}
+    },
+    {
+      "id": "company_specialty_uamy_sales", "tab": "antimony",
+      "name": "US Antimony · 안티모니 판매량", "unit": "lb",
+      "description": "Pounds of antimony sold입니다. 생산량·광석 처리량과 다릅니다. 1분기는 해당 연도 6개월 누적−2분기로 계산합니다. 금·은 매출을 안티모니 판매액에 더하지 않습니다.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/101538/000110465926094035/uamy-20260630x10q.htm",
+      "series": {"안티모니 판매량": [["2025-03-31",362647],["2025-06-30",340305],["2026-03-31",278797],["2026-06-30",428425]]}
+    },
+    {
+      "id": "company_specialty_uamy_asp", "tab": "antimony",
+      "name": "US Antimony · 안티모니 실현 판매가격", "unit": "USD/lb",
+      "description": "회사 공시 분기 평균 판매가격입니다. 시장 호가와 구분하며 6개월 평균을 분기 평균으로 사용하지 않습니다.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/101538/000110465926094035/uamy-20260630x10q.htm",
+      "series": {"평균 판매가격": [["2025-06-30",28.32],["2026-06-30",13.70]]}
+    },
+    {
+      "id": "company_specialty_vnp_materials", "tab": "bismuth",
+      "name": "5N Plus · Performance Materials 매출", "unit": "USD 백만",
+      "description": "비스무트 관련 Performance Materials 부문 매출입니다. 비스무트 단독 매출·생산량이 아니며 Specialty Semiconductors를 제외합니다.",
+      "source_url": "https://www.5nplus.com/media/uploads/documents/b2026-11-02_q3-2026_financial_statements.pdf#page=10",
+      "series": {"Performance Materials 매출": [["2025-09-30",29.687],["2026-09-30",35.719]]}
+    },
+    {
+      "id": "company_specialty_afm_volume", "tab": "tin",
+      "name": "Alphamin · 주석 생산·판매량", "unit": "톤 · 함유 Sn",
+      "description": "Bisie 광산 연결 100% 기준 함유 주석량입니다. Alphamin 지분 귀속량으로 환산하지 않습니다. 2026년 3분기는 10월 6일 발표한 실제 생산·판매 물량이며 EBITDA 가이던스는 포함하지 않습니다.",
+      "source_url": "https://www.alphaminresources.com/wp-content/uploads/2026/07/5.2-MDA_2026_Q2_final.pdf#page=2",
+      "date_sources": {"2026-09-30":"https://www.alphaminresources.com/2026/10/06/alphamin-announces-cad0-13-per-share-interim-fy2026-dividend-q3-guidance-exploration-update/"},
+      "series": {"주석 생산량": [["2026-03-31",5026],["2026-06-30",5013],["2026-09-30",5030]],"주석 판매량": [["2026-03-31",5016],["2026-06-30",5014],["2026-09-30",5046]]}
+    },
+    {
+      "id": "company_specialty_afm_price", "tab": "tin",
+      "name": "Alphamin · 주석 실현가격·AISC", "unit": "USD/톤 · 함유 Sn",
+      "description": "판매한 함유 주석 기준 평균 실현가격과 회사 정의 AISC입니다. AISC는 비IFRS 지표이며 타사 비용과 범위가 다를 수 있습니다.",
+      "source_url": "https://www.alphaminresources.com/wp-content/uploads/2026/07/5.2-MDA_2026_Q2_final.pdf#page=2",
+      "series": {"주석 평균 실현가격": [["2026-03-31",49278],["2026-06-30",51957]],"AISC": [["2026-03-31",17968],["2026-06-30",19042]]}
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+ "id": "company_specialty_afm_price",
+ "name": "Alphamin · 주석 실현가격·AISC",
+ "unit": "USD/톤 · 함유 Sn",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 원문 검토 스냅샷",
+ "updated": "2026-06-30",
+ "fetched": "2026-11-06",
+ "source": "회사 공식 운영 공시 · 수동 검토",
+ "source_url": "https://www.alphaminresources.com/wp-content/uploads/2026/07/5.2-MDA_2026_Q2_final.pdf#page=2",
+ "description": "판매한 함유 주석 기준 평균 실현가격과 회사 정의 AISC입니다. AISC는 비IFRS 지표이며 타사 비용과 범위가 다를 수 있습니다.",
+ "series": {
+  "주석 평균 실현가격": [
+   [
+    "2026-03-31",
+    49278
+   ],
+   [
+    "2026-06-30",
+    51957
+   ]
+  ],
+  "AISC": [
+   [
+    "2026-03-31",
+    17968
+   ],
+   [
+    "2026-06-30",
+    19042
+   ]
+  ]
+ },
+ "default_series": [
+  "주석 평균 실현가격",
+  "AISC"
+ ],
+ "span_gaps": false,
+ "quarter_labels": true,
+ "period_labels": {
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "company_kpi": true,
+ "change_mode": "none",
+ "table_limit": 100,
+ "point_sources": {
+  "2026-06-30": {
+   "url": "https://www.alphaminresources.com/wp-content/uploads/2026/07/5.2-MDA_2026_Q2_final.pdf#page=2",
+   "label": "FY2026 Q2"
+  },
+  "2026-03-31": {
+   "url": "https://www.alphaminresources.com/wp-content/uploads/2026/07/5.2-MDA_2026_Q2_final.pdf#page=2",
+   "label": "FY2026 Q1"
+  }
+ },
+ "basis_details": [
+  {
+   "label": "갱신 방식",
+   "value": "공식 원문을 확인한 초기 운영지표 스냅샷입니다. 금융 실적·주가 자동 수집과 별도이며, 새 운영 공시의 항목·단위를 검토한 뒤 추가합니다. 전망·가이던스는 제외합니다. 검토일: 2026-11-06"
+  }
+ ]
+}

@@ -230,3 +230,17 @@ git add data && git commit -m "data: weekly DART orders update" && git push
 - **asiasis.com**: https 인증서가 깨져 있음(TLS 핸드셰이크 실패). `http://`로는 접속됨.
   메인의 클락슨 지수 차트는 2020-21 데이터로 방치 상태이고, 게시판(jisu1: 신조선가,
   jisu2: 해운지수, jisu3: 원자재)은 로그인 필요. 무료가입 후 크롤링 가능한지 추후 확인.
+
+
+## 광물별 기업 추가 · AA / CENX / ALM / VNP / UAMY / AFM (2026-11-06)
+
+원자재의 알루미늄(Alcoa·Century Aluminum), 텅스텐(Almonty), 비스무트(5N Plus), 안티모니(US Antimony), 주석(Alphamin) 탭입니다. 기존 KOMIS 가격·국가별 생산/매장량 자료를 재사용하며 글로벌 광산기업 상위 10개 순위는 변경하지 않습니다.
+
+- `scripts/fetch_specialty_minerals.py`: 미국 3개사는 SEC Company Facts, 캐나다 3개사는 회사 IR의 공식 IFRS 재무제표 PDF를 수집합니다. PDF는 2022년 이후 문서와 그 비교 기간을 사용합니다. 원문 표의 실제 기간·이사회 승인일·페이지를 보존합니다. 재무제표의 승인일은 SEC 제출일을 의미하지 않습니다. 분기와 실제 공시 연간 선택을 제공합니다. 누적은 같은 회계연도의 직전 누적과 차분하며 가이던스·미완료 연환산은 넣지 않습니다.
+- Alcoa 영업손익은 같은 SEC accession/기간의 세전손익 + 이자비용 − 순영업외손익으로 계산합니다. Almonty는 광산 영업손익 − 일반관리비 − 주식보상비용의 계산 소계입니다. EBITDA·순이익으로 대체하지 않으며 계산값임을 표시합니다.
+- Almonty 재무제표는 CAD, 나머지 5개사는 USD 백만입니다. CAPEX는 각 회사 현금흐름표 항목입니다. Almonty는 광산자산 취득, Alphamin은 장비 취득이며 별도 탐사·평가자산 투자를 제외합니다. 나머지는 유형자산 현금취득입니다.
+- `scripts/fetch_specialty_valuation.py`와 `manual/specialty-valuation/companies.json`: AA/CENX/ALM/UAMY는 USD, VNP.TO/AFM.V는 CAD 주가를 사용합니다. 공시 EPS/BPS와 가격 통화가 다르면 일별 환율로 맞춥니다. 주가는 2014년 이후 확보된 일봉을 지연 로딩하며 AA는 2016-11-01 분사 후, ALM은 2025-07-14 Nasdaq 거래 개시 후만 사용합니다. 실적 보고 희석 EPS의 TTM PER, 보통주 BPS의 PBR이며 적자 PER은 N/M·밴드 공백입니다. 밴드 확대·직접 배수 설정 등 공유 UI를 재사용합니다.
+- `.github/workflows/update-specialty-minerals.yml`: KST 08:35에 계정·주가·밸류에이션을 확인합니다. 파서 변경, 통화/단위 변경, 원문 일부 실패나 기간 후퇴 시 해당 회사의 마지막 성공 재무제표를 유지합니다. 가격과 재무제표의 성공 갱신 시점은 별도입니다.
+- `manual/specialty-minerals/operating.json` → `scripts/build_specialty_operating.py`: Century의 알루미늄 출하, US Antimony의 판매량·가격, 5N Plus의 Performance Materials 매출, Alphamin의 주석 생산·판매·가격·AISC는 원문 검토 스냅샷입니다. 검토일과 원문을 표시하며 자동 갱신으로 표시하지 않습니다. Alcoa 생산량은 기존 수집 자료를 재사용합니다. 5N Plus는 비스무트 단일 광산기업이 아닙니다. Alphamin 2026 Q3 실제 물량은 운영 공시에서만 반영하고 EBITDA 가이던스는 금융 실적에 넣지 않습니다.
+
+원본 IR: [Alcoa](https://investors.alcoa.com/), [Century](https://investors.centuryaluminum.com/), [Almonty 재무제표](https://almonty.com/investors/financials/), [5N Plus 재무제표](https://www.5nplus.com/en/investors/financial-documents/), [US Antimony](https://www.usantimony.com/), [Alphamin 재무제표](https://www.alphaminresources.com/financial-reports/).

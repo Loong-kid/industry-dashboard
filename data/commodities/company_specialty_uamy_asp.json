@@ -1,0 +1,67 @@
+{
+ "id": "company_specialty_uamy_asp",
+ "name": "US Antimony · 안티모니 실현 판매가격",
+ "unit": "USD/lb",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · 원문 검토 스냅샷",
+ "updated": "2026-06-30",
+ "fetched": "2026-11-06",
+ "source": "회사 공식 운영 공시 · 수동 검토",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/101538/000110465926094035/uamy-20260630x10q.htm",
+ "description": "회사 공시 분기 평균 판매가격입니다. 시장 호가와 구분하며 6개월 평균을 분기 평균으로 사용하지 않습니다.",
+ "series": {
+  "평균 판매가격": [
+   [
+    "2025-06-30",
+    28.32
+   ],
+   [
+    "2025-09-30",
+    null
+   ],
+   [
+    "2025-12-31",
+    null
+   ],
+   [
+    "2026-03-31",
+    null
+   ],
+   [
+    "2026-06-30",
+    13.7
+   ]
+  ]
+ },
+ "default_series": [
+  "평균 판매가격"
+ ],
+ "span_gaps": false,
+ "quarter_labels": true,
+ "period_labels": {
+  "2025-06-30": "FY2025 Q2",
+  "2025-09-30": "FY2025 Q3",
+  "2025-12-31": "FY2025 Q4",
+  "2026-03-31": "FY2026 Q1",
+  "2026-06-30": "FY2026 Q2"
+ },
+ "company_kpi": true,
+ "change_mode": "none",
+ "table_limit": 100,
+ "point_sources": {
+  "2026-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/101538/000110465926094035/uamy-20260630x10q.htm",
+   "label": "FY2026 Q2"
+  },
+  "2025-06-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/101538/000110465926094035/uamy-20260630x10q.htm",
+   "label": "FY2025 Q2"
+  }
+ },
+ "basis_details": [
+  {
+   "label": "갱신 방식",
+   "value": "공식 원문을 확인한 초기 운영지표 스냅샷입니다. 금융 실적·주가 자동 수집과 별도이며, 새 운영 공시의 항목·단위를 검토한 뒤 추가합니다. 전망·가이던스는 제외합니다. 검토일: 2026-11-06"
+  }
+ ]
+}
