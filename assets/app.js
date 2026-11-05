@@ -297,7 +297,7 @@ async function renderIndustry(options = {}) {
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "vrar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "vrar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -445,6 +445,16 @@ async function renderIndustry(options = {}) {
     content.appendChild(intro);
   }
 
+  if (ind.id === "semicon" && state.subtab?.startsWith("osat_")) {
+    try {
+      const [doc, module] = await Promise.all([loadDoc("semicon", "osat_universe"), import("./semicon-osat.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("osat_universe");
+      content.appendChild(err || !doc ? errorCard("semicon", "osat_universe", err || "기업 목록을 불러오지 못했습니다.") : module.renderGuide(doc, state.subtab));
+    } catch (e) {
+      if (mySeq === renderSeq) content.appendChild(errorCard("semicon", "osat_universe", e.message));
+    }
+  }
   if (ind.id === "semicon" && state.subtab?.startsWith("equipment_")) {
     try {
       const [doc, module] = await Promise.all([loadDoc("semicon", "korea_equipment_universe"), import("./korea-equipment.js")]);

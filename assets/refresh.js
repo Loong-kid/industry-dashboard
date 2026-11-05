@@ -42,6 +42,7 @@ function currentTarget() {
   if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};
   if (id === "semicon" && subtab === "cleaning_summary") return {file: "data/semicon/cleaning_state.json", label: "세정 실적 확인", workflow: "update-semicon-cleaning.yml"};
+  if (id === "semicon" && subtab?.startsWith("osat_")) return {file: "data/semicon/osat_state.json", label: "패키징·테스트 실적 확인", workflow: "update-semicon-osat.yml"};
   if (id === "semicon" && subtab?.startsWith("equipment_")) return {file: "data/semicon/company_lam_revenue.json", label: "장비 실적 확인", workflow: "update-equipment.yml"};
   if (id === "semicon" && subtab === "wafer") return {file: "data/semicon/wafer_globalwafers_monthly.json", label: "월 매출 갱신"};
   if (id === "institution" && subtab === "us_managers") return {file: "data/institution/us_managers.json", label: "미국 운용사 갱신"};
