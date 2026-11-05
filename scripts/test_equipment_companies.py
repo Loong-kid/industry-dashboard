@@ -75,7 +75,7 @@ class EquipmentCompanies(unittest.TestCase):
         catalog=equipment.load(ROOT/'data/catalog.json',{})
         industry=next(i for i in catalog['industries'] if i['id']=='semicon')
         self.assertEqual([(c['id'],c['default_tab']) for c in industry['material_categories']],
-            [('equipment','equipment_summary'),('components','snstech'),('raw_materials','wafer'),('cleaning','cleaning_summary')])
+            [('equipment','equipment_summary'),('components','snstech'),('raw_materials','wafer'),('cleaning','cleaning_summary'),('osat','osat_summary')])
         linked={id for s in industry['sections'] if s.get('tab')=='equipment_summary' for id in s['indicators'] if not id.startswith('company_kr_equipment_')}
         docs={}
         for key,company in equipment.COMPANIES.items():

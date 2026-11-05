@@ -22,8 +22,17 @@ def fx_quote(source,target):
     base_source,source_units=units.get(source,(source,1))
     base_target,target_units=units.get(target,(target,1))
     pair=base_source+base_target
-    quote={'USDAUD':'AUD'}.get(pair,pair) # Yahoo's canonical USD/AUD ticker.
+    quote=base_target if base_source=='USD' and base_source!=base_target else pair # Canonical Yahoo USD crosses.
     return quote,base_target,target_units/source_units,base_source==base_target
+
+
+def fx_price_rows(payload,source,target,asof,now):
+    quote,quote_currency,scale,_=fx_quote(source,target)
+    actual=payload['chart']['result'][0]['meta']['symbol']
+    aliases={quote+'=X'}
+    if source=='USD':aliases.add('USD'+quote_currency+'=X')
+    if actual not in aliases:raise ValueError('FX pair identity mismatch')
+    return [[date,value*scale] for date,value in price_rows(payload,actual,quote_currency,asof,now)[0]]
 
 
 def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_path=None,
@@ -81,7 +90,7 @@ def collect(offline=False, *, registry_path=None, out=None, cache=None, reviews_
                     if identity:fx_cache[pair]=[[date,scale] for date,_ in c.get('prices',[])]
                     else:
                         p=get(quote+'_fx','https://query1.finance.yahoo.com/v8/finance/chart/'+quote+'=X',price_params)
-                        fx_cache[pair]=[[date,value*scale] for date,value in price_rows(p,quote+'=X',quote_currency,asof,int(now.timestamp()))[0]]
+                        fx_cache[pair]=fx_price_rows(p,financial_currency,currency,asof,int(now.timestamp()))
                 fx[pair]=fx_cache[pair]
             except Exception as e:
                 if pair in old.get('fx',{}):fx[pair]=old['fx'][pair]

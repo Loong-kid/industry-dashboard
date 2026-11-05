@@ -1,0 +1,65 @@
+name: update-semicon-osat
+on:
+  schedule:
+    - cron: '15 0 * * *' # KST 09:15
+  workflow_dispatch:
+    inputs:
+      full_history:
+        description: Recheck all original statement history
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pymupdf
+      - name: Validate packaging and test reporting definitions
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_semicon_osat.py -v
+      - uses: actions/cache@v4
+        with:
+          path: .cache/osat
+          key: osat-originals-v1-${{ github.run_id }}
+          restore-keys: osat-originals-v1-
+      - name: Refresh official issuer statements
+        if: steps.precheck.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          FULL_HISTORY: ${{ inputs.full_history }}
+        run: |
+          if [ "$FULL_HISTORY" = "true" ]; then
+            python -u scripts/fetch_semicon_osat.py --refresh --full-history
+          else
+            python -u scripts/fetch_semicon_osat.py --refresh
+          fi
+      - name: Validate refreshed financial history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_semicon_osat.py -v
+      - name: Commit OSAT accounts only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/osat_state.json data/semicon/osat_universe.json data/semicon/company_osat_*.json
+          git diff --cached --quiet || git commit -m "chore: refresh packaging and test issuer financials"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1

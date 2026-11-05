@@ -1,0 +1,434 @@
+{
+ "id": "company_osat_ase_capex",
+ "name": "ASE · CAPEX (연간 총취득)",
+ "unit": "TWD 백만",
+ "company_kpi": true,
+ "span_gaps": false,
+ "compact_ticks": true,
+ "compact_tooltip": true,
+ "table_limit": 120,
+ "source": "SEC 연결 재무제표",
+ "fetched": "2026-11-06",
+ "description": "ASE Technology Holding 전사 연결 · ATM·EMS 등 포함. 2018년 ASE·SPIL 통합 지주회사 체제로 전환했습니다. 통합 이후 분기 공시부터 표시하며 2018년 연간은 사업 결합 영향을 포함한 전환기입니다. 이전 ASE Inc. 단독 이력을 연결하지 않습니다. 전사 매출에는 전자제조서비스(EMS)도 포함돼 순수 패키징·테스트 매출이 아닙니다. TWD 원통화이며 공시되지 않은 분기를 연간의 1/4로 추정하지 않습니다. CAPEX는 현금흐름표의 유형자산 취득 현금지출입니다. 무형자산·M&A·비현금 리스와 외주 생산업체의 투자를 포함하지 않습니다. 사업부 CAPEX가 아니라 전사 기준입니다.",
+ "basis_details": [
+  {
+   "label": "사업·실적 범위",
+   "value": "ASE Technology Holding 전사 연결 · ATM·EMS 등 포함. 2018년 ASE·SPIL 통합 지주회사 체제로 전환했습니다. 통합 이후 분기 공시부터 표시하며 2018년 연간은 사업 결합 영향을 포함한 전환기입니다. 이전 ASE Inc. 단독 이력을 연결하지 않습니다. 전사 매출에는 전자제조서비스(EMS)도 포함돼 순수 패키징·테스트 매출이 아닙니다. TWD 원통화이며 공시되지 않은 분기를 연간의 1/4로 추정하지 않습니다."
+  },
+  {
+   "label": "기간·금액",
+   "value": "실제 3개월과 완결 회계연도를 구분합니다. 4분기·누적 현금흐름은 동일 회계연도의 누적−직전 누적으로 계산하며 연간을 4로 나누지 않습니다. 미확인 분기는 공백입니다. 원통화 백만 단위로 통화가 다른 회사를 단순 합산하지 않습니다."
+  },
+  {
+   "label": "CAPEX·영업손익",
+   "value": "CAPEX는 현금흐름표의 유형자산 취득 현금지출입니다. 무형자산·M&A·비현금 리스와 외주 생산업체의 투자를 포함하지 않습니다. 사업부 CAPEX가 아니라 전사 기준입니다. 영업손익은 공시 영업이익/손실로 순이익·조정 EBITDA와 다릅니다. Reality Labs 영업이익률은 해당 사업부 영업손익÷매출입니다."
+  },
+  {
+   "label": "이력·갱신",
+   "value": "2026-11-06 · 원문 확인 완료"
+  },
+  {
+   "label": "ASE 공시 범위",
+   "value": "2018년 통합 이후 분기부터 표시합니다. 연간은 IFRS 20-F, 분기 매출·영업이익은 공식 6-K 실적 발표의 실제 3개월 값입니다. 이후 발표의 수정 비교 수치를 반영하며 연간 1/4 추정은 하지 않습니다."
+  },
+  {
+   "label": "분기·연간 지출 차이",
+   "value": "이 카드는 20-F의 유형자산 총취득 현금지출입니다. 분기 실적 발표의 Net payments는 순지출이어서 합치지 않으며 아래 별도 그래프로 제공합니다. 분기 Equipment CAPEX의 USD 발표값을 임의 환율로 변환하지 않습니다."
+  }
+ ],
+ "collection_status": {
+  "ok": true,
+  "checked": "2026-11-06",
+  "message": "원문 확인 완료"
+ },
+ "default_view": "annual",
+ "series_views": {
+  "annual": {
+   "label": "연간",
+   "frequency": "yearly",
+   "frequency_label": "연간 · 실제 공시 기간",
+   "quarter_labels": false,
+   "year_labels": true,
+   "annual_axis": true,
+   "series": {
+    "CAPEX": [
+     [
+      "2018-12-31",
+      41386.443
+     ],
+     [
+      "2019-12-31",
+      56810.153
+     ],
+     [
+      "2020-12-31",
+      62077.446
+     ],
+     [
+      "2021-12-31",
+      70905.659
+     ],
+     [
+      "2022-12-31",
+      72639.905
+     ],
+     [
+      "2023-12-31",
+      54158.229
+     ],
+     [
+      "2024-12-31",
+      79521.938
+     ],
+     [
+      "2025-12-31",
+      164642.502
+     ]
+    ]
+   },
+   "default_series": [
+    "CAPEX"
+   ],
+   "period_labels": {
+    "2018-12-31": "FY2018",
+    "2019-12-31": "FY2019",
+    "2020-12-31": "FY2020",
+    "2021-12-31": "FY2021",
+    "2022-12-31": "FY2022",
+    "2023-12-31": "FY2023",
+    "2024-12-31": "FY2024",
+    "2025-12-31": "FY2025"
+   },
+   "point_sources": {
+    "2018-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000095010321005259/0000950103-21-005259-index.html",
+     "label": "FY2018",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000095010321005259/0000950103-21-005259-index.html",
+       "label": "2018-01-01 ~ 2018-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2019-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312522087341/0001193125-22-087341-index.html",
+     "label": "FY2019",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312522087341/0001193125-22-087341-index.html",
+       "label": "2019-01-01 ~ 2019-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2020-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312523095811/0001193125-23-095811-index.html",
+     "label": "FY2020",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312523095811/0001193125-23-095811-index.html",
+       "label": "2020-01-01 ~ 2020-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2021-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312524085380/0001193125-24-085380-index.html",
+     "label": "FY2021",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312524085380/0001193125-24-085380-index.html",
+       "label": "2021-01-01 ~ 2021-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312525064603/0001193125-25-064603-index.html",
+     "label": "FY2022",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312525064603/0001193125-25-064603-index.html",
+       "label": "2022-01-01 ~ 2022-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "FY2023",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+       "label": "2023-01-01 ~ 2023-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "FY2024",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+       "label": "2024-01-01 ~ 2024-12-31"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "FY2025",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+       "label": "2025-01-01 ~ 2025-12-31"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2018-12-31": [
+     "FY2018",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2019-12-31": [
+     "FY2019",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2020-12-31": [
+     "FY2020",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2021-12-31": [
+     "FY2021",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2022-12-31": [
+     "FY2022",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2023-12-31": [
+     "FY2023",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2024-12-31": [
+     "FY2024",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ],
+    "2025-12-31": [
+     "FY2025",
+     "reported annual",
+     "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+    ]
+   },
+   "updated": "2025-12-31",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+   "comparison_dates": {},
+   "quarterly_revenue_summary": false,
+   "quarterly_profit_summary": false,
+   "change_mode": "none"
+  }
+ },
+ "frequency": "yearly",
+ "frequency_label": "연간 · 실제 공시 기간",
+ "quarter_labels": false,
+ "year_labels": true,
+ "annual_axis": true,
+ "series": {
+  "CAPEX": [
+   [
+    "2018-12-31",
+    41386.443
+   ],
+   [
+    "2019-12-31",
+    56810.153
+   ],
+   [
+    "2020-12-31",
+    62077.446
+   ],
+   [
+    "2021-12-31",
+    70905.659
+   ],
+   [
+    "2022-12-31",
+    72639.905
+   ],
+   [
+    "2023-12-31",
+    54158.229
+   ],
+   [
+    "2024-12-31",
+    79521.938
+   ],
+   [
+    "2025-12-31",
+    164642.502
+   ]
+  ]
+ },
+ "default_series": [
+  "CAPEX"
+ ],
+ "period_labels": {
+  "2018-12-31": "FY2018",
+  "2019-12-31": "FY2019",
+  "2020-12-31": "FY2020",
+  "2021-12-31": "FY2021",
+  "2022-12-31": "FY2022",
+  "2023-12-31": "FY2023",
+  "2024-12-31": "FY2024",
+  "2025-12-31": "FY2025"
+ },
+ "point_sources": {
+  "2018-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000095010321005259/0000950103-21-005259-index.html",
+   "label": "FY2018",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000095010321005259/0000950103-21-005259-index.html",
+     "label": "2018-01-01 ~ 2018-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2019-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312522087341/0001193125-22-087341-index.html",
+   "label": "FY2019",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312522087341/0001193125-22-087341-index.html",
+     "label": "2019-01-01 ~ 2019-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2020-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312523095811/0001193125-23-095811-index.html",
+   "label": "FY2020",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312523095811/0001193125-23-095811-index.html",
+     "label": "2020-01-01 ~ 2020-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2021-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312524085380/0001193125-24-085380-index.html",
+   "label": "FY2021",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312524085380/0001193125-24-085380-index.html",
+     "label": "2021-01-01 ~ 2021-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2022-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312525064603/0001193125-25-064603-index.html",
+   "label": "FY2022",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312525064603/0001193125-25-064603-index.html",
+     "label": "2022-01-01 ~ 2022-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2023-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+   "label": "FY2023",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "2023-01-01 ~ 2023-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+   "label": "FY2024",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "2024-01-01 ~ 2024-12-31"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+   "label": "FY2025",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+     "label": "2025-01-01 ~ 2025-12-31"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2018-12-31": [
+   "FY2018",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2019-12-31": [
+   "FY2019",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2020-12-31": [
+   "FY2020",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2021-12-31": [
+   "FY2021",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2022-12-31": [
+   "FY2022",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2023-12-31": [
+   "FY2023",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2024-12-31": [
+   "FY2024",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ],
+  "2025-12-31": [
+   "FY2025",
+   "reported annual",
+   "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+  ]
+ },
+ "updated": "2025-12-31",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1122411/000119312526135585/0001193125-26-135585-index.html",
+ "comparison_dates": {},
+ "quarterly_revenue_summary": false,
+ "quarterly_profit_summary": false,
+ "change_mode": "none"
+}
