@@ -55,7 +55,8 @@
   "2025-09-30": "FY2025 Q3",
   "2025-12-31": "FY2025 Q4",
   "2026-03-31": "FY2026 Q1",
-  "2026-06-30": "FY2026 Q2"
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3"
  },
  "comparison_dates": {
   "2014-03-31": {
@@ -257,12 +258,16 @@
   "2026-06-30": {
    "year_ago": "2025-06-30",
    "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
   }
  },
- "updated": "2026-06-30",
- "fetched": "2026-11-05",
+ "updated": "2026-09-30",
+ "fetched": "2026-11-06",
  "source": "기업 공식 재무제표 · SEC / IR",
- "source_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000167/cvx-20260630.htm",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000200/cvx-20260930.htm",
  "description": "전사 연결 · 통합 석유·가스·정유. 회사 전체 연결 매출입니다. 원유 채굴 매출 또는 정유 단독 매출이 아니며 회사 간 합산하지 않습니다.",
  "series": {
   "연결 매출": [
@@ -465,6 +470,10 @@
    [
     "2026-06-30",
     67199.0
+   ],
+   [
+    "2026-09-30",
+    65237.0
    ]
   ]
  },
@@ -1024,11 +1033,11 @@
    "source_separator": " / "
   },
   "2025-09-30": {
-   "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341025000108/cvx-20250930.htm",
+   "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000200/cvx-20260930.htm",
    "label": "FY2025 Q3",
    "supporting_sources": [
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341025000108/cvx-20250930.htm",
+     "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000200/cvx-20260930.htm",
      "label": "2025-07-01 ~ 2025-09-30"
     }
    ],
@@ -1070,6 +1079,17 @@
     }
    ],
    "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000200/cvx-20260930.htm",
+   "label": "FY2026 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000200/cvx-20260930.htm",
+     "label": "2026-07-01 ~ 2026-09-30"
+    }
+   ],
+   "source_separator": " / "
   }
  },
  "table_limit": 100,
@@ -1079,7 +1099,7 @@
  "basis_details": [
   {
    "label": "수록 기간",
-   "value": "분기 2014-03-31 ~ 2026-06-30 · 50개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
+   "value": "분기 2014-03-31 ~ 2026-09-30 · 51개 / 연간 2014 ~ 2025 · 12개. 미확인 분기는 선을 연결하지 않습니다."
   },
   {
    "label": "회사별 범위·CAPEX 정의",
@@ -1091,7 +1111,7 @@
   },
   {
    "label": "갱신 확인",
-   "value": "2026-11-05 · 정상"
+   "value": "2026-11-06 · 정상"
   }
  ],
  "default_view": "quarter",
