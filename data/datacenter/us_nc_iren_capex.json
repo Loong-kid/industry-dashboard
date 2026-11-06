@@ -29,10 +29,10 @@
   }
  ],
  "source": "SEC · 기업 공식 공시",
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "collection_status": {
   "ok": true,
-  "checked": "2026-11-05",
+  "checked": "2026-11-06",
   "message": "공시 조회 완료"
  },
  "default_view": "quarter",
@@ -52,7 +52,8 @@
     "2025-09-30": "FY2026 Q1",
     "2025-12-31": "FY2026 Q2",
     "2026-03-31": "FY2026 Q3",
-    "2026-06-30": "FY2026 Q4"
+    "2026-06-30": "FY2026 Q4",
+    "2026-09-30": "FY2027 Q1"
    },
    "series": {
     "IREN": [
@@ -74,7 +75,7 @@
      ],
      [
       "2025-09-30",
-      180.307
+      180.0
      ],
      [
       "2025-12-31",
@@ -87,6 +88,10 @@
      [
       "2026-06-30",
       1328.849
+     ],
+     [
+      "2026-09-30",
+      2131.0
      ]
     ]
    },
@@ -194,15 +199,15 @@
       "period_start": "2025-04-01"
      },
      "2025-09-30": {
-      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-      "filed": "2025-11-06",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
       "components": [
        {
-        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-        "filed": "2025-11-06",
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+        "filed": "2026-11-05",
         "start": "2025-07-01",
         "end": "2025-09-30",
         "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
@@ -293,6 +298,26 @@
       "period": "FY2026 Q4",
       "observed_date": "2026-06-30",
       "period_start": "2026-04-01"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+        "filed": "2026-11-05",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2027 Q1",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-07-01"
      }
     }
    },
@@ -331,7 +356,7 @@
       "2025-07-01 ~ 2025-09-30",
       "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
       "reported quarter",
-      "180.3070 USD 백만"
+      "180.0000 USD 백만"
      ],
      "2025-12-31": [
       "IREN · FY2026 Q2",
@@ -353,6 +378,13 @@
       "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
       "same fiscal-year YTD minus prior YTD",
       "1,328.8490 USD 백만"
+     ],
+     "2026-09-30": [
+      "IREN · FY2027 Q1",
+      "2026-07-01 ~ 2026-09-30",
+      "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
+      "reported quarter",
+      "2,131.0000 USD 백만"
      ]
     }
    },
@@ -410,10 +442,10 @@
      "source_separator": " / "
     },
     "2025-09-30": {
-     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
      "supporting_sources": [
       {
-       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
        "label": "IREN · FY2026 Q1"
       }
      ],
@@ -460,13 +492,23 @@
       }
      ],
      "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+       "label": "IREN · FY2027 Q1"
+      }
+     ],
+     "source_separator": " / "
     }
    },
    "default_series": [
     "IREN"
    ],
-   "updated": "2026-06-30",
-   "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+   "updated": "2026-09-30",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
    "comparison_dates": {
     "2024-09-30": {
      "year_ago": null,
@@ -499,6 +541,10 @@
     "2026-06-30": {
      "year_ago": "2025-06-30",
      "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
     }
    },
    "quarterly_profit_summary": false,
@@ -680,7 +726,8 @@
   "2025-09-30": "FY2026 Q1",
   "2025-12-31": "FY2026 Q2",
   "2026-03-31": "FY2026 Q3",
-  "2026-06-30": "FY2026 Q4"
+  "2026-06-30": "FY2026 Q4",
+  "2026-09-30": "FY2027 Q1"
  },
  "series": {
   "IREN": [
@@ -702,7 +749,7 @@
    ],
    [
     "2025-09-30",
-    180.307
+    180.0
    ],
    [
     "2025-12-31",
@@ -715,6 +762,10 @@
    [
     "2026-06-30",
     1328.849
+   ],
+   [
+    "2026-09-30",
+    2131.0
    ]
   ]
  },
@@ -822,15 +873,15 @@
     "period_start": "2025-04-01"
    },
    "2025-09-30": {
-    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-    "filed": "2025-11-06",
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+    "filed": "2026-11-05",
     "start": "2025-07-01",
     "end": "2025-09-30",
     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
     "components": [
      {
-      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-      "filed": "2025-11-06",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
@@ -921,6 +972,26 @@
     "period": "FY2026 Q4",
     "observed_date": "2026-06-30",
     "period_start": "2026-04-01"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+    "filed": "2026-11-05",
+    "start": "2026-07-01",
+    "end": "2026-09-30",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2027 Q1",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-07-01"
    }
   }
  },
@@ -959,7 +1030,7 @@
     "2025-07-01 ~ 2025-09-30",
     "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
     "reported quarter",
-    "180.3070 USD 백만"
+    "180.0000 USD 백만"
    ],
    "2025-12-31": [
     "IREN · FY2026 Q2",
@@ -981,6 +1052,13 @@
     "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
     "same fiscal-year YTD minus prior YTD",
     "1,328.8490 USD 백만"
+   ],
+   "2026-09-30": [
+    "IREN · FY2027 Q1",
+    "2026-07-01 ~ 2026-09-30",
+    "전사 유형자산 현금 취득 · AI 클라우드와 채굴 포함",
+    "reported quarter",
+    "2,131.0000 USD 백만"
    ]
   }
  },
@@ -1038,10 +1116,10 @@
    "source_separator": " / "
   },
   "2025-09-30": {
-   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
    "supporting_sources": [
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
      "label": "IREN · FY2026 Q1"
     }
    ],
@@ -1088,13 +1166,23 @@
     }
    ],
    "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+     "label": "IREN · FY2027 Q1"
+    }
+   ],
+   "source_separator": " / "
   }
  },
  "default_series": [
   "IREN"
  ],
- "updated": "2026-06-30",
- "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/0001878848-26-000052-index.html",
+ "updated": "2026-09-30",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
  "comparison_dates": {
   "2024-09-30": {
    "year_ago": null,
@@ -1127,6 +1215,10 @@
   "2026-06-30": {
    "year_ago": "2025-06-30",
    "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
   }
  },
  "quarterly_profit_summary": false,

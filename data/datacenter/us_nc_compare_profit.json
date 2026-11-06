@@ -39,10 +39,10 @@
   }
  ],
  "source": "SEC · 기업 공식 공시",
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "collection_status": {
   "ok": true,
-  "checked": "2026-11-05",
+  "checked": "2026-11-06",
   "message": "공시 조회 완료"
  },
  "default_view": "quarter",
@@ -66,7 +66,8 @@
     "2026-03-31": "2026 Q1",
     "2026-06-30": "2026 Q2",
     "2023-09-30": "2023 Q3",
-    "2023-12-31": "2023 Q4"
+    "2023-12-31": "2023 Q4",
+    "2026-09-30": "2026 Q3"
    },
    "series": {
     "CoreWeave": [
@@ -180,7 +181,7 @@
      ],
      [
       "2025-09-30",
-      -76.405
+      -76.0
      ],
      [
       "2025-12-31",
@@ -193,6 +194,10 @@
      [
       "2026-06-30",
       -620.383
+     ],
+     [
+      "2026-09-30",
+      -186.0
      ]
     ]
    },
@@ -744,15 +749,15 @@
       "period_start": "2025-04-01"
      },
      "2025-09-30": {
-      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-      "filed": "2025-11-06",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "us-gaap:OperatingIncomeLoss",
       "components": [
        {
-        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-        "filed": "2025-11-06",
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+        "filed": "2026-11-05",
         "start": "2025-07-01",
         "end": "2025-09-30",
         "tag": "us-gaap:OperatingIncomeLoss"
@@ -829,6 +834,26 @@
       "period": "FY2026 Q4",
       "observed_date": "2026-06-30",
       "period_start": "2026-04-01"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+        "filed": "2026-11-05",
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "tag": "us-gaap:OperatingIncomeLoss"
+       }
+      ],
+      "calculation": "reported quarter",
+      "period": "FY2027 Q1",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-07-01"
      }
     }
    },
@@ -1025,7 +1050,7 @@
       "2025-07-01 ~ 2025-09-30",
       "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
       "reported quarter",
-      "-76.4050 USD 백만"
+      "-76.0000 USD 백만"
      ],
      "2025-12-31": [
       "IREN · FY2026 Q2",
@@ -1047,6 +1072,13 @@
       "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
       "same fiscal-year YTD minus prior YTD",
       "-620.3830 USD 백만"
+     ],
+     "2026-09-30": [
+      "IREN · FY2027 Q1",
+      "2026-07-01 ~ 2026-09-30",
+      "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+      "reported quarter",
+      "-186.0000 USD 백만"
      ]
     }
    },
@@ -1171,7 +1203,7 @@
        "label": "Nebius · FY2025 Q3"
       },
       {
-       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
        "label": "IREN · FY2026 Q1"
       }
      ],
@@ -1258,6 +1290,16 @@
       }
      ],
      "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+     "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+       "label": "IREN · FY2027 Q1"
+      }
+     ],
+     "source_separator": " / "
     }
    },
    "default_series": [
@@ -1265,7 +1307,7 @@
     "Nebius",
     "IREN"
    ],
-   "updated": "2026-06-30",
+   "updated": "2026-09-30",
    "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
    "comparison_dates": {},
    "quarterly_profit_summary": true,
@@ -1682,7 +1724,8 @@
   "2026-03-31": "2026 Q1",
   "2026-06-30": "2026 Q2",
   "2023-09-30": "2023 Q3",
-  "2023-12-31": "2023 Q4"
+  "2023-12-31": "2023 Q4",
+  "2026-09-30": "2026 Q3"
  },
  "series": {
   "CoreWeave": [
@@ -1796,7 +1839,7 @@
    ],
    [
     "2025-09-30",
-    -76.405
+    -76.0
    ],
    [
     "2025-12-31",
@@ -1809,6 +1852,10 @@
    [
     "2026-06-30",
     -620.383
+   ],
+   [
+    "2026-09-30",
+    -186.0
    ]
   ]
  },
@@ -2360,15 +2407,15 @@
     "period_start": "2025-04-01"
    },
    "2025-09-30": {
-    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-    "filed": "2025-11-06",
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+    "filed": "2026-11-05",
     "start": "2025-07-01",
     "end": "2025-09-30",
     "tag": "us-gaap:OperatingIncomeLoss",
     "components": [
      {
-      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
-      "filed": "2025-11-06",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "us-gaap:OperatingIncomeLoss"
@@ -2445,6 +2492,26 @@
     "period": "FY2026 Q4",
     "observed_date": "2026-06-30",
     "period_start": "2026-04-01"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+    "filed": "2026-11-05",
+    "start": "2026-07-01",
+    "end": "2026-09-30",
+    "tag": "us-gaap:OperatingIncomeLoss",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+      "filed": "2026-11-05",
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:OperatingIncomeLoss"
+     }
+    ],
+    "calculation": "reported quarter",
+    "period": "FY2027 Q1",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-07-01"
    }
   }
  },
@@ -2641,7 +2708,7 @@
     "2025-07-01 ~ 2025-09-30",
     "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
     "reported quarter",
-    "-76.4050 USD 백만"
+    "-76.0000 USD 백만"
    ],
    "2025-12-31": [
     "IREN · FY2026 Q2",
@@ -2663,6 +2730,13 @@
     "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
     "same fiscal-year YTD minus prior YTD",
     "-620.3830 USD 백만"
+   ],
+   "2026-09-30": [
+    "IREN · FY2027 Q1",
+    "2026-07-01 ~ 2026-09-30",
+    "미국 상장·호주 본사 · AI Cloud Services와 비트코인 채굴 포함 연결 기준",
+    "reported quarter",
+    "-186.0000 USD 백만"
    ]
   }
  },
@@ -2787,7 +2861,7 @@
      "label": "Nebius · FY2025 Q3"
     },
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884825000081/0001878848-25-000081-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
      "label": "IREN · FY2026 Q1"
     }
    ],
@@ -2874,6 +2948,16 @@
     }
    ],
    "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+   "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+     "label": "IREN · FY2027 Q1"
+    }
+   ],
+   "source_separator": " / "
   }
  },
  "default_series": [
@@ -2881,7 +2965,7 @@
   "Nebius",
   "IREN"
  ],
- "updated": "2026-06-30",
+ "updated": "2026-09-30",
  "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
  "comparison_dates": {},
  "quarterly_profit_summary": true,
