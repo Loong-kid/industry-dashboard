@@ -10,6 +10,17 @@ from semicon_valuation_sources import converted
 
 
 class MiningValuationTests(unittest.TestCase):
+    def joined_current_index(self):
+        # The copper and mining collectors have separate schedules/writers.
+        # Validate the shared-file join against current copper inputs instead
+        # of requiring a previously published index to share their timestamp.
+        snapshot=load(OUT/INDEX,{})
+        summaries=[c for c in snapshot['companies'] if c['id'] not in REUSED_IDS]
+        with tempfile.TemporaryDirectory() as folder:
+            target=Path(folder);(target/INDEX).write_text(json.dumps(snapshot),encoding='utf8')
+            with patch('fetch_mining_valuation.OUT',target):combine_index(summaries)
+            return load(target/INDEX,{})
+
     def test_all_ten_companies_have_prices_and_both_reported_bands(self):
         specs=load(REGISTRY,[])
         ids=[c['id'] for c in load(ROOT/'manual/mining/companies.json',{})['companies']]
@@ -18,7 +29,11 @@ class MiningValuationTests(unittest.TestCase):
         self.assertEqual(set(c['id'] for c in specs)|REUSED_IDS,set(ids))
         self.assertEqual(len(specs),8)
         self.assertEqual(index['auto_collect_time'],'08:25')
+        current={c['id']:c for c in self.joined_current_index()['companies']}
         for c in index['companies']:
+            if c['id'] in REUSED_IDS:
+                for key in ['id','symbol','currency','data_path']:self.assertEqual(c[key],current[c['id']][key])
+                c=current[c['id']]
             path=ROOT/'data'/c.get('data_path','commodities/mining-valuation')/(c['id']+'.json')
             d=load(path,{})
             self.assertEqual(c['symbol'],d['symbol']);self.assertEqual(c['currency'],d['currency'])
@@ -65,7 +80,7 @@ class MiningValuationTests(unittest.TestCase):
             fx_price_rows(payload('CAD=X','MXN',1.4),'USD','CAD','2026-11-06',1794009600)
 
     def test_reused_copper_data_is_not_copied_or_overwritten(self):
-        index=load(OUT/INDEX,{})
+        index=self.joined_current_index()
         reused=[c for c in index['companies'] if c['id'] in REUSED_IDS]
         self.assertEqual(len(reused),2)
         for c in reused:
