@@ -38,12 +38,14 @@ function renderMOCVDTable(doc) {
     <p class="ir-scope-note">${esc(doc.note)}</p>
     <p class="ir-scope-note">원문 검토: ${esc(doc.fetched)} · 기록표는 전체 이력이며 상단 기간 선택은 그래프에 적용됩니다.</p>`;
   const select = card.querySelector('select');
+  if (doc.hide_company_filter) select.parentElement.style.display = 'none';
   for (const name of [...new Set(doc.rows.map(r=>r.company))]) {
     const option = document.createElement('option');
     option.value = option.textContent = name;
     select.appendChild(option);
   }
   const search = card.querySelector('input');
+  if (doc.search_placeholder) search.placeholder = doc.search_placeholder;
   const render = () => {
     const query = search.value.trim().toLocaleLowerCase();
     const rows = doc.rows.filter(r=>(!select.value || r.company === select.value) &&

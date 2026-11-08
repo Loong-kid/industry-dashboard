@@ -4267,7 +4267,7 @@
         },
         {
           "tab": "mocvd",
-          "title": "장비 공급사 · 회사별 실적과 매출 범위",
+          "title": "AIXTRON · 공시 실적과 세부 매출",
           "indicators": [],
           "companies": [
             {
@@ -4276,11 +4276,29 @@
               "description": "InP/GaAs·GaN MOCVD와 SiC CVD 포함. 용도별 광전자 매출을 InP 단독 매출로 해석하지 않습니다.",
               "indicators": [
                 "mocvd_aix_revenue",
+                "mocvd_aix_application_revenue",
+                "mocvd_aix_application_share",
                 "mocvd_aix_applications",
                 "mocvd_aix_profit",
                 "mocvd_aix_advances"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "title": "AIXTRON · 분기별 세부 매출표",
+          "tab": "mocvd",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_aix_revenue_breakdown"
+          ]
+        },
+        {
+          "title": "Veeco · 회사 실적과 매출 범위",
+          "tab": "mocvd",
+          "indicators": [],
+          "companies": [
             {
               "id": "veeco",
               "name": "Veeco",

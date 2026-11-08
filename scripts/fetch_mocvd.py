@@ -35,6 +35,19 @@ def get(url):
     return r
 
 
+def aix_report_links(html):
+    links=set()
+    for a in BeautifulSoup(html,'html.parser').select('a[href]'):
+        title=a.get_text(' ',strip=True)
+        old=re.fullmatch(r'([369])-MONTHS-REPORT (20\d\d)',title)
+        current=re.fullmatch(r'(?:QUARTERLY GROUP STATEMENT Q([13])|HALF-YEAR GROUP FINANCIAL REPORT (H1))/(20\d{2})',title)
+        if old:year,q=int(old[2]),int(old[1])//3
+        elif current:year,q=int(current[3]),int(current[1]) if current[1] else 2
+        else:continue
+        if '/en' in a['href']:links.add((urljoin(AIX,a['href']),year,q))
+    return sorted(links,key=lambda row:(row[1],row[2],row[0]))
+
+
 def write(path, doc):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=1)+'\n', encoding='utf-8')
@@ -259,11 +272,13 @@ def build(facts,manual,history=None,gan=None):
     extend_history(docs,history,chart)
     from mocvd_gan import extend_gan
     extend_gan(docs,gan,chart)
+    from aixtron_revenue_mix import extend as extend_aixtron_mix
+    extend_aixtron_mix(docs,aix,facts.get('aix_revenue_mix',[]),facts.get('aix_mix_status'))
     for d in docs.values():
         if d.pop('frequency_override',None)=='yearly':d['frequency']='yearly'
         if 'quarter_labels_override' in d:d['quarter_labels']=d.pop('quarter_labels_override')
         if 'change_mode_override' in d:d['change_mode']=d.pop('change_mode_override')
-        if d.get('unit')=='%':d['change_mode']='percentage_points' if d['id']!='mocvd_aix_order_mix' else 'none'
+        if d.get('unit')=='%':d['change_mode']='none' if d['id']=='mocvd_aix_order_mix' or d.get('cumulative_periods') else 'percentage_points'
         if d.get('frequency')=='quarterly' and d.get('unit','').startswith('백만'):
             d['quarterly_profit_summary']=d['id'].endswith('_profit')
             d['quarterly_revenue_summary']=not d['quarterly_profit_summary']
@@ -278,14 +293,7 @@ def build(facts,manual,history=None,gan=None):
 def collect(facts,backfill=False):
     errors=[]
     try:
-        soup=BeautifulSoup(get(AIX).text,'html.parser')
-        links=[]
-        for a in soup.select('a[href]'):
-            title=a.get_text(' ',strip=True)
-            m=re.fullmatch(r'([369])-MONTHS-REPORT (20\d\d)',title)
-            if m and '/en' in a['href']:
-                year=int(m[2]);quarter=int(m[1])//3
-                links.append((urljoin(AIX,a['href']),year,quarter))
+        links=aix_report_links(get(AIX).text)
         if not links:raise ValueError('No AIXTRON reports discovered')
         newest=max(y for _,y,_ in links)
         for url,year,quarter in links:
@@ -296,6 +304,17 @@ def collect(facts,backfill=False):
                 print('AIXTRON',row['date'])
             except Exception as e:errors.append(f'AIXTRON {year}Q{quarter}: {e}')
     except Exception as e:errors.append(f'AIXTRON archive: {e}')
+    try:
+        from aixtron_revenue_mix import collect_mix,today as mix_today
+        rows,mix_errors=collect_mix(get(AIX).text,get,backfill)
+        facts['aix_revenue_mix']=merge(facts.get('aix_revenue_mix',[]),rows)
+        facts['aix_mix_status']=dict(checked=mix_today(),ok=not mix_errors,errors=mix_errors)
+        errors.extend('AIXTRON mix '+e for e in mix_errors)
+        print('AIXTRON revenue mix:',len(rows),'presentations checked')
+    except Exception as e:
+        from aixtron_revenue_mix import today as mix_today
+        facts['aix_mix_status']=dict(checked=mix_today(),ok=False,errors=[type(e).__name__])
+        errors.append(f'AIXTRON mix archive: {type(e).__name__}')
     if backfill:
         try:facts['veeco']=merge(facts.get('veeco',[]),extract_veeco(get(VECO).content,VECO))
         except Exception as e:errors.append(f'Veeco: {e}')
@@ -331,7 +350,7 @@ def main():
     docs=build(facts,manual)
     for d in docs.values():
         for points in d.get('series',{}).values():
-            if any(not math.isfinite(v) for _,v in points):raise ValueError('Invalid chart value')
+            if any(v is not None and not math.isfinite(v) for _,v in points):raise ValueError('Invalid chart value')
     write(CACHE,facts)
     for id,d in docs.items():write(ROOT/f'data/semicon/{id}.json',d)
     print(f'{len(docs)} MOCVD documents built')

@@ -1,0 +1,4260 @@
+{
+ "id": "mocvd_aix_application_revenue",
+ "name": "AIXTRON · 장비 용도별 분기 매출 (비중 환산 추정)",
+ "unit": "백만 EUR",
+ "fetched": "2026-11-09",
+ "source": "AIXTRON 공식 IR·정기보고서",
+ "description": "용도별 금액은 공시 장비매출 × IR의 반올림된 누적 비중으로 계산한 추정치입니다. Q2·Q3·Q4는 당기 누적 추정−직전 누적 추정입니다. 전체 매출에 비중을 곱하거나 분기 장비매출에 누적 비중을 곱하지 않습니다. 반올림 때문에 용도별 합계가 장비매출과 다를 수 있으며 100%로 재배분하지 않습니다. 광전자·통신은 InP 단독 매출이 아닙니다.",
+ "basis_details": [
+  {
+   "label": "금액과 출처",
+   "value": "용도별 금액은 공시 장비매출 × IR의 반올림된 누적 비중으로 계산한 추정치입니다. Q2·Q3·Q4는 당기 누적 추정−직전 누적 추정입니다. 전체 매출에 비중을 곱하거나 분기 장비매출에 누적 비중을 곱하지 않습니다. 반올림 때문에 용도별 합계가 장비매출과 다를 수 있으며 100%로 재배분하지 않습니다. 광전자·통신은 InP 단독 매출이 아닙니다."
+  },
+  {
+   "label": "공시 분류",
+   "value": "2024년부터 GaN·SiC 개별 비중을 사용합니다. 2022~2023년 전력전자 합산은 상세 분할을 추정하지 않습니다. 2023년 <1% 공시와 음수가 나오는 반올림 차분은 금액을 확정하지 않고 공백으로 둡니다."
+  },
+  {
+   "label": "계산 확인",
+   "value": "각 포인트의 출처에서 당기·직전 IR와 장비매출 공시를 확인할 수 있습니다. 원자료 상태에 인쇄된 비중·계산식·반올림 조건부 범위를 보존했습니다. 기존 연간 용도 매출 공시 카드는 그대로 유지합니다."
+  }
+ ],
+ "span_gaps": false,
+ "compact_tooltip": true,
+ "table_limit": 200,
+ "chart_type": "bar",
+ "change_mode": "none",
+ "series_views": {
+  "quarter": {
+   "label": "분기 · GaN·SiC 상세",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · IR 비중 환산 추정",
+   "quarter_labels": true,
+   "series": {
+    "광전자·통신": [
+     [
+      "2024-03-31",
+      10.23
+     ],
+     [
+      "2024-06-30",
+      7.599
+     ],
+     [
+      "2024-09-30",
+      18.042
+     ],
+     [
+      "2024-12-31",
+      26.829
+     ],
+     [
+      "2025-03-31",
+      8.77
+     ],
+     [
+      "2025-06-30",
+      9.032
+     ],
+     [
+      "2025-09-30",
+      28.566
+     ],
+     [
+      "2025-12-31",
+      55.89
+     ],
+     [
+      "2026-03-31",
+      18.564
+     ],
+     [
+      "2026-06-30",
+      47.316
+     ],
+     [
+      "2026-09-30",
+      99.003
+     ]
+    ],
+    "LED·Micro LED": [
+     [
+      "2024-03-31",
+      19.53
+     ],
+     [
+      "2024-06-30",
+      43.862
+     ],
+     [
+      "2024-09-30",
+      21.394
+     ],
+     [
+      "2024-12-31",
+      61.514
+     ],
+     [
+      "2025-03-31",
+      14.909
+     ],
+     [
+      "2025-06-30",
+      16.739
+     ],
+     [
+      "2025-09-30",
+      8.924
+     ],
+     [
+      "2025-12-31",
+      26.118
+     ],
+     [
+      "2026-03-31",
+      11.067
+     ],
+     [
+      "2026-06-30",
+      16.993
+     ],
+     [
+      "2026-09-30",
+      20.594
+     ]
+    ],
+    "GaN 전력": [
+     [
+      "2024-03-31",
+      41.85
+     ],
+     [
+      "2024-06-30",
+      25.504
+     ],
+     [
+      "2024-09-30",
+      36.998
+     ],
+     [
+      "2024-12-31",
+      52.398
+     ],
+     [
+      "2025-03-31",
+      18.417
+     ],
+     [
+      "2025-06-30",
+      33.011
+     ],
+     [
+      "2025-09-30",
+      41.308
+     ],
+     [
+      "2025-12-31",
+      36.198
+     ],
+     [
+      "2026-03-31",
+      1.071
+     ],
+     [
+      "2026-06-30",
+      18.449
+     ],
+     [
+      "2026-09-30",
+      18.322
+     ]
+    ],
+    "SiC 전력": [
+     [
+      "2024-03-31",
+      15.81
+     ],
+     [
+      "2024-06-30",
+      19.848
+     ],
+     [
+      "2024-09-30",
+      49.128
+     ],
+     [
+      "2024-12-31",
+      40.614
+     ],
+     [
+      "2025-03-31",
+      42.973
+     ],
+     [
+      "2025-06-30",
+      46.037
+     ],
+     [
+      "2025-09-30",
+      6.624
+     ],
+     [
+      "2025-12-31",
+      28.854
+     ],
+     [
+      "2026-03-31",
+      4.998
+     ],
+     [
+      "2026-06-30",
+      2.322
+     ],
+     [
+      "2026-09-30",
+      6.195
+     ]
+    ],
+    "기타·R&D": [
+     [
+      "2024-03-31",
+      5.58
+     ],
+     [
+      "2024-06-30",
+      8.287
+     ],
+     [
+      "2024-09-30",
+      5.699
+     ],
+     [
+      "2024-12-31",
+      11.784
+     ],
+     [
+      "2025-03-31",
+      3.508
+     ],
+     [
+      "2025-06-30",
+      4.404
+     ],
+     [
+      "2025-09-30",
+      6.578
+     ],
+     [
+      "2025-12-31",
+      7.74
+     ],
+     [
+      "2026-03-31",
+      0.357
+     ],
+     [
+      "2026-06-30",
+      2.083
+     ],
+     [
+      "2026-09-30",
+      2.966
+     ]
+    ]
+   },
+   "default_series": [
+    "광전자·통신",
+    "LED·Micro LED",
+    "GaN 전력",
+    "SiC 전력",
+    "기타·R&D"
+   ],
+   "updated": "2026-09-30",
+   "source_url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+   "period_labels": {
+    "2024-03-31": "2024 Q1",
+    "2024-06-30": "2024 Q2",
+    "2024-09-30": "2024 Q3",
+    "2024-12-31": "2024 Q4",
+    "2025-03-31": "2025 Q1",
+    "2025-06-30": "2025 Q2",
+    "2025-09-30": "2025 Q3",
+    "2025-12-31": "2025 Q4",
+    "2026-03-31": "2026 Q1",
+    "2026-06-30": "2026 Q2",
+    "2026-09-30": "2026 Q3"
+   },
+   "point_sources": {
+    "2024-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+     "pdf_page": 11,
+     "label": "2024 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+       "pdf_page": 11,
+       "label": "Q1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+     "pdf_page": 18,
+     "label": "2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+       "pdf_page": 18,
+       "label": "H1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 12,
+       "label": "H1/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+       "pdf_page": 11,
+       "label": "Q1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "9M/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "9M/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+       "pdf_page": 18,
+       "label": "H1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 12,
+       "label": "H1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+     "pdf_page": 21,
+     "label": "2024 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+       "pdf_page": 21,
+       "label": "FY/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Annual%20Report%202024.pdf",
+       "pdf_page": 84,
+       "label": "FY/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "9M/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "9M/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "Q1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "H1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+       "pdf_page": 11,
+       "label": "H1/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "Q1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+     "pdf_page": 20,
+     "label": "2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+       "pdf_page": 20,
+       "label": "9M/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "9M/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "H1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+       "pdf_page": 11,
+       "label": "H1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+     "pdf_page": 27,
+     "label": "2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+       "pdf_page": 27,
+       "label": "FY/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Annual%20Report%202025.pdf",
+       "pdf_page": 89,
+       "label": "FY/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+       "pdf_page": 20,
+       "label": "9M/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "9M/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+     "pdf_page": 26,
+     "label": "2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+       "pdf_page": 26,
+       "label": "Q1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "Q1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+     "pdf_page": 17,
+     "label": "2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+       "pdf_page": 17,
+       "label": "H1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+       "pdf_page": 8,
+       "label": "H1/2026 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+       "pdf_page": 26,
+       "label": "Q1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "Q1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+     "pdf_page": 18,
+     "label": "2026 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+       "pdf_page": 18,
+       "label": "9M/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/9-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "9M/2026 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+       "pdf_page": 17,
+       "label": "H1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+       "pdf_page": 8,
+       "label": "H1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2024-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 93 × 11%",
+     "LED·Micro LED: 93 × 21%",
+     "GaN 전력: 93 × 45%",
+     "SiC 전력: 93 × 17%",
+     "기타·R&D: 93 × 6%"
+    ],
+    "2024-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 198.1 × 9% − 93 × 11%",
+     "LED·Micro LED: 198.1 × 32% − 93 × 21%",
+     "GaN 전력: 198.1 × 34% − 93 × 45%",
+     "SiC 전력: 198.1 × 18% − 93 × 17%",
+     "기타·R&D: 198.1 × 7% − 93 × 6%"
+    ],
+    "2024-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 326.1 × 11% − 198.1 × 9%",
+     "LED·Micro LED: 326.1 × 26% − 198.1 × 32%",
+     "GaN 전력: 326.1 × 32% − 198.1 × 34%",
+     "SiC 전력: 326.1 × 26% − 198.1 × 18%",
+     "기타·R&D: 326.1 × 6% − 198.1 × 7%",
+     "공시 장비 분기매출과 합계 차이 -3.261백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2024-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 522.5 × 12% − 326.1 × 11%",
+     "LED·Micro LED: 522.5 × 28% − 326.1 × 26%",
+     "GaN 전력: 522.5 × 30% − 326.1 × 32%",
+     "SiC 전력: 522.5 × 24% − 326.1 × 26%",
+     "기타·R&D: 522.5 × 6% − 326.1 × 6%",
+     "공시 장비 분기매출과 합계 차이 3.261백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 87.7 × 10%",
+     "LED·Micro LED: 87.7 × 17%",
+     "GaN 전력: 87.7 × 21%",
+     "SiC 전력: 87.7 × 49%",
+     "기타·R&D: 87.7 × 4%",
+     "공시 장비 분기매출과 합계 차이 -0.877백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 197.8 × 9% − 87.7 × 10%",
+     "LED·Micro LED: 197.8 × 16% − 87.7 × 17%",
+     "GaN 전력: 197.8 × 26% − 87.7 × 21%",
+     "SiC 전력: 197.8 × 45% − 87.7 × 49%",
+     "기타·R&D: 197.8 × 4% − 87.7 × 4%",
+     "공시 장비 분기매출과 합계 차이 0.877백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 289.8 × 16% − 197.8 × 9%",
+     "LED·Micro LED: 289.8 × 14% − 197.8 × 16%",
+     "GaN 전력: 289.8 × 32% − 197.8 × 26%",
+     "SiC 전력: 289.8 × 33% − 197.8 × 45%",
+     "기타·R&D: 289.8 × 5% − 197.8 × 4%"
+    ],
+    "2025-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 444.6 × 23% − 289.8 × 16%",
+     "LED·Micro LED: 444.6 × 15% − 289.8 × 14%",
+     "GaN 전력: 444.6 × 29% − 289.8 × 32%",
+     "SiC 전력: 444.6 × 28% − 289.8 × 33%",
+     "기타·R&D: 444.6 × 5% − 289.8 × 5%"
+    ],
+    "2026-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 35.7 × 52%",
+     "LED·Micro LED: 35.7 × 31%",
+     "GaN 전력: 35.7 × 3%",
+     "SiC 전력: 35.7 × 14%",
+     "기타·R&D: 35.7 × 1%",
+     "공시 장비 분기매출과 합계 차이 -0.357백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2026-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 122 × 54% − 35.7 × 52%",
+     "LED·Micro LED: 122 × 23% − 35.7 × 31%",
+     "GaN 전력: 122 × 16% − 35.7 × 3%",
+     "SiC 전력: 122 × 6% − 35.7 × 14%",
+     "기타·R&D: 122 × 2% − 35.7 × 1%",
+     "공시 장비 분기매출과 합계 차이 -0.863백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2026-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 270.3 × 61% − 122 × 54%",
+     "LED·Micro LED: 270.3 × 18% − 122 × 23%",
+     "GaN 전력: 270.3 × 14% − 122 × 16%",
+     "SiC 전력: 270.3 × 5% − 122 × 6%",
+     "기타·R&D: 270.3 × 2% − 122 × 2%",
+     "공시 장비 분기매출과 합계 차이 1.22백만 EUR · 비중 반올림을 보정하지 않음"
+    ]
+   },
+   "calculation_details": {
+    "2024-03-31": {
+     "equipment": 93.0,
+     "after_sales": 25.3,
+     "values": {
+      "opto": 10.23,
+      "led": 19.53,
+      "gan": 41.85,
+      "sic": 15.81,
+      "other": 5.58
+     },
+     "bounds": {
+      "opto": {
+       "lower": 9.76,
+       "upper": 10.701,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 19.055,
+       "upper": 20.006,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 41.363,
+       "upper": 42.338,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 15.337,
+       "upper": 16.284,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 5.112,
+       "upper": 6.048,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "93 × 11%",
+      "led": "93 × 21%",
+      "gan": "93 × 45%",
+      "sic": "93 × 17%",
+      "other": "93 × 6%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2024-06-30": {
+     "equipment": 105.1,
+     "after_sales": 26.7,
+     "values": {
+      "opto": 7.599,
+      "led": 43.862,
+      "gan": 25.504,
+      "sic": 19.848,
+      "other": 8.287
+     },
+     "bounds": {
+      "opto": {
+       "lower": 6.133,
+       "upper": 9.064,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 42.38,
+       "upper": 45.344,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 24.009,
+       "upper": 26.999,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 18.375,
+       "upper": 21.321,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 6.825,
+       "upper": 9.749,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "198.1 × 9% − 93 × 11%",
+      "led": "198.1 × 32% − 93 × 21%",
+      "gan": "198.1 × 34% − 93 × 45%",
+      "sic": "198.1 × 18% − 93 × 17%",
+      "other": "198.1 × 7% − 93 × 6%"
+     },
+     "rounding_difference": -0.0,
+     "notes": []
+    },
+    "2024-09-30": {
+     "equipment": 128.0,
+     "after_sales": 28.3,
+     "values": {
+      "opto": 18.042,
+      "led": 21.394,
+      "gan": 36.998,
+      "sic": 49.128,
+      "other": 5.699
+     },
+     "bounds": {
+      "opto": {
+       "lower": 15.411,
+       "upper": 20.673,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 18.744,
+       "upper": 24.044,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 34.344,
+       "upper": 39.652,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 46.485,
+       "upper": 51.771,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 3.072,
+       "upper": 8.327,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "326.1 × 11% − 198.1 × 9%",
+      "led": "326.1 × 26% − 198.1 × 32%",
+      "gan": "326.1 × 32% − 198.1 × 34%",
+      "sic": "326.1 × 26% − 198.1 × 18%",
+      "other": "326.1 × 6% − 198.1 × 7%"
+     },
+     "rounding_difference": -3.261,
+     "notes": []
+    },
+    "2024-12-31": {
+     "equipment": 196.4,
+     "after_sales": 30.4,
+     "values": {
+      "opto": 26.829,
+      "led": 61.514,
+      "gan": 52.398,
+      "sic": 40.614,
+      "other": 11.784
+     },
+     "bounds": {
+      "opto": {
+       "lower": 22.574,
+       "upper": 31.083,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 57.244,
+       "upper": 65.784,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 48.124,
+       "upper": 56.672,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 36.346,
+       "upper": 44.882,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 7.535,
+       "upper": 16.033,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "522.5 × 12% − 326.1 × 11%",
+      "led": "522.5 × 28% − 326.1 × 26%",
+      "gan": "522.5 × 30% − 326.1 × 32%",
+      "sic": "522.5 × 24% − 326.1 × 26%",
+      "other": "522.5 × 6% − 326.1 × 6%"
+     },
+     "rounding_difference": 3.261,
+     "notes": []
+    },
+    "2025-03-31": {
+     "equipment": 87.7,
+     "after_sales": 24.8,
+     "values": {
+      "opto": 8.77,
+      "led": 14.909,
+      "gan": 18.417,
+      "sic": 42.973,
+      "other": 3.508
+     },
+     "bounds": {
+      "opto": {
+       "lower": 8.327,
+       "upper": 9.214,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 14.462,
+       "upper": 15.356,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 17.968,
+       "upper": 18.866,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 42.51,
+       "upper": 43.436,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 3.068,
+       "upper": 3.949,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "87.7 × 10%",
+      "led": "87.7 × 17%",
+      "gan": "87.7 × 21%",
+      "sic": "87.7 × 49%",
+      "other": "87.7 × 4%"
+     },
+     "rounding_difference": -0.877,
+     "notes": []
+    },
+    "2025-06-30": {
+     "equipment": 110.1,
+     "after_sales": 27.3,
+     "values": {
+      "opto": 9.032,
+      "led": 16.739,
+      "gan": 33.011,
+      "sic": 46.037,
+      "other": 4.404
+     },
+     "bounds": {
+      "opto": {
+       "lower": 7.595,
+       "upper": 10.469,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 15.295,
+       "upper": 18.183,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 31.56,
+       "upper": 34.462,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 44.562,
+       "upper": 47.512,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 2.972,
+       "upper": 5.835,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "197.8 × 9% − 87.7 × 10%",
+      "led": "197.8 × 16% − 87.7 × 17%",
+      "gan": "197.8 × 26% − 87.7 × 21%",
+      "sic": "197.8 × 45% − 87.7 × 49%",
+      "other": "197.8 × 4% − 87.7 × 4%"
+     },
+     "rounding_difference": 0.877,
+     "notes": []
+    },
+    "2025-09-30": {
+     "equipment": 92.0,
+     "after_sales": 27.6,
+     "values": {
+      "opto": 28.566,
+      "led": 8.924,
+      "gan": 41.308,
+      "sic": 6.624,
+      "other": 6.578
+     },
+     "bounds": {
+      "opto": {
+       "lower": 26.116,
+       "upper": 31.017,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 6.471,
+       "upper": 11.377,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 38.841,
+       "upper": 43.775,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 4.147,
+       "upper": 9.101,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.136,
+       "upper": 9.021,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "289.8 × 16% − 197.8 × 9%",
+      "led": "289.8 × 14% − 197.8 × 16%",
+      "gan": "289.8 × 32% − 197.8 × 26%",
+      "sic": "289.8 × 33% − 197.8 × 45%",
+      "other": "289.8 × 5% − 197.8 × 4%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2025-12-31": {
+     "equipment": 154.8,
+     "after_sales": 32.3,
+     "values": {
+      "opto": 55.89,
+      "led": 26.118,
+      "gan": 36.198,
+      "sic": 28.854,
+      "other": 7.74
+     },
+     "bounds": {
+      "opto": {
+       "lower": 52.199,
+       "upper": 59.582,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 22.431,
+       "upper": 29.805,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 32.496,
+       "upper": 39.901,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 25.151,
+       "upper": 32.557,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.063,
+       "upper": 11.417,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "444.6 × 23% − 289.8 × 16%",
+      "led": "444.6 × 15% − 289.8 × 14%",
+      "gan": "444.6 × 29% − 289.8 × 32%",
+      "sic": "444.6 × 28% − 289.8 × 33%",
+      "other": "444.6 × 5% − 289.8 × 5%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2026-03-31": {
+     "equipment": 35.7,
+     "after_sales": 23.7,
+     "values": {
+      "opto": 18.564,
+      "led": 11.067,
+      "gan": 1.071,
+      "sic": 4.998,
+      "other": 0.357
+     },
+     "bounds": {
+      "opto": {
+       "lower": 18.36,
+       "upper": 18.769,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 10.873,
+       "upper": 11.261,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 0.891,
+       "upper": 1.251,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 4.813,
+       "upper": 5.184,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0.178,
+       "upper": 0.536,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "35.7 × 52%",
+      "led": "35.7 × 31%",
+      "gan": "35.7 × 3%",
+      "sic": "35.7 × 14%",
+      "other": "35.7 × 1%"
+     },
+     "rounding_difference": -0.357,
+     "notes": []
+    },
+    "2026-06-30": {
+     "equipment": 86.3,
+     "after_sales": 28.8,
+     "values": {
+      "opto": 47.316,
+      "led": 16.993,
+      "gan": 18.449,
+      "sic": 2.322,
+      "other": 2.083
+     },
+     "bounds": {
+      "opto": {
+       "lower": 46.475,
+       "upper": 48.157,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 16.177,
+       "upper": 17.808,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 17.651,
+       "upper": 19.247,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 1.524,
+       "upper": 3.12,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 1.293,
+       "upper": 2.873,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "122 × 54% − 35.7 × 52%",
+      "led": "122 × 23% − 35.7 × 31%",
+      "gan": "122 × 16% − 35.7 × 3%",
+      "sic": "122 × 6% − 35.7 × 14%",
+      "other": "122 × 2% − 35.7 × 1%"
+     },
+     "rounding_difference": -0.863,
+     "notes": []
+    },
+    "2026-09-30": {
+     "equipment": 148.3,
+     "after_sales": 35.3,
+     "values": {
+      "opto": 99.003,
+      "led": 20.594,
+      "gan": 18.322,
+      "sic": 6.195,
+      "other": 2.966
+     },
+     "bounds": {
+      "opto": {
+       "lower": 96.984,
+       "upper": 101.022,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 18.612,
+       "upper": 22.576,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "gan": {
+       "lower": 16.346,
+       "upper": 20.298,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "sic": {
+       "lower": 4.228,
+       "upper": 8.162,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 1.002,
+       "upper": 4.929,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "270.3 × 61% − 122 × 54%",
+      "led": "270.3 × 18% − 122 × 23%",
+      "gan": "270.3 × 14% − 122 × 16%",
+      "sic": "270.3 × 5% − 122 × 6%",
+      "other": "270.3 × 2% − 122 × 2%"
+     },
+     "rounding_difference": 1.22,
+     "notes": []
+    }
+   },
+   "comparison_dates": {
+    "2024-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2024-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
+    }
+   }
+  },
+  "combined": {
+   "label": "분기 · 전력 합산",
+   "frequency": "quarterly",
+   "frequency_label": "분기 · IR 비중 환산 추정",
+   "quarter_labels": true,
+   "series": {
+    "광전자·통신": [
+     [
+      "2022-03-31",
+      27.846
+     ],
+     [
+      "2022-06-30",
+      19.706
+     ],
+     [
+      "2022-09-30",
+      31.072
+     ],
+     [
+      "2022-12-31",
+      27.888
+     ],
+     [
+      "2023-03-31",
+      12.972
+     ],
+     [
+      "2023-06-30",
+      11.724
+     ],
+     [
+      "2023-09-30",
+      13.54
+     ],
+     [
+      "2023-12-31",
+      25.64
+     ],
+     [
+      "2024-03-31",
+      10.23
+     ],
+     [
+      "2024-06-30",
+      7.599
+     ],
+     [
+      "2024-09-30",
+      18.042
+     ],
+     [
+      "2024-12-31",
+      26.829
+     ],
+     [
+      "2025-03-31",
+      8.77
+     ],
+     [
+      "2025-06-30",
+      9.032
+     ],
+     [
+      "2025-09-30",
+      28.566
+     ],
+     [
+      "2025-12-31",
+      55.89
+     ],
+     [
+      "2026-03-31",
+      18.564
+     ],
+     [
+      "2026-06-30",
+      47.316
+     ],
+     [
+      "2026-09-30",
+      99.003
+     ]
+    ],
+    "LED·Micro LED": [
+     [
+      "2022-03-31",
+      15.249
+     ],
+     [
+      "2022-06-30",
+      35.275
+     ],
+     [
+      "2022-09-30",
+      4.076
+     ],
+     [
+      "2022-12-31",
+      48.108
+     ],
+     [
+      "2023-03-31",
+      6.768
+     ],
+     [
+      "2023-06-30",
+      3.522
+     ],
+     [
+      "2023-09-30",
+      10.566
+     ],
+     [
+      "2023-12-31",
+      37.697
+     ],
+     [
+      "2024-03-31",
+      19.53
+     ],
+     [
+      "2024-06-30",
+      43.862
+     ],
+     [
+      "2024-09-30",
+      21.394
+     ],
+     [
+      "2024-12-31",
+      61.514
+     ],
+     [
+      "2025-03-31",
+      14.909
+     ],
+     [
+      "2025-06-30",
+      16.739
+     ],
+     [
+      "2025-09-30",
+      8.924
+     ],
+     [
+      "2025-12-31",
+      26.118
+     ],
+     [
+      "2026-03-31",
+      11.067
+     ],
+     [
+      "2026-06-30",
+      16.993
+     ],
+     [
+      "2026-09-30",
+      20.594
+     ]
+    ],
+    "전력전자 합산": [
+     [
+      "2022-03-31",
+      21.879
+     ],
+     [
+      "2022-06-30",
+      24.187
+     ],
+     [
+      "2022-09-30",
+      34.742
+     ],
+     [
+      "2022-12-31",
+      78.96
+     ],
+     [
+      "2023-03-31",
+      36.096
+     ],
+     [
+      "2023-06-30",
+      134.718
+     ],
+     [
+      "2023-09-30",
+      114.218
+     ],
+     [
+      "2023-12-31",
+      114.193
+     ],
+     [
+      "2024-03-31",
+      57.66
+     ],
+     [
+      "2024-06-30",
+      45.352
+     ],
+     [
+      "2024-09-30",
+      86.126
+     ],
+     [
+      "2024-12-31",
+      93.012
+     ],
+     [
+      "2025-03-31",
+      61.39
+     ],
+     [
+      "2025-06-30",
+      79.048
+     ],
+     [
+      "2025-09-30",
+      47.932
+     ],
+     [
+      "2025-12-31",
+      65.052
+     ],
+     [
+      "2026-03-31",
+      6.069
+     ],
+     [
+      "2026-06-30",
+      20.771
+     ],
+     [
+      "2026-09-30",
+      24.517
+     ]
+    ],
+    "기타·R&D": [
+     [
+      "2022-03-31",
+      1.326
+     ],
+     [
+      "2022-06-30",
+      3.132
+     ],
+     [
+      "2022-09-30",
+      null
+     ],
+     [
+      "2022-12-31",
+      7.044
+     ],
+     [
+      "2023-03-31",
+      0.564
+     ],
+     [
+      "2023-06-30",
+      null
+     ],
+     [
+      "2023-09-30",
+      null
+     ],
+     [
+      "2023-12-31",
+      null
+     ],
+     [
+      "2024-03-31",
+      5.58
+     ],
+     [
+      "2024-06-30",
+      8.287
+     ],
+     [
+      "2024-09-30",
+      5.699
+     ],
+     [
+      "2024-12-31",
+      11.784
+     ],
+     [
+      "2025-03-31",
+      3.508
+     ],
+     [
+      "2025-06-30",
+      4.404
+     ],
+     [
+      "2025-09-30",
+      6.578
+     ],
+     [
+      "2025-12-31",
+      7.74
+     ],
+     [
+      "2026-03-31",
+      0.357
+     ],
+     [
+      "2026-06-30",
+      2.083
+     ],
+     [
+      "2026-09-30",
+      2.966
+     ]
+    ]
+   },
+   "default_series": [
+    "광전자·통신",
+    "LED·Micro LED",
+    "전력전자 합산",
+    "기타·R&D"
+   ],
+   "updated": "2026-09-30",
+   "source_url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+   "period_labels": {
+    "2022-03-31": "2022 Q1",
+    "2022-06-30": "2022 Q2",
+    "2022-09-30": "2022 Q3",
+    "2022-12-31": "2022 Q4",
+    "2023-03-31": "2023 Q1",
+    "2023-06-30": "2023 Q2",
+    "2023-09-30": "2023 Q3",
+    "2023-12-31": "2023 Q4",
+    "2024-03-31": "2024 Q1",
+    "2024-06-30": "2024 Q2",
+    "2024-09-30": "2024 Q3",
+    "2024-12-31": "2024 Q4",
+    "2025-03-31": "2025 Q1",
+    "2025-06-30": "2025 Q2",
+    "2025-09-30": "2025 Q3",
+    "2025-12-31": "2025 Q4",
+    "2026-03-31": "2026 Q1",
+    "2026-06-30": "2026 Q2",
+    "2026-09-30": "2026 Q3"
+   },
+   "point_sources": {
+    "2022-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q1-2022%20Investor%20Presentation.pdf",
+     "pdf_page": 9,
+     "label": "2022 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q1-2022%20Investor%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "Q1/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/3-Months-Report-2022.pdf",
+       "pdf_page": 7,
+       "label": "Q1/2022 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q2-2022_Investor-Presentation.pdf",
+     "pdf_page": 9,
+     "label": "2022 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q2-2022_Investor-Presentation.pdf",
+       "pdf_page": 9,
+       "label": "H1/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/6-Months-Report-2022.pdf",
+       "pdf_page": 12,
+       "label": "H1/2022 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q1-2022%20Investor%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "Q1/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/3-Months-Report-2022.pdf",
+       "pdf_page": 7,
+       "label": "Q1/2022 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q3-2022_Results-Presentation.pdf",
+     "pdf_page": 13,
+     "label": "2022 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q3-2022_Results-Presentation.pdf",
+       "pdf_page": 13,
+       "label": "9M/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/9-Months-Report-2022.pdf",
+       "pdf_page": 8,
+       "label": "9M/2022 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q2-2022_Investor-Presentation.pdf",
+       "pdf_page": 9,
+       "label": "H1/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/6-Months-Report-2022.pdf",
+       "pdf_page": 12,
+       "label": "H1/2022 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2022-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_FY-2022_Results-Presentationt.pdf",
+     "pdf_page": 9,
+     "label": "2022 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_FY-2022_Results-Presentationt.pdf",
+       "pdf_page": 9,
+       "label": "FY/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/Annual%20Report-2022.pdf",
+       "pdf_page": 79,
+       "label": "FY/2022 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2022/AIXA_Q3-2022_Results-Presentation.pdf",
+       "pdf_page": 13,
+       "label": "9M/2022 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2022/en/9-Months-Report-2022.pdf",
+       "pdf_page": 8,
+       "label": "9M/2022 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA_Q1-2023%20Investor%20Presentation.pdf",
+     "pdf_page": 9,
+     "label": "2023 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA_Q1-2023%20Investor%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "Q1/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/3-Months-Report-2023.pdf",
+       "pdf_page": 7,
+       "label": "Q1/2023 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q2-2023%20Results%20Presentation.pdf",
+     "pdf_page": 9,
+     "label": "2023 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q2-2023%20Results%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "H1/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 11,
+       "label": "H1/2023 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA_Q1-2023%20Investor%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "Q1/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/3-Months-Report-2023.pdf",
+       "pdf_page": 7,
+       "label": "Q1/2023 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q3-2023%20Results%20Presentation.pdf",
+     "pdf_page": 9,
+     "label": "2023 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q3-2023%20Results%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "9M/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/9-Months-Report-2023.pdf",
+       "pdf_page": 8,
+       "label": "9M/2023 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q2-2023%20Results%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "H1/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 11,
+       "label": "H1/2023 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2023-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA_FY_2023%20Investor%20Presentation.pdf",
+     "pdf_page": 10,
+     "label": "2023 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA_FY_2023%20Investor%20Presentation.pdf",
+       "pdf_page": 10,
+       "label": "FY/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/Annual-Report-2023.pdf",
+       "pdf_page": 83,
+       "label": "FY/2023 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2023/AIXA%20Q3-2023%20Results%20Presentation.pdf",
+       "pdf_page": 9,
+       "label": "9M/2023 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2023/en/9-Months-Report-2023.pdf",
+       "pdf_page": 8,
+       "label": "9M/2023 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+     "pdf_page": 11,
+     "label": "2024 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+       "pdf_page": 11,
+       "label": "Q1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+     "pdf_page": 18,
+     "label": "2024 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+       "pdf_page": 18,
+       "label": "H1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 12,
+       "label": "H1/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+       "pdf_page": 11,
+       "label": "Q1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2024 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "9M/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "9M/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+       "pdf_page": 18,
+       "label": "H1/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+       "pdf_page": 12,
+       "label": "H1/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2024-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+     "pdf_page": 21,
+     "label": "2024 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+       "pdf_page": 21,
+       "label": "FY/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Annual%20Report%202024.pdf",
+       "pdf_page": 84,
+       "label": "FY/2024 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "9M/2024 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+       "pdf_page": 8,
+       "label": "9M/2024 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2025 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "Q1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "2025 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "H1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+       "pdf_page": 11,
+       "label": "H1/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "Q1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "Q1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+     "pdf_page": 20,
+     "label": "2025 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+       "pdf_page": 20,
+       "label": "9M/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "9M/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+       "pdf_page": 16,
+       "label": "H1/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+       "pdf_page": 11,
+       "label": "H1/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2025-12-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+     "pdf_page": 27,
+     "label": "2025 Q4",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+       "pdf_page": 27,
+       "label": "FY/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Annual%20Report%202025.pdf",
+       "pdf_page": 89,
+       "label": "FY/2025 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+       "pdf_page": 20,
+       "label": "9M/2025 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+       "pdf_page": 8,
+       "label": "9M/2025 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-03-31": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+     "pdf_page": 26,
+     "label": "2026 Q1",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+       "pdf_page": 26,
+       "label": "Q1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "Q1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-06-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+     "pdf_page": 17,
+     "label": "2026 Q2",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+       "pdf_page": 17,
+       "label": "H1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+       "pdf_page": 8,
+       "label": "H1/2026 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+       "pdf_page": 26,
+       "label": "Q1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "Q1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    },
+    "2026-09-30": {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+     "pdf_page": 18,
+     "label": "2026 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+       "pdf_page": 18,
+       "label": "9M/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/9-Months-Report-2026.pdf",
+       "pdf_page": 4,
+       "label": "9M/2026 누적 장비매출"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+       "pdf_page": 17,
+       "label": "H1/2026 IR 비중"
+      },
+      {
+       "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+       "pdf_page": 8,
+       "label": "H1/2026 누적 장비매출"
+      }
+     ],
+     "source_separator": " / "
+    }
+   },
+   "point_notes": {
+    "2022-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 66.3 × 42%",
+     "LED·Micro LED: 66.3 × 23%",
+     "전력전자 합산: 66.3 × 33%",
+     "기타·R&D: 66.3 × 2%"
+    ],
+    "2022-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 148.6 × 32% − 66.3 × 42%",
+     "LED·Micro LED: 148.6 × 34% − 66.3 × 23%",
+     "전력전자 합산: 148.6 × 31% − 66.3 × 33%",
+     "기타·R&D: 148.6 × 3% − 66.3 × 2%"
+    ],
+    "2022-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 218.4 × 36% − 148.6 × 32%",
+     "LED·Micro LED: 218.4 × 25% − 148.6 × 34%",
+     "전력전자 합산: 218.4 × 37% − 148.6 × 31%",
+     "기타·R&D: 218.4 × 2% − 148.6 × 3%",
+     "기타·R&D: 반올림 누적 차분이 음수 · 분기 매출 미확정"
+    ],
+    "2022-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 380.4 × 28% − 218.4 × 36%",
+     "LED·Micro LED: 380.4 × 27% − 218.4 × 25%",
+     "전력전자 합산: 380.4 × 42% − 218.4 × 37%",
+     "기타·R&D: 380.4 × 3% − 218.4 × 2%"
+    ],
+    "2023-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 56.4 × 23%",
+     "LED·Micro LED: 56.4 × 12%",
+     "전력전자 합산: 56.4 × 64%",
+     "기타·R&D: 56.4 × 1%"
+    ],
+    "2023-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 205.8 × 12% − 56.4 × 23%",
+     "LED·Micro LED: 205.8 × 5% − 56.4 × 12%",
+     "전력전자 합산: 205.8 × 83% − 56.4 × 64%",
+     "기타·R&D: 205.8 × <1% − 56.4 × 1%",
+     "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+    ],
+    "2023-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 347.6 × 11% − 205.8 × 12%",
+     "LED·Micro LED: 347.6 × 6% − 205.8 × 5%",
+     "전력전자 합산: 347.6 × 82% − 205.8 × 83%",
+     "기타·R&D: 347.6 × <1% − 205.8 × <1%",
+     "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+    ],
+    "2023-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 532.3 × 12% − 347.6 × 11%",
+     "LED·Micro LED: 532.3 × 11% − 347.6 × 6%",
+     "전력전자 합산: 532.3 × 75% − 347.6 × 82%",
+     "기타·R&D: 532.3 × 2% − 347.6 × <1%",
+     "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+    ],
+    "2024-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 93 × 11%",
+     "LED·Micro LED: 93 × 21%",
+     "전력전자 합산: 93 × (45% + 17%)",
+     "기타·R&D: 93 × 6%"
+    ],
+    "2024-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 198.1 × 9% − 93 × 11%",
+     "LED·Micro LED: 198.1 × 32% − 93 × 21%",
+     "전력전자 합산: 198.1 × (34% + 18%) − 93 × (45% + 17%)",
+     "기타·R&D: 198.1 × 7% − 93 × 6%"
+    ],
+    "2024-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 326.1 × 11% − 198.1 × 9%",
+     "LED·Micro LED: 326.1 × 26% − 198.1 × 32%",
+     "전력전자 합산: 326.1 × (32% + 26%) − 198.1 × (34% + 18%)",
+     "기타·R&D: 326.1 × 6% − 198.1 × 7%",
+     "공시 장비 분기매출과 합계 차이 -3.261백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2024-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 522.5 × 12% − 326.1 × 11%",
+     "LED·Micro LED: 522.5 × 28% − 326.1 × 26%",
+     "전력전자 합산: 522.5 × (30% + 24%) − 326.1 × (32% + 26%)",
+     "기타·R&D: 522.5 × 6% − 326.1 × 6%",
+     "공시 장비 분기매출과 합계 차이 3.261백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 87.7 × 10%",
+     "LED·Micro LED: 87.7 × 17%",
+     "전력전자 합산: 87.7 × (21% + 49%)",
+     "기타·R&D: 87.7 × 4%",
+     "공시 장비 분기매출과 합계 차이 -0.877백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 197.8 × 9% − 87.7 × 10%",
+     "LED·Micro LED: 197.8 × 16% − 87.7 × 17%",
+     "전력전자 합산: 197.8 × (26% + 45%) − 87.7 × (21% + 49%)",
+     "기타·R&D: 197.8 × 4% − 87.7 × 4%",
+     "공시 장비 분기매출과 합계 차이 0.877백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2025-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 289.8 × 16% − 197.8 × 9%",
+     "LED·Micro LED: 289.8 × 14% − 197.8 × 16%",
+     "전력전자 합산: 289.8 × (32% + 33%) − 197.8 × (26% + 45%)",
+     "기타·R&D: 289.8 × 5% − 197.8 × 4%"
+    ],
+    "2025-12-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 444.6 × 23% − 289.8 × 16%",
+     "LED·Micro LED: 444.6 × 15% − 289.8 × 14%",
+     "전력전자 합산: 444.6 × (29% + 28%) − 289.8 × (32% + 33%)",
+     "기타·R&D: 444.6 × 5% − 289.8 × 5%"
+    ],
+    "2026-03-31": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 35.7 × 52%",
+     "LED·Micro LED: 35.7 × 31%",
+     "전력전자 합산: 35.7 × (3% + 14%)",
+     "기타·R&D: 35.7 × 1%",
+     "공시 장비 분기매출과 합계 차이 -0.357백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2026-06-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 122 × 54% − 35.7 × 52%",
+     "LED·Micro LED: 122 × 23% − 35.7 × 31%",
+     "전력전자 합산: 122 × (16% + 6%) − 35.7 × (3% + 14%)",
+     "기타·R&D: 122 × 2% − 35.7 × 1%",
+     "공시 장비 분기매출과 합계 차이 -0.863백만 EUR · 비중 반올림을 보정하지 않음"
+    ],
+    "2026-09-30": [
+     "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+     "광전자·통신: 270.3 × 61% − 122 × 54%",
+     "LED·Micro LED: 270.3 × 18% − 122 × 23%",
+     "전력전자 합산: 270.3 × (14% + 5%) − 122 × (16% + 6%)",
+     "기타·R&D: 270.3 × 2% − 122 × 2%",
+     "공시 장비 분기매출과 합계 차이 1.22백만 EUR · 비중 반올림을 보정하지 않음"
+    ]
+   },
+   "calculation_details": {
+    "2022-03-31": {
+     "equipment": 66.3,
+     "after_sales": 22.3,
+     "values": {
+      "opto": 27.846,
+      "led": 15.249,
+      "power": 21.879,
+      "other": 1.326
+     },
+     "bounds": {
+      "opto": {
+       "lower": 27.494,
+       "upper": 28.199,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 14.906,
+       "upper": 15.592,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 21.531,
+       "upper": 22.227,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0.994,
+       "upper": 1.659,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "66.3 × 42%",
+      "led": "66.3 × 23%",
+      "power": "66.3 × 33%",
+      "other": "66.3 × 2%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2022-06-30": {
+     "equipment": 82.3,
+     "after_sales": 20.2,
+     "values": {
+      "opto": 19.706,
+      "led": 35.275,
+      "power": 24.187,
+      "other": 3.132
+     },
+     "bounds": {
+      "opto": {
+       "lower": 18.595,
+       "upper": 20.818,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 34.172,
+       "upper": 36.378,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 23.081,
+       "upper": 25.294,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 2.055,
+       "upper": 4.209,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "148.6 × 32% − 66.3 × 42%",
+      "led": "148.6 × 34% − 66.3 × 23%",
+      "power": "148.6 × 31% − 66.3 × 33%",
+      "other": "148.6 × 3% − 66.3 × 2%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2022-09-30": {
+     "equipment": 69.8,
+     "after_sales": 19.0,
+     "values": {
+      "opto": 31.072,
+      "led": 4.076,
+      "power": 34.742,
+      "other": null
+     },
+     "bounds": {
+      "opto": {
+       "lower": 29.203,
+       "upper": 32.941,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 2.212,
+       "upper": 5.941,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 32.873,
+       "upper": 36.611,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0,
+       "upper": 1.748,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "218.4 × 36% − 148.6 × 32%",
+      "led": "218.4 × 25% − 148.6 × 34%",
+      "power": "218.4 × 37% − 148.6 × 31%",
+      "other": "218.4 × 2% − 148.6 × 3%"
+     },
+     "rounding_difference": null,
+     "notes": [
+      "기타·R&D: 반올림 누적 차분이 음수 · 분기 매출 미확정"
+     ]
+    },
+    "2022-12-31": {
+     "equipment": 162.0,
+     "after_sales": 21.3,
+     "values": {
+      "opto": 27.888,
+      "led": 48.108,
+      "power": 78.96,
+      "other": 7.044
+     },
+     "bounds": {
+      "opto": {
+       "lower": 24.862,
+       "upper": 30.914,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 45.088,
+       "upper": 51.128,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 75.926,
+       "upper": 81.993,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.047,
+       "upper": 10.041,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "380.4 × 28% − 218.4 × 36%",
+      "led": "380.4 × 27% − 218.4 × 25%",
+      "power": "380.4 × 42% − 218.4 × 37%",
+      "other": "380.4 × 3% − 218.4 × 2%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2023-03-31": {
+     "equipment": 56.4,
+     "after_sales": 20.8,
+     "values": {
+      "opto": 12.972,
+      "led": 6.768,
+      "power": 36.096,
+      "other": 0.564
+     },
+     "bounds": {
+      "opto": {
+       "lower": 12.679,
+       "upper": 13.266,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 6.48,
+       "upper": 7.056,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 35.782,
+       "upper": 36.41,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0.282,
+       "upper": 0.847,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "56.4 × 23%",
+      "led": "56.4 × 12%",
+      "power": "56.4 × 64%",
+      "other": "56.4 × 1%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2023-06-30": {
+     "equipment": 149.4,
+     "after_sales": 24.1,
+     "values": {
+      "opto": 11.724,
+      "led": 3.522,
+      "power": 134.718,
+      "other": null
+     },
+     "bounds": {
+      "opto": {
+       "lower": 10.396,
+       "upper": 13.053,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 2.202,
+       "upper": 4.842,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 133.334,
+       "upper": 136.103,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0,
+       "upper": 1.777,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "205.8 × 12% − 56.4 × 23%",
+      "led": "205.8 × 5% − 56.4 × 12%",
+      "power": "205.8 × 83% − 56.4 × 64%",
+      "other": "205.8 × <1% − 56.4 × 1%"
+     },
+     "rounding_difference": null,
+     "notes": [
+      "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+     ]
+    },
+    "2023-09-30": {
+     "equipment": 141.8,
+     "after_sales": 23.2,
+     "values": {
+      "opto": 13.54,
+      "led": 10.566,
+      "power": 114.218,
+      "other": null
+     },
+     "bounds": {
+      "opto": {
+       "lower": 10.761,
+       "upper": 16.319,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 7.793,
+       "upper": 13.339,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 111.368,
+       "upper": 117.068,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0,
+       "upper": 3.477,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "347.6 × 11% − 205.8 × 12%",
+      "led": "347.6 × 6% − 205.8 × 5%",
+      "power": "347.6 × 82% − 205.8 × 83%",
+      "other": "347.6 × <1% − 205.8 × <1%"
+     },
+     "rounding_difference": null,
+     "notes": [
+      "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+     ]
+    },
+    "2023-12-31": {
+     "equipment": 184.7,
+     "after_sales": 29.5,
+     "values": {
+      "opto": 25.64,
+      "led": 37.697,
+      "power": 114.193,
+      "other": null
+     },
+     "bounds": {
+      "opto": {
+       "lower": 21.229,
+       "upper": 30.051,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 33.289,
+       "upper": 42.105,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 109.715,
+       "upper": 118.671,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.507,
+       "upper": 13.309,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "532.3 × 12% − 347.6 × 11%",
+      "led": "532.3 × 11% − 347.6 × 6%",
+      "power": "532.3 × 75% − 347.6 × 82%",
+      "other": "532.3 × 2% − 347.6 × <1%"
+     },
+     "rounding_difference": null,
+     "notes": [
+      "기타·R&D: 비중 < 값 공시 · 금액 범위만 확인"
+     ]
+    },
+    "2024-03-31": {
+     "equipment": 93.0,
+     "after_sales": 25.3,
+     "values": {
+      "opto": 10.23,
+      "led": 19.53,
+      "power": 57.66,
+      "other": 5.58
+     },
+     "bounds": {
+      "opto": {
+       "lower": 9.76,
+       "upper": 10.701,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 19.055,
+       "upper": 20.006,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 56.7,
+       "upper": 58.621,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 5.112,
+       "upper": 6.048,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "93 × 11%",
+      "led": "93 × 21%",
+      "power": "93 × (45% + 17%)",
+      "other": "93 × 6%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2024-06-30": {
+     "equipment": 105.1,
+     "after_sales": 26.7,
+     "values": {
+      "opto": 7.599,
+      "led": 43.862,
+      "power": 45.352,
+      "other": 8.287
+     },
+     "bounds": {
+      "opto": {
+       "lower": 6.133,
+       "upper": 9.064,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 42.38,
+       "upper": 45.344,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 42.384,
+       "upper": 48.32,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 6.825,
+       "upper": 9.749,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "198.1 × 9% − 93 × 11%",
+      "led": "198.1 × 32% − 93 × 21%",
+      "power": "198.1 × (34% + 18%) − 93 × (45% + 17%)",
+      "other": "198.1 × 7% − 93 × 6%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2024-09-30": {
+     "equipment": 128.0,
+     "after_sales": 28.3,
+     "values": {
+      "opto": 18.042,
+      "led": 21.394,
+      "power": 86.126,
+      "other": 5.699
+     },
+     "bounds": {
+      "opto": {
+       "lower": 15.411,
+       "upper": 20.673,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 18.744,
+       "upper": 24.044,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 80.829,
+       "upper": 91.423,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 3.072,
+       "upper": 8.327,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "326.1 × 11% − 198.1 × 9%",
+      "led": "326.1 × 26% − 198.1 × 32%",
+      "power": "326.1 × (32% + 26%) − 198.1 × (34% + 18%)",
+      "other": "326.1 × 6% − 198.1 × 7%"
+     },
+     "rounding_difference": -3.261,
+     "notes": []
+    },
+    "2024-12-31": {
+     "equipment": 196.4,
+     "after_sales": 30.4,
+     "values": {
+      "opto": 26.829,
+      "led": 61.514,
+      "power": 93.012,
+      "other": 11.784
+     },
+     "bounds": {
+      "opto": {
+       "lower": 22.574,
+       "upper": 31.083,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 57.244,
+       "upper": 65.784,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 84.47,
+       "upper": 101.554,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 7.535,
+       "upper": 16.033,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "522.5 × 12% − 326.1 × 11%",
+      "led": "522.5 × 28% − 326.1 × 26%",
+      "power": "522.5 × (30% + 24%) − 326.1 × (32% + 26%)",
+      "other": "522.5 × 6% − 326.1 × 6%"
+     },
+     "rounding_difference": 3.261,
+     "notes": []
+    },
+    "2025-03-31": {
+     "equipment": 87.7,
+     "after_sales": 24.8,
+     "values": {
+      "opto": 8.77,
+      "led": 14.909,
+      "power": 61.39,
+      "other": 3.508
+     },
+     "bounds": {
+      "opto": {
+       "lower": 8.327,
+       "upper": 9.214,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 14.462,
+       "upper": 15.356,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 60.479,
+       "upper": 62.303,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 3.068,
+       "upper": 3.949,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "87.7 × 10%",
+      "led": "87.7 × 17%",
+      "power": "87.7 × (21% + 49%)",
+      "other": "87.7 × 4%"
+     },
+     "rounding_difference": -0.877,
+     "notes": []
+    },
+    "2025-06-30": {
+     "equipment": 110.1,
+     "after_sales": 27.3,
+     "values": {
+      "opto": 9.032,
+      "led": 16.739,
+      "power": 79.048,
+      "other": 4.404
+     },
+     "bounds": {
+      "opto": {
+       "lower": 7.595,
+       "upper": 10.469,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 15.295,
+       "upper": 18.183,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 76.123,
+       "upper": 81.974,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 2.972,
+       "upper": 5.835,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "197.8 × 9% − 87.7 × 10%",
+      "led": "197.8 × 16% − 87.7 × 17%",
+      "power": "197.8 × (26% + 45%) − 87.7 × (21% + 49%)",
+      "other": "197.8 × 4% − 87.7 × 4%"
+     },
+     "rounding_difference": 0.877,
+     "notes": []
+    },
+    "2025-09-30": {
+     "equipment": 92.0,
+     "after_sales": 27.6,
+     "values": {
+      "opto": 28.566,
+      "led": 8.924,
+      "power": 47.932,
+      "other": 6.578
+     },
+     "bounds": {
+      "opto": {
+       "lower": 26.116,
+       "upper": 31.017,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 6.471,
+       "upper": 11.377,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 42.988,
+       "upper": 52.876,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.136,
+       "upper": 9.021,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "289.8 × 16% − 197.8 × 9%",
+      "led": "289.8 × 14% − 197.8 × 16%",
+      "power": "289.8 × (32% + 33%) − 197.8 × (26% + 45%)",
+      "other": "289.8 × 5% − 197.8 × 4%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2025-12-31": {
+     "equipment": 154.8,
+     "after_sales": 32.3,
+     "values": {
+      "opto": 55.89,
+      "led": 26.118,
+      "power": 65.052,
+      "other": 7.74
+     },
+     "bounds": {
+      "opto": {
+       "lower": 52.199,
+       "upper": 59.582,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 22.431,
+       "upper": 29.805,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 57.647,
+       "upper": 72.457,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 4.063,
+       "upper": 11.417,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "444.6 × 23% − 289.8 × 16%",
+      "led": "444.6 × 15% − 289.8 × 14%",
+      "power": "444.6 × (29% + 28%) − 289.8 × (32% + 33%)",
+      "other": "444.6 × 5% − 289.8 × 5%"
+     },
+     "rounding_difference": 0.0,
+     "notes": []
+    },
+    "2026-03-31": {
+     "equipment": 35.7,
+     "after_sales": 23.7,
+     "values": {
+      "opto": 18.564,
+      "led": 11.067,
+      "power": 6.069,
+      "other": 0.357
+     },
+     "bounds": {
+      "opto": {
+       "lower": 18.36,
+       "upper": 18.769,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 10.873,
+       "upper": 11.261,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 5.704,
+       "upper": 6.435,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 0.178,
+       "upper": 0.536,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "35.7 × 52%",
+      "led": "35.7 × 31%",
+      "power": "35.7 × (3% + 14%)",
+      "other": "35.7 × 1%"
+     },
+     "rounding_difference": -0.357,
+     "notes": []
+    },
+    "2026-06-30": {
+     "equipment": 86.3,
+     "after_sales": 28.8,
+     "values": {
+      "opto": 47.316,
+      "led": 16.993,
+      "power": 20.771,
+      "other": 2.083
+     },
+     "bounds": {
+      "opto": {
+       "lower": 46.475,
+       "upper": 48.157,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 16.177,
+       "upper": 17.808,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 19.175,
+       "upper": 22.367,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 1.293,
+       "upper": 2.873,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "122 × 54% − 35.7 × 52%",
+      "led": "122 × 23% − 35.7 × 31%",
+      "power": "122 × (16% + 6%) − 35.7 × (3% + 14%)",
+      "other": "122 × 2% − 35.7 × 1%"
+     },
+     "rounding_difference": -0.863,
+     "notes": []
+    },
+    "2026-09-30": {
+     "equipment": 148.3,
+     "after_sales": 35.3,
+     "values": {
+      "opto": 99.003,
+      "led": 20.594,
+      "power": 24.517,
+      "other": 2.966
+     },
+     "bounds": {
+      "opto": {
+       "lower": 96.984,
+       "upper": 101.022,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "led": {
+       "lower": 18.612,
+       "upper": 22.576,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "power": {
+       "lower": 20.574,
+       "upper": 28.46,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      },
+      "other": {
+       "lower": 1.002,
+       "upper": 4.929,
+       "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+      }
+     },
+     "calculations": {
+      "opto": "270.3 × 61% − 122 × 54%",
+      "led": "270.3 × 18% − 122 × 23%",
+      "power": "270.3 × (14% + 5%) − 122 × (16% + 6%)",
+      "other": "270.3 × 2% − 122 × 2%"
+     },
+     "rounding_difference": 1.22,
+     "notes": []
+    }
+   },
+   "comparison_dates": {
+    "2022-03-31": {
+     "year_ago": null,
+     "quarter_ago": null
+    },
+    "2022-06-30": {
+     "year_ago": null,
+     "quarter_ago": "2022-03-31"
+    },
+    "2022-09-30": {
+     "year_ago": null,
+     "quarter_ago": "2022-06-30"
+    },
+    "2022-12-31": {
+     "year_ago": null,
+     "quarter_ago": "2022-09-30"
+    },
+    "2023-03-31": {
+     "year_ago": "2022-03-31",
+     "quarter_ago": "2022-12-31"
+    },
+    "2023-06-30": {
+     "year_ago": "2022-06-30",
+     "quarter_ago": "2023-03-31"
+    },
+    "2023-09-30": {
+     "year_ago": "2022-09-30",
+     "quarter_ago": "2023-06-30"
+    },
+    "2023-12-31": {
+     "year_ago": "2022-12-31",
+     "quarter_ago": "2023-09-30"
+    },
+    "2024-03-31": {
+     "year_ago": "2023-03-31",
+     "quarter_ago": "2023-12-31"
+    },
+    "2024-06-30": {
+     "year_ago": "2023-06-30",
+     "quarter_ago": "2024-03-31"
+    },
+    "2024-09-30": {
+     "year_ago": "2023-09-30",
+     "quarter_ago": "2024-06-30"
+    },
+    "2024-12-31": {
+     "year_ago": "2023-12-31",
+     "quarter_ago": "2024-09-30"
+    },
+    "2025-03-31": {
+     "year_ago": "2024-03-31",
+     "quarter_ago": "2024-12-31"
+    },
+    "2025-06-30": {
+     "year_ago": "2024-06-30",
+     "quarter_ago": "2025-03-31"
+    },
+    "2025-09-30": {
+     "year_ago": "2024-09-30",
+     "quarter_ago": "2025-06-30"
+    },
+    "2025-12-31": {
+     "year_ago": "2024-12-31",
+     "quarter_ago": "2025-09-30"
+    },
+    "2026-03-31": {
+     "year_ago": "2025-03-31",
+     "quarter_ago": "2025-12-31"
+    },
+    "2026-06-30": {
+     "year_ago": "2025-06-30",
+     "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
+    }
+   }
+  }
+ },
+ "default_view": "quarter",
+ "frequency": "quarterly",
+ "frequency_label": "분기 · IR 비중 환산 추정",
+ "quarter_labels": true,
+ "series": {
+  "광전자·통신": [
+   [
+    "2024-03-31",
+    10.23
+   ],
+   [
+    "2024-06-30",
+    7.599
+   ],
+   [
+    "2024-09-30",
+    18.042
+   ],
+   [
+    "2024-12-31",
+    26.829
+   ],
+   [
+    "2025-03-31",
+    8.77
+   ],
+   [
+    "2025-06-30",
+    9.032
+   ],
+   [
+    "2025-09-30",
+    28.566
+   ],
+   [
+    "2025-12-31",
+    55.89
+   ],
+   [
+    "2026-03-31",
+    18.564
+   ],
+   [
+    "2026-06-30",
+    47.316
+   ],
+   [
+    "2026-09-30",
+    99.003
+   ]
+  ],
+  "LED·Micro LED": [
+   [
+    "2024-03-31",
+    19.53
+   ],
+   [
+    "2024-06-30",
+    43.862
+   ],
+   [
+    "2024-09-30",
+    21.394
+   ],
+   [
+    "2024-12-31",
+    61.514
+   ],
+   [
+    "2025-03-31",
+    14.909
+   ],
+   [
+    "2025-06-30",
+    16.739
+   ],
+   [
+    "2025-09-30",
+    8.924
+   ],
+   [
+    "2025-12-31",
+    26.118
+   ],
+   [
+    "2026-03-31",
+    11.067
+   ],
+   [
+    "2026-06-30",
+    16.993
+   ],
+   [
+    "2026-09-30",
+    20.594
+   ]
+  ],
+  "GaN 전력": [
+   [
+    "2024-03-31",
+    41.85
+   ],
+   [
+    "2024-06-30",
+    25.504
+   ],
+   [
+    "2024-09-30",
+    36.998
+   ],
+   [
+    "2024-12-31",
+    52.398
+   ],
+   [
+    "2025-03-31",
+    18.417
+   ],
+   [
+    "2025-06-30",
+    33.011
+   ],
+   [
+    "2025-09-30",
+    41.308
+   ],
+   [
+    "2025-12-31",
+    36.198
+   ],
+   [
+    "2026-03-31",
+    1.071
+   ],
+   [
+    "2026-06-30",
+    18.449
+   ],
+   [
+    "2026-09-30",
+    18.322
+   ]
+  ],
+  "SiC 전력": [
+   [
+    "2024-03-31",
+    15.81
+   ],
+   [
+    "2024-06-30",
+    19.848
+   ],
+   [
+    "2024-09-30",
+    49.128
+   ],
+   [
+    "2024-12-31",
+    40.614
+   ],
+   [
+    "2025-03-31",
+    42.973
+   ],
+   [
+    "2025-06-30",
+    46.037
+   ],
+   [
+    "2025-09-30",
+    6.624
+   ],
+   [
+    "2025-12-31",
+    28.854
+   ],
+   [
+    "2026-03-31",
+    4.998
+   ],
+   [
+    "2026-06-30",
+    2.322
+   ],
+   [
+    "2026-09-30",
+    6.195
+   ]
+  ],
+  "기타·R&D": [
+   [
+    "2024-03-31",
+    5.58
+   ],
+   [
+    "2024-06-30",
+    8.287
+   ],
+   [
+    "2024-09-30",
+    5.699
+   ],
+   [
+    "2024-12-31",
+    11.784
+   ],
+   [
+    "2025-03-31",
+    3.508
+   ],
+   [
+    "2025-06-30",
+    4.404
+   ],
+   [
+    "2025-09-30",
+    6.578
+   ],
+   [
+    "2025-12-31",
+    7.74
+   ],
+   [
+    "2026-03-31",
+    0.357
+   ],
+   [
+    "2026-06-30",
+    2.083
+   ],
+   [
+    "2026-09-30",
+    2.966
+   ]
+  ]
+ },
+ "default_series": [
+  "광전자·통신",
+  "LED·Micro LED",
+  "GaN 전력",
+  "SiC 전력",
+  "기타·R&D"
+ ],
+ "updated": "2026-09-30",
+ "source_url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+ "period_labels": {
+  "2024-03-31": "2024 Q1",
+  "2024-06-30": "2024 Q2",
+  "2024-09-30": "2024 Q3",
+  "2024-12-31": "2024 Q4",
+  "2025-03-31": "2025 Q1",
+  "2025-06-30": "2025 Q2",
+  "2025-09-30": "2025 Q3",
+  "2025-12-31": "2025 Q4",
+  "2026-03-31": "2026 Q1",
+  "2026-06-30": "2026 Q2",
+  "2026-09-30": "2026 Q3"
+ },
+ "point_sources": {
+  "2024-03-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+   "pdf_page": 11,
+   "label": "2024 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+     "pdf_page": 11,
+     "label": "Q1/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+     "pdf_page": 8,
+     "label": "Q1/2024 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-06-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+   "pdf_page": 18,
+   "label": "2024 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+     "pdf_page": 18,
+     "label": "H1/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+     "pdf_page": 12,
+     "label": "H1/2024 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q1-2024%20Results%20Presentation.pdf",
+     "pdf_page": 11,
+     "label": "Q1/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/3-Months-Report-2024.pdf",
+     "pdf_page": 8,
+     "label": "Q1/2024 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-09-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+   "pdf_page": 16,
+   "label": "2024 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "9M/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+     "pdf_page": 8,
+     "label": "9M/2024 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q2-2024%20Results%20Presentation.pdf.pdf",
+     "pdf_page": 18,
+     "label": "H1/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Half-Year%20Group%20Financial%20Report.pdf",
+     "pdf_page": 12,
+     "label": "H1/2024 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2024-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+   "pdf_page": 21,
+   "label": "2024 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20FY-2024%20Results%20Presentation.pdf",
+     "pdf_page": 21,
+     "label": "FY/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/Annual%20Report%202024.pdf",
+     "pdf_page": 84,
+     "label": "FY/2024 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2024/AIXA%20Q3-2024%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "9M/2024 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2024/en/9-Months-Report-2024.pdf",
+     "pdf_page": 8,
+     "label": "9M/2024 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-03-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+   "pdf_page": 16,
+   "label": "2025 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "Q1/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+     "pdf_page": 8,
+     "label": "Q1/2025 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-06-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+   "pdf_page": 16,
+   "label": "2025 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "H1/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+     "pdf_page": 11,
+     "label": "H1/2025 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q1-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "Q1/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/3-Months-Report-2025.pdf",
+     "pdf_page": 8,
+     "label": "Q1/2025 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-09-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+   "pdf_page": 20,
+   "label": "2025 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+     "pdf_page": 20,
+     "label": "9M/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+     "pdf_page": 8,
+     "label": "9M/2025 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q2-2025%20Results%20Presentation.pdf",
+     "pdf_page": 16,
+     "label": "H1/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Half-Year%20Group%20Financial%20Report_2025.pdf",
+     "pdf_page": 11,
+     "label": "H1/2025 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2025-12-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+   "pdf_page": 27,
+   "label": "2025 Q4",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20FY-2025%20Results%20Presentation.pdf",
+     "pdf_page": 27,
+     "label": "FY/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/Annual%20Report%202025.pdf",
+     "pdf_page": 89,
+     "label": "FY/2025 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2025/AIXA%20Q3-2025%20Results%20Presentation.pdf",
+     "pdf_page": 20,
+     "label": "9M/2025 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2025/en/9-Months-Report-2025.pdf",
+     "pdf_page": 8,
+     "label": "9M/2025 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-03-31": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+   "pdf_page": 26,
+   "label": "2026 Q1",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+     "pdf_page": 26,
+     "label": "Q1/2026 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+     "pdf_page": 4,
+     "label": "Q1/2026 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-06-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+   "pdf_page": 17,
+   "label": "2026 Q2",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+     "pdf_page": 17,
+     "label": "H1/2026 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+     "pdf_page": 8,
+     "label": "H1/2026 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q1-2026%20Results%20Presentation.pdf",
+     "pdf_page": 26,
+     "label": "Q1/2026 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/3-Months-Report-2026.pdf",
+     "pdf_page": 4,
+     "label": "Q1/2026 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  },
+  "2026-09-30": {
+   "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+   "pdf_page": 18,
+   "label": "2026 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q3-2026%20Results%20Presentation.pdf",
+     "pdf_page": 18,
+     "label": "9M/2026 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/9-Months-Report-2026.pdf",
+     "pdf_page": 4,
+     "label": "9M/2026 누적 장비매출"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/ir-praesentationen/2026/AIXA%20Q2-2026%20Results%20Presentation.pdf",
+     "pdf_page": 17,
+     "label": "H1/2026 IR 비중"
+    },
+    {
+     "url": "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+     "pdf_page": 8,
+     "label": "H1/2026 누적 장비매출"
+    }
+   ],
+   "source_separator": " / "
+  }
+ },
+ "point_notes": {
+  "2024-03-31": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 93 × 11%",
+   "LED·Micro LED: 93 × 21%",
+   "GaN 전력: 93 × 45%",
+   "SiC 전력: 93 × 17%",
+   "기타·R&D: 93 × 6%"
+  ],
+  "2024-06-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 198.1 × 9% − 93 × 11%",
+   "LED·Micro LED: 198.1 × 32% − 93 × 21%",
+   "GaN 전력: 198.1 × 34% − 93 × 45%",
+   "SiC 전력: 198.1 × 18% − 93 × 17%",
+   "기타·R&D: 198.1 × 7% − 93 × 6%"
+  ],
+  "2024-09-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 326.1 × 11% − 198.1 × 9%",
+   "LED·Micro LED: 326.1 × 26% − 198.1 × 32%",
+   "GaN 전력: 326.1 × 32% − 198.1 × 34%",
+   "SiC 전력: 326.1 × 26% − 198.1 × 18%",
+   "기타·R&D: 326.1 × 6% − 198.1 × 7%",
+   "공시 장비 분기매출과 합계 차이 -3.261백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2024-12-31": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 522.5 × 12% − 326.1 × 11%",
+   "LED·Micro LED: 522.5 × 28% − 326.1 × 26%",
+   "GaN 전력: 522.5 × 30% − 326.1 × 32%",
+   "SiC 전력: 522.5 × 24% − 326.1 × 26%",
+   "기타·R&D: 522.5 × 6% − 326.1 × 6%",
+   "공시 장비 분기매출과 합계 차이 3.261백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2025-03-31": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 87.7 × 10%",
+   "LED·Micro LED: 87.7 × 17%",
+   "GaN 전력: 87.7 × 21%",
+   "SiC 전력: 87.7 × 49%",
+   "기타·R&D: 87.7 × 4%",
+   "공시 장비 분기매출과 합계 차이 -0.877백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2025-06-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 197.8 × 9% − 87.7 × 10%",
+   "LED·Micro LED: 197.8 × 16% − 87.7 × 17%",
+   "GaN 전력: 197.8 × 26% − 87.7 × 21%",
+   "SiC 전력: 197.8 × 45% − 87.7 × 49%",
+   "기타·R&D: 197.8 × 4% − 87.7 × 4%",
+   "공시 장비 분기매출과 합계 차이 0.877백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2025-09-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 289.8 × 16% − 197.8 × 9%",
+   "LED·Micro LED: 289.8 × 14% − 197.8 × 16%",
+   "GaN 전력: 289.8 × 32% − 197.8 × 26%",
+   "SiC 전력: 289.8 × 33% − 197.8 × 45%",
+   "기타·R&D: 289.8 × 5% − 197.8 × 4%"
+  ],
+  "2025-12-31": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 444.6 × 23% − 289.8 × 16%",
+   "LED·Micro LED: 444.6 × 15% − 289.8 × 14%",
+   "GaN 전력: 444.6 × 29% − 289.8 × 32%",
+   "SiC 전력: 444.6 × 28% − 289.8 × 33%",
+   "기타·R&D: 444.6 × 5% − 289.8 × 5%"
+  ],
+  "2026-03-31": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 35.7 × 52%",
+   "LED·Micro LED: 35.7 × 31%",
+   "GaN 전력: 35.7 × 3%",
+   "SiC 전력: 35.7 × 14%",
+   "기타·R&D: 35.7 × 1%",
+   "공시 장비 분기매출과 합계 차이 -0.357백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2026-06-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 122 × 54% − 35.7 × 52%",
+   "LED·Micro LED: 122 × 23% − 35.7 × 31%",
+   "GaN 전력: 122 × 16% − 35.7 × 3%",
+   "SiC 전력: 122 × 6% − 35.7 × 14%",
+   "기타·R&D: 122 × 2% − 35.7 × 1%",
+   "공시 장비 분기매출과 합계 차이 -0.863백만 EUR · 비중 반올림을 보정하지 않음"
+  ],
+  "2026-09-30": [
+   "IR 반올림 비중 환산 추정 · 장비매출만 분모로 사용",
+   "광전자·통신: 270.3 × 61% − 122 × 54%",
+   "LED·Micro LED: 270.3 × 18% − 122 × 23%",
+   "GaN 전력: 270.3 × 14% − 122 × 16%",
+   "SiC 전력: 270.3 × 5% − 122 × 6%",
+   "기타·R&D: 270.3 × 2% − 122 × 2%",
+   "공시 장비 분기매출과 합계 차이 1.22백만 EUR · 비중 반올림을 보정하지 않음"
+  ]
+ },
+ "calculation_details": {
+  "2024-03-31": {
+   "equipment": 93.0,
+   "after_sales": 25.3,
+   "values": {
+    "opto": 10.23,
+    "led": 19.53,
+    "gan": 41.85,
+    "sic": 15.81,
+    "other": 5.58
+   },
+   "bounds": {
+    "opto": {
+     "lower": 9.76,
+     "upper": 10.701,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 19.055,
+     "upper": 20.006,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 41.363,
+     "upper": 42.338,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 15.337,
+     "upper": 16.284,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 5.112,
+     "upper": 6.048,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "93 × 11%",
+    "led": "93 × 21%",
+    "gan": "93 × 45%",
+    "sic": "93 × 17%",
+    "other": "93 × 6%"
+   },
+   "rounding_difference": 0.0,
+   "notes": []
+  },
+  "2024-06-30": {
+   "equipment": 105.1,
+   "after_sales": 26.7,
+   "values": {
+    "opto": 7.599,
+    "led": 43.862,
+    "gan": 25.504,
+    "sic": 19.848,
+    "other": 8.287
+   },
+   "bounds": {
+    "opto": {
+     "lower": 6.133,
+     "upper": 9.064,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 42.38,
+     "upper": 45.344,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 24.009,
+     "upper": 26.999,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 18.375,
+     "upper": 21.321,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 6.825,
+     "upper": 9.749,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "198.1 × 9% − 93 × 11%",
+    "led": "198.1 × 32% − 93 × 21%",
+    "gan": "198.1 × 34% − 93 × 45%",
+    "sic": "198.1 × 18% − 93 × 17%",
+    "other": "198.1 × 7% − 93 × 6%"
+   },
+   "rounding_difference": -0.0,
+   "notes": []
+  },
+  "2024-09-30": {
+   "equipment": 128.0,
+   "after_sales": 28.3,
+   "values": {
+    "opto": 18.042,
+    "led": 21.394,
+    "gan": 36.998,
+    "sic": 49.128,
+    "other": 5.699
+   },
+   "bounds": {
+    "opto": {
+     "lower": 15.411,
+     "upper": 20.673,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 18.744,
+     "upper": 24.044,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 34.344,
+     "upper": 39.652,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 46.485,
+     "upper": 51.771,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 3.072,
+     "upper": 8.327,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "326.1 × 11% − 198.1 × 9%",
+    "led": "326.1 × 26% − 198.1 × 32%",
+    "gan": "326.1 × 32% − 198.1 × 34%",
+    "sic": "326.1 × 26% − 198.1 × 18%",
+    "other": "326.1 × 6% − 198.1 × 7%"
+   },
+   "rounding_difference": -3.261,
+   "notes": []
+  },
+  "2024-12-31": {
+   "equipment": 196.4,
+   "after_sales": 30.4,
+   "values": {
+    "opto": 26.829,
+    "led": 61.514,
+    "gan": 52.398,
+    "sic": 40.614,
+    "other": 11.784
+   },
+   "bounds": {
+    "opto": {
+     "lower": 22.574,
+     "upper": 31.083,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 57.244,
+     "upper": 65.784,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 48.124,
+     "upper": 56.672,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 36.346,
+     "upper": 44.882,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 7.535,
+     "upper": 16.033,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "522.5 × 12% − 326.1 × 11%",
+    "led": "522.5 × 28% − 326.1 × 26%",
+    "gan": "522.5 × 30% − 326.1 × 32%",
+    "sic": "522.5 × 24% − 326.1 × 26%",
+    "other": "522.5 × 6% − 326.1 × 6%"
+   },
+   "rounding_difference": 3.261,
+   "notes": []
+  },
+  "2025-03-31": {
+   "equipment": 87.7,
+   "after_sales": 24.8,
+   "values": {
+    "opto": 8.77,
+    "led": 14.909,
+    "gan": 18.417,
+    "sic": 42.973,
+    "other": 3.508
+   },
+   "bounds": {
+    "opto": {
+     "lower": 8.327,
+     "upper": 9.214,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 14.462,
+     "upper": 15.356,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 17.968,
+     "upper": 18.866,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 42.51,
+     "upper": 43.436,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 3.068,
+     "upper": 3.949,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "87.7 × 10%",
+    "led": "87.7 × 17%",
+    "gan": "87.7 × 21%",
+    "sic": "87.7 × 49%",
+    "other": "87.7 × 4%"
+   },
+   "rounding_difference": -0.877,
+   "notes": []
+  },
+  "2025-06-30": {
+   "equipment": 110.1,
+   "after_sales": 27.3,
+   "values": {
+    "opto": 9.032,
+    "led": 16.739,
+    "gan": 33.011,
+    "sic": 46.037,
+    "other": 4.404
+   },
+   "bounds": {
+    "opto": {
+     "lower": 7.595,
+     "upper": 10.469,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 15.295,
+     "upper": 18.183,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 31.56,
+     "upper": 34.462,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 44.562,
+     "upper": 47.512,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 2.972,
+     "upper": 5.835,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "197.8 × 9% − 87.7 × 10%",
+    "led": "197.8 × 16% − 87.7 × 17%",
+    "gan": "197.8 × 26% − 87.7 × 21%",
+    "sic": "197.8 × 45% − 87.7 × 49%",
+    "other": "197.8 × 4% − 87.7 × 4%"
+   },
+   "rounding_difference": 0.877,
+   "notes": []
+  },
+  "2025-09-30": {
+   "equipment": 92.0,
+   "after_sales": 27.6,
+   "values": {
+    "opto": 28.566,
+    "led": 8.924,
+    "gan": 41.308,
+    "sic": 6.624,
+    "other": 6.578
+   },
+   "bounds": {
+    "opto": {
+     "lower": 26.116,
+     "upper": 31.017,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 6.471,
+     "upper": 11.377,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 38.841,
+     "upper": 43.775,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 4.147,
+     "upper": 9.101,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 4.136,
+     "upper": 9.021,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "289.8 × 16% − 197.8 × 9%",
+    "led": "289.8 × 14% − 197.8 × 16%",
+    "gan": "289.8 × 32% − 197.8 × 26%",
+    "sic": "289.8 × 33% − 197.8 × 45%",
+    "other": "289.8 × 5% − 197.8 × 4%"
+   },
+   "rounding_difference": 0.0,
+   "notes": []
+  },
+  "2025-12-31": {
+   "equipment": 154.8,
+   "after_sales": 32.3,
+   "values": {
+    "opto": 55.89,
+    "led": 26.118,
+    "gan": 36.198,
+    "sic": 28.854,
+    "other": 7.74
+   },
+   "bounds": {
+    "opto": {
+     "lower": 52.199,
+     "upper": 59.582,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 22.431,
+     "upper": 29.805,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 32.496,
+     "upper": 39.901,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 25.151,
+     "upper": 32.557,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 4.063,
+     "upper": 11.417,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "444.6 × 23% − 289.8 × 16%",
+    "led": "444.6 × 15% − 289.8 × 14%",
+    "gan": "444.6 × 29% − 289.8 × 32%",
+    "sic": "444.6 × 28% − 289.8 × 33%",
+    "other": "444.6 × 5% − 289.8 × 5%"
+   },
+   "rounding_difference": 0.0,
+   "notes": []
+  },
+  "2026-03-31": {
+   "equipment": 35.7,
+   "after_sales": 23.7,
+   "values": {
+    "opto": 18.564,
+    "led": 11.067,
+    "gan": 1.071,
+    "sic": 4.998,
+    "other": 0.357
+   },
+   "bounds": {
+    "opto": {
+     "lower": 18.36,
+     "upper": 18.769,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 10.873,
+     "upper": 11.261,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 0.891,
+     "upper": 1.251,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 4.813,
+     "upper": 5.184,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 0.178,
+     "upper": 0.536,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "35.7 × 52%",
+    "led": "35.7 × 31%",
+    "gan": "35.7 × 3%",
+    "sic": "35.7 × 14%",
+    "other": "35.7 × 1%"
+   },
+   "rounding_difference": -0.357,
+   "notes": []
+  },
+  "2026-06-30": {
+   "equipment": 86.3,
+   "after_sales": 28.8,
+   "values": {
+    "opto": 47.316,
+    "led": 16.993,
+    "gan": 18.449,
+    "sic": 2.322,
+    "other": 2.083
+   },
+   "bounds": {
+    "opto": {
+     "lower": 46.475,
+     "upper": 48.157,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 16.177,
+     "upper": 17.808,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 17.651,
+     "upper": 19.247,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 1.524,
+     "upper": 3.12,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 1.293,
+     "upper": 2.873,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "122 × 54% − 35.7 × 52%",
+    "led": "122 × 23% − 35.7 × 31%",
+    "gan": "122 × 16% − 35.7 × 3%",
+    "sic": "122 × 6% − 35.7 × 14%",
+    "other": "122 × 2% − 35.7 × 1%"
+   },
+   "rounding_difference": -0.863,
+   "notes": []
+  },
+  "2026-09-30": {
+   "equipment": 148.3,
+   "after_sales": 35.3,
+   "values": {
+    "opto": 99.003,
+    "led": 20.594,
+    "gan": 18.322,
+    "sic": 6.195,
+    "other": 2.966
+   },
+   "bounds": {
+    "opto": {
+     "lower": 96.984,
+     "upper": 101.022,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "led": {
+     "lower": 18.612,
+     "upper": 22.576,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "gan": {
+     "lower": 16.346,
+     "upper": 20.298,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "sic": {
+     "lower": 4.228,
+     "upper": 8.162,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    },
+    "other": {
+     "lower": 1.002,
+     "upper": 4.929,
+     "basis": "share rounding and equipment ±0.05m; conditional range, not confidence interval"
+    }
+   },
+   "calculations": {
+    "opto": "270.3 × 61% − 122 × 54%",
+    "led": "270.3 × 18% − 122 × 23%",
+    "gan": "270.3 × 14% − 122 × 16%",
+    "sic": "270.3 × 5% − 122 × 6%",
+    "other": "270.3 × 2% − 122 × 2%"
+   },
+   "rounding_difference": 1.22,
+   "notes": []
+  }
+ },
+ "comparison_dates": {
+  "2024-03-31": {
+   "year_ago": null,
+   "quarter_ago": null
+  },
+  "2024-06-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-03-31"
+  },
+  "2024-09-30": {
+   "year_ago": null,
+   "quarter_ago": "2024-06-30"
+  },
+  "2024-12-31": {
+   "year_ago": null,
+   "quarter_ago": "2024-09-30"
+  },
+  "2025-03-31": {
+   "year_ago": "2024-03-31",
+   "quarter_ago": "2024-12-31"
+  },
+  "2025-06-30": {
+   "year_ago": "2024-06-30",
+   "quarter_ago": "2025-03-31"
+  },
+  "2025-09-30": {
+   "year_ago": "2024-09-30",
+   "quarter_ago": "2025-06-30"
+  },
+  "2025-12-31": {
+   "year_ago": "2024-12-31",
+   "quarter_ago": "2025-09-30"
+  },
+  "2026-03-31": {
+   "year_ago": "2025-03-31",
+   "quarter_ago": "2025-12-31"
+  },
+  "2026-06-30": {
+   "year_ago": "2025-06-30",
+   "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
+  }
+ },
+ "quarterly_profit_summary": false,
+ "quarterly_revenue_summary": true
+}

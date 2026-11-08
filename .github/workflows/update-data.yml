@@ -513,6 +513,7 @@ jobs:
         timeout-minutes: 3
         run: python scripts/fetch_silicon_wafer.py
       - name: MOCVD · AIXTRON·Coherent 공식 분기 자료 확인
+        if: steps.gate_mocvd.outcome == 'success'
         continue-on-error: true
         timeout-minutes: 6
         run: python scripts/fetch_mocvd.py
