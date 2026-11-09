@@ -122,6 +122,10 @@ class QuarterlyApplicationSales(unittest.TestCase):
         for id in ['mocvd_aix_application_revenue','mocvd_aix_application_share','mocvd_aix_revenue_breakdown','mocvd_aix_revenue']:
             self.assertEqual(self.docs[id],read(ROOT/'data/semicon'/(id+'.json')))
         amounts=self.docs['mocvd_aix_application_revenue'];shares=self.docs['mocvd_aix_application_share']
+        self.assertEqual(amounts['chart_type'],'line')
+        for view in amounts['series_views'].values():
+            self.assertEqual(view.get('chart_type',amounts['chart_type']),'line')
+        self.assertNotIn('mocvd_aix_order_mix',self.docs)
         self.assertFalse(amounts['span_gaps']);self.assertEqual(set(amounts['series_views']),{'quarter','combined'})
         self.assertGreaterEqual(len(next(iter(amounts['series_views']['quarter']['series'].values()))),11)
         self.assertEqual(shares['change_mode'],'none');self.assertTrue(shares['cumulative_periods'])

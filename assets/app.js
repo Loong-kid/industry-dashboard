@@ -1214,7 +1214,7 @@ function installFinancialMemos() {
   tip.id = "financial-money-tooltip"; tip.className = "tc-money-tooltip";
   tip.setAttribute("role", "tooltip"); tip.hidden = true; document.body.append(tip);
   let active = null;
-  const buttonFor = target => target instanceof Element ? target.closest(".tc-root .gm-money") : null;
+  const buttonFor = target => target instanceof Element ? target.closest(".tc-root .gm-money, .card[data-compact-hovers] .gm-money") : null;
   const automatic = button => button && !button.closest("[data-compact-hovers]");
   const hide = () => { active?.removeAttribute("aria-describedby"); active = null; tip.hidden = true; };
   const position = () => {

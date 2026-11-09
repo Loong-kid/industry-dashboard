@@ -240,8 +240,6 @@ def build(facts,manual,history=None,gan=None):
         ratios.append(out)
     add('mocvd_aix_btb','AIXTRON · Book-to-bill','배',ratios,{'ratio':'분기 수주/매출','ttm':'최근 4분기 수주/매출'},
         '총수주액÷연결 매출입니다. 양쪽에 서비스·부품을 포함합니다. 1보다 높으면 해당 기간 수주가 매출을 초과합니다. 장비 잔고와 다른 범위입니다.',change_mode_override='none')
-    add('mocvd_aix_order_mix','AIXTRON · 광전자 장비 수주 비중 · 최근 공시','%',manual['aix_order_mix'],{'opto':'광전자 / 장비 수주'},
-        '동일 분모로 확인한 첫 값은 2026 Q2 약 75%입니다. 분모는 장비 수주이며 총수주액이 아닙니다. 레이저·광전자 전체로 InP 단독 비중이 아닙니다.',manual=True,chart_type='bar',change_mode_override='none')
     add('mocvd_aix_applications','AIXTRON · 장비 용도별 연간 매출','백만 EUR',manual['aix_applications'],
         {'opto':'광전자·통신','power':'GaN·SiC 전력','led':'LED·Micro LED','other':'기타'},
         '2025 공식 금액. 이전 연도는 공시 장비 매출×반올림된 용도 비중으로 계산한 근사치입니다. 광전자에는 레이저·태양광·통신 등이 포함되어 InP 단독 매출이 아닙니다.',
@@ -278,7 +276,7 @@ def build(facts,manual,history=None,gan=None):
         if d.pop('frequency_override',None)=='yearly':d['frequency']='yearly'
         if 'quarter_labels_override' in d:d['quarter_labels']=d.pop('quarter_labels_override')
         if 'change_mode_override' in d:d['change_mode']=d.pop('change_mode_override')
-        if d.get('unit')=='%':d['change_mode']='none' if d['id']=='mocvd_aix_order_mix' or d.get('cumulative_periods') else 'percentage_points'
+        if d.get('unit')=='%':d['change_mode']='none' if d.get('cumulative_periods') else 'percentage_points'
         if d.get('frequency')=='quarterly' and d.get('unit','').startswith('백만'):
             d['quarterly_profit_summary']=d['id'].endswith('_profit')
             d['quarterly_revenue_summary']=not d['quarterly_profit_summary']

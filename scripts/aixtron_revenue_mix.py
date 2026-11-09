@@ -166,7 +166,7 @@ def extend(docs,aix,records,status=None):
     basis=[dict(label='금액과 출처',value=note),dict(label='공시 분류',value='2024년부터 GaN·SiC 개별 비중을 사용합니다. 2022~2023년 전력전자 합산은 상세 분할을 추정하지 않습니다. 2023년 <1% 공시와 음수가 나오는 반올림 차분은 금액을 확정하지 않고 공백으로 둡니다.'),dict(label='계산 확인',value='각 포인트의 출처에서 당기·직전 IR와 장비매출 공시를 확인할 수 있습니다. 원자료 상태에 인쇄된 비중·계산식·반올림 조건부 범위를 보존했습니다. 기존 연간 용도 매출 공시 카드는 그대로 유지합니다.')]
     identifier='mocvd_aix_application_revenue'
     vv={'quarter':view(detailed,DETAIL,'분기 · GaN·SiC 상세'),'combined':view(combined,COMBINED,'분기 · 전력 합산')}
-    docs[identifier]=dict(id=identifier,name='AIXTRON · 장비 용도별 분기 매출 (비중 환산 추정)',unit='백만 EUR',fetched=fetched,source='AIXTRON 공식 IR·정기보고서',description=note,basis_details=basis,span_gaps=False,compact_tooltip=True,table_limit=200,chart_type='bar',change_mode='none',series_views=vv,default_view='quarter',**{k:v for k,v in vv['quarter'].items() if k!='label'})
+    docs[identifier]=dict(id=identifier,name='AIXTRON · 장비 용도별 분기 매출 (비중 환산 추정)',unit='백만 EUR',fetched=fetched,source='AIXTRON 공식 IR·정기보고서',description=note,basis_details=basis,span_gaps=False,compact_tooltip=True,table_limit=200,chart_type='line',change_mode='none',series_views=vv,default_view='quarter',**{k:v for k,v in vv['quarter'].items() if k!='label'})
     share_views={}
     for detailed_only,label,key in [(True,'누적 · GaN·SiC 상세','detail'),(False,'누적 · 전력 합산','combined')]:
         keys=DETAIL if detailed_only else COMBINED;rows=[]
