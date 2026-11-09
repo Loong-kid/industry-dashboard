@@ -14,6 +14,7 @@ const state = {
   semiconGroup: null,
   materialCategory: null,
   photomaskView: "indicators",
+  aixtronView: "indicators",
   natgasView: "summary",
   range: "1y",
   tableRange: {}, // 테이블(수주내역·오더북)별 독립 기간필터. indicator id → range. 전역 range와 분리
@@ -155,6 +156,7 @@ function route() {
   state.industry = state.catalog.industries.find((i) => i.id === id) || state.catalog.industries[0];
   state.semiconGroup = null;
   state.materialCategory = null;
+  state.aixtronView = "indicators";
   if (state.industry.id === "semicon" && state.industry.groups) {
     const legacy = state.industry.tabs.some(tab => tab.id === requestedTab);
     state.semiconGroup = legacy ? "materials" : state.industry.groups.find(group => group.id === requestedTab)?.id || state.industry.groups[0].id;
@@ -167,6 +169,7 @@ function route() {
       state.subtab = leaf?.id || category.default_tab;
       const panel = legacy ? requestedView : oldLeaf ? requestedDetail : requestedPanel;
       state.photomaskView = state.subtab === "snstech" && panel === "ir" ? "ir" : "indicators";
+      state.aixtronView = state.subtab === "mocvd" && panel === "calls" ? "calls" : "indicators";
     } else {
       state.subtab = state.semiconGroup;
       state.photomaskView = "indicators";
@@ -174,6 +177,7 @@ function route() {
   } else {
     state.subtab = state.industry.tabs?.find((tab) => tab.id === subtab)?.id || state.industry.tabs?.[0]?.id || null;
     state.photomaskView = id === "semicon" && state.subtab === "snstech" && requestedView === "ir" ? "ir" : "indicators";
+    state.aixtronView = id === "semicon" && state.subtab === "mocvd" && requestedView === "calls" ? "calls" : "indicators";
   }
   state.gamesCompanyCountry = state.industry.id === "games" && state.subtab === "companies" ? requestedView || "all" : "all";
   state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
@@ -293,12 +297,13 @@ async function renderIndustry(options = {}) {
   const nestedView = gasView || oilView || copperView || datacenterView;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
+  const aixtronLibrary = ind.id === "semicon" && state.subtab === "mocvd" && state.aixtronView === "calls";
   document.getElementById("page-title").textContent = `${ind.name}${selectedGroup && selectedGroup !== selectedTab ? " · " + selectedGroup.name : ""}${selectedCategory ? " · " + selectedCategory.name : ""}${selectedTab ? " · " + selectedTab.name : ""}${nestedView ? " · " + nestedView.name : ""}`;
   // 갱신 버튼: 조선(수주)·기관수급·증여 탭에 노출(같은 update-data.yml이 갱신, 라벨은 refresh.js).
   // 테이블 전용 탭(기관수급·증여)은 차트가 없어 전역 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
   document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "vrar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -515,7 +520,17 @@ async function renderIndustry(options = {}) {
     content.appendChild(renderCopperMarketGuide());
   }
 
-  if (ind.id === "semicon" && state.subtab === "mocvd" && typeof renderMOCVDGuide === "function") {
+  if (ind.id === "semicon" && state.subtab === "mocvd") {
+    const nav = document.createElement("nav"); nav.className = "photomask-views"; nav.setAttribute("aria-label", "MOCVD 자료 보기");
+    const base = ind.groups ? "#/semicon/materials/equipment/mocvd" : "#/semicon/mocvd";
+    for (const [id, label, href] of [["indicators", "지표", base], ["calls", "아익스트론 컨콜", base + "/calls"]]) {
+      const link = document.createElement("a"); link.href = href; link.textContent = label;
+      if (state.aixtronView === id) link.setAttribute("aria-current", "page"); nav.append(link);
+    }
+    pageTabs.append(nav);
+  }
+
+  if (ind.id === "semicon" && state.subtab === "mocvd" && !aixtronLibrary && typeof renderMOCVDGuide === "function") {
     content.appendChild(renderMOCVDGuide());
   }
   if (ind.id === "semicon" && state.subtab === "wafer" && typeof renderWaferGuide === "function") {
@@ -528,6 +543,18 @@ async function renderIndustry(options = {}) {
   loading.className = "page-loading";
   loading.textContent = "데이터 불러오는 중…";
   content.appendChild(loading);
+
+  if (aixtronLibrary) {
+    try {
+      const [doc, calls] = await Promise.all([loadDoc("semicon", "aixtron_calls"), import("./aixtron-calls.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("aixtron_calls");
+      content.appendChild(err || !doc ? errorCard("semicon", "aixtron_calls", err || "컨콜 목록을 불러오지 못했습니다.") : calls.render(doc));
+      renderFootStatus(doc?.updated || "", [], ind);
+    } catch (e) { if (mySeq === renderSeq) content.appendChild(errorCard("semicon", "aixtron_calls", e.message)); }
+    loading.remove();
+    return;
+  }
 
   if (irLibrary) {
     const doc = await loadDoc("semicon", "photomask_ir_library");

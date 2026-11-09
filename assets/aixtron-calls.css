@@ -1,0 +1,25 @@
+.aixtron-calls { --ax-reading-width: 76ch; }
+.aixtron-calls h2 { font-size: 23px; margin: 4px 0 12px; }
+.ax-intro { max-width: 86ch; font-size: 14px; line-height: 1.8; color: var(--ink-2); }
+.ax-meta { font-size: 12px; color: var(--muted); line-height: 1.8; margin: 10px 0 24px; }
+.ax-layout { display: grid; grid-template-columns: 175px minmax(0, 1fr); gap: 24px; align-items: start; }
+.ax-periods { display: flex; flex-direction: column; position: sticky; top: calc(var(--dashboard-header-height) + 16px); max-height: calc(100dvh - var(--dashboard-header-height) - 32px); overflow: auto; }
+.ax-periods button { display: grid; gap: 6px; padding: 15px 12px; border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.ax-periods strong { font-size: 15px; }.ax-periods span { font-size: 12px; color: var(--ink-2); }.ax-periods small { font-size: 11px; color: var(--muted); }
+.ax-periods button[aria-pressed=true] { background: var(--surface); box-shadow: inset 3px 0 var(--accent); }.ax-periods button[aria-pressed=true] strong { color: var(--accent); }
+.ax-reader { min-width: 0; padding: 26px 30px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); scroll-margin-top: calc(var(--dashboard-header-height) + 16px); }
+.ax-reader h3 { font-size: 21px; margin: 0 0 8px; }.ax-reader > .ax-meta { margin: 0 0 18px; }
+.ax-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+.ax-actions a, .ax-actions button, .ax-reader > button { color: var(--ink); background: var(--page); border: 1px solid var(--border); border-radius: 4px; padding: 9px 12px; font: inherit; font-size: 12px; text-decoration: none; cursor: pointer; }
+.ax-actions a:first-child, .ax-actions button[aria-pressed=true] { color: var(--accent); border-color: var(--accent); }
+.ax-actions label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-2); }.ax-actions select { color: var(--ink); background: var(--page); font: inherit; padding: 8px; border: 1px solid var(--border); border-radius: 4px; }
+.ax-method { font-size: 12px; line-height: 1.8; color: var(--ink-2); padding: 12px 0; border-top: 1px solid var(--border); }.ax-method summary { cursor: pointer; }.ax-method p { margin-top: 10px; }
+.ax-page { border-top: 1px solid var(--border); padding: 24px 0; scroll-margin-top: calc(var(--dashboard-header-height) + 16px); }
+.ax-page h4 { font-size: 12px; color: var(--muted); font-weight: 500; margin: 0 0 22px; }.ax-page h5 { font-size: 12px; font-weight: 600; color: var(--ink-2); margin: 0 0 14px; }
+.ax-columns { max-width: var(--ax-reading-width); margin: auto; }.ax-bilingual .ax-columns { max-width: none; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 32px; }
+.ax-korean, .ax-english { min-width: 0; font-size: 15px; line-height: 1.95; overflow-wrap: anywhere; }.ax-korean p, .ax-english p { margin: 0 0 18px; white-space: pre-wrap; }.ax-english { font-size: 14px; line-height: 1.85; color: var(--ink-2); }
+.ax-korean ul { padding-left: 22px; }.ax-korean li { margin: 9px 0; }.ax-korean blockquote { margin: 20px 0; font-size: 12px; color: var(--muted); border-left: 2px solid var(--border); padding-left: 14px; }
+.ax-notes { margin-top: 20px; padding: 14px 16px; border-left: 2px solid var(--accent); background: var(--page); font-size: 12px; line-height: 1.85; }.ax-notes h5 { color: var(--accent); margin-bottom: 6px; }.ax-notes p { margin: 6px 0 0; }
+.aixtron-calls button:focus-visible, .aixtron-calls a:focus-visible, .aixtron-calls select:focus-visible, .aixtron-calls summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media(max-width:900px) { .ax-layout { grid-template-columns: 145px minmax(0,1fr); gap: 16px; }.ax-reader { padding: 22px; }.ax-bilingual .ax-columns { grid-template-columns: minmax(0,1fr); gap: 20px; }.ax-bilingual .ax-english { border-bottom: 1px dashed var(--border); padding-bottom: 8px; } }
+@media(max-width:600px) { .ax-layout { grid-template-columns: minmax(0,1fr); }.ax-periods { position: static; flex-direction: row; max-height: none; }.ax-periods button { flex: 0 0 145px; border-right: 1px solid var(--border); }.ax-reader { padding: 20px 16px; }.ax-actions { gap: 8px; }.ax-actions label { width: 100%; } }

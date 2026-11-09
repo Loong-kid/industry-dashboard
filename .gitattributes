@@ -1,2 +1,8 @@
 # Preserve user-supplied translation bytes, including their original line endings.
 data/semicon/photomask-ir-ko/*.md -text
+# Keep published AIXTRON content hashes stable across Windows and Linux builds.
+data/semicon/aixtron-calls/*.json text eol=lf
+data/semicon/aixtron-calls/*.md text eol=lf
+data/semicon/aixtron-calls/*.pdf binary
+data/semicon/aixtron_calls.json text eol=lf
+manual/aixtron-calls/*.md text eol=lf
