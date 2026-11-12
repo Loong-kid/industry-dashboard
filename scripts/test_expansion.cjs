@@ -1,0 +1,28 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+(async () => {
+  const source = fs.readFileSync('assets/expansion.js','utf8');
+  const {selectRows,money,changesLabel,statusLabel} = await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+  const a={id:'a',corp_name:'<img src=x>',stock_code:'001001',market:'코스피',category:'expansion',last_disclosed:'2026-11-01',amount_krw:150000000000,purpose:'반도체 생산라인 증설',equity_ratio:10,record_status:'announced',status_label:'공시 계획',end_date:'2026-10-30'};
+  const b={...a,id:'b',corp_name:'신설',category:'new_facility',market:'코스닥',amount_krw:30000000000};
+  const c={...a,id:'c',category:'review'},d={...a,id:'d',category:'excluded'};
+  const change={project_id:'a',corp_name:a.corp_name,category:'expansion',market:a.market,date:'2026-11-01',rcept_no:'20261101000001',changes:[{field:'amount_krw',label:'투자금액',before:100000000000,after:150000000000}]};
+  const doc={projects:[a,b,c,d],changes:[change]};
+  assert.deepEqual(selectRows(doc).map(r=>r.id),['b','a']);
+  assert.deepEqual(selectRows(doc,{market:'코스피',query:'생산라인'}).map(r=>r.id),['a']);
+  assert.equal(selectRows(doc,{category:'review'}).length,1);
+  assert.equal(selectRows(doc,{category:'all'}).length,4);
+  assert.equal(selectRows(doc,{from:'2026-11-02'}).length,0);
+  assert.equal(selectRows(doc,{sort:'amount'})[0].id,'a');
+  assert.equal(selectRows(doc,{view:'changes',query:'반도체'}).length,1);
+  assert.equal(money(150000000000),'1,500억원');assert.equal(money(null),'미확인');
+  assert(changesLabel(change).includes('1,000억원 → 1,500억원'));
+  assert.equal(statusLabel(a,'2026-11-13'),'예정일 경과 · 완료 미확인');
+  assert.equal(statusLabel({...a,record_status:'withdrawn',status_label:'철회'},'2026-11-13'),'철회');
+  assert(!source.includes('innerHTML'),'Keep issuer-provided text as text nodes');
+  assert(source.includes('aria-expanded') && source.includes('aria-live'));
+  const catalog=JSON.parse(fs.readFileSync('data/catalog.json','utf8'));
+  assert(catalog.industries.some(i=>i.id==='expansion'));
+  assert(fs.readFileSync('assets/refresh.js','utf8').includes('update-expansion.yml'));
+  console.log('Expansion filtering, dates, amendments, null amounts and navigation passed');
+})().catch(error=>{console.error(error);process.exitCode=1;});

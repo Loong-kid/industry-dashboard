@@ -19,6 +19,7 @@ const REFRESH_TARGETS = {
   shipbuilding: { file: "data/shipbuilding/korea_orders.json", label: "수주 갱신" },
   institution: { file: "data/institution/major_holdings.json", label: "수급 갱신" },
   gifts: { file: "data/gifts/gift_plans.json", label: "증여 / 계획 갱신" },
+  expansion: { file: "data/expansion/investments.json", label: "증설 투자 갱신", workflow: "update-expansion.yml" },
   semicon: { file: "data/semicon/blank_semi_amount.json", label: "무역통계 갱신" },
   ppi: { file: "data/ppi/catalog.json", label: "PPI 갱신", workflow: "update-ppi.yml" },
   offshore: { file: "data/offshore/offshore_fleet.json", label: "시추 지표 갱신", workflow: "update-offshore.yml" },

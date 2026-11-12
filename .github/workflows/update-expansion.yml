@@ -1,0 +1,75 @@
+name: update-expansion
+on:
+  schedule:
+    - cron: '45 22 * * *'
+  workflow_dispatch:
+    inputs:
+      from_date:
+        description: '과거 조회 시작일 YYYYMMDD (비우면 증분 수집)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate investment extraction and amendment rules
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_expansion.py -v
+      - name: Validate investment table rules
+        id: ui
+        continue-on-error: true
+        run: node scripts/test_expansion.cjs
+      - uses: actions/cache@v4
+        if: steps.precheck.outcome == 'success'
+        with:
+          path: .cache/expansion
+          key: expansion-originals-v1-${{ github.run_id }}
+          restore-keys: expansion-originals-v1-
+      - name: Collect original facility filings
+        id: fetch
+        timeout-minutes: 30
+        if: steps.precheck.outcome == 'success' && steps.ui.outcome == 'success'
+        continue-on-error: true
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          FROM_DATE: ${{ inputs.from_date }}
+        run: |
+          args=()
+          if [ -n "$FROM_DATE" ]; then args+=(--from "$FROM_DATE"); fi
+          python -u scripts/fetch_expansion.py "${args[@]}"
+      - name: Build current investments and amendment history
+        if: steps.precheck.outcome == 'success' && steps.ui.outcome == 'success'
+        run: python scripts/aggregate_expansion.py
+      - name: Validate refreshed data
+        id: postcheck
+        if: steps.precheck.outcome == 'success' && steps.ui.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_expansion.py -v
+      - name: Commit investment data only
+        if: steps.precheck.outcome == 'success' && steps.ui.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/expansion/source_state.json data/expansion/investments.json
+          git diff --cached --quiet || git commit -m "chore: refresh expansion investment disclosures"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Report unresolved collection or validation failure
+        if: steps.precheck.outcome == 'failure' || steps.ui.outcome == 'failure' || steps.fetch.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
