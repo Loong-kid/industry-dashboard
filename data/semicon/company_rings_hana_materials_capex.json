@@ -3,7 +3,7 @@
  "name": "하나머티리얼즈 · CAPEX",
  "unit": "KRW 백만",
  "source": "OpenDART · 하나머티리얼즈 정기 공시",
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "description": "Si·SiC·파인세라믹 부품 등을 포함한 회사 전체. 링 단독 또는 SiC 단독 실적이 아닙니다. 연간은 2015년부터, 분기는 2016년부터 확인했습니다. Si와 SiC 부품 매출을 회사 전체 매출과 혼동하지 않습니다. CAPEX는 현금흐름표 유형자산 취득 지출이며 장부 증가액·증설 계획·감가상각과 다릅니다. 세부 취득 항목만 공시한 경우 합산하며 시설장치 등의 현금환급은 차감합니다. 무형자산·투자부동산·M&A·금융리스는 제외합니다.",
  "series_views": {
   "quarter": {
@@ -55,7 +55,8 @@
     "2025-09-30": "FY2025 Q3",
     "2025-12-31": "FY2025 Q4",
     "2026-03-31": "FY2026 Q1",
-    "2026-06-30": "FY2026 Q2"
+    "2026-06-30": "FY2026 Q2",
+    "2026-09-30": "FY2026 Q3"
    },
    "comparison_dates": {
     "2016-03-31": {
@@ -225,6 +226,10 @@
     "2026-06-30": {
      "year_ago": "2025-06-30",
      "quarter_ago": "2026-03-31"
+    },
+    "2026-09-30": {
+     "year_ago": "2025-09-30",
+     "quarter_ago": "2026-06-30"
     }
    },
    "quarterly_revenue_summary": true,
@@ -398,14 +403,18 @@
      [
       "2026-06-30",
       11371.915203
+     ],
+     [
+      "2026-09-30",
+      10491.937396000001
      ]
     ]
    },
    "default_series": [
     "유형자산 취득 현금지출"
    ],
-   "updated": "2026-06-30",
-   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001255",
+   "updated": "2026-09-30",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
    "point_sources": {
     "2016-03-31": {
      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515004954",
@@ -992,6 +1001,21 @@
       }
      ],
      "source_separator": " − "
+    },
+    "2026-09-30": {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
+     "label": "FY2026 Q3",
+     "supporting_sources": [
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
+       "label": "2026-01-01 ~ 2026-09-30 · 2026-11-12"
+      },
+      {
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001255",
+       "label": "2026-01-01 ~ 2026-06-30 · 2026-08-13"
+      }
+     ],
+     "source_separator": " − "
     }
    },
    "point_notes": {
@@ -1250,6 +1274,12 @@
      "공시 항목: 유형자산의 취득",
      "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
      "원화 금액: 11,371,915,203원"
+    ],
+    "2026-09-30": [
+     "재무제표: 연결",
+     "공시 항목: 투자활동으로 분류된 유형자산의 취득",
+     "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+     "원화 금액: 10,491,937,396원"
     ]
    }
   },
@@ -1547,7 +1577,7 @@
   },
   {
    "label": "자동 갱신",
-   "value": "2026-11-12 · 정상"
+   "value": "2026-11-13 · 정상"
   }
  ],
  "frequency": "quarterly",
@@ -1597,7 +1627,8 @@
   "2025-09-30": "FY2025 Q3",
   "2025-12-31": "FY2025 Q4",
   "2026-03-31": "FY2026 Q1",
-  "2026-06-30": "FY2026 Q2"
+  "2026-06-30": "FY2026 Q2",
+  "2026-09-30": "FY2026 Q3"
  },
  "comparison_dates": {
   "2016-03-31": {
@@ -1767,6 +1798,10 @@
   "2026-06-30": {
    "year_ago": "2025-06-30",
    "quarter_ago": "2026-03-31"
+  },
+  "2026-09-30": {
+   "year_ago": "2025-09-30",
+   "quarter_ago": "2026-06-30"
   }
  },
  "quarterly_revenue_summary": true,
@@ -1940,14 +1975,18 @@
    [
     "2026-06-30",
     11371.915203
+   ],
+   [
+    "2026-09-30",
+    10491.937396000001
    ]
   ]
  },
  "default_series": [
   "유형자산 취득 현금지출"
  ],
- "updated": "2026-06-30",
- "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001255",
+ "updated": "2026-09-30",
+ "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
  "point_sources": {
   "2016-03-31": {
    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20170515004954",
@@ -2534,6 +2573,21 @@
     }
    ],
    "source_separator": " − "
+  },
+  "2026-09-30": {
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
+   "label": "FY2026 Q3",
+   "supporting_sources": [
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000566",
+     "label": "2026-01-01 ~ 2026-09-30 · 2026-11-12"
+    },
+    {
+     "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813001255",
+     "label": "2026-01-01 ~ 2026-06-30 · 2026-08-13"
+    }
+   ],
+   "source_separator": " − "
   }
  },
  "point_notes": {
@@ -2792,6 +2846,12 @@
    "공시 항목: 유형자산의 취득",
    "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
    "원화 금액: 11,371,915,203원"
+  ],
+  "2026-09-30": [
+   "재무제표: 연결",
+   "공시 항목: 투자활동으로 분류된 유형자산의 취득",
+   "산식: same fiscal-year and CFS/OFS YTD minus prior YTD",
+   "원화 금액: 10,491,937,396원"
   ]
  }
 }
