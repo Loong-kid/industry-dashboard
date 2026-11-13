@@ -39,10 +39,10 @@
   }
  ],
  "source": "SEC · 기업 공식 공시",
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "collection_status": {
   "ok": true,
-  "checked": "2026-11-12",
+  "checked": "2026-11-13",
   "message": "공시 조회 완료"
  },
  "default_view": "quarter",
@@ -108,6 +108,10 @@
      [
       "2026-06-30",
       6422.0
+     ],
+     [
+      "2026-09-30",
+      9441.0
      ]
     ],
     "Nebius": [
@@ -433,6 +437,33 @@
       "period": "FY2026 Q2",
       "observed_date": "2026-06-30",
       "period_start": "2026-04-01"
+     },
+     "2026-09-30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+      "filed": "2026-11-12",
+      "start": "2026-01-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+      "components": [
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+        "filed": "2026-11-12",
+        "start": "2026-01-01",
+        "end": "2026-09-30",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       },
+       {
+        "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+        "filed": "2026-08-12",
+        "start": "2026-01-01",
+        "end": "2026-06-30",
+        "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+       }
+      ],
+      "calculation": "same fiscal-year YTD minus prior YTD",
+      "period": "FY2026 Q3",
+      "observed_date": "2026-09-30",
+      "period_start": "2026-07-01"
      }
     },
     "Nebius": {
@@ -517,15 +548,15 @@
       "period_start": "2025-04-01"
      },
      "2025-09-30": {
-      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
-      "filed": "2025-11-12",
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
+      "filed": "2026-11-12",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
       "components": [
        {
-        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
-        "filed": "2025-11-12",
+        "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
+        "filed": "2026-11-12",
         "start": "2025-07-01",
         "end": "2025-09-30",
         "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
@@ -893,6 +924,13 @@
       "전사 유형자산 현금 취득 · 금융리스·설비 외상 취득 제외",
       "same fiscal-year YTD minus prior YTD",
       "6,422.0000 USD 백만"
+     ],
+     "2026-09-30": [
+      "CoreWeave · FY2026 Q3",
+      "2026-07-01 ~ 2026-09-30",
+      "전사 유형자산 현금 취득 · 금융리스·설비 외상 취득 제외",
+      "same fiscal-year YTD minus prior YTD",
+      "9,441.0000 USD 백만"
      ]
     },
     "Nebius": {
@@ -1152,7 +1190,7 @@
        "label": "CoreWeave · FY2025 Q3"
       },
       {
-       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+       "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
        "label": "Nebius · FY2025 Q3"
       },
       {
@@ -1237,8 +1275,16 @@
      "source_separator": " / "
     },
     "2026-09-30": {
-     "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
      "supporting_sources": [
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+       "label": "CoreWeave · FY2026 Q3"
+      },
+      {
+       "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+       "label": "CoreWeave · FY2026 Q3"
+      },
       {
        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
        "label": "IREN · FY2027 Q1"
@@ -1253,7 +1299,7 @@
     "IREN"
    ],
    "updated": "2026-09-30",
-   "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
    "comparison_dates": {},
    "quarterly_profit_summary": false,
    "quarterly_revenue_summary": true,
@@ -1711,6 +1757,10 @@
    [
     "2026-06-30",
     6422.0
+   ],
+   [
+    "2026-09-30",
+    9441.0
    ]
   ],
   "Nebius": [
@@ -2036,6 +2086,33 @@
     "period": "FY2026 Q2",
     "observed_date": "2026-06-30",
     "period_start": "2026-04-01"
+   },
+   "2026-09-30": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+    "filed": "2026-11-12",
+    "start": "2026-01-01",
+    "end": "2026-09-30",
+    "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+    "components": [
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+      "filed": "2026-11-12",
+      "start": "2026-01-01",
+      "end": "2026-09-30",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     {
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+      "filed": "2026-08-12",
+      "start": "2026-01-01",
+      "end": "2026-06-30",
+      "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+     }
+    ],
+    "calculation": "same fiscal-year YTD minus prior YTD",
+    "period": "FY2026 Q3",
+    "observed_date": "2026-09-30",
+    "period_start": "2026-07-01"
    }
   },
   "Nebius": {
@@ -2120,15 +2197,15 @@
     "period_start": "2025-04-01"
    },
    "2025-09-30": {
-    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
-    "filed": "2025-11-12",
+    "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
+    "filed": "2026-11-12",
     "start": "2025-07-01",
     "end": "2025-09-30",
     "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets",
     "components": [
      {
-      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
-      "filed": "2025-11-12",
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
+      "filed": "2026-11-12",
       "start": "2025-07-01",
       "end": "2025-09-30",
       "tag": "Nebius GAAP statement · Purchases of property and equipment and intangible assets"
@@ -2496,6 +2573,13 @@
     "전사 유형자산 현금 취득 · 금융리스·설비 외상 취득 제외",
     "same fiscal-year YTD minus prior YTD",
     "6,422.0000 USD 백만"
+   ],
+   "2026-09-30": [
+    "CoreWeave · FY2026 Q3",
+    "2026-07-01 ~ 2026-09-30",
+    "전사 유형자산 현금 취득 · 금융리스·설비 외상 취득 제외",
+    "same fiscal-year YTD minus prior YTD",
+    "9,441.0000 USD 백만"
    ]
   },
   "Nebius": {
@@ -2755,7 +2839,7 @@
      "label": "CoreWeave · FY2025 Q3"
     },
     {
-     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925109806/tm2530882d1_ex99-1.htm",
+     "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926126008/tm2629571d1_ex99-1.htm",
      "label": "Nebius · FY2025 Q3"
     },
     {
@@ -2840,8 +2924,16 @@
    "source_separator": " / "
   },
   "2026-09-30": {
-   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
    "supporting_sources": [
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
+     "label": "CoreWeave · FY2026 Q3"
+    },
+    {
+     "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+     "label": "CoreWeave · FY2026 Q3"
+    },
     {
      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000066/0001878848-26-000066-index.html",
      "label": "IREN · FY2027 Q1"
@@ -2856,7 +2948,7 @@
   "IREN"
  ],
  "updated": "2026-09-30",
- "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/0001769628-26-000366-index.html",
+ "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000465/0001769628-26-000465-index.html",
  "comparison_dates": {},
  "quarterly_profit_summary": false,
  "quarterly_revenue_summary": true,
