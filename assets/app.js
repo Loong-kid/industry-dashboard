@@ -242,7 +242,7 @@ function renderNav() {
     {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "cosmetics", "entertainment", "movies", "quantum", "drone", "vrar"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급·공시", ids: ["institution", "gifts", "expansion"]},
-    {name: "정책·예산", ids: ["darpa"]},
+    {name: "정책·예산", ids: ["national_budget", "darpa"]},
   ];
   const included = new Set(groups.flatMap(group => group.ids));
   const extra = state.catalog.industries.filter(ind => !included.has(ind.id));
@@ -277,6 +277,7 @@ let gamesCleanup = null;
 let semiconValuationCleanup = null;
 let globeCleanup = null;
 let darpaCleanup = null;
+let nationalBudgetCleanup = null;
 async function renderIndustry(options = {}) {
   const ind = state.industry;
   if (!ind) return;
@@ -286,6 +287,7 @@ async function renderIndustry(options = {}) {
   if (gamesCleanup) { gamesCleanup(); gamesCleanup = null; }
   if (semiconValuationCleanup) { semiconValuationCleanup(); semiconValuationCleanup = null; }
   if (globeCleanup) { globeCleanup(); globeCleanup = null; }
+  if (nationalBudgetCleanup) { nationalBudgetCleanup(); nationalBudgetCleanup = null; }
   if (darpaCleanup) { darpaCleanup(); darpaCleanup = null; }
   const selectedGroup = ind.groups?.find(group => group.id === state.semiconGroup);
   const selectedTab = ind.tabs?.find((tab) => tab.id === state.subtab) || selectedGroup;
@@ -302,8 +304,8 @@ async function renderIndustry(options = {}) {
   // 탭별 수집 워크플로와 갱신 버튼 라벨은 refresh.js에서 정한다.
   // 테이블 전용 탭은 자체 기간 필터를 사용하므로 전역 차트 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || ind.id === "expansion" || (ind.id === "movies" && state.subtab === "slate") || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -338,6 +340,15 @@ async function renderIndustry(options = {}) {
       if (mySeq !== renderSeq) return;
       loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", companyCountry: state.gamesCompanyCountry, tabsRoot: pageTabs, createFinancialCard});
     } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임을 불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
+  }
+
+  if (ind.id === "national_budget") {
+    try {
+      const nationalBudget = await import("./national-budget.js");
+      if (mySeq !== renderSeq) return;
+      nationalBudgetCleanup = nationalBudget.mount(content, {country: state.subtab || "kr", tabsRoot: pageTabs});
+    } catch (e) { if (mySeq === renderSeq) content.textContent = "국가예산을 불러오지 못했습니다. 새로고침해 주세요."; }
     return;
   }
 

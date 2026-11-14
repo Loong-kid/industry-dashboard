@@ -1,0 +1,22 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+(async()=>{
+  const code=fs.readFileSync(path.join(__dirname,'../assets/national-budget.js'),'utf8');
+  const {change,format,yearsFor,statusFor,rowsFor}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+  const kr=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/national-budget/kr.json')));
+  const us=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/national-budget/us.json')));
+  assert.equal(format(null),'—');assert.equal(format(0),'0');assert.equal(change(0,10),-1);assert.equal(change(10,0),null);
+  assert.equal(statusFor(kr,'approved',2026),'국회확정 본예산');
+  assert.equal(statusFor(kr,'proposal',2027),'정부안');
+  assert.equal(statusFor(us,'outlays',us.actual_through.outlays),'실적');
+  assert.equal(statusFor(us,'outlays',us.actual_through.outlays,true),'정부요청·추계');
+  assert.equal(statusFor(us,'ba',us.account_actual_through+1),'정부요청·추계');
+  assert.deepEqual(yearsFor({totals:{x:{'2026':1,'2014':2,'2020':3}}},'x'),[2014,2020,2026]);
+  const programs=[{name:'AI 사업',agency:'기관',sector:'s',values:{approved:{2025:1,2026:0},proposal:{2026:2}}},{name:'없음',agency:'기관',sector:'s',values:{approved:{2025:1}}}];
+  const rows=rowsFor(programs,'approved',2026,'s','ai');
+  assert.equal(rows.length,1);assert.equal(rows[0].value,0);assert.equal(rows[0].prior,1);
+  assert.equal(rowsFor([{name:'offset',sector:'950',basis:'outlays',values:{2026:-30}}],'outlays',2026,'950')[0].value,-30);
+  assert.equal(rowsFor(programs,'approved',2027,'s').length,0);
+  console.log('PASS national budget basis, fiscal-year boundaries, missing/zero and account search');
+})().catch(e=>{console.error(e);process.exit(1);});

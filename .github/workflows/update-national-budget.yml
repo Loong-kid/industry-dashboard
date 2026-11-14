@@ -1,0 +1,54 @@
+name: update-national-budget
+on:
+  schedule:
+    - cron: '10 0 * * *' # KST 09:10
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  national-budget:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 openpyxl
+      - uses: actions/cache@v4
+        with:
+          path: .cache/national-budget
+          key: national-budget-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: national-budget-v1-${{ runner.os }}-
+      - name: Validate fiscal definitions and presentation
+        id: precheck
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_national_budget.py -v
+          node scripts/test_national_budget.cjs
+      - name: Refresh official public sources
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_national_budget.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_national_budget.py -v
+      - name: Commit national budget data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/national-budget/
+          git diff --cached --quiet || git commit -m "chore: refresh national budgets"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
