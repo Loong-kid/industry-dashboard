@@ -1,0 +1,72 @@
+.movies-root { min-width:0; padding:16px; border:1px solid var(--border); border-radius:10px; background:var(--surface); }
+.movie-panel { display:flex; flex-direction:column; gap:12px; min-width:0; }
+.movie-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+.movie-head h2 { font-size:16px; font-weight:650; margin:0; color:var(--ink); }
+.movie-head p,.movie-source,.movie-count { font-size:12px; color:var(--muted); line-height:1.6; }
+.movie-head p { margin-top:5px; max-width:75ch; }
+.movies-root button,.movies-root select,.movies-root input[type="search"] { font:inherit; font-size:12px; border:1px solid var(--border); border-radius:5px; background:var(--surface); color:var(--ink); padding:7px 9px; min-width:0; }
+.movies-root button { cursor:pointer; }
+.movies-root button:hover:not(:disabled) { color:var(--accent); border-color:var(--accent); }
+.movies-root button:disabled { opacity:.4; cursor:default; }
+.movie-head > button { flex:none; }
+.movie-scope { font-size:12px; line-height:1.7; }
+.movie-scope summary { cursor:pointer; color:var(--ink-2); }
+.movie-scope p { max-width:85ch; color:var(--muted); padding-top:7px; }
+.movie-controls { display:flex; align-items:flex-end; flex-wrap:wrap; gap:12px; padding:12px 0; border-block:1px solid var(--border); }
+.movie-controls label { display:flex; flex-direction:column; gap:5px; font-size:11px; color:var(--ink-2); min-width:0; }
+.movie-controls select { max-width:200px; }
+.movie-controls .movie-search { flex:1; min-width:190px; }
+.movie-controls .movie-check { flex-direction:row; align-items:center; align-self:center; cursor:pointer; padding-top:14px; font-size:12px; }
+.movie-check input { accent-color:var(--accent); }
+.movie-views { display:flex; flex-wrap:wrap; gap:6px; border-bottom:1px solid var(--border); }
+.movie-views button { border:0; border-radius:0; border-bottom:2px solid transparent; background:transparent; padding:8px 12px; color:var(--muted); }
+.movie-views [aria-pressed="true"] { border-bottom-color:var(--accent); color:var(--accent); }
+.movie-count { color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.movie-notice { padding:10px 12px; font-size:12px; line-height:1.6; border:1px solid var(--border); color:var(--ink-2); }
+.movie-table-wrap { max-height:70vh; overflow:auto; overscroll-behavior:contain; border:1px solid var(--border); border-radius:5px; }
+.movie-table-wrap table { min-width:1200px; width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0; }
+.movie-table-wrap caption { text-align:left; padding:8px 10px; font-size:11px; color:var(--muted); }
+.movie-table-wrap td,.movie-table-wrap th { padding:11px 10px; font-size:12px; line-height:1.55; vertical-align:top; border-bottom:1px solid var(--border); white-space:normal; overflow-wrap:anywhere; }
+.movie-table-wrap th { position:sticky; top:0; background:var(--surface); z-index:2; font-weight:600; }
+.movie-table-wrap td:first-child,.movie-table-wrap th:first-child { position:sticky; left:0; width:240px; background:var(--surface); z-index:1; box-shadow:1px 0 var(--border); }
+.movie-table-wrap th:first-child { z-index:3; }
+.movie-table-wrap th:nth-child(2) { width:140px; }
+.movie-table-wrap th:nth-child(3) { width:145px; }
+.movie-table-wrap th:nth-child(4) { width:190px; }
+.movie-table-wrap th:nth-child(n+5):nth-child(-n+7) { width:110px; text-align:right; }
+.movie-table-wrap th:last-child { width:130px; }
+.movie-table-wrap .movie-number { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.movie-title > a { font-size:13px; font-weight:600; }
+.movies-root a { color:var(--accent); text-underline-offset:3px; }
+.movie-table-wrap small { display:block; font-size:11px; color:var(--muted); margin-top:4px; }
+.movie-performance { display:block; margin-top:5px; font-size:12px; font-weight:600; }
+.movie-table-wrap td:last-child > a { display:block; margin:5px 0; }
+.movie-table-wrap td:last-child > button { padding:3px 7px; font-size:11px; }
+.movie-table-wrap .movie-expanded td { position:static; width:auto; padding:16px 20px; box-shadow:none; }
+.movie-expanded h3 { font-size:14px; margin-bottom:10px; }
+.movie-expanded p { margin-top:7px; max-width:95ch; }
+.movie-table-wrap .movie-empty { position:static; text-align:center; padding:32px; }
+.movie-pager { display:flex; align-items:center; justify-content:flex-end; gap:12px; font-size:12px; color:var(--muted); }
+.movie-fullscreen { box-sizing:border-box; width:100vw; max-width:none; height:100vh; height:100dvh; max-height:none; margin:0; padding:20px 24px; border:0; border-radius:0; overflow:hidden; background:var(--surface); color:var(--ink); }
+.movie-fullscreen > .movie-panel { height:100%; }
+.movie-fullscreen .movie-table-wrap { flex:1; min-height:0; max-height:none; }
+.movie-fullscreen .movie-head,.movie-fullscreen .movie-controls,.movie-fullscreen .movie-views,.movie-fullscreen .movie-count,.movie-fullscreen .movie-pager,.movie-fullscreen .movie-source { flex:none; }
+.movie-fullscreen .movie-scope { display:none; }
+html:has(.movie-fullscreen[open]) { overflow:hidden; }
+.movie-company-overview { font-size:12px; line-height:1.6; }
+.movie-company-overview > p { color:var(--ink-2); margin-bottom:10px; }
+.movie-company-wrap { overflow:auto; border:1px solid var(--border); border-radius:6px; }
+.movie-company-overview table { min-width:750px; width:100%; }
+.movie-company-overview th,.movie-company-overview td { padding:10px 12px; vertical-align:top; white-space:normal; border-bottom:1px solid var(--border); }
+.movie-company-overview th:first-child { width:210px; }.movie-company-overview th:nth-child(2) { width:220px; }
+@media (max-width:600px) {
+  .movies-root { padding:12px; }.movie-head { flex-wrap:wrap; }
+  .movie-controls > label { flex:1 1 120px; }.movie-controls select { max-width:100%; width:100%; }
+  .movie-controls .movie-search { flex-basis:100%; min-width:0; }.movie-controls .movie-check { flex:1 1 140px; padding-top:0; }
+  .movie-table-wrap td:first-child,.movie-table-wrap th:first-child { width:150px; }
+  .movie-fullscreen { padding:12px; }.movie-source { font-size:11px; }
+  .movie-fullscreen .movie-head p { display:none; }
+  .movie-fullscreen .movie-head { align-items:center; }
+  .movie-fullscreen .movie-panel { gap:8px; }
+  .movie-fullscreen .movie-controls { gap:8px; padding:8px 0; }
+}

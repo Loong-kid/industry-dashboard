@@ -1,0 +1,28 @@
+const fs=require('node:fs');const assert=require('node:assert/strict');
+(async()=>{
+ const source=fs.readFileSync('assets/movies.js','utf8');
+ const {filmState,selectFilms,usd}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+ const today='2026-11-15';
+ const released={id:'original',title:'Original',events:[{date:'2026-07-17',release_type:'Wide'},{date:'2026-12-11',release_type:'IMAX'}],distributors:['Example'],major_release:true,imax_confirmed:true,worldwide_usd:1200};
+ const future={id:'next',title:'Future',events:[{date:'2026-12-18',release_type:'Wide'}],distributors:['Other'],major_release:true,imax_confirmed:false};
+ const doc={year:2026,films:[released,future]};
+ assert.equal(filmState(released,today,2026).released,true);assert.equal(filmState(released,today,2026).upcoming,true);
+ assert.equal(filmState(released,today,2026).date,'2026-07-17');assert.equal(filmState(released,today,2026).next_date,'2026-12-11');
+ assert.equal(filmState(future,today,2026).released,false);
+ assert.deepEqual(selectFilms(doc,{today,view:'released'}).map(f=>f.id),['original']);
+ assert.equal(selectFilms(doc,{today,view:'upcoming'}).length,2);
+ assert.equal(selectFilms(doc,{today,imax:true}).length,1);
+ assert.equal(selectFilms(doc,{today,distributor:'Example',query:'original'}).length,1);
+ assert.equal(selectFilms(doc,{today,query:'not-a-film'}).length,0);
+ const missingWorld={...future,domestic_usd:500000};
+ assert.equal(selectFilms({year:2026,films:[missingWorld,released]},{today,sort:'gross'})[0].id,'original');
+ const narnia={...future,id:'/movie/Narnia-The-Magicians-Nephew-(2026)',events:[{date:'2027-02-10',release_type:'IMAX'}]};
+ assert.equal(filmState(narnia,today,2027).released,false);
+ assert.equal(filmState({...future,events:[{date:null}]},today,2028).upcoming,true);
+ assert.equal(usd(null),'—');assert.equal(usd(0),'0.0');assert.equal(usd(1000000000),'1,000.0');
+ assert(!source.includes('innerHTML'));
+ const current=JSON.parse(fs.readFileSync('data/movies/films_2026.json','utf8'));
+ assert.equal(new Set(selectFilms(current,{today,view:'all',major:false}).map(f=>f.id)).size,current.films.length);
+ assert(source.includes('dialog'));assert(source.includes('aria-expanded'));assert(source.includes('textContent'));
+ console.log('Movie release statuses, rerelease events, filters, unknown totals and safe rendering passed');
+})().catch(e=>{console.error(e);process.exit(1)});

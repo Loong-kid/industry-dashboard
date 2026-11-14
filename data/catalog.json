@@ -6365,6 +6365,113 @@
       ]
     },
     {
+      "id": "movies",
+      "name": "영화",
+      "default_range": "all",
+      "default_tab": "slate",
+      "auto_collect_time": "09:05",
+      "cadence": "매일 09:05(KST)에 최근·예정 개봉 일정과 작품 누적 흥행 성적, SEC 기업 실적을 확인합니다. 개봉일은 북미 기준이며 IMAX 공개 라인업의 지역·기준일을 따로 표시합니다. 오래된 개봉연도는 초기 수집 자료를 보존합니다.",
+      "tabs": [
+        {
+          "id": "slate",
+          "name": "개봉·흥행",
+          "description": "연도별 개봉 예정과 공개된 흥행 실적을 함께 확인합니다. 북미 개봉일·추가 개봉일을 구분하고, 세계 흥행 상위 100편과 북미 일정의 작품 누적 매출을 제공합니다. 금액은 티켓 판매 총액입니다."
+        },
+        {
+          "id": "imax",
+          "name": "IMAX",
+          "description": "대형 화면 기술·콘텐츠·시스템 사업 IMAX의 2014년 이후 연결 매출·GAAP 영업이익·현금 유형자산 취득입니다. 회사 매출과 IMAX 박스오피스를 구분합니다. 이 CAPEX 차트는 별도 항목인 JRSA 장비 투자와 무형자산 취득을 포함하지 않습니다.",
+          "default_range": "all"
+        },
+        {
+          "id": "peers",
+          "name": "극장·광고",
+          "description": "Cinemark·AMC·Marcus·National CineMedia를 비교합니다. 극장 입장권·매점과 스크린 광고의 사업모델을 구분합니다. Marcus 호텔 사업, NCMI의 연결 범위 변경 등 회사별 주석을 확인해 주세요.",
+          "default_range": "all"
+        }
+      ],
+      "sections": [
+        {
+          "title": "영화 개봉 일정·흥행 성적",
+          "tab": "slate",
+          "type": "table",
+          "table_kind": "movie_slate",
+          "indicators": [
+            "release_index"
+          ]
+        },
+        {
+          "title": "기업별 영화 노출 구조",
+          "tab": "peers",
+          "type": "table",
+          "table_kind": "movie_companies",
+          "indicators": [
+            "company_overview"
+          ]
+        },
+        {
+          "title": "IMAX · IMAX",
+          "tab": "imax",
+          "layout": "financial",
+          "anchor": "movies-imax",
+          "supply_note": "대형 화면 기술·콘텐츠·시스템 사업 연결 · IMAX는 극장 전체를 소유하는 체인과 사업 모델이 다릅니다. 매출은 콘텐츠·시스템 판매·임대·유지보수 등을 포함하며 IMAX 박스오피스와 다릅니다. 현금 CAPEX 표시는 유형자산 현금취득이며, 별도 현금흐름 항목인 JRSA 장비 투자와 무형자산 취득은 포함하지 않습니다.",
+          "indicators": [
+            "company_imax_revenue",
+            "company_imax_profit",
+            "company_imax_capex"
+          ]
+        },
+        {
+          "title": "Cinemark · CNK",
+          "tab": "peers",
+          "layout": "financial",
+          "anchor": "movies-cnk",
+          "supply_note": "미국·중남미 극장 체인 연결 · Cinemark Holdings 연결 실적입니다. 같은 공시에 함께 포함된 자회사 Cinemark USA의 수치와 합산하지 않습니다. LegalEntityAxis의 CnkMember를 원문에서 확인합니다. 매출은 입장권·매점·광고 등을 포함합니다.",
+          "indicators": [
+            "company_cnk_revenue",
+            "company_cnk_profit",
+            "company_cnk_capex"
+          ]
+        },
+        {
+          "title": "AMC Entertainment · AMC",
+          "tab": "peers",
+          "layout": "financial",
+          "anchor": "movies-amc",
+          "supply_note": "미국·유럽 극장 체인 연결 · AMC Entertainment 연결 실적이며 방송사 AMC Networks와 다릅니다. 입장권·매점·기타 극장 매출을 포함하고, Carmike·Odeon 인수 등 연결 범위 변화가 있습니다. CAPEX는 현금흐름표 Capital expenditures로 표시된 PaymentsToAcquireProductiveAssets입니다.",
+          "indicators": [
+            "company_amc_revenue",
+            "company_amc_profit",
+            "company_amc_capex"
+          ]
+        },
+        {
+          "title": "Marcus · MCS",
+          "tab": "peers",
+          "layout": "financial",
+          "anchor": "movies-mcs",
+          "supply_note": "극장·호텔/리조트 전사 연결 · Marcus는 극장 외 호텔·리조트 사업을 포함합니다. 2015년 결산기 변경 전 5월 결산과 이후 12월 결산의 실제 분기를 구분합니다. 2015년 7개월 전환기는 비교 가능한 분기·연간 차트에 섞지 않습니다. 2025년은 370일의 전환 회계연도입니다.",
+          "indicators": [
+            "company_mcs_revenue",
+            "company_mcs_profit",
+            "company_mcs_capex"
+          ]
+        },
+        {
+          "title": "National CineMedia · NCMI",
+          "tab": "peers",
+          "layout": "financial",
+          "anchor": "movies-ncmi",
+          "supply_note": "극장 내 스크린 광고 사업 연결 · 극장 스크린 광고 중심이며 배급사·극장 체인과 다릅니다. 2026년 9월 Captivate 인수 이후 사무실·주거용 광고도 포함합니다. 2023년 4월 11일~8월 7일 NCM LLC가 연결에서 제외됐다가 재편입돼 2023년 실적의 연결 범위가 다른 연도와 다릅니다. 공시 GAAP 수치를 그대로 표시하며 이를 정상화 실적으로 추정하지 않습니다.",
+          "indicators": [
+            "company_ncmi_revenue",
+            "company_ncmi_profit",
+            "company_ncmi_capex"
+          ]
+        }
+      ]
+    },
+    {
       "id": "vrar",
       "name": "VR/AR",
       "default_range": "all",

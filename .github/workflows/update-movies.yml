@@ -1,0 +1,74 @@
+name: update-movies
+on:
+  schedule:
+    - cron: '5 0 * * *' # KST 09:05
+  workflow_dispatch:
+    inputs:
+      full_history:
+        description: '2014년부터 전체 개봉 일정 재확인'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 lxml
+      - name: Validate film sources and company reporting rules
+        id: definitions
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_movies.py -v
+      - name: Validate movie filter and date rules
+        id: ui
+        continue-on-error: true
+        run: node scripts/test_movies.cjs
+      - uses: actions/cache@v4
+        with:
+          path: .cache/movies
+          key: movie-sources-v1-${{ github.run_id }}
+          restore-keys: movie-sources-v1-
+      - name: Refresh film-exposed company accounts
+        id: finance
+        continue-on-error: true
+        if: steps.definitions.outcome == 'success'
+        run: python -u scripts/fetch_movies.py --only financials
+      - name: Refresh release calendars and box office
+        id: films
+        continue-on-error: true
+        if: steps.definitions.outcome == 'success' && steps.ui.outcome == 'success'
+        env:
+          FULL_HISTORY: ${{ inputs.full_history }}
+        run: |
+          args=()
+          if [ "$FULL_HISTORY" = "true" ]; then args+=(--full-history); fi
+          python -u scripts/fetch_movies.py --only films "${args[@]}"
+      - name: Validate refreshed documents
+        id: postcheck
+        continue-on-error: true
+        if: steps.definitions.outcome == 'success' && steps.ui.outcome == 'success'
+        run: python -m unittest discover -s scripts -p test_movies.py -v
+      - name: Commit movie data only
+        if: steps.definitions.outcome == 'success' && steps.ui.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/movies/
+          git diff --cached --quiet || git commit -m "chore: refresh movie releases and issuer accounts"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Report unresolved pipeline failure
+        if: steps.definitions.outcome == 'failure' || steps.ui.outcome == 'failure' || steps.finance.outcome == 'failure' || steps.films.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
