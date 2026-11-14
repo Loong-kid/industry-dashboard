@@ -6,14 +6,15 @@ function renderCPUSpecs(doc) {
   card.dataset.cpuSpecs=doc.id;
   const esc=escapeHtml,companies=[...new Set(doc.rows.map(r=>r.values[0]))],uses=[...new Set(doc.rows.map(r=>r.values[1]))];
   const displayIndices=doc.display_indices;
-  const options=items=>items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  const columnCategories=doc.column_views.filter(v=>!['overview','all'].includes(v.id));
+  const multiFilter=(key,label,items,checked=true)=>`<div class="cpu-specs-filter-field"><span>${label}</span><details class="cpu-specs-filter" data-filter="${key}"><summary aria-label="CPU 사양 ${label} 선택"></summary><div class="cpu-specs-filter-options"><fieldset><legend>${label} 선택</legend><div class="cpu-specs-filter-actions">${key==='columns'?'<button type="button" data-selection="overview">한눈에 보기</button>':''}<button type="button" data-selection="all">전체 선택</button><button type="button" data-selection="none">전체 해제</button></div>${items.map(([id,name])=>`<label><input type="checkbox" value="${esc(id)}" ${checked?'checked':''}><span>${esc(name)}</span></label>`).join('')}</fieldset>${key==='columns'?'<p>선택한 카테고리의 열을 합쳐 표시합니다. 겹치는 열은 한 번만 표시하며 기업·용도·CPU 이름은 유지합니다.</p>':''}</div></details></div>`;
   const link=(url,label,title='')=>/^https:\/\//.test(url)?`<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(title)}">${esc(label)}</a>`:esc(label);
-  card.innerHTML=`<div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${doc.rows.length}개 CPU·SoC · ${companies.length}개 기업 · Geekbench 6·7 · 전체 사양 ${displayIndices.length}개 열</p></div><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)}</small></div></div>
+  card.innerHTML=`<div class="cpu-specs-panel"><div class="cpu-specs-head"><div><div class="card-name">${esc(doc.name)}</div><p>${doc.rows.length}개 CPU·SoC · ${companies.length}개 기업 · Geekbench 6·7 · 전체 사양 ${displayIndices.length}개 열</p></div><div class="cpu-specs-head-actions"><div>${link(doc.source_url,'시트 원본 ↗')}<small>가져온 날 ${esc(doc.fetched)}</small></div><button type="button" class="cpu-specs-expand" aria-haspopup="dialog" aria-expanded="false">전체화면</button></div></div>
     <div class="cpu-specs-controls">
-      <label>기업<select aria-label="CPU 사양 기업"><option value="all">전체 기업</option>${options(companies)}</select></label>
-      <label>제품군·용도<select aria-label="CPU 사양 용도"><option value="all">전체 용도</option>${options(uses)}</select></label>
+      ${multiFilter('company','기업',companies.map(v=>[v,v]))}
+      ${multiFilter('use','제품군·용도',uses.map(v=>[v,v]))}
       <label class="cpu-specs-search">검색<input type="search" aria-label="CPU 사양 검색" placeholder="CPU 이름·세대·아키텍처"></label>
-      <label>열 보기<select aria-label="CPU 사양 열 보기">${doc.column_views.map(v=>`<option value="${esc(v.id)}">${esc(v.label)}</option>`).join('')}</select></label>
+      ${multiFilter('columns','열 카테고리',columnCategories.map(v=>[v.id,v.label]),false)}
       <label>값 표시<select aria-label="CPU 사양 값 표시"><option value="enriched">보완 포함</option><option value="original">시트 원본</option></select></label>
       <label class="cpu-specs-only"><input type="checkbox" aria-label="보완한 CPU만">보완한 CPU만</label><button type="button" class="cpu-specs-reset">초기화</button>
     </div><div class="cpu-specs-status"><span role="status" aria-live="polite"></span><span>오른쪽으로 CPU 구성·L1·L2·L3 캐시 → · 40px 고정 행 · 마우스 메모 / 상세</span></div>
@@ -23,12 +24,23 @@ function renderCPUSpecs(doc) {
       <p>시트 기재값을 보존하고 보완값과 제품별 파운드리 확인을 따로 표시합니다. ‘시트 원본’은 표시 중인 사양의 원래 값을 보여줍니다. Geekbench는 6·7만 표시하며 이전 버전은 원본 시트에서 확인할 수 있습니다. Apple M 시리즈는 설계사 Apple과 제조사 TSMC를 구분합니다. H2·R1은 제조사를 임의로 채우지 않았습니다.</p>
       ${Object.values(doc.sources).map(s=>`<p>${link(s.url,s.title+' ↗')}<small>${esc(s.note)} 확인 ${esc(s.checked)}</small></p>`).join('')}<p>${esc(doc.update_note)}</p></details>
     <div class="cpu-specs-memo" role="tooltip" hidden></div>
-    <dialog class="cpu-specs-dialog" aria-label="CPU 상세 사양"><div class="cpu-specs-dialog-head"><h2></h2><button type="button" aria-label="CPU 상세 닫기">닫기</button></div><div class="cpu-specs-dialog-body"></div></dialog>`;
-  const [company,use,columns,mode]=card.querySelectorAll('select'),search=card.querySelector('input[type="search"]'),only=card.querySelector('input[type="checkbox"]');
-  const region=card.querySelector('.cpu-specs-scroll'),table=region.querySelector('table'),memo=card.querySelector('.cpu-specs-memo'),dialog=card.querySelector('dialog');
+    <dialog class="cpu-specs-dialog" aria-label="CPU 상세 사양"><div class="cpu-specs-dialog-head"><h2></h2><button type="button" aria-label="CPU 상세 닫기">닫기</button></div><div class="cpu-specs-dialog-body"></div></dialog></div><dialog class="cpu-specs-fullscreen" aria-label="CPU 표 전체화면"></dialog>`;
+  const mode=card.querySelector('select'),search=card.querySelector('input[type="search"]'),only=card.querySelector('.cpu-specs-only input');
+  const region=card.querySelector('.cpu-specs-scroll'),table=region.querySelector('table'),memo=card.querySelector('.cpu-specs-memo'),dialog=card.querySelector('.cpu-specs-dialog');
+  const filters=Object.fromEntries([...card.querySelectorAll('[data-filter]')].map(el=>[el.dataset.filter,el]));
+  const boxes=key=>[...filters[key].querySelectorAll('input[type="checkbox"]')];
+  const selected=key=>new Set(boxes(key).filter(input=>input.checked).map(input=>input.value));
+  let compactView=(doc.default_view||'overview')==='overview';
+  if(!compactView)boxes('columns').forEach(input=>input.checked=doc.default_view==='all'||input.value===doc.default_view);
+  const updateFilters=()=>{
+    for(const [key,filter] of Object.entries(filters)){
+      const inputs=boxes(key),on=inputs.filter(input=>input.checked);
+      filter.querySelector('summary').textContent=key==='columns'&&compactView?'한눈에 보기':!on.length?(key==='columns'?'기본정보만':'선택 없음'):on.length===inputs.length?(key==='company'?'전체 기업':key==='use'?'전체 용도':'전체 사양'):on.length===1?on[0].nextElementSibling.textContent:`${on.length}개 선택`;
+      filter.querySelector('[data-selection="overview"]')?.setAttribute('aria-pressed',String(compactView));
+    }
+  };
   const byId=new Map(doc.rows.map(row=>[row.id,row]));
   let sortIndex=null,sortDirection=1,memoTarget=null,hideTimer=null,memoItems=new Map();
-  columns.value=doc.default_view||'overview';
   const evidence=(row,i)=>mode.value==='original'?null:i===7&&row.foundry?{source:row.foundry.source,note:row.foundry.note}:row.supplements[i];
   const value=(row,i)=>mode.value==='original'?row.values[i]:i===7&&row.foundry?`${row.foundry.foundry} ${row.foundry.node} · ${row.foundry.process_nm} nm`:row.supplements[i]?.value??row.values[i];
   const format=v=>v&&/^\d+$/.test(v)?Number(v).toLocaleString('ko-KR'):v||'—';
@@ -77,10 +89,12 @@ function renderCPUSpecs(doc) {
   };
   const draw=()=>{
     hideMemo();memoItems=new Map();
-    const view=doc.column_views.find(v=>v.id===columns.value),compact=view.id==='overview';
-    const visible=compact?overview:[...view.indices.map(i=>({key:String(i),indices:[i],sort:i,label:doc.columns[i].label,width:i===2?190:i===0?80:i===1?110:doc.columns[i].numeric?100:i===22||i===35?170:115,numeric:doc.columns[i].numeric})),{key:'detail',label:'상세',indices:[],width:48}];
+    const compact=compactView,chosen=selected('columns'),indices=new Set([0,1,2]);
+    columnCategories.filter(v=>chosen.has(v.id)).forEach(v=>v.indices.forEach(i=>indices.add(i)));
+    const visible=compact?overview:[...displayIndices.filter(i=>indices.has(i)).map(i=>({key:String(i),indices:[i],sort:i,label:doc.columns[i].label,width:i===2?190:i===0?80:i===1?110:doc.columns[i].numeric?100:i===22||i===35?170:115,numeric:doc.columns[i].numeric})),{key:'detail',label:'상세',indices:[],width:48}];
     const query=search.value.trim().toLocaleLowerCase();
-    const rows=doc.rows.filter(row=>(company.value==='all'||row.values[0]===company.value)&&(use.value==='all'||row.values[1]===use.value)&&(!only.checked||Object.keys(row.supplements).length)&&(!query||displayIndices.some(i=>String(value(row,i)).toLocaleLowerCase().includes(query))));
+    const chosenCompanies=selected('company'),chosenUses=selected('use');
+    const rows=doc.rows.filter(row=>chosenCompanies.has(row.values[0])&&chosenUses.has(row.values[1])&&(!only.checked||Object.keys(row.supplements).length)&&(!query||displayIndices.some(i=>String(value(row,i)).toLocaleLowerCase().includes(query))));
     if(sortIndex!==null)rows.sort((a,b)=>{const av=value(a,sortIndex),bv=value(b,sortIndex);if(!av||!bv)return av?-1:bv?1:a.sheet_row-b.sheet_row;const result=doc.columns[sortIndex].numeric?Number(av)-Number(bv):String(av).localeCompare(String(bv),'ko',{numeric:true});return result*sortDirection||a.sheet_row-b.sheet_row;});
     table.classList.toggle('cpu-specs-overview',compact);table.style.width=visible.reduce((sum,c)=>sum+c.width,0)+'px';
     table.querySelector('colgroup').innerHTML=visible.map(c=>`<col class="${c.key==='chip'||c.indices[0]===2?'cpu-specs-col-name':''}" style="width:${c.width}px">`).join('');
@@ -88,7 +102,7 @@ function renderCPUSpecs(doc) {
     table.querySelector('tbody').innerHTML=rows.length?rows.map(row=>`<tr data-sheet-row="${row.sheet_row}">${visible.map(c=>cell(row,c,compact)).join('')}</tr>`).join(''):`<tr><td colspan="${visible.length}"><div class="cpu-specs-cell">조건에 맞는 CPU가 없습니다. 검색어나 필터를 변경해 주세요.</div></td></tr>`;
     card.querySelector('[role="status"]').textContent=`${rows.length} / ${doc.rows.length}개 CPU · ${compact?'요약·구성·캐시 ':''}${visible.length}개 열 · ${mode.value==='enriched'?'보완 포함':'시트 원본'}`;
   };
-  const resetScroll=()=>{region.scrollLeft=columns.value!=='overview'&&innerWidth<=600?190:0;region.scrollTop=0;};
+  const resetScroll=()=>{region.scrollLeft=!compactView&&innerWidth<=600?190:0;region.scrollTop=0;};
   table.addEventListener('click',event=>{
     const sort=event.target.closest('[data-sort]'),detail=event.target.closest('[data-row]');
     if(sort){const index=Number(sort.dataset.sort);sortDirection=sortIndex===index?-sortDirection:doc.columns[index].numeric?-1:1;sortIndex=index;draw();}
@@ -100,9 +114,51 @@ function renderCPUSpecs(doc) {
   table.addEventListener('pointerout',event=>{if(!memo.contains(event.relatedTarget))delayHide();});
   table.addEventListener('focusin',event=>{const target=event.target.closest('[data-memo]');if(target)showMemo(target);});
   table.addEventListener('focusout',delayHide);memo.addEventListener('pointerenter',()=>clearTimeout(hideTimer));memo.addEventListener('pointerleave',delayHide);memo.addEventListener('focusin',()=>clearTimeout(hideTimer));memo.addEventListener('focusout',delayHide);
-  card.addEventListener('keydown',event=>{if(event.key==='Escape')hideMemo();});region.addEventListener('scroll',hideMemo,{passive:true});
-  [company,use,columns,mode,only].forEach(control=>control.addEventListener('change',()=>{if(control===mode){only.disabled=mode.value==='original';if(only.disabled)only.checked=false;}draw();if(control===columns)resetScroll();else region.scrollTop=0;}));
+  card.addEventListener('keydown',event=>{
+    if(event.key!=='Escape'||dialog.open)return;
+    hideMemo();
+    const open=Object.values(filters).find(filter=>filter.open);
+    if(open){event.preventDefault();event.stopPropagation();open.open=false;open.querySelector('summary').focus();}
+  });region.addEventListener('scroll',hideMemo,{passive:true});
+  for(const [key,filter] of Object.entries(filters)){
+    filter.addEventListener('toggle',()=>{
+      if(!filter.open)return;
+      Object.values(filters).forEach(other=>{if(other!==filter)other.open=false;});
+      const menu=filter.querySelector('.cpu-specs-filter-options');menu.style.translate='0';menu.style.top='calc(100% + 6px)';menu.style.bottom='auto';
+      const below=innerHeight-menu.getBoundingClientRect().top-12,above=filter.getBoundingClientRect().top-12;
+      const upwards=below<144&&above>below;
+      if(upwards){menu.style.top='auto';menu.style.bottom='calc(100% + 6px)';}
+      menu.style.maxHeight=Math.max(48,Math.min(400,innerHeight*.5,upwards?above:below))+'px';
+      const box=menu.getBoundingClientRect(),shift=Math.min(0,innerWidth-12-box.right);
+      menu.style.translate=Math.max(12-box.left,shift)+'px';
+    });
+    const changed=(overview=false)=>{if(key==='columns')compactView=overview;updateFilters();draw();if(key==='columns')resetScroll();else region.scrollTop=0;};
+    filter.addEventListener('change',()=>changed());
+    filter.addEventListener('click',event=>{
+      const action=event.target.closest('[data-selection]');if(!action)return;
+      boxes(key).forEach(input=>input.checked=action.dataset.selection==='all');
+      changed(action.dataset.selection==='overview');
+    });
+  }
+  card.addEventListener('click',event=>{if(!event.target.closest('[data-filter]'))Object.values(filters).forEach(filter=>filter.open=false);});
+  [mode,only].forEach(control=>control.addEventListener('change',()=>{if(control===mode){only.disabled=mode.value==='original';if(only.disabled)only.checked=false;}draw();region.scrollTop=0;}));
   search.addEventListener('input',()=>{region.scrollTop=0;draw();});
-  card.querySelector('.cpu-specs-reset').addEventListener('click',()=>{company.value=use.value='all';columns.value=doc.default_view||'overview';mode.value='enriched';search.value='';only.checked=only.disabled=false;sortIndex=null;sortDirection=1;draw();resetScroll();});
-  draw();resetScroll();return card;
+  card.querySelector('.cpu-specs-reset').addEventListener('click',()=>{boxes('company').forEach(input=>input.checked=true);boxes('use').forEach(input=>input.checked=true);compactView=(doc.default_view||'overview')==='overview';boxes('columns').forEach(input=>input.checked=!compactView&&(doc.default_view==='all'||input.value===doc.default_view));Object.values(filters).forEach(filter=>filter.open=false);mode.value='enriched';search.value='';only.checked=only.disabled=false;sortIndex=null;sortDirection=1;updateFilters();draw();resetScroll();});
+  const panel=card.querySelector('.cpu-specs-panel'),fullscreen=card.querySelector('.cpu-specs-fullscreen'),expand=card.querySelector('.cpu-specs-expand');
+  let pagePosition={left:0,top:0};
+  expand.addEventListener('click',()=>{
+    hideMemo();Object.values(filters).forEach(filter=>filter.open=false);
+    if(fullscreen.open){fullscreen.close();return;}
+    pagePosition={left:window.scrollX,top:window.scrollY};
+    const position={left:region.scrollLeft,top:region.scrollTop};
+    fullscreen.append(panel);fullscreen.showModal();
+    expand.textContent='전체화면 닫기';expand.setAttribute('aria-expanded','true');
+    region.scrollTo(position);expand.focus({preventScroll:true});
+  });
+  fullscreen.addEventListener('close',()=>{
+    const position={left:region.scrollLeft,top:region.scrollTop};
+    card.insertBefore(panel,fullscreen);expand.textContent='전체화면';expand.setAttribute('aria-expanded','false');
+    if(card.isConnected){region.scrollTo(position);expand.focus({preventScroll:true});window.scrollTo({...pagePosition,behavior:'instant'});}
+  });
+  updateFilters();draw();resetScroll();return card;
 }

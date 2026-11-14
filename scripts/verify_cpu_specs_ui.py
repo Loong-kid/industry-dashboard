@@ -1,4 +1,4 @@
-"""Exercise the CPU worksheet table and retain the financial charts below it."""
+"""Verify CPU multi-select/fullscreen, exact worksheet values and financial charts."""
 import argparse
 import json
 from pathlib import Path
@@ -16,6 +16,9 @@ def verify(base):
             errors=[]
             page.on('pageerror',lambda error:errors.append(str(error)))
             page.goto(base+'#/semicon/cpu',wait_until='networkidle')
+            if page.locator('#site-gate').count():
+                page.evaluate("() => {if(window.SITE_GATE) localStorage.setItem('site_gate_pass',window.SITE_GATE.hash)}")
+                page.reload(wait_until='networkidle')
             try:
                 page.wait_for_function('typeof state!=="undefined" && state.charts.length===21 && !document.querySelector(".page-loading")')
             except Exception:
@@ -23,12 +26,27 @@ def verify(base):
                 raise
             table=page.locator('.cpu-specs')
             expect(table).to_be_visible()
+            def menu(key):
+                group=table.locator(f'[data-filter="{key}"]')
+                if not group.evaluate('el=>el.open'):group.locator('summary').click()
+                return group
+            def close_menu(key):
+                group=table.locator(f'[data-filter="{key}"]')
+                if group.evaluate('el=>el.open'):group.locator('summary').click()
+            def set_view(view):
+                group=menu('columns')
+                if view=='overview':group.get_by_role('button',name='한눈에 보기',exact=True).click()
+                elif view=='all':group.get_by_role('button',name='전체 선택',exact=True).click()
+                else:
+                    group.get_by_role('button',name='전체 해제',exact=True).click()
+                    group.locator(f'input[value="{view}"]').check()
+                close_menu('columns')
             assert table.locator('tbody tr').count()==292
             assert table.locator('thead th').count()==15
             assert table.locator('thead th').nth(1).get_attribute('data-column')=='released'
             assert table.locator('tbody tr').first.locator('[data-column="released"] .cpu-specs-value').inner_text()==(doc['rows'][0]['values'][6] or '—')
             assert table.locator('thead th').last.get_attribute('data-column')=='detail'
-            assert table.get_by_label('CPU 사양 열 보기',exact=True).input_value()=='overview'
+            assert table.locator('[data-filter="columns"] summary').inner_text()=='한눈에 보기'
             assert table.locator('.cpu-specs-scroll').evaluate('el=>el.scrollWidth>el.clientWidth')
             def fixed_rows():
                 heights=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>row.getBoundingClientRect().height)')
@@ -45,9 +63,9 @@ def verify(base):
                 page.keyboard.press('Escape')
             m6.get_by_role('button',name='M6 상세 사양',exact=True).click()
             expect(table.get_by_role('dialog')).to_be_visible()
-            assert table.locator('dialog dt').count()==30
-            assert not any(f'Geekbench {version}' in label for label in table.locator('dialog dt').all_text_contents() for version in (2,3,4,5))
-            assert 'TSMC N2' in table.locator('dialog').inner_text()
+            assert table.locator('.cpu-specs-dialog dt').count()==30
+            assert not any(f'Geekbench {version}' in label for label in table.locator('.cpu-specs-dialog dt').all_text_contents() for version in (2,3,4,5))
+            assert 'TSMC N2' in table.locator('.cpu-specs-dialog').inner_text()
             table.get_by_role('button',name='CPU 상세 닫기',exact=True).click()
             # Composition and all three caches are readable by scrolling the default view.
             sample=next(row for row in doc['rows'] if all(row['values'][i] for i in (8,18,19,20)))
@@ -73,7 +91,7 @@ def verify(base):
                 page.keyboard.press('Escape')
             fixed_rows()
             page.mouse.move(0,0)
-            out=ROOT/'tmp/cpu-cache-20261025'
+            out=ROOT/'tmp/cpu-table-controls'
             out.mkdir(parents=True,exist_ok=True)
             table.screenshot(path=str(out/f'cpu-cache-scroll-{width}.png'))
             table.get_by_role('button',name='초기화',exact=True).click()
@@ -81,7 +99,7 @@ def verify(base):
             assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
             # All displayed source values remain exact; historical GB2–5 stay in JSON.
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('original')
-            table.get_by_label('CPU 사양 열 보기',exact=True).select_option('all')
+            set_view('all')
             fixed_rows()
             assert table.locator('.cpu-specs-added').count()==0
             actual=table.locator('tbody tr').evaluate_all('rows=>rows.map(row=>[...row.cells].filter(cell=>cell.dataset.column!=="detail").map(cell=>cell.dataset.column==="AK"?(cell.querySelector("a")?.getAttribute("href")||""):cell.querySelector(".cpu-specs-value").textContent))')
@@ -91,11 +109,14 @@ def verify(base):
             assert not any(f'Geekbench {version}' in label for label in table.locator('thead th').all_text_contents() for version in (2,3,4,5))
             table.get_by_label('CPU 사양 값 표시',exact=True).select_option('enriched')
             assert table.locator('.cpu-specs-added').count()==226
-            table.get_by_label('CPU 사양 기업',exact=True).select_option('AMD')
+            group=menu('company')
+            group.get_by_role('button',name='전체 해제',exact=True).click()
+            group.get_by_role('checkbox',name='AMD',exact=True).check()
+            close_menu('company')
             assert table.locator('tbody tr').count()==sum(r['values'][0]=='AMD' for r in doc['rows'])
             table.get_by_label('CPU 사양 검색',exact=True).fill('Ryzen 9 9950X')
             assert table.locator('tbody tr').count()==1
-            table.get_by_label('CPU 사양 열 보기',exact=True).select_option('gb7')
+            set_view('gb7')
             assert table.locator('thead th').count()==9
             assert table.locator('tbody [data-column="AH"] .cpu-specs-value').inner_text()=='3067'
             assert table.locator('tbody [data-column="AH"] a').get_attribute('href')=='https://browser.geekbench.com/processor-benchmarks'
@@ -104,7 +125,7 @@ def verify(base):
             table.get_by_role('button',name='초기화',exact=True).click()
             table.get_by_label('보완한 CPU만',exact=True).check()
             assert table.locator('tbody tr').count()==81
-            table.get_by_label('CPU 사양 열 보기',exact=True).select_option('gb7')
+            set_view('gb7')
             fixed_rows()
             # Numeric sorting keeps unknown scores at the end in both directions.
             table.get_by_role('button',name='Geekbench 7 Multi-Core').click()
@@ -121,7 +142,7 @@ def verify(base):
             table.get_by_label('CPU 사양 검색',exact=True).fill('not-a-cpu-xxxxxxxx')
             assert '조건에 맞는 CPU가 없습니다' in table.locator('tbody').inner_text()
             table.get_by_role('button',name='초기화',exact=True).click()
-            table.get_by_label('CPU 사양 열 보기',exact=True).select_option('all')
+            set_view('all')
             region=table.locator('.cpu-specs-scroll')
             region.evaluate('element=>{element.scrollLeft=800;element.scrollTop=900}')
             header=table.locator('thead [data-column="C"]').bounding_box()
@@ -131,16 +152,62 @@ def verify(base):
             table.get_by_role('button',name='초기화',exact=True).click()
             region.evaluate('element=>{element.scrollLeft=0;element.scrollTop=0}')
             table.scroll_into_view_if_needed()
-            out=ROOT/'tmp/cpu-cache-20261025'
+            out=ROOT/'tmp/cpu-table-controls'
             out.mkdir(parents=True,exist_ok=True)
             table.screenshot(path=str(out/f'cpu-specs-{width}.png'))
+            # Multiple companies and uses combine with AND across filters and OR within each.
+            group=menu('company')
+            group.get_by_role('button',name='전체 해제',exact=True).click()
+            for name in ('AMD','Apple'):group.get_by_role('checkbox',name=name,exact=True).check()
+            close_menu('company')
+            chosen_uses={next(r['values'][1] for r in doc['rows'] if r['values'][0]==name) for name in ('AMD','Apple')}
+            group=menu('use');group.get_by_role('button',name='전체 해제',exact=True).click()
+            for name in chosen_uses:group.get_by_role('checkbox',name=name,exact=True).check()
+            close_menu('use')
+            expected_rows=[str(r['sheet_row']) for r in doc['rows'] if r['values'][0] in ('AMD','Apple') and r['values'][1] in chosen_uses]
+            assert table.locator('tbody tr').evaluate_all('rows=>rows.map(r=>r.dataset.sheetRow)')==expected_rows
+            group=menu('columns');group.get_by_role('button',name='전체 해제',exact=True).click()
+            for key in ('memory','gb7'):group.locator(f'input[value="{key}"]').check()
+            close_menu('columns')
+            indices={0,1,2}|set().union(*(set(v['indices']) for v in doc['column_views'] if v['id'] in ('memory','gb7')))
+            expected_columns=[doc['columns'][i]['id'] for i in doc['display_indices'] if i in indices]+['detail']
+            assert table.locator('thead th').evaluate_all('cells=>cells.map(c=>c.dataset.column)')==expected_columns
+            # Empty selections are explicit, then recover without resetting other filters.
+            group=menu('use');group.get_by_role('button',name='전체 해제',exact=True).click()
+            assert '조건에 맞는 CPU가 없습니다' in table.locator('tbody').inner_text()
+            group.get_by_role('button',name='전체 선택',exact=True).click();close_menu('use')
+            before=table.locator('tbody tr').evaluate_all('rows=>rows.map(r=>r.dataset.sheetRow)')
+            table.get_by_role('button',name='전체화면',exact=True).click()
+            full=table.get_by_role('dialog',name='CPU 표 전체화면',exact=True)
+            expect(full).to_be_visible()
+            box=full.bounding_box();assert abs(box['width']-width)<2 and abs(box['height']-1000)<2,box
+            assert region.bounding_box()['height']>200
+            assert table.locator('tbody tr').evaluate_all('rows=>rows.map(r=>r.dataset.sheetRow)')==before
+            group=menu('company');page.keyboard.press('Escape')
+            assert not group.evaluate('el=>el.open')
+            expect(full).to_be_visible()
+            table.locator('tbody [data-row]').first.click()
+            expect(table.get_by_role('dialog',name='CPU 상세 사양',exact=True)).to_be_visible()
+            page.keyboard.press('Escape')
+            expect(table.get_by_role('dialog',name='CPU 상세 사양',exact=True)).not_to_be_visible()
+            expect(full).to_be_visible()
+            full.screenshot(path=str(out/f'cpu-fullscreen-{width}.png'))
+            page.keyboard.press('Escape');expect(full).not_to_be_visible()
+            expect(table.get_by_role('button',name='전체화면',exact=True)).to_be_focused()
+            assert table.locator('[data-filter="company"] input:checked').count()==2
+            assert table.locator('thead th').evaluate_all('cells=>cells.map(c=>c.dataset.column)')==expected_columns
+            table.get_by_role('button',name='전체화면',exact=True).click()
+            table.get_by_role('button',name='전체화면 닫기',exact=True).click();expect(full).not_to_be_visible()
+            table.get_by_role('button',name='초기화',exact=True).click()
+            assert table.locator('tbody tr').count()==len(doc['rows'])
+            assert table.locator('thead th').count()==15
             financials=page.locator('#content .card.ir-chart')
             assert financials.count()==21
             financials.first.get_by_role('button',name='연간',exact=True).click()
             assert page.evaluate('state.charts.every(c=>c.data.datasets.some((d,i)=>c.isDatasetVisible(i)&&d.data.some(v=>v!==null)))')
             assert not page.evaluate('document.documentElement.scrollWidth>innerWidth')
             assert not errors,errors
-            print(f'PASS {width}px: horizontal CPU/cache comparisons, fixed 40px rows, tooltip/detail, TSMC, GB6/7 only, 30 source columns, financial charts')
+            print(f'PASS {width}px: multi-select companies/uses/columns, fullscreen/Escape/nested detail, exact CPU values, sticky headers, financial charts')
             page.close()
         browser.close()
 
