@@ -13884,8 +13884,8 @@
     "ticker": "064760"
    },
    "ok": true,
-   "checked": "2026-11-13",
-   "fetched": "2026-11-13"
+   "checked": "2026-11-14",
+   "fetched": "2026-11-14"
   },
   "hana_materials": {
    "rows": [
@@ -26533,8 +26533,8 @@
     "ticker": "166090"
    },
    "ok": true,
-   "checked": "2026-11-13",
-   "fetched": "2026-11-13"
+   "checked": "2026-11-14",
+   "fetched": "2026-11-14"
   },
   "knj": {
    "rows": [
@@ -35794,8 +35794,8 @@
     "ticker": "272110"
    },
    "ok": true,
-   "checked": "2026-11-13",
-   "fetched": "2026-11-13"
+   "checked": "2026-11-14",
+   "fetched": "2026-11-14"
   },
   "worldex": {
    "rows": [
@@ -49478,8 +49478,8 @@
     "ticker": "101160"
    },
    "ok": true,
-   "checked": "2026-11-13",
-   "fetched": "2026-11-13"
+   "checked": "2026-11-14",
+   "fetched": "2026-11-14"
   },
   "cmtx": {
    "rows": [
@@ -51330,6 +51330,283 @@
      "revenue": 47897.115675,
      "profit": 15575.157712,
      "capex": 15271.418743999999
+    },
+    {
+     "date": "2026-09-30",
+     "year": 2026,
+     "quarter": 3,
+     "fs_div": "CFS",
+     "refs": {
+      "revenue": {
+       "value": 48437.512334,
+       "ytd": 140455.525028,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "ifrs-full_Revenue",
+       "account_name": "매출액",
+       "fs_div": "CFS",
+       "statement": "CIS",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_add_amount",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "reported_income",
+       "inputs": [],
+       "components": [
+        {
+         "value": 48437.512334,
+         "ytd": 140455.525028,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "ifrs-full_Revenue",
+         "account_name": "매출액",
+         "fs_div": "CFS",
+         "statement": "CIS",
+         "source_field": "thstrm_amount",
+         "ytd_source_field": "thstrm_add_amount",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "comparative": false,
+         "basis": "reported_income",
+         "inputs": []
+        }
+       ],
+       "calculation": "reported three-month income"
+      },
+      "profit": {
+       "value": 10480.943534,
+       "ytd": 39565.830253,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "dart_OperatingIncomeLoss",
+       "account_name": "영업이익(손실)",
+       "fs_div": "CFS",
+       "statement": "CIS",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_add_amount",
+       "start": "2026-07-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "reported_income",
+       "inputs": [],
+       "components": [
+        {
+         "value": 10480.943534,
+         "ytd": 39565.830253,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "dart_OperatingIncomeLoss",
+         "account_name": "영업이익(손실)",
+         "fs_div": "CFS",
+         "statement": "CIS",
+         "source_field": "thstrm_amount",
+         "ytd_source_field": "thstrm_add_amount",
+         "start": "2026-07-01",
+         "end": "2026-09-30",
+         "comparative": false,
+         "basis": "reported_income",
+         "inputs": []
+        }
+       ],
+       "calculation": "reported three-month income"
+      },
+      "capex": {
+       "value": null,
+       "ytd": 40223.848695,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "calculated_PPE_cash_components",
+       "account_name": "공시 유형자산 취득 현금지출 세부항목 합계",
+       "fs_div": "CFS",
+       "statement": "CF",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_amount",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "ppe_cash",
+       "inputs": [
+        {
+         "account_id": "dart_PurchaseOfBuildings",
+         "account_name": "건물의 취득",
+         "value": 1633055580.0
+        },
+        {
+         "account_id": "dart_PurchaseOfConstructionInProgress",
+         "account_name": "건설중인자산의 취득",
+         "value": 22647103440.0
+        },
+        {
+         "account_id": "dart_PurchaseOfFixturesAndFittings",
+         "account_name": "공구와기구의 취득",
+         "value": 39690000.0
+        },
+        {
+         "account_id": "dart_PurchaseOfMachinery",
+         "account_name": "기계장치의 취득",
+         "value": 13766466427.0
+        },
+        {
+         "account_id": "dart_PurchaseOfOfficeEquipment",
+         "account_name": "비품의 취득",
+         "value": 334123213.0
+        },
+        {
+         "account_id": "dart_PurchaseOfOtherPropertyPlantAndEquipment",
+         "account_name": "인테리어의 취득",
+         "value": 742720035.0
+        },
+        {
+         "account_id": "dart_PurchaseOfStructure",
+         "account_name": "구축물의 취득",
+         "value": 0.0
+        },
+        {
+         "account_id": "dart_PurchaseOfVehicles",
+         "account_name": "차량운반구의 취득",
+         "value": 44200000.0
+        },
+        {
+         "account_id": "-표준계정코드 미사용-",
+         "account_name": "시설장치의 취득",
+         "value": 1016490000.0
+        }
+       ],
+       "components": [
+        {
+         "value": null,
+         "ytd": 40223.848695,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "calculated_PPE_cash_components",
+         "account_name": "공시 유형자산 취득 현금지출 세부항목 합계",
+         "fs_div": "CFS",
+         "statement": "CF",
+         "source_field": "thstrm_amount",
+         "ytd_source_field": "thstrm_amount",
+         "start": "2026-01-01",
+         "end": "2026-09-30",
+         "comparative": false,
+         "basis": "ppe_cash",
+         "inputs": [
+          {
+           "account_id": "dart_PurchaseOfBuildings",
+           "account_name": "건물의 취득",
+           "value": 1633055580.0
+          },
+          {
+           "account_id": "dart_PurchaseOfConstructionInProgress",
+           "account_name": "건설중인자산의 취득",
+           "value": 22647103440.0
+          },
+          {
+           "account_id": "dart_PurchaseOfFixturesAndFittings",
+           "account_name": "공구와기구의 취득",
+           "value": 39690000.0
+          },
+          {
+           "account_id": "dart_PurchaseOfMachinery",
+           "account_name": "기계장치의 취득",
+           "value": 13766466427.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOfficeEquipment",
+           "account_name": "비품의 취득",
+           "value": 334123213.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOtherPropertyPlantAndEquipment",
+           "account_name": "인테리어의 취득",
+           "value": 742720035.0
+          },
+          {
+           "account_id": "dart_PurchaseOfStructure",
+           "account_name": "구축물의 취득",
+           "value": 0.0
+          },
+          {
+           "account_id": "dart_PurchaseOfVehicles",
+           "account_name": "차량운반구의 취득",
+           "value": 44200000.0
+          },
+          {
+           "account_id": "-표준계정코드 미사용-",
+           "account_name": "시설장치의 취득",
+           "value": 1016490000.0
+          }
+         ]
+        },
+        {
+         "value": null,
+         "ytd": 23519.336492,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814004099",
+         "filed": "2026-08-14",
+         "tag": "calculated_PPE_cash_components",
+         "account_name": "공시 유형자산 취득 현금지출 세부항목 합계",
+         "fs_div": "CFS",
+         "statement": "CF",
+         "source_field": "thstrm_amount",
+         "ytd_source_field": "thstrm_amount",
+         "start": "2026-01-01",
+         "end": "2026-06-30",
+         "comparative": false,
+         "basis": "ppe_cash",
+         "inputs": [
+          {
+           "account_id": "dart_PurchaseOfBuildings",
+           "account_name": "건물의 취득",
+           "value": 1633055580.0
+          },
+          {
+           "account_id": "dart_PurchaseOfConstructionInProgress",
+           "account_name": "건설중인자산의 취득",
+           "value": 18893346700.0
+          },
+          {
+           "account_id": "dart_PurchaseOfFixturesAndFittings",
+           "account_name": "공구와기구의 취득",
+           "value": 10600000.0
+          },
+          {
+           "account_id": "dart_PurchaseOfMachinery",
+           "account_name": "기계장치의 취득",
+           "value": 3025250010.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOfficeEquipment",
+           "account_name": "비품의 취득",
+           "value": 233744167.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOtherPropertyPlantAndEquipment",
+           "account_name": "인테리어의 취득",
+           "value": 674720035.0
+          },
+          {
+           "account_id": "dart_PurchaseOfStructure",
+           "account_name": "구축물의 취득",
+           "value": 0.0
+          },
+          {
+           "account_id": "dart_PurchaseOfVehicles",
+           "account_name": "차량운반구의 취득",
+           "value": 44200000.0
+          },
+          {
+           "account_id": "-표준계정코드 미사용-",
+           "account_name": "시설장치의 취득",
+           "value": -995580000.0
+          }
+         ]
+        }
+       ],
+       "calculation": "same fiscal-year and CFS/OFS YTD minus prior YTD"
+      }
+     },
+     "revenue": 48437.512334,
+     "profit": 10480.943534,
+     "capex": 16704.512203000002
     }
    ],
    "annual": [
@@ -52933,6 +53210,217 @@
        "comparative": true
       }
      ]
+    },
+    {
+     "year": 2026,
+     "quarter": 3,
+     "fs_div": "CFS",
+     "fields": {
+      "revenue": {
+       "value": 48437.512334,
+       "ytd": 140455.525028,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "ifrs-full_Revenue",
+       "account_name": "매출액",
+       "fs_div": "CFS",
+       "statement": "CIS",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_add_amount",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "reported_income",
+       "inputs": []
+      },
+      "profit": {
+       "value": 10480.943534,
+       "ytd": 39565.830253,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "dart_OperatingIncomeLoss",
+       "account_name": "영업이익(손실)",
+       "fs_div": "CFS",
+       "statement": "CIS",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_add_amount",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "reported_income",
+       "inputs": []
+      },
+      "capex": {
+       "value": null,
+       "ytd": 40223.848695,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+       "filed": "2026-11-13",
+       "tag": "calculated_PPE_cash_components",
+       "account_name": "공시 유형자산 취득 현금지출 세부항목 합계",
+       "fs_div": "CFS",
+       "statement": "CF",
+       "source_field": "thstrm_amount",
+       "ytd_source_field": "thstrm_amount",
+       "start": "2026-01-01",
+       "end": "2026-09-30",
+       "comparative": false,
+       "basis": "ppe_cash",
+       "inputs": [
+        {
+         "account_id": "dart_PurchaseOfBuildings",
+         "account_name": "건물의 취득",
+         "value": 1633055580.0
+        },
+        {
+         "account_id": "dart_PurchaseOfConstructionInProgress",
+         "account_name": "건설중인자산의 취득",
+         "value": 22647103440.0
+        },
+        {
+         "account_id": "dart_PurchaseOfFixturesAndFittings",
+         "account_name": "공구와기구의 취득",
+         "value": 39690000.0
+        },
+        {
+         "account_id": "dart_PurchaseOfMachinery",
+         "account_name": "기계장치의 취득",
+         "value": 13766466427.0
+        },
+        {
+         "account_id": "dart_PurchaseOfOfficeEquipment",
+         "account_name": "비품의 취득",
+         "value": 334123213.0
+        },
+        {
+         "account_id": "dart_PurchaseOfOtherPropertyPlantAndEquipment",
+         "account_name": "인테리어의 취득",
+         "value": 742720035.0
+        },
+        {
+         "account_id": "dart_PurchaseOfStructure",
+         "account_name": "구축물의 취득",
+         "value": 0.0
+        },
+        {
+         "account_id": "dart_PurchaseOfVehicles",
+         "account_name": "차량운반구의 취득",
+         "value": 44200000.0
+        },
+        {
+         "account_id": "-표준계정코드 미사용-",
+         "account_name": "시설장치의 취득",
+         "value": 1016490000.0
+        }
+       ]
+      }
+     },
+     "comparatives": [
+      {
+       "year": 2025,
+       "quarter": 3,
+       "fs_div": "CFS",
+       "fields": {
+        "revenue": {
+         "value": 41026.98598,
+         "ytd": 118376.921646,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "ifrs-full_Revenue",
+         "account_name": "매출액",
+         "fs_div": "CFS",
+         "statement": "CIS",
+         "source_field": "frmtrm_q_amount",
+         "ytd_source_field": "frmtrm_add_amount",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true,
+         "basis": "reported_income",
+         "inputs": []
+        },
+        "profit": {
+         "value": 15464.799583,
+         "ytd": 41777.867557,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "dart_OperatingIncomeLoss",
+         "account_name": "영업이익(손실)",
+         "fs_div": "CFS",
+         "statement": "CIS",
+         "source_field": "frmtrm_q_amount",
+         "ytd_source_field": "frmtrm_add_amount",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true,
+         "basis": "reported_income",
+         "inputs": []
+        },
+        "capex": {
+         "value": null,
+         "ytd": 12436.199606,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001550",
+         "filed": "2026-11-13",
+         "tag": "calculated_PPE_cash_components",
+         "account_name": "공시 유형자산 취득 현금지출 세부항목 합계",
+         "fs_div": "CFS",
+         "statement": "CF",
+         "source_field": "frmtrm_q_amount",
+         "ytd_source_field": "frmtrm_q_amount",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true,
+         "basis": "ppe_cash",
+         "inputs": [
+          {
+           "account_id": "dart_PurchaseOfBuildings",
+           "account_name": "건물의 취득",
+           "value": 0.0
+          },
+          {
+           "account_id": "dart_PurchaseOfConstructionInProgress",
+           "account_name": "건설중인자산의 취득",
+           "value": 4827777557.0
+          },
+          {
+           "account_id": "dart_PurchaseOfFixturesAndFittings",
+           "account_name": "공구와기구의 취득",
+           "value": 55189500.0
+          },
+          {
+           "account_id": "dart_PurchaseOfMachinery",
+           "account_name": "기계장치의 취득",
+           "value": 7151342963.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOfficeEquipment",
+           "account_name": "비품의 취득",
+           "value": 281725586.0
+          },
+          {
+           "account_id": "dart_PurchaseOfOtherPropertyPlantAndEquipment",
+           "account_name": "인테리어의 취득",
+           "value": 0.0
+          },
+          {
+           "account_id": "dart_PurchaseOfStructure",
+           "account_name": "구축물의 취득",
+           "value": 35744000.0
+          },
+          {
+           "account_id": "dart_PurchaseOfVehicles",
+           "account_name": "차량운반구의 취득",
+           "value": 0.0
+          },
+          {
+           "account_id": "-표준계정코드 미사용-",
+           "account_name": "시설장치의 취득",
+           "value": 84420000.0
+          }
+         ]
+        }
+       },
+       "comparative": true
+      }
+     ]
     }
    ],
    "entity": {
@@ -52941,8 +53429,8 @@
     "ticker": "388210"
    },
    "ok": true,
-   "checked": "2026-11-13",
-   "fetched": "2026-11-13"
+   "checked": "2026-11-14",
+   "fetched": "2026-11-14"
   }
  }
 }
