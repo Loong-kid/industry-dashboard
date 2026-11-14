@@ -3,6 +3,7 @@ import argparse
 import datetime as dt
 import hashlib
 from collections import defaultdict
+import requests
 
 from national_budget_sources import (ROOT,CACHE,Client,FUNCTIONS,KR_BASE,GRID,KR_ODT,KR_SOURCE,
     OMB_BASE,CBO_BASE,aggregate_accounts,cbo_vintages,kr_grid,kr_accounts,load,number,omb_files,
@@ -110,7 +111,7 @@ def collect_us(client):
     fiscal_year=int(today()[:4])+(int(today()[5:7])>=10);latest_completed=fiscal_year-1
     macro={'spending':{},'revenue':{},'balance':{}}
     for year in range(last_actual+1,latest_completed+1):
-        rows=client.json(f'mts9-{year}.json','https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_9',params={'filter':f'record_date:eq:{year}-09-30','page[size]':1000,'fields':'record_date,classification_id,parent_id,classification_desc,current_fytd_rcpt_outly_amt'},refresh=True)['data']
+        rows=treasury_rows(client,year)
         t,fields=parse_mts(rows)
         for m,v in t.items():macro[m][str(year)]=round(v,6)
         totals['outlays'][str(year)]=round(t['spending'],6)
@@ -146,6 +147,21 @@ def collect_us(client):
             '상계수입·상환 등 음수 금액도 포함하므로 분야별 비중이 음수가 될 수 있습니다. 양수만 더하면 순지출 총계와 달라집니다.',
             'OMB는 과거 기관·계정 분류를 현재 예산체계에 맞춰 재작성합니다. CBO 전망은 발표 빈티지를 선택해 당시 전망을 비교합니다.'])
     return doc,dict(id='us_accounts',unit='USD 십억',source_url=OMB_BASE+'supplemental-materials/',programs=accounts,actual_through=last_actual)
+
+def treasury_rows(client,year):
+    url='https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_9'
+    params={'filter':f'record_date:eq:{year}-09-30','page[number]':1,'page[size]':1000}
+    try:
+        response=client.json(f'mts9-{year}.json',url,params=params,refresh=True)
+    except requests.RequestException:
+        # FiscalData occasionally returns a gateway error for an exact date
+        # query. Its documented inclusive range selects the same one day.
+        params['filter']=f'record_date:gte:{year}-09-30,record_date:lte:{year}-09-30'
+        response=client.json(f'mts9-{year}.json',url,params=params,refresh=True)
+    rows=response['data']
+    if not rows or any(r['record_date']!=f'{year}-09-30' for r in rows):raise ValueError('Treasury fiscal date mismatch')
+    return rows
+
 
 def validate(doc,accounts):
     if not doc['sectors'] or not doc['outlooks']:raise ValueError('Incomplete budget dashboard')

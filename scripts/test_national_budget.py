@@ -90,6 +90,21 @@ class NationalBudgetTests(unittest.TestCase):
         self.assertEqual(sectors['950'],-1)
         with self.assertRaises(ValueError):parse_mts(rows[:-3]+rows[-2:])
 
+    def test_treasury_gateway_retry_keeps_exact_fiscal_date(self):
+        class Client:
+            queries=[]
+            def json(self,*args,**kwargs):
+                self.queries.append(dict(kwargs['params']))
+                if len(self.queries)==1:raise fetcher.requests.HTTPError('503 gateway')
+                return {'data':[{'record_date':'2026-09-30'}]}
+        client=Client();rows=fetcher.treasury_rows(client,2026)
+        self.assertEqual(rows,[{'record_date':'2026-09-30'}])
+        self.assertEqual(client.queries[0]['page[number]'],1)
+        self.assertEqual(client.queries[1]['filter'],'record_date:gte:2026-09-30,record_date:lte:2026-09-30')
+        class WrongDate:
+            def json(self,*args,**kwargs):return {'data':[{'record_date':'2026-08-31'}]}
+        with self.assertRaisesRegex(ValueError,'date mismatch'):fetcher.treasury_rows(WrongDate(),2026)
+
     def test_vintages_balance_and_reference_year_not_actual(self):
         for doc in self.docs.values():
             self.assertEqual(len({v['id'] for v in doc['outlooks']}),len(doc['outlooks']))
