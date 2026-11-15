@@ -1,0 +1,27 @@
+.hb-root {min-width:0;margin-top:30px;--hb-row:40px;color:var(--ink)}
+.hb-heading,.hb-head {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.hb-heading h2,.hb-contracts h2 {font-size:20px;margin:0}.hb-heading>span,.hb-note,.hb-count {font-size:12px;color:var(--muted);line-height:1.75}
+.hb-note {margin:8px 0 14px}.hb-root h3 {font-size:16px;margin:0}.hb-root a {color:var(--accent);text-underline-offset:3px}
+.hb-block {margin-top:24px;min-width:0}.hb-charts {margin:16px 0 24px}.hb-charts>div {min-width:0}
+.hb-root button,.hb-root select,.hb-root input {font:inherit;color:var(--ink);border:1px solid var(--border);background:var(--surface);border-radius:5px;min-width:0;max-width:100%}
+.hb-root button {cursor:pointer;padding:5px 9px}.hb-root select,.hb-root input {padding:7px 8px;min-height:34px}
+.hb-root button:focus-visible,.hb-root a:focus-visible,.hb-root select:focus-visible,.hb-root input:focus-visible,.hb-table-wrap:focus-visible {outline:2px solid var(--accent);outline-offset:3px}
+.hb-financial-controls,.hb-frequency,.hb-filters {display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}.hb-frequency button[aria-pressed="true"] {border-color:var(--accent);color:var(--accent);font-weight:600}
+.hb-root label {display:flex;align-items:center;gap:6px;min-width:0}.hb-filters {gap:10px 16px;margin:14px 0 8px}.hb-search {flex:1}.hb-search input {width:220px}
+.hb-table-wrap {max-width:100%;overflow:auto;border:1px solid var(--border);border-radius:7px;background:var(--surface)}
+.hb-table-wrap table {width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.hb-financial-table {min-width:950px}.hb-contract-table {min-width:1050px}
+.hb-table-wrap th,.hb-table-wrap td {height:var(--hb-row);padding:0 10px;border-bottom:1px solid var(--border);text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}
+.hb-table-wrap thead th {font-size:11.5px;color:var(--ink-2);font-weight:600;background:var(--surface)}
+.hb-table-wrap th:first-child {width:145px;position:sticky;left:0;z-index:1;background:var(--surface);border-right:1px solid var(--border)}
+.hb-financial-table th:nth-child(2) {width:70px}.hb-financial-table th:nth-child(3) {width:175px}.hb-financial-table th:nth-child(4) {width:110px}.hb-financial-table th:nth-child(5) {width:80px}.hb-financial-table th:nth-child(6) {width:110px}.hb-financial-table th:nth-child(7) {width:75px}.hb-financial-table th:nth-child(8),.hb-financial-table th:nth-child(9) {width:60px}
+.hb-financial-table td:nth-child(n+4):nth-child(-n+7),.hb-financial-table th:nth-child(n+4):nth-child(-n+7) {text-align:right}
+.hb-contract-table th:nth-child(2) {width:190px}.hb-contract-table th:nth-child(3) {width:105px}.hb-contract-table th:nth-child(4) {width:235px}.hb-contract-table th:nth-child(5) {width:120px}.hb-contract-table th:nth-child(6) {width:150px}.hb-contract-table th:last-child {width:65px}
+.hb-status {font-size:11px;padding:3px 6px;border:1px solid var(--border);border-radius:4px;color:var(--ink-2)}.hb-ended {color:var(--muted)}
+.hb-inspector {margin-top:12px;padding:16px;border:1px solid var(--accent);border-radius:7px;background:var(--surface);font-size:13px;line-height:1.8;scroll-margin-top:110px}.hb-inspector[hidden] {display:none}
+.hb-inspector p {margin:8px 0}.hb-inspector dl {display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px 10px;margin:12px 0}.hb-inspector dt {color:var(--muted)}.hb-inspector dd {margin:0;overflow-wrap:anywhere}
+.hb-events {width:100%;border-collapse:collapse;font-size:12px}.hb-events th,.hb-events td {text-align:left;padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top;font-weight:400}.hb-events th {color:var(--muted)}
+.hb-method {margin:18px 0;font-size:12px;line-height:1.8;color:var(--ink-2)}.hb-method summary {cursor:pointer;color:var(--ink)}.hb-warning {border-left:3px solid #ae804a;padding:7px 10px;font-size:12px;color:var(--ink-2)}
+.hb-contracts {scroll-margin-top:120px}
+@media(max-width:700px){.hb-heading h2,.hb-contracts h2 {font-size:18px}.hb-financial-controls {width:100%}.hb-filters {gap:10px}.hb-search {flex-basis:100%}.hb-inspector {padding:12px}.hb-inspector dl {grid-template-columns:90px minmax(0,1fr)}.hb-events {font-size:11px}.hb-events th,.hb-events td {padding:6px 4px}.hb-table-wrap th:first-child {width:125px}}
+@media(max-width:400px){.hb-root label {max-width:100%;flex-wrap:wrap}.hb-filters select {flex:1}.hb-search input {width:100%}.hb-inspector dl {grid-template-columns:1fr}.hb-inspector dt {font-weight:600}.hb-heading>span {max-width:100%;overflow-wrap:anywhere}}

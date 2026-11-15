@@ -754,6 +754,15 @@ async function renderIndustry(options = {}) {
       }
     }
   }
+  if (ind.id === "entertainment" && state.subtab === "hybe") {
+    try {
+      const [doc, hybe] = await Promise.all([loadDoc("entertainment", "hybe_labels"), import("./entertainment-hybe.js")]);
+      if (mySeq !== renderSeq) return;
+      const err = state.docErrors.get("hybe_labels");
+      content.appendChild(err || !doc ? errorCard("entertainment", "hybe_labels", err || "레이블 자료를 불러오지 못했습니다.") : hybe.render(doc, {createFinancialCard}));
+      if (doc) collected.push({name: doc.name, fetched: doc.fetched, stale: staleDays(doc)});
+    } catch (e) { if (mySeq === renderSeq) content.appendChild(errorCard("entertainment", "hybe_labels", e.message)); }
+  }
   if (ind.id === "quantum" && state.subtab === "overview") {
     try {
       const [doc, quantum] = await Promise.all([loadDoc("quantum", "universe"), import("./quantum.js")]);

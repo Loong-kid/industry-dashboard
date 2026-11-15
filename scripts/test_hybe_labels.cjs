@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+(async()=>{
+  const code=fs.readFileSync(path.join(__dirname,'../assets/entertainment-hybe.js'),'utf8');
+  const {filterContracts,growth,fmt,periodName}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+  const doc=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/entertainment/hybe_labels.json')));
+  const rows=[{id:'bts',name:'BTS',label:'bighit',members:['김태형'],category:'group',current:true},{id:'newjeans',name:'NewJeans',label:'ador',members:['하니'],category:'group',current:true},{id:'evan',name:'EVAN',label:'belift',members:['이희승'],category:'solo',current:true},{id:'fromis9',name:'fromis_9',label:'pledis',members:[],category:'group',current:false}];
+  assert.equal(filterContracts(rows).length,2);
+  assert.equal(filterContracts(rows,{category:'all'}).length,3);
+  assert.equal(filterContracts(rows,{scope:'former'}).length,1);
+  assert.equal(filterContracts(rows,{query:'김태형'})[0].id,'bts');
+  assert.equal(filterContracts(rows,{label:'ador'})[0].id,'newjeans');
+  assert.equal(filterContracts(rows,{query:'not an artist'}).length,0);
+  assert.equal(doc.charts.length,2);
+  assert.equal(filterContracts([{name:'새 그룹',label:'new',members:['A','B'],category:'unreviewed',current:true}]).length,1);
+  assert.equal(growth(null,100),null);assert.equal(growth(100,0),null);assert.equal(growth(0,100),-100);
+  assert.equal(fmt(null),'—');assert.equal(fmt(0),'0');
+  assert.equal(periodName('2026-06-30','quarter'),'2026 Q2');
+  assert.equal(periodName('2026-06-30','cumulative'),'2026 Q2 누적');
+  assert.equal(periodName('2025-12-31','annual'),'2025년');
+  console.log('PASS HYBE group/label/member filters, periods, missing and zero revenue');
+})().catch(e=>{console.error(e);process.exit(1);});
