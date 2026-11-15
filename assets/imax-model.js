@@ -27,7 +27,7 @@ export function annualEstimate(period,rows,params,factor=1){
   const actual=period.actual,total={gbo:actual.gbo+gbo,revenue:actual.revenue+revenue,gross:actual.gross+gross,profit:actual.profit+profit};
   const ev=total.profit>0?total.profit*p.multiple:null;
   const equity=ev!=null&&p.nci!=null?ev-p.debt+p.cash-p.nci:null;
-  const value=equity==null?null:equity/p.shares;
+  const value=equity==null||equity<0?null:equity/p.shares;
   return {complete:true,issues:[],missing:[],selected:selected.length,filmGbo,dmr,rentals,content,technology,
     forecast:{gbo,revenue,gross,profit},actual,total,ev,equity,value,upside:value!=null&&p.price>0?value/p.price-1:null};
 }
@@ -126,7 +126,7 @@ export function renderImaxModel(doc){
       smallTable(result,['손익 연결','확정 1~3분기',forecastName,`${year.value}년 합계`],[['IMAX 티켓 매출','gbo'],['IMAX 회사 매출','revenue'],['매출총이익','gross'],['영업이익','profit']].map(([name,k])=>[name,period.cutoff?fmt(e.actual[k]):'해당 없음',fmt(e.forecast[k]),fmt(e.total[k])]));
       const detail=make('p',`추정 기간 회사 매출 = DMR ${fmt(e.dmr)} + 장비 임대 ${fmt(e.rentals)} + 기타 콘텐츠 ${fmt(numeric(params.other_content))} + 장비 판매 ${fmt(numeric(params.system_sales))} + 유지보수 ${fmt(numeric(params.maintenance))} + 금융수익 ${fmt(numeric(params.finance))} + 기타 ${fmt(numeric(params.other))}.`,'imax-help');result.append(detail);
       const scenarios=[.8,1,1.2].map(f=>annualEstimate(period,rows,params,f));result.append(lineChart(scenarios));const sensitivity=make('div');smallTable(sensitivity,['흥행 민감도','IMAX 연간 흥행','연간 회사 매출','연간 영업이익','EV / 영업이익'],scenarios.map((s,i)=>[['하락 −20%','기준','상승 +20%'][i],fmt(s.total.gbo),fmt(s.total.revenue),fmt(s.total.profit),fmt(s.ev)]));result.append(sensitivity,make('p','민감도는 추정 기간 티켓 매출만 ±20% 바꿉니다. 확정 실적·장비 매출·비용·이익률·배수는 고정합니다. 작품 편성·요율 변화를 별도로 반영하려면 가정을 수정하세요.','imax-help'));
-      smallTable(valuationResult,['기업가치 연결','기준 시나리오'],[['영업이익 × EV/영업이익 배수',e.ev==null?'영업적자 · 배수법 계산 안 함':fmt(e.ev)],['− 차입금 + 현금',`${fmt(numeric(params.debt))} / ${fmt(numeric(params.cash))}`],[params.nci_book_proxy?'− 비지배지분 (장부가 대용)':'− 비지배지분 평가액',fmt(numeric(params.nci))],['보통주 주주가치',fmt(e.equity)],['발행주식수 (백만 주)',fmt(numeric(params.shares),3)],['가정상 주당가치 (USD)',fmt(e.value,2)],['입력 주가 대비',e.upside==null?'주가·비지배지분 입력 필요':`${fmt(e.upside*100,1)}%`]]);
+      smallTable(valuationResult,['기업가치 연결','기준 시나리오'],[['영업이익 × EV/영업이익 배수',e.ev==null?'영업적자 · 배수법 계산 안 함':fmt(e.ev)],['− 차입금 + 현금',`${fmt(numeric(params.debt))} / ${fmt(numeric(params.cash))}`],[params.nci_book_proxy?'− 비지배지분 (장부가 대용)':'− 비지배지분 평가액',fmt(numeric(params.nci))],['보통주 주주가치',fmt(e.equity)],['발행주식수 (백만 주)',fmt(numeric(params.shares),3)],['가정상 주당가치 (USD)',e.equity!=null&&e.equity<0?'잔여가치 음수 · 주당가치 계산 안 함':fmt(e.value,2)],['입력 주가 대비',e.upside==null?'계산 가능한 주당가치·비교 주가 필요':`${fmt(e.upside*100,1)}%`]]);
     }else{result.append(make('p','선택 작품의 입력을 완료하거나 해당 작품을 제외하면 결과가 표시됩니다.','imax-help'));}
     const o=odysseyEstimate(facts,params);caseResults.replaceChildren();
     if(o)smallTable(caseResults,['오디세이 2026 Q3 기여 계산','금액 / 상태'],[['통상 DMR 12.5%만 단순 적용',`${fmt(o.typicalDmr,2)} · 계약상 실제 수취액 아님`],['사례 가정의 DMR + JRSA 매출',`${fmt(o.revenue,2)} = ${fmt(o.dmr,2)} + ${fmt(o.rentals,2)} · 추정`],['매출총이익 기여',`${fmt(o.gross,2)} · 공통 사업부 이익률 적용`],['추가 영업비용 차감 후 기여',`${fmt(o.profit,2)} · 추가 영업비용 ${fmt(numeric(params.odyssey_extra_cost))} 가정 · 실제 공시 이익 아님`]]);

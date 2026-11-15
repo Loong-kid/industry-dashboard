@@ -24,6 +24,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  assert.equal(backtest.equity,null);assert.equal(backtest.value,null); // NCI cannot be silently omitted
  const v=annualEstimate(p,[],{...base,nci:100,debt:250,cash:200,shares:50,multiple:10,price:20});
  near(v.ev,a.profit*10);near(v.equity,a.profit*10-150);near(v.value,v.equity/50);near(v.upside,v.value/20-1);
+ const negative=annualEstimate(p,[],{...base,nci:10000});assert.ok(negative.equity<0);assert.equal(negative.value,null);assert.equal(negative.upside,null);
  assert.equal(annualEstimate(p,[],{...base,shares:0}).complete,false);
  assert.equal(annualEstimate(p,[],{...base,opex:null}).complete,false);
  assert.equal(annualEstimate(p,[{...film,worldwide:null}],base).complete,false);
