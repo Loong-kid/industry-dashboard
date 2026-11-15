@@ -638,6 +638,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "offshore_contracts" ? doc => renderOffshoreFleet(doc, true)
         : section.table_kind === "offshore_financials" ? renderOffshoreFinancials
         : section.table_kind === "movie_slate" ? (await import("./movies.js")).renderMovies
+        : section.table_kind === "imax_model" ? (await import("./imax-model.js")).renderImaxModel
         : section.table_kind === "movie_companies" ? (await import("./movies.js")).renderMovieCompanies
         : section.table_kind === "cpu_specs" ? renderCPUSpecs
         : section.table_kind === "gpu_specs" ? renderGPUSpecs
