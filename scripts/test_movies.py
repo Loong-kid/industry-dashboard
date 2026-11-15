@@ -8,9 +8,57 @@ from unittest.mock import patch
 import fetch_movies as collect
 import movie_financials as financial
 from movie_sources import parse_schedule,parse_worldwide,combine,money
+import build_imax_model as imax_model
 
 ROOT=Path(__file__).resolve().parents[1]
 FIX=ROOT/'scripts/fixtures/movies'
+
+
+class ImaxModelTests(unittest.TestCase):
+    def test_reviewed_values_match_archived_sec_numeric_rows(self):
+        review=json.loads((ROOT/'manual/movies/imax-model.json').read_text(encoding='utf-8'))
+        for filename,basis in [('imax-annual-rows.json','annual_2025'),('imax-q3-rows.json','q3_2026')]:
+            fixture=json.loads((FIX/filename).read_text(encoding='utf-8'))
+            self.assertIn('www.sec.gov/Archives/',fixture['source'])
+            for label,field in [('Film Remastering and Distribution','dmr'),('System Sales','system_sales'),('System Rentals','rentals'),('Maintenance','maintenance'),('Finance Income','finance')]:
+                if field not in review[basis]:continue
+                row=next(row for row in fixture['rows'] if row and row[0]==label)
+                numbers=[float(c.replace(',','')) for c in row[1:] if c.replace(',','').replace('.','',1).isdigit()]
+                self.assertAlmostEqual(numbers[-1]/1000,review[basis][field])
+        imax_model.validate(review)
+
+    def test_fourth_quarter_basis_uses_full_year_minus_matching_ytd(self):
+        doc=imax_model.build();q=doc['periods']['2026'];a=doc['facts']['annual_2025'];y=doc['facts']['ytd_2025']
+        self.assertAlmostEqual(q['params']['system_sales'],a['system_sales']-y['system_sales'])
+        self.assertAlmostEqual(q['params']['opex'],(a['gross']-a['profit'])-(y['gross']-y['profit']))
+        self.assertEqual(q['actual']['profit'],105.601)
+        self.assertEqual(q['cutoff'],'2026-09-30')
+
+    def test_reissues_and_regional_release_cannot_move_lifetime_gross_into_q4(self):
+        doc=imax_model.build();current=doc['periods']['2026']['films']
+        self.assertFalse(any(f['id']=='/movie/Odyssey-The-(2026)' for f in current))
+        self.assertFalse(any(f['id']=='/movie/Avengers-Doomsday-(2026)' for f in current))
+        china=next(f for f in doc['periods']['2027']['films'] if f.get('regional_only'))
+        self.assertIsNone(china['date']);self.assertFalse(china['defaults']['include'])
+        self.assertIsNone(china['defaults']['worldwide'])
+
+    def test_comparables_keep_source_id_and_not_a_claimed_forecast(self):
+        doc=imax_model.build();f=next(f for f in doc['periods']['2027']['films'] if f['id']=='/movie/Avengers-Secret-Wars-(2027)')
+        self.assertIn('Endgame',f['comparable']['title'])
+        self.assertIn('2019',f['comparable']['url'])
+        self.assertEqual(f['defaults']['worldwide'],round(f['comparable']['worldwide'],1))
+        self.assertEqual(f['defaults']['imax_pct'],10)
+        self.assertEqual(f['defaults']['in_year_pct'],35)
+
+    def test_lineup_refresh_does_not_re_date_reviewed_financial_facts(self):
+        doc=imax_model.build();review=doc['facts']
+        self.assertEqual(doc['reviewed'],review['reviewed'])
+        self.assertEqual(review['sources']['annual']['date'],'2026-02-25')
+        self.assertEqual(review['sources']['q3']['date'],'2026-11-05')
+        for year,p in doc['periods'].items():
+            self.assertEqual(len(p['films']),len({f['id'] for f in p['films']}))
+            if year!='2026':self.assertEqual(p['actual']['revenue'],0)
+        self.assertFalse(review['odyssey']['movie_revenue_disclosed'])
 
 
 class MovieTests(unittest.TestCase):

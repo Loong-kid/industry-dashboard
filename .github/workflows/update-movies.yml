@@ -32,6 +32,10 @@ jobs:
         id: ui
         continue-on-error: true
         run: node scripts/test_movies.cjs
+      - name: Validate IMAX scenario accounting
+        id: model_rules
+        continue-on-error: true
+        run: node scripts/test_imax_model.cjs
       - uses: actions/cache@v4
         with:
           path: .cache/movies
@@ -52,6 +56,11 @@ jobs:
           args=()
           if [ "$FULL_HISTORY" = "true" ]; then args+=(--full-history); fi
           python -u scripts/fetch_movies.py --only films "${args[@]}"
+      - name: Rebuild IMAX scenario slate from collected film identities
+        id: model
+        continue-on-error: true
+        if: steps.films.outcome == 'success' && steps.model_rules.outcome == 'success'
+        run: python scripts/build_imax_model.py
       - name: Validate refreshed documents
         id: postcheck
         continue-on-error: true
@@ -70,5 +79,5 @@ jobs:
           done
           exit 1
       - name: Report unresolved pipeline failure
-        if: steps.definitions.outcome == 'failure' || steps.ui.outcome == 'failure' || steps.finance.outcome == 'failure' || steps.films.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        if: steps.definitions.outcome == 'failure' || steps.ui.outcome == 'failure' || steps.finance.outcome == 'failure' || steps.films.outcome == 'failure' || steps.postcheck.outcome == 'failure' || steps.model_rules.outcome == 'failure' || steps.model.outcome == 'failure'
         run: exit 1
