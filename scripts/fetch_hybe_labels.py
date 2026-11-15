@@ -76,7 +76,7 @@ def chart_doc(id,name,labels,views,source_url,fetched):
             amounts={r['date']:r['revenue'] for r in rows if r['entity']==company['id']}
             if not any(v is not None for v in amounts.values()):continue
             series[company['name']]=[[d,None if amounts.get(d) is None else round(amounts[d]/100,6)] for d in dates]
-        charts[basis]=dict(label=label,frequency='yearly' if basis=='annual' else 'quarterly',quarter_labels=basis!='annual',year_labels=basis=='annual',annual_axis=basis=='annual',
+        charts[basis]=dict(label=label,frequency='yearly' if basis=='annual' else 'quarterly',frequency_label=label+' · DART 종속기업 주석',change_mode='none' if basis=='cumulative' else None,quarter_labels=basis!='annual',year_labels=basis=='annual',annual_axis=basis=='annual',
             period_labels={d:(f"FY{d[:4]}" if basis=='annual' else f"{d[:4]} Q{(int(d[5:7])+2)//3}"+(' 누적' if basis=='cumulative' else '')) for d in dates},
             series=series,default_series=list(series),updated=max((d for values in series.values() for d,v in values if v is not None),default=''),source_url=source_url,
             quarterly_revenue_summary=basis=='quarter',description=NOTE+(' 누적은 해당 연도 1월~각 분기 말입니다.' if basis=='cumulative' else ' 분기는 같은 법인의 당해 연도 누적−직전 누적으로 계산하며 중간 누적이 없으면 비워 둡니다.' if basis=='quarter' else ' 설립·편입 첫해는 일부 기간만 포함될 수 있습니다.'))

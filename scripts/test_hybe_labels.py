@@ -88,6 +88,7 @@ class HybeLabelsTests(unittest.TestCase):
         for chart in DOC['charts']:
             self.assertTrue(chart['source_url'].startswith('https://dart.fss.or.kr/report/viewer.do?'))
             self.assertEqual(chart['unit'],'억원');self.assertEqual(set(chart['series_views']),{'quarter','annual','cumulative'})
+            self.assertEqual(chart['series_views']['cumulative']['change_mode'],'none')
         workflow=(hybe.ROOT/'.github/workflows/update-hybe-labels.yml').read_text(encoding='utf8')
         self.assertIn('git add data/entertainment/hybe_labels.json',workflow)
         self.assertNotIn('DART_API_KEY',workflow)
