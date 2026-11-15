@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
   const code=fs.readFileSync(path.join(__dirname,'../assets/entertainment-hybe.js'),'utf8');
-  const {filterContracts,growth,fmt,periodName}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+  const {filterContracts,growth,fmt,periodName,financialMatrix}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
   const doc=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/entertainment/hybe_labels.json')));
   const rows=[{id:'bts',name:'BTS',label:'bighit',members:['김태형'],category:'group',current:true},{id:'newjeans',name:'NewJeans',label:'ador',members:['하니'],category:'group',current:true},{id:'evan',name:'EVAN',label:'belift',members:['이희승'],category:'solo',current:true},{id:'fromis9',name:'fromis_9',label:'pledis',members:[],category:'group',current:false}];
   assert.equal(filterContracts(rows).length,2);
@@ -17,5 +17,17 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   assert.equal(periodName('2026-06-30','quarter'),'2026 Q2');
   assert.equal(periodName('2026-06-30','cumulative'),'2026 Q2 누적');
   assert.equal(periodName('2025-12-31','annual'),'2025년');
-  console.log('PASS HYBE group/label/member filters, periods, missing and zero revenue');
+  const matrix=financialMatrix(doc,'quarter',8);
+  assert.equal(matrix.periods.length,8);assert.ok(matrix.periods[0]>matrix.periods.at(-1));
+  assert.ok(matrix.groups.find(g=>g.kind==='label').rows.every(r=>r.kind==='label'));
+  assert.ok(matrix.groups.find(g=>g.kind==='regional').rows.every(r=>r.kind==='regional'));
+  const fixture={labels:[{id:'a',kind:'label'},{id:'b',kind:'regional'}],financial_views:{quarter:[{entity:'a',date:'2025-03-31',revenue:0,net_income:-50},{entity:'a',date:'2025-09-30',revenue:300,net_income:20}]}};
+  const pivot=financialMatrix(fixture,'quarter',0);
+  assert.deepEqual(pivot.periods,['2025-09-30','2025-06-30','2025-03-31']);
+  assert.equal(pivot.groups[0].rows[0].values[1].revenue,undefined);
+  assert.equal(pivot.groups[0].rows[0].values[2].revenue,0);
+  assert.equal(pivot.groups[0].rows[0].values[2].net_income,-50);
+  assert.ok(pivot.groups[1].rows[0].values.every(v=>v.revenue==null));
+  assert.equal(financialMatrix(fixture,'quarter',1).periods[0],'2025-09-30');
+  console.log('PASS HYBE filters and grouped period matrices with gaps, zero and negative earnings');
 })().catch(e=>{console.error(e);process.exit(1);});

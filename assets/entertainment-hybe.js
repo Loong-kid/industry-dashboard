@@ -8,25 +8,49 @@ export function filterContracts(rows,{label='',query='',scope='current',category
     .filter(r=>!q||[r.name,r.label_original,...r.members].join(' ').toLowerCase().includes(q));
 }
 export function periodName(date,basis){return basis==='annual'?date.slice(0,4)+'년':`${date.slice(0,4)} Q${Math.ceil(Number(date.slice(5,7))/3)}${basis==='cumulative'?' 누적':''}`;}
+export function financialMatrix(doc,basis='quarter',limit=8){
+  const rows=doc.financial_views[basis]||[],dates=rows.map(r=>r.date).sort(),periods=[];
+  if(dates.length){
+    const first=Number(dates[0].slice(0,4)),last=Number(dates.at(-1).slice(0,4));
+    for(let year=first;year<=last;year++)for(const q of basis==='annual'?[4]:[1,2,3,4]){
+      const date=`${year}-${String(q*3).padStart(2,'0')}-${q===1||q===4?'31':'30'}`;
+      if(date>=dates[0]&&date<=dates.at(-1))periods.push(date);
+    }
+  }
+  periods.reverse();const shown=limit>0?periods.slice(0,limit):periods;
+  const lookup=new Map(rows.map(r=>[`${r.entity}:${r.date}`,r]));
+  const groups=[['label','레이블'],['regional','지역법인'],['unreviewed','분류 검토']].map(([kind,name])=>({kind,name,rows:doc.labels.filter(l=>(l.kind||'unreviewed')===kind).map(l=>({...l,values:shown.map(date=>({date,...lookup.get(`${l.id}:${date}`)}))}))})).filter(g=>g.rows.length);
+  return {periods:shown,totalPeriods:periods.length,groups};
+}
 const source=(url,text='원문')=>`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>`;
 export function render(doc,{createFinancialCard}={}){
   const root=document.createElement('section');root.className='hb-root';
   const labels=new Map(doc.labels.map(l=>[l.id,l]));
-  let basis='quarter',period='',label='',scope='current',category='group',query='',selected=null;
-  root.innerHTML=`<div class="hb-heading"><h2>하이브 레이블 매출</h2><span>레이블 공시 ${esc(periodName(doc.roster.report_date,'quarter'))} · 확인 ${esc(doc.fetched)}</span></div><p class="hb-note">${esc(doc.note)}</p>${!doc.ok?'<p class="hb-warning">일부 원문 확인 실패 · 확인된 이력과 마지막 성공 자료를 유지합니다.</p>':''}<div class="grid financial-grid hb-charts"></div><section class="hb-block" aria-label="레이블별 재무 표"><div class="hb-head"><h3>레이블·지역법인별 상세</h3><div class="hb-financial-controls"><div class="hb-frequency" role="group" aria-label="레이블 실적 기간">${[['quarter','분기'],['annual','연간'],['cumulative','누적']].map(([v,n])=>`<button type="button" data-basis="${v}" aria-pressed="${basis===v}">${n}</button>`).join('')}</div><label>기간 <select class="hb-period" aria-label="레이블 실적 조회 기간"></select></label></div></div><p class="hb-note">금액 단위 억원 · 순손익은 당기순손익입니다. 법인 설립·편입 첫해는 일부 기간만 포함될 수 있습니다. 그룹 열은 최신 전속 명단으로 과거 매출의 귀속을 뜻하지 않습니다.</p><div class="hb-table-wrap" tabindex="0" role="region" aria-label="레이블별 실적 표 가로 스크롤"><table class="hb-financial-table"><thead><tr><th>레이블·법인</th><th>범위</th><th>현재 공시 그룹</th><th>매출</th><th>YoY</th><th>당기순손익</th><th>지분율</th><th>출처</th><th>그룹</th></tr></thead><tbody></tbody></table></div></section><section class="hb-block hb-contracts"><div class="hb-head"><h2>레이블별 아티스트 계약</h2><span class="hb-note">전속 명단 ${esc(doc.roster.report_date)} · 계약 정보 검토 ${esc(doc.contracts_reviewed)}</span></div><p class="hb-note">최초 체결일·재계약 발표일·계약 만료일을 구분합니다. 미공개 날짜는 추정하지 않으며, 발표일이 실제 서명일과 같다는 뜻은 아닙니다.</p><div class="hb-filters"><label>레이블 <select class="hb-label" aria-label="계약 레이블 필터"><option value="">전체 레이블</option>${doc.labels.map(l=>`<option value="${esc(l.id)}">${esc(l.name)}</option>`).join('')}</select></label><label>분류 <select class="hb-category" aria-label="계약 아티스트 분류"><option value="group">그룹</option><option value="all">그룹·솔로 전체</option></select></label><label>명단 <select class="hb-scope" aria-label="계약 명단 범위"><option value="current">최신 공시 명단</option><option value="all">종료 이력 포함</option><option value="former">종료 이력</option></select></label><label class="hb-search">검색 <input type="search" aria-label="그룹·멤버 검색" placeholder="그룹명·멤버명"></label></div><p class="hb-count" aria-live="polite"></p><div class="hb-table-wrap" tabindex="0" role="region" aria-label="그룹별 전속계약 표 가로 스크롤"><table class="hb-contract-table"><thead><tr><th>레이블</th><th>그룹·아티스트</th><th>최초 체결일</th><th>최근 계약 관련 발표</th><th>계약 만료일</th><th>확인 상태</th><th>상세</th></tr></thead><tbody></tbody></table></div><section class="hb-inspector" hidden aria-label="계약 상세 근거"></section><details class="hb-method"><summary>집계 기준·계약 날짜 읽는 법</summary><p>${esc(doc.contract_method)}</p><p>최신 보고서의 주요 전속계약 명단 기준입니다. 이후 신규 그룹·해외 매니지먼트 및 음반 계약이 모두 포함된 전 세계 전체 명단은 아닙니다. 미국 지역 매출은 산하 아티스트의 매출로 배분하지 않습니다.</p><p>새 전속 명단은 자동 갱신하고 계약·재계약 조건은 공식 발표와 공시를 검토해 보완합니다. 계약 검토일과 재무 수집일은 별도입니다.</p><p>${source(doc.roster.source_url,'DART 주요 아티스트 전속계약 명단')}</p></details></section>`;
+  let basis='quarter',matrixLimit=8,label='',scope='current',category='group',query='',selected=null;
+  root.innerHTML=`<div class="hb-heading"><h2>하이브 레이블 매출</h2><span>레이블 공시 ${esc(periodName(doc.roster.report_date,'quarter'))} · 확인 ${esc(doc.fetched)}</span></div><p class="hb-note">${esc(doc.note)}</p>${!doc.ok?'<p class="hb-warning">일부 원문 확인 실패 · 확인된 이력과 마지막 성공 자료를 유지합니다.</p>':''}<div class="grid financial-grid hb-charts"></div><section class="hb-block hb-financials" aria-label="레이블·지역법인 기간별 실적"><div class="hb-head"><h3>레이블·지역법인별 실적</h3><div class="hb-financial-controls"><div class="hb-frequency" role="group" aria-label="레이블 실적 기간">${[['quarter','분기'],['annual','연간'],['cumulative','누적']].map(([v,n])=>`<button type="button" data-basis="${v}" aria-pressed="${basis===v}">${n}</button>`).join('')}</div><label>표시 기간 <select class="hb-window" aria-label="실적 표 표시 기간"><option value="8">최근 8개 기간</option><option value="12">최근 12개 기간</option><option value="0">전체 기간</option></select></label></div></div><p class="hb-note">단위 억원 · 최신 기간부터 표시합니다. 각 기간의 매출·당기순손익을 나란히 비교하고, 숫자를 누르면 해당 공시를 볼 수 있습니다. 법인 설립·편입 첫해는 일부 기간만 포함될 수 있습니다.</p><p class="hb-matrix-range hb-note"></p><div class="hb-matrices"></div></section><section class="hb-block hb-contracts"><div class="hb-head"><h2>레이블별 아티스트 계약</h2><span class="hb-note">전속 명단 ${esc(doc.roster.report_date)} · 계약 정보 검토 ${esc(doc.contracts_reviewed)}</span></div><p class="hb-note">최초 체결일·재계약 발표일·계약 만료일을 구분합니다. 미공개 날짜는 추정하지 않으며, 발표일이 실제 서명일과 같다는 뜻은 아닙니다.</p><div class="hb-filters"><label>레이블 <select class="hb-label" aria-label="계약 레이블 필터"><option value="">전체 레이블</option>${doc.labels.map(l=>`<option value="${esc(l.id)}">${esc(l.name)}</option>`).join('')}</select></label><label>분류 <select class="hb-category" aria-label="계약 아티스트 분류"><option value="group">그룹</option><option value="all">그룹·솔로 전체</option></select></label><label>명단 <select class="hb-scope" aria-label="계약 명단 범위"><option value="current">최신 공시 명단</option><option value="all">종료 이력 포함</option><option value="former">종료 이력</option></select></label><label class="hb-search">검색 <input type="search" aria-label="그룹·멤버 검색" placeholder="그룹명·멤버명"></label></div><p class="hb-count" aria-live="polite"></p><div class="hb-table-wrap" tabindex="0" role="region" aria-label="그룹별 전속계약 표 가로 스크롤"><table class="hb-contract-table"><thead><tr><th>레이블</th><th>그룹·아티스트</th><th>최초 체결일</th><th>최근 계약 관련 발표</th><th>계약 만료일</th><th>확인 상태</th><th>상세</th></tr></thead><tbody></tbody></table></div><section class="hb-inspector" hidden aria-label="계약 상세 근거"></section><details class="hb-method"><summary>집계 기준·계약 날짜 읽는 법</summary><p>${esc(doc.contract_method)}</p><p>최신 보고서의 주요 전속계약 명단 기준입니다. 이후 신규 그룹·해외 매니지먼트 및 음반 계약이 모두 포함된 전 세계 전체 명단은 아닙니다. 미국 지역 매출은 산하 아티스트의 매출로 배분하지 않습니다.</p><p>새 전속 명단은 자동 갱신하고 계약·재계약 조건은 공식 발표와 공시를 검토해 보완합니다. 계약 검토일과 재무 수집일은 별도입니다.</p><p>${source(doc.roster.source_url,'DART 주요 아티스트 전속계약 명단')}</p></details></section>`;
   if(createFinancialCard){const grid=root.querySelector('.hb-charts');for(const chart of doc.charts){const card=createFinancialCard(chart,chart.id);grid.append(card.element);}}
 
   function financialTable(){
-    const rows=doc.financial_views[basis];const periods=[...new Set(rows.map(r=>r.date))].sort().reverse();
-    if(!periods.includes(period))period=periods[0];
-    root.querySelector('.hb-period').innerHTML=periods.map(d=>`<option value="${d}" ${d===period?'selected':''}>${esc(periodName(d,basis))}</option>`).join('');
+    const matrix=financialMatrix(doc,basis,matrixLimit);
     for(const button of root.querySelectorAll('[data-basis]'))button.setAttribute('aria-pressed',button.dataset.basis===basis);
-    const priorDate=(Number(period.slice(0,4))-1)+period.slice(4);
-    root.querySelector('.hb-financial-table tbody').innerHTML=doc.labels.map(l=>{
-      const r=rows.find(r=>r.entity===l.id&&r.date===period),prior=rows.find(r=>r.entity===l.id&&r.date===priorDate),yoy=growth(r?.revenue,prior?.revenue);
-      const groups=doc.contracts.filter(r=>r.current&&r.category==='group'&&r.label===l.id).map(r=>r.name).join(', ');
-      return `<tr><th title="${esc(l.note||l.name)}">${esc(l.name)}</th><td>${l.kind==='regional'?'지역법인':l.kind==='label'?'레이블':'추가 검토'}</td><td class="hb-ellipsis" title="${esc(groups||l.note||'별도 공시 명단 없음')}">${esc(groups||'—')}</td><td title="${r?.revenue==null?'해당 기간 요약 매출 미공개':''}">${fmt(r?.revenue==null?null:r.revenue/100)}</td><td>${yoy==null?'—':(yoy>=0?'+':'')+fmt(yoy)+'%'}</td><td>${fmt(r?.net_income==null?null:r.net_income/100)}</td><td>${fmt(r?.ownership)}${r?.ownership==null?'':'%'}</td><td>${source(r?.source_url||doc.source_url)}</td><td>${groups?`<button type="button" data-label="${esc(l.id)}">보기</button>`:'—'}</td></tr>`;
+    root.querySelector('.hb-matrix-range').textContent=matrix.periods.length?`${periodName(matrix.periods.at(-1),basis)} ~ ${periodName(matrix.periods[0],basis)} · ${matrix.periods.length}개 기간 / 전체 ${matrix.totalPeriods}개 · 가로로 스크롤하면 이전 기간을 볼 수 있습니다.`:'공개된 실적이 없습니다.';
+    root.querySelector('.hb-matrices').innerHTML=matrix.groups.map(group=>{
+      const widths=`<col class="hb-entity-col">${matrix.periods.map(()=>'<col class="hb-number-col"><col class="hb-number-col">').join('')}`;
+      const headers=matrix.periods.map((date,i)=>`<th colspan="2" scope="colgroup" class="hb-period-heading${i===0?' hb-latest':''}">${esc(periodName(date,basis))}</th>`).join('');
+      const subheaders=matrix.periods.map((date,i)=>`<th scope="col" class="hb-metric-start${i===0?' hb-latest':''}">매출</th><th scope="col" title="당기순손익" class="${i===0?'hb-latest':''}">순손익</th>`).join('');
+      const body=group.rows.map(l=>{
+        const artists=doc.contracts.filter(r=>r.current&&r.category==='group'&&r.label===l.id).map(r=>r.name).join(', ');
+        const ref=l.values.find(r=>r.source_url)?.source_url||doc.source_url;
+        const cells=l.values.map((r,i)=>['revenue','net_income'].map((metric,j)=>{
+          const v=r[metric],shown=v==null?null:v/100,name=metric==='revenue'?'매출':'당기순손익';
+          const note=`${l.name} ${periodName(r.date,basis)} ${name} ${shown==null?'미공개':fmt(shown)+'억원'}`;
+          return `<td data-period="${r.date}" data-metric="${metric}" class="${j===0?'hb-metric-start ':''}${i===0?'hb-latest ':''}${v<0?'hb-negative':''}" title="${esc(note)}">${shown==null?'—':`<a class="hb-matrix-value" href="${esc(r.source_url)}" target="_blank" rel="noopener" aria-label="${esc(note+' 공시 원문')}">${fmt(shown)}</a>`}</td>`;
+        }).join('')).join('');
+        return `<tr data-entity="${esc(l.id)}"><th scope="row" title="${esc([l.name,l.note,artists].filter(Boolean).join(' / '))}"><span class="hb-entity-name">${source(ref,l.name)}</span>${artists?`<button type="button" data-label="${esc(l.id)}" aria-label="${esc(l.name)} 그룹 계약 보기">그룹</button>`:''}</th>${cells}</tr>`;
+      }).join('');
+      return `<section class="hb-matrix-group" data-kind="${group.kind}"><div class="hb-matrix-heading"><h4>${group.name}</h4><span>${group.rows.length}개 법인</span></div>${group.kind==='regional'?'<p class="hb-note">지역법인은 산하 회사를 포함할 수 있어 레이블 매출과 합산하지 않습니다.</p>':''}<div class="hb-table-wrap hb-matrix-wrap" tabindex="0" role="region" aria-label="${group.name} ${basis==='quarter'?'분기별':'기간별'} 매출·당기순손익 표"><table class="hb-matrix-table" style="width:calc(var(--hb-company-width,152px) + ${matrix.periods.length*124}px)"><caption>${esc(group.name+' '+(basis==='quarter'?'분기별':basis==='annual'?'연간':'누적')+' 실적 · 억원')}</caption><colgroup>${widths}</colgroup><thead><tr><th rowspan="2" scope="col">${group.kind==='regional'?'지역법인':'레이블'}</th>${headers}</tr><tr>${subheaders}</tr></thead><tbody>${body}</tbody></table></div></section>`;
     }).join('');
+    for(const wrap of root.querySelectorAll('.hb-matrix-wrap'))wrap.onscroll=()=>{for(const other of root.querySelectorAll('.hb-matrix-wrap'))if(other!==wrap&&Math.abs(other.scrollLeft-wrap.scrollLeft)>.5)other.scrollLeft=wrap.scrollLeft;};
     for(const b of root.querySelectorAll('[data-label]'))b.onclick=()=>{label=b.dataset.label;scope='current';category='group';query='';root.querySelector('.hb-label').value=label;root.querySelector('.hb-scope').value=scope;root.querySelector('.hb-category').value=category;root.querySelector('.hb-search input').value='';renderContracts();root.querySelector('.hb-contracts').scrollIntoView({block:'start'});};
   }
 
@@ -50,7 +74,7 @@ export function render(doc,{createFinancialCard}={}){
   }
 
   for(const b of root.querySelectorAll('[data-basis]'))b.onclick=()=>{basis=b.dataset.basis;financialTable();};
-  root.querySelector('.hb-period').onchange=e=>{period=e.target.value;financialTable();};
+  root.querySelector('.hb-window').onchange=e=>{matrixLimit=Number(e.target.value);financialTable();};
   root.querySelector('.hb-label').onchange=e=>{label=e.target.value;renderContracts();};
   root.querySelector('.hb-category').onchange=e=>{category=e.target.value;renderContracts();};
   root.querySelector('.hb-scope').onchange=e=>{scope=e.target.value;renderContracts();};

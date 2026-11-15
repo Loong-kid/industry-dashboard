@@ -10,12 +10,10 @@
 .hb-root label {display:flex;align-items:center;gap:6px;min-width:0}.hb-filters {gap:10px 16px;margin:14px 0 8px}.hb-search {flex:1}.hb-search input {width:220px}
 .hb-table-wrap {max-width:100%;overflow:auto;border:1px solid var(--border);border-radius:7px;background:var(--surface)}
 .hb-table-wrap table {width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
-.hb-financial-table {min-width:950px}.hb-contract-table {min-width:1050px}
+.hb-contract-table {min-width:1050px}
 .hb-table-wrap th,.hb-table-wrap td {height:var(--hb-row);padding:0 10px;border-bottom:1px solid var(--border);text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}
 .hb-table-wrap thead th {font-size:11.5px;color:var(--ink-2);font-weight:600;background:var(--surface)}
 .hb-table-wrap th:first-child {width:145px;position:sticky;left:0;z-index:1;background:var(--surface);border-right:1px solid var(--border)}
-.hb-financial-table th:nth-child(2) {width:70px}.hb-financial-table th:nth-child(3) {width:175px}.hb-financial-table th:nth-child(4) {width:110px}.hb-financial-table th:nth-child(5) {width:80px}.hb-financial-table th:nth-child(6) {width:110px}.hb-financial-table th:nth-child(7) {width:75px}.hb-financial-table th:nth-child(8),.hb-financial-table th:nth-child(9) {width:60px}
-.hb-financial-table td:nth-child(n+4):nth-child(-n+7),.hb-financial-table th:nth-child(n+4):nth-child(-n+7) {text-align:right}
 .hb-contract-table th:nth-child(2) {width:190px}.hb-contract-table th:nth-child(3) {width:105px}.hb-contract-table th:nth-child(4) {width:235px}.hb-contract-table th:nth-child(5) {width:120px}.hb-contract-table th:nth-child(6) {width:150px}.hb-contract-table th:last-child {width:65px}
 .hb-status {font-size:11px;padding:3px 6px;border:1px solid var(--border);border-radius:4px;color:var(--ink-2)}.hb-ended {color:var(--muted)}
 .hb-inspector {margin-top:12px;padding:16px;border:1px solid var(--accent);border-radius:7px;background:var(--surface);font-size:13px;line-height:1.8;scroll-margin-top:110px}.hb-inspector[hidden] {display:none}
@@ -25,3 +23,20 @@
 .hb-contracts {scroll-margin-top:120px}
 @media(max-width:700px){.hb-heading h2,.hb-contracts h2 {font-size:18px}.hb-financial-controls {width:100%}.hb-filters {gap:10px}.hb-search {flex-basis:100%}.hb-inspector {padding:12px}.hb-inspector dl {grid-template-columns:90px minmax(0,1fr)}.hb-events {font-size:11px}.hb-events th,.hb-events td {padding:6px 4px}.hb-table-wrap th:first-child {width:125px}}
 @media(max-width:400px){.hb-root label {max-width:100%;flex-wrap:wrap}.hb-filters select {flex:1}.hb-search input {width:100%}.hb-inspector dl {grid-template-columns:1fr}.hb-inspector dt {font-weight:600}.hb-heading>span {max-width:100%;overflow-wrap:anywhere}}
+
+.hb-matrix-group {margin:18px 0 24px;min-width:0}.hb-matrix-heading {display:flex;align-items:baseline;gap:8px;margin-bottom:8px}.hb-matrix-heading h4 {font-size:15px;margin:0}.hb-matrix-heading span {font-size:11px;color:var(--muted)}
+.hb-matrix-range {margin:6px 0}.hb-matrix-wrap {max-height:620px;overscroll-behavior-x:contain}
+.hb-matrix-table {min-width:100%}.hb-matrix-table .hb-entity-col {width:var(--hb-company-width,152px)}.hb-matrix-table .hb-number-col {width:62px}
+.hb-matrix-table caption {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.hb-table-wrap .hb-matrix-table td,.hb-table-wrap .hb-matrix-table th {padding:0 5px}.hb-table-wrap .hb-matrix-table td {text-align:right}
+.hb-table-wrap .hb-matrix-table thead tr:first-child th {height:30px;position:sticky;top:0;left:auto;z-index:3;text-align:center;border-left:1px solid var(--border)}
+.hb-table-wrap .hb-matrix-table thead tr:first-child th:first-child {left:0;z-index:5;text-align:left;width:var(--hb-company-width,152px);border-left:0;padding-left:9px}
+.hb-table-wrap .hb-matrix-table thead tr:nth-child(2) th {position:sticky;top:30px;left:auto;z-index:3;height:28px;width:auto;text-align:right;border-right:0}
+.hb-table-wrap .hb-matrix-table tbody th {width:var(--hb-company-width,152px);padding-left:9px;z-index:2}
+.hb-matrix-table .hb-metric-start {border-left:1px solid var(--border)}
+.hb-table-wrap .hb-matrix-table .hb-latest {background:color-mix(in srgb,var(--accent) 5%,var(--surface))}
+.hb-root .hb-matrix-value {display:block;color:inherit;text-decoration:none}.hb-root .hb-matrix-value:hover {text-decoration:underline}.hb-matrix-table .hb-negative {color:#a13a3a}
+.hb-entity-name {display:inline-block;vertical-align:middle;max-width:100%;overflow:hidden;text-overflow:ellipsis}.hb-entity-name a {display:block;overflow:hidden;text-overflow:ellipsis}
+.hb-matrix-table th:has(button) .hb-entity-name {max-width:calc(100% - 38px)}.hb-matrix-table th button {float:right;font-size:10px;padding:2px 4px;margin-top:3px}
+
+@media(max-width:400px){.hb-matrix-table {--hb-company-width:124px}}
