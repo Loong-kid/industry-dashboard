@@ -33,4 +33,6 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt lxml
       - name: 모든 워크플로 검증 시험
-        run: python scripts/run_ci_tests.py
+        run: |
+          node scripts/test_chart_legend.cjs
+          python scripts/run_ci_tests.py
