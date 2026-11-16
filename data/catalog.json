@@ -1056,6 +1056,17 @@
           "name": "물가 / 금리"
         },
         {
+          "id": "us_treasury",
+          "name": "미국 국채",
+          "auto_collect_time": "08:20",
+          "cadence": "미 재무부 QRA·국채 경매·일별 시장금리. 하루 4회 공식 자료를 확인하며 QRA 발표본과 실제 결과를 구분합니다.",
+          "views": [
+            {"id": "qra", "name": "발행계획"},
+            {"id": "auctions", "name": "입찰 수급"},
+            {"id": "yields", "name": "시장금리"}
+          ]
+        },
+        {
           "id": "liquidity",
           "name": "유동성",
           "description": "연준의 국내 보유증권(SOMA)·대출·지급준비금·TGA·역레포를 봅니다. 지준 계산은 모두 H.4.1의 수요일 잔고로 맞추며, 단순식·누락 항목을 보정한 회계 재구성·공식 지준을 비교합니다. 단위는 십억 달러입니다. 아래 일간 TGA·ON RRP는 별도로 볼 수 있습니다. 매일 오전 7:30(KST) 수집 일정에서 새 공표·정정을 확인하며, H.4.1 원자료는 주간 발표입니다."
@@ -4991,29 +5002,6 @@
         {
           "id": "us",
           "name": "미국"
-        }
-      ],
-      "sections": []
-    },
-    {
-      "id": "us_treasury",
-      "name": "미국 국채",
-      "icon": "📈",
-      "default_range": "all",
-      "auto_collect_time": "08:20",
-      "cadence": "미 재무부 QRA·국채 경매·일별 시장금리. 하루 4회 공식 자료를 확인하며 QRA 발표본과 실제 결과를 구분합니다.",
-      "tabs": [
-        {
-          "id": "qra",
-          "name": "발행계획"
-        },
-        {
-          "id": "auctions",
-          "name": "입찰 수급"
-        },
-        {
-          "id": "yields",
-          "name": "시장금리"
         }
       ],
       "sections": []

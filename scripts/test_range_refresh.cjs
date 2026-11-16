@@ -27,3 +27,5 @@ for (const [subtab, workflow] of [['osat_summary', 'update-semicon-osat.yml'], [
   assert.ok(fs.existsSync(current.file));
 }
 console.log('range and refresh OK');
+const treasury=target({dashboard:{state:{industry:{id:'macro'},subtab:'us_treasury'}}});
+assert.equal(treasury.workflow,'update-us-treasury.yml');assert.equal(treasury.file,'data/us-treasury/state.json');

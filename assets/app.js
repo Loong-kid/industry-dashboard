@@ -141,6 +141,11 @@ function route() {
     id = "oil"; requestedTab = "offshore";
     history.replaceState(null, "", `#/oil/offshore/${requestedView}`);
   }
+  if (id === "us_treasury") {
+    requestedView = ["qra", "auctions", "yields"].includes(requestedTab) ? requestedTab : "qra";
+    id = "macro"; requestedTab = "us_treasury";
+    history.replaceState(null, "", `#/macro/us_treasury/${requestedView}`);
+  }
   const commodityAliases = {overview: "normal", komis_base: "normal", komis_minor: "rare_earth", komis_energy: "normal", komis_other: "normal", mineral_supply: "copper"};
   if (id === "datacenter" && requestedTab === "ai_overview2") {
     requestedTab = "ai_overview";
@@ -184,6 +189,7 @@ function route() {
   state.copperView = state.industry.id === "commodities" && state.subtab === "copper" && requestedView === "miners" ? "miners" : "indicators";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
   state.datacenterView = state.industry.id === "datacenter" && state.subtab === "us" && requestedView === "neocloud" ? "neocloud" : "hyperscalers";
+  state.treasuryView = state.industry.id === "macro" && state.subtab === "us_treasury" && ["auctions", "yields"].includes(requestedView) ? requestedView : "qra";
   document.querySelectorAll("#nav a").forEach((a) => {
     const selected = a.dataset.id === state.industry.id;
     a.classList.toggle("active", selected);
@@ -242,7 +248,7 @@ function renderNav() {
     {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "cosmetics", "entertainment", "movies", "quantum", "drone", "vrar"]},
     {name: "시장", ids: ["commodities", "macro", "ppi"]},
     {name: "수급·공시", ids: ["institution", "gifts", "expansion"]},
-    {name: "정책·예산", ids: ["national_budget", "us_treasury", "darpa"]},
+    {name: "정책·예산", ids: ["national_budget", "darpa"]},
   ];
   const included = new Set(groups.flatMap(group => group.ids));
   const extra = state.catalog.industries.filter(ind => !included.has(ind.id));
@@ -298,7 +304,8 @@ async function renderIndustry(options = {}) {
   const oilView = ind.id === "oil" && state.subtab === "offshore" ? selectedTab.views?.find(view => view.id === state.oilOffshoreView) : null;
   const copperView = ind.id === "commodities" && state.subtab === "copper" ? selectedTab.views?.find(view => view.id === state.copperView) : null;
   const datacenterView = ind.id === "datacenter" && state.subtab === "us" ? selectedTab.views?.find(view => view.id === state.datacenterView) : null;
-  const nestedView = gasView || oilView || copperView || datacenterView;
+  const treasuryView = ind.id === "macro" && state.subtab === "us_treasury" ? selectedTab.views?.find(view => view.id === state.treasuryView) : null;
+  const nestedView = gasView || oilView || copperView || datacenterView || treasuryView;
   const photomask = ind.id === "semicon" && state.subtab === "snstech";
   const irLibrary = photomask && state.photomaskView === "ir";
   const aixtronLibrary = ind.id === "semicon" && state.subtab === "mocvd" && state.aixtronView === "calls";
@@ -306,8 +313,8 @@ async function renderIndustry(options = {}) {
   // 탭별 수집 워크플로와 갱신 버튼 라벨은 refresh.js에서 정한다.
   // 테이블 전용 탭은 자체 기간 필터를 사용하므로 전역 차트 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || ind.id === "expansion" || (ind.id === "movies" && state.subtab === "slate") || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || ind.id === "us_treasury" || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
-  document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || ind.id === "us_treasury" || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || treasuryView || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
   state.charts = [];
@@ -342,15 +349,6 @@ async function renderIndustry(options = {}) {
       if (mySeq !== renderSeq) return;
       loading.remove(); gamesCleanup = games.mount(content, {view: state.subtab || "overview", companyCountry: state.gamesCompanyCountry, tabsRoot: pageTabs, createFinancialCard});
     } catch (e) { if (mySeq === renderSeq) loading.textContent = "게임을 불러오지 못했습니다. 새로고침해 주세요."; }
-    return;
-  }
-
-  if (ind.id === "us_treasury") {
-    try {
-      const usTreasury = await import("./us-treasury.js");
-      if (mySeq !== renderSeq) return;
-      usTreasuryCleanup = usTreasury.mount(content, {view: state.subtab || "qra", tabsRoot: pageTabs});
-    } catch (e) { if (mySeq === renderSeq) content.textContent = "미국 국채 자료를 불러오지 못했습니다. 새로고침해 주세요."; }
     return;
   }
 
@@ -467,7 +465,7 @@ async function renderIndustry(options = {}) {
   if (nestedView) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs";
-    views.setAttribute("aria-label", datacenterView ? "미국 클라우드 분류" : copperView ? "구리 보기" : oilView ? "해양 시추 분류" : "미드스트림 분류");
+    views.setAttribute("aria-label", treasuryView ? "미국 국채 분류" : datacenterView ? "미국 클라우드 분류" : copperView ? "구리 보기" : oilView ? "해양 시추 분류" : "미드스트림 분류");
     for (const view of selectedTab.views) {
       const link = document.createElement("a");
       link.href = `#/${ind.id}/${state.subtab}/${view.id}`;
@@ -483,6 +481,15 @@ async function renderIndustry(options = {}) {
     intro.className = "tab-description";
     intro.textContent = nestedView?.description || selectedTab.description;
     content.appendChild(intro);
+  }
+
+  if (treasuryView) {
+    try {
+      const usTreasury = await import("./us-treasury.js");
+      if (mySeq !== renderSeq) return;
+      usTreasuryCleanup = usTreasury.mount(content, {view: treasuryView.id});
+    } catch (e) { if (mySeq === renderSeq) content.textContent = "미국 국채 자료를 불러오지 못했습니다. 새로고침해 주세요."; }
+    return;
   }
 
   if (ind.id === "semicon" && state.subtab?.startsWith("osat_")) {

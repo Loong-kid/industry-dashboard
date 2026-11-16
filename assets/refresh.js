@@ -10,7 +10,6 @@ const WORKFLOW = "update-data.yml";
 
 // 같은 workflow가 전부 갱신하지만, 라벨/신선도 확인 대상은 현재 탭에 맞춘다.
 const REFRESH_TARGETS = {
-  us_treasury: { file: "data/us-treasury/state.json", label: "미국 국채 갱신", workflow: "update-us-treasury.yml" },
   national_budget: { file: "data/national-budget/index.json", label: "국가예산 갱신", workflow: "update-national-budget.yml" },
   movies: { file: "data/movies/release_index.json", label: "영화 데이터 갱신", workflow: "update-movies.yml" },
   vrar: { file: "data/vrar/state.json", label: "VR/AR 실적 갱신", workflow: "update-vrar.yml" },
@@ -35,6 +34,7 @@ const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "�
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
+  if (id === "macro" && subtab === "us_treasury") return {file: "data/us-treasury/state.json", label: "미국 국채 갱신", workflow: "update-us-treasury.yml"};
   if (id === "datacenter" && subtab === "us") return window.dashboard?.state?.datacenterView === "neocloud"
     ? {file: "data/datacenter/us_neocloud_state.json", label: "네오클라우드 갱신", workflow: "update-neocloud.yml"}
     : {file: "data/datacenter/us_hyperscalers_state.json", label: "하이퍼스케일러 갱신", workflow: "update-us-datacenter.yml"};

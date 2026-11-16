@@ -1,7 +1,8 @@
 # 미국 국채
 
-경로: `#/us_treasury/qra`, `#/us_treasury/auctions`, `#/us_treasury/yields`.
-정책·예산 메뉴에 위치하며 기존 국가예산·DARPA 화면과 독립적이다.
+경로: `#/macro/us_treasury/qra`, `#/macro/us_treasury/auctions`, `#/macro/us_treasury/yields`.
+매크로 → 미국 국채 안에 발행계획·입찰 수급·시장금리 보기를 둔다.
+기존 `#/us_treasury/...` 링크는 대응하는 새 경로로 연결한다. 수집 파일과 자동 갱신 워크플로는 유지한다.
 
 ## 공식 자료와 자동 갱신
 

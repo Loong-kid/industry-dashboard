@@ -23,7 +23,7 @@ export function mount(root,{view='qra',tabsRoot}={}){
   let disposed=false,charts=[],docs={},page=0;
   if(!['qra','auctions','yields'].includes(view))view='qra';
   const box=document.createElement('div');box.className='ust-root';root.append(box);
-  if(tabsRoot){tabsRoot.innerHTML='';const nav=document.createElement('nav');nav.className='commodity-tabs ust-tabs';nav.setAttribute('aria-label','미국 국채 세부탭');tabsRoot.append(nav);for(const [id,name] of [['qra','발행계획'],['auctions','입찰 수급'],['yields','시장금리']]){const a=document.createElement('a');a.href=`#/us_treasury/${id}`;a.textContent=name;a.className='ust-tab'+(id===view?' active':'');if(id===view)a.setAttribute('aria-current','page');nav.append(a);}}
+  if(tabsRoot){tabsRoot.innerHTML='';const nav=document.createElement('nav');nav.className='commodity-tabs ust-tabs';nav.setAttribute('aria-label','미국 국채 세부탭');tabsRoot.append(nav);for(const [id,name] of [['qra','발행계획'],['auctions','입찰 수급'],['yields','시장금리']]){const a=document.createElement('a');a.href=`#/macro/us_treasury/${id}`;a.textContent=name;a.className='ust-tab'+(id===view?' active':'');if(id===view)a.setAttribute('aria-current','page');nav.append(a);}}
   box.innerHTML='<p class="page-loading">미국 재무부 공식 자료를 불러오는 중…</p>';
   const destroy=()=>{for(const c of charts)c.destroy();charts=[];};
   const source=(url,label='공식 원문')=>`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`;
