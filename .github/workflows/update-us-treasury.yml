@@ -1,0 +1,58 @@
+name: update-us-treasury
+on:
+  schedule:
+    - cron: '20 5,11,17,23 * * 1-5' # Four checks per weekday, including after US close.
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  treasury:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - uses: actions/cache@v4
+        with:
+          path: .cache/us-treasury
+          key: us-treasury-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: us-treasury-v1-${{ runner.os }}-
+      - name: Validate financial definitions
+        id: precheck
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_us_treasury.py -v
+          node scripts/test_us_treasury.cjs
+      - name: Refresh official sources
+        id: collect
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/fetch_us_treasury.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_us_treasury.py -v
+          node scripts/test_us_treasury.cjs
+      - name: Commit Treasury data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/us-treasury/
+          git diff --cached --quiet || git commit -m "chore: refresh US Treasury plans auctions and yields"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report source or validation failure
+        if: steps.precheck.outcome == 'failure' || steps.collect.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
