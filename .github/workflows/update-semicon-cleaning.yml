@@ -9,25 +9,6 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
 jobs:
-  cleanroom-bootstrap:
-    if: github.ref_name == 'codex/cleanroom-hvac'
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install requests beautifulsoup4
-      - name: Collect selected domestic cleanroom issuers
-        env:
-          DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python -u scripts/fetch_cleanroom_domestic.py --refresh --full-history
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cleanroom-domestic-bootstrap
-          path: data/semicon/cleanroom_domestic_state.json
   cleaning:
     runs-on: ubuntu-latest
     timeout-minutes: 15

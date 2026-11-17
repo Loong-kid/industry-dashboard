@@ -68,8 +68,11 @@ class ValuationTests(unittest.TestCase):
         added=load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         cleaning=load(ROOT/'manual/semicon-cleaning/companies.json',{})
         peers=len(cleaning['companies'])+len(cleaning['global_companies'])
-        self.assertEqual(len(self.spec),69+len(added)+peers);self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
-        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added)+peers)
+        cleanroom=load(ROOT/'manual/cleanroom/companies.json',{})
+        cleanroom_ids={'cleanroom_'+k for k in {**cleanroom['companies'],**cleanroom['global_companies']}}
+        self.assertEqual({c['id'] for c in self.spec if 'cleanroom_summary' in c['tabs']},cleanroom_ids)
+        self.assertEqual(len(self.spec),69+len(added)+peers+len(cleanroom_ids));self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
+        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added)+peers+len(cleanroom_ids))
         self.assertEqual(len(self.index['companies']),len(self.spec))
         for s,c in zip(self.spec,self.index['companies']):
             self.assertEqual(s['id'],c['id'])

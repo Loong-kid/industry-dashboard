@@ -313,7 +313,7 @@ async function renderIndustry(options = {}) {
   // 탭별 수집 워크플로와 갱신 버튼 라벨은 refresh.js에서 정한다.
   // 테이블 전용 탭은 자체 기간 필터를 사용하므로 전역 차트 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || ind.id === "expansion" || (ind.id === "movies" && state.subtab === "slate") || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || state.subtab === "cleaning_summary" || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || ["cleaning_summary", "cleanroom_summary"].includes(state.subtab) || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || treasuryView || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -655,6 +655,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
         : section.table_kind === "offshore_contracts" ? doc => renderOffshoreFleet(doc, true)
         : section.table_kind === "offshore_financials" ? renderOffshoreFinancials
+        : section.table_kind === "cleanroom" ? (await import("./cleanroom.js")).renderCleanroom
         : section.table_kind === "movie_slate" ? (await import("./movies.js")).renderMovies
         : section.table_kind === "imax_model" ? (await import("./imax-model.js")).renderImaxModel
         : section.table_kind === "movie_companies" ? (await import("./movies.js")).renderMovieCompanies

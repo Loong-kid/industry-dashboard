@@ -1,0 +1,22 @@
+.cleanroom-guide { min-width: 0; margin-bottom: 22px; }
+.cleanroom-meta { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+.cleanroom-table-wrap { overflow: auto; max-width: 100%; border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+.cleanroom-table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.cleanroom-table th, .cleanroom-table td { height: 54px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; font-weight: 400; }
+.cleanroom-table thead th { height: 38px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.cleanroom-table tbody th { font-weight: 500; white-space: nowrap; }
+.cleanroom-table tr:last-child > * { border-bottom: 0; }
+.cleanroom-table small { display: block; font-size: 10px; color: var(--muted); font-weight: 400; }
+.cleanroom-table a, .cleanroom-method summary { color: var(--accent-text); text-underline-offset: 3px; }
+.cleanroom-quarter, .cleanroom-latest, .cleanroom-code { white-space: nowrap; }
+.cleanroom-method { margin-top: 12px; font-size: 12px; color: var(--ink-2); line-height: 1.7; }
+.cleanroom-method summary { cursor: pointer; }
+.cleanroom-method p { margin: 10px 0; }
+.cleanroom-table-wrap:focus-visible, .cleanroom-guide a:focus-visible, .cleanroom-guide summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 1000px) { .cleanroom-table .cleanroom-quarter { display: none; } }
+@media (max-width: 640px) {
+  .cleanroom-table .cleanroom-role { display: none; }
+  .cleanroom-table th, .cleanroom-table td { padding: 8px; }
+  .cleanroom-table .cleanroom-latest { font-size: 10px; }
+  .cleanroom-table tbody th { max-width: 130px; white-space: normal; }
+}
