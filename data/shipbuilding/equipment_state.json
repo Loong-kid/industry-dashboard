@@ -8267,12 +8267,10 @@
      "netincome": 11617.368774
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
-   "status": "partial",
-   "source_errors": [
-    "2026 Q2 정기 공시 조회·확인 필요 (ValueError)"
-   ]
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
+   "status": "ok",
+   "source_errors": []
   },
   "hd_marine_engine": {
    "entity": {
@@ -12653,56 +12651,100 @@
        }
       }
      ]
-    }
-   ],
-   "provisional_rows": [
+    },
     {
-     "kind": "quarter",
      "year": 2026,
      "quarter": 3,
-     "start": "2026-07-01",
-     "date": "2026-09-30",
-     "currency": "KRW",
-     "period": "FY2026 Q3 · 잠정",
-     "refs": {
+     "fs_div": "CFS",
+     "fields": {
       "revenue": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
-       "start": "2026-07-01",
-       "end": "2026-09-30",
-       "tag": "매출액",
+       "value": 211417.135,
+       "ytd": 472997.519,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "ifrs-full_Revenue",
+       "account_name": "매출액",
        "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "location": "연결 손익계산서",
+       "start": "2026-01-01",
+       "end": "2026-09-30"
       },
       "profit": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
-       "start": "2026-07-01",
-       "end": "2026-09-30",
-       "tag": "영업이익",
+       "value": 60289.605,
+       "ytd": 124138.839,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "dart_OperatingIncomeLoss",
+       "account_name": "영업이익",
        "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "location": "연결 손익계산서",
+       "start": "2026-01-01",
+       "end": "2026-09-30"
       },
       "netincome": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
-       "start": "2026-07-01",
-       "end": "2026-09-30",
-       "tag": "당기순이익",
+       "value": 46514.874,
+       "ytd": 106536.122,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "ifrs-full_ProfitLoss",
+       "account_name": "분기순이익",
        "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "location": "연결 손익계산서",
+       "start": "2026-01-01",
+       "end": "2026-09-30"
       }
      },
-     "fs_div": "CFS",
-     "provisional": true,
-     "revenue": 211417.0,
-     "profit": 60290.0,
-     "netincome": 46515.0
+     "comparatives": [
+      {
+       "year": 2025,
+       "quarter": 3,
+       "fs_div": "CFS",
+       "fields": {
+        "revenue": {
+         "value": 109168.868,
+         "ytd": 291420.576,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+         "filed": "2026-11-16",
+         "tag": "ifrs-full_Revenue",
+         "account_name": "매출액",
+         "fs_div": "CFS",
+         "location": "연결 손익계산서",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true
+        },
+        "profit": {
+         "value": 20288.216,
+         "ytd": 48022.696,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+         "filed": "2026-11-16",
+         "tag": "dart_OperatingIncomeLoss",
+         "account_name": "영업이익",
+         "fs_div": "CFS",
+         "location": "연결 손익계산서",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true
+        },
+        "netincome": {
+         "value": 22587.998,
+         "ytd": 53010.258,
+         "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+         "filed": "2026-11-16",
+         "tag": "ifrs-full_ProfitLoss",
+         "account_name": "분기순이익",
+         "fs_div": "CFS",
+         "location": "연결 손익계산서",
+         "start": "2025-01-01",
+         "end": "2025-09-30",
+         "comparative": true
+        }
+       }
+      }
+     ]
     }
    ],
+   "provisional_rows": [],
    "rows": [
     {
      "kind": "annual",
@@ -16581,48 +16623,56 @@
      "start": "2026-07-01",
      "date": "2026-09-30",
      "currency": "KRW",
-     "period": "FY2026 Q3 · 잠정",
+     "period": "FY2026 Q3",
      "refs": {
       "revenue": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
+       "value": 211417.135,
+       "ytd": 472997.519,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "ifrs-full_Revenue",
+       "account_name": "매출액",
+       "fs_div": "CFS",
+       "location": "연결 손익계산서",
        "start": "2026-07-01",
        "end": "2026-09-30",
-       "tag": "매출액",
-       "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "calculation": "reported quarter"
       },
       "profit": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
+       "value": 60289.605,
+       "ytd": 124138.839,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "dart_OperatingIncomeLoss",
+       "account_name": "영업이익",
+       "fs_div": "CFS",
+       "location": "연결 손익계산서",
        "start": "2026-07-01",
        "end": "2026-09-30",
-       "tag": "영업이익",
-       "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "calculation": "reported quarter"
       },
       "netincome": {
-       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261028800200",
-       "filed": "2026-10-28",
+       "value": 46514.874,
+       "ytd": 106536.122,
+       "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001343",
+       "filed": "2026-11-16",
+       "tag": "ifrs-full_ProfitLoss",
+       "account_name": "분기순이익",
+       "fs_div": "CFS",
+       "location": "연결 손익계산서",
        "start": "2026-07-01",
        "end": "2026-09-30",
-       "tag": "당기순이익",
-       "fs_div": "CFS",
-       "location": "연결 잠정실적",
-       "calculation": "reported provisional quarter"
+       "calculation": "reported quarter"
       }
      },
      "fs_div": "CFS",
-     "provisional": true,
-     "revenue": 211417.0,
-     "profit": 60290.0,
-     "netincome": 46515.0
+     "revenue": 211417.135,
+     "profit": 60289.605,
+     "netincome": 46514.874
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "ok",
    "source_errors": []
   },
@@ -24893,8 +24943,8 @@
      "netincome": 12372.067696
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "ok",
    "source_errors": []
   },
@@ -33297,8 +33347,8 @@
      "netincome": 695.539984
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "ok",
    "source_errors": []
   },
@@ -41225,8 +41275,8 @@
      "netincome": -2121.140242
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "ok",
    "source_errors": []
   },
@@ -49477,8 +49527,8 @@
      "netincome": 9386.222411
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "partial",
    "source_errors": [
     "2026 Q3 정기 공시 조회·확인 필요 (ValueError)"
@@ -51874,11 +51924,11 @@
      "netincome": 32598.343
     }
    ],
-   "checked": "2026-11-16",
-   "fetched": "2026-11-16",
+   "checked": "2026-11-17",
+   "fetched": "2026-11-17",
    "status": "ok",
    "source_errors": []
   }
  },
- "updated": "2026-11-16T07:05:30+00:00"
+ "updated": "2026-11-17T08:15:51+00:00"
 }
