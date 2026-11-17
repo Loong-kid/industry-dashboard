@@ -24,7 +24,7 @@ def verify(base):
             for route,count,title in [('#/semicon',9,'메모리'),('#/semicon/foundry',12,'파운드리'),('#/semicon/cpu',21,'CPU'),('#/semicon/ssd',6,'SSD')]:
                 open_route(route,count)
                 assert title in page.locator('#page-title').inner_text()
-                assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','GPU','AI ASIC','SSD','소부장']
+                assert page.locator('.semicon-groups a').all_text_contents()==['메모리','파운드리','CPU','GPU','AI ASIC','SSD','전력반도체','소부장']
                 assert page.locator('#page-tabs .commodity-tabs').count()==1
                 assert '반도체 소부장' not in page.locator('#nav').inner_text()
                 cards=page.locator('#content .card.ir-chart')
@@ -60,7 +60,7 @@ def verify(base):
             page.screenshot(path=str(ROOT/f'tmp/semicon-20261014/memory-{width}.png'))
             for route,count,leaf in [('#/semicon/materials/snstech',73,'포토마스크'),('#/semicon/snstech',73,'포토마스크'),
                                      ('#/semicon/materials/esc',6,'정전척'),('#/semicon/esc',6,'정전척'),
-                                     ('#/semicon/materials/mocvd',23,'MOCVD'),('#/semicon/mocvd',23,'MOCVD'),
+                                     ('#/semicon/materials/mocvd',14,'MOCVD'),('#/semicon/mocvd',14,'MOCVD'),
                                      ('#/semicon/materials/wafer',16,'실리콘 웨이퍼'),('#/semicon/wafer',16,'실리콘 웨이퍼')]:
                 open_route(route,count)
                 assert '소부장' in page.locator('#page-title').inner_text()

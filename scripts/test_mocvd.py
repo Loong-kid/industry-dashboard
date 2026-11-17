@@ -145,7 +145,7 @@ class MOCVDTests(unittest.TestCase):
         ind=next(x for x in c['industries'] if x['id']=='semicon')
         ids=[]
         for section in ind['sections']:
-            if section.get('tab')!='mocvd':continue
+            if section.get('tab') not in ('mocvd','power_semicon'):continue
             ids+=section['indicators']
             for company in section.get('companies',[]):ids+=company['indicators']
         self.assertEqual(set(ids),set(self.docs))

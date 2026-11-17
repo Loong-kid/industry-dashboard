@@ -45,6 +45,7 @@ function currentTarget() {
   if (id === "natgas" && subtab === "midstream" && window.dashboard?.state?.natgasView === "compression") return {file: "data/natgas/company_aroc_revenue.json", label: "압축기 실적 확인", workflow: "update-natgas.yml"};
   if (id === "natgas" && subtab === "midstream") return {file: "data/natgas/company_kmi_revenue.json", label: "미드스트림 실적 확인", workflow: "update-natgas.yml"};
   if (id === "semicon" && subtab === "cpu") return {file: "data/semicon/company_intel_revenue.json", label: "CPU 실적 갱신", workflow: "update-cpu.yml"};
+  if (id === "semicon" && subtab === "power_semicon") return {file: "data/semicon/valuation/valuation_index.json", label: "전력반도체 주가·밴드 갱신", workflow: "update-semicon-valuation.yml"};
   if (id === "semicon" && subtab === "cleaning_summary") return {file: "data/semicon/cleaning_state.json", label: "세정 실적 확인", workflow: "update-semicon-cleaning.yml"};
   if (id === "semicon" && subtab === "cleanroom_summary") return {file: "data/semicon/cleanroom_state.json", label: "클린룸·공조 실적 확인", workflow: "update-cleanroom.yml"};
   if (id === "semicon" && subtab?.startsWith("osat_")) return {file: "data/semicon/osat_state.json", label: "패키징·테스트 실적 확인", workflow: "update-semicon-osat.yml"};
