@@ -207,7 +207,7 @@ function route() {
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
   if (state.industry !== prev && state.industry.default_range) setRange(state.industry.default_range);
-  const tabRange = state.industry.tabs?.find(tab => tab.id === state.subtab)?.default_range;
+  const tabRange = (state.industry.tabs?.find(tab => tab.id === state.subtab) || state.industry.groups?.find(group => group.id === state.subtab))?.default_range;
   if (tabRange && (state.industry !== prev || state.subtab !== prevSubtab)) setRange(tabRange);
   renderIndustry();
 }
@@ -854,7 +854,7 @@ function renderFootStatus(latestUpdate, collected, ind) {
   // 갱신 주기 안내: 워크플로는 매일 돌지만 소스마다 '새 값이 생기는 주기'가 다르다.
   // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
   // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
-  const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab);
+  const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab) || ind?.groups?.find(group => group.id === state.subtab);
   const cadenceView = ind?.id === "datacenter" && state.subtab === "us" ? cadenceTab?.views?.find(view => view.id === state.datacenterView) : null;
   const cadence = cadenceView?.cadence || cadenceTab?.cadence || ind?.cadence;
   const cad = document.createElement("details");

@@ -93,6 +93,31 @@ class ValuationTests(unittest.TestCase):
             charts += [key for sec in s['sections'] if sec.get('tab')==tab and sec.get('type')=='valuation_charts' for key in sec['valuation_companies']]
             self.assertEqual(set(charts),ids);self.assertEqual(len(charts),len(set(charts)))
 
+    def test_power_semiconductors_are_top_level_with_preserved_financials(self):
+        ind=next(i for i in load(ROOT/'data/catalog.json',{})['industries'] if i['id']=='semicon')
+        group=next(g for g in ind['groups'] if g['id']=='power_semicon')
+        self.assertEqual(group['name'],'전력반도체')
+        self.assertEqual(group['default_range'],'all')
+        self.assertNotIn('power_semicon',[t['id'] for t in ind['tabs']]) # Material leaves take a different route.
+        sections=[s for s in ind['sections'] if s.get('tab')=='power_semicon']
+        ids=['innoscience','infineon','powi']
+        summary=next(s for s in sections if s.get('type')=='valuation_summary')
+        self.assertEqual(summary['valuation_companies'],ids)
+        financial=[s for s in sections if s.get('valuation_company')]
+        self.assertEqual([s['valuation_company'] for s in financial],ids)
+        for section in financial:
+            company=section['valuation_company']
+            self.assertEqual(section['indicators'],[f'mocvd_{company}_{m}' for m in ('revenue','profit','capex')])
+            for key in section['indicators']:self.assertTrue((ROOT/'data/semicon'/(key+'.json')).exists())
+            self.assertEqual(next(c for c in self.spec if c['id']==company)['tabs'],['power_semicon'])
+            self.assertEqual(next(c for c in self.index['companies'] if c['id']==company)['tabs'],['power_semicon'])
+            self.assertEqual(load(ROOT/'data/semicon/valuation'/(company+'.json'),{})['tabs'],['power_semicon'])
+        self.assertEqual([s['indicators'][0] for s in sections if s.get('type')=='table'],['mocvd_gan_projects'])
+        for section in ind['sections']:
+            if section.get('tab')=='mocvd':
+                self.assertNotIn(section.get('valuation_company'),ids)
+                self.assertFalse(set(ids)&set(section.get('valuation_companies',[])))
+
     def test_source_failure_keeps_verified_data_and_marks_retry(self):
         one=self.spec[0];old=load(ROOT/'data/semicon/valuation'/(one['id']+'.json'),{})
         import requests

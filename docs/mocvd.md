@@ -1,5 +1,15 @@
 # MOCVD
 
+2026-11-18 navigation update: Innoscience, Infineon and Power Integrations
+financials and valuation panels, plus `mocvd_gan_projects`, now live in
+**Semiconductor → 전력반도체**, route `#/semicon/power_semicon`.
+MOCVD keeps equipment suppliers, optical customers and equipment-order evidence,
+with a link to the power-semiconductor tab. The historical source notes below
+remain valid for both tabs; original document IDs, numerical data, periods and
+source files are unchanged. Stock/band refresh uses the existing semiconductor
+valuation workflow; these reviewed company financial histories still require
+source review for new releases.
+
 Route: `#/semicon/materials/mocvd` (legacy `#/semicon/mocvd` retained).
 First build reviewed 2026-10-09; historical extension reviewed 2026-10-16.
 
