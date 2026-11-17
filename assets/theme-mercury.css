@@ -1,0 +1,145 @@
+/* =====================================================================
+   테마: 포트폴리오 웹과 같은 디자인 언어 (portfolio-monitor-cloud/web/public/css/app.css)
+   - 밤색 사이드바가 밝은 화면을 감싼다 / 강조는 인디고 하나 / 카드는 테두리 대신 바탕색과 옅은 그림자
+   - 글꼴은 Pretendard, 굵기는 500까지 / 버튼·탭은 알약 모양
+   - 손익 색은 한국식(오르면 빨강, 내리면 파랑). 성공·오류 표시는 따로 고정한다.
+   모든 CSS 뒤에 불러와 토큰을 덮는다. 이 파일을 빼면 이전 디자인으로 돌아간다.
+   ===================================================================== */
+
+:root {
+  --m-primary: #5266eb;
+  --m-night: #171721;
+  --m-night-raised: #1e1e2a;
+  --m-on-dark: #ededf3;
+  --m-fog: #c3c3cc;
+  --m-lavender: #edecfb;
+
+  --page: #fbfcfd;
+  --surface: #ffffff;
+  --surface-2: #f3f2fc;
+  --ink: #28253b;
+  --ink-2: #554e7b;
+  --muted: #6b6782;
+  --grid: #ebeaf1;
+  --baseline: #cfcedb;
+  --border: rgba(40, 37, 59, 0.09);
+  --accent: #5266eb;
+  --accent-text: #4256d6;
+  --focus: #5266eb;
+  --tint: rgba(82, 102, 235, 0.10);
+  --tint-hover: rgba(82, 102, 235, 0.16);
+  --neutral-tint: rgba(112, 115, 147, 0.10);
+  --up: #c23030;
+  --down: #1f62c4;
+  --ok: #187a3f;
+  --err: #b42318;
+  --warn: #8a5a00;
+  --shadow: 0 1px 2px rgba(40, 37, 59, 0.04), 0 8px 24px rgba(40, 37, 59, 0.05);
+  --pill: 40px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: var(--m-night);
+    --surface: var(--m-night-raised);
+    --surface-2: #272736;
+    --ink: var(--m-on-dark);
+    --ink-2: var(--m-fog);
+    --muted: #9a99aa;
+    --grid: #2b2b3a;
+    --baseline: #3d3d50;
+    --border: rgba(195, 195, 204, 0.12);
+    --accent: #8090f4;
+    --accent-text: #9aa6f6;
+    --focus: #9aa6f6;
+    --tint: rgba(156, 180, 232, 0.16);
+    --tint-hover: rgba(156, 180, 232, 0.24);
+    --neutral-tint: rgba(175, 178, 206, 0.14);
+    --up: #e66767;
+    --down: #6f9cf0;
+    --ok: #4cc382;
+    --err: #f2a7ad;
+    --warn: #f3cf7a;
+    --shadow: none;
+  }
+}
+
+/* ---------- 글자 ---------- */
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+b, strong, th, h1, h2, h3, h4 { font-weight: 500; }
+a { color: var(--accent-text); }
+
+/* ---------- 사이드바: 밤색 (낮·밤 모두) ---------- */
+:root {
+  --nav-paper: var(--m-night);
+  --nav-ink: var(--m-fog);
+  --nav-muted: #9a99aa;
+  --nav-rule: rgba(195, 195, 204, 0.12);
+  --nav-selection: rgba(175, 178, 206, 0.22);
+  --nav-hover: rgba(175, 178, 206, 0.12);
+  --nav-accent: var(--m-on-dark);
+  --nav-focus: #9aa6f6;
+  --nav-error: #f2a7ad;
+  --nav-success: #a1d7bb;
+  --nav-warning: #f3cf7a;
+  --nav-radius: var(--pill);
+}
+.sidebar .brand-title { font-weight: 480; letter-spacing: -.02em; color: var(--m-on-dark); }
+.sidebar .brand-title b { color: #9aa6f6; font-weight: 500; letter-spacing: -.02em; }
+.nav-group h2 { font-weight: 450; }
+.sidebar #nav a { font-weight: 450; }
+.sidebar #nav a:hover { color: var(--m-on-dark); }
+.sidebar #nav a.active { font-weight: 500; }
+.sidebar .sidebar-foot a { color: #9aa6f6; }
+.sidebar-foot .foot-warn { color: #f3cf7a; font-weight: 500; }
+
+/* ---------- 머리: 제목·탭·기간 ---------- */
+.dashboard-header { background: var(--page); border-bottom-color: var(--border); }
+.topbar h1 { font-weight: 500; letter-spacing: 0.005em; }
+.commodity-tabs a, .dashboard-header .commodity-tabs a {
+  border: 0; border-radius: var(--pill); color: var(--ink-2); font-weight: 450; background: transparent;
+}
+.commodity-tabs a:hover { background: var(--neutral-tint); color: var(--ink); }
+.commodity-tabs a.active, .dashboard-header .commodity-tabs a.active { color: var(--accent-text); background: var(--tint); border: 0; font-weight: 500; }
+.dashboard-header .semicon-groups a, .dashboard-header .semicon-equipment-views a { border-radius: 0; background: transparent; }
+.dashboard-header .semicon-groups a.active, .dashboard-header .semicon-equipment-views a.active { background: transparent; color: var(--ink); }
+.dashboard-header .semicon-categories a.active { background: var(--tint); color: var(--accent-text); border-color: transparent; }
+
+.range-picker { gap: 4px; }
+.range-picker button { border: 0; border-radius: var(--pill); background: transparent; color: var(--ink-2); font-weight: 450; }
+.range-picker button:hover { background: var(--neutral-tint); }
+.range-picker button.active { background: var(--tint); color: var(--accent-text); font-weight: 500; border: 0; }
+.range-dates input { border-radius: var(--pill); border-color: var(--baseline); background: var(--surface); padding-left: 10px; padding-right: 8px; }
+
+.refresh-btn { border-radius: var(--pill); font-weight: 500; background: var(--tint); color: var(--accent-text); border-color: transparent; }
+.refresh-btn:hover { background: var(--tint-hover); border-color: transparent; }
+.refresh-btn.is-ok { color: var(--ok); border-color: var(--ok); background: transparent; }
+.refresh-btn.is-err { color: var(--err); border-color: var(--err); background: transparent; }
+.refresh-icon svg, .icon-btn svg { display: block; width: 14px; height: 14px; }
+.icon-btn { border-radius: var(--pill); }
+.card-size-reset { border-radius: var(--pill); font-weight: 450; }
+.modal-status.ok { color: var(--ok); }
+.modal-status.err { color: var(--err); }
+.btn-primary { border-radius: var(--pill); background: var(--m-primary); border-color: var(--m-primary); font-weight: 500; }
+.btn-ghost { border-radius: var(--pill); background: var(--neutral-tint); border-color: var(--baseline); font-weight: 450; }
+
+/* ---------- 섹션·카드 ---------- */
+.section-title { font-size: 17px; font-weight: 480; color: var(--ink); text-transform: none; letter-spacing: 0.01em; margin: 30px 0 12px; }
+.card { border: 0; box-shadow: var(--shadow); border-radius: 12px; padding: 20px; }
+.card-name { font-weight: 500; font-size: 15px; }
+.stat-value, .card[data-compact-hovers] .stat-value.gm-money { font-weight: 480; letter-spacing: 0.005em; }
+.stat-series { border: 0; background: var(--surface-2); border-radius: var(--pill); font-weight: 450; padding: 3px 10px; }
+.stat-delta { font-weight: 450; }
+.card-empty.is-error { color: var(--err); border-color: var(--err); }
+.stale-badge { font-weight: 500; border-radius: var(--pill); }
+.chip { border-radius: var(--pill); }
+
+/* ---------- 폰 ---------- */
+@media (max-width: 860px) {
+  .sidebar { border-right: 0; border-bottom: 1px solid rgba(195, 195, 204, 0.08); }
+  .card { padding: 16px; }
+}
