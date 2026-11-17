@@ -2,6 +2,10 @@ name: review-ring-sources
 on:
   workflow_dispatch:
     inputs:
+      supplychain:
+        description: Review the twenty additional Korean supply-chain issuers
+        type: boolean
+        default: false
       osat:
         description: Review packaging and test service issuers instead
         type: boolean
@@ -22,8 +26,11 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           REVIEW_OSAT: ${{ inputs.osat }}
+          REVIEW_SUPPLYCHAIN: ${{ inputs.supplychain }}
         run: |
-          if [ "$REVIEW_OSAT" = "true" ]; then
+          if [ "$REVIEW_SUPPLYCHAIN" = "true" ]; then
+            PYTHONPATH=scripts python -u -c "from collect_ring_sources import collect; collect(True, cache='.cache/semicon-supplychain', metadata='manual/semicon-supplychain/companies.json')"
+          elif [ "$REVIEW_OSAT" = "true" ]; then
             python -u scripts/collect_osat_sources.py --full-history
           else
             python -u scripts/collect_ring_sources.py --full-history
@@ -31,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ inputs.osat && 'osat-original-statements' || 'ring-original-statements' }}
-          path: ${{ inputs.osat && '.cache/osat/' || '.cache/rings/' }}
+          name: ${{ inputs.supplychain && 'supplychain-original-statements' || inputs.osat && 'osat-original-statements' || 'ring-original-statements' }}
+          path: ${{ inputs.supplychain && '.cache/semicon-supplychain/' || inputs.osat && '.cache/osat/' || '.cache/rings/' }}
           include-hidden-files: true
           retention-days: 3
