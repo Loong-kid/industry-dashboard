@@ -406,6 +406,12 @@ async function renderIndustry(options = {}) {
       groups.appendChild(link);
     }
     pageTabs.appendChild(groups);
+    const activeGroup = groups.querySelector('[aria-current="page"]');
+    if (activeGroup && groups.scrollWidth > groups.clientWidth) {
+      const selected = activeGroup.getBoundingClientRect(), bounds = groups.getBoundingClientRect();
+      if (selected.left < bounds.left) groups.scrollLeft += selected.left - bounds.left;
+      else if (selected.right > bounds.right) groups.scrollLeft += selected.right - bounds.right;
+    }
   }
 
   if (ind.tabs && (!ind.groups || state.semiconGroup === "materials")) {
