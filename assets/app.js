@@ -498,16 +498,6 @@ async function renderIndustry(options = {}) {
     return;
   }
 
-  if (ind.id === "semicon" && state.subtab?.startsWith("osat_")) {
-    try {
-      const [doc, module] = await Promise.all([loadDoc("semicon", "osat_universe"), import("./semicon-osat.js")]);
-      if (mySeq !== renderSeq) return;
-      const err = state.docErrors.get("osat_universe");
-      content.appendChild(err || !doc ? errorCard("semicon", "osat_universe", err || "기업 목록을 불러오지 못했습니다.") : module.renderGuide(doc, state.subtab));
-    } catch (e) {
-      if (mySeq === renderSeq) content.appendChild(errorCard("semicon", "osat_universe", e.message));
-    }
-  }
   if (ind.id === "semicon" && state.subtab?.startsWith("equipment_")) {
     try {
       const [doc, module] = await Promise.all([loadDoc("semicon", "korea_equipment_universe"), import("./korea-equipment.js")]);
