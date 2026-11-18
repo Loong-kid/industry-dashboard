@@ -6,6 +6,10 @@ on:
         description: Review the twenty additional Korean supply-chain issuers
         type: boolean
         default: false
+      source_run_id:
+        description: Optional previous supplier source run to resume
+        type: string
+        default: ''
       osat:
         description: Review packaging and test service issuers instead
         type: boolean
@@ -15,13 +19,20 @@ permissions:
 jobs:
   statements:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install requests beautifulsoup4
+      - uses: actions/download-artifact@v4
+        if: inputs.supplychain && inputs.source_run_id != ''
+        with:
+          name: supplychain-original-statements
+          path: .cache/semicon-supplychain/
+          run-id: ${{ inputs.source_run_id }}
+          github-token: ${{ github.token }}
       - name: Collect original Si and SiC parts issuer accounts
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
@@ -29,7 +40,7 @@ jobs:
           REVIEW_SUPPLYCHAIN: ${{ inputs.supplychain }}
         run: |
           if [ "$REVIEW_SUPPLYCHAIN" = "true" ]; then
-            PYTHONPATH=scripts python -u -c "from collect_ring_sources import collect; collect(True, cache='.cache/semicon-supplychain', metadata='manual/semicon-supplychain/companies.json')"
+            python -u scripts/collect_supplychain_sources.py --full-history --resume
           elif [ "$REVIEW_OSAT" = "true" ]; then
             python -u scripts/collect_osat_sources.py --full-history
           else
