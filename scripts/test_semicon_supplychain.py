@@ -68,6 +68,17 @@ class SupplychainTests(unittest.TestCase):
         self.assertAlmostEqual(prior['fields']['revenue']['value'],6774.252656)
         self.assertEqual(prior['fields']['revenue']['filed'],'2020-05-15')
 
+    def test_spin_off_first_three_months_in_later_comparative_are_not_discarded(self):
+        fixture=load(ROOT/'scripts/fixtures/semicon_supplychain/simmtech_2016_q3.json',{})
+        report=normalize(fixture['list'],2016,3,fixture['corp_code'],'CFS',self.meta['companies']['simmtech'])
+        fields=next(r for r in report['comparatives'] if r['year']==2015)['fields']
+        self.assertEqual(fields['revenue']['start'],'2015-07-01')
+        self.assertAlmostEqual(fields['revenue']['value'],187157.273129)
+        self.assertAlmostEqual(fields['profit']['value'],7388.494388)
+        row=self.state['companies']['simmtech']['rows'][0]
+        self.assertEqual(row['date'],'2015-09-30')
+        if row['refs']['capex']['filed']=='2016-11-11':self.assertAlmostEqual(row['capex'],12493.599848)
+
     def test_comparisons_require_matching_basis_and_full_annual_periods(self):
         for identifier,doc in documents(self.meta,self.state).items():
             key=identifier.removeprefix('company_supplychain_').rsplit('_',1)[0]

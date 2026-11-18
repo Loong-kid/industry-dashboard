@@ -26,6 +26,18 @@ def normalize(items,year,q,corp,fs,spec):
         if receipts and max(receipts)<minimum.replace('-',''):
             return dict(year=year,quarter=q,fs_div=fs,fields={},comparatives=[])
     result=normalize_equipment(items,year,q,corp,fs,spec)
+    start=spec.get('first_period_start')
+    if start:
+        # A later filing can be the only available source for a spin-off's
+        # first three months. YTD == quarter is legitimate in that period.
+        for report in [result]+result.get('comparatives',[]):
+            if report['year']!=int(start[:4]):continue
+            fields=report['fields']
+            for metric in ('revenue','profit'):
+                field=fields.get(metric,{})
+                end=field.get('end')
+                if end and field.get('start')==start and 75<=(dt.date.fromisoformat(end)-dt.date.fromisoformat(start)).days+1<=105 and field.get('ytd') is not None:
+                    field['value']=field['ytd'];field.pop('duration_note',None)
     if minimum:
         # Reverse mergers: only the operating company's post-merger filings
         # and their explicitly restated comparative periods are eligible.
@@ -43,6 +55,13 @@ def finalize(co,spec):
     first_period(co,spec)
     start=spec.get('first_period_start')
     if start:
+        sources=[r for report in eligible for r in [report]+report.get('comparatives',[])]
+        for row in co['rows']:
+            if 'capex' in row or not 75<=(dt.date.fromisoformat(row['date'])-dt.date.fromisoformat(start)).days+1<=105:continue
+            matches=[r['fields']['capex'] for r in sources if (r['year'],r['quarter'],r['fs_div'])==(row['year'],row['quarter'],row['fs_div']) and r['fields'].get('capex',{}).get('start')==start and r['fields']['capex'].get('ytd') is not None]
+            if matches:
+                field=max(matches,key=lambda f:f['filed'])
+                row['capex']=field['ytd'];row['refs']['capex']=dict(field,components=[copy.deepcopy(field)],calculation='reported first three-month fiscal cash flow after spin-off')
         # A May/November spin-off's first 2-month stub is not a full Q2/Q4.
         co['rows']=[r for r in co['rows'] if f'{r["year"]}-{r["quarter"]*3-2:02d}-01'>=start]
     validate(co,today())
