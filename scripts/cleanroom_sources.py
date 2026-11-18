@@ -66,4 +66,3 @@ def accounts(reports):
         if row['refs']:rows.append(row)
         if q==4 and a['refs']:annual.append(a)
     return dict(rows=rows,annual=annual,reports=reports)
-
