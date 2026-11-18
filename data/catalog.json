@@ -2904,6 +2904,11 @@
           "default_tab": "cleaning_summary"
         },
         {
+          "id": "cleanroom",
+          "name": "클린룸/공조",
+          "default_tab": "cleanroom_summary"
+        },
+        {
           "id": "osat",
           "name": "패키징·테스트",
           "default_tab": "osat_summary"
@@ -2973,7 +2978,7 @@
           "name": "MOCVD",
           "category": "equipment",
           "default_range": "all",
-          "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → GaN 투자 → 공개된 발주·인도 기록 순서입니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다.",
+          "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → 공개된 발주·인도 기록 순서입니다. GaN 관련 기업 실적과 투자 기록은 전력반도체 탭에서 확인합니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다.",
           "parent_tab": "equipment_frontend"
         },
         {
@@ -3012,6 +3017,15 @@
           "category": "osat",
           "route": "global",
           "default_range": "all"
+        },
+        {
+          "id": "cleanroom_summary",
+          "name": "기업 실적",
+          "category": "cleanroom",
+          "default_range": "all",
+          "auto_collect_time": "09:25",
+          "cadence": "국내 DART·대만 TWSE/TPEx·공식 IR을 매일 오전 9:25 확인합니다. 공개 원문 이력과 최신 누적 공시를 구분하며 조회 실패 시 확보한 자료를 유지합니다.",
+          "description": "한양이엔지·세보엠이씨·신성이엔지·케이엔솔·한탕·야샹·성휘·켈링톤 그룹을 봅니다. 전사 실적이며 클린룸 단독 매출이 아닙니다. 분기·연간·누적(YTD)은 서로 구분합니다. 켈링톤은 영업이익 소계 대신 공시 세전이익(PBT)을 표시합니다."
         },
         {
           "id": "process_chemicals",
@@ -4365,9 +4379,6 @@
             "jsg",
             "lumentum",
             "coherent",
-            "innoscience",
-            "infineon",
-            "powi",
             "nuflare",
             "cetc",
             "topec"
@@ -4456,51 +4467,6 @@
           "table_kind": "mocvd_disclosures",
           "indicators": [
             "mocvd_inp_projects"
-          ]
-        },
-        {
-          "tab": "mocvd",
-          "title": "GaN · Innoscience · 이노사이언스",
-          "layout": "financial",
-          "indicators": [
-            "mocvd_innoscience_revenue",
-            "mocvd_innoscience_profit",
-            "mocvd_innoscience_capex"
-          ],
-          "supply_note": "GaN 사업 중심의 회사 전체 연결 실적입니다. 2017년 설립, 공개 재무자료는 2021년부터이며 2023년부터 반기 비교가 가능합니다. CAPEX는 유형·무형자산 취득 합산 공시입니다.",
-          "valuation_company": "innoscience"
-        },
-        {
-          "tab": "mocvd",
-          "title": "GaN · Infineon · 인피니언",
-          "layout": "financial",
-          "indicators": [
-            "mocvd_infineon_revenue",
-            "mocvd_infineon_profit",
-            "mocvd_infineon_capex"
-          ],
-          "supply_note": "9월 결산, 2014년부터 연간 회사 전체 실적입니다. 영업이익은 IFRS Operating income/profit, CAPEX는 현금 유형자산 취득과 무형자산·개발비를 포함한 Investments를 구분합니다. GaN 단독 금액은 아닙니다.",
-          "valuation_company": "infineon"
-        },
-        {
-          "tab": "mocvd",
-          "title": "GaN · Power Integrations · 파워인테그레이션스",
-          "layout": "financial",
-          "indicators": [
-            "mocvd_powi_revenue",
-            "mocvd_powi_profit",
-            "mocvd_powi_capex"
-          ],
-          "supply_note": "2014년부터 회사 전체 연결 분기 실적입니다. GaN 외 실리콘 전원 IC·게이트 드라이버를 포함하며 GaN 제품 단독 실적과 구분합니다. CAPEX는 유형자산 취득 현금지출입니다.",
-          "valuation_company": "powi"
-        },
-        {
-          "tab": "mocvd",
-          "title": "GaN · 계획·파일럿·실제 출하 기록",
-          "type": "table",
-          "table_kind": "mocvd_disclosures",
-          "indicators": [
-            "mocvd_gan_projects"
           ]
         },
         {
@@ -5047,6 +5013,184 @@
           "supply_note": "연간 총취득 CAPEX와 기준이 다른 Net payments입니다. 같은 수치로 합산하지 않습니다."
         },
         {
+          "title": "전력반도체 · 주가·PER·PBR 비교",
+          "tab": "power_semicon",
+          "type": "valuation_summary",
+          "valuation_companies": [
+            "innoscience",
+            "infineon",
+            "powi"
+          ],
+          "indicators": []
+        },
+        {
+          "tab": "power_semicon",
+          "title": "GaN · Innoscience · 이노사이언스",
+          "layout": "financial",
+          "indicators": [
+            "mocvd_innoscience_revenue",
+            "mocvd_innoscience_profit",
+            "mocvd_innoscience_capex"
+          ],
+          "supply_note": "GaN 사업 중심의 회사 전체 연결 실적입니다. 2017년 설립, 공개 재무자료는 2021년부터이며 2023년부터 반기 비교가 가능합니다. CAPEX는 유형·무형자산 취득 합산 공시입니다.",
+          "valuation_company": "innoscience"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "GaN · Infineon · 인피니언",
+          "layout": "financial",
+          "indicators": [
+            "mocvd_infineon_revenue",
+            "mocvd_infineon_profit",
+            "mocvd_infineon_capex"
+          ],
+          "supply_note": "9월 결산, 2014년부터 연간 회사 전체 실적입니다. 영업이익은 IFRS Operating income/profit, CAPEX는 현금 유형자산 취득과 무형자산·개발비를 포함한 Investments를 구분합니다. GaN 단독 금액은 아닙니다.",
+          "valuation_company": "infineon"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "GaN · Power Integrations · 파워인테그레이션스",
+          "layout": "financial",
+          "indicators": [
+            "mocvd_powi_revenue",
+            "mocvd_powi_profit",
+            "mocvd_powi_capex"
+          ],
+          "supply_note": "2014년부터 회사 전체 연결 분기 실적입니다. GaN 외 실리콘 전원 IC·게이트 드라이버를 포함하며 GaN 제품 단독 실적과 구분합니다. CAPEX는 유형자산 취득 현금지출입니다.",
+          "valuation_company": "powi"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "GaN · 계획·파일럿·실제 출하 기록",
+          "type": "table",
+          "table_kind": "mocvd_disclosures",
+          "indicators": [
+            "mocvd_gan_projects"
+          ]
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "클린룸·공조 기업 비교",
+          "type": "table",
+          "table_kind": "cleanroom",
+          "indicators": [
+            "cleanroom_universe"
+          ]
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "주가 · PER · PBR 비교",
+          "type": "valuation_summary",
+          "indicators": [],
+          "valuation_companies": [
+            "cleanroom_hanyang",
+            "cleanroom_sebo",
+            "cleanroom_shinsung",
+            "cleanroom_knsol",
+            "cleanroom_uis",
+            "cleanroom_lk",
+            "cleanroom_acter",
+            "cleanroom_kelington"
+          ]
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "한양이엔지 · 한국",
+          "anchor": "cleanroom-hanyang",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_hanyang_revenue",
+            "company_cleanroom_hanyang_profit",
+            "company_cleanroom_hanyang_capex"
+          ],
+          "valuation_company": "cleanroom_hanyang"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "세보엠이씨 · 한국",
+          "anchor": "cleanroom-sebo",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_sebo_revenue",
+            "company_cleanroom_sebo_profit",
+            "company_cleanroom_sebo_capex"
+          ],
+          "valuation_company": "cleanroom_sebo"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "신성이엔지 · 한국",
+          "anchor": "cleanroom-shinsung",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_shinsung_revenue",
+            "company_cleanroom_shinsung_profit",
+            "company_cleanroom_shinsung_capex"
+          ],
+          "valuation_company": "cleanroom_shinsung"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "케이엔솔 · 한국",
+          "anchor": "cleanroom-knsol",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_knsol_revenue",
+            "company_cleanroom_knsol_profit",
+            "company_cleanroom_knsol_capex"
+          ],
+          "valuation_company": "cleanroom_knsol"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "한탕 · UIS · 대만",
+          "anchor": "cleanroom-uis",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_uis_revenue",
+            "company_cleanroom_uis_profit",
+            "company_cleanroom_uis_capex"
+          ],
+          "valuation_company": "cleanroom_uis"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "야샹 · L&K Engineering · 대만",
+          "anchor": "cleanroom-lk",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_lk_revenue",
+            "company_cleanroom_lk_profit",
+            "company_cleanroom_lk_capex"
+          ],
+          "valuation_company": "cleanroom_lk"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "성휘 · Acter · 대만",
+          "anchor": "cleanroom-acter",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_acter_revenue",
+            "company_cleanroom_acter_profit",
+            "company_cleanroom_acter_capex"
+          ],
+          "valuation_company": "cleanroom_acter"
+        },
+        {
+          "tab": "cleanroom_summary",
+          "title": "켈링톤 그룹 · 말레이시아",
+          "anchor": "cleanroom-kelington",
+          "layout": "financial",
+          "indicators": [
+            "company_cleanroom_kelington_revenue",
+            "company_cleanroom_kelington_pbt",
+            "company_cleanroom_kelington_net",
+            "company_cleanroom_kelington_capex"
+          ],
+          "valuation_company": "cleanroom_kelington"
+        },
+        {
           "title": "주가 · PER · PBR 비교",
           "tab": "process_chemicals",
           "type": "valuation_summary",
@@ -5552,6 +5696,14 @@
           "id": "ssd",
           "name": "SSD",
           "description": "Sandisk·Kioxia의 2014년 이후 실적을 봅니다. 구 SanDisk·WDC Flash·도시바 Memory 등 전신 자료는 계열을 구분합니다. 회계기간·사업 범위가 달라 연결 비교에 주의가 필요하며, 단독 영업이익·분기 CAPEX 미확보 기간은 빈 값입니다. 각 그래프에서 분기·연간을 선택할 수 있으며 연간은 회사 회계연도 기준입니다."
+        },
+        {
+          "id": "power_semicon",
+          "name": "전력반도체",
+          "default_range": "all",
+          "auto_collect_time": "08:10",
+          "description": "이노사이언스·인피니언·파워인테그레이션스의 매출·영업이익·CAPEX와 주가·PER·PBR을 봅니다. 기존 GaN 관련 기업부터 정리했으며 각 회사 전체 실적입니다. 이노사이언스는 반기·연간, 나머지는 확보된 분기·연간을 전환할 수 있습니다. 장비사 수주와 증착 장비는 소부장 → 장비 → MOCVD에서 확인합니다.",
+          "cadence": "주가·PER·PBR은 매일 08:10(KST) 확인합니다. 매출·영업이익·CAPEX와 GaN 투자 기록은 검토된 공시 원본을 사용하며 신규 실적 공시는 원본 검토 후 반영합니다. 갱신 버튼은 주가·밴드를 갱신합니다."
         },
         {
           "id": "materials",

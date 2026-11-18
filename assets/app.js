@@ -207,7 +207,7 @@ function route() {
   // 산업마다 적정 기본 기간이 다르다(전력은 월간·연간 계열이라 1년으로는 점이 몇 개 안 남는다).
   // 탭을 바꿀 때만 적용 — 같은 탭에서 사용자가 고른 기간은 유지.
   if (state.industry !== prev && state.industry.default_range) setRange(state.industry.default_range);
-  const tabRange = state.industry.tabs?.find(tab => tab.id === state.subtab)?.default_range;
+  const tabRange = (state.industry.tabs?.find(tab => tab.id === state.subtab) || state.industry.groups?.find(group => group.id === state.subtab))?.default_range;
   if (tabRange && (state.industry !== prev || state.subtab !== prevSubtab)) setRange(tabRange);
   renderIndustry();
 }
@@ -313,7 +313,7 @@ async function renderIndustry(options = {}) {
   // 탭별 수집 워크플로와 갱신 버튼 라벨은 refresh.js에서 정한다.
   // 테이블 전용 탭은 자체 기간 필터를 사용하므로 전역 차트 기간필터를 뺀다.
   const tableTab = ind.id === "gifts" || ind.id === "expansion" || (ind.id === "movies" && state.subtab === "slate") || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || ["cleaning_summary", "process_chemicals", "specialty_gases", "test_components", "package_substrates"].includes(state.subtab) || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || ["cleaning_summary", "cleanroom_summary", "process_chemicals", "specialty_gases", "test_components", "package_substrates"].includes(state.subtab) || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || treasuryView || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -406,6 +406,12 @@ async function renderIndustry(options = {}) {
       groups.appendChild(link);
     }
     pageTabs.appendChild(groups);
+    const activeGroup = groups.querySelector('[aria-current="page"]');
+    if (activeGroup && groups.scrollWidth > groups.clientWidth) {
+      const selected = activeGroup.getBoundingClientRect(), bounds = groups.getBoundingClientRect();
+      if (selected.left < bounds.left) groups.scrollLeft += selected.left - bounds.left;
+      else if (selected.right > bounds.right) groups.scrollLeft += selected.right - bounds.right;
+    }
   }
 
   if (ind.tabs && (!ind.groups || state.semiconGroup === "materials")) {
@@ -656,6 +662,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
         : section.table_kind === "offshore_contracts" ? doc => renderOffshoreFleet(doc, true)
         : section.table_kind === "offshore_financials" ? renderOffshoreFinancials
+        : section.table_kind === "cleanroom" ? (await import("./cleanroom.js")).renderCleanroom
         : section.table_kind === "movie_slate" ? (await import("./movies.js")).renderMovies
         : section.table_kind === "imax_model" ? (await import("./imax-model.js")).renderImaxModel
         : section.table_kind === "movie_companies" ? (await import("./movies.js")).renderMovieCompanies
@@ -856,7 +863,7 @@ function renderFootStatus(latestUpdate, collected, ind) {
   // 갱신 주기 안내: 워크플로는 매일 돌지만 소스마다 '새 값이 생기는 주기'가 다르다.
   // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
   // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
-  const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab);
+  const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab) || ind?.groups?.find(group => group.id === state.subtab);
   const cadenceView = ind?.id === "datacenter" && state.subtab === "us" ? cadenceTab?.views?.find(view => view.id === state.datacenterView) : null;
   const cadence = cadenceView?.cadence || cadenceTab?.cadence || ind?.cadence;
   const cad = document.createElement("details");

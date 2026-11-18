@@ -21,11 +21,15 @@ for (const [, file] of refresh.matchAll(/file:\s*"([^"]+)"/g)) assert.ok(fs.exis
 for (const [, wf] of refresh.matchAll(/workflow:\s*"([^"]+)"/g)) assert.ok(fs.existsSync(`.github/workflows/${wf}`), `워크플로 없음: ${wf}`);
 const targetStart = refresh.indexOf('function currentTarget()');
 const target = new Function('window', `${refresh.slice(targetStart, refresh.indexOf('const PAT_KEY', targetStart))}\nreturn currentTarget();`);
-for (const [subtab, workflow] of [['osat_summary', 'update-semicon-osat.yml'], ['osat_korea', 'update-semicon-osat.yml'], ['osat_global', 'update-semicon-osat.yml'], ['cleaning_summary', 'update-semicon-cleaning.yml'], ['equipment_summary', 'update-equipment.yml'], ['cpu', 'update-cpu.yml']]) {
+for (const [subtab, workflow] of [['osat_summary', 'update-semicon-osat.yml'], ['osat_korea', 'update-semicon-osat.yml'], ['osat_global', 'update-semicon-osat.yml'], ['cleaning_summary', 'update-semicon-cleaning.yml'], ['cleanroom_summary', 'update-cleanroom.yml'], ['equipment_summary', 'update-equipment.yml'], ['cpu', 'update-cpu.yml']]) {
   const current = target({dashboard: {state: {industry: {id: 'semicon'}, subtab}}});
   assert.equal(current.workflow, workflow);
   assert.ok(fs.existsSync(current.file));
 }
 console.log('range and refresh OK');
+const powerSemicon=target({dashboard:{state:{industry:{id:'semicon'},subtab:'power_semicon'}}});
+assert.equal(powerSemicon.workflow,'update-semicon-valuation.yml');
+assert.equal(powerSemicon.file,'data/semicon/valuation/valuation_index.json');
+assert.equal(powerSemicon.label,'전력반도체 주가·밴드 갱신');
 const treasury=target({dashboard:{state:{industry:{id:'macro'},subtab:'us_treasury'}}});
 assert.equal(treasury.workflow,'update-us-treasury.yml');assert.equal(treasury.file,'data/us-treasury/state.json');

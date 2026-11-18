@@ -1,5 +1,14 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 (async()=>{
+ const app=fs.readFileSync('assets/app.js','utf8');
+ const catalog=JSON.parse(fs.readFileSync('data/catalog.json','utf8'));
+ const state={catalog,industry:null,subtab:null,range:'3y'},location={hash:''};
+ const document={querySelectorAll:()=>[],getElementById:()=>({querySelector:()=>null})};
+ const route=new Function('state','location','document','history','setRange','renderIndustry',app.slice(app.indexOf('function route()'),app.indexOf('\nfunction setRange'))+'\nreturn route;')(state,location,document,{},range=>state.range=range,()=>{});
+ for(const [hash,tab,group] of [['#/semicon/power_semicon','power_semicon','power_semicon'],['#/semicon/materials/equipment/mocvd','mocvd','materials'],['#/semicon/mocvd','mocvd','materials'],['#/semicon/power_semicon','power_semicon','power_semicon']]){
+  location.hash=hash;route();assert.equal(state.subtab,tab);assert.equal(state.semiconGroup,group);
+  if(tab==='power_semicon'){assert.equal(state.materialCategory,null);assert.equal(state.range,'all');}
+ }
  const source=fs.readFileSync('assets/semicon-valuation.js','utf8');
  const {sampleRows,valueAt,basisValue,basisState,valuationChartData,perPriceExtrema,parsePerBands,readPerBandPreferences,savePerBandPreferences,perBandStorageKey}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
  const rows=Array.from({length:4000},(_,i)=>[String(i).padStart(5,'0'),i===1234?999999:i===2456?-99999:i%50]);
