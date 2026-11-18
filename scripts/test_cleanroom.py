@@ -17,6 +17,8 @@ class CleanroomTests(unittest.TestCase):
         s=next(i for i in load(ROOT/'data/catalog.json',{})['industries'] if i['id']=='semicon')
         self.assertEqual(next(c for c in s['material_categories'] if c['id']=='cleanroom')['name'],'클린룸/공조')
         sections=[s for s in s['sections'] if s.get('tab')=='cleanroom_summary']
+        self.assertEqual(sections[0]['type'],'valuation_summary')
+        self.assertFalse(any(s.get('table_kind')=='cleanroom' for s in sections))
         self.assertEqual(len([s for s in sections if s.get('anchor')]),8)
         docs=build(self.meta,self.state)
         for section in sections:

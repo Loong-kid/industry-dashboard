@@ -67,12 +67,13 @@ class ValuationTests(unittest.TestCase):
     def test_coverage_and_cached_documents_reconcile_to_summary(self):
         added=load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         cleaning=load(ROOT/'manual/semicon-cleaning/companies.json',{})
-        peers=len(cleaning['companies'])+len(cleaning['global_companies'])+len(load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies'])
+        osat=load(ROOT/'manual/semicon-osat/companies.json',{})
+        peers=len(cleaning['companies'])+len(cleaning['global_companies'])+len(load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies'])+len(osat['companies'])+len(osat['global_companies'])
         cleanroom=load(ROOT/'manual/cleanroom/companies.json',{})
         cleanroom_ids={'cleanroom_'+k for k in {**cleanroom['companies'],**cleanroom['global_companies']}}
         self.assertEqual({c['id'] for c in self.spec if 'cleanroom_summary' in c['tabs']},cleanroom_ids)
-        self.assertEqual(len(self.spec),69+len(added)+peers+len(cleanroom_ids));self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
-        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),65+len(added)+peers+len(cleanroom_ids))
+        self.assertEqual(len(self.spec),72+len(added)+peers+len(cleanroom_ids));self.assertEqual(len({c['id'] for c in self.spec}),len(self.spec))
+        self.assertEqual(len([c for c in self.spec if c['status']=='listed']),68+len(added)+peers+len(cleanroom_ids))
         self.assertEqual(len(self.index['companies']),len(self.spec))
         for s,c in zip(self.spec,self.index['companies']):
             self.assertEqual(s['id'],c['id'])
@@ -103,14 +104,14 @@ class ValuationTests(unittest.TestCase):
         self.assertEqual(group['default_range'],'all')
         self.assertNotIn('power_semicon',[t['id'] for t in ind['tabs']]) # Material leaves take a different route.
         sections=[s for s in ind['sections'] if s.get('tab')=='power_semicon']
-        ids=['innoscience','infineon','powi']
+        ids=['innoscience','infineon','powi','nxp','onsemi','stm']
         summary=next(s for s in sections if s.get('type')=='valuation_summary')
         self.assertEqual(summary['valuation_companies'],ids)
         financial=[s for s in sections if s.get('valuation_company')]
         self.assertEqual([s['valuation_company'] for s in financial],ids)
         for section in financial:
             company=section['valuation_company']
-            self.assertEqual(section['indicators'],[f'mocvd_{company}_{m}' for m in ('revenue','profit','capex')])
+            self.assertEqual(section['indicators'],[f"{'company' if company in ('nxp','onsemi','stm') else 'mocvd'}_{company}_{m}" for m in ('revenue','profit','capex')])
             for key in section['indicators']:self.assertTrue((ROOT/'data/semicon'/(key+'.json')).exists())
             self.assertEqual(next(c for c in self.spec if c['id']==company)['tabs'],['power_semicon'])
             self.assertEqual(next(c for c in self.index['companies'] if c['id']==company)['tabs'],['power_semicon'])

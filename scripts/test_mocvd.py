@@ -148,7 +148,9 @@ class MOCVDTests(unittest.TestCase):
             if section.get('tab') not in ('mocvd','power_semicon'):continue
             ids+=section['indicators']
             for company in section.get('companies',[]):ids+=company['indicators']
-        self.assertEqual(set(ids)-{'mocvd_capex_guidance'},set(self.docs))
+        # The power tab also hosts peers collected independently from MOCVD.
+        self.assertEqual({id for id in ids if id.startswith('mocvd_') and id!='mocvd_capex_guidance'},set(self.docs))
+        for id in ids:self.assertTrue((ROOT/'data/semicon'/(id+'.json')).exists())
         self.assertEqual(len(ids),len(set(ids)))
 
 
