@@ -1,0 +1,50 @@
+name: update-power-semicon
+on:
+  schedule:
+    - cron: '25 23 * * *' # KST 08:25
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate consolidated accounting definitions
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_power_semicon.py -v
+      - name: Refresh SEC accounts and original US-GAAP statements
+        if: steps.precheck.outcome == 'success'
+        run: python scripts/fetch_power_semicon.py
+      - name: Validate published financial history
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_power_semicon.py -v
+      - name: Commit power semiconductor accounts only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/semicon/power_semicon_state.json
+          for company in nxp onsemi stm; do
+            git add data/semicon/company_${company}_revenue.json data/semicon/company_${company}_profit.json data/semicon/company_${company}_capex.json
+          done
+          git diff --cached --quiet || git commit -m 'chore: refresh power semiconductor accounts'
+          for attempt in 1 2 3; do
+            if git pull --rebase && git push; then exit 0; fi
+            sleep $((attempt * 15))
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1

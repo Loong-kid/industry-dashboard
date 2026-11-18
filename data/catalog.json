@@ -5019,7 +5019,10 @@
           "valuation_companies": [
             "innoscience",
             "infineon",
-            "powi"
+            "powi",
+            "nxp",
+            "onsemi",
+            "stm"
           ],
           "indicators": []
         },
@@ -5058,6 +5061,42 @@
           ],
           "supply_note": "2014년부터 회사 전체 연결 분기 실적입니다. GaN 외 실리콘 전원 IC·게이트 드라이버를 포함하며 GaN 제품 단독 실적과 구분합니다. CAPEX는 유형자산 취득 현금지출입니다.",
           "valuation_company": "powi"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "NXP Semiconductors",
+          "layout": "financial",
+          "indicators": [
+            "company_nxp_revenue",
+            "company_nxp_profit",
+            "company_nxp_capex"
+          ],
+          "supply_note": "NXP 전사 연결 US GAAP · 자동차·산업·IoT·모바일·통신 포함. 전력반도체 단독 실적이 아닙니다.",
+          "valuation_company": "nxp"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "onsemi",
+          "layout": "financial",
+          "indicators": [
+            "company_onsemi_revenue",
+            "company_onsemi_profit",
+            "company_onsemi_capex"
+          ],
+          "supply_note": "onsemi 전사 연결 US GAAP · 전력·아날로그·센싱 포함. 실제 52/53주 분기 종료일을 사용합니다.",
+          "valuation_company": "onsemi"
+        },
+        {
+          "tab": "power_semicon",
+          "title": "STMicroelectronics (STM)",
+          "layout": "financial",
+          "indicators": [
+            "company_stm_revenue",
+            "company_stm_profit",
+            "company_stm_capex"
+          ],
+          "supply_note": "STM 전사 연결 US GAAP · 아날로그·전력·MCU·디지털·MEMS 포함. CAPEX는 보조금 차감 전 유형자산 현금취득이며 유럽 IFRS 실적과 구분합니다.",
+          "valuation_company": "stm"
         },
         {
           "tab": "power_semicon",
@@ -5702,8 +5741,8 @@
           "name": "전력반도체",
           "default_range": "all",
           "auto_collect_time": "08:10",
-          "description": "이노사이언스·인피니언·파워인테그레이션스의 매출·영업이익·CAPEX와 주가·PER·PBR을 봅니다. 기존 GaN 관련 기업부터 정리했으며 각 회사 전체 실적입니다. 이노사이언스는 반기·연간, 나머지는 확보된 분기·연간을 전환할 수 있습니다. 장비사 수주와 증착 장비는 소부장 → 장비 → MOCVD에서 확인합니다.",
-          "cadence": "주가·PER·PBR은 매일 08:10(KST) 확인합니다. 매출·영업이익·CAPEX와 GaN 투자 기록은 검토된 공시 원본을 사용하며 신규 실적 공시는 원본 검토 후 반영합니다. 갱신 버튼은 주가·밴드를 갱신합니다."
+          "description": "이노사이언스·인피니언·Power Integrations·NXP·onsemi·STMicroelectronics의 매출·영업이익·CAPEX와 주가·PER·PBR을 봅니다. 모두 전사 실적이며 전력반도체 외 사업도 포함합니다. NXP·onsemi·STM은 USD 백만 기준의 분기·연간 US GAAP 실적입니다.",
+          "cadence": "주가·PER·PBR은 매일 08:10(KST), NXP·onsemi·STM SEC 실적은 08:25에 확인합니다. 기존 GaN 기업 실적과 투자 기록은 검토된 공시 원본을 사용합니다. 갱신 버튼은 주가·밴드를 갱신합니다."
         },
         {
           "id": "materials",
