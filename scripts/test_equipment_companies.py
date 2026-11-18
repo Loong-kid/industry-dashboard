@@ -76,7 +76,7 @@ class EquipmentCompanies(unittest.TestCase):
         industry=next(i for i in catalog['industries'] if i['id']=='semicon')
         self.assertEqual([(c['id'],c['default_tab']) for c in industry['material_categories']],
             [('equipment','equipment_summary'),('components','snstech'),('raw_materials','wafer'),('cleaning','cleaning_summary'),('osat','osat_summary')])
-        linked={id for s in industry['sections'] if s.get('tab')=='equipment_summary' for id in s['indicators'] if not id.startswith('company_kr_equipment_')}
+        linked={id for s in industry['sections'] if s.get('tab')=='equipment_summary' for id in s['indicators'] if id.startswith('company_') and not id.startswith(('company_kr_equipment_','company_supplychain_'))}
         docs={}
         for key,company in equipment.COMPANIES.items():
             docs.update(equipment.build_company(key,self.state['companies'][key],company))
@@ -173,8 +173,11 @@ Purchases of property, plant and equipment (5,649) (9,852)
         self.assertEqual(tabs['mocvd']['parent_tab'],'equipment_frontend')
         counts={'equipment_summary':39,'equipment_frontend':21,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
         korean=equipment.load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
+        suppliers=equipment.load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies']
         for tab,count in counts.items():
             count+=3*sum(tab=='equipment_summary' or tab in c['tabs'] for c in korean.values())
+            count+=3*sum(tab in c['tabs'] or tab=='equipment_summary' and any(t.startswith('equipment_') for t in c['tabs']) for c in suppliers.values())
+            count+=int(tab in ('equipment_summary','equipment_frontend','equipment_testing','equipment_inspection'))
             ids=[i for s in industry['sections'] if s.get('tab')==tab for i in s['indicators']]
             self.assertEqual(len(ids),count)
             for identifier in ids:self.assertTrue((ROOT/f'data/semicon/{identifier}.json').exists(),identifier)

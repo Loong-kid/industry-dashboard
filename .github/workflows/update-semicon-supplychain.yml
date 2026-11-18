@@ -1,0 +1,70 @@
+name: update-semicon-supplychain
+on:
+  schedule:
+    - cron: '55 23 * * *' # KST 08:55
+  workflow_dispatch:
+    inputs:
+      full_history:
+        description: Recheck original DART reports from 2015 including comparative 2014 accounts
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate supplier identities, reporting history and navigation
+        id: definitions
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_semicon_supplychain.py -v
+      - name: Validate supplier overview filters
+        id: ui
+        continue-on-error: true
+        run: node scripts/test_semicon_supplychain.cjs
+      - name: Cache original DART responses
+        uses: actions/cache@v4
+        with:
+          path: .cache/semicon-supplychain
+          key: semicon-supplychain-v1-${{ github.run_id }}
+          restore-keys: semicon-supplychain-v1-
+      - name: Refresh original statements
+        id: collect
+        continue-on-error: true
+        if: steps.definitions.outcome == 'success'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          FULL_HISTORY: ${{ inputs.full_history }}
+        run: |
+          args=()
+          if [ "$FULL_HISTORY" = "true" ]; then args+=(--full-history); fi
+          python -u scripts/fetch_semicon_supplychain.py --refresh "${args[@]}"
+      - name: Validate refreshed chart documents
+        id: postcheck
+        continue-on-error: true
+        if: steps.definitions.outcome == 'success'
+        run: python -m unittest discover -s scripts -p test_semicon_supplychain.py -v
+      - name: Commit only supplier financial documents
+        if: steps.definitions.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/company_supplychain_*.json data/semicon/supplychain_state.json data/semicon/supplychain_overview.json
+          git diff --cached --quiet || git commit -m "chore: refresh Korean semiconductor supply-chain accounts"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report source or validation failure
+        if: steps.definitions.outcome == 'failure' || steps.ui.outcome == 'failure' || steps.collect.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1

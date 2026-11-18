@@ -1,0 +1,21 @@
+.supplychain-overview { padding:18px; border-radius:12px; background:var(--surface); box-shadow:var(--shadow); min-width:0; }
+.supplychain-overview > p { font-size:12px; color:var(--ink-2); margin:0 0 12px; line-height:1.7; }
+.supplychain-table-wrap { overflow:auto; max-height:570px; border-radius:8px; }
+.supplychain-table-wrap table { width:100%; min-width:1120px; border-collapse:separate; border-spacing:0; font-variant-numeric:tabular-nums; }
+.supplychain-table-wrap th,.supplychain-table-wrap td { padding:10px 12px; border-bottom:1px solid var(--border); text-align:right; vertical-align:top; font-size:12px; line-height:1.65; }
+.supplychain-table-wrap th { font-weight:500; color:var(--ink-2); background:var(--surface); position:sticky; top:0; z-index:2; }
+.supplychain-table-wrap :is(th,td):first-child { min-width:180px; text-align:left; position:sticky; left:0; z-index:1; background:var(--surface); }
+.supplychain-table-wrap th:first-child { z-index:3; }
+.supplychain-table-wrap :is(th,td):nth-child(2) { min-width:250px; max-width:360px; text-align:left; }
+.supplychain-table-wrap :is(th,td):last-child { min-width:210px; text-align:left; }
+.supplychain-table-wrap small { display:block; color:var(--muted); font-size:11px; margin-top:4px; }
+.supplychain-table-wrap a { color:var(--accent-text); }
+.supplychain-table-wrap summary { cursor:pointer; color:var(--accent-text); }
+.supplychain-table-wrap details p { margin:7px 0; }
+.supplychain-overview :is(a,summary):focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media(max-width:600px) {
+ .supplychain-overview { padding:12px; }
+ /* Allow the expanded source column to use the phone's whole table viewport. */
+ .supplychain-table-wrap td:first-child { position:static; }
+ .supplychain-table-wrap th:first-child { left:auto; }
+}
