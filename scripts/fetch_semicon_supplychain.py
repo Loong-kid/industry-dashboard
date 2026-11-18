@@ -1,4 +1,4 @@
-"""Twenty Korean semiconductor suppliers, preserving issuer and fiscal scope."""
+"""Korean semiconductor suppliers, preserving issuer and fiscal scope."""
 import argparse
 import copy
 import datetime as dt
@@ -26,6 +26,16 @@ def normalize(items,year,q,corp,fs,spec):
         if receipts and max(receipts)<minimum.replace('-',''):
             return dict(year=year,quarter=q,fs_div=fs,fields={},comparatives=[])
     result=normalize_equipment(items,year,q,corp,fs,spec)
+    reviewed_negative_names=set(spec.get('negative_ppe_account_names',[]))
+    if reviewed_negative_names:
+        for report in [result]+result.get('comparatives',[]):
+            field=report['fields'].get('capex',{});inputs=field.get('inputs',[])
+            if any(p.get('account_name') in reviewed_negative_names and p.get('value',0)<0 for p in inputs):
+                field['original_signed_inputs']=copy.deepcopy(inputs)
+                for p in inputs:
+                    if p.get('account_name') in reviewed_negative_names and p.get('value',0)<0:p['value']=-p['value']
+                field['ytd']=sum(p['value'] for p in inputs)/1e6
+                field['cash_sign_note']='원문 현금흐름표에서 괄호로 표시한 취득 현금유출을 확인해 양수 CAPEX 지출로 표시합니다. API의 사용자 정의 계정 부호는 original_signed_inputs에 보존합니다.'
     start=spec.get('first_period_start')
     if start:
         # A later filing can be the only available source for a spin-off's
@@ -82,11 +92,17 @@ def documents(meta,state):
                 previous=lookup.get((year,quarter))
                 if not previous or previous['fs_div']!=row['fs_div']:return None
                 if kind=='annual' and (row['year']==stub_year or year==stub_year):return None
+                if kind=='annual' and any(y in spec.get('noncomparable_annual_years',[]) for y in (row['year'],year)):return None
+                if any(previous['date']<boundary<=row['date'] for boundary in spec.get('comparison_breaks',[])):return None
                 return previous['date']
             view['comparison_dates']={r['date']:dict(year_ago=compare(r,r['year']-1,r.get('quarter')),
                 quarter_ago=compare(r,r['year']-(r['quarter']==1),(r['quarter']-2)%4+1) if kind=='quarter' else None) for r in rows}
+            if spec.get('history_scope_note'):
+                for row in rows:
+                    if row['date']<='2016-12-31':view.setdefault('point_notes',{}).setdefault(row['date'],[]).append(spec['history_scope_note'])
         doc['basis_details'][0]['label']='공정·제품 역할'
         doc['basis_details'].append(dict(label='SPAC·분할 이력',value=spec['note']))
+        if spec.get('history_scope_note'):doc['basis_details'].append(dict(label='사업범위 변경',value=spec['history_scope_note']))
         default=doc['default_view'];doc.update(copy.deepcopy(doc['series_views'][default]));doc.pop('label',None)
         docs[identifier]=doc
     return docs
@@ -117,11 +133,11 @@ def collect(refresh=False,full_history=False,from_state=False):
     state=copy.deepcopy(old) if from_state else offline(meta,old,asof,status,cache=CACHE,normalize_report=normalize)
     for key,spec in meta['companies'].items():finalize(state['companies'][key],spec)
     docs=documents(meta,state)
-    if len(docs)!=60:raise ValueError('Expected sixty financial chart documents')
+    if len(docs)!=3*len(meta['companies']):raise ValueError('Expected three financial chart documents per issuer')
     save(STATE,state)
     for identifier,doc in docs.items():save(ROOT/'data/semicon'/(identifier+'.json'),doc)
     save(ROOT/'data/semicon/supplychain_overview.json',overview(meta,state))
-    print('Published 20 companies and',len(docs),'financial charts',flush=True)
+    print('Published',len(meta['companies']),'companies and',len(docs),'financial charts',flush=True)
     return state
 
 

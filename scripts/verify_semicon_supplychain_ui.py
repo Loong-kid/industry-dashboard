@@ -5,10 +5,10 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
 ROOT=Path(__file__).resolve().parents[1]
-ROUTES=[('process_chemicals','raw_materials/chemicals',4),('specialty_gases','raw_materials/gases',2),
- ('test_components','components/test-components',3),('package_substrates','components/package-substrates',2),
- ('equipment_infrastructure','equipment/infrastructure',2),('equipment_frontend','equipment/frontend',2),
- ('equipment_testing','equipment/testing',3),('equipment_inspection','equipment/inspection',2)]
+ROUTES=[('process_chemicals','raw_materials/chemicals',5),('specialty_gases','raw_materials/gases',2),
+ ('test_components','components/test-components',5),('package_substrates','components/package-substrates',2),
+ ('equipment_infrastructure','equipment/infrastructure',4),('equipment_frontend','equipment/frontend',2),
+ ('equipment_testing','equipment/testing',3),('equipment_inspection','equipment/inspection',3),('plasma_components','components/plasma-rf',1),('pcb_boards','components/pcb',1)]
 
 
 def verify(base):
@@ -31,6 +31,7 @@ def verify(base):
                     # A CDN can pause between sequential source requests longer
                     # than networkidle; wait for this route's actual last cards.
                     page.wait_for_function('(names)=>names.every(name=>Array.from(document.querySelectorAll(".ir-chart .card-name")).some(e=>e.textContent===name))',arg=names,timeout=60000)
+                    assert page.locator('.semicon-material-tabs').evaluate('(e)=>{const a=e.querySelector(".active").getBoundingClientRect(),b=e.getBoundingClientRect();return a.left>=b.left-1 && a.right<=b.right+1}'),tab
                     table=page.locator('.supplychain-overview')
                     expect(table).to_be_visible()
                     assert table.locator('tbody tr').count()==count,(tab,table.locator('tbody tr').count())
@@ -42,7 +43,7 @@ def verify(base):
                         row.locator('summary').click()
                         assert row.locator('details a').count()>=2
                     assert not page.evaluate('document.documentElement.scrollWidth>innerWidth'),(width,tab)
-                    if tab in ('process_chemicals','specialty_gases','test_components','package_substrates','equipment_infrastructure'):
+                    if tab in ('process_chemicals','specialty_gases','test_components','package_substrates','equipment_infrastructure','plasma_components','pcb_boards'):
                         assert page.evaluate('currentTarget().workflow')=='update-semicon-supplychain.yml'
                     cards=page.locator('#content .card.ir-chart')
                     assert cards.count()>=3*count,(tab,cards.count())
@@ -52,11 +53,11 @@ def verify(base):
                             if annual.count():annual.click()
                         assert page.evaluate('state.charts.filter(c=>c.canvas.closest(".ir-chart")).every(c=>c.data.datasets.some(d=>d.data.filter(v=>v!==null).length>=2))')
                     page.evaluate('scrollTo(0,0)')
-                    if tab in ('process_chemicals','test_components','equipment_infrastructure'):
+                    if tab in ('process_chemicals','test_components','equipment_infrastructure','plasma_components','pcb_boards'):
                         page.screenshot(path=str(out/f'{tab}-{width}-{theme}.png'))
                 assert not errors,errors
                 page.close()
-                print('PASS',width,theme,'eight routes, business snapshots, quarterly/annual cards and refresh workflows',flush=True)
+                print('PASS',width,theme,'ten routes, business snapshots, quarterly/annual cards and refresh workflows',flush=True)
         browser.close()
 
 

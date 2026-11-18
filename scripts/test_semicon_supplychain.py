@@ -11,11 +11,11 @@ class SupplychainTests(unittest.TestCase):
         cls.meta=load(META,{})
         cls.state=load(STATE,{})
 
-    def test_twenty_issuers_and_every_financial_document_is_linked(self):
-        specs=self.meta['companies'];self.assertEqual(len(specs),20)
-        self.assertEqual(len({c['ticker'] for c in specs.values()}),20)
+    def test_issuers_and_every_financial_document_is_linked(self):
+        specs=self.meta['companies'];self.assertEqual(len(specs),28)
+        self.assertEqual(len({c['ticker'] for c in specs.values()}),28)
         industry=next(i for i in load(ROOT/'data/catalog.json',{})['industries'] if i['id']=='semicon')
-        docs=documents(self.meta,self.state);self.assertEqual(len(docs),60)
+        docs=documents(self.meta,self.state);self.assertEqual(len(docs),84)
         for key,spec in specs.items():
             tabs=spec['tabs']+(['equipment_summary'] if any(t.startswith('equipment_') for t in spec['tabs']) else [])
             for tab in tabs:
@@ -24,6 +24,38 @@ class SupplychainTests(unittest.TestCase):
             for metric in ('revenue','profit','capex'):
                 identifier=f'company_supplychain_{key}_{metric}'
                 self.assertEqual(docs[identifier],load(ROOT/f'data/semicon/{identifier}.json',{}))
+
+    def test_blog_selection_excludes_already_registered_issuers(self):
+        selection=load(ROOT/'manual/semicon-supplychain/blog-20261118.json',{})
+        new={c['ticker'] for c in selection['companies'].values()}
+        prior={c['ticker'] for c in selection['already_registered']}
+        self.assertEqual(len(new),8);self.assertEqual(len(prior),11)
+        self.assertFalse(new&prior);self.assertEqual(len(new|prior),19)
+        registry=load(ROOT/'manual/semicon-valuation/companies.json',[])
+        for ticker in new|prior:self.assertEqual(sum(c.get('naver_code')==ticker for c in registry),1,ticker)
+        for key,spec in selection['companies'].items():
+            self.assertEqual(self.meta['companies'][key]['ticker'],spec['ticker'])
+        self.assertEqual(selection['companies']['isupetasys']['tabs'],['pcb_boards'])
+        self.assertEqual(selection['companies']['newpower']['tabs'],['plasma_components'])
+
+    def test_wonik_retained_company_history_has_a_scope_boundary(self):
+        doc=documents(self.meta,self.state)['company_supplychain_wonikholdings_revenue']
+        annual=doc['series_views']['annual']['comparison_dates']
+        for date in ('2015-12-31','2016-12-31','2017-12-31'):
+            if date in annual:self.assertIsNone(annual[date]['year_ago'])
+        quarter=doc['series_views']['quarter']['comparison_dates']
+        if '2016-06-30' in quarter:self.assertIsNone(quarter['2016-06-30']['quarter_ago'])
+        self.assertTrue(any('사업범위' in item['label'] for item in doc['basis_details']))
+
+    def test_reviewed_okins_cash_outflow_sign_keeps_original_inputs(self):
+        fixture=load(ROOT/'scripts/fixtures/semicon_supplychain/okins_2021_q1.json',{})
+        report=normalize(fixture['list'],2021,1,fixture['corp_code'],'CFS',self.meta['companies']['okins'])
+        field=report['fields']['capex']
+        self.assertAlmostEqual(field['ytd'],1945.258)
+        self.assertAlmostEqual(sum(p['value'] for p in field['inputs'])/1e6,field['ytd'])
+        original=next(p for p in field['original_signed_inputs'] if p['account_name']=='공구와기구의 취득')
+        self.assertEqual(original['value'],-1362504000.)
+        self.assertEqual(fixture['source_url'],'https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210517000923')
 
     def test_history_has_sources_and_no_stub_quarters_or_spac_filings(self):
         for key,spec in self.meta['companies'].items():

@@ -1,15 +1,167 @@
 {
- "reviewed":"2026-11-18",
- "selection_basis":"사용자가 지정한 소부장 2026년 3분기 실적 블로그의 19개사를 종목코드로 대조해, 기존 대시보드 11개사를 제외한 8개사입니다. 블로그 수치·예상치는 재사용하지 않고 정기보고서 원문을 수집합니다.",
- "selection_url":"https://blog.naver.com/cybermw/224479839109",
- "companies":{
-  "okins":{"name":"오킨스전자","ticker":"080580","role":"테스트 부품 · 번인·테스트 소켓","tabs":["test_components"],"scope":"소켓·반도체 테스트 관련 사업과 종속기업의 연결 전체","note":"번인·테스트 소켓과 기타 테스트 관련 사업을 포함합니다. 특정 AI·HBM용 소켓 매출만의 실적으로 해석하지 않습니다.","source_url":"https://www.okins.co.kr/"},
-  "newpower":{"name":"뉴파워프라즈마","ticker":"144960","role":"플라즈마·RF 부품 · RPG·전원장치·정합기","tabs":["plasma_components"],"scope":"플라즈마 부품과 방산·복합소재·UTG 등 종속기업을 포함한 연결 전체","note":"RPG·RF Generator·Matcher를 주력으로 하나 연결 실적에는 방산·복합소재·초박형유리 등 다른 사업도 포함됩니다. 전사 매출을 플라즈마 부품 매출로 읽지 않습니다.","source_url":"https://newpower.co.kr/"},
-  "unisem":{"name":"유니셈","ticker":"036200","role":"공정 인프라 · 스크러버·칠러·유지보수","tabs":["equipment_infrastructure"],"scope":"스크러버·칠러·유지보수 등 연결 전체","note":"반도체·디스플레이 공정의 유해가스 처리와 온도제어 사업입니다. 장비 신규 판매와 유지보수·용역을 구분합니다.","source_url":"https://www.unisem.co.kr/"},
-  "purit":{"name":"퓨릿","ticker":"445180","role":"공정 화학소재 · 초고순도 용제·합성·재생","tabs":["process_chemicals"],"scope":"반도체·디스플레이·산업용 케미칼 및 재생 사업의 전사 실적","note":"PGME·PGMEA·EEP·EL 등 고순도 용제를 공급합니다. 산업용 케미칼·재생 사업도 포함하며 반도체 단독 매출이 아닙니다. 상장 전 비교열은 공시에서 확인된 기간만 표시합니다.","source_url":"https://www.purit.co.kr/"},
-  "gigavis":{"name":"기가비스","ticker":"420770","role":"검사·계측 · 반도체 기판 AOI·AOR","tabs":["equipment_inspection"],"scope":"기판 자동광학검사·수리 장비와 관련 용역의 전사 실적","note":"반도체 패키지기판의 패턴을 검사·수리하는 장비 업체입니다. 웨이퍼 검사 장비나 기판 제조사와 구분합니다. 상장 전 비교열은 공시로 확인된 기간만 표시합니다.","source_url":"https://www.gigavis.com/"},
-  "isupetasys":{"name":"이수페타시스","ticker":"007660","role":"고다층 PCB · 서버·네트워크용 MLB","tabs":["pcb_boards"],"scope":"고다층 인쇄회로기판과 해외 생산 종속기업의 연결 전체","note":"서버·네트워크 장비 등에 쓰이는 고다층 PCB 사업입니다. 반도체 패키지기판·FC-BGA 및 특정 AI 고객사 매출만의 실적으로 취급하지 않습니다.","source_url":"https://www.petasys.com/"},
-  "wonikholdings":{"name":"원익홀딩스","ticker":"030530","role":"공정 인프라 · 가스 공급장치·그룹 연결 사업","tabs":["equipment_infrastructure"],"scope":"가스 공급장치와 종속기업 사업을 포함한 연결 전체","note":"2016년 원익IPS 인적분할 전후 사업 범위가 달라집니다. 전사 연결 실적은 가스 공급장치 단독 매출이 아니며, 원익IPS 및 다른 그룹사와 단순 합산하지 않습니다.","source_url":"https://www.wonikholdings.kr/"},
-  "microcont":{"name":"마이크로컨텍솔","aliases":["마이크로컨텍솔루션"],"ticker":"098120","role":"테스트 부품 · 번인 소켓·접촉 부품","tabs":["test_components"],"scope":"반도체 테스트 소켓·전자부품 등 연결 전체","note":"번인 및 테스트 공정용 소켓·접촉 부품을 공급합니다. 검사 장비 본체·후공정 위탁 서비스와 구분하며 비반도체 부품도 연결 범위에 포함될 수 있습니다.","source_url":"https://www.mcstest.com/"}
- }
+ "reviewed": "2026-11-18",
+ "selection_basis": "사용자가 지정한 소부장 2026년 3분기 실적 블로그의 19개사를 종목코드로 대조해, 기존 대시보드 11개사를 제외한 8개사입니다. 블로그 수치·예상치는 재사용하지 않고 정기보고서 원문을 수집합니다.",
+ "selection_url": "https://blog.naver.com/cybermw/224479839109",
+ "companies": {
+  "okins": {
+   "name": "오킨스전자",
+   "ticker": "080580",
+   "role": "테스트 부품 · 번인·테스트 소켓",
+   "tabs": [
+    "test_components"
+   ],
+   "scope": "소켓·반도체 테스트 관련 사업과 종속기업의 연결 전체",
+   "note": "번인·테스트 소켓과 기타 테스트 관련 사업을 포함합니다. 특정 AI·HBM용 소켓 매출만의 실적으로 해석하지 않습니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000105",
+   "negative_ppe_account_names": [
+    "공구와기구의 취득"
+   ],
+   "negative_ppe_source_url": "https://dart.fss.or.kr/report/viewer.do?rcpNo=20220317000675&dcmNo=8470755&eleId=19&offset=224266&length=127257&dtd=dart3.xsd"
+  },
+  "newpower": {
+   "name": "뉴파워프라즈마",
+   "ticker": "144960",
+   "role": "플라즈마·RF 부품 · RPG·전원장치·정합기",
+   "tabs": [
+    "plasma_components"
+   ],
+   "scope": "플라즈마 부품과 방산·복합소재·UTG 등 종속기업을 포함한 연결 전체",
+   "note": "RPG·RF Generator·Matcher를 주력으로 하나 연결 실적에는 방산·복합소재·초박형유리 등 다른 사업도 포함됩니다. 전사 매출을 플라즈마 부품 매출로 읽지 않습니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000151"
+  },
+  "unisem": {
+   "name": "유니셈",
+   "ticker": "036200",
+   "role": "공정 인프라 · 스크러버·칠러·유지보수",
+   "tabs": [
+    "equipment_infrastructure"
+   ],
+   "scope": "스크러버·칠러·유지보수 등 연결 전체",
+   "note": "반도체·디스플레이 공정의 유해가스 처리와 온도제어 사업입니다. 장비 신규 판매와 유지보수·용역을 구분합니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000176"
+  },
+  "purit": {
+   "name": "퓨릿",
+   "ticker": "445180",
+   "role": "공정 화학소재 · 초고순도 용제·합성·재생",
+   "tabs": [
+    "process_chemicals"
+   ],
+   "scope": "반도체·디스플레이·산업용 케미칼 및 재생 사업의 전사 실적",
+   "note": "PGME·PGMEA·EEP·EL 등 고순도 용제를 공급합니다. 산업용 케미칼·재생 사업도 포함하며 반도체 단독 매출이 아닙니다. 상장 전 비교열은 공시에서 확인된 기간만 표시합니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000234"
+  },
+  "gigavis": {
+   "name": "기가비스",
+   "ticker": "420770",
+   "role": "검사·계측 · 반도체 기판 AOI·AOR",
+   "tabs": [
+    "equipment_inspection"
+   ],
+   "scope": "기판 자동광학검사·수리 장비와 관련 용역의 전사 실적",
+   "note": "반도체 패키지기판의 패턴을 검사·수리하는 장비 업체입니다. 웨이퍼 검사 장비나 기판 제조사와 구분합니다. 상장 전 비교열은 공시로 확인된 기간만 표시합니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116000783"
+  },
+  "isupetasys": {
+   "name": "이수페타시스",
+   "ticker": "007660",
+   "role": "고다층 PCB · 서버·네트워크용 MLB",
+   "tabs": [
+    "pcb_boards"
+   ],
+   "scope": "고다층 인쇄회로기판과 해외 생산 종속기업의 연결 전체",
+   "note": "서버·네트워크 장비 등에 쓰이는 고다층 PCB 사업입니다. 반도체 패키지기판·FC-BGA 및 특정 AI 고객사 매출만의 실적으로 취급하지 않습니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001194"
+  },
+  "wonikholdings": {
+   "name": "원익홀딩스",
+   "ticker": "030530",
+   "role": "공정 인프라 · 가스 공급장치·그룹 연결 사업",
+   "tabs": [
+    "equipment_infrastructure"
+   ],
+   "scope": "가스 공급장치와 종속기업 사업을 포함한 연결 전체",
+   "note": "2016년 원익IPS 인적분할 전후 사업 범위가 달라집니다. 전사 연결 실적은 가스 공급장치 단독 매출이 아니며, 원익IPS 및 다른 그룹사와 단순 합산하지 않습니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116001785",
+   "comparison_breaks": [
+    "2016-04-01"
+   ],
+   "noncomparable_annual_years": [
+    2015,
+    2016
+   ],
+   "history_scope_note": "2016-04-01 원익IPS 인적분할. 분할 이전·전환기 공시는 계속영업 재작성 및 중단사업 포함 현금흐름 등 범위가 다를 수 있습니다. 비교기간이 분할일을 넘는 증가율과 2015·2016년 연간을 포함하는 YoY는 계산하지 않습니다. 030530 존속법인의 이력이며 신설 원익IPS(240810)의 이력으로 이어 붙이지 않습니다."
+  },
+  "microcont": {
+   "name": "마이크로컨텍솔",
+   "aliases": [
+    "마이크로컨텍솔루션"
+   ],
+   "ticker": "098120",
+   "role": "테스트 부품 · 번인 소켓·접촉 부품",
+   "tabs": [
+    "test_components"
+   ],
+   "scope": "반도체 테스트 소켓·전자부품 등 연결 전체",
+   "note": "번인 및 테스트 공정용 소켓·접촉 부품을 공급합니다. 검사 장비 본체·후공정 위탁 서비스와 구분하며 비반도체 부품도 연결 범위에 포함될 수 있습니다.",
+   "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116002180"
+  }
+ },
+ "already_registered": [
+  {
+   "name": "ISC",
+   "ticker": "095340",
+   "existing_id": "supplychain_isc"
+  },
+  {
+   "name": "네오셈",
+   "ticker": "253590",
+   "existing_id": "supplychain_neosem"
+  },
+  {
+   "name": "GST",
+   "ticker": "083450",
+   "existing_id": "supplychain_gst"
+  },
+  {
+   "name": "이엔에프테크놀로지",
+   "ticker": "102710",
+   "existing_id": "supplychain_enf"
+  },
+  {
+   "name": "엘오티베큠",
+   "ticker": "083310",
+   "existing_id": "supplychain_lotvacuum"
+  },
+  {
+   "name": "원익IPS",
+   "ticker": "240810",
+   "existing_id": "kr_equipment_wonikips"
+  },
+  {
+   "name": "티에스이",
+   "ticker": "131290",
+   "existing_id": "supplychain_tse"
+  },
+  {
+   "name": "네패스아크",
+   "ticker": "330860",
+   "existing_id": "osat_nepesark"
+  },
+  {
+   "name": "케이엔솔",
+   "ticker": "053080",
+   "existing_id": "cleanroom_knsol"
+  },
+  {
+   "name": "HPSP",
+   "ticker": "403870",
+   "existing_id": "kr_equipment_hpsp"
+  },
+  {
+   "name": "솔브레인",
+   "ticker": "357780",
+   "existing_id": "supplychain_soulbrain"
+  }
+ ]
 }
