@@ -2928,7 +2928,7 @@
           "route": "frontend",
           "category": "equipment",
           "default_range": "all",
-          "description": "노광·식각·증착·세정 장비사의 연결 실적입니다. 같은 회사가 여러 공정에 참여하므로 전사 매출을 특정 공정의 매출로 해석하지 않습니다. MOCVD 수요·공급 지표는 아래 연결에서 확인합니다."
+          "description": "노광·식각·증착·세정 장비사의 연결 실적입니다. 같은 회사가 여러 공정에 참여하므로 전사 매출을 특정 공정의 매출로 해석하지 않습니다. MOCVD 지표는 아래 연결에서 확인합니다."
         },
         {
           "id": "equipment_packaging",
@@ -2978,7 +2978,7 @@
           "name": "MOCVD",
           "category": "equipment",
           "default_range": "all",
-          "description": "InP·GaN 에피 증착 장비와 고객사 투자를 연결해 봅니다. 장비사 수주·매출 → InP 고객 CAPEX·증설 → 공개된 발주·인도 기록 순서입니다. GaN 관련 기업 실적과 투자 기록은 전력반도체 탭에서 확인합니다. SiC CVD는 보조 비교군이며 미공개 출하대수는 채우지 않습니다.",
+          "description": "InP·GaN MOCVD 장비와 고객사 투자를 연결해 봅니다. Coherent·Lumentum의 미래 CAPEX 발언을 발표 분기별로 추적하고, 실제 투자 집행액·생산능력 목표·장비 수주잔고와 구분합니다. GaN 관련 기업 실적은 전력반도체 탭에서 확인합니다.",
           "parent_tab": "equipment_frontend"
         },
         {
@@ -4368,6 +4368,15 @@
         },
         {
           "tab": "mocvd",
+          "title": "고객사 · 미래 CAPEX 가이던스",
+          "type": "table",
+          "table_kind": "mocvd_guidance",
+          "indicators": [
+            "mocvd_capex_guidance"
+          ]
+        },
+        {
+          "tab": "mocvd",
           "title": "주가 · PER · PBR 비교",
           "type": "valuation_summary",
           "valuation_companies": [
@@ -4442,7 +4451,7 @@
         },
         {
           "tab": "mocvd",
-          "title": "InP · Lumentum · 고객사 투자",
+          "title": "InP · Lumentum · 실제 CAPEX 집행액 (참고)",
           "indicators": [
             "mocvd_lumentum_capex"
           ],
@@ -4451,7 +4460,7 @@
         },
         {
           "tab": "mocvd",
-          "title": "InP · Coherent · 실적과 투자",
+          "title": "InP · Coherent · 실제 집행액·실적 (참고)",
           "indicators": [
             "mocvd_coherent_revenue",
             "mocvd_coherent_profit",

@@ -10,8 +10,8 @@ function renderMOCVDGuide() {
       <li><strong>인도·검수</strong><span>장비 매출·공개된 인도 기록</span></li>
       <li><strong>생산 확대</strong><span>양산 시작·가동률·웨이퍼 직경</span></li>
     </ol>
-    <p>현금 CAPEX는 여러 단계에 걸쳐 발생하므로 장비 수주보다 늦을 수 있습니다. 회사 전체 투자액과 InP·GaN 전용 투자를 구분해서 봅니다.</p>
-    <p>과거 이력은 2014년까지 확장했습니다. 광학 고객사 카드의 ‘분기 / 연간’ 버튼으로 공시 주기를 선택할 수 있습니다. Lumentum의 FY2014 CAPEX는 연간 보기에서 확인합니다.</p>
+    <p>먼저 Coherent·Lumentum의 미래 CAPEX 발언을 발표 분기별로 확인합니다. 고객의 투자 계획은 장비 수요의 선행지표이며 AIXTRON의 확정 수주잔고는 아닙니다. 현금 CAPEX는 장비 발주보다 늦을 수 있고, 회사 전체 투자액과 InP·GaN 전용 투자는 다릅니다.</p>
+    <p>아래 실제 집행액·실적 그래프는 참고용입니다. 과거 실적 이력은 2014년까지 확장했으며 ‘분기 / 연간’으로 공시 주기를 선택합니다. Lumentum FY2014 CAPEX는 연간 보기에서 확인합니다.</p>
     <p>이노사이언스·인피니언·파워인테그레이션스의 실적·주가·PER·PBR과 GaN 투자 기록은 <a href="#/semicon/power_semicon">전력반도체 탭</a>에서 확인합니다. 각 기업의 회사 전체 실적과 GaN 단독 시장 매출은 다릅니다.</p>
     <details><summary>매출·대수를 비교하는 기준</summary>
       <p>InP·GaN MOCVD와 SiC CVD는 공정과 고객 수요가 다릅니다. AIXTRON 광전자 매출은 InP 단독이 아니며, Veeco Compound Semiconductor에는 MOCVD 외 장비도 포함됩니다.</p>

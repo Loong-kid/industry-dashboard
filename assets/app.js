@@ -460,7 +460,7 @@ async function renderIndustry(options = {}) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs semicon-equipment-views";
     views.setAttribute("aria-label", "전공정 보기");
-    for (const [id, label, slug] of [["equipment_frontend", "장비사 실적", "frontend"], ["mocvd", "MOCVD · 수요·공급", "mocvd"]]) {
+    for (const [id, label, slug] of [["equipment_frontend", "장비사 실적", "frontend"], ["mocvd", "MOCVD", "mocvd"]]) {
       const link = document.createElement("a"); link.href = `#/semicon/materials/equipment/${slug}`; link.textContent = label;
       if (state.subtab === id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
       views.appendChild(link);
@@ -687,6 +687,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "ba_detail" ? renderBADetail
         : section.table_kind === "gifts" ? renderGifts
         : section.table_kind === "ir_disclosure" ? renderIRDisclosure
+        : section.table_kind === "mocvd_guidance" ? (await import("./mocvd-guidance.js")).renderMOCVDGuidance
         : section.table_kind === "mocvd_disclosures" ? renderMOCVDTable
         : section.table_kind === "wafer_evidence" ? renderWaferEvidence
         : section.table_kind === "wafer_events" ? renderWaferEvents

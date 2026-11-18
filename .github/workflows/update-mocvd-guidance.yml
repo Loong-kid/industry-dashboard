@@ -1,0 +1,48 @@
+name: update-mocvd-guidance
+on:
+  schedule:
+    - cron: '35 0 * * *' # KST 09:35
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  guidance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Validate guidance evidence and classification
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_mocvd_guidance.py -v
+      - name: Detect new official earnings releases
+        id: collect
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_mocvd_guidance.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_mocvd_guidance.py -v
+      - name: Commit guidance data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/semicon/mocvd_guidance_state.json data/semicon/mocvd_capex_guidance.json
+          git diff --cached --quiet || git commit -m "chore: check MOCVD customer CAPEX guidance releases"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
