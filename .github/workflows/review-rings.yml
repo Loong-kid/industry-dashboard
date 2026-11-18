@@ -2,6 +2,10 @@ name: review-ring-sources
 on:
   workflow_dispatch:
     inputs:
+      blog_peers:
+        description: Review the eight new suppliers from the November 18 blog list
+        type: boolean
+        default: false
       supplychain:
         description: Review the twenty additional Korean supply-chain issuers
         type: boolean
@@ -38,8 +42,11 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           REVIEW_OSAT: ${{ inputs.osat }}
           REVIEW_SUPPLYCHAIN: ${{ inputs.supplychain }}
+          REVIEW_BLOG_PEERS: ${{ inputs.blog_peers }}
         run: |
-          if [ "$REVIEW_SUPPLYCHAIN" = "true" ]; then
+          if [ "$REVIEW_BLOG_PEERS" = "true" ]; then
+            python -u scripts/collect_semicon_blog_sources.py
+          elif [ "$REVIEW_SUPPLYCHAIN" = "true" ]; then
             python -u scripts/collect_supplychain_sources.py --full-history --resume
           elif [ "$REVIEW_OSAT" = "true" ]; then
             python -u scripts/collect_osat_sources.py --full-history
@@ -49,7 +56,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ inputs.supplychain && 'supplychain-original-statements' || inputs.osat && 'osat-original-statements' || 'ring-original-statements' }}
-          path: ${{ inputs.supplychain && '.cache/semicon-supplychain/' || inputs.osat && '.cache/osat/' || '.cache/rings/' }}
+          name: ${{ inputs.blog_peers && 'blog-supplier-original-statements' || inputs.supplychain && 'supplychain-original-statements' || inputs.osat && 'osat-original-statements' || 'ring-original-statements' }}
+          path: ${{ inputs.blog_peers && '.cache/semicon-blog-peers/' || inputs.supplychain && '.cache/semicon-supplychain/' || inputs.osat && '.cache/osat/' || '.cache/rings/' }}
           include-hidden-files: true
           retention-days: 3
