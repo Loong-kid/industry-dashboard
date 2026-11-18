@@ -13,6 +13,7 @@ ROUTES=[('process_chemicals','raw_materials/chemicals',4),('specialty_gases','ra
 
 def verify(base):
     out=ROOT/'tmp/supplychain/ui';out.mkdir(parents=True,exist_ok=True)
+    companies=json.loads((ROOT/'manual/semicon-supplychain/companies.json').read_text(encoding='utf-8'))['companies']
     with sync_playwright() as p:
         browser=p.chromium.launch(channel='chrome',headless=True)
         for width in (1440,390):
@@ -25,6 +26,11 @@ def verify(base):
                         page.evaluate("() => {if(window.SITE_GATE)localStorage.setItem('site_gate_pass',window.SITE_GATE.hash)}")
                         page.reload(wait_until='networkidle')
                     page.wait_for_function('(tab)=>state.subtab===tab && !document.querySelector(".page-loading")',arg=tab)
+                    names=[json.loads((ROOT/f'data/semicon/company_supplychain_{key}_{metric}.json').read_text(encoding='utf-8'))['name']
+                        for key,company in companies.items() if tab in company['tabs'] for metric in ('revenue','profit','capex')]
+                    # A CDN can pause between sequential source requests longer
+                    # than networkidle; wait for this route's actual last cards.
+                    page.wait_for_function('(names)=>names.every(name=>Array.from(document.querySelectorAll(".ir-chart .card-name")).some(e=>e.textContent===name))',arg=names,timeout=60000)
                     table=page.locator('.supplychain-overview')
                     expect(table).to_be_visible()
                     assert table.locator('tbody tr').count()==count,(tab,table.locator('tbody tr').count())
