@@ -56,6 +56,9 @@ class PublishedAccounts(unittest.TestCase):
         expected={'osat_summary':25,'osat_korea':18,'osat_global':7}
         for tab,count in expected.items():
             sections=[s for s in semicon['sections'] if s.get('tab')==tab]
+            self.assertEqual(sections[0]['type'],'valuation_summary')
+            financial=[s for s in sections if s.get('layout')=='financial']
+            self.assertEqual(sections[0]['valuation_companies'],[s['valuation_company'] for s in financial])
             ids=[i for s in sections for i in s['indicators']]
             self.assertEqual(len(ids),count);self.assertEqual(len(ids),len(set(ids)))
             for id in ids:self.assertTrue((ROOT/'data/semicon'/(id+'.json')).exists(),id)

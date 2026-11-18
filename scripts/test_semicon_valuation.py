@@ -67,7 +67,8 @@ class ValuationTests(unittest.TestCase):
     def test_coverage_and_cached_documents_reconcile_to_summary(self):
         added=load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         cleaning=load(ROOT/'manual/semicon-cleaning/companies.json',{})
-        peers=len(cleaning['companies'])+len(cleaning['global_companies'])+len(load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies'])
+        osat=load(ROOT/'manual/semicon-osat/companies.json',{})
+        peers=len(cleaning['companies'])+len(cleaning['global_companies'])+len(load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies'])+len(osat['companies'])+len(osat['global_companies'])
         cleanroom=load(ROOT/'manual/cleanroom/companies.json',{})
         cleanroom_ids={'cleanroom_'+k for k in {**cleanroom['companies'],**cleanroom['global_companies']}}
         self.assertEqual({c['id'] for c in self.spec if 'cleanroom_summary' in c['tabs']},cleanroom_ids)
