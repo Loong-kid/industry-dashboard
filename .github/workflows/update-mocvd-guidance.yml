@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install requests beautifulsoup4
+      - name: Validate CAPEX chart guidance overlay
+        run: node scripts/test_mocvd_capex_overlay.cjs
       - name: Validate guidance evidence and classification
         id: precheck
         continue-on-error: true

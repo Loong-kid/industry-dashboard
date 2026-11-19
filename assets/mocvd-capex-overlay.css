@@ -1,0 +1,11 @@
+.mcg-overlay { min-width: 0; margin: 6px 0 12px; color: var(--ink-2); font-size: 11px; line-height: 1.65; }
+.mcg-line { display: flex; gap: 8px; align-items: baseline; }
+.mcg-key { flex: none; border-radius: var(--pill); padding: 2px 8px; background: var(--tint); color: var(--accent-text); }
+.mcg-latest { overflow-wrap: anywhere; }
+.mcg-note { font-size: 10px; color: var(--muted); margin: 6px 0; }
+.mcg-evidence summary { cursor: pointer; color: var(--accent-text); width: fit-content; }
+.mcg-evidence select { width: 100%; max-width: 100%; margin: 10px 0 4px; padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--pill); background: var(--surface); color: var(--ink); font: inherit; }
+.mcg-detail { overflow-wrap: anywhere; padding: 0 2px; }.mcg-detail p { margin: 8px 0; }.mcg-detail blockquote { margin: 8px 0; padding-left: 10px; border-left: 2px solid var(--border); color: var(--muted); }
+.mcg-sources { display: flex; flex-wrap: wrap; gap: 10px; }.mcg-sources a { color: var(--accent-text); }.mcg-warning { color: var(--warn); }
+.mcg-overlay :is(summary,select,a):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media(max-width:440px) { .mcg-line { flex-direction: column; gap: 4px; } }

@@ -892,6 +892,9 @@ async function loadDoc(industryId, indicatorId) {
     // 네트워크 오류 또는 JSON 파싱 실패(= 파일이 깨짐). 빈 카드로 삼키면 안 되는 경우다.
     state.docErrors.set(indicatorId, (e && e.message) || "네트워크 오류");
   }
+  if (doc && industryId === "semicon" && typeof MOCVDCapexOverlay !== "undefined" && MOCVDCapexOverlay.issuers[indicatorId]) {
+    doc = MOCVDCapexOverlay.attach(doc, await loadDoc(industryId, "mocvd_capex_guidance"));
+  }
   state.docs.set(indicatorId, doc);
   return doc;
 }
@@ -1257,14 +1260,16 @@ function renderCard(doc, indicatorId, options = {}) {
     if (!open) tableDiv.innerHTML = buildTable(doc, filtered);
   });
 
-  const chart = drawChart(canvas, doc, filtered);
+  const chart = drawChart(canvas, doc, filtered, {from: cutoff, to: rangeLast});
+  if (chart.$mocvdModel) MOCVDCapexOverlay.controls(card, chart, doc, chart.$mocvdModel);
   // 헤드라인은 방금 켠 시리즈를 따라가고, 헤드라인 시리즈를 끄면 남은 것 중 첫 번째로
   let headline = mainName;
   buildChips(chipsDiv, chart, (label, checked) => {
+    if (chart.data.datasets.find(dataset => dataset.label === label)?.isCapexGuidance) return;
     if (checked) {
       headline = label;
     } else if (label === headline) {
-      const first = chart.data.datasets.find((d, i) => chart.isDatasetVisible(i));
+      const first = chart.data.datasets.find((d, i) => !d.isCapexGuidance && chart.isDatasetVisible(i));
       headline = first ? first.label : null;
     } else {
       return; // 헤드라인과 무관한 시리즈 해제는 그대로 둠
@@ -1911,13 +1916,18 @@ const barValueLabels = {
   },
 };
 
-function drawChart(canvas, doc, filtered) {
+function drawChart(canvas, doc, filtered, range = {}) {
   const palette = SERIES_COLORS[isDark() ? "dark" : "light"];
   const names = Object.keys(filtered);
   const visible = new Set(doc.default_series || names.slice(0, 1));
 
   // 모든 시리즈의 날짜 합집합을 라벨로
   let labels = [...new Set(names.flatMap((n) => filtered[n].map((p) => p[0])))].sort();
+  const capex = typeof MOCVDCapexOverlay !== "undefined" ? MOCVDCapexOverlay.plan(doc, filtered, range) : null;
+  if (capex) {
+    labels = [...new Set([...labels, ...capex.dates])].sort();
+    doc = {...doc, period_labels: {...doc.period_labels, ...capex.labels}};
+  }
   // Calendar spacing preserves elapsed time when observation frequency changes.
   if (doc.daily_axis && labels.length) {
     const first = Date.parse(labels[0]), last = Date.parse(labels.at(-1));
@@ -2002,6 +2012,7 @@ function drawChart(canvas, doc, filtered) {
     };
   });
 
+  if (capex) datasets.push(...MOCVDCapexOverlay.datasets(capex, labels, palette));
   if (Number.isFinite(doc.reference_value)) {
     datasets.push({label: doc.reference_label || `기준 ${doc.reference_value}`,
       data: labels.map(() => doc.reference_value), borderColor: css("--muted"),
@@ -2016,6 +2027,7 @@ function drawChart(canvas, doc, filtered) {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      ...(capex?.events.length ? {layout: {padding: {top: 30}}} : {}),
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: { display: false }, // 범례는 체크박스 칩(buildChips)으로 대체
@@ -2079,8 +2091,9 @@ function drawChart(canvas, doc, filtered) {
         },
       },
     },
-    plugins: doc.bar_value_labels ? [crosshair, barValueLabels] : [crosshair],
+    plugins: [...(doc.bar_value_labels ? [crosshair, barValueLabels] : [crosshair]), ...(capex ? [MOCVDCapexOverlay.plugin(capex, css)] : [])],
   });
+  if (capex) chart.$mocvdModel = capex;
   state.charts.push(chart);
   return chart;
 }
