@@ -1,0 +1,38 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+(async()=>{
+ const source=fs.readFileSync('assets/materials-overview.js','utf8');
+ const {buildDirectory,filterCompanies}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+ const industry=JSON.parse(fs.readFileSync('data/catalog.json')).industries.find(i=>i.id==='semicon');
+ const index=JSON.parse(fs.readFileSync('data/semicon/valuation/valuation_index.json'));
+ const registry=JSON.parse(fs.readFileSync('manual/semicon-valuation/companies.json'));
+ const tabs=new Set(industry.tabs.filter(t=>t.category!=='overview').map(t=>t.id));
+ const expected=registry.filter(c=>c.tabs.some(t=>tabs.has(t))).map(c=>c.id).sort();
+ const model=buildDirectory(industry,index);
+ assert.deepEqual(model.companies.map(c=>c.id).sort(),expected);
+ assert.equal(model.counts.all,new Set(model.companies.map(c=>c.id)).size);
+ assert.equal(model.counts.domestic+model.counts.foreign+model.counts.other,model.counts.all);
+ assert(!model.companies.some(c=>['intel','samsung','nxp','power_nxp'].includes(c.id)));
+ const shinetsu=model.companies.filter(c=>c.id==='shinetsu');assert.equal(shinetsu.length,1);assert.deepEqual(new Set(shinetsu[0].categories),new Set(['components','raw_materials']));
+ assert.equal(model.companies.filter(c=>c.id==='nuflare').length,1);assert.equal(model.companies.find(c=>c.id==='nuflare').price,null);
+ assert.equal(model.companies.find(c=>c.id==='cetc').status,'unlisted');assert.equal(model.companies.find(c=>c.id==='topec').status,'review');
+ assert.equal(model.companies.find(c=>c.id==='lumentum').reference,true);assert.equal(model.companies.find(c=>c.id==='coherent').reference,true);
+ assert.equal(model.topics.find(t=>t.id==='esc').count,0);assert.deepEqual(filterCompanies(model.companies,{topic:'esc'}),[]);
+ assert(!model.topics.some(t=>['materials_overview','equipment_summary','osat_summary'].includes(t.id)));
+ assert.equal(filterCompanies(model.companies,{query:'098120'})[0].id,'supplychain_microcont');
+ for(const category of model.categories)assert.equal(filterCompanies(model.companies,{category:category.id}).length,category.count);
+ for(const listing of ['domestic','foreign','other'])assert.equal(filterCompanies(model.companies,{listing}).length,model.counts[listing]);
+ assert(filterCompanies(model.companies,{status:'listed'}).every(c=>c.status==='listed'));
+ const duplicate=structuredClone(industry);duplicate.sections.push(...industry.sections.filter(s=>s.tab==='equipment_summary'));
+ assert.equal(buildDirectory(duplicate,index).counts.all,model.counts.all);
+ const partial=structuredClone(index);partial.companies=partial.companies.filter(c=>c.id!=='lam');
+ const missing=buildDirectory(industry,partial).companies.find(c=>c.id==='lam');assert(missing);assert.equal(missing.status,'review');
+ for(const company of model.companies)for(const area of company.areas){assert(area.route.startsWith('#/semicon/materials/'));assert(area.target);}
+ const sample=[{id:'b',name:'B',areas:[],categories:[],per:20},{id:'n',name:'N',areas:[],categories:[],per:null},{id:'a',name:'A',areas:[],categories:[],per:10}];
+ assert.deepEqual(filterCompanies(sample,{sort:'per'}).map(c=>c.id),['a','b','n']);assert.deepEqual(filterCompanies(sample,{sort:'per',ascending:false}).map(c=>c.id),['b','a','n']);
+ assert.deepEqual(filterCompanies(sample,{query:'no such company'}),[]);
+ assert(!source.includes('innerHTML'));
+ assert.equal(industry.material_categories[0].id,'overview');assert.equal(industry.material_categories[0].default_tab,'materials_overview');
+ const section=industry.sections.find(s=>s.tab==='materials_overview');assert.equal(section.data_industry,'semicon/valuation');assert.deepEqual(section.indicators,['valuation_index']);
+ console.log('Materials overview:',model.counts, 'registered scope, deduplication, navigation, filters and sorting passed');
+})().catch(error=>{console.error(error);process.exitCode=1;});

@@ -35,4 +35,5 @@ jobs:
       - name: 모든 워크플로 검증 시험
         run: |
           node scripts/test_chart_legend.cjs
+          node scripts/test_materials_overview.cjs
           python scripts/run_ci_tests.py

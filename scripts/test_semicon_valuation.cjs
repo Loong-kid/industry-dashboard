@@ -5,7 +5,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
  const state={catalog,industry:null,subtab:null,range:'3y'},location={hash:''};
  const document={querySelectorAll:()=>[],getElementById:()=>({querySelector:()=>null})};
  const route=new Function('state','location','document','history','setRange','renderIndustry',app.slice(app.indexOf('function route()'),app.indexOf('\nfunction setRange'))+'\nreturn route;')(state,location,document,{},range=>state.range=range,()=>{});
- for(const [hash,tab,group] of [['#/semicon/power_semicon','power_semicon','power_semicon'],['#/semicon/materials/equipment/mocvd','mocvd','materials'],['#/semicon/mocvd','mocvd','materials'],['#/semicon/power_semicon','power_semicon','power_semicon']]){
+ for(const [hash,tab,group] of [['#/semicon/materials','materials_overview','materials'],['#/semicon/materials/overview','materials_overview','materials'],['#/semicon/materials/overview/companies','materials_overview','materials'],['#/semicon/equipment_summary','equipment_summary','materials'],['#/semicon/power_semicon','power_semicon','power_semicon'],['#/semicon/materials/equipment/mocvd','mocvd','materials'],['#/semicon/mocvd','mocvd','materials'],['#/semicon/power_semicon','power_semicon','power_semicon']]){
   location.hash=hash;route();assert.equal(state.subtab,tab);assert.equal(state.semiconGroup,group);
   if(tab==='power_semicon'){assert.equal(state.materialCategory,null);assert.equal(state.range,'all');}
  }
