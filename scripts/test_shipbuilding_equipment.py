@@ -100,8 +100,33 @@ class EquipmentTests(unittest.TestCase):
         for original in ['clarksons_nb_index','korea_orders','asiasis_orders','korea_revenue_progress']:
             self.assertIn(original,ids)
         financial=[s for s in ship['sections'] if s['tab']!='market']
-        self.assertEqual(len(financial),7)
-        self.assertEqual(sum(len(s['indicators']) for s in financial),21)
+        self.assertEqual(len(financial),8)
+        self.assertEqual(sum(len(s['indicators']) for s in financial),23)
+        engine=next(s for s in financial if 'company_hhi_engine_segment_revenue' in s['indicators'])
+        self.assertEqual(engine['tab'],'engines')
+        self.assertEqual(engine['indicators'],['company_hhi_engine_segment_revenue','company_hhi_engine_segment_profit'])
+
+    def test_hhi_engine_segment_table_checks_margins_and_units(self):
+        from fetch_hhi_engine import segment_row
+        table='''사업부문별 연결기준 실적 (단위 : 억원)
+        영업이익 영업이익 영업이익
+        엔 진 기 계 10,603 2,202 20.8 9,522 2,364 248 9,511 2,299 24.2'''
+        self.assertEqual(segment_row(table,3),[(10603,2202),(9522,2364),(9511,2299)])
+        with self.assertRaises(ValueError):segment_row(table.replace('2,299','8,992'),3)
+        with self.assertRaises(ValueError):segment_row(table.replace('억원','백만원'),3)
+        with self.assertRaises(ValueError):segment_row(table,4)
+
+    def test_hhi_engine_latest_reviewed_quarter_and_annual_conversion(self):
+        root=Path(__file__).resolve().parents[1]
+        for metric,label,q3,annual in [('revenue','매출',951100,3790800),('profit','영업이익',229900,693300)]:
+            path=root/f'data/shipbuilding/company_hhi_engine_segment_{metric}.json'
+            doc=json.loads(path.read_text(encoding='utf8'))
+            views=doc['series_views']
+            self.assertEqual(doc['unit'],'백만 USD')
+            self.assertEqual(dict(views['quarter']['original_series'][label])['2026-09-30'],q3)
+            self.assertEqual(dict(views['annual']['original_series'][label])['2025-12-31'],annual)
+            self.assertGreater(dict(views['quarter']['series'][label])['2026-09-30'],0)
+            self.assertTrue(views['quarter']['point_sources']['2026-09-30']['url'].startswith('https://hd-hhi.com/'))
 
 
 if __name__=='__main__':unittest.main()

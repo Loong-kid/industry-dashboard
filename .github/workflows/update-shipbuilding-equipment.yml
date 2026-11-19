@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'scripts/*shipbuilding_equipment*.py'
+      - 'scripts/fetch_hhi_engine.py'
       - 'manual/shipbuilding-equipment/**'
       - 'data/shipbuilding/equipment_*.json'
       - '.github/workflows/update-shipbuilding-equipment.yml'
@@ -23,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install requests beautifulsoup4
+      - run: pip install requests beautifulsoup4 pymupdf
       - name: Validate reporting basis, signed earnings and provisional statements
         id: precheck
         continue-on-error: true
@@ -33,6 +34,14 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python -u scripts/fetch_shipbuilding_equipment.py
+      - name: Set up OCR for scanned HD Hyundai Heavy Industries releases
+        id: hhi_ocr
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-kor
+      - name: Collect HD Hyundai Heavy Industries engine segment results
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_hhi_engine.py
       - name: Validate seven issuer histories and USD conversion
         id: postcheck
         continue-on-error: true
@@ -53,6 +62,8 @@ jobs:
             data/shipbuilding/company_cape_*.json
             data/shipbuilding/company_inhwa_*.json
             data/shipbuilding/company_hd_marine_solution_*.json
+            data/shipbuilding/company_hhi_engine_segment_*.json
+            data/shipbuilding/hhi_engine_state.json
           retention-days: 7
           include-hidden-files: true
       - name: Commit equipment financials only
@@ -61,6 +72,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/shipbuilding/equipment_*.json data/shipbuilding/company_hanwha_engine_*.json data/shipbuilding/company_hd_marine_engine_*.json data/shipbuilding/company_stx_engine_*.json data/shipbuilding/company_ksp_*.json data/shipbuilding/company_cape_*.json data/shipbuilding/company_inhwa_*.json data/shipbuilding/company_hd_marine_solution_*.json
+          git add data/shipbuilding/company_hhi_engine_segment_*.json data/shipbuilding/hhi_engine_state.json
           git diff --cached --quiet || git commit -m "chore: refresh shipbuilding equipment financials"
           for attempt in 1 2 3; do
             if git pull --rebase && git push; then exit 0; fi

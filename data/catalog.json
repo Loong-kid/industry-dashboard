@@ -76,6 +76,16 @@
         },
         {
           "tab": "engines",
+          "title": "HD현대중공업 · 엔진기계 부문",
+          "layout": "financial",
+          "supply_note": "HD현대중공업 공식 IR의 엔진기계 부문 실적. 선박용 엔진, 디젤 발전설비, 펌프·유체기계 등을 포함합니다.",
+          "indicators": [
+            "company_hhi_engine_segment_revenue",
+            "company_hhi_engine_segment_profit"
+          ]
+        },
+        {
+          "tab": "engines",
           "title": "한화엔진 · 082740",
           "layout": "financial",
           "supply_note": "선박용 저속·이중연료 엔진·발전·부품·서비스 등을 포함한 회사 전체 실적.",
@@ -164,8 +174,8 @@
           "name": "엔진 제조사",
           "default_range": "all",
           "auto_collect_time": "09:30",
-          "cadence": "공개 정기 재무제표와 잠정 공시를 매일 확인합니다. 확정 실적은 분기·반기·사업보고서 발표 후, 잠정실적은 공정공시 후 반영합니다.",
-          "description": "한화엔진·HD현대마린엔진·STX엔진의 회사 전체 실적입니다. HD현대중공업 엔진기계는 별도 상장사가 아닌 사업부이므로, 중공업 전사 매출을 엔진 매출로 대신 표시하지 않습니다. 금액은 USD이며 원화 원자료·평균환율은 메모에 보존합니다."
+          "cadence": "HD현대중공업의 부문별 IR 실적과 각 엔진 제조사의 정기·잠정 공시를 매일 확인합니다.",
+          "description": "HD현대중공업 엔진기계 부문과 한화엔진·HD현대마린엔진·STX엔진의 실적입니다. 금액은 USD이며 원화 원자료와 평균환율은 메모에서 확인할 수 있습니다."
         },
         {
           "id": "engine_parts",
