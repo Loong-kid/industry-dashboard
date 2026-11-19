@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from build_ai_overview import ROOT, SOURCE, build, display, grid, letter
+from build_ai_overview import PUBLIC, ROOT, SOURCE, build, display, grid, letter
 
 
 class AIOverviewTests(unittest.TestCase):
@@ -10,14 +10,44 @@ class AIOverviewTests(unittest.TestCase):
     def setUpClass(cls):
         cls.snapshot = json.loads(SOURCE.read_text(encoding='utf-8'))
         cls.docs = build(cls.snapshot)
+        cls.public = json.loads(PUBLIC.read_text(encoding='utf-8'))
+        cls.integrated = build(cls.snapshot,cls.public)
 
     def test_generated_tables_match_snapshot(self):
-        for key, doc in self.docs.items():
+        for key, doc in self.integrated.items():
             self.assertEqual(doc, json.loads((ROOT / 'data/datacenter' / (key+'.json')).read_text(encoding='utf-8')))
             self.assertEqual(doc['imported'], '2026-11-04')
             self.assertTrue(doc['manual'])
             self.assertIn('#gid=', doc['source']['tab_url'])
-        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.docs.values() for t in d['tables']], [(110,44),(9,5),(11,8)])
+        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.integrated.values() for t in d['tables']], [(121,44),(9,5),(11,8)])
+
+    def test_public_data_uses_existing_columns_and_preserves_sheet_cells(self):
+        base=self.docs['dc_ai_overview']['tables'][0]
+        doc=self.integrated['dc_ai_overview']
+        table=doc['tables'][0]
+        self.assertEqual(doc['public_reviewed'],self.public['imported'])
+        self.assertEqual(table['columns'],base['columns'])
+        self.assertEqual(table['views'],base['views'])
+        by_id={r['id']:r for r in table['rows']}
+        self.assertEqual(len(by_id),len(table['rows']))
+        for row in base['rows']:
+            patched=by_id[row['id']]
+            self.assertEqual(patched['source_row'],row['source_row'])
+            for key,original in row['cells'].items():
+                cell=patched['cells'][key]
+                self.assertEqual(cell.get('original',cell),original)
+        sol=by_id['llm-public-gpt-6.2-sol']
+        self.assertNotIn('source_row',sol)
+        self.assertEqual([sol['cells'][k]['number'] for k in ('D','E','J','K','L')],[2,10,57,53,55])
+        self.assertEqual(sol['cells']['J']['text'],'57 · v5')
+        self.assertIn('max 57점',sol['cells']['J']['note'])
+        self.assertIn('캐시 읽기 $0.1',sol['cells']['I']['text'])
+        self.assertEqual(by_id['llm-r28']['cells']['L']['original']['text'],'50')
+        self.assertNotIn('llm-public-gpt-6.1-sol',by_id)
+        self.assertNotIn('llm-public-claude-opus-5-5',by_id)
+        self.assertNotIn('llm-public-grok-4-7',by_id)
+        self.assertEqual(by_id['llm-public-kimi-k3-1-pro']['group'],'중국')
+        self.assertEqual(self.docs['dc_ai_overview2'],self.integrated['dc_ai_overview2'])
 
     def test_all_visible_cells_and_notes_survive_without_conversions(self):
         for doc in self.docs.values():
@@ -72,7 +102,7 @@ class AIOverviewTests(unittest.TestCase):
         self.assertIn('ai_overview',{t['id'] for t in dc['tabs']})
         self.assertNotIn('ai_overview2',{t['id'] for t in dc['tabs']})
         sections=[s for s in dc['sections'] if s['tab']=='ai_overview']
-        self.assertEqual([s['indicators'] for s in sections],[['dc_ai_model_benchmarks'],['dc_ai_overview'],['dc_ai_overview2']])
+        self.assertEqual([s['indicators'] for s in sections],[['dc_ai_overview'],['dc_ai_overview2']])
         self.assertFalse(any(s['tab']=='ai_overview2' for s in dc['sections']))
         for section in sections:
             self.assertEqual(section['table_kind'],'ai_overview')
