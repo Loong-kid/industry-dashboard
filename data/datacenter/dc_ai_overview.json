@@ -18,7 +18,7 @@
   {
    "id": "llm",
    "title": "언어모델 · 가격·사양·벤치마크",
-   "unit_note": "입력·출력은 USD/100만 토큰 기준입니다. v5 표시는 AA v5.0.1 점수입니다. 시트의 v4.3.x 점수와 평가 구성이 다릅니다.",
+   "unit_note": "입력·출력은 USD/100만 토큰 기준입니다. v5 표시는 AA v5.0.1 점수입니다. 시트의 v4.3.x 점수와 평가 구성이 다릅니다. AA 표시 열은 Artificial Analysis 리더보드(2026-11-19 확인)의 설정별 최고값입니다. 단종 모델은 리더보드에 없어 빈칸입니다.",
    "provider_key": "A",
    "model_key": "B",
    "date_key": "C",
@@ -101,7 +101,7 @@
      "label": "AA Index (Best)",
      "source_label": "AA Index (Best)",
      "note": "Artificial Analysis Intelligence Index v4.3.x 기준 (2026-10-02). Best는 해당 릴리스에서 확인 가능한 최고 reasoning-effort 점수. 공란은 현행 동일 릴리스 점수가 미공개이거나 신뢰성 있게 매칭되지 않은 경우.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "K",
@@ -109,7 +109,7 @@
      "label": "AA Index (Med)",
      "source_label": "AA Index (Med)",
      "note": "Artificial Analysis의 Medium reasoning-effort 점수가 별도로 확인되는 모델만 기입.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "L",
@@ -117,7 +117,7 @@
      "label": "AA Index (High)",
      "source_label": "AA Index (High)",
      "note": "Artificial Analysis의 High reasoning-effort 점수가 별도로 확인되는 모델만 기입.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "M",
@@ -125,7 +125,7 @@
      "label": "HLE (Best)",
      "source_label": "HLE (Best)",
      "note": "Humanity's Last Exam. 전문가 수준의 추론·지식 문제. Artificial Analysis의 동일 평가 환경 기준. Best는 해당 모델에서 확인 가능한 최고/대표 reasoning configuration. 공란은 0점이 아니라 현재 동일 기준의 독립 평가값이 없거나 직접 비교가 어려운 경우.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "N",
@@ -133,7 +133,7 @@
      "label": "Terminal -Bench 4.0 (Best)",
      "source_label": "Terminal\n-Bench 4.0\n(Best)",
      "note": "실제 터미널/agentic coding 작업 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "O",
@@ -141,7 +141,7 @@
      "label": "SciCode (Best)",
      "source_label": "SciCode\n(Best)",
      "note": "과학·기술 코딩 문제 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "P",
@@ -149,7 +149,7 @@
      "label": "AutomationBench -AA (Best)",
      "source_label": "AutomationBench\n-AA (Best)",
      "note": "SaaS/도구 사용 기반 agentic workflow 수행 능력. Artificial Analysis 독립 평가 기준. Best configuration의 점수.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "Q",
@@ -157,7 +157,7 @@
      "label": "ARC-AGI-3 Standard (Best)",
      "source_label": "ARC-AGI-3\nStandard\n(Best)",
      "note": "ARC Prize Semi-Private ARC-AGI-3. Standard harness는 provider-neutral 공통 인터페이스라 모델 간 비교에 더 적합. 각 모델에서 공개된 reasoning effort 중 최고 점수.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "R",
@@ -165,7 +165,7 @@
      "label": "ARC-AGI-3 Provider Adapter (Best)",
      "source_label": "ARC-AGI-3\nProvider Adapter\n(Best)",
      "note": "ARC Prize Semi-Private ARC-AGI-3. Provider Adapter는 각 제공사의 context-management/opaque reasoning state 유지 기능을 활용. GPT-6 Astra의 99.9%로 알려진 결과는 이 열이며, Standard harness 62.7%와 같은 조건은 아님.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "S",
@@ -173,7 +173,7 @@
      "label": "SWE-bench Verified (Reported Best)",
      "source_label": "SWE-bench Verified (Reported Best)",
      "note": "2024~2026 대표 실전 소프트웨어 엔지니어링 벤치마크. 실제 GitHub 이슈를 수정해 테스트 통과율을 측정. Agent scaffold/도구/실행 가능한 subset 차이로 점수가 크게 달라질 수 있어 'Reported Best'로 표시. OpenAI는 2026년에 테스트 설계·오염 문제를 이유로 frontier 모델 평가에서 사용 중단을 설명함.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "T",
@@ -181,7 +181,7 @@
      "label": "GPQA Diamond (Best)",
      "source_label": "GPQA Diamond (Best)",
      "note": "대학원 수준 과학 추론 벤치마크. 2024~2026 핵심 reasoning 지표였으나 frontier 모델이 90%대에 진입하며 포화. Artificial Analysis는 2026-09 v4.2에서 Intelligence Index 구성요소에서 제거.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "U",
@@ -189,7 +189,7 @@
      "label": "AIME 2025 (Best)",
      "source_label": "AIME 2025 (Best)",
      "note": "경시수학형 고난도 추론 지표. 2025 reasoning 모델 비교에서 대표적으로 사용됐으나 빠르게 90~100%에 근접해 포화. Artificial Analysis Intelligence Index v4.0에서 제거.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "V",
@@ -197,7 +197,7 @@
      "label": "MMLU-Pro (Legacy)",
      "source_label": "MMLU-Pro (Legacy)",
      "note": "MMLU보다 어려운 14개 분야, 10지선다 지식·추론 benchmark. 2024~2025에 널리 사용됐지만 frontier 구분력이 줄어 Artificial Analysis v4.0에서 Index에서 제거.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "W",
@@ -205,7 +205,7 @@
      "label": "MMLU (Legacy)",
      "source_label": "MMLU (Legacy)",
      "note": "2020년대 초 대표 범용 지식 benchmark. 57개 학문 분야. GPT-4/Claude 3 시기까지 매우 중요한 지표였으나 최신 모델에서는 포화되어 세대 비교용 역사 지표로 보는 것이 적절.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "X",
@@ -213,7 +213,7 @@
      "label": "GSM8K (Legacy)",
      "source_label": "GSM8K (Legacy)",
      "note": "초·중등 수준 문장형 수학 추론 benchmark. Chain-of-Thought 발전기인 2022~2024에 핵심이었지만 frontier 모델에서 사실상 포화.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "Y",
@@ -221,7 +221,7 @@
      "label": "HumanEval (Legacy)",
      "source_label": "HumanEval (Legacy)",
      "note": "Python 함수 생성 pass@1 benchmark. 2021~2024 코딩 모델 비교의 대표 지표였지만 최신 모델에는 지나치게 쉬워져 SWE-bench/Terminal-Bench 계열로 중심이 이동.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AA",
@@ -229,7 +229,7 @@
      "label": "Vals Index (Reported)",
      "source_label": "Vals Index (Reported)",
      "note": "Scores come from public Vals snapshots/current leaderboard. Vals Index versions changed over 2026; each populated historical cell carries its source/version in the note.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AB",
@@ -237,7 +237,7 @@
      "label": "AutomationBench (Reported)",
      "source_label": "AutomationBench (Reported)",
      "note": "Public/provider-reported AutomationBench results. Harness/version changed during 2026, so compare cells with their notes rather than assuming one frozen run.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AC",
@@ -245,7 +245,7 @@
      "label": "Vals Finance Agent v2",
      "source_label": "Vals Finance Agent v2",
      "note": "Vals Finance Agent v2, realistic financial-analyst work. v2 was in use by late May 2026. Snapshot values from Google Gemini 4 Argon launch comparison.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AD",
@@ -253,7 +253,7 @@
      "label": "Harvey Legal Agent Benchmark",
      "source_label": "Harvey Legal Agent Benchmark",
      "note": "Harvey's Legal Agent Benchmark launched 2026-05-06 (Opus 4.8 / Fable 5 transition era). Strict all-pass legal agent work.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AE",
@@ -261,7 +261,7 @@
      "label": "DeepSWE v1.1",
      "source_label": "DeepSWE v1.1",
      "note": "Released 2026-05-26. Original long-horizon software-engineering tasks across real open-source repositories.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AF",
@@ -269,7 +269,7 @@
      "label": "FrontierSWE v2",
      "source_label": "FrontierSWE v2",
      "note": "FrontierSWE v2 released Sep 2026. Ultra-long-horizon engineering/research tasks, up to ~20h per run.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AG",
@@ -277,7 +277,7 @@
      "label": "Vibe Code Bench",
      "source_label": "Vibe Code Bench",
      "note": "Vals public benchmark launched Nov 2025; academic paper Mar 2026. Zero-to-one web app development from specs.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AH",
@@ -285,7 +285,7 @@
      "label": "Terminal-Bench 4.0 (Reported)",
      "source_label": "Terminal-Bench 4.0 (Reported)",
      "note": "Public/provider-reported Terminal-Bench 4.0. Harness and agent scaffold can materially change scores; each historical cell carries the source in its note.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AI",
@@ -293,7 +293,7 @@
      "label": "PostTrainBench",
      "source_label": "PostTrainBench",
      "note": "Autonomous LLM post-training benchmark. Public leaderboard already active by Feb-Mar 2026; v1.1 Jul 2026, v1.2 Sep 2026.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AJ",
@@ -301,7 +301,7 @@
      "label": "Terminal-Bench Science 0.1",
      "source_label": "Terminal-Bench Science 0.1",
      "note": "Released 2026-08-27. Scientist-authored terminal workflows across life/physical/earth/math/engineering sciences.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AK",
@@ -309,7 +309,7 @@
      "label": "LABBench 2",
      "source_label": "LABBench 2",
      "note": "2026-generation biology research benchmark; evaluates realistic biology research tasks with multimodal/research artifacts.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AL",
@@ -317,7 +317,7 @@
      "label": "RiemannBench",
      "source_label": "RiemannBench",
      "note": "2026 frontier research-math benchmark aimed above olympiad-style tests; very small, very difficult research-level math set.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AM",
@@ -325,7 +325,7 @@
      "label": "GraphWalks ≤128K (BFS F1)",
      "source_label": "GraphWalks ≤128K (BFS F1)",
      "note": "Long-context graph reasoning. Became a prominent frontier-model metric around GPT-5.5 / early-2026 long-context releases. Score is F1, not task pass-rate.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AN",
@@ -333,7 +333,7 @@
      "label": "GraphWalks 256K–1M (BFS F1)",
      "source_label": "GraphWalks 256K–1M (BFS F1)",
      "note": "Extreme long-context graph reasoning. Google Gemini 4 comparison groups 256K–1M context; score is BFS F1.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AO",
@@ -341,7 +341,7 @@
      "label": "Agent's Last Exam",
      "source_label": "Agent's Last Exam",
      "note": "Introduced Jun 2026. Long-horizon professional digital work across many occupations; computer-use / agent benchmark.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AP",
@@ -349,7 +349,7 @@
      "label": "OSWorld-2.0 (Partial score)",
      "source_label": "OSWorld-2.0 (Partial score)",
      "note": "OSWorld 2.0 released 2026-06-26. Long-horizon real computer-use workflows. Google table reports OFFLINE SUBSET PARTIAL SCORE, not binary task completion.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AQ",
@@ -357,7 +357,7 @@
      "label": "Chartography",
      "source_label": "Chartography",
      "note": "Introduced Aug 2026. Professional chart-understanding benchmark using domain-specific charts from real practice.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AR",
@@ -365,7 +365,7 @@
      "label": "LVBench",
      "source_label": "LVBench",
      "note": "Long-video benchmark originally released 2024-06-11; reused in Gemini 4 to measure up-to-2-hour video understanding.",
-     "width": 84
+     "width": 100
     },
     {
      "key": "AS",
@@ -373,7 +373,71 @@
      "label": "CWE-bench v1",
      "source_label": "CWE-bench v1",
      "note": "Defensive cybersecurity benchmark. v1 live Sep 2026; 120 held-out audit-and-patch tasks across 73 CWE classes.",
-     "width": 84
+     "width": 100
+    },
+    {
+     "key": "aa_gdpval",
+     "label": "GDPval-AA (Elo)",
+     "source_label": "GDPval-AA (Elo)",
+     "note": "GDPval-AA v2.1. OpenAI GDPval 데이터(미국 GDP 주요 산업 44개 직업의 실제 업무)를 Artificial Analysis가 평가해 Elo로 비교. DeepSeek V4.1 Flash (max)를 1600으로 고정. 높을수록 좋음. v5.0부터 Intelligence Index에서 빠진 단독 평가. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_briefcase",
+     "label": "AA-Briefcase (Elo)",
+     "source_label": "AA-Briefcase (Elo)",
+     "note": "AA-Briefcase v1.1. 업계 전문가가 만든 여러 주짜리 지식노동 프로젝트(연결된 과제 다수, 원자료 수천 개)를 수행하는 평가. Elo, 높을수록 좋음. AA Intelligence Index v5 비중 15%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_frontiercode",
+     "label": "FrontierCode-AA 2.0",
+     "source_label": "FrontierCode-AA 2.0",
+     "note": "FrontierCode-AA 2.0. Cognition이 오픈소스 관리자들과 만든 코딩 평가. 실제 저장소 변경이 관리자가 병합할 수준인지 테스트와 채점 기준으로 판정(132과제). AA Intelligence Index v5 비중 15%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_gdppdf",
+     "label": "GDP.pdf",
+     "source_label": "GDP.pdf",
+     "note": "GDP.pdf (Surge AI). 10개 전문 분야의 실제 PDF 문서(4,592쪽)를 읽고 과제별 기준을 충족하는지 보는 평가(100과제·기준 1,275개). AA Intelligence Index v5 비중 5%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_hle_diamond",
+     "label": "HLE-Diamond",
+     "source_label": "HLE-Diamond",
+     "note": "HLE-Diamond. Humanity's Last Exam을 정제한 1,000문항판(추론 500·지식 500), 도구 없이 평가. 기존 HLE 열과 문항이 다름. AA Intelligence Index v5 비중 10%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_critpt",
+     "label": "CritPt v2 Hard",
+     "source_label": "CritPt v2 Hard",
+     "note": "CritPt v2 Hard Subset. 연구 수준 물리 문제 70개 중 출시 당시 최상위 모델들이 모두 푼 30개를 뺀 40문항의 정답률. AA Intelligence Index v5 비중 10%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_tbsci",
+     "label": "Terminal-Bench Science (AA)",
+     "source_label": "Terminal-Bench Science (AA)",
+     "note": "Terminal-Bench-Science 0.1. 스탠퍼드·Terminal-Bench 팀이 만든 과학 연구 터미널 작업(생명·물리·수학·공학·지구과학)을 Artificial Analysis가 직접 돌린 값. 제공사 발표값 열(Terminal-Bench Science 0.1)과 구분. AA Intelligence Index v5 비중 15%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
+    },
+    {
+     "key": "aa_omniscience",
+     "label": "AA-Omniscience 지수",
+     "source_label": "AA-Omniscience 지수",
+     "note": "AA-Omniscience v1.1. 지식·환각 평가(3,000문항). 정확한 지식은 가점, 틀린 추측은 감점하는 지수로 높을수록 좋음. AA Intelligence Index v5 비중 15%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
+     "width": 108,
+     "added": true
     }
    ],
    "views": [
@@ -388,7 +452,11 @@
       "E",
       "J",
       "M",
-      "N"
+      "N",
+      "P",
+      "aa_gdpval",
+      "AA",
+      "AO"
      ]
     },
     {
@@ -421,7 +489,35 @@
       "O",
       "P",
       "Q",
-      "R"
+      "R",
+      "aa_gdpval",
+      "aa_briefcase",
+      "aa_frontiercode",
+      "aa_gdppdf",
+      "aa_hle_diamond",
+      "aa_critpt",
+      "aa_tbsci",
+      "aa_omniscience"
+     ]
+    },
+    {
+     "id": "aa_v5",
+     "label": "AA v5 평가 항목",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "J",
+      "aa_briefcase",
+      "P",
+      "aa_gdppdf",
+      "aa_frontiercode",
+      "N",
+      "aa_omniscience",
+      "aa_hle_diamond",
+      "aa_critpt",
+      "aa_tbsci",
+      "aa_gdpval"
      ]
     },
     {
@@ -515,7 +611,15 @@
       "AP",
       "AQ",
       "AR",
-      "AS"
+      "AS",
+      "aa_gdpval",
+      "aa_briefcase",
+      "aa_frontiercode",
+      "aa_gdppdf",
+      "aa_hle_diamond",
+      "aa_critpt",
+      "aa_tbsci",
+      "aa_omniscience"
      ]
     }
    ],
@@ -597,6 +701,123 @@
         "https://platform.claude.com/docs/en/models/fable-5-2/overview",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "M": {
+       "text": "74%",
+       "number": 0.7428,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "N": {
+       "text": "62%",
+       "number": 0.6162,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Xhigh, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "O": {
+       "text": "68%",
+       "number": 0.6771,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "76%",
+       "number": 0.7642,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,831",
+       "number": 1831.06,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,785",
+       "number": 1784.66,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "49.1%",
+       "number": 0.4913,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (High, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "26.8%",
+       "number": 0.268,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Low, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "80.2%",
+       "number": 0.802,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "76.5%",
+       "number": 0.765,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "73.3%",
+       "number": 0.7333,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "66.8",
+       "number": 66.77,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Fable 5.2 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "71.3%",
+       "number": 0.7131,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Claude Fable 5.2. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -677,6 +898,123 @@
         "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "M": {
+       "text": "44%",
+       "number": 0.4439,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "N": {
+       "text": "33%",
+       "number": 0.3283,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "O": {
+       "text": "55%",
+       "number": 0.5498,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "36%",
+       "number": 0.3595,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Xhigh) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,629",
+       "number": 1628.98,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,572",
+       "number": 1572.19,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "34.9%",
+       "number": 0.3493,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "20.8%",
+       "number": 0.208,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "29.6%",
+       "number": 0.296,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "47.5%",
+       "number": 0.475,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Xhigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "20.0%",
+       "number": 0.2,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "12.3",
+       "number": 12.3,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "58.7%",
+       "number": 0.5873,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Claude Haiku 5.5. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -748,6 +1086,132 @@
         "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "M": {
+       "text": "55%",
+       "number": 0.5496,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "N": {
+       "text": "64%",
+       "number": 0.6364,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "O": {
+       "text": "61%",
+       "number": 0.61,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "72%",
+       "number": 0.7177,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "K": {
+       "text": "31 · v5",
+       "number": 31,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Medium, Default Fallback) · AA v5.0.1 점수. 시트의 v4.3.x 점수와 평가 구성이 다름",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,838",
+       "number": 1837.82,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,815",
+       "number": 1815.14,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "41.7%",
+       "number": 0.417,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "25.8%",
+       "number": 0.258,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "53.3%",
+       "number": 0.533,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "59.0%",
+       "number": 0.59,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "53.3%",
+       "number": 0.5333,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "30.5",
+       "number": 30.47,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Sonnet 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "70.8%",
+       "number": 0.7085,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Claude Sonnet 5.5. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -790,13 +1254,13 @@
        }
       },
       "J": {
-       "text": "57 · v5",
+       "text": "59 · v5",
+       "number": 59,
        "public": true,
-       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · xhigh · 과제당 $6.05 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 52점 · $3.46 / medium 48점 · $2.45 / xhigh 57점 · $6.05",
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값 · AA v5.0.1 점수. 시트의 v4.3.x 점수와 평가 구성이 다름 · 이전 공개 자료 값 57 · v5(확인한 설정 중 최고였음)",
        "links": [
-        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+        "https://artificialanalysis.ai/leaderboards/models"
        ],
-       "number": 57,
        "original": {
         "text": "58",
         "number": 58
@@ -923,6 +1387,78 @@
        "links": [
         "https://platform.claude.com/docs/en/models/opus-5-5/overview",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,866",
+       "number": 1866.27,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,800",
+       "number": 1799.88,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "46.4%",
+       "number": 0.4644,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "28.8%",
+       "number": 0.288,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (High, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "67.9%",
+       "number": 0.679,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "68.0%",
+       "number": 0.68,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "61.9%",
+       "number": 0.619,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Xhigh, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "48.1",
+       "number": 48.13,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Claude Opus 5.5 (Max, Default Fallback) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
        ]
       }
      },
@@ -2152,6 +2688,96 @@
         "https://developers.openai.com/api/docs/pricing",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "N": {
+       "text": "64%",
+       "number": 0.6414,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Xhigh) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "77%",
+       "number": 0.7725,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,643",
+       "number": 1643.24,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "48.9%",
+       "number": 0.4895,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Xhigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "29.8%",
+       "number": 0.298,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "72.2%",
+       "number": 0.722,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "71.5%",
+       "number": 0.715,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "78.6%",
+       "number": 0.7857,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Xhigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "50.0",
+       "number": 50,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Astra (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "67.7%",
+       "number": 0.6766,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GPT-6.2 Astra. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -2231,6 +2857,96 @@
        "links": [
         "https://developers.openai.com/api/docs/pricing",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "N": {
+       "text": "60%",
+       "number": 0.601,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "71%",
+       "number": 0.7128,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,612",
+       "number": 1612.06,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "44.4%",
+       "number": 0.4438,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "30.0%",
+       "number": 0.3,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "64.0%",
+       "number": 0.64,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "64.0%",
+       "number": 0.64,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Medium) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "67.6%",
+       "number": 0.6762,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "40.4",
+       "number": 40.37,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6.2 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "66.1%",
+       "number": 0.6606,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GPT-6.2 Sol. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      }
@@ -2337,6 +3053,15 @@
        "links": [
         "https://developers.openai.com/api/docs/pricing",
         "https://artificialanalysis.ai/models/gpt-6-1-sol-high/"
+       ]
+      },
+      "AA": {
+       "text": "63.9%",
+       "number": 0.6394,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GPT-6.1 Sol. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      },
@@ -2467,6 +3192,87 @@
       "R": {
        "text": "0.59%",
        "number": 0.0059
+      },
+      "aa_gdpval": {
+       "text": "1,443",
+       "number": 1443.29,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,336",
+       "number": 1336.35,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "25.2%",
+       "number": 0.2517,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "22.8%",
+       "number": 0.228,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "22.2%",
+       "number": 0.222,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "42.5%",
+       "number": 0.425,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "8.6%",
+       "number": 0.0857,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "-8.3",
+       "number": -8.27,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "52.3%",
+       "number": 0.5232,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GPT-6 Luna. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4148,6 +4954,96 @@
         "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "N": {
+       "text": "64%",
+       "number": 0.6364,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "79%",
+       "number": 0.7934,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,699",
+       "number": 1699.17,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "44.4%",
+       "number": 0.4441,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "33.4%",
+       "number": 0.334,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "71.3%",
+       "number": 0.713,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "62.0%",
+       "number": 0.62,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Low) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "70.0%",
+       "number": 0.7,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "54.8",
+       "number": 54.77,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Neon (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "70.9%",
+       "number": 0.7087,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Gemini 4 Neon. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -4228,6 +5124,96 @@
         "https://aistudio.google.com/docs/pricing#gemini-4-hydrogen",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
        ]
+      },
+      "N": {
+       "text": "54%",
+       "number": 0.5404,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (High) · 설정 4개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "76%",
+       "number": 0.7614,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,568",
+       "number": 1567.52,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "39.0%",
+       "number": 0.3896,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "32.8%",
+       "number": 0.328,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Medium) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "58.8%",
+       "number": 0.588,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "66.0%",
+       "number": 0.66,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "49.5%",
+       "number": 0.4952,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "46.3",
+       "number": 46.27,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Hydrogen (Xhigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "68.5%",
+       "number": 0.6849,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Gemini 4 Hydrogen. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      }
     },
@@ -4307,6 +5293,105 @@
        "links": [
         "https://aistudio.google.com/docs/pricing#gemini-4-carbon",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "N": {
+       "text": "65%",
+       "number": 0.6515,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "78%",
+       "number": 0.7782,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,733",
+       "number": 1732.68,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High)",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,611",
+       "number": 1610.63,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "40.6%",
+       "number": 0.4056,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "29.6%",
+       "number": 0.296,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (Medium) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "69.1%",
+       "number": 0.691,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "69.0%",
+       "number": 0.69,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (Medium) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "64.8%",
+       "number": 0.6476,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "53.5",
+       "number": 53.5,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Carbon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "70.5%",
+       "number": 0.7045,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Gemini 4 Carbon. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      }
@@ -4436,6 +5521,87 @@
       "AS": {
        "text": "68.0%",
        "number": 0.68
+      },
+      "K": {
+       "text": "48 · v5",
+       "number": 48,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (Medium) · AA v5.0.1 점수. 시트의 v4.3.x 점수와 평가 구성이 다름",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,634",
+       "number": 1633.51,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,485",
+       "number": 1485.08,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "25.7%",
+       "number": 0.2571,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "25.6%",
+       "number": 0.256,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (Medium) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "56.7%",
+       "number": 0.567,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "53.5%",
+       "number": 0.535,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (Medium) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "52.9%",
+       "number": 0.5286,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "46.1",
+       "number": 46.1,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 4 Argon (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
       }
      },
      "provider": "Google",
@@ -4493,6 +5659,15 @@
        "text": "95.3%",
        "number": 0.953,
        "note": "OpenAI GPT-6 Astra launch comparison table; Gemini 3.8 Flash. https://openai.com/index/gpt-6-astra/"
+      },
+      "AA": {
+       "text": "56.0%",
+       "number": 0.5595,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Gemini 3.8 Flash. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Google",
@@ -4642,6 +5817,78 @@
       "P": {
        "text": "25%",
        "number": 0.25
+      },
+      "aa_gdpval": {
+       "text": "994",
+       "number": 994.42,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "652",
+       "number": 652.08,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "6.0%",
+       "number": 0.0603,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "13.6%",
+       "number": 0.136,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "9.9%",
+       "number": 0.099,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "3.5%",
+       "number": 0.035,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "0.0%",
+       "number": 0,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "6.9",
+       "number": 6.87,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.5 Flash-Lite",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
       }
      },
      "provider": "Google",
@@ -4832,6 +6079,42 @@
        "text": "16.4%",
        "number": 0.16399999999999998,
        "note": "Agents' Last Exam official leaderboard; Gemini CLI high. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "aa_gdpval": {
+       "text": "799",
+       "number": 798.52,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.1 Pro Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "457",
+       "number": 457.17,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.1 Pro Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "17.8%",
+       "number": 0.178,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.1 Pro Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "31.4%",
+       "number": 0.314,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Gemini 3.1 Pro Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
       }
      },
      "provider": "Google",
@@ -5138,6 +6421,87 @@
        "links": [
         "https://docs.x.ai/developers/models/grok-4.7",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,718",
+       "number": 1718.16,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,636",
+       "number": 1635.7,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (Xhigh) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "28.7%",
+       "number": 0.2866,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (Xhigh) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "23.2%",
+       "number": 0.232,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "23.6%",
+       "number": 0.236,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "43.5%",
+       "number": 0.435,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (Low) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "11.4%",
+       "number": 0.1143,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (Xhigh) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "31.2",
+       "number": 31.23,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Grok 4.7 (Xhigh) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "58.6%",
+       "number": 0.5862,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Grok 4.7. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      },
@@ -5932,6 +7296,87 @@
       "P": {
        "text": "59%",
        "number": 0.59
+      },
+      "aa_gdpval": {
+       "text": "1,692",
+       "number": 1692.11,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,512",
+       "number": 1511.72,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "24.0%",
+       "number": 0.2397,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "19.2%",
+       "number": 0.192,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "15.2%",
+       "number": 0.152,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "34.0%",
+       "number": 0.34,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "5.7%",
+       "number": 0.0571,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "-4.5",
+       "number": -4.47,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "57.8%",
+       "number": 0.5781,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · MiMo V2.6 Pro. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Xiaomi",
@@ -5985,6 +7430,87 @@
       "P": {
        "text": "64%",
        "number": 0.64
+      },
+      "aa_gdpval": {
+       "text": "1,615",
+       "number": 1614.74,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,489",
+       "number": 1488.52,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "21.6%",
+       "number": 0.2162,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "9.0%",
+       "number": 0.09,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "13.7%",
+       "number": 0.137,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "29.5%",
+       "number": 0.295,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "4.3%",
+       "number": 0.0429,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "-10.8",
+       "number": -10.83,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · MiMo-V2.6-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "54.8%",
+       "number": 0.5483,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · MiMo V2.6 Flash. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Xiaomi",
@@ -6071,6 +7597,78 @@
        "text": "2.9%",
        "number": 0.0286,
        "note": "Vals current model page. https://www.vals.ai/models/stepfun_step-5-preview"
+      },
+      "aa_gdpval": {
+       "text": "1,591",
+       "number": 1590.7,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,424",
+       "number": 1423.95,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "12.0%",
+       "number": 0.12,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "14.8%",
+       "number": 0.148,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "24.3%",
+       "number": 0.243,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "32.5%",
+       "number": 0.325,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "2.4%",
+       "number": 0.0238,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "16.4",
+       "number": 16.43,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Step 5 Preview",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
       }
      },
      "provider": "StepFun",
@@ -6134,6 +7732,132 @@
        "links": [
         "https://api-docs.deepseek.com/quick_start/pricing/",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "M": {
+       "text": "43%",
+       "number": 0.4333,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 2개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "N": {
+       "text": "34%",
+       "number": 0.3384,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "O": {
+       "text": "56%",
+       "number": 0.559,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 2개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "68%",
+       "number": 0.6849,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (High) · 설정 3개 중 최고값 · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "L": {
+       "text": "29 · v5",
+       "number": 29,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (High) · AA v5.0.1 점수. 시트의 v4.3.x 점수와 평가 구성이 다름",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,746",
+       "number": 1745.77,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,570",
+       "number": 1570.42,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "28.5%",
+       "number": 0.2847,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "17.2%",
+       "number": 0.172,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "25.3%",
+       "number": 0.253,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "27.5%",
+       "number": 0.275,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "12.9%",
+       "number": 0.1286,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "2.1",
+       "number": 2.1,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4.1 Flash 1017 (Non-reasoning) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "61.3%",
+       "number": 0.6126,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · DeepSeek V4.1 Flash 1017. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      }
@@ -6267,6 +7991,96 @@
        "text": "38.4%",
        "number": 0.384,
        "note": "RiemannBench public aggregate, max. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "L": {
+       "text": "21 · v5",
+       "number": 21,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (High) · AA v5.0.1 점수. 시트의 v4.3.x 점수와 평가 구성이 다름",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,456",
+       "number": 1455.59,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,253",
+       "number": 1253.14,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "17.1%",
+       "number": 0.1707,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "11.4%",
+       "number": 0.114,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "20.5%",
+       "number": 0.205,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "28.5%",
+       "number": 0.285,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "5.7%",
+       "number": 0.0571,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "-6.4",
+       "number": -6.37,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · DeepSeek V4 Pro 0813 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "53.0%",
+       "number": 0.5297,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · DeepSeek V4 Pro 0813. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "DeepSeek",
@@ -6509,6 +8323,15 @@
        "text": "27.0%",
        "number": 0.27,
        "note": "Agents' Last Exam official leaderboard; Qwen 3.8 Max Claude Code run. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "AA": {
+       "text": "59.0%",
+       "number": 0.5905,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Qwen 3.8 Max 0902. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Alibaba / Qwen",
@@ -6562,6 +8385,78 @@
       "P": {
        "text": "56%",
        "number": 0.56
+      },
+      "aa_gdpval": {
+       "text": "1,637",
+       "number": 1636.77,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,572",
+       "number": 1571.51,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "27.1%",
+       "number": 0.2714,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "15.6%",
+       "number": 0.156,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "16.3%",
+       "number": 0.163,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "24.5%",
+       "number": 0.245,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "7.1%",
+       "number": 0.0714,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "-12.2",
+       "number": -12.23,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Qwen3.8-Flash-Next",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
       }
      },
      "provider": "Alibaba / Qwen",
@@ -6737,6 +8632,87 @@
       "P": {
        "text": "60%",
        "number": 0.6
+      },
+      "aa_gdpval": {
+       "text": "1,648",
+       "number": 1648.28,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,450",
+       "number": 1449.78,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "17.6%",
+       "number": 0.1761,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "15.4%",
+       "number": 0.154,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "18.2%",
+       "number": 0.182,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "24.5%",
+       "number": 0.245,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "4.8%",
+       "number": 0.0476,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "0.7",
+       "number": 0.67,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3-Flash",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "50.9%",
+       "number": 0.5086,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GLM 5.3 Flash. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Z.AI",
@@ -6805,6 +8781,87 @@
        "text": "87.8%",
        "number": 0.8781,
        "note": "NVIDIA GLM-5.3 FP8 baseline evaluation; MMLU-Pro. https://huggingface.co/nvidia/GLM-5.3-NVFP4"
+      },
+      "aa_gdpval": {
+       "text": "1,655",
+       "number": 1654.78,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,501",
+       "number": 1500.91,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "21.6%",
+       "number": 0.2159,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "11.2%",
+       "number": 0.112,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "17.9%",
+       "number": 0.179,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "33.5%",
+       "number": 0.335,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "9.5%",
+       "number": 0.0952,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "6.0",
+       "number": 6.03,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · GLM-5.3 (Max) · 설정 2개 중 최고값",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "59.9%",
+       "number": 0.5985,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GLM 5.3. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
+       ]
       }
      },
      "provider": "Z.AI",
@@ -6927,6 +8984,123 @@
        "links": [
         "https://platform.kimi.ai/docs/pricing/chat",
         "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      },
+      "M": {
+       "text": "52%",
+       "number": 0.5246,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "N": {
+       "text": "67%",
+       "number": 0.6717,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "O": {
+       "text": "61%",
+       "number": 0.6076,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "P": {
+       "text": "73%",
+       "number": 0.733,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro · 시트 빈칸을 AA 값으로 채움",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdpval": {
+       "text": "1,861",
+       "number": 1860.57,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_briefcase": {
+       "text": "1,674",
+       "number": 1673.56,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_frontiercode": {
+       "text": "25.4%",
+       "number": 0.2545,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_gdppdf": {
+       "text": "31.4%",
+       "number": 0.314,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_hle_diamond": {
+       "text": "37.3%",
+       "number": 0.373,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_critpt": {
+       "text": "49.5%",
+       "number": 0.495,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_tbsci": {
+       "text": "34.3%",
+       "number": 0.3429,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "aa_omniscience": {
+       "text": "29.9",
+       "number": 29.87,
+       "public": true,
+       "note": "Artificial Analysis 리더보드 2026-11-19 확인 · Kimi K3.1 Pro",
+       "links": [
+        "https://artificialanalysis.ai/leaderboards/models"
+       ]
+      },
+      "AA": {
+       "text": "62.5%",
+       "number": 0.6252,
+       "public": true,
+       "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Kimi K3.1 Pro. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
+       "links": [
+        "https://www.vals.ai/benchmarks/vals_index"
        ]
       }
      }
@@ -7075,5 +9249,6 @@
   }
  ],
  "note": "시트 자료와 공개 자료를 한 표에 표시합니다. 가격 조건·평가 설정·원본 시트 값은 셀을 눌러 확인할 수 있습니다.",
- "public_reviewed": "2026-11-19"
+ "public_reviewed": "2026-11-19",
+ "aa_reviewed": "2026-11-19"
 }

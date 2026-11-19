@@ -20,6 +20,17 @@ export function csvText(table, rows, columns) {
   const quote = value => '"' + String(value ?? '').replace(/^[=+@-]/, "'$&").replace(/"/g, '""') + '"';
   return '\ufeff' + [columns.map(c => c.label), ...rows.map(row => columns.map(c => valueOf(row, c.key, table)))].map(row => row.map(quote).join(',')).join('\r\n');
 }
+/* Align by column, not by cell: sheet and public rows mix "$10.00"-style text with parsed numbers. */
+export function numericKeys(table) {
+  const keys = new Set();
+  for (const column of table.columns) {
+    if (column.key === table.provider_key || column.key === table.model_key) continue;
+    const values = table.rows.map(row => row.cells[column.key]).filter(cell => cell?.text);
+    const numeric = values.filter(cell => typeof cell.number === 'number' || /^[-+]?[$€¥]?\d/.test(cell.text));
+    if (values.length && numeric.length >= values.length * 0.6) keys.add(column.key);
+  }
+  return keys;
+}
 const link = (url, label) => safeURL(url) ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>` : escapeHTML(label);
 
 export function renderAIOverview(doc) {
@@ -33,6 +44,7 @@ export function renderAIOverview(doc) {
   root.innerHTML = `<div class="aio-heading"><div><h2>${e(doc.name)}</h2><p>${doc.tables.reduce((sum, t) => sum + t.rows.length, 0)}개 모델 · ${doc.public_reviewed ? '시트·공개 자료' : '시트 기재값'}</p></div><div>${link(doc.source.tab_url, '원본 시트 열기')}<small>시트 가져온 날 ${e(doc.imported)}<br>시트 최종 수정 ${e(doc.source.modified_at.slice(0, 10))}${doc.public_reviewed ? `<br>공개 자료 확인 ${e(doc.public_reviewed)}` : ''}</small></div></div>
     <p class="aio-note">${e(doc.note)}</p><div class="aio-tables"></div>
     <dialog class="aio-dialog" aria-label="모델 상세 정보"><div class="aio-dialog-head"><h2></h2><button type="button" data-close>닫기</button></div><div class="aio-dialog-body"></div></dialog>`;
+  if (doc.aa_reviewed) root.querySelector('.aio-heading small').insertAdjacentHTML('beforeend', `<br>AA 리더보드 확인 ${e(doc.aa_reviewed)}`);
   const dialog = root.querySelector('dialog');
   dialog.querySelector('[data-close]').onclick = () => dialog.close();
   dialog.addEventListener('click', event => { if (event.target === dialog) { const b=dialog.getBoundingClientRect(); if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom) dialog.close(); } });
@@ -42,7 +54,7 @@ export function renderAIOverview(doc) {
     const field = column => {
       const cell = row?.cells[column.key] || {}, value = row ? valueOf(row, column.key, table) : column.source_label;
       const sheetRow = row ? row.source_row : 1;
-      const cellURL = sheetRow ? doc.source.tab_url + '&range=' + column.key + sheetRow : '';
+      const cellURL = sheetRow && !column.added ? doc.source.tab_url + '&range=' + column.key + sheetRow : '';
       const sources = (cell.links || []).map(url => `<p>${link(url, cell.public ? '공개 출처 열기' : url)}</p>`).join('');
       const original = cell.original?.text ? `<p class="aio-cell-note">시트 기재값 ${e(cell.original.text)}${cell.original.note ? ' · ' + e(cell.original.note) : ''}</p>` : '';
       const sheetLink = cellURL ? `<small>${link(cellURL, `시트 ${column.key}${sheetRow} 확인`)}</small>` : '';
@@ -64,17 +76,19 @@ export function renderAIOverview(doc) {
     root.querySelector('.aio-tables').append(panel);
     const provider = panel.querySelector('[data-provider]'), search = panel.querySelector('input'), view = panel.querySelector('[data-view]'), element = panel.querySelector('table');
     const byID = new Map(table.rows.map(row => [row.id, row]));
+    const numericColumns = numericKeys(table);
     let sort = '', direction = 1, visible = [], columns = [];
     function draw() {
       const keys = table.views.find(v => v.id === view?.value)?.keys || table.views[0].keys;
       columns = keys.map(k => table.columns.find(c => c.key === k));
       visible = selectRows(table, {provider:provider.value, search:search.value, sort, direction});
-      const fixed = column => column.key === table.provider_key ? 'aio-provider' : column.key === table.model_key ? 'aio-model' : column.key === table.date_key ? 'aio-date' : '';
+      const fixed = column => [column.key === table.provider_key ? 'aio-provider' : column.key === table.model_key ? 'aio-model' : column.key === table.date_key ? 'aio-date' : '',
+        numericColumns.has(column.key) ? 'aio-number' : ''].filter(Boolean).join(' ');
       element.innerHTML = `<caption class="aio-sr">${e(table.title)}. 빈칸은 미기재입니다.</caption><colgroup>${columns.map(c => `<col style="width:${c.key === table.model_key ? "var(--aio-model-width,210px)" : c.width+"px"}">`).join('')}<col style="width:64px"></colgroup><thead><tr>${columns.map(c => `<th scope="col" class="${fixed(c)}" aria-sort="${sort === c.key ? direction === 1 ? 'ascending' : 'descending' : 'none'}"><div><button type="button" data-sort="${e(c.key)}">${e(c.label)}${sort === c.key ? direction === 1 ? ' ↑' : ' ↓' : ''}</button>${c.note ? `<button type="button" class="aio-info" data-header="${e(c.key)}" aria-label="${e(c.label)} 설명">ⓘ</button>` : ''}</div></th>`).join('')}<th scope="col" class="aio-details">상세</th></tr></thead><tbody>${visible.length ? visible.map((row, index) => {
         const group = !sort && row.group && (index === 0 || visible[index-1].group !== row.group) ? `<tr class="aio-group"><th colspan="${columns.length+1}" scope="rowgroup">${e(row.group)}</th></tr>` : '';
         return group + `<tr data-row="${e(row.id)}">${columns.map(c => {
           const cell = row.cells[c.key] || {}, value = valueOf(row, c.key, table), actionable = c.key === table.model_key || cell.note || cell.links?.length;
-          return `<td class="${fixed(c)}${typeof cell.number === 'number' ? ' aio-number' : ''}">${actionable ? `<button type="button" class="aio-value${cell.note || cell.links?.length ? ' aio-annotated' : ''}" data-field="${e(c.key)}" aria-label="${e(row.model+' · '+c.label+' 상세')}">${e(value || '—')}</button>` : `<span>${e(value || '—')}</span>`}</td>`;
+          return `<td class="${fixed(c)}">${actionable ? `<button type="button" class="aio-value${cell.note || cell.links?.length ? ' aio-annotated' : ''}" data-field="${e(c.key)}" aria-label="${e(row.model+' · '+c.label+' 상세')}">${e(value || '—')}</button>` : `<span>${e(value || '—')}</span>`}</td>`;
         }).join('')}<td class="aio-details"><button type="button" data-detail aria-label="${e(row.model)} 전체 상세">상세</button></td></tr>`;
       }).join('') : `<tr><td colspan="${columns.length+1}" class="aio-empty">검색 결과가 없습니다. 검색어나 기업 필터를 바꿔 주세요.</td></tr>`}</tbody>`;
       element.style.width = `calc(${columns.reduce((s,c) => s + (c.key === table.model_key ? 0 : c.width), 64)}px + var(--aio-model-width,210px))`;

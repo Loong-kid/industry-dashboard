@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 (async()=>{
   const source=fs.readFileSync('assets/ai-overview.js','utf8');
-  const {selectRows,valueOf,csvText,safeURL,escapeHTML}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+  const {selectRows,valueOf,csvText,safeURL,escapeHTML,numericKeys}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
   const llm=JSON.parse(fs.readFileSync('data/datacenter/dc_ai_overview.json')).tables[0];
   assert.equal(selectRows(llm).length,121);
   const anthropic=selectRows(llm,{provider:'Anthropic',search:' CLAUDE '});
@@ -30,5 +30,9 @@ const fs=require('node:fs');
   const decision=llm.rows.find(row=>row.id==='llm-public-microsoft-decision-1.1');
   assert.equal(valueOf(decision,'E',llm),'$0.00');
   assert.equal(valueOf(decision,'J',llm),'');
-  console.log('AI overview: search, numeric sort, blanks, zero, CSV and safe display passed');
+  // Alignment is per column: sheet "$10.00" text and public parsed prices must land on the same side.
+  const numeric=numericKeys(llm);
+  for (const key of ['C','D','E','J','M','N','P','AA','AO','aa_gdpval']) assert(numeric.has(key),key);
+  for (const key of ['A','B','H','I']) assert(!numeric.has(key),key);
+  console.log('AI overview: search, numeric sort, blanks, zero, CSV, column alignment and safe display passed');
 })().catch(err=>{console.error(err);process.exit(1)});

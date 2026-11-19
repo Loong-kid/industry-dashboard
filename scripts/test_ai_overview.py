@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from build_ai_overview import PUBLIC, ROOT, SOURCE, build, display, grid, letter
+from build_ai_overview import AA_COLUMNS, AA_SOURCE, PUBLIC, ROOT, SOURCE, VALS_SOURCE, build, display, grid, letter
 
 
 class AIOverviewTests(unittest.TestCase):
@@ -12,14 +12,44 @@ class AIOverviewTests(unittest.TestCase):
         cls.docs = build(cls.snapshot)
         cls.public = json.loads(PUBLIC.read_text(encoding='utf-8'))
         cls.integrated = build(cls.snapshot,cls.public)
+        cls.aa = json.loads(AA_SOURCE.read_text(encoding='utf-8'))
+        cls.vals = json.loads(VALS_SOURCE.read_text(encoding='utf-8'))
+        cls.full = build(cls.snapshot,cls.public,cls.aa,cls.vals)
 
     def test_generated_tables_match_snapshot(self):
-        for key, doc in self.integrated.items():
+        for key, doc in self.full.items():
             self.assertEqual(doc, json.loads((ROOT / 'data/datacenter' / (key+'.json')).read_text(encoding='utf-8')))
             self.assertEqual(doc['imported'], '2026-11-04')
             self.assertTrue(doc['manual'])
             self.assertIn('#gid=', doc['source']['tab_url'])
-        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.integrated.values() for t in d['tables']], [(121,44),(9,5),(11,8)])
+        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.full.values() for t in d['tables']], [(121,44+len(AA_COLUMNS)),(9,5),(11,8)])
+
+    def test_aa_and_vals_fill_blanks_without_overwriting_sheet_values(self):
+        before={r['id']:r for r in self.integrated['dc_ai_overview']['tables'][0]['rows']}
+        table=self.full['dc_ai_overview']['tables'][0]
+        rows={r['model']:r for r in table['rows']}
+        for row in table['rows']:
+            for key,cell in before[row['id']]['cells'].items():
+                if key=='J' and cell.get('public'):continue
+                self.assertEqual(row['cells'][key],cell,(row['model'],key))
+        fable=rows['Claude Fable 5.2']['cells']
+        self.assertEqual(fable['M']['text'],'74%')
+        self.assertAlmostEqual(fable['M']['number'],0.7428,places=3)
+        self.assertEqual(fable['AA']['text'],'71.3%')
+        self.assertIn('Vals Index v2.2',fable['AA']['note'])
+        self.assertEqual(rows['Claude Opus 5.5']['cells']['M']['text'],'61%')
+        opus=rows['Claude Opus 5.5']['cells']['J']
+        self.assertEqual((opus['text'],opus['original']['text']),('59 · v5','58'))
+        self.assertIn('이전 공개 자료 값 57 · v5',opus['note'])
+        self.assertEqual(rows['GPT-6.2 Sol']['cells']['J']['text'],'57 · v5')
+        self.assertNotIn('aa_gdpval',rows['Claude Opus 4.6']['cells'])
+        added=[c for c in table['columns'] if c.get('added')]
+        self.assertEqual([c['key'] for c in added],[c[0] for c in AA_COLUMNS])
+        views={v['id']:v['keys'] for v in table['views']}
+        self.assertEqual(set(views['all']),{c['key'] for c in table['columns']})
+        self.assertTrue(set(views['summary'])>={'J','M','N','P','aa_gdpval','AA','AO'})
+        for keys in views.values():
+            self.assertTrue(set(keys)<={c['key'] for c in table['columns']})
 
     def test_public_data_uses_existing_columns_and_preserves_sheet_cells(self):
         base=self.docs['dc_ai_overview']['tables'][0]
