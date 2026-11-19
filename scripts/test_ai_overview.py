@@ -72,7 +72,7 @@ class AIOverviewTests(unittest.TestCase):
         self.assertIn('ai_overview',{t['id'] for t in dc['tabs']})
         self.assertNotIn('ai_overview2',{t['id'] for t in dc['tabs']})
         sections=[s for s in dc['sections'] if s['tab']=='ai_overview']
-        self.assertEqual([s['indicators'] for s in sections],[['dc_ai_overview'],['dc_ai_overview2']])
+        self.assertEqual([s['indicators'] for s in sections],[['dc_ai_model_benchmarks'],['dc_ai_overview'],['dc_ai_overview2']])
         self.assertFalse(any(s['tab']=='ai_overview2' for s in dc['sections']))
         for section in sections:
             self.assertEqual(section['table_kind'],'ai_overview')
