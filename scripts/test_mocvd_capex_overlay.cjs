@@ -29,6 +29,9 @@ const la=view(lite,'annual'),lm=overlay.plan(la,la.series);assert.equal(lm.event
 const source=guidance.rows.find(r=>r.id==='coherent-fy2027-q1');
 const budget={...source,guidance_kind:'range',amount_low:800,amount_high:900,basis:'전사 현금 CAPEX'};
 const withRow=row=>({...q,mocvd_guidance:{rows:[row]}});
+for(const [capex_direction,label] of [['increase_qoq','증가'],['decrease_qoq','감소'],['flat_qoq','유지'],['unknown','방향']]){
+ assert(overlay.plan(withRow({...source,capex_direction}),q.series).events[0].short.endsWith(label));
+}
 const bm=overlay.plan(withRow(budget),q.series),sets=overlay.datasets(bm,['2026-09-30','2026-12-31'],['actual','guidance']);
 assert.equal(bm.ranges.length,1);assert.deepEqual(sets.map(s=>s.data),[[null,800],[null,900]]);
 assert(sets.every(s=>s.isCapexGuidance&&s.showLine===false&&s.spanGaps===false));assert.deepEqual(sets[0].borderDash,[5,4]);

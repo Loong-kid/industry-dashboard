@@ -5,7 +5,8 @@ const MOCVDCapexOverlay = (() => {
   const fiscal=date=>{const y=Number(date.slice(0,4)),m=Number(date.slice(5,7));return {fy:y+(m>6?1:0),q:Math.floor(((m+5)%12)/3)+1};};
   const fyLabel=(date,annual)=>{const {fy,q}=fiscal(date);return `FY${fy}${annual?'':` Q${q}`}`;};
   const descending=(a,b)=>b.announced_at.localeCompare(a.announced_at)||b.id.localeCompare(a.id);
-  const short=r=>r.review_status==='pending'?'검토 대기':r.review_status==='release_only'?'콜 미확인':r.guidance_kind==='directional'?'CAPEX 증가':r.guidance_kind==='relative_order'?'발주 계획':r.guidance_kind==='capacity_only'?'증설 계획':numeric(r)?'금액 가이던스':r.guidance_kind==='not_found'?'금액·방향 미확인':'투자 계획';
+  const direction=r=>r.review_status==='call_reviewed'&&r.guidance_kind==='directional'?r.capex_direction:null;
+  const short=r=>r.review_status==='pending'?'검토 대기':r.review_status==='release_only'?'콜 미확인':r.guidance_kind==='directional'?({'increase_qoq':'CAPEX 증가','decrease_qoq':'CAPEX 감소','flat_qoq':'CAPEX 유지','unchanged_qoq':'CAPEX 유지'}[direction(r)]||'CAPEX 방향'):r.guidance_kind==='relative_order'?'발주 계획':r.guidance_kind==='capacity_only'?'증설 계획':numeric(r)?'금액 가이던스':r.guidance_kind==='not_found'?'금액·방향 미확인':'투자 계획';
   const attach=(doc,guidance)=>!issuers[doc?.id]?doc:{...doc,mocvd_guidance:{rows:(guidance?.rows||[]).filter(r=>r.company===issuers[doc.id]),unavailable:!guidance,status:guidance?.companies_status?.[issuers[doc.id]]}};
 
   function plan(doc,filtered,range={}) {
@@ -75,9 +76,9 @@ const MOCVDCapexOverlay = (() => {
         const latest=model.events[0];let previousRight=-Infinity;
         for(const date of [...model.groups.keys()].sort()){
           const group=model.groups.get(date),e=group[0],i=chart.data.labels.indexOf(date);if(i<0)continue;
-          const px=x.getPixelForValue(i);const up=e.row.review_status==='call_reviewed'&&e.row.capex_direction==='increase_qoq';
-          ctx.fillStyle=up?css('--up'):css('--muted');ctx.beginPath();
-          if(up){ctx.moveTo(px,textY-5);ctx.lineTo(px+4,textY+3);ctx.lineTo(px-4,textY+3);ctx.closePath();}else ctx.arc(px,textY,3,0,Math.PI*2);
+          const px=x.getPixelForValue(i),up=direction(e.row)==='increase_qoq',down=direction(e.row)==='decrease_qoq';
+          ctx.fillStyle=up?css('--up'):down?css('--down'):css('--muted');ctx.beginPath();
+          if(up||down){const sign=up?1:-1;ctx.moveTo(px,textY-5*sign);ctx.lineTo(px+4,textY+3*sign);ctx.lineTo(px-4,textY+3*sign);ctx.closePath();}else ctx.arc(px,textY,3,0,Math.PI*2);
           ctx.fill();
           const text=e.short+(group.length>1?` · ${group.length}`:'');const w=ctx.measureText(text).width;
           const tx=Math.max(a.left,Math.min(px+8,a.right-w));
@@ -125,7 +126,7 @@ const MOCVDCapexOverlay = (() => {
       select.addEventListener('change',()=>show(select.value));show(newest.row.id);
       chart.$mocvdOpen=id=>{select.value=id;show(id);details.open=true;};
     }
-    root.append(line,make('p','mcg-note','그래프 위 표시는 컨콜 발언입니다. ▲ 증가는 금액 좌표가 아니며, 금액 가이던스는 같은 기간·현금 기준일 때만 별도 점선 범위로 표시합니다.'),details);
+    root.append(line,make('p','mcg-note','그래프 위 표시는 컨콜 발언입니다. ▲ 증가·▼ 감소는 금액 좌표가 아니며, 금액 가이던스는 같은 기간·현금 기준일 때만 별도 점선 범위로 표시합니다.'),details);
     if(model.status?.ok===false)root.append(make('p','mcg-warning','새 공시 조회 실패 · 기존 검토 이력 유지'));
     const wrap=card.querySelector('.chart-wrap');wrap.after(root);
   }
