@@ -101,6 +101,6 @@ class OilTests(unittest.TestCase):
         for section in oil['sections']:
             directory=section.get('data_industry','oil')
             for id in section['indicators']:self.assertTrue((ROOT/'data'/directory/(id+'.json')).exists())
-            if section['tab']=='offshore':self.assertEqual(directory,'offshore')
+            if section['tab']=='offshore':self.assertEqual(directory,'offshore/valuation' if section['view']=='valuations' else 'offshore')
 
 if __name__=='__main__':unittest.main()

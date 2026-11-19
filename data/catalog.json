@@ -6413,6 +6413,12 @@
               "id": "financials",
               "name": "운영사 실적",
               "description": "주요 6개사의 분기 매출·손익·현금흐름과 회사 공시 EBITDA·요율·효율. 단위는 USD 백만이며 연결·지표 정의 차이를 함께 확인합니다."
+            },
+            {
+              "id": "valuations",
+              "name": "주가·밴드",
+              "description": "Transocean·Valaris·Noble·Seadrill·Odfjell Drilling·Borr Drilling의 주가와 실적 TTM PER·기말 BPS 기준 PBR 밴드입니다. 적자 구간은 PER을 표시하지 않습니다. Odfjell은 NOK 주가와 USD 공시 실적을 같은 거래일 환율로 맞춥니다.",
+              "cadence": "주가·실적·환율은 매일 08:30(KST)에 확인합니다. 기업별 확보 기간·기준일·계산식을 함께 표시하며, 구조조정 전 구주와 이후 신주 주가를 이어 붙이지 않습니다."
             }
           ]
         },
@@ -6559,6 +6565,24 @@
           ],
           "view": "financials",
           "data_industry": "offshore"
+        },
+        {
+          "title": "시추 운영사 · 주가·PER·PBR 비교",
+          "tab": "offshore",
+          "view": "valuations",
+          "type": "valuation_summary",
+          "data_industry": "offshore/valuation",
+          "indicators": [],
+          "valuation_companies": ["transocean", "valaris", "noble", "seadrill", "odfjell", "borr"]
+        },
+        {
+          "title": "시추 운영사 · 주가·PER·PBR 밴드",
+          "tab": "offshore",
+          "view": "valuations",
+          "type": "valuation_charts",
+          "data_industry": "offshore/valuation",
+          "indicators": [],
+          "valuation_companies": ["transocean", "valaris", "noble", "seadrill", "odfjell", "borr"]
         },
         {
           "tab": "refining",

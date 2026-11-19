@@ -33,3 +33,5 @@ assert.equal(powerSemicon.file,'data/semicon/valuation/valuation_index.json');
 assert.equal(powerSemicon.label,'전력반도체 주가·밴드 갱신');
 const treasury=target({dashboard:{state:{industry:{id:'macro'},subtab:'us_treasury'}}});
 assert.equal(treasury.workflow,'update-us-treasury.yml');assert.equal(treasury.file,'data/us-treasury/state.json');
+const drilling=target({dashboard:{state:{industry:{id:'oil'},subtab:'offshore',oilOffshoreView:'valuations'}}});
+assert.equal(drilling.workflow,'update-offshore-valuation.yml');assert.equal(drilling.file,'data/offshore/valuation/offshore_valuation_index.json');

@@ -185,7 +185,7 @@ function route() {
     state.aixtronView = id === "semicon" && state.subtab === "mocvd" && requestedView === "calls" ? "calls" : "indicators";
   }
   state.gamesCompanyCountry = state.industry.id === "games" && state.subtab === "companies" ? requestedView || "all" : "all";
-  state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials"].includes(requestedView) ? requestedView : "market";
+  state.oilOffshoreView = state.industry.id === "oil" && state.subtab === "offshore" && ["fleet", "contracts", "financials", "valuations"].includes(requestedView) ? requestedView : "market";
   state.copperView = state.industry.id === "commodities" && state.subtab === "copper" && requestedView === "miners" ? "miners" : "indicators";
   state.natgasView = state.industry.id === "natgas" && state.subtab === "midstream" && requestedView === "compression" ? "compression" : "summary";
   state.datacenterView = state.industry.id === "datacenter" && state.subtab === "us" && requestedView === "neocloud" ? "neocloud" : "hyperscalers";
@@ -617,8 +617,9 @@ async function renderIndustry(options = {}) {
   let valuationSession = null;
   const miningValuation = ind.id === "commodities" && state.subtab === "mining";
   const specialtyValuation = ind.id === "commodities" && ["aluminum", "tungsten", "bismuth", "antimony", "tin"].includes(state.subtab);
-  const valuationPath = ind.id === "commodities" ? specialtyValuation ? "commodities/specialty-valuation" : miningValuation ? "commodities/mining-valuation" : "commodities/valuation" : "semicon/valuation";
-  const valuationIndex = ind.id === "commodities" ? specialtyValuation ? "specialty_valuation_index" : miningValuation ? "mining_valuation_index" : "copper_valuation_index" : "valuation_index";
+  const offshoreValuation = ind.id === "oil" && state.subtab === "offshore";
+  const valuationPath = offshoreValuation ? "offshore/valuation" : ind.id === "commodities" ? specialtyValuation ? "commodities/specialty-valuation" : miningValuation ? "commodities/mining-valuation" : "commodities/valuation" : "semicon/valuation";
+  const valuationIndex = offshoreValuation ? "offshore_valuation_index" : ind.id === "commodities" ? specialtyValuation ? "specialty_valuation_index" : miningValuation ? "mining_valuation_index" : "copper_valuation_index" : "valuation_index";
   const valuationNode = async (mode, ids) => {
     try {
       if (!valuationSession) {
@@ -627,7 +628,7 @@ async function renderIndustry(options = {}) {
         if (!doc) throw new Error("주가·밸류에이션 목록을 불러오지 못했습니다.");
         valuationSession = module.createSession(doc, {state, range: state.range, dataPath: valuationPath});
         semiconValuationCleanup = () => valuationSession.destroy();
-        collected.push({name: ind.id === "commodities" ? specialtyValuation ? "광물 기업 주가·밸류에이션" : miningValuation ? "광산기업 주가·밸류에이션" : "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
+        collected.push({name: offshoreValuation ? "해양 시추 기업 주가·밸류에이션" : ind.id === "commodities" ? specialtyValuation ? "광물 기업 주가·밸류에이션" : miningValuation ? "광산기업 주가·밸류에이션" : "구리 기업 주가·밸류에이션" : "반도체 주가·밸류에이션", fetched: doc.fetched, stale: staleDays(doc)});
         if (doc.updated > latestUpdate) latestUpdate = doc.updated;
       }
       return mode === "summary" ? valuationSession.summary(ids) : valuationSession.company(ids);

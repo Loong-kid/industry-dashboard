@@ -41,6 +41,7 @@ function currentTarget() {
     : {file: "data/datacenter/us_hyperscalers_state.json", label: "하이퍼스케일러 갱신", workflow: "update-us-datacenter.yml"};
   if (id === "natgas" && subtab?.startsWith("containment")) return {file: "data/natgas/containment_state.json", label: "보냉재 갱신", workflow: "update-lng-containment.yml"};
   if (id === "shipbuilding" && ["engines", "engine_parts", "aftermarket"].includes(subtab)) return {file: "data/shipbuilding/equipment_state.json", label: "기자재 실적 갱신", workflow: "update-shipbuilding-equipment.yml"};
+  if (id === "oil" && subtab === "offshore" && window.dashboard?.state?.oilOffshoreView === "valuations") return {file: "data/offshore/valuation/offshore_valuation_index.json", label: "시추 주가·밴드 갱신", workflow: "update-offshore-valuation.yml"};
   if (id === "oil" && subtab === "offshore") return REFRESH_TARGETS.offshore;
   if (id === "oil" && subtab === "refining") return {file: "data/oil/refining_state.json", label: "정유 실적 확인", workflow: "update-refining.yml"};
   if (id === "natgas" && subtab === "midstream" && window.dashboard?.state?.natgasView === "compression") return {file: "data/natgas/company_aroc_revenue.json", label: "압축기 실적 확인", workflow: "update-natgas.yml"};

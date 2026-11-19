@@ -126,11 +126,11 @@ class OffshoreTests(unittest.TestCase):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))
         industry=next(i for i in catalog['industries'] if i['id']=='oil')
         offshore=next(t for t in industry['tabs'] if t['id']=='offshore')
-        self.assertEqual({t['id'] for t in offshore['views']},{'market','fleet','contracts','financials'})
+        self.assertEqual({t['id'] for t in offshore['views']},{'market','fleet','contracts','financials','valuations'})
         for section in industry['sections']:
             if section['tab']!='offshore':continue
-            self.assertEqual(section['data_industry'],'offshore')
-            for indicator in section['indicators']:self.assertTrue((OUT/(indicator+'.json')).is_file())
+            self.assertEqual(section['data_industry'],'offshore/valuation' if section['view']=='valuations' else 'offshore')
+            for indicator in section['indicators']:self.assertTrue((ROOT/'data'/section['data_industry']/(indicator+'.json')).is_file())
         self.assertTrue(next(i for i in catalog['industries'] if i['id']=='natgas'))
 
 
