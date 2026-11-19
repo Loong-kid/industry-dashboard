@@ -2,8 +2,8 @@
  "id": "dc_ai_overview",
  "name": "AI Overview",
  "manual": true,
- "updated": "2026-11-04",
- "fetched": "2026-11-04",
+ "updated": "2026-11-19",
+ "fetched": "2026-11-19",
  "imported": "2026-11-04",
  "source": {
   "id": "1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs",
@@ -18,7 +18,7 @@
   {
    "id": "llm",
    "title": "언어모델 · 가격·사양·벤치마크",
-   "unit_note": "입력·출력 가격은 1M token 기준입니다. 점수와 평가 조건은 시트 기재값입니다.",
+   "unit_note": "입력·출력은 USD/100만 토큰 기준입니다. v5 표시는 AA v5.0.1 점수입니다. 시트의 v4.3.x 점수와 평가 구성이 다릅니다.",
    "provider_key": "A",
    "model_key": "B",
    "date_key": "C",
@@ -521,6 +521,237 @@
    ],
    "rows": [
     {
+     "id": "llm-public-claude-fable-5-2",
+     "raw_provider": "Anthropic",
+     "provider": "Anthropic",
+     "provider_derived": false,
+     "model": "Claude Fable 5.2",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Fable 5.2",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · claude-fable-5-2",
+       "links": [
+        "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+       ]
+      },
+      "C": {
+       "text": "2026-11-09",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+       ]
+      },
+      "D": {
+       "text": "$8.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/fable-5-2/overview"
+       ],
+       "number": 8
+      },
+      "E": {
+       "text": "$40.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/fable-5-2/overview"
+       ],
+       "number": 40
+      },
+      "J": {
+       "text": "65 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · max · 과제당 $26.54 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 62점 · $9.08 / medium 56점 · $3.8 / max 65점 · $26.54",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 65
+      },
+      "K": {
+       "text": "56 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $3.8",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 56
+      },
+      "L": {
+       "text": "62 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $9.08",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 62
+      },
+      "I": {
+       "text": "캐시 읽기 $0.2/100만 · AA 과제당 $9.08 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
+     "id": "llm-public-claude-haiku-5-5",
+     "raw_provider": "Anthropic",
+     "provider": "Anthropic",
+     "provider_derived": false,
+     "model": "Claude Haiku 5.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Haiku 5.5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · claude-haiku-5-5",
+       "links": [
+        "https://www.anthropic.com/claude-haiku-5-5"
+       ]
+      },
+      "C": {
+       "text": "2026-10-07",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://www.anthropic.com/claude-haiku-5-5"
+       ]
+      },
+      "D": {
+       "text": "$0.10",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API · 입력 10만 이하 · 입력 10만 토큰 초과 시 입력 $0.50 · 캐시 읽기 $0.05 · 출력 $2.50.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+       ],
+       "number": 0.1
+      },
+      "E": {
+       "text": "$0.50",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API · 입력 10만 이하 · 입력 10만 토큰 초과 시 입력 $0.50 · 캐시 읽기 $0.05 · 출력 $2.50.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+       ],
+       "number": 0.5
+      },
+      "J": {
+       "text": "36 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · max · 과제당 $0.41 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 30점 · $0.16 / medium 25점 · $0.0918 / max 36점 · $0.41",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 36
+      },
+      "K": {
+       "text": "25 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $0.0918",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 25
+      },
+      "L": {
+       "text": "30 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $0.16",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 30
+      },
+      "I": {
+       "text": "캐시 읽기 $0.01/100만 · AA 과제당 $0.16 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API · 입력 10만 이하 · 입력 10만 토큰 초과 시 입력 $0.50 · 캐시 읽기 $0.05 · 출력 $2.50.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
+     "id": "llm-public-claude-sonnet-5-5",
+     "raw_provider": "Anthropic",
+     "provider": "Anthropic",
+     "provider_derived": false,
+     "model": "Claude Sonnet 5.5",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Claude Sonnet 5.5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · claude-sonnet-5-5",
+       "links": [
+        "https://www.anthropic.com/claude-sonnet-5-5"
+       ]
+      },
+      "C": {
+       "text": "2026-09-28",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://www.anthropic.com/claude-sonnet-5-5"
+       ]
+      },
+      "D": {
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · 캐시 읽기 요금은 10월 7일 인하 반영.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/sonnet-5-5/overview"
+       ],
+       "number": 2
+      },
+      "E": {
+       "text": "$10.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · 캐시 읽기 요금은 10월 7일 인하 반영.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/sonnet-5-5/overview"
+       ],
+       "number": 10
+      },
+      "J": {
+       "text": "55 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · max · 과제당 $10.02 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 42점 · $1.64 / max 55점 · $10.02",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 55
+      },
+      "L": {
+       "text": "42 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $1.64",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 42
+      },
+      "I": {
+       "text": "캐시 읽기 $0.1/100만 · AA 과제당 $1.64 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · 캐시 읽기 요금은 10월 7일 인하 반영.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
      "id": "llm-r2",
      "source_row": 2,
      "raw_provider": "",
@@ -535,22 +766,67 @@
        "number": 46287
       },
       "D": {
-       "text": "$4.00"
+       "text": "$4.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/opus-5-5/overview"
+       ],
+       "number": 4,
+       "original": {
+        "text": "$4.00"
+       }
       },
       "E": {
-       "text": "$20.00"
+       "text": "$20.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/opus-5-5/overview"
+       ],
+       "number": 20,
+       "original": {
+        "text": "$20.00"
+       }
       },
       "J": {
-       "text": "58",
-       "number": 58
+       "text": "57 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · xhigh · 과제당 $6.05 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 52점 · $3.46 / medium 48점 · $2.45 / xhigh 57점 · $6.05",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 57,
+       "original": {
+        "text": "58",
+        "number": 58
+       }
       },
       "K": {
-       "text": "51",
-       "number": 51
+       "text": "48 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $2.45",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 48,
+       "original": {
+        "text": "51",
+        "number": 51
+       }
       },
       "L": {
-       "text": "54",
-       "number": 54
+       "text": "52 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $3.46",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 52,
+       "original": {
+        "text": "54",
+        "number": 54
+       }
       },
       "M": {
        "text": "61%",
@@ -639,6 +915,15 @@
       "AS": {
        "text": "67.0%",
        "number": 0.67
+      },
+      "I": {
+       "text": "캐시 읽기 $0.2/100만 · AA 과제당 $3.46 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Claude API 표준 · Claude Platform 기본 요금. Fast 모드는 별도 요금.",
+       "links": [
+        "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1791,6 +2076,166 @@
      "provider_derived": true
     },
     {
+     "id": "llm-public-gpt-6.2-astra",
+     "raw_provider": "OpenAI",
+     "provider": "OpenAI",
+     "provider_derived": false,
+     "model": "GPT-6.2 Astra",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-6.2 Astra",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · gpt-6.2-astra",
+       "links": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-17",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+       ]
+      },
+      "D": {
+       "text": "$8.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 8
+      },
+      "E": {
+       "text": "$40.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 40
+      },
+      "J": {
+       "text": "62 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · xhigh · 과제당 $2.52 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 60점 · $2.07 / medium 57점 · $1.62 / xhigh 62점 · $2.52 / max 62점 · $4",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 62
+      },
+      "K": {
+       "text": "57 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $1.62",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 57
+      },
+      "L": {
+       "text": "60 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $2.07",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 60
+      },
+      "I": {
+       "text": "캐시 읽기 $0.4/100만 · AA 과제당 $2.07 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
+     "id": "llm-public-gpt-6.2-sol",
+     "raw_provider": "OpenAI",
+     "provider": "OpenAI",
+     "provider_derived": false,
+     "model": "GPT-6.2 Sol",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "GPT-6.2 Sol",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · gpt-6.2-sol",
+       "links": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-17",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+       ]
+      },
+      "D": {
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 2
+      },
+      "E": {
+       "text": "$10.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 10
+      },
+      "J": {
+       "text": "57 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · max · 과제당 $1.01 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 55점 · $0.56 / low 41점 · $0.18 / medium 53점 · $0.41 / xhigh 56점 · $0.65 / max 57점 · $1.01",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 57
+      },
+      "K": {
+       "text": "53 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $0.41",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 53
+      },
+      "L": {
+       "text": "55 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $0.56",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 55
+      },
+      "I": {
+       "text": "캐시 읽기 $0.1/100만 · AA 과제당 $0.56 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
      "id": "llm-r28",
      "source_row": 28,
      "raw_provider": "OpenAI",
@@ -1808,22 +2253,58 @@
        "number": 46294
       },
       "D": {
-       "text": "$2"
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 2,
+       "original": {
+        "text": "$2"
+       }
       },
       "E": {
-       "text": "$10"
+       "text": "$10.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing"
+       ],
+       "number": 10,
+       "original": {
+        "text": "$10"
+       }
       },
       "J": {
-       "text": "52",
-       "number": 52
+       "text": "50 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $0.59 · 확인한 설정 중 최고 점수",
+       "links": [
+        "https://artificialanalysis.ai/models/gpt-6-1-sol-high/"
+       ],
+       "number": 50,
+       "original": {
+        "text": "52",
+        "number": 52
+       }
       },
       "K": {
        "text": "48",
        "number": 48
       },
       "L": {
-       "text": "50",
-       "number": 50
+       "text": "50 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $0.59",
+       "links": [
+        "https://artificialanalysis.ai/models/gpt-6-1-sol-high/"
+       ],
+       "number": 50,
+       "original": {
+        "text": "50",
+        "number": 50
+       }
       },
       "M": {
        "text": "53%",
@@ -1848,6 +2329,15 @@
       "R": {
        "text": "96.37%",
        "number": 0.9637
+      },
+      "I": {
+       "text": "캐시 읽기 $0.1/100만 · AA 과제당 $0.59 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · OpenAI API Standard · 공식 요금표의 Standard · Short 기준.",
+       "links": [
+        "https://developers.openai.com/api/docs/pricing",
+        "https://artificialanalysis.ai/models/gpt-6-1-sol-high/"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3582,6 +4072,246 @@
      "provider_derived": true
     },
     {
+     "id": "llm-public-gemini-4-neon",
+     "raw_provider": "Google",
+     "provider": "Google",
+     "provider_derived": false,
+     "model": "Gemini 4 Neon",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 4 Neon",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · gemini-4-neon",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-18",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+       ]
+      },
+      "D": {
+       "text": "$3.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 공식 출시 요금. 문맥 창 100만 토큰.",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+       ],
+       "number": 3
+      },
+      "E": {
+       "text": "$15.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 공식 출시 요금. 문맥 창 100만 토큰.",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+       ],
+       "number": 15
+      },
+      "J": {
+       "text": "61 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · xhigh · 과제당 $6.44 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 60점 · $3.74 / xhigh 61점 · $6.44 / medium 55점 · $1.9",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 61
+      },
+      "K": {
+       "text": "55 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $1.9",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 55
+      },
+      "L": {
+       "text": "60 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $3.74",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 60
+      },
+      "I": {
+       "text": "캐시 읽기 $0.15/100만 · AA 과제당 $3.74 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 공식 출시 요금. 문맥 창 100만 토큰.",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
+     "id": "llm-public-gemini-4-hydrogen",
+     "raw_provider": "Google",
+     "provider": "Google",
+     "provider_derived": false,
+     "model": "Gemini 4 Hydrogen",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 4 Hydrogen",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · gemini-4-hydrogen",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-12",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+       ]
+      },
+      "D": {
+       "text": "$1.50",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 100만 토큰 문맥 전체에 동일 요금. 암시적 캐시 읽기 단가.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-hydrogen"
+       ],
+       "number": 1.5
+      },
+      "E": {
+       "text": "$7.50",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 100만 토큰 문맥 전체에 동일 요금. 암시적 캐시 읽기 단가.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-hydrogen"
+       ],
+       "number": 7.5
+      },
+      "J": {
+       "text": "54 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · xhigh · 과제당 $3.16 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 51점 · $1.87 / medium 41점 · $0.8 / xhigh 54점 · $3.16",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 54
+      },
+      "K": {
+       "text": "41 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $0.8",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 41
+      },
+      "L": {
+       "text": "51 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $1.87",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 51
+      },
+      "I": {
+       "text": "캐시 읽기 $0.075/100만 · AA 과제당 $1.87 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 표준 · 100만 토큰 문맥 전체에 동일 요금. 암시적 캐시 읽기 단가.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-hydrogen",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
+     "id": "llm-public-gemini-4-carbon",
+     "raw_provider": "Google",
+     "provider": "Google",
+     "provider_derived": false,
+     "model": "Gemini 4 Carbon",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Gemini 4 Carbon",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · gemini-4-carbon",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-10",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · 개발자 대상 일반 공개 및 API 출시일. 10월 28일 최초 발표.",
+       "links": [
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+       ]
+      },
+      "D": {
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 출시 할인 · 공식 요금표 기준 2026-11-30까지 입력 $2 · 캐시 읽기 $0.10 · 출력 $10. 2026-12-01부터 입력 $4 · 캐시 읽기 $0.20 · 출력 $20 예정.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-carbon"
+       ],
+       "number": 2
+      },
+      "E": {
+       "text": "$10.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 출시 할인 · 공식 요금표 기준 2026-11-30까지 입력 $2 · 캐시 읽기 $0.10 · 출력 $10. 2026-12-01부터 입력 $4 · 캐시 읽기 $0.20 · 출력 $20 예정.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-carbon"
+       ],
+       "number": 10
+      },
+      "J": {
+       "text": "60 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $7.76 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 60점 · $7.76 / medium 58점 · $6.59",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 60
+      },
+      "K": {
+       "text": "58 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · medium · 과제당 $6.59",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 58
+      },
+      "L": {
+       "text": "60 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $7.76",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 60
+      },
+      "I": {
+       "text": "캐시 읽기 $0.1/100만 · AA 과제당 $7.76 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Gemini API 출시 할인 · 공식 요금표 기준 2026-11-30까지 입력 $2 · 캐시 읽기 $0.10 · 출력 $10. 2026-12-01부터 입력 $4 · 캐시 읽기 $0.20 · 출력 $20 예정.",
+       "links": [
+        "https://aistudio.google.com/docs/pricing#gemini-4-carbon",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
      "id": "llm-r65",
      "source_row": 65,
      "raw_provider": "Google",
@@ -4331,18 +5061,54 @@
        "number": 46286
       },
       "D": {
-       "text": "$2.00"
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Grok API 표준 · 20만 미만 · 긴 문맥 요금은 입력 $4 · 캐시 읽기 $1 · 출력 $12.",
+       "links": [
+        "https://docs.x.ai/developers/models/grok-4.7"
+       ],
+       "number": 2,
+       "original": {
+        "text": "$2.00"
+       }
       },
       "E": {
-       "text": "$6.00"
+       "text": "$6.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Grok API 표준 · 20만 미만 · 긴 문맥 요금은 입력 $4 · 캐시 읽기 $1 · 출력 $12.",
+       "links": [
+        "https://docs.x.ai/developers/models/grok-4.7"
+       ],
+       "number": 6,
+       "original": {
+        "text": "$6.00"
+       }
       },
       "J": {
-       "text": "46",
-       "number": 46
+       "text": "35 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $6.18 · 확인한 설정 중 최고 점수\n설정별 점수·과제당 비용 high 35점 · $6.18 / xhigh 35점 · $7.77",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 35,
+       "original": {
+        "text": "46",
+        "number": 46
+       }
       },
       "L": {
-       "text": "46",
-       "number": 46
+       "text": "35 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · high · 과제당 $6.18",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 35,
+       "original": {
+        "text": "46",
+        "number": 46
+       }
       },
       "M": {
        "text": "43%",
@@ -4364,6 +5130,15 @@
        "text": "68.0%",
        "number": 0.68,
        "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      },
+      "I": {
+       "text": "캐시 읽기 $0.5/100만 · AA 과제당 $6.18 (high)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Grok API 표준 · 20만 미만 · 긴 문맥 요금은 입력 $4 · 캐시 읽기 $1 · 출력 $12.",
+       "links": [
+        "https://docs.x.ai/developers/models/grok-4.7",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
       }
      },
      "provider": "xAI / SpaceXAI",
@@ -5055,6 +5830,58 @@
      "provider_derived": true
     },
     {
+     "id": "llm-public-microsoft-decision-1.1",
+     "raw_provider": "Microsoft",
+     "provider": "Microsoft",
+     "provider_derived": false,
+     "model": "Microsoft-Decision-1.1",
+     "group": "",
+     "cells": {
+      "B": {
+       "text": "Microsoft-Decision-1.1",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Microsoft-Decision-1.1",
+       "links": [
+        "https://commandline.microsoft.com/microsoft-decision-model-ga/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-17",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Microsoft Foundry 정식 출시일.",
+       "links": [
+        "https://commandline.microsoft.com/microsoft-decision-model-ga/"
+       ]
+      },
+      "D": {
+       "text": "$0.042",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Foundry Global Standard · 라우팅·분류·검증용 모델. 공식 요금은 입력 $0.042, 출력 무료. 데이터 존에 따라 입력 요금이 다릅니다.",
+       "links": [
+        "https://commandline.microsoft.com/microsoft-decision-model-ga/"
+       ],
+       "number": 0.042
+      },
+      "E": {
+       "text": "$0.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Foundry Global Standard · 라우팅·분류·검증용 모델. 공식 요금은 입력 $0.042, 출력 무료. 데이터 존에 따라 입력 요금이 다릅니다.",
+       "links": [
+        "https://commandline.microsoft.com/microsoft-decision-model-ga/"
+       ],
+       "number": 0
+      },
+      "I": {
+       "text": "AA 지수 미확인",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Foundry Global Standard · 라우팅·분류·검증용 모델. 공식 요금은 입력 $0.042, 출력 무료. 데이터 존에 따라 입력 요금이 다릅니다.",
+       "links": [
+        "https://commandline.microsoft.com/microsoft-decision-model-ga/"
+       ]
+      }
+     }
+    },
+    {
      "id": "llm-r101",
      "source_row": 101,
      "raw_provider": "Xiaomi",
@@ -5248,6 +6075,68 @@
      },
      "provider": "StepFun",
      "provider_derived": false
+    },
+    {
+     "id": "llm-public-deepseek-v4-1-flash-1017",
+     "raw_provider": "DeepSeek",
+     "provider": "DeepSeek",
+     "provider_derived": false,
+     "model": "DeepSeek V4.1 Flash 1017",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "DeepSeek V4.1 Flash 1017",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · deepseek-flash",
+       "links": [
+        "https://api-docs.deepseek.com/news/news261017/"
+       ]
+      },
+      "C": {
+       "text": "2026-10-17",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://api-docs.deepseek.com/news/news261017/"
+       ]
+      },
+      "D": {
+       "text": "$0.30",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · DeepSeek API 피크 · 오프피크 입력 $0.15 · 캐시 읽기 $0.003 · 출력 $0.60.",
+       "links": [
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+       ],
+       "number": 0.3
+      },
+      "E": {
+       "text": "$1.20",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · DeepSeek API 피크 · 오프피크 입력 $0.15 · 캐시 읽기 $0.003 · 출력 $0.60.",
+       "links": [
+        "https://api-docs.deepseek.com/quick_start/pricing/"
+       ],
+       "number": 1.2
+      },
+      "J": {
+       "text": "33 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · max · 과제당 $0.6 · 확인한 설정 중 최고 점수 · Artificial Analysis의 DeepSeek 직접 제공 행.",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 33
+      },
+      "I": {
+       "text": "캐시 읽기 $0.006/100만 · AA 과제당 $0.6 (max)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · DeepSeek API 피크 · 오프피크 입력 $0.15 · 캐시 읽기 $0.003 · 출력 $0.60.",
+       "links": [
+        "https://api-docs.deepseek.com/quick_start/pricing/",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
     },
     {
      "id": "llm-r106",
@@ -5981,6 +6870,68 @@
      "provider_derived": true
     },
     {
+     "id": "llm-public-kimi-k3-1-pro",
+     "raw_provider": "Moonshot",
+     "provider": "Moonshot",
+     "provider_derived": false,
+     "model": "Kimi K3.1 Pro",
+     "group": "중국",
+     "cells": {
+      "B": {
+       "text": "Kimi K3.1 Pro",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · kimi-k3.1-pro",
+       "links": [
+        "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html"
+       ]
+      },
+      "C": {
+       "text": "2026-10-23",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19",
+       "links": [
+        "https://www.kimi.com/code/docs/en/kimi-code/whats-new.html"
+       ]
+      },
+      "D": {
+       "text": "$2.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Kimi API 표준 · Kimi API의 표준 속도 모델 요금. Highspeed는 별도 요금.",
+       "links": [
+        "https://platform.kimi.ai/docs/pricing/chat"
+       ],
+       "number": 2
+      },
+      "E": {
+       "text": "$10.00",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Kimi API 표준 · Kimi API의 표준 속도 모델 요금. Highspeed는 별도 요금.",
+       "links": [
+        "https://platform.kimi.ai/docs/pricing/chat"
+       ],
+       "number": 10
+      },
+      "J": {
+       "text": "46 · v5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · AA v5.0.1 · 리더보드 기본 · 과제당 $3.68 · 확인한 설정 중 최고 점수 · Artificial Analysis의 Kimi 직접 제공 표준 속도 행.",
+       "links": [
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ],
+       "number": 46
+      },
+      "I": {
+       "text": "캐시 읽기 $0.2/100만 · AA 과제당 $3.68 (리더보드 기본)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-19 · Kimi API 표준 · Kimi API의 표준 속도 모델 요금. Highspeed는 별도 요금.",
+       "links": [
+        "https://platform.kimi.ai/docs/pricing/chat",
+        "https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+       ]
+      }
+     }
+    },
+    {
      "id": "llm-r123",
      "source_row": 123,
      "raw_provider": "Moonshot",
@@ -6123,5 +7074,6 @@
    ]
   }
  ],
- "note": "시트에 저장된 값·메모를 가져온 자료입니다. 빈칸은 미기재이며 0으로 채우지 않습니다. 시트 변경은 다음 재가져오기에 반영됩니다. 가격·벤치마크의 기준일·단위·평가 조건은 원문 메모를 확인해 주세요."
+ "note": "시트 자료와 공개 자료를 한 표에 표시합니다. 가격 조건·평가 설정·원본 시트 값은 셀을 눌러 확인할 수 있습니다.",
+ "public_reviewed": "2026-11-19"
 }
