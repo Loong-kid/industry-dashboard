@@ -65,7 +65,8 @@ class AICompanyTests(unittest.TestCase):
         self.assertEqual(section['table_kind'],'ai_companies')
         self.assertEqual(section['indicators'],['dc_ai_companies'])
         self.assertEqual([t['id'] for t in dc['tabs']],['korea','us','ai_overview','ai_companies'])
-        self.assertEqual([s['indicators'][0] for s in dc['sections'] if s['tab']=='ai_overview'],['dc_ai_overview','dc_ai_overview2'])
+        self.assertEqual([s['indicators'][0] for s in dc['sections'] if s['tab']=='ai_overview'],
+                         ['dc_ai_model_benchmarks','dc_ai_overview','dc_ai_overview2'])
 
 
 if __name__=='__main__':unittest.main()
