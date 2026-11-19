@@ -438,6 +438,86 @@
      "note": "AA-Omniscience v1.1. 지식·환각 평가(3,000문항). 정확한 지식은 가점, 틀린 추측은 감점하는 지수로 높을수록 좋음. AA Intelligence Index v5 비중 15%. 출처: Artificial Analysis (https://artificialanalysis.ai/leaderboards/models), 2026-11-19 확인.",
      "width": 108,
      "added": true
+    },
+    {
+     "key": "e_gpqa",
+     "label": "Epoch GPQA Diamond",
+     "source_label": "Epoch GPQA Diamond",
+     "width": 108,
+     "added": true,
+     "note": "GPQA Diamond. 대학원 수준 생물·물리·화학 4지선다 198문항(찍으면 25%). 2024~2025 추론 모델 비교의 대표 지표였고 2026년 들어 90%대로 포화. Epoch AI가 같은 조건으로 직접 돌린 값. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_aime",
+     "label": "Epoch AIME형 (OTIS)",
+     "source_label": "Epoch AIME형 (OTIS)",
+     "width": 108,
+     "added": true,
+     "note": "OTIS 모의 AIME 2024·2025 문제로 본 경시수학 점수. 2025년 모델 발표마다 나오던 AIME 2025 점수의 대용으로 Epoch AI가 직접 돌린 값. 공식 AIME 2025 점수와 문항이 다름. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_frontiermath",
+     "label": "Epoch FrontierMath T1-3",
+     "source_label": "Epoch FrontierMath T1-3",
+     "width": 108,
+     "added": true,
+     "note": "FrontierMath Tier 1-3 (2025-02-28 비공개 문제판). 수학자들이 만든 연구 수준 수학 문제. 2025년 상위 모델 비교에 자주 쓰였고 2026-06에 새 문제판(v2)으로 바뀌어 이후 모델은 이 열에 없음. Epoch AI 직접 실행. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_swe",
+     "label": "Epoch SWE-bench Verified",
+     "source_label": "Epoch SWE-bench Verified",
+     "width": 108,
+     "added": true,
+     "note": "SWE-bench Verified. 실제 GitHub 이슈 500개를 고쳐 테스트를 통과하는 비율. 2025년 코딩 성능의 대표 지표. Epoch AI가 같은 도구 환경으로 직접 돌린 값이라 제공사 발표값(SWE-bench Verified (Reported Best) 열)보다 보통 낮음. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_hle",
+     "label": "HLE 외부 공개값",
+     "source_label": "HLE 외부 공개값",
+     "width": 108,
+     "added": true,
+     "note": "Humanity's Last Exam. 2025년 1월 공개된 전문가 수준 고난도 문제 모음으로 2025년 최상위 모델 비교의 대표 지표. Epoch AI가 모은 외부 공개 결과로, Artificial Analysis 값(HLE (Best) 열)과 측정 주체가 다름. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_arc1",
+     "label": "ARC-AGI-1",
+     "source_label": "ARC-AGI-1",
+     "width": 108,
+     "added": true,
+     "note": "ARC-AGI-1. 처음 보는 격자 퍼즐의 규칙을 몇 개 예시로 알아내는 일반화 평가. ARC Prize 순위표 값(Epoch AI 수집), 설정별 최고값. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_arc2",
+     "label": "ARC-AGI-2",
+     "source_label": "ARC-AGI-2",
+     "width": 108,
+     "added": true,
+     "note": "ARC-AGI-2. 2025년 3월 공개된 ARC-AGI 후속판으로 사람은 쉽게 풀지만 모델은 어려운 퍼즐. ARC Prize 순위표 값(Epoch AI 수집), 설정별 최고값. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_aider",
+     "label": "Aider Polyglot",
+     "source_label": "Aider Polyglot",
+     "width": 108,
+     "added": true,
+     "note": "Aider Polyglot. C++·Go·Java·JS·Python·Rust의 어려운 Exercism 문제 225개를 코드 편집으로 푸는 비율. 2025년 코딩 모델 비교에 자주 인용. Aider 순위표 값(Epoch AI 수집). 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_metr",
+     "label": "METR 작업 시간 (50%)",
+     "source_label": "METR 작업 시간 (50%)",
+     "width": 108,
+     "added": true,
+     "note": "METR Time Horizon. 사람 전문가가 걸리는 시간으로 잰 소프트웨어 과제 중 모델이 50% 확률로 해내는 과제 길이. 2025년 \"AI가 얼마나 긴 일을 하나\"의 대표 지표. 셀마다 METR 버전이 다를 수 있음(Epoch AI 수집). 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
+    },
+    {
+     "key": "e_simpleqa",
+     "label": "Epoch SimpleQA",
+     "source_label": "Epoch SimpleQA",
+     "width": 108,
+     "added": true,
+     "note": "SimpleQA Verified. 짧은 사실 질문의 정확도로 환각을 보는 평가(2025-09 공개판). Epoch AI 직접 실행. 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, 2026-11-19 내려받음."
     }
    ],
    "views": [
@@ -549,6 +629,29 @@
      ]
     },
     {
+     "id": "y2025",
+     "label": "2025년 기준 벤치마크",
+     "keys": [
+      "A",
+      "B",
+      "C",
+      "e_gpqa",
+      "T",
+      "e_aime",
+      "U",
+      "e_frontiermath",
+      "e_swe",
+      "S",
+      "e_hle",
+      "M",
+      "e_arc1",
+      "e_arc2",
+      "e_aider",
+      "e_metr",
+      "e_simpleqa"
+     ]
+    },
+    {
      "id": "legacy",
      "label": "기존 벤치마크",
      "keys": [
@@ -619,7 +722,17 @@
       "aa_hle_diamond",
       "aa_critpt",
       "aa_tbsci",
-      "aa_omniscience"
+      "aa_omniscience",
+      "e_gpqa",
+      "e_aime",
+      "e_frontiermath",
+      "e_swe",
+      "e_hle",
+      "e_arc1",
+      "e_arc2",
+      "e_aider",
+      "e_metr",
+      "e_simpleqa"
      ]
     }
    ],
@@ -818,6 +931,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "93.9%",
+       "number": 0.9388,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5-2_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "99.7%",
+       "number": 0.9972,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5-2_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5.2 (XHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "93.8%",
+       "number": 0.9375,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5.2 (XHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "94.0%",
+       "number": 0.94,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5-2_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      }
     },
@@ -1015,6 +1173,60 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "89.6%",
+       "number": 0.8965,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.9%",
+       "number": 0.9889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-5-5_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "30.1%",
+       "number": 0.3012,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Haiku 5.5",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "89.0%",
+       "number": 0.89,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Haiku 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "61.3%",
+       "number": 0.6125,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Haiku 5.5 (XHigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "23.8%",
+       "number": 0.238,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      }
     },
@@ -1211,6 +1423,60 @@
        "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Claude Sonnet 5.5. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
+       ]
+      },
+      "e_gpqa": {
+       "text": "95.6%",
+       "number": 0.9558,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "46.1%",
+       "number": 0.4612,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Sonnet 5.5 (xhigh)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "96.5%",
+       "number": 0.965,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 5.5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "83.9%",
+       "number": 0.8389,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 5.5 (XHigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "46.5%",
+       "number": 0.465,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
        ]
       }
      }
@@ -1460,6 +1726,51 @@
        "links": [
         "https://artificialanalysis.ai/leaderboards/models"
        ]
+      },
+      "e_gpqa": {
+       "text": "90.6%",
+       "number": 0.9059,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 5.5 (High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "93.3%",
+       "number": 0.9333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 5.5 (High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "72.2%",
+       "number": 0.722,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1552,6 +1863,51 @@
       "AS": {
        "text": "58.0%",
        "number": 0.58
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5-1_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "46.5%",
+       "number": 0.465,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Fable 5.1 (xhigh)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "97.5%",
+       "number": 0.975,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5.1 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "90.0%",
+       "number": 0.9,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5.1 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "70.8%",
+       "number": 0.708,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5-1_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1656,6 +2012,51 @@
        "text": "68.3%",
        "number": 0.6829999999999999,
        "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "e_gpqa": {
+       "text": "93.9%",
+       "number": 0.9388,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.9%",
+       "number": 0.9889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "97.5%",
+       "number": 0.975,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 5 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "90.4%",
+       "number": 0.9042,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 5 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "59.9%",
+       "number": 0.599,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-5_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1728,6 +2129,33 @@
        "text": "14.1%",
        "number": 0.141,
        "note": "Public Terminal-Bench 4.0 leaderboard snapshot; harness differs from Google's Gemini 4 comparison. https://agentbreaking.com/benchmarks/terminalbench_40"
+      },
+      "e_gpqa": {
+       "text": "90.5%",
+       "number": 0.9053,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "94.7%",
+       "number": 0.9472,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "33.7%",
+       "number": 0.337,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-5_max · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1842,6 +2270,51 @@
        "text": "34.8%",
        "number": 0.348,
        "note": "Chartography launch leaderboard, max/adaptive configuration. https://arxiv.org/abs/2608.10677"
+      },
+      "e_gpqa": {
+       "text": "85.9%",
+       "number": 0.8586,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "89.2%",
+       "number": 0.8917,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Fable 5 (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "70.7%",
+       "number": 0.707,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-fable-5_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1925,6 +2398,60 @@
        "text": "54.8%",
        "number": 0.5479999999999999,
        "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "e_gpqa": {
+       "text": "91.0%",
+       "number": 0.9103,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-8_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.3%",
+       "number": 0.9833,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-8_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "47.2%",
+       "number": 0.4724,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-8_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "92.5%",
+       "number": 0.925,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.8 (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "72.1%",
+       "number": 0.7208,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.8 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "53.0%",
+       "number": 0.53,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-8_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -1988,6 +2515,78 @@
        "text": "48.9%",
        "number": 0.489,
        "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "e_gpqa": {
+       "text": "90.2%",
+       "number": 0.9015,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "97.8%",
+       "number": 0.978,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "43.8%",
+       "number": 0.4379,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "83.5%",
+       "number": 0.8347,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "36.2%",
+       "number": 0.362,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "93.5%",
+       "number": 0.935,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.7 (High) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "75.8%",
+       "number": 0.7583,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude 4.7 (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "51.7%",
+       "number": 0.517,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-7_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2036,6 +2635,69 @@
        "text": "41.5%",
        "number": 0.415,
        "note": "OSWorld 2.0 official leaderboard, max effort, partial reward. https://osworld-v2.xlang.ai/"
+      },
+      "e_gpqa": {
+       "text": "87.4%",
+       "number": 0.8737,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-6_32K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "85.8%",
+       "number": 0.8579,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-6_32K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "32.4%",
+       "number": 0.324,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-6_16K",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "75.2%",
+       "number": 0.7521,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "86.5%",
+       "number": 0.865,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4.6 (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "60.4%",
+       "number": 0.6042,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4.6 (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "35.5%",
+       "number": 0.355,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-6_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2069,6 +2731,87 @@
        "text": "66.0%",
        "number": 0.66,
        "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "e_gpqa": {
+       "text": "90.5%",
+       "number": 0.9053,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6_32K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "94.4%",
+       "number": 0.9444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6_64K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "40.7%",
+       "number": 0.407,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6_max · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "78.7%",
+       "number": 0.7872,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "34.4%",
+       "number": 0.3444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6-thinking-max · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "94.0%",
+       "number": 0.94,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.6 (120K, High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "69.2%",
+       "number": 0.6917,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.6 (120K, High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "12.0시간",
+       "number": 718.8,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6_unknown · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "47.0%",
+       "number": 0.47,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-6_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2102,6 +2845,87 @@
        "text": "80.9%",
        "number": 0.809,
        "note": "Anthropic Opus 4.5 system card; no-thinking run is the slightly higher of the published Verified results. https://www-cdn.anthropic.com/bf10f64990cfda0ba858290be7b8cc6317685f47.pdf"
+      },
+      "e_gpqa": {
+       "text": "86.0%",
+       "number": 0.8605,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101_32K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "86.1%",
+       "number": 0.8611,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101_32K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "20.7%",
+       "number": 0.2069,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101 · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "76.7%",
+       "number": 0.7665,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "25.2%",
+       "number": 0.252,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101-thinking · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "80.0%",
+       "number": 0.8,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4.5 (64k thinking) · 설정 7개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "37.6%",
+       "number": 0.3764,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Opus 4.5 (Thinking, 64K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "4.9시간",
+       "number": 293.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101 · 설정 2개 중 최고값 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "45.7%",
+       "number": 0.457,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-5-20251101_32K",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2135,6 +2959,60 @@
        "text": "73.3%",
        "number": 0.733,
        "note": "Anthropic Claude Haiku 4.5 launch methodology; full 500-problem set. https://www.anthropic.com/news/claude-haiku-4-5"
+      },
+      "e_gpqa": {
+       "text": "71.2%",
+       "number": 0.7121,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-4-5-20251001_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "66.7%",
+       "number": 0.6667,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-4-5-20251001_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "5.9%",
+       "number": 0.059,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-4-5-20251001_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "47.7%",
+       "number": 0.4767,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Haiku 4.5 (Thinking 32K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "4.0%",
+       "number": 0.0403,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Haiku 4.5 (Thinking 32K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "13.2%",
+       "number": 0.132,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-haiku-4-5-20251001 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2168,6 +3046,87 @@
        "text": "77.2%",
        "number": 0.772,
        "note": "Anthropic Sonnet 4.5 launch result; simple bash/file-edit scaffold, 10-trial average. https://www.anthropic.com/news/claude-sonnet-4-5"
+      },
+      "e_gpqa": {
+       "text": "82.3%",
+       "number": 0.8232,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929_59K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "77.8%",
+       "number": 0.7778,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929_32K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "15.2%",
+       "number": 0.1522,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929_32K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "71.3%",
+       "number": 0.7128,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "13.7%",
+       "number": 0.1372,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929-thinking · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "63.7%",
+       "number": 0.6367,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4.5 (Thinking 32K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "13.6%",
+       "number": 0.1361,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4.5 (Thinking 32K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "2.0시간",
+       "number": 121.9,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929_16K",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "30.7%",
+       "number": 0.307,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-5-20250929_59K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2192,6 +3151,60 @@
       },
       "E": {
        "text": "$75.00"
+      },
+      "e_gpqa": {
+       "text": "77.3%",
+       "number": 0.7727,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805_16K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "68.9%",
+       "number": 0.6889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805_27K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "7.2%",
+       "number": 0.0724,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805_27K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "73.3%",
+       "number": 0.7335,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "11.5%",
+       "number": 0.1152,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805-thinking · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "1.9시간",
+       "number": 113.7,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-1-20250805_16K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2221,6 +3234,87 @@
        "text": "67.6%",
        "number": 0.6759999999999999,
        "note": "Official SWE-bench Verified leaderboard, mini-SWE-agent historical result. https://www.swebench.com/"
+      },
+      "e_gpqa": {
+       "text": "76.3%",
+       "number": 0.7626,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514_16K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "64.4%",
+       "number": 0.6444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514_27K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "4.5%",
+       "number": 0.0448,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "70.7%",
+       "number": 0.7066,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "10.7%",
+       "number": 0.1072,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4 (Thinking) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "35.7%",
+       "number": 0.3567,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4 (Thinking 16K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "8.6%",
+       "number": 0.0861,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Opus 4 (Thinking 16K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "72.0%",
+       "number": 0.72,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "1.7시간",
+       "number": 100.4,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-opus-4-20250514_unknown · 설정 2개 중 최고값 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2250,6 +3344,78 @@
        "text": "64.9%",
        "number": 0.649,
        "note": "Official SWE-bench Verified leaderboard, mini-SWE-agent historical result. https://www.swebench.com/"
+      },
+      "e_gpqa": {
+       "text": "79.2%",
+       "number": 0.7919,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-20250514_59K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "71.1%",
+       "number": 0.7111,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-20250514_32K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "4.1%",
+       "number": 0.0414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-20250514",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "7.8%",
+       "number": 0.0776,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4 (Thinking) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "40.0%",
+       "number": 0.4,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4 (Thinking 16K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "5.9%",
+       "number": 0.0593,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude Sonnet 4 (Thinking 16K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "61.3%",
+       "number": 0.613,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-20250514_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "1.2시간",
+       "number": 74.9,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-sonnet-4-20250514_16K",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2287,6 +3453,87 @@
        "text": "52.8%",
        "number": 0.528,
        "note": "Official SWE-bench Verified leaderboard historical result. https://www.swebench.com/"
+      },
+      "e_gpqa": {
+       "text": "79.7%",
+       "number": 0.7974,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219_64K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "57.8%",
+       "number": 0.5778,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219_64K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "4.1%",
+       "number": 0.0414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219_16K · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "61.0%",
+       "number": 0.6095,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "8.0%",
+       "number": 0.0804,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude 3.7 Sonnet (Thinking)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "28.6%",
+       "number": 0.286,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude 3.7 (16K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "0.9%",
+       "number": 0.009,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude 3.7 (8K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "64.9%",
+       "number": 0.649,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219_32K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "1.0시간",
+       "number": 60.4,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-7-sonnet-20250219 · 설정 2개 중 최고값 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2315,6 +3562,42 @@
       "J": {
        "text": "9",
        "number": 9
+      },
+      "e_gpqa": {
+       "text": "38.1%",
+       "number": 0.3813,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-haiku-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "4.3%",
+       "number": 0.0431,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-haiku-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "0.3%",
+       "number": 0.0034,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-haiku-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "28.0%",
+       "number": 0.28,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-haiku-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2348,6 +3631,60 @@
        "text": "49.0%",
        "number": 0.49,
        "note": "Anthropic SWE-bench engineering post; upgraded Claude 3.5 Sonnet. https://www.anthropic.com/engineering/swe-bench-sonnet"
+      },
+      "e_gpqa": {
+       "text": "55.3%",
+       "number": 0.553,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "8.5%",
+       "number": 0.0847,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "2.1%",
+       "number": 0.0207,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "4.1%",
+       "number": 0.0408,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Claude 3.5 Sonnet (October 2024)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "51.6%",
+       "number": 0.516,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20241022",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "21분",
+       "number": 20.5,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20241022 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2377,6 +3714,42 @@
        "text": "33.0%",
        "number": 0.33,
        "note": "Anthropic SWE-bench engineering post; original Claude 3.5 Sonnet. https://www.anthropic.com/engineering/swe-bench-sonnet"
+      },
+      "e_gpqa": {
+       "text": "54.0%",
+       "number": 0.5404,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20240620",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "6.5%",
+       "number": 0.0653,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20240620",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "1.0%",
+       "number": 0.0103,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20240620",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "11분",
+       "number": 11.4,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-5-sonnet-20240620 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2425,6 +3798,24 @@
        "text": "75.9%",
        "number": 0.759,
        "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "e_gpqa": {
+       "text": "36.3%",
+       "number": 0.363,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-haiku-20240307",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "1.8%",
+       "number": 0.0181,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-haiku-20240307",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2478,6 +3869,42 @@
        "text": "84.9%",
        "number": 0.8490000000000001,
        "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "e_gpqa": {
+       "text": "47.2%",
+       "number": 0.4716,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-opus-20240229",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "4.7%",
+       "number": 0.0472,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-opus-20240229",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "4분",
+       "number": 4.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-opus-20240229 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "12.6%",
+       "number": 0.126,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-opus-20240229",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2526,6 +3953,24 @@
        "text": "73.0%",
        "number": 0.73,
        "note": "Anthropic Claude 3 model card, 0-shot. https://www-cdn.anthropic.com/f2986af8d052f26236f6251da62d16172cfabd6e/claude-3-model-card.pdf"
+      },
+      "e_gpqa": {
+       "text": "40.6%",
+       "number": 0.4059,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-sonnet-20240229",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "2.5%",
+       "number": 0.025,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-3-sonnet-20240229",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2554,6 +3999,24 @@
       "J": {
        "text": "6",
        "number": 6
+      },
+      "e_gpqa": {
+       "text": "33.0%",
+       "number": 0.3296,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-2.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "1.9%",
+       "number": 0.0194,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-2.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2606,6 +4069,24 @@
       "J": {
        "text": "6",
        "number": 6
+      },
+      "e_gpqa": {
+       "text": "34.7%",
+       "number": 0.3466,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-2.0",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "2.5%",
+       "number": 0.025,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · claude-2.0",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Anthropic",
@@ -2777,6 +4258,33 @@
        "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · GPT-6.2 Astra. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
+       ]
+      },
+      "e_gpqa": {
+       "text": "96.8%",
+       "number": 0.9684,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.2-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.2-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "78.5%",
+       "number": 0.785,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.2-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
        ]
       }
      }
@@ -3063,6 +4571,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "95.4%",
+       "number": 0.9539,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.1-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.1-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6.1 Sol (High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "94.2%",
+       "number": 0.9417,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6.1 Sol (Max) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "73.9%",
+       "number": 0.739,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6.1-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3129,6 +4682,51 @@
       "R": {
        "text": "23.03%",
        "number": 0.2303
+      },
+      "e_gpqa": {
+       "text": "94.3%",
+       "number": 0.9432,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "95.5%",
+       "number": 0.955,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Sol (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "89.6%",
+       "number": 0.8958,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Sol (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "60.7%",
+       "number": 0.607,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3273,6 +4871,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "90.5%",
+       "number": 0.9047,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-luna_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.9%",
+       "number": 0.9889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-luna_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "86.7%",
+       "number": 0.8667,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "59.3%",
+       "number": 0.5931,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "41.4%",
+       "number": 0.414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-luna_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3414,6 +5057,60 @@
       "AS": {
        "text": "68.0%",
        "number": 0.68
+      },
+      "e_gpqa": {
+       "text": "95.8%",
+       "number": 0.9577,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "54.8%",
+       "number": 0.548,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT 6 Astra",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Astra (High) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "95.0%",
+       "number": 0.95,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-6 Astra (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "75.6%",
+       "number": 0.756,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-6-astra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3535,6 +5232,51 @@
        "text": "45.0%",
        "number": 0.45,
        "note": "Chartography launch leaderboard, max reasoning. https://arxiv.org/abs/2608.10677"
+      },
+      "e_gpqa": {
+       "text": "93.5%",
+       "number": 0.935,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-sol_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-sol_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "97.5%",
+       "number": 0.975,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Sol (xHigh) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "92.5%",
+       "number": 0.925,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Sol (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "69.7%",
+       "number": 0.697,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-sol_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3621,6 +5363,51 @@
        "text": "50.2%",
        "number": 0.502,
        "note": "OpenAI GPT-5.6 launch OSWorld 2.0 partial score. https://openai.com/index/gpt-5-6/"
+      },
+      "e_gpqa": {
+       "text": "93.3%",
+       "number": 0.9331,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-terra_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "99.7%",
+       "number": 0.9972,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-terra_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "96.5%",
+       "number": 0.965,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Terra (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "83.9%",
+       "number": 0.839,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Terra (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "43.2%",
+       "number": 0.432,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-terra_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3702,6 +5489,51 @@
        "text": "45.6%",
        "number": 0.456,
        "note": "OpenAI GPT-5.6 launch OSWorld 2.0 partial score. https://openai.com/index/gpt-5-6/"
+      },
+      "e_gpqa": {
+       "text": "91.6%",
+       "number": 0.916,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-luna_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.3%",
+       "number": 0.9833,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-luna_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "88.0%",
+       "number": 0.88,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "59.5%",
+       "number": 0.5954,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.6 Luna (Max) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "41.0%",
+       "number": 0.41,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.6-luna_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3726,6 +5558,24 @@
       },
       "E": {
        "text": "$180"
+      },
+      "e_arc1": {
+       "text": "96.5%",
+       "number": 0.965,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.5 Pro (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "84.6%",
+       "number": 0.8458,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.5 Pro (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3838,6 +5688,51 @@
        "text": "31.0%",
        "number": 0.31,
        "note": "Chartography launch leaderboard, xHigh. https://arxiv.org/abs/2608.10677"
+      },
+      "e_gpqa": {
+       "text": "90.7%",
+       "number": 0.9066,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.5_low · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "84.4%",
+       "number": 0.8444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.5_low · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "95.0%",
+       "number": 0.95,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.5 (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "85.0%",
+       "number": 0.85,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.5 (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "63.0%",
+       "number": 0.63,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.5_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3891,6 +5786,60 @@
        "text": "48.0%",
        "number": 0.4797,
        "note": "Vals comparison result, Vibe Code Bench v1.1."
+      },
+      "e_gpqa": {
+       "text": "86.9%",
+       "number": 0.8687,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-mini-2026-03-17_xhigh · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "88.9%",
+       "number": 0.8889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-mini-2026-03-17_xhigh · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "28.3%",
+       "number": 0.2828,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-mini-2026-03-17_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "63.7%",
+       "number": 0.6367,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Mini (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "18.9%",
+       "number": 0.189,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Mini (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "29.4%",
+       "number": 0.294,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-mini-2026-03-17_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3949,6 +5898,60 @@
        "text": "26.1%",
        "number": 0.261,
        "note": "Vals comparison result, Vibe Code Bench v1.1."
+      },
+      "e_gpqa": {
+       "text": "78.5%",
+       "number": 0.7847,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-nano-2026-03-17_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "87.8%",
+       "number": 0.8778,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-nano-2026-03-17_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "25.9%",
+       "number": 0.2586,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-nano-2026-03-17_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "51.5%",
+       "number": 0.515,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Nano (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "5.7%",
+       "number": 0.0569,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Nano (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "11.7%",
+       "number": 0.117,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-nano-2026-03-17_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -3973,6 +5976,60 @@
       },
       "E": {
        "text": "$180.00"
+      },
+      "e_gpqa": {
+       "text": "94.6%",
+       "number": 0.946,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-pro-2026-03-05_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "50.0%",
+       "number": 0.5,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-pro-2026-03-05_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "44.3%",
+       "number": 0.4432,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-pro-2026-03-05",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "94.5%",
+       "number": 0.945,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Pro (xHigh) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "83.3%",
+       "number": 0.8333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 Pro (xHigh) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "46.3%",
+       "number": 0.463,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-pro-2026-03-05_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4030,6 +6087,87 @@
        "text": "20.5%",
        "number": 0.205,
        "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "93.3%",
+       "number": 0.933,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_xhigh · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "97.8%",
+       "number": 0.9778,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_high · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "47.6%",
+       "number": 0.476,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "76.9%",
+       "number": 0.7686,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "36.2%",
+       "number": 0.3624,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05 (xhigh thinking)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "93.7%",
+       "number": 0.9367,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "74.0%",
+       "number": 0.7395,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.4 (xHigh) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "5.7시간",
+       "number": 341.7,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_xhigh · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "45.1%",
+       "number": 0.451,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.4-2026-03-05_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4078,6 +6216,24 @@
       },
       "E": {
        "text": "$168.00"
+      },
+      "e_arc1": {
+       "text": "90.5%",
+       "number": 0.905,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.2 Pro (X-High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "54.2%",
+       "number": 0.5416,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.2 Pro (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4139,6 +6295,87 @@
        "text": "37.6%",
        "number": 0.376,
        "note": "RiemannBench public aggregate, xHigh. https://theaggregate.ai/benchmark?slug=riemannbench"
+      },
+      "e_gpqa": {
+       "text": "91.4%",
+       "number": 0.914,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_xhigh · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "96.1%",
+       "number": 0.9611,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_high · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "40.7%",
+       "number": 0.407,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_xhigh · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "73.8%",
+       "number": 0.7376,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "27.8%",
+       "number": 0.278,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "86.2%",
+       "number": 0.862,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.2 (X-High) · 설정 8개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "52.9%",
+       "number": 0.5291,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.2 (X-High) · 설정 7개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "5.9시간",
+       "number": 352.2,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_high · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "37.1%",
+       "number": 0.371,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.2-2025-12-11_xhigh · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4190,6 +6427,78 @@
        "text": "94.0%",
        "number": 0.94,
        "note": "OpenAI GPT-5.1 high, AIME 2025 no-tools. https://openai.com/index/gpt-5-1-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "87.6%",
+       "number": 0.8763,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-2025-11-13_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "88.6%",
+       "number": 0.8861,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-2025-11-13_high · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "31.0%",
+       "number": 0.3103,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-2025-11-13_high · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "68.0%",
+       "number": 0.6797,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-2025-11-13_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "23.7%",
+       "number": 0.2368,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-thinking · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "72.8%",
+       "number": 0.7283,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.1 (Thinking, High) · 설정 6개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "17.6%",
+       "number": 0.1764,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5.1 (Thinking, High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "48.0%",
+       "number": 0.48,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5.1-2025-11-13_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4219,6 +6528,33 @@
        "text": "88.4%",
        "number": 0.884,
        "note": "OpenAI GPT-5 Pro, extended reasoning, GPQA no tools. https://openai.com/index/introducing-gpt-5/"
+      },
+      "e_hle": {
+       "text": "31.6%",
+       "number": 0.3164,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-pro-2025-10-06",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "70.2%",
+       "number": 0.702,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Pro · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "18.3%",
+       "number": 0.1833,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Pro",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4279,6 +6615,96 @@
        "text": "49.0%",
        "number": 0.4899,
        "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "e_gpqa": {
+       "text": "86.2%",
+       "number": 0.8617,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "91.4%",
+       "number": 0.9139,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "32.4%",
+       "number": 0.3241,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "73.6%",
+       "number": 0.7355,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "25.3%",
+       "number": 0.2532,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "65.7%",
+       "number": 0.6567,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "9.9%",
+       "number": 0.0986,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 (High) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "88.0%",
+       "number": 0.88,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "3.4시간",
+       "number": 203.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high · 설정 2개 중 최고값 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "50.1%",
+       "number": 0.501,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-2025-08-07_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4341,6 +6767,78 @@
        "text": "44.5%",
        "number": 0.4447,
        "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "e_gpqa": {
+       "text": "75.0%",
+       "number": 0.75,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "86.7%",
+       "number": 0.8667,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "27.2%",
+       "number": 0.2724,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "64.7%",
+       "number": 0.6467,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07_medium",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "19.4%",
+       "number": 0.1944,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "54.3%",
+       "number": 0.5433,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Mini (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "4.4%",
+       "number": 0.0444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Mini (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "21.6%",
+       "number": 0.216,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-mini-2025-08-07_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4382,6 +6880,60 @@
        "text": "54.7%",
        "number": 0.547,
        "note": "OpenAI GPT-5 nano high; n=477 executable Verified tasks. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "69.4%",
+       "number": 0.6944,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-nano-2025-08-07_high · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "81.1%",
+       "number": 0.8111,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-nano-2025-08-07_high · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "8.3%",
+       "number": 0.0828,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-nano-2025-08-07_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "20.7%",
+       "number": 0.2071,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Nano (Medium) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "2.6%",
+       "number": 0.0261,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-5 Nano (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "11.7%",
+       "number": 0.117,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-5-nano-2025-08-07_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4406,6 +6958,33 @@
       },
       "E": {
        "text": "$80.00"
+      },
+      "e_arc1": {
+       "text": "59.3%",
+       "number": 0.5933,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-Pro (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "4.9%",
+       "number": 0.0486,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-Pro (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "84.9%",
+       "number": 0.849,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-pro-2025-06-10_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4443,6 +7022,96 @@
        "text": "69.1%",
        "number": 0.691,
        "note": "OpenAI o3 high; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "81.8%",
+       "number": 0.8182,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "84.4%",
+       "number": 0.8444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_medium · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "18.7%",
+       "number": 0.1868,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "62.3%",
+       "number": 0.6232,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_medium",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "20.3%",
+       "number": 0.2032,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3 (high) (April 2025) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "60.8%",
+       "number": 0.6083,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "6.5%",
+       "number": 0.0653,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "81.3%",
+       "number": 0.813,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "2.0시간",
+       "number": 119.7,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_unknown · 설정 2개 중 최고값 · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "49.4%",
+       "number": 0.494,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o3-2025-04-16_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4480,6 +7149,87 @@
        "text": "68.1%",
        "number": 0.6809999999999999,
        "note": "OpenAI o4-mini high; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "79.6%",
+       "number": 0.7961,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "81.7%",
+       "number": 0.8167,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "24.8%",
+       "number": 0.2483,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "18.1%",
+       "number": 0.1808,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini (high) (April 2025) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "58.7%",
+       "number": 0.5867,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "6.1%",
+       "number": 0.0611,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "72.0%",
+       "number": 0.72,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "1.3시간",
+       "number": 76.5,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_medium",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "19.6%",
+       "number": 0.196,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · o4-mini-2025-04-16_low · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4517,6 +7267,87 @@
        "text": "54.6%",
        "number": 0.546,
        "note": "OpenAI GPT-4.1; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "66.9%",
+       "number": 0.6692,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "38.3%",
+       "number": 0.3833,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "5.5%",
+       "number": 0.0552,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "48.5%",
+       "number": 0.4854,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "5.4%",
+       "number": 0.054,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "5.5%",
+       "number": 0.055,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "0.4%",
+       "number": 0.0042,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "52.4%",
+       "number": 0.524,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "31.1%",
+       "number": 0.311,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4550,6 +7381,69 @@
        "text": "23.6%",
        "number": 0.23600000000000002,
        "note": "OpenAI GPT-4.1 mini; same GPT-5 developer comparison harness. https://openai.com/index/introducing-gpt-5-for-developers/"
+      },
+      "e_gpqa": {
+       "text": "65.8%",
+       "number": 0.6585,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-mini-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "44.7%",
+       "number": 0.4472,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-mini-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "4.5%",
+       "number": 0.0448,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-mini-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "3.5%",
+       "number": 0.035,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1-Mini",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "0.0%",
+       "number": 0.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1-Mini",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "32.4%",
+       "number": 0.324,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-mini-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "12.7%",
+       "number": 0.127,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-mini-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4578,6 +7472,69 @@
       "J": {
        "text": "8",
        "number": 8
+      },
+      "e_gpqa": {
+       "text": "48.9%",
+       "number": 0.4893,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-nano-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "28.9%",
+       "number": 0.2889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-nano-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "1.0%",
+       "number": 0.0103,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-nano-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "0.0%",
+       "number": 0.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1-Nano",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "0.0%",
+       "number": 0.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GPT-4.1-Nano",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "8.9%",
+       "number": 0.089,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-nano-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "6.0%",
+       "number": 0.06,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4.1-nano-2025-04-14",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4606,6 +7563,33 @@
       "J": {
        "text": "7",
        "number": 7
+      },
+      "e_gpqa": {
+       "text": "46.6%",
+       "number": 0.4659,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-turbo-2024-04-09",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "6.7%",
+       "number": 0.0667,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-turbo-2024-04-09",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "7분",
+       "number": 6.6,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-turbo-2024-04-09 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4634,6 +7618,24 @@
       "J": {
        "text": "5",
        "number": 5
+      },
+      "e_gpqa": {
+       "text": "27.2%",
+       "number": 0.2718,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-3.5-turbo-0125",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "2.2%",
+       "number": 0.0222,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-3.5-turbo-0125",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4730,6 +7732,15 @@
        "text": "48.1%",
        "number": 0.48100000000000004,
        "note": "OpenAI GPT-4 Technical Report; GPT-3.5 family baseline, 0-shot. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "e_gpqa": {
+       "text": "28.0%",
+       "number": 0.2803,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-3.5-turbo-1106",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4754,6 +7765,15 @@
       },
       "E": {
        "text": "$2.00"
+      },
+      "e_metr": {
+       "text": "1분",
+       "number": 0.6,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-3.5-turbo-instruct · METR-Horizon-v1.0",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -4812,6 +7832,33 @@
        "text": "67.0%",
        "number": 0.67,
        "note": "OpenAI GPT-4 Technical Report, 0-shot HumanEval. https://cdn.openai.com/papers/gpt-4.pdf"
+      },
+      "e_gpqa": {
+       "text": "35.7%",
+       "number": 0.3573,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-0314",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "0.6%",
+       "number": 0.0056,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-0314",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "5분",
+       "number": 5.4,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gpt-4-0314 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "OpenAI",
@@ -5214,6 +8261,33 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "96.8%",
+       "number": 0.9678,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-hydrogen_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-hydrogen_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "70.9%",
+       "number": 0.709,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-hydrogen_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      }
     },
@@ -5392,6 +8466,51 @@
        "note": "Vals Index v2.2 순위표 (2026-11-18 기준, 2026-11-19 확인) · Gemini 4 Carbon. 시트 빈칸을 채운 값으로, 다른 셀과 버전이 다를 수 있음",
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
+       ]
+      },
+      "e_gpqa": {
+       "text": "96.5%",
+       "number": 0.9653,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-carbon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-carbon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 4 Carbon (Medium) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "94.2%",
+       "number": 0.9417,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 4 Carbon (Medium) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "77.7%",
+       "number": 0.777,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-carbon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
        ]
       }
      }
@@ -5602,6 +8721,51 @@
        "links": [
         "https://artificialanalysis.ai/leaderboards/models"
        ]
+      },
+      "e_gpqa": {
+       "text": "96.4%",
+       "number": 0.964,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-argon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-argon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 4 Argon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "91.2%",
+       "number": 0.9125,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 4 Argon (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "76.0%",
+       "number": 0.76,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-4-argon_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -5668,6 +8832,60 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "95.4%",
+       "number": 0.9539,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.8-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.9%",
+       "number": 0.9889,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.8-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "44.5%",
+       "number": 0.4452,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.8 Flash",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.5%",
+       "number": 0.985,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.8 Flash (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "89.2%",
+       "number": 0.8917,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.8 Flash (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "69.7%",
+       "number": 0.697,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.8-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -5725,6 +8943,51 @@
        "text": "94.5%",
        "number": 0.945,
        "note": "OpenAI GPT-6 Astra launch comparison table; Gemini 3.7 Flash. https://openai.com/index/gpt-6-astra/"
+      },
+      "e_gpqa": {
+       "text": "94.8%",
+       "number": 0.9482,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.7-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "97.2%",
+       "number": 0.9722,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.7-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "95.5%",
+       "number": 0.955,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.7 Flash (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "84.6%",
+       "number": 0.8458,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.7 Flash (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "69.2%",
+       "number": 0.692,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.7-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -5773,6 +9036,51 @@
       "P": {
        "text": "53%",
        "number": 0.53
+      },
+      "e_gpqa": {
+       "text": "94.1%",
+       "number": 0.9413,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.6-flash_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "94.2%",
+       "number": 0.9417,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.6-flash_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "91.2%",
+       "number": 0.9117,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.6 Flash (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "60.4%",
+       "number": 0.6042,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.6 Flash (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "66.2%",
+       "number": 0.662,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.6-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -5889,6 +9197,42 @@
        "links": [
         "https://artificialanalysis.ai/leaderboards/models"
        ]
+      },
+      "e_gpqa": {
+       "text": "83.3%",
+       "number": 0.8333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash-lite_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "71.1%",
+       "number": 0.7111,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash-lite_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "53.5%",
+       "number": 0.535,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.5 Flash-Lite (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "10.3%",
+       "number": 0.1028,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.5 Flash-Lite (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -5971,6 +9315,69 @@
        "text": "35.9%",
        "number": 0.359,
        "note": "Chartography launch leaderboard. https://arxiv.org/abs/2608.10677"
+      },
+      "e_gpqa": {
+       "text": "92.8%",
+       "number": 0.928,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "95.6%",
+       "number": 0.9556,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash_high · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "39.0%",
+       "number": 0.3897,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "79.3%",
+       "number": 0.7934,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "92.5%",
+       "number": 0.925,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.5 Flash (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "72.1%",
+       "number": 0.7208,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.5 Flash (High) · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "66.2%",
+       "number": 0.662,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.5-flash_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6115,6 +9522,78 @@
        "links": [
         "https://artificialanalysis.ai/leaderboards/models"
        ]
+      },
+      "e_gpqa": {
+       "text": "94.4%",
+       "number": 0.9444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "95.6%",
+       "number": 0.956,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "36.9%",
+       "number": 0.369,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "46.4%",
+       "number": 0.4644,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview (thinking high)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "98.0%",
+       "number": 0.98,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.1 Pro (Preview)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "77.1%",
+       "number": 0.771,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 3.1 Pro (Preview · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "6.4시간",
+       "number": 384.1,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview · METR-Horizon-v1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "73.5%",
+       "number": 0.735,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-3.1-pro-preview_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6148,6 +9627,87 @@
        "text": "39.3%",
        "number": 0.3932,
        "note": "Vals Index v1 snapshot. https://www.vals.ai/benchmarks/vals_index_v1"
+      },
+      "e_gpqa": {
+       "text": "85.3%",
+       "number": 0.8529,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "84.7%",
+       "number": 0.8472,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "14.1%",
+       "number": 0.1414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "57.6%",
+       "number": 0.5756,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "21.6%",
+       "number": 0.2164,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro-preview-06-05 · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "41.0%",
+       "number": 0.41,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.5 Pro (Thinking 16K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "4.9%",
+       "number": 0.0486,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.5 Pro (Thinking 32K) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "83.1%",
+       "number": 0.831,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro-preview-06-05_32K · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_metr": {
+       "text": "39분",
+       "number": 38.7,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-pro-preview-06-05",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6176,6 +9736,60 @@
       "J": {
        "text": "13",
        "number": 13
+      },
+      "e_aime": {
+       "text": "70.8%",
+       "number": 0.7083,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-flash-preview-05-20",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "4.8%",
+       "number": 0.0484,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-flash",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_hle": {
+       "text": "11.0%",
+       "number": 0.1096,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.5 Flash Preview (May 2025)",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "33.3%",
+       "number": 0.3333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.5 Flash (Preview) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "2.5%",
+       "number": 0.0254,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.5 Flash (Preview) (Thinking 24K) · 설정 5개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aider": {
+       "text": "55.1%",
+       "number": 0.551,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.5-flash-preview-05-20_23K · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6232,6 +9846,42 @@
       "J": {
        "text": "9",
        "number": 9
+      },
+      "e_gpqa": {
+       "text": "64.1%",
+       "number": 0.6414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.0-flash-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "31.1%",
+       "number": 0.3111,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.0-flash-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "1.7%",
+       "number": 0.0172,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-2.0-flash-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "1.3%",
+       "number": 0.013,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Gemini 2.0 Flash",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6260,6 +9910,24 @@
       "J": {
        "text": "1",
        "number": 1
+      },
+      "e_gpqa": {
+       "text": "33.0%",
+       "number": 0.3296,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-flash-8b-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "4.6%",
+       "number": 0.0458,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-flash-8b-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6293,6 +9961,24 @@
        "text": "33.1%",
        "number": 0.331,
        "note": "Original LVBench official leaderboard, Gemini 1.5 Pro with 3600 frames. https://lvbench.github.io/"
+      },
+      "e_gpqa": {
+       "text": "45.9%",
+       "number": 0.4587,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-pro-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "6.8%",
+       "number": 0.0681,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-pro-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6321,6 +10007,24 @@
       "J": {
        "text": "7",
        "number": 7
+      },
+      "e_gpqa": {
+       "text": "40.4%",
+       "number": 0.4037,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-flash-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "3.9%",
+       "number": 0.0389,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · gemini-1.5-flash-001",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Google",
@@ -6503,6 +10207,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "92.7%",
+       "number": 0.9274,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.7_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.1%",
+       "number": 0.9806,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.7_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "90.2%",
+       "number": 0.9017,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.7 (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "61.4%",
+       "number": 0.6139,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.7 (XHigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "56.0%",
+       "number": 0.56,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.7_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "xAI / SpaceXAI",
@@ -6561,6 +10310,51 @@
        "text": "57.0%",
        "number": 0.57,
        "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      },
+      "e_gpqa": {
+       "text": "94.0%",
+       "number": 0.94,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.6_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "99.2%",
+       "number": 0.9917,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.6_xhigh · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "87.5%",
+       "number": 0.875,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.6 (Medium) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "67.1%",
+       "number": 0.6708,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.6 (XHigh) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "49.3%",
+       "number": 0.493,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.6_high · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "xAI / SpaceXAI",
@@ -6629,6 +10423,51 @@
        "text": "27.0%",
        "number": 0.27,
        "note": "Agents' Last Exam official leaderboard; Grok Build high. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "93.4%",
+       "number": 0.9343,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.5_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "97.8%",
+       "number": 0.9778,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.5_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "87.2%",
+       "number": 0.8717,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.5 (Medium) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "52.6%",
+       "number": 0.5264,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Grok 4.5 (High) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "48.3%",
+       "number": 0.483,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.5_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "xAI / SpaceXAI",
@@ -6686,6 +10525,33 @@
        "text": "7.2%",
        "number": 0.07200000000000001,
        "note": "Agents' Last Exam official leaderboard; Grok CLI run. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "88.8%",
+       "number": 0.8883,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.3_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "93.3%",
+       "number": 0.9333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.3_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "33.2%",
+       "number": 0.332,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · grok-4.3_high",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "xAI / SpaceXAI",
@@ -6746,6 +10612,15 @@
        "text": "55.0%",
        "number": 0.55,
        "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      },
+      "e_aime": {
+       "text": "99.2%",
+       "number": 0.9917,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · muse-spark-1.3_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Meta",
@@ -6808,6 +10683,15 @@
        "text": "25.4%",
        "number": 0.25420000000000004,
        "note": "Vals Harvey held-out leaderboard. https://www.vals.ai/benchmarks/hlab"
+      },
+      "e_simpleqa": {
+       "text": "60.3%",
+       "number": 0.603,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · muse-spark-1.2_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Meta",
@@ -6872,6 +10756,15 @@
        "text": "72.2%",
        "number": 0.7216,
        "note": "Vals Muse Spark 1.1 update, Vibe Code Bench."
+      },
+      "e_simpleqa": {
+       "text": "57.8%",
+       "number": 0.5779,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · muse-spark-1.1",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Meta",
@@ -7859,6 +11752,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "93.2%",
+       "number": 0.9318,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash-1017_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "99.4%",
+       "number": 0.9944,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash-1017_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "94.5%",
+       "number": 0.945,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4.1 Flash 1017 (High) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "78.1%",
+       "number": 0.7806,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4.1 Flash 1017 (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "42.5%",
+       "number": 0.425,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash-1017_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      }
     },
@@ -7928,6 +11866,51 @@
        "text": "55.0%",
        "number": 0.55,
        "note": "CWE-bench v1 official leaderboard, programmatic pass@1. https://cwe-bench.com/"
+      },
+      "e_gpqa": {
+       "text": "89.8%",
+       "number": 0.8984,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.3%",
+       "number": 0.9833,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "94.5%",
+       "number": 0.945,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4.1 Flash (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "72.9%",
+       "number": 0.7292,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4.1 Flash (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "42.9%",
+       "number": 0.429,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4.1-flash_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "DeepSeek",
@@ -8081,6 +12064,51 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "91.7%",
+       "number": 0.9167,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-pro-0813_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "98.6%",
+       "number": 0.9861,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-pro-0813_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "90.5%",
+       "number": 0.905,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4 Pro 0813 (Low) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "61.3%",
+       "number": 0.6125,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4 Pro 0813 (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "52.9%",
+       "number": 0.5291,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-pro-0813_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "DeepSeek",
@@ -8130,6 +12158,51 @@
        "text": "64.0%",
        "number": 0.6395000000000001,
        "note": "Vals Index v1.2 snapshot. https://www.vals.ai/benchmarks/vals_index_v1_2"
+      },
+      "e_gpqa": {
+       "text": "91.0%",
+       "number": 0.9103,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-flash-0731_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "94.4%",
+       "number": 0.9444,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-flash-0731_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "89.0%",
+       "number": 0.89,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4 Flash 0731 (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "61.4%",
+       "number": 0.6139,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · DeepSeek V4 Flash 0731 (Max) · 설정 4개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "33.6%",
+       "number": 0.3363,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · deepseek-v4-flash-0731_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "DeepSeek",
@@ -8332,6 +12405,33 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "92.3%",
+       "number": 0.923,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.8-max-0902_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "100.0%",
+       "number": 1.0,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.8-max-0902_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "47.3%",
+       "number": 0.473,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.8-max-0902_xhigh",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Alibaba / Qwen",
@@ -8494,6 +12594,51 @@
        "text": "8.6%",
        "number": 0.086,
        "note": "Agents' Last Exam official leaderboard; OpenClaw high. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "88.4%",
+       "number": 0.8838,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.6-plus",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "93.3%",
+       "number": 0.9333,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.6-plus",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "26.2%",
+       "number": 0.2621,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.6-plus",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "57.9%",
+       "number": 0.5785,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.6-plus",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "44.1%",
+       "number": 0.4414,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · qwen3.6-plus",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Alibaba / Qwen",
@@ -8532,6 +12677,15 @@
       },
       "Y": {
        "text": "92.7%"
+      },
+      "e_aider": {
+       "text": "16.4%",
+       "number": 0.164,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Qwen2.5-Coder-32B-Instruct · 설정 2개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Alibaba / Qwen",
@@ -8713,6 +12867,42 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "90.2%",
+       "number": 0.9015,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.3-flash_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "93.9%",
+       "number": 0.9389,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.3-flash_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "91.0%",
+       "number": 0.91,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GLM-5.3-Flash (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "65.8%",
+       "number": 0.6583,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GLM-5.3-Flash (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Z.AI",
@@ -8862,6 +13052,33 @@
        "links": [
         "https://www.vals.ai/benchmarks/vals_index"
        ]
+      },
+      "e_gpqa": {
+       "text": "90.9%",
+       "number": 0.9091,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.3_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "91.1%",
+       "number": 0.9111,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.3_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "41.0%",
+       "number": 0.41,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.3_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Z.AI",
@@ -8921,6 +13138,60 @@
        "text": "20.4%",
        "number": 0.204,
        "note": "Agents' Last Exam official leaderboard; Claude Code max. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "91.9%",
+       "number": 0.9186,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.2_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "86.4%",
+       "number": 0.8639,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.2_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "78.7%",
+       "number": 0.787,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.2_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "77.0%",
+       "number": 0.77,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GLM-5.2",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "22.8%",
+       "number": 0.2278,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · GLM-5.2",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "34.2%",
+       "number": 0.342,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · glm-5.2_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Z.AI",
@@ -9186,6 +13457,51 @@
        "text": "28.3%",
        "number": 0.28300000000000003,
        "note": "Agents' Last Exam official leaderboard; Kimi Code max. Pass rate. https://agents-last-exam.org/leaderboard"
+      },
+      "e_gpqa": {
+       "text": "93.1%",
+       "number": 0.9312,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k3_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "97.2%",
+       "number": 0.9722,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k3_max · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc1": {
+       "text": "94.5%",
+       "number": 0.945,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Kimi K3 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_arc2": {
+       "text": "60.4%",
+       "number": 0.6042,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · Kimi K3 (Max) · 설정 3개 중 최고값",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "50.6%",
+       "number": 0.506,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k3_max",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Moonshot",
@@ -9240,6 +13556,51 @@
        "text": "22.1%",
        "number": 0.221,
        "note": "OSWorld 2.0 partial leaderboard, Kimi K2.6. https://osworld-v2.xlang.ai/"
+      },
+      "e_gpqa": {
+       "text": "90.8%",
+       "number": 0.9078,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k2.6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_aime": {
+       "text": "96.1%",
+       "number": 0.9611,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k2.6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_frontiermath": {
+       "text": "39.0%",
+       "number": 0.3897,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k2.6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_swe": {
+       "text": "76.7%",
+       "number": 0.7665,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k2.6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
+      },
+      "e_simpleqa": {
+       "text": "34.9%",
+       "number": 0.349,
+       "public": true,
+       "note": "Epoch AI 2026-11-19 내려받음 · kimi-k2.6",
+       "links": [
+        "https://epoch.ai/benchmarks"
+       ]
       }
      },
      "provider": "Moonshot",
@@ -9250,5 +13611,6 @@
  ],
  "note": "시트 자료와 공개 자료를 한 표에 표시합니다. 가격 조건·평가 설정·원본 시트 값은 셀을 눌러 확인할 수 있습니다.",
  "public_reviewed": "2026-11-19",
- "aa_reviewed": "2026-11-19"
+ "aa_reviewed": "2026-11-19",
+ "epoch_reviewed": "2026-11-19"
 }

@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from build_ai_overview import AA_COLUMNS, AA_SOURCE, PUBLIC, ROOT, SOURCE, VALS_SOURCE, build, display, grid, letter
+from build_ai_overview import AA_COLUMNS, AA_SOURCE, EPOCH_COLUMNS, EPOCH_SOURCE, PUBLIC, ROOT, SOURCE, VALS_SOURCE, build, display, grid, letter
 
 
 class AIOverviewTests(unittest.TestCase):
@@ -14,7 +14,8 @@ class AIOverviewTests(unittest.TestCase):
         cls.integrated = build(cls.snapshot,cls.public)
         cls.aa = json.loads(AA_SOURCE.read_text(encoding='utf-8'))
         cls.vals = json.loads(VALS_SOURCE.read_text(encoding='utf-8'))
-        cls.full = build(cls.snapshot,cls.public,cls.aa,cls.vals)
+        cls.epoch = json.loads(EPOCH_SOURCE.read_text(encoding='utf-8'))
+        cls.full = build(cls.snapshot,cls.public,cls.aa,cls.vals,cls.epoch)
 
     def test_generated_tables_match_snapshot(self):
         for key, doc in self.full.items():
@@ -22,7 +23,7 @@ class AIOverviewTests(unittest.TestCase):
             self.assertEqual(doc['imported'], '2026-11-04')
             self.assertTrue(doc['manual'])
             self.assertIn('#gid=', doc['source']['tab_url'])
-        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.full.values() for t in d['tables']], [(121,44+len(AA_COLUMNS)),(9,5),(11,8)])
+        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.full.values() for t in d['tables']], [(121,44+len(AA_COLUMNS)+len(EPOCH_COLUMNS)),(9,5),(11,8)])
 
     def test_aa_and_vals_fill_blanks_without_overwriting_sheet_values(self):
         before={r['id']:r for r in self.integrated['dc_ai_overview']['tables'][0]['rows']}
@@ -44,12 +45,31 @@ class AIOverviewTests(unittest.TestCase):
         self.assertEqual(rows['GPT-6.2 Sol']['cells']['J']['text'],'57 · v5')
         self.assertNotIn('aa_gdpval',rows['Claude Opus 4.6']['cells'])
         added=[c for c in table['columns'] if c.get('added')]
-        self.assertEqual([c['key'] for c in added],[c[0] for c in AA_COLUMNS])
+        self.assertEqual([c['key'] for c in added],[c[0] for c in AA_COLUMNS+EPOCH_COLUMNS])
         views={v['id']:v['keys'] for v in table['views']}
         self.assertEqual(set(views['all']),{c['key'] for c in table['columns']})
         self.assertTrue(set(views['summary'])>={'J','M','N','P','aa_gdpval','AA','AO'})
         for keys in views.values():
             self.assertTrue(set(keys)<={c['key'] for c in table['columns']})
+
+    def test_epoch_2025_benchmarks_match_the_right_generation(self):
+        self.assertEqual(self.epoch['license'],'CC BY 4.0')
+        table=self.full['dc_ai_overview']['tables'][0]
+        rows={r['model']:r['cells'] for r in table['rows']}
+        gpt5=rows['GPT-5']
+        self.assertEqual(gpt5['e_gpqa']['text'],'86.2%')
+        self.assertIn('gpt-5-2025-08-07',gpt5['e_gpqa']['note'])
+        self.assertEqual(gpt5['e_metr']['text'],'3.4시간')
+        # Same family name, different generation: release dates keep them apart.
+        self.assertEqual((rows['Claude 3.5 Sonnet v2']['e_metr']['text'],rows['Claude 3.5 Sonnet']['e_metr']['text']),('21분','11분'))
+        # '1017' belongs to the model name, so the two DeepSeek releases keep their own runs.
+        self.assertIn('flash-1017',rows['DeepSeek V4.1 Flash 1017']['e_gpqa']['note'])
+        self.assertNotIn('1017',rows['DeepSeek V4.1 Flash']['e_gpqa']['note'])
+        self.assertNotIn('e_gpqa',rows['DeepSeek V4 Pro 0424'])
+        view=next(v for v in table['views'] if v['id']=='y2025')
+        self.assertTrue(set(view['keys'])>={c[0] for c in EPOCH_COLUMNS}|{'S','T','U','M'})
+        for column in table['columns']:
+            if column['key'].startswith('e_'):self.assertIn('CC BY 4.0',column['note'])
 
     def test_public_data_uses_existing_columns_and_preserves_sheet_cells(self):
         base=self.docs['dc_ai_overview']['tables'][0]

@@ -273,7 +273,90 @@ def merge_vals_index(table,vals):
             links=[vals['source']])
 
 
-def build(snapshot,public=None,aa=None,vals=None):
+EPOCH_SOURCE=ROOT/'manual/ai-overview/epoch-benchmarks.json'
+# 2025-era comparison benchmarks from Epoch AI (own runs or collected official leaderboards).
+EPOCH_COLUMNS=[
+    ('e_gpqa','Epoch GPQA Diamond','gpqa','pct',
+     'GPQA Diamond. 대학원 수준 생물·물리·화학 4지선다 198문항(찍으면 25%). 2024~2025 추론 모델 비교의 대표 지표였고 2026년 들어 90%대로 포화. Epoch AI가 같은 조건으로 직접 돌린 값.'),
+    ('e_aime','Epoch AIME형 (OTIS)','aime','pct',
+     'OTIS 모의 AIME 2024·2025 문제로 본 경시수학 점수. 2025년 모델 발표마다 나오던 AIME 2025 점수의 대용으로 Epoch AI가 직접 돌린 값. 공식 AIME 2025 점수와 문항이 다름.'),
+    ('e_frontiermath','Epoch FrontierMath T1-3','frontiermath','pct',
+     'FrontierMath Tier 1-3 (2025-02-28 비공개 문제판). 수학자들이 만든 연구 수준 수학 문제. 2025년 상위 모델 비교에 자주 쓰였고 2026-06에 새 문제판(v2)으로 바뀌어 이후 모델은 이 열에 없음. Epoch AI 직접 실행.'),
+    ('e_swe','Epoch SWE-bench Verified','swe','pct',
+     'SWE-bench Verified. 실제 GitHub 이슈 500개를 고쳐 테스트를 통과하는 비율. 2025년 코딩 성능의 대표 지표. Epoch AI가 같은 도구 환경으로 직접 돌린 값이라 제공사 발표값(SWE-bench Verified (Reported Best) 열)보다 보통 낮음.'),
+    ('e_hle','HLE 외부 공개값','hle','pct',
+     "Humanity's Last Exam. 2025년 1월 공개된 전문가 수준 고난도 문제 모음으로 2025년 최상위 모델 비교의 대표 지표. Epoch AI가 모은 외부 공개 결과로, Artificial Analysis 값(HLE (Best) 열)과 측정 주체가 다름."),
+    ('e_arc1','ARC-AGI-1','arc1','pct',
+     'ARC-AGI-1. 처음 보는 격자 퍼즐의 규칙을 몇 개 예시로 알아내는 일반화 평가. ARC Prize 순위표 값(Epoch AI 수집), 설정별 최고값.'),
+    ('e_arc2','ARC-AGI-2','arc2','pct',
+     'ARC-AGI-2. 2025년 3월 공개된 ARC-AGI 후속판으로 사람은 쉽게 풀지만 모델은 어려운 퍼즐. ARC Prize 순위표 값(Epoch AI 수집), 설정별 최고값.'),
+    ('e_aider','Aider Polyglot','aider','pct',
+     'Aider Polyglot. C++·Go·Java·JS·Python·Rust의 어려운 Exercism 문제 225개를 코드 편집으로 푸는 비율. 2025년 코딩 모델 비교에 자주 인용. Aider 순위표 값(Epoch AI 수집).'),
+    ('e_metr','METR 작업 시간 (50%)','metr','minutes',
+     'METR Time Horizon. 사람 전문가가 걸리는 시간으로 잰 소프트웨어 과제 중 모델이 50% 확률로 해내는 과제 길이. 2025년 "AI가 얼마나 긴 일을 하나"의 대표 지표. 셀마다 METR 버전이 다를 수 있음(Epoch AI 수집).'),
+    ('e_simpleqa','Epoch SimpleQA','simpleqa','pct',
+     'SimpleQA Verified. 짧은 사실 질문의 정확도로 환각을 보는 평가(2025-09 공개판). Epoch AI 직접 실행.'),
+]
+
+
+def epoch_base(version):
+    """'claude-sonnet-4-5-20250929_32K' -> 'claudesonnet45'; 'gemini-2.5-flash-preview-05-20' -> 'gemini25flashpreview'."""
+    name=version.split('_')[0]
+    name=re.sub(r'-(20\d{2}-?\d{2}-?\d{2}|\d{4}|\d{2}-\d{2}|00\d)$','',name)
+    return model_key(name)
+
+
+def merge_epoch(table,epoch):
+    """Add 2025-era benchmark columns from the Epoch AI snapshot; release dates guard same-name generations."""
+    from datetime import date as _date
+    def days(a,b):
+        try:return abs((_date.fromisoformat(a)-_date.fromisoformat(b)).days)
+        except ValueError:return 0
+    existing={c['key'] for c in table['columns']}
+    when=epoch['retrieved']
+    for key,label,_,_,note in EPOCH_COLUMNS:
+        if key not in existing:
+            table['columns'].append(dict(key=key,label=label,source_label=label,width=108,added=True,
+                note=note+f" 출처: Epoch AI 'Capabilities & benchmarking' (https://epoch.ai/benchmarks), CC BY 4.0, {when} 내려받음."))
+    sheet_keys={model_key(r['model']) for r in table['rows']}
+    indexes={}
+    for bench,rows in epoch['benchmarks'].items():
+        index={}
+        for item in rows:
+            exact=model_key(item['version'].split('_')[0])
+            # A suffix that is part of a listed model name (e.g. 'DeepSeek V4.1 Flash 1017') is not a date stamp.
+            base=exact if exact in sheet_keys else epoch_base(item['version'])
+            index.setdefault(base,[]).append(item)
+            if base.endswith('preview'):index.setdefault(base[:-7],[]).append(item)
+        indexes[bench]=index
+    for row in table['rows']:
+        released=row['cells'].get('C',{}).get('text','')[:10]
+        names={model_key(row['model'])}
+        if row['model'].endswith(' v2'):names={model_key(row['model'][:-3])}
+        for key,_,bench,kind,_ in EPOCH_COLUMNS:
+            found=[i for n in names for i in indexes[bench].get(n,[]) if not i['release'] or len(released)<10 or days(i['release'],released)<=60]
+            if not found:continue
+            item=max(found,key=lambda i:i['score'])
+            value=item['score']
+            if kind=='minutes':
+                text=f'{value:.0f}분' if value<60 else f'{value/60:.1f}시간'
+                number=round(value,1)
+            else:
+                text,number=f'{value*100:.1f}%',round(value,4)
+            label=item.get('name') or item['version']
+            note=f"Epoch AI {when} 내려받음 · {label}"
+            if len(found)>1:note+=f' · 설정 {len(found)}개 중 최고값'
+            if item.get('metr_version'):note+=f" · {item['metr_version']}"
+            row['cells'][key]=dict(text=text,number=number,public=True,note=note,links=['https://epoch.ai/benchmarks'])
+    keys=[c[0] for c in EPOCH_COLUMNS]
+    views={v['id']:v for v in table['views']}
+    views['all']['keys']=views['all']['keys']+keys
+    position=next(i for i,v in enumerate(table['views']) if v['id']=='legacy')
+    table['views'].insert(position,dict(id='y2025',label='2025년 기준 벤치마크',
+        keys=list('ABC')+['e_gpqa','T','e_aime','U','e_frontiermath','e_swe','S','e_hle','M','e_arc1','e_arc2','e_aider','e_metr','e_simpleqa']))
+
+
+def build(snapshot,public=None,aa=None,vals=None,epoch=None):
     sheets={s['properties']['title']:s for s in snapshot['sheets']}
     llm=sheets['AI Overview'];media=sheets['AI Overview2']
     views=[('summary','요약',list('ABCDE')+['J','M','N']),('specs','가격·사양',list('ABCDEFGHI')),
@@ -301,6 +384,9 @@ def build(snapshot,public=None,aa=None,vals=None):
         doc['updated']=doc['fetched']=max(doc['updated'],aa['retrieved'])
     if vals:
         merge_vals_index(result['dc_ai_overview']['tables'][0],vals)
+    if epoch:
+        merge_epoch(result['dc_ai_overview']['tables'][0],epoch)
+        result['dc_ai_overview']['epoch_reviewed']=epoch['retrieved']
     return result
 
 
@@ -309,6 +395,7 @@ if __name__=='__main__':
     public=json.loads(PUBLIC.read_text(encoding='utf-8'))
     aa=json.loads(AA_SOURCE.read_text(encoding='utf-8'))
     vals=json.loads(VALS_SOURCE.read_text(encoding='utf-8'))
-    for key,doc in build(snapshot,public,aa,vals).items():
+    epoch=json.loads(EPOCH_SOURCE.read_text(encoding='utf-8'))
+    for key,doc in build(snapshot,public,aa,vals,epoch).items():
         (OUT/(key+'.json')).write_text(json.dumps(doc,ensure_ascii=False,indent=1,allow_nan=False)+'\n',encoding='utf-8')
         print(key,[(t['id'],len(t['rows']),len(t['columns'])) for t in doc['tables']])
