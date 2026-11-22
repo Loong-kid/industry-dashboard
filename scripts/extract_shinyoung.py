@@ -5,6 +5,7 @@
 새 위클리 PDF를 폴더에 넣은 뒤 실행하고 커밋하면 대시보드에 반영된다.
 
     python scripts/extract_shinyoung.py
+    python scripts/extract_shinyoung.py --pdf-dir "보고서 폴더"
 
 각 레포트에는 표마다 (전주, 금주) 2개 주간 컬럼이 있어, 전체 레포트를 겹치며
 머지하면 끊김 없는 주간 시계열이 된다.
@@ -16,27 +17,34 @@
 - 선종별 해상운임 추이 → shipping/tanker_earnings, bulker_earnings, gas_earnings, clarksea
 - 1페이지 요약 텍스트  → 종합 중고선가지수 (secondhand_index.json)
 """
+import argparse
+import copy
+import hashlib
+import json
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf as fitz
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import load_indicator, merge_points, save_indicator, to_float
 
-PDF_DIR = Path(r"C:\Users\공도일\Desktop\증권사레포트\조선")
+PDF_DIR = Path.home() / "Desktop" / "증권사레포트" / "조선"
 
 UNITS = {"dwt", "cbm", "teu", "ceu", "pt", "$/day"}
 TREND = {"FIRM", "FIRM!!", "FIRMER", "FIRMER!!", "WEAK", "WEAK!!", "STEADY", "STEADY!!"}
 SIZE_RE = re.compile(r"^\d{1,3}(,\d{3})*~?$|^\d{3,6}~?$")
 NUM_RE = re.compile(r"^-?\d{1,3}(,\d{3})*(\.\d*)?$")  # '176.' 같은 끝점 잘림 허용
 PCT_RE = re.compile(r"^-?\d+(\.\d+)?%$")
-DATE_RE = re.compile(r"\b(\d{1,2})-([A-Za-z]{3})\s*-?\s*(\d{2,4})\b")
+DATE_RE = re.compile(r"\b(\d{1,2})-([A-Za-z]{1,3})\s*-*\s*(\d{2,4})\b")
 
 MONTHS = {m: i + 1 for i, m in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])}
+# 2024-09-09 중고선가 표의 인쇄 오자 '6-S-2024'. S로 시작하는 월은 September뿐이며
+# 같은 PDF의 나머지 세 표에도 6-Sep-2024가 명시되어 있습니다.
+MONTHS['S'] = 9
 
 
 def parse_header_dates(tokens_joined: str):
@@ -54,7 +62,10 @@ def parse_header_dates(tokens_joined: str):
         year += 2000 if year < 100 else 0
         if not (2020 <= year <= 2035) or not (1 <= int(d) <= 31):
             continue
-        out.append(f"{year:04d}-{MONTHS[mon]:02d}-{int(d):02d}")
+        try:
+            out.append(datetime(year, MONTHS[mon], int(d)).date().isoformat())
+        except ValueError:
+            continue
     return out
 
 
@@ -245,8 +256,10 @@ def extract_pdf(path, out):
             if not n:
                 continue
             if "Secondhand Index" in n:
-                who = "탱커 중고선가지수" if "Tanker" in n else "벌커 중고선가지수"
-                idx[who] = vals
+                for prefix, who in (("Tanker", "탱커 중고선가지수"), ("Bulk", "벌커 중고선가지수"), ("Container", "컨테이너 중고선가지수")):
+                    if n.startswith(prefix):
+                        idx[who] = vals
+                        break
             elif n.startswith("Secondhand Price"):
                 idx["중고선가지수(종합)"] = vals
             elif section == "Container":
@@ -296,11 +309,25 @@ META = {
 }
 
 
-def run():
-    pdfs = sorted(PDF_DIR.glob("*.pdf"))
+def report_date(path):
+    """Use the printed publication date, never a download or renamed-file date."""
+    with fitz.open(path) as doc:
+        text = doc[0].get_text()
+    match = re.search(r"\b(20\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2})\b", text)
+    if not match:
+        reviews_file = Path(__file__).resolve().parents[1] / 'manual/shinyoung/report_date_reviews.json'
+        reviews = json.loads(reviews_file.read_text(encoding='utf-8')) if reviews_file.exists() else {}
+        reviewed = reviews.get(hashlib.sha256(path.read_bytes()).hexdigest())
+        if reviewed:
+            return datetime.strptime(reviewed['report_date'], '%Y-%m-%d').date().isoformat()
+        raise ValueError(f"보고서 발간일을 확인할 수 없음: {path.name}")
+    return datetime(*(int(v) for v in match.groups())).date().isoformat()
+
+
+def run(pdf_dir=PDF_DIR):
+    pdfs = sorted(Path(pdf_dir).glob("*.pdf"))
     if not pdfs:
-        print(f"PDF 없음: {PDF_DIR}")
-        return
+        raise FileNotFoundError(f"PDF 없음: {pdf_dir}")
 
     out = {}
     for (industry, ind_id), (name, unit, default) in META.items():
@@ -316,26 +343,44 @@ def run():
         d.pop("manual", None)
         out[ind_id] = d
 
-    ok, bad = 0, []
+    ok, bad, reports = 0, [], []
     for p in pdfs:
         try:
-            hit = extract_pdf(p, out)
-            if len(hit) >= 3:
-                ok += 1
-            else:
-                bad.append((p.name, hit))
+            # A failed or partial file must not mutate the publication cohort.
+            candidate = copy.deepcopy(out)
+            hit = extract_pdf(p, candidate)
+            if len(hit) != 4:
+                raise ValueError(f"4개 표 중 일부 미확보: {hit}")
+            publication = report_date(p)
+            out = candidate
+            reports.append(dict(file=p.name, report_date=publication, sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+            ok += 1
         except Exception as e:
             bad.append((p.name, f"ERROR {e}"))
 
-    for (industry, ind_id), _ in META.items():
-        save_indicator(industry, out[ind_id])
-
-    print(f"\n{ok}/{len(pdfs)}개 레포트에서 3개 표 이상 추출 성공")
+    print(f"\n{ok}/{len(pdfs)}개 레포트에서 4개 표 추출 성공")
     if bad:
         print("표가 일부만 추출된 파일:")
         for name, hit in bad:
             print(f"  {name}: {hit}")
+        raise ValueError("추출 실패 보고서가 있어 저장하지 않았습니다.")
+
+    latest_report = max(reports, key=lambda r: r['report_date'])
+    for (industry, ind_id), _ in META.items():
+        doc = out[ind_id]
+        observed = max(p[0] for points in doc['series'].values() for p in points)
+        doc['latest_report'] = latest_report
+        doc['source_manifest'] = 'manual/shinyoung/reports.json'
+        doc['description'] = f"{latest_report['report_date']} 발간본까지 확인 · 표의 최신 관측일 {observed}. 발간일과 관측일은 다르며 원문에서 확보한 주간 값만 표시합니다."
+        if ind_id == 'secondhand_index':
+            doc['description'] += ' 종합·탱커·벌커·컨테이너 지수는 각각 별도 계열입니다.'
+        save_indicator(industry, doc, data_date=True)
+    manifest = Path(__file__).resolve().parents[1] / 'manual/shinyoung/reports.json'
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(json.dumps({'source': '신영증권 조선/운송 위클리', 'reports': reports}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--pdf-dir', type=Path, default=PDF_DIR)
+    run(parser.parse_args().pdf_dir)

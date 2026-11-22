@@ -36,4 +36,5 @@ jobs:
         run: |
           node scripts/test_chart_legend.cjs
           node scripts/test_materials_overview.cjs
+          python -m unittest discover -s scripts -p test_shinyoung.py -v
           python scripts/run_ci_tests.py
