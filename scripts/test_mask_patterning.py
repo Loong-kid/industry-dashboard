@@ -132,7 +132,7 @@ class MaskPatterningTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Missing same-quarter"):
             build_documents(self.cache, self.tek, missing)
         wrong = copy.deepcopy(self.financials)
-        wrong["quarters"][-1]["fiscal_period"] = "FY2026 Q2"
+        wrong["quarters"][-1]["fiscal_period"] = "FY2026 Q3"
         with self.assertRaisesRegex(ValueError, "fiscal mapping"):
             build_documents(self.cache, self.tek, wrong)
         wrong = copy.deepcopy(self.financials)

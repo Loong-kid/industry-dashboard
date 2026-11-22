@@ -353,7 +353,7 @@ def build_documents(cache, manual):
                 "레이저 마스크 라이터의 분기 납품 대수와 기말 미납품 장비 대수입니다. 납품은 기간 흐름, 잔고는 기말 누적량으로 서로 더하지 않습니다.",
                 manual=True, change_mode="none", zero_baseline=True,
                 note="2025 Q3·Q4의 qualification SLX 매출 인식은 당기 신규 납품으로 세지 않았습니다. 장비 대수만으로 매출을 역산하지 않습니다. 이 대수 자료는 분기 본문 확인 후 갱신하며 금액 차트의 자동 갱신과 별개입니다.",
-                basis_details=[{"label": "예정 납품 · 2026 Q2 발표 기준", "value": "2026 Q3: 5대(1 FPS 6100 Evo·4 SLX), Q4: 3대(1 Prexision Lite 8 Evo·1 Prexision MMS·1 SLX), 2027 Q1: 3대(Prexision 8 Evo), Q2: 1대(SLX), 2028: 1대(맞춤형 SLX·분기 미공개). 합계 13대이며 확정 실적이 아닌 회사 일정입니다."}])
+                basis_details=[{"label": "예정 납품 · 2026 Q3 발표 기준", "value": "2026 Q4: 3대(Prexision Lite 8 Evo·Prexision MMS·SLX 각 1대), 2027 Q1: 4대(3 Prexision 8 Evo·1 SLX), Q2: 3대(1 Prexision 80 Evo·2 SLX), 2028: 1대(맞춤형 SLX·분기 미공개). 합계 11대이며 회사가 발표한 납품 일정입니다."}])
     doc["fetched"] = units["checked"]
     return docs
 

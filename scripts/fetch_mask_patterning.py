@@ -247,7 +247,7 @@ def build_documents(cache, tek, financials=None):
             fetched=tek["checked"], span_gaps=False, quarter_labels=True, change_mode="none", zero_baseline=True,
             series={name: [[r["date"], r[metric][i]] for r in tek_rows] for i, name in enumerate(names)},
             default_series=names, description=description,
-            note="옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 금액 보기에서는 연결 매출에 비중을 적용한 근사 추정치를 별도로 표시합니다.",
+            note="옛 TOPPAN Photomask입니다. 달력 분기로 표시하며 회사는 4월에 회계연도를 시작하며 7~9월을 FY Q2로 표기합니다. 비중은 회사가 반올림해 공표한 값으로 합계가 100%와 1%p 차이 날 수 있습니다. 금액 보기에서는 연결 매출에 비중을 적용한 근사 추정치를 별도로 표시합니다.",
             point_sources={r["date"]: {"url": r["source_url"], "pdf_page": r[metric+"_page"],
                 "label": r["fiscal_period"]} for r in tek_rows},
             basis_details=[{"label": "자료 기준", "value": "2026년 6월 19일 정정된 연간 설명자료와 이후 분기 발표자료를 대조했습니다. 그래프의 연간 막대는 분기 시계열에 포함하지 않습니다."},
@@ -294,9 +294,9 @@ def add_tekscend_amounts(docs, tek, financials):
             source_url=refs[dates[-1]]["url"], updated=dates[-1], fetched=financials["checked"],
             series={title: [[r["date"], r[key] / 100] for r in rows]}, default_series=[title],
             point_sources=refs, description=scope_note,
-            note="달력 분기 기준입니다. 2026 Q2는 회사 FY2026 Q1(4~6월)입니다. 백만 엔 공시값을 억 엔으로 변환했으며, 분기값 합과 연간값에는 백만 엔 미만 절사 차이가 있습니다.",
+            note="달력 분기 기준입니다. 회사는 4월에 회계연도를 시작하며 7~9월을 FY Q2로 표기합니다. 백만 엔 공시값을 억 엔으로 변환했으며, 분기값 합과 연간값에는 백만 엔 미만 절사 차이가 있습니다.",
             basis_details=[{"label": "공시 범위", "value": "회사는 포토마스크 사업을 단일 부문으로 보고합니다. 회사 전체 연결 실적을 해당 사업의 실적으로 표시했습니다."},
-                {"label": "원문", "value": "2026년 6월 19일 정정 연간 자료의 IFRS 분기표(PDF p.26)와 FY2026 Q1 자료(PDF p.5)를 사용했습니다. 비IFRS 조정 이익이 아닙니다."}])
+                {"label": "원문", "value": "2026년 6월 19일 정정 연간 자료의 IFRS 분기표(PDF p.26)와 후속 분기 실적 발표자료를 사용했습니다. 비IFRS 조정 이익이 아닙니다."}])
         docs[id_]["quarterly_revenue_summary" if key == "revenue" else "quarterly_profit_summary"] = True
     caveat = "연결 매출 × 공표 비중으로 계산한 근사 추정치입니다. 회사가 공시한 공정별·용도별 매출 금액이 아닙니다. 비중의 실제 분모는 포토마스크 제품 매출이며, 해당 제품 매출 금액을 별도로 확인하지 못해 단일 포토마스크 사업의 연결 매출을 대용했습니다."
     for metric, title in (("node", "공정별"), ("application", "용도별")):
@@ -314,7 +314,7 @@ def add_tekscend_amounts(docs, tek, financials):
             "amount": dict(label="금액 (근사 추정)", name=f"Tekscend · 포토마스크 {title} 매출 · 근사 추정",
                 unit="억 엔", series=amounts, company_kpi=True, quarterly_revenue_summary=True,
                 description=caveat, point_sources=amount_refs,
-                note="원래 비중을 재정규화하지 않았습니다. 정수 비중의 반올림 오차와 대용 분모의 차이가 있으며, 합계가 연결 매출과 다를 수 있습니다. 선단 공정은 EUV 단독이 아닙니다. 달력 2026 Q2=회사 FY2026 Q1입니다.",
+                note="원래 비중을 재정규화하지 않았습니다. 정수 비중의 반올림 오차와 대용 분모의 차이가 있으며, 합계가 연결 매출과 다를 수 있습니다. 선단 공정은 EUV 단독이 아닙니다.",
                 point_annotations={r["date"]: "연결 매출을 분모로 대용한 근사 추정" for r in mix_rows},
                 basis_details=[{"label": "금액 산식", "value": "공시 연결 매출(백만 엔) × 비중(%) ÷ 10,000 = 억 엔. 같은 분기의 자료끼리 계산하며 비중 또는 매출이 없는 분기는 추정하지 않습니다."},
                     {"label": "분모 차이", "value": caveat},

@@ -33,7 +33,7 @@ TOTAL_TEXT = {
     "2020Q2": 61, "2020Q3": 60, "2020Q4": 80, "2021Q1": 76, "2021Q2": 72, "2021Q3": 79, "2021Q4": 82,
     "2022Q1": 62, "2022Q2": 91, "2022Q3": 86, "2022Q4": 106, "2023Q1": 100, "2023Q2": 113, "2023Q3": 112,
     "2023Q4": 124, "2024Q1": 70, "2024Q2": 100, "2024Q3": 116, "2024Q4": 132, "2025Q1": 77, "2025Q2": 76,
-    "2025Q3": 72, "2025Q4": 102, "2026Q1": 79, "2026Q2": 91,
+    "2025Q3": 72, "2025Q4": 102, "2026Q1": 79, "2026Q2": 91, "2026Q3": 121,
 }
 # 연간보고서 EUV 대수 — 분기 합 대조용
 EUV_ANNUAL = {2017: 11, 2018: 18, 2019: 26, 2020: 31, 2021: 42, 2022: 40, 2023: 53, 2024: 44, 2025: 48}
@@ -76,7 +76,9 @@ def run():
             series[LABEL[t]].append([d, num(r[t])])
     last = quarters[-1]["period"]
     euv_share = num(quarters[-1]["euv"]) / sum(num(quarters[-1][t]) for t in TECH) * 100
-    common = {"source": SOURCE, "source_url": SEC_URL, "manual": True,
+    latest_source = quarters[-1]["source"]
+    source_url = latest_source if latest_source.startswith("https://") else SEC_URL
+    common = {"source": SOURCE, "source_url": source_url, "manual": True,
               "updated": qdate(last), "fetched": dt.date.today().isoformat()}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "asml_units_quarterly.json").write_text(json.dumps({
