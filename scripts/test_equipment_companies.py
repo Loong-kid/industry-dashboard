@@ -171,7 +171,8 @@ Purchases of property, plant and equipment (5,649) (9,852)
         industry=next(i for i in equipment.load(ROOT/'data/catalog.json',{})['industries'] if i['id']=='semicon')
         tabs={t['id']:t for t in industry['tabs']}
         self.assertEqual(tabs['mocvd']['parent_tab'],'equipment_frontend')
-        counts={'equipment_summary':39,'equipment_frontend':21,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
+        # equipment_frontend includes the ASML system spec table (asml_litho_specs, 2026-11-25).
+        counts={'equipment_summary':39,'equipment_frontend':22,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
         korean=equipment.load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         suppliers=equipment.load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies']
         for tab,count in counts.items():
