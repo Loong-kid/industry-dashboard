@@ -1,0 +1,124 @@
+{
+ "imported": "2026-11-25",
+ "note": "시트 이후 나온 이미지·영상 모델을 공식 발표·가격 페이지에서 확인한 값. 확인되지 않은 칸은 비워 두고 셀 설명에 이유를 적는다.",
+ "image": [
+  {
+   "id": "gpt-image-2-6",
+   "provider": "OpenAI",
+   "model": "GPT Image 2.6 (Sunburst / Flare)",
+   "release": "2026-11-04",
+   "price": "API 토큰형(두 변형 같음): image input $8/M, output $30/M, text input $5/M. Batch는 image input $4/M, output $15/M, text input $2.5/M",
+   "notes": "ChatGPT 이미지 2.6. 생성 속도 50% 개선, Flare는 저품질 설정에서 약 6초, Sunburst는 편집 일관성 강화. GIF·SVG 출력, API에 complexity 설정 추가. 단가는 GPT Image 2·2.5와 같음",
+   "price_note": "API 가격표의 gpt-image-2.6-sunburst / gpt-image-2.6-flare 행. 장당 가격은 공식 표에 없음",
+   "links": ["https://openai.com/index/introducing-images-2-6/", "https://developers.openai.com/api/docs/pricing#image-generation"]
+  },
+  {
+   "id": "nano-banana-2-1",
+   "provider": "Google",
+   "model": "Nano Banana 2.1",
+   "release": "2026-10-06",
+   "price": "출력 이미지 $30/M 토큰 → 1K $0.0336, 2K $0.0504, 4K $0.113 /장. 입력 $1.50/M. Batch는 절반",
+   "notes": "Nano Banana 2(Gemini 3.1 Flash Image) 후속, Gemini 3.6 Flash 기반. 1K~4K, 다국어 글자 렌더링, 대화형 편집, 검색 기반 생성",
+   "price_note": "Gemini API 가격표 Standard 등급. API id gemini-nano-banana-2.1. 출시일은 모델 카드 게시일",
+   "links": ["https://deepmind.google/models/model-cards/nano-banana-2-1/", "https://aistudio.google.com/docs/pricing"]
+  },
+  {
+   "id": "mai-image-2-7",
+   "provider": "Microsoft",
+   "model": "MAI-Image-2.7 / 2.7 Flash",
+   "release": "2026-11-17",
+   "price": "Microsoft Foundry 공개 프리뷰: 2.7 약 $35 / 1,000장, Flash 약 $10 / 1,000장",
+   "notes": "2026-10-27 편집 기능부터 프리뷰, 11-17 Ignite에서 생성까지 정식 소개. 회사 발표로 AA 이미지 편집 순위 1위(11-16 기준). fal·OpenRouter·Vercel에서도 제공",
+   "price_note": "발표문의 근사치(~). 해상도별 단가는 공개 안 됨",
+   "links": ["https://microsoft.ai/news/introducing-mai-image-2-7/", "https://microsoft.ai/news/mai-image-2-7-debut/"]
+  },
+  {
+   "id": "seedream-5-5",
+   "provider": "ByteDance",
+   "model": "Seedream 5.5",
+   "release": "2026-11-09",
+   "price": "",
+   "notes": "100회 연속 편집에도 안 바뀐 부분 유지, 투명 배경(RGBA) 직접 생성, 작은 글자 렌더링 개선. Pro판 예정",
+   "price_note": "발표문에 가격·API 공개 일정 없음(BytePlus Playground에서 체험)",
+   "links": ["https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"]
+  },
+  {
+   "id": "minimax-h3-image",
+   "provider": "MiniMax",
+   "model": "MiniMax-H3-Image",
+   "release": "2026-11-11",
+   "price": "토큰형: text input $2.30/M, image input $1.50/M, image output $3.80/M → 1K 약 $0.022, 2K 약 $0.023, 4K 약 $0.069 /장(출시 할인 시 4K $0.034)",
+   "notes": "오픈 웨이트 공개. 4K(16MP)를 10초 안에 생성, 참조 이미지 최대 16장. 고속판(Highspeed) 별도",
+   "price_note": "MiniMax 가격 페이지의 예시 단가(추정치). 4K 이상 50% 할인은 기간 한정",
+   "links": ["https://www.minimax.io/blog/minimax-h3-image", "https://platform.minimax.io/docs/pricing/overview"]
+  },
+  {
+   "id": "ideogram-4-6",
+   "provider": "Ideogram",
+   "model": "4.6",
+   "release": "2026-11-19",
+   "price": "API 장당 2K: Low $0.03 / Medium $0.06 / High $0.10, 4K: Low $0.06 / Medium $0.12 / High $0.20 (편집 High 2K $0.22, 4K $0.60)",
+   "notes": "정밀한 다회 편집, 4K 생성, 참조 이미지 최대 5장. 앱·API 제공(4.5는 2K까지)",
+   "price_note": "Ideogram 4.6 모델 페이지 기준. 11-24자 API 가격표에는 아직 4.6 행이 없음",
+   "links": ["https://ideogram.ai/models/4.6/"]
+  },
+  {
+   "id": "flux-3-image",
+   "provider": "Black Forest Labs",
+   "model": "FLUX 3 Image",
+   "release": "2026-07-23",
+   "price": "장당 1K $0.048, 2K $0.10, 4K $0.607. 경량 Klein은 1K $0.009, 4K $0.036",
+   "notes": "영상·이미지·소리를 한 모델로 다루는 FLUX 3 계열의 이미지판. 정확한 글자 렌더링. Klein(5.6B)은 일반 GPU에서 돌아가는 공개 가중치",
+   "price_note": "출시일은 FLUX 3 발표(얼리 액세스) 날짜. 이미지판 정식 공개일은 발표문에 없음",
+   "links": ["https://bfl.ai/blog/flux-3", "https://bfl.ai/pricing"]
+  },
+  {
+   "id": "qwen-image-2-1",
+   "provider": "Alibaba / Qwen",
+   "model": "Qwen-Image-2.1",
+   "release": "2026-09-21",
+   "price": "",
+   "notes": "오픈소스. 생성·편집·투명 이미지를 한 모델로 처리, 이미지 생성부 7B, 편집 참조 이미지 최대 10장",
+   "price_note": "발표문에 API 가격·라이선스 이름 없음",
+   "links": ["https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"]
+  }
+ ],
+ "video": [
+  {
+   "id": "gemini-omni-1-2-flash",
+   "provider": "Google",
+   "model": "Gemini Omni 1.2 Flash",
+   "release": "2026-11-05",
+   "price": "720p 약 $0.07/sec (360p $0.023, 1080p 업스케일 $0.104, 4K 업스케일 $0.209)",
+   "max_length": "15",
+   "notes": "Omni 1.1 대비 30% 인하, 최대 길이 10초→15초, 소리 포함 생성. 2026-12-03부터 1.1 요청은 1.2로 자동 전환",
+   "price_note": "Gemini API 가격표 각주의 환산값(영상 출력 $12/M 토큰). 소리 유무별 단가는 따로 없음",
+   "ref_note": "참조 이미지·짧은 동작 영상(3초 이하)·음성 참조를 받지만 개수는 공개 안 됨",
+   "links": ["https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/", "https://aistudio.google.com/docs/pricing"]
+  },
+  {
+   "id": "pika-h3-flex",
+   "provider": "Pika",
+   "model": "Pika H3 Flex",
+   "release": "2026-10-29",
+   "price": "Pika 요금제 768p 5초 10크레딧(Starter 기준 약 $0.17/clip)",
+   "max_length": "",
+   "notes": "MiniMax H3를 후학습한 공개 가중치 모델(480p·768p). 1080p~4K 업스케일과 소리 5개 분리(대사·음악·효과음 등)는 Pika 호스팅 기능. 15초 클립 예시",
+   "price_note": "Pika 자체 비교 글의 요금제 가격. 발표문에는 가격 없음",
+   "ref_note": "이미지·영상·소리 합쳐 참조 파일 최대 12개(종류별 개수는 따로 없음)",
+   "links": ["https://pika.art/blog/pika-h3-flex", "https://pika.art/blog/pika-vs-runway"]
+  },
+  {
+   "id": "kling-4-0",
+   "provider": "Kuaishou (Kling)",
+   "model": "Kling 4.0",
+   "release": "2026-10",
+   "price": "",
+   "max_length": "",
+   "notes": "Kling 공식 홈페이지에 'All-New Kling 4.0' 공개(소리 포함 생성). 9-28 Flash 얼리 액세스 후 10월 정식 출시로 보도됨. 30초·4K 지원 보도는 공식 페이지에서 확인 못 함",
+   "price_note": "Kling 공식 가격 페이지는 스크립트로만 표시돼 확인 못 함. 재판매처 Pika 기준 1080p 약 $0.32/sec",
+   "ref_note": "공식 사양 미확인",
+   "links": ["https://kling.ai/", "https://pika.art/blog/pika-vs-runway"]
+  }
+ ]
+}

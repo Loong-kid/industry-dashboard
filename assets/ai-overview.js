@@ -26,7 +26,8 @@ export function numericKeys(table) {
   for (const column of table.columns) {
     if (column.key === table.provider_key || column.key === table.model_key) continue;
     const values = table.rows.map(row => row.cells[column.key]).filter(cell => cell?.text);
-    const numeric = values.filter(cell => typeof cell.number === 'number' || /^[-+]?[$€¥]?\d/.test(cell.text));
+    // Only bare values count ("$0.12", "61%", "65 · v5", "2026-10"); prose like "720p $0.10" stays left-aligned.
+    const numeric = values.filter(cell => typeof cell.number === 'number' || /^[-+]?[$€¥]?[\d,.]+(%|분|시간)?( · v\d+)?$|^\d{4}-\d{2}/.test(cell.text.trim()));
     if (values.length && numeric.length >= values.length * 0.6) keys.add(column.key);
   }
   return keys;
@@ -55,7 +56,8 @@ export function renderAIOverview(doc) {
       const cell = row?.cells[column.key] || {}, value = row ? valueOf(row, column.key, table) : column.source_label;
       const sheetRow = row ? row.source_row : 1;
       const cellURL = sheetRow && !column.added ? doc.source.tab_url + '&range=' + column.key + sheetRow : '';
-      const sources = (cell.links || []).map(url => `<p>${link(url, cell.public ? '공개 출처 열기' : url)}</p>`).join('');
+      const host = url => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; } };
+      const sources = (cell.links || []).map(url => `<p>${link(url, cell.public ? `출처 열기 · ${host(url)}` : url)}</p>`).join('');
       const original = cell.original?.text ? `<p class="aio-cell-note">시트 기재값 ${e(cell.original.text)}${cell.original.note ? ' · ' + e(cell.original.note) : ''}</p>` : '';
       const sheetLink = cellURL ? `<small>${link(cellURL, `시트 ${column.key}${sheetRow} 확인`)}</small>` : '';
       return `<div class="aio-field"><dt>${e(column.label)}</dt><dd>${e(value || '—')}${cell.note ? `<p class="aio-cell-note">${e(cell.note)}</p>` : ''}${column.note ? `<p class="aio-field-note">${e(column.note)}</p>` : ''}${sources}${original}${sheetLink}</dd></div>`;

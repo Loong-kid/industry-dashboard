@@ -2,8 +2,8 @@
  "id": "dc_ai_overview2",
  "name": "AI Overview 2",
  "manual": true,
- "updated": "2026-11-04",
- "fetched": "2026-11-04",
+ "updated": "2026-11-25",
+ "fetched": "2026-11-25",
  "imported": "2026-11-04",
  "source": {
   "id": "1OPgI46diln8IOADN1MX92e7Q5gKkqtjiekqHliStQPs",
@@ -79,6 +79,61 @@
    ],
    "rows": [
     {
+     "id": "image-public-gpt-image-2-6",
+     "raw_provider": "OpenAI",
+     "provider": "OpenAI",
+     "provider_derived": false,
+     "model": "GPT Image 2.6 (Sunburst / Flare)",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "OpenAI",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://openai.com/index/introducing-images-2-6/",
+        "https://developers.openai.com/api/docs/pricing#image-generation"
+       ]
+      },
+      "B": {
+       "text": "GPT Image 2.6 (Sunburst / Flare)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://openai.com/index/introducing-images-2-6/",
+        "https://developers.openai.com/api/docs/pricing#image-generation"
+       ]
+      },
+      "C": {
+       "text": "2026-11-04",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://openai.com/index/introducing-images-2-6/",
+        "https://developers.openai.com/api/docs/pricing#image-generation"
+       ]
+      },
+      "D": {
+       "text": "API 토큰형(두 변형 같음): image input $8/M, output $30/M, text input $5/M. Batch는 image input $4/M, output $15/M, text input $2.5/M",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · API 가격표의 gpt-image-2.6-sunburst / gpt-image-2.6-flare 행. 장당 가격은 공식 표에 없음",
+       "links": [
+        "https://openai.com/index/introducing-images-2-6/",
+        "https://developers.openai.com/api/docs/pricing#image-generation"
+       ]
+      },
+      "E": {
+       "text": "ChatGPT 이미지 2.6. 생성 속도 50% 개선, Flare는 저품질 설정에서 약 6초, Sunburst는 편집 일관성 강화. GIF·SVG 출력, API에 complexity 설정 추가. 단가는 GPT Image 2·2.5와 같음",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://openai.com/index/introducing-images-2-6/",
+        "https://developers.openai.com/api/docs/pricing#image-generation"
+       ]
+      }
+     }
+    },
+    {
      "id": "image-r4",
      "source_row": 4,
      "raw_provider": "OpenAI",
@@ -104,6 +159,61 @@
      },
      "provider": "OpenAI",
      "provider_derived": false
+    },
+    {
+     "id": "image-public-nano-banana-2-1",
+     "raw_provider": "Google",
+     "provider": "Google",
+     "provider_derived": false,
+     "model": "Nano Banana 2.1",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Google",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "B": {
+       "text": "Nano Banana 2.1",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "C": {
+       "text": "2026-10-06",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "D": {
+       "text": "출력 이미지 $30/M 토큰 → 1K $0.0336, 2K $0.0504, 4K $0.113 /장. 입력 $1.50/M. Batch는 절반",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Gemini API 가격표 Standard 등급. API id gemini-nano-banana-2.1. 출시일은 모델 카드 게시일",
+       "links": [
+        "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "E": {
+       "text": "Nano Banana 2(Gemini 3.1 Flash Image) 후속, Gemini 3.6 Flash 기반. 1K~4K, 다국어 글자 렌더링, 대화형 편집, 검색 기반 생성",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      }
+     }
     },
     {
      "id": "image-r6",
@@ -213,6 +323,61 @@
      "provider_derived": false
     },
     {
+     "id": "image-public-flux-3-image",
+     "raw_provider": "Black Forest Labs",
+     "provider": "Black Forest Labs",
+     "provider_derived": false,
+     "model": "FLUX 3 Image",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Black Forest Labs",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://bfl.ai/blog/flux-3",
+        "https://bfl.ai/pricing"
+       ]
+      },
+      "B": {
+       "text": "FLUX 3 Image",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://bfl.ai/blog/flux-3",
+        "https://bfl.ai/pricing"
+       ]
+      },
+      "C": {
+       "text": "2026-07-23",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://bfl.ai/blog/flux-3",
+        "https://bfl.ai/pricing"
+       ]
+      },
+      "D": {
+       "text": "장당 1K $0.048, 2K $0.10, 4K $0.607. 경량 Klein은 1K $0.009, 4K $0.036",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 출시일은 FLUX 3 발표(얼리 액세스) 날짜. 이미지판 정식 공개일은 발표문에 없음",
+       "links": [
+        "https://bfl.ai/blog/flux-3",
+        "https://bfl.ai/pricing"
+       ]
+      },
+      "E": {
+       "text": "영상·이미지·소리를 한 모델로 다루는 FLUX 3 계열의 이미지판. 정확한 글자 렌더링. Klein(5.6B)은 일반 GPU에서 돌아가는 공개 가중치",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://bfl.ai/blog/flux-3",
+        "https://bfl.ai/pricing"
+       ]
+      }
+     }
+    },
+    {
      "id": "image-r13",
      "source_row": 13,
      "raw_provider": "Black Forest Labs",
@@ -267,6 +432,56 @@
      "provider_derived": false
     },
     {
+     "id": "image-public-ideogram-4-6",
+     "raw_provider": "Ideogram",
+     "provider": "Ideogram",
+     "provider_derived": false,
+     "model": "4.6",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Ideogram",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://ideogram.ai/models/4.6/"
+       ]
+      },
+      "B": {
+       "text": "4.6",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://ideogram.ai/models/4.6/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-19",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://ideogram.ai/models/4.6/"
+       ]
+      },
+      "D": {
+       "text": "API 장당 2K: Low $0.03 / Medium $0.06 / High $0.10, 4K: Low $0.06 / Medium $0.12 / High $0.20 (편집 High 2K $0.22, 4K $0.60)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Ideogram 4.6 모델 페이지 기준. 11-24자 API 가격표에는 아직 4.6 행이 없음",
+       "links": [
+        "https://ideogram.ai/models/4.6/"
+       ]
+      },
+      "E": {
+       "text": "정밀한 다회 편집, 4K 생성, 참조 이미지 최대 5장. 앱·API 제공(4.5는 2K까지)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://ideogram.ai/models/4.6/"
+       ]
+      }
+     }
+    },
+    {
      "id": "image-r15",
      "source_row": 15,
      "raw_provider": "Ideogram",
@@ -293,6 +508,216 @@
      },
      "provider": "Ideogram",
      "provider_derived": false
+    },
+    {
+     "id": "image-public-mai-image-2-7",
+     "raw_provider": "Microsoft",
+     "provider": "Microsoft",
+     "provider_derived": false,
+     "model": "MAI-Image-2.7 / 2.7 Flash",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Microsoft",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://microsoft.ai/news/introducing-mai-image-2-7/",
+        "https://microsoft.ai/news/mai-image-2-7-debut/"
+       ]
+      },
+      "B": {
+       "text": "MAI-Image-2.7 / 2.7 Flash",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://microsoft.ai/news/introducing-mai-image-2-7/",
+        "https://microsoft.ai/news/mai-image-2-7-debut/"
+       ]
+      },
+      "C": {
+       "text": "2026-11-17",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://microsoft.ai/news/introducing-mai-image-2-7/",
+        "https://microsoft.ai/news/mai-image-2-7-debut/"
+       ]
+      },
+      "D": {
+       "text": "Microsoft Foundry 공개 프리뷰: 2.7 약 $35 / 1,000장, Flash 약 $10 / 1,000장",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 발표문의 근사치(~). 해상도별 단가는 공개 안 됨",
+       "links": [
+        "https://microsoft.ai/news/introducing-mai-image-2-7/",
+        "https://microsoft.ai/news/mai-image-2-7-debut/"
+       ]
+      },
+      "E": {
+       "text": "2026-10-27 편집 기능부터 프리뷰, 11-17 Ignite에서 생성까지 정식 소개. 회사 발표로 AA 이미지 편집 순위 1위(11-16 기준). fal·OpenRouter·Vercel에서도 제공",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://microsoft.ai/news/introducing-mai-image-2-7/",
+        "https://microsoft.ai/news/mai-image-2-7-debut/"
+       ]
+      }
+     }
+    },
+    {
+     "id": "image-public-seedream-5-5",
+     "raw_provider": "ByteDance",
+     "provider": "ByteDance",
+     "provider_derived": false,
+     "model": "Seedream 5.5",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "ByteDance",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"
+       ]
+      },
+      "B": {
+       "text": "Seedream 5.5",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"
+       ]
+      },
+      "C": {
+       "text": "2026-11-09",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"
+       ]
+      },
+      "D": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 발표문에 가격·API 공개 일정 없음(BytePlus Playground에서 체험)",
+       "links": [
+        "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"
+       ]
+      },
+      "E": {
+       "text": "100회 연속 편집에도 안 바뀐 부분 유지, 투명 배경(RGBA) 직접 생성, 작은 글자 렌더링 개선. Pro판 예정",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5"
+       ]
+      }
+     }
+    },
+    {
+     "id": "image-public-minimax-h3-image",
+     "raw_provider": "MiniMax",
+     "provider": "MiniMax",
+     "provider_derived": false,
+     "model": "MiniMax-H3-Image",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "MiniMax",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.minimax.io/blog/minimax-h3-image",
+        "https://platform.minimax.io/docs/pricing/overview"
+       ]
+      },
+      "B": {
+       "text": "MiniMax-H3-Image",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.minimax.io/blog/minimax-h3-image",
+        "https://platform.minimax.io/docs/pricing/overview"
+       ]
+      },
+      "C": {
+       "text": "2026-11-11",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.minimax.io/blog/minimax-h3-image",
+        "https://platform.minimax.io/docs/pricing/overview"
+       ]
+      },
+      "D": {
+       "text": "토큰형: text input $2.30/M, image input $1.50/M, image output $3.80/M → 1K 약 $0.022, 2K 약 $0.023, 4K 약 $0.069 /장(출시 할인 시 4K $0.034)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · MiniMax 가격 페이지의 예시 단가(추정치). 4K 이상 50% 할인은 기간 한정",
+       "links": [
+        "https://www.minimax.io/blog/minimax-h3-image",
+        "https://platform.minimax.io/docs/pricing/overview"
+       ]
+      },
+      "E": {
+       "text": "오픈 웨이트 공개. 4K(16MP)를 10초 안에 생성, 참조 이미지 최대 16장. 고속판(Highspeed) 별도",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.minimax.io/blog/minimax-h3-image",
+        "https://platform.minimax.io/docs/pricing/overview"
+       ]
+      }
+     }
+    },
+    {
+     "id": "image-public-qwen-image-2-1",
+     "raw_provider": "Alibaba / Qwen",
+     "provider": "Alibaba / Qwen",
+     "provider_derived": false,
+     "model": "Qwen-Image-2.1",
+     "group": "",
+     "cells": {
+      "A": {
+       "text": "Alibaba / Qwen",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"
+       ]
+      },
+      "B": {
+       "text": "Qwen-Image-2.1",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"
+       ]
+      },
+      "C": {
+       "text": "2026-09-21",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"
+       ]
+      },
+      "D": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 발표문에 API 가격·라이선스 이름 없음",
+       "links": [
+        "https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"
+       ]
+      },
+      "E": {
+       "text": "오픈소스. 생성·편집·투명 이미지를 한 모델로 처리, 이미지 생성부 7B, 편집 참조 이미지 최대 10장",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://www.alibabacloud.com/blog/qwen-image-2-1-compact-efficient-and-unified-image-creation_603586"
+       ]
+      }
+     }
     },
     {
      "id": "image-r17",
@@ -479,6 +904,88 @@
      },
      "provider": "Runway",
      "provider_derived": false
+    },
+    {
+     "id": "video-public-gemini-omni-1-2-flash",
+     "raw_provider": "Google",
+     "provider": "Google",
+     "provider_derived": false,
+     "model": "Gemini Omni 1.2 Flash",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Google",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "K": {
+       "text": "Gemini Omni 1.2 Flash",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Omni 1.1 대비 30% 인하, 최대 길이 10초→15초, 소리 포함 생성. 2026-12-03부터 1.1 요청은 1.2로 자동 전환",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "L": {
+       "text": "2026-11-05",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "M": {
+       "text": "720p 약 $0.07/sec (360p $0.023, 1080p 업스케일 $0.104, 4K 업스케일 $0.209)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Gemini API 가격표 각주의 환산값(영상 출력 $12/M 토큰). 소리 유무별 단가는 따로 없음",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "N": {
+       "text": "15",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "O": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 참조 이미지·짧은 동작 영상(3초 이하)·음성 참조를 받지만 개수는 공개 안 됨",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "P": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 참조 이미지·짧은 동작 영상(3초 이하)·음성 참조를 받지만 개수는 공개 안 됨",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      },
+      "Q": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 참조 이미지·짧은 동작 영상(3초 이하)·음성 참조를 받지만 개수는 공개 안 됨",
+       "links": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+        "https://aistudio.google.com/docs/pricing"
+       ]
+      }
+     }
     },
     {
      "id": "video-r6",
@@ -795,9 +1302,174 @@
      },
      "provider": "Black Forest Labs",
      "provider_derived": false
+    },
+    {
+     "id": "video-public-pika-h3-flex",
+     "raw_provider": "Pika",
+     "provider": "Pika",
+     "provider_derived": false,
+     "model": "Pika H3 Flex",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Pika",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "K": {
+       "text": "Pika H3 Flex",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · MiniMax H3를 후학습한 공개 가중치 모델(480p·768p). 1080p~4K 업스케일과 소리 5개 분리(대사·음악·효과음 등)는 Pika 호스팅 기능. 15초 클립 예시",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "L": {
+       "text": "2026-10-29",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "M": {
+       "text": "Pika 요금제 768p 5초 10크레딧(Starter 기준 약 $0.17/clip)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Pika 자체 비교 글의 요금제 가격. 발표문에는 가격 없음",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "O": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 이미지·영상·소리 합쳐 참조 파일 최대 12개(종류별 개수는 따로 없음)",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "P": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 이미지·영상·소리 합쳐 참조 파일 최대 12개(종류별 개수는 따로 없음)",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "Q": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 이미지·영상·소리 합쳐 참조 파일 최대 12개(종류별 개수는 따로 없음)",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "N": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 최대 길이 공식 미기재",
+       "links": [
+        "https://pika.art/blog/pika-h3-flex",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      }
+     }
+    },
+    {
+     "id": "video-public-kling-4-0",
+     "raw_provider": "Kuaishou (Kling)",
+     "provider": "Kuaishou (Kling)",
+     "provider_derived": false,
+     "model": "Kling 4.0",
+     "group": "",
+     "cells": {
+      "J": {
+       "text": "Kuaishou (Kling)",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "K": {
+       "text": "Kling 4.0",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Kling 공식 홈페이지에 'All-New Kling 4.0' 공개(소리 포함 생성). 9-28 Flash 얼리 액세스 후 10월 정식 출시로 보도됨. 30초·4K 지원 보도는 공식 페이지에서 확인 못 함",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "L": {
+       "text": "2026-10",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "M": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · Kling 공식 가격 페이지는 스크립트로만 표시돼 확인 못 함. 재판매처 Pika 기준 1080p 약 $0.32/sec",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "O": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 공식 사양 미확인",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "P": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 공식 사양 미확인",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "Q": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 공식 사양 미확인",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      },
+      "N": {
+       "text": "",
+       "public": true,
+       "note": "공개 자료 확인 2026-11-25 · 최대 길이 공식 미기재",
+       "links": [
+        "https://kling.ai/",
+        "https://pika.art/blog/pika-vs-runway"
+       ]
+      }
+     }
     }
    ]
   }
  ],
- "note": "시트에 저장된 값·메모를 가져온 자료입니다. 빈칸은 미기재이며 0으로 채우지 않습니다. 시트 변경은 다음 재가져오기에 반영됩니다. 가격·벤치마크의 기준일·단위·평가 조건은 원문 메모를 확인해 주세요."
+ "note": "시트 자료와 시트 이후 나온 모델의 공개 자료를 한 표에 표시합니다. 공개 자료 행은 셀을 눌러 출처·가격 조건을 확인할 수 있고, 확인되지 않은 칸은 비워 두었습니다.",
+ "public_reviewed": "2026-11-25"
 }

@@ -356,7 +356,39 @@ def merge_epoch(table,epoch):
         keys=list('ABC')+['e_gpqa','T','e_aime','U','e_frontiermath','e_swe','S','e_hle','M','e_arc1','e_arc2','e_aider','e_metr','e_simpleqa']))
 
 
-def build(snapshot,public=None,aa=None,vals=None,epoch=None):
+MEDIA_SOURCE=ROOT/'manual/ai-overview/public-media.json'
+
+
+def merge_public_media(doc,media):
+    """Add image/video models released after the sheet snapshot; sheet rows are left untouched."""
+    reviewed=media['imported']
+    tables={t['id']:t for t in doc['tables']}
+    for table_id,fields in [('image',['provider','model','release','price','notes']),
+                            ('video',['provider','model','release','price','max_length',None,None,None])]:
+        table=tables[table_id]
+        keys=[c['key'] for c in table['columns']]
+        for item in media[table_id]:
+            def cell(text,note=''):
+                note=' · '.join(filter(None,[f'공개 자료 확인 {reviewed}',note]))
+                return dict(text=text,public=True,note=note,links=list(item['links']))
+            cells={}
+            for key,field in zip(keys,fields):
+                if field=='price':cells[key]=cell(item['price'],item.get('price_note',''))
+                elif field=='model':cells[key]=cell(item['model'],item.get('notes','') if table_id=='video' else '')
+                elif field and item.get(field):cells[key]=cell(item[field])
+                elif field is None and item.get('ref_note'):cells[key]=cell('',item['ref_note'])
+            if table_id=='video' and not item.get('max_length'):cells[keys[4]]=cell('','최대 길이 공식 미기재')
+            row=dict(id=f'{table_id}-public-{item["id"]}',raw_provider=item['provider'],provider=item['provider'],
+                     provider_derived=False,model=item['model'],group='',cells=cells)
+            same=[i for i,r in enumerate(table['rows']) if r['provider']==item['provider']]
+            index=same[0] if same else next((i for i,r in enumerate(table['rows']) if not r['provider']),len(table['rows']))
+            table['rows'].insert(index,row)
+    doc['public_reviewed']=reviewed
+    doc['updated']=doc['fetched']=max(doc['imported'],reviewed)
+    doc['note']='시트 자료와 시트 이후 나온 모델의 공개 자료를 한 표에 표시합니다. 공개 자료 행은 셀을 눌러 출처·가격 조건을 확인할 수 있고, 확인되지 않은 칸은 비워 두었습니다.'
+
+
+def build(snapshot,public=None,aa=None,vals=None,epoch=None,public_media=None):
     sheets={s['properties']['title']:s for s in snapshot['sheets']}
     llm=sheets['AI Overview'];media=sheets['AI Overview2']
     views=[('summary','요약',list('ABCDE')+['J','M','N']),('specs','가격·사양',list('ABCDEFGHI')),
@@ -387,6 +419,8 @@ def build(snapshot,public=None,aa=None,vals=None,epoch=None):
     if epoch:
         merge_epoch(result['dc_ai_overview']['tables'][0],epoch)
         result['dc_ai_overview']['epoch_reviewed']=epoch['retrieved']
+    if public_media:
+        merge_public_media(result['dc_ai_overview2'],public_media)
     return result
 
 
@@ -396,6 +430,7 @@ if __name__=='__main__':
     aa=json.loads(AA_SOURCE.read_text(encoding='utf-8'))
     vals=json.loads(VALS_SOURCE.read_text(encoding='utf-8'))
     epoch=json.loads(EPOCH_SOURCE.read_text(encoding='utf-8'))
-    for key,doc in build(snapshot,public,aa,vals,epoch).items():
+    media=json.loads(MEDIA_SOURCE.read_text(encoding='utf-8'))
+    for key,doc in build(snapshot,public,aa,vals,epoch,media).items():
         (OUT/(key+'.json')).write_text(json.dumps(doc,ensure_ascii=False,indent=1,allow_nan=False)+'\n',encoding='utf-8')
         print(key,[(t['id'],len(t['rows']),len(t['columns'])) for t in doc['tables']])

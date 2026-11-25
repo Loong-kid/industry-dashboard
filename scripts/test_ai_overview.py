@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from build_ai_overview import AA_COLUMNS, AA_SOURCE, EPOCH_COLUMNS, EPOCH_SOURCE, PUBLIC, ROOT, SOURCE, VALS_SOURCE, build, display, grid, letter
+from build_ai_overview import AA_COLUMNS, AA_SOURCE, EPOCH_COLUMNS, EPOCH_SOURCE, MEDIA_SOURCE, PUBLIC, ROOT, SOURCE, VALS_SOURCE, build, display, grid, letter
 
 
 class AIOverviewTests(unittest.TestCase):
@@ -15,7 +15,8 @@ class AIOverviewTests(unittest.TestCase):
         cls.aa = json.loads(AA_SOURCE.read_text(encoding='utf-8'))
         cls.vals = json.loads(VALS_SOURCE.read_text(encoding='utf-8'))
         cls.epoch = json.loads(EPOCH_SOURCE.read_text(encoding='utf-8'))
-        cls.full = build(cls.snapshot,cls.public,cls.aa,cls.vals,cls.epoch)
+        cls.media = json.loads(MEDIA_SOURCE.read_text(encoding='utf-8'))
+        cls.full = build(cls.snapshot,cls.public,cls.aa,cls.vals,cls.epoch,cls.media)
 
     def test_generated_tables_match_snapshot(self):
         for key, doc in self.full.items():
@@ -23,7 +24,7 @@ class AIOverviewTests(unittest.TestCase):
             self.assertEqual(doc['imported'], '2026-11-04')
             self.assertTrue(doc['manual'])
             self.assertIn('#gid=', doc['source']['tab_url'])
-        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.full.values() for t in d['tables']], [(121,44+len(AA_COLUMNS)+len(EPOCH_COLUMNS)),(9,5),(11,8)])
+        self.assertEqual([(len(t['rows']), len(t['columns'])) for d in self.full.values() for t in d['tables']], [(121,44+len(AA_COLUMNS)+len(EPOCH_COLUMNS)),(9+len(self.media['image']),5),(11+len(self.media['video']),8)])
 
     def test_aa_and_vals_fill_blanks_without_overwriting_sheet_values(self):
         before={r['id']:r for r in self.integrated['dc_ai_overview']['tables'][0]['rows']}
@@ -51,6 +52,31 @@ class AIOverviewTests(unittest.TestCase):
         self.assertTrue(set(views['summary'])>={'J','M','N','P','aa_gdpval','AA','AO'})
         for keys in views.values():
             self.assertTrue(set(keys)<={c['key'] for c in table['columns']})
+
+    def test_public_media_rows_keep_sheet_rows_and_cite_sources(self):
+        sheet={t['id']:t for t in self.docs['dc_ai_overview2']['tables']}
+        full=self.full['dc_ai_overview2']
+        self.assertEqual(full['public_reviewed'],self.media['imported'])
+        for table in full['tables']:
+            original=[r for r in table['rows'] if 'source_row' in r]
+            self.assertEqual(original,sheet[table['id']]['rows'])
+            added=[r for r in table['rows'] if 'source_row' not in r]
+            self.assertEqual(len(added),len(self.media[table['id']]))
+            for row in added:
+                self.assertTrue(row['provider'])
+                for cell in row['cells'].values():
+                    self.assertTrue(cell['public'])
+                    self.assertTrue(cell['links'] and all(l.startswith('https://') for l in cell['links']))
+        image={r['model']:r['cells'] for r in full['tables'][0]['rows']}
+        self.assertIn('$30/M',image['GPT Image 2.6 (Sunburst / Flare)']['D']['text'])
+        self.assertEqual(image['Seedream 5.5']['D']['text'],'')
+        self.assertIn('가격',image['Seedream 5.5']['D']['note'])
+        video={r['model']:r['cells'] for r in full['tables'][1]['rows']}
+        self.assertEqual(video['Gemini Omni 1.2 Flash']['N']['text'],'15')
+        self.assertIn('미기재',video['Kling 4.0']['N']['note'])
+        # new rows sit inside their provider block, newest first
+        models=[r['model'] for r in full['tables'][1]['rows']]
+        self.assertEqual(models.index('Gemini Omni 1.2 Flash')+1,models.index('Gemini Omni Flash'))
 
     def test_epoch_2025_benchmarks_match_the_right_generation(self):
         self.assertEqual(self.epoch['license'],'CC BY 4.0')

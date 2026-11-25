@@ -34,5 +34,10 @@ const fs=require('node:fs');
   const numeric=numericKeys(llm);
   for (const key of ['C','D','E','J','M','N','P','AA','AO','aa_gdpval']) assert(numeric.has(key),key);
   for (const key of ['A','B','H','I']) assert(!numeric.has(key),key);
+  // Video prices are prose ("720p $0.10", "$0.15, no audio = $0.10"), so they stay left-aligned; lengths are numeric.
+  const videoNumeric=numericKeys(video);
+  assert(!videoNumeric.has('M'));assert(videoNumeric.has('N'));assert(videoNumeric.has('L'));
+  const image=JSON.parse(fs.readFileSync('data/datacenter/dc_ai_overview2.json')).tables[0];
+  assert(!numericKeys(image).has('D'));
   console.log('AI overview: search, numeric sort, blanks, zero, CSV, column alignment and safe display passed');
 })().catch(err=>{console.error(err);process.exit(1)});
