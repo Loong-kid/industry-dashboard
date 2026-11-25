@@ -246,7 +246,7 @@ function renderNav() {
   const groups = [
     {name: "지도", ids: ["globe"]},
     {name: "산업", ids: ["semicon", "datacenter", "power", "ess", "solar", "natgas", "oil", "shipbuilding", "shipping", "telecom", "games", "cosmetics", "entertainment", "movies", "quantum", "drone", "vrar"]},
-    {name: "시장", ids: ["commodities", "macro", "ppi"]},
+    {name: "시장", ids: ["momentum", "commodities", "macro", "ppi"]},
     {name: "수급·공시", ids: ["institution", "gifts", "expansion"]},
     {name: "정책·예산", ids: ["national_budget", "darpa"]},
   ];
@@ -313,7 +313,7 @@ async function renderIndustry(options = {}) {
   // 탭별 수집 워크플로와 갱신 버튼 라벨은 refresh.js에서 정한다.
   // 테이블 전용 탭은 자체 기간 필터를 사용하므로 전역 차트 기간필터를 뺀다.
   const tableTab = (ind.id === "semicon" && state.subtab === "materials_overview") || ind.id === "gifts" || ind.id === "expansion" || (ind.id === "movies" && state.subtab === "slate") || (ind.id === "institution" && (!state.subtab || state.subtab === "domestic"));
-  document.querySelector(".refresh-wrap").style.display = (ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || ["cleaning_summary", "cleanroom_summary", "process_chemicals", "specialty_gases", "test_components", "package_substrates", "plasma_components", "pcb_boards"].includes(state.subtab) || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
+  document.querySelector(".refresh-wrap").style.display = (ind.id === "momentum" || ind.id === "shipbuilding" || ind.id === "institution" || ind.id === "ppi" || ind.id === "oil" || ind.id === "games" || ind.id === "telecom" || ind.id === "quantum" || ind.id === "drone" || ind.id === "solar" || ind.id === "cosmetics" || ind.id === "entertainment" || ind.id === "movies" || ind.id === "vrar" || ind.id === "national_budget" || treasuryView || (ind.id === "datacenter" && state.subtab === "us") || ind.id === "natgas" || (ind.id === "semicon" && (state.subtab === "cpu" || ["cleaning_summary", "cleanroom_summary", "process_chemicals", "specialty_gases", "test_components", "package_substrates", "plasma_components", "pcb_boards"].includes(state.subtab) || state.subtab?.startsWith("osat_") || state.subtab?.startsWith("equipment_"))) || tableTab) ? "" : "none";
   document.getElementById("range-picker").style.display = tableTab || irLibrary || aixtronLibrary || (ind.id === "datacenter" && ["ai_overview", "ai_overview2", "ai_companies"].includes(state.subtab)) || ind.id === "ppi" || ind.id === "games" || ind.id === "globe" || ind.id === "darpa" || ind.id === "national_budget" || treasuryView || (ind.id === "semicon" && ["gpu", "ai_asic"].includes(state.subtab)) || (oilView && ["fleet", "contracts"].includes(oilView.id)) ? "none" : "";
   if (window.setRefreshLabel) window.setRefreshLabel();
   state.charts.forEach((c) => c.destroy());
@@ -658,6 +658,7 @@ async function renderIndustry(options = {}) {
       const aiCompaniesRenderer = section.table_kind === "ai_companies" ? (await import("./ai-companies.js")).renderAICompanies : null;
       const supplychainRenderer = section.table_kind === "semicon_supplychain" ? (await import("./semicon-supplychain.js")).renderSupplychain : null;
       const materialsOverviewRenderer = section.table_kind === "materials_overview" ? (await import("./materials-overview.js")).renderMaterialsOverview : null;
+      const momentumRenderer = section.table_kind === "industry_momentum" ? (await import("./momentum.js")).renderMomentum : null;
       const renderer = section.table_kind === "offshore_overview" ? renderOffshoreOverview
         : section.table_kind === "offshore_market" ? renderOffshoreMarket
         : section.table_kind === "offshore_fleet" ? renderOffshoreFleet
@@ -669,6 +670,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "movie_companies" ? (await import("./movies.js")).renderMovieCompanies
         : section.table_kind === "semicon_supplychain" ? doc => supplychainRenderer(doc, {tab: section.tab})
         : section.table_kind === "materials_overview" ? doc => materialsOverviewRenderer(doc, {industry: ind})
+        : section.table_kind === "industry_momentum" ? doc => momentumRenderer(doc, {market: state.subtab, state, colors: SERIES_COLORS[isDark() ? "dark" : "light"], rangeBounds: {from: rangeCutoff(), to: state.range === "custom" ? state.rangeTo : null}})
         : section.table_kind === "cpu_specs" ? renderCPUSpecs
         : section.table_kind === "gpu_specs" ? renderGPUSpecs
         : section.table_kind === "memory_specs" ? renderGPUSpecs

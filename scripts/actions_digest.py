@@ -32,7 +32,7 @@ AREAS = {
     '소비·콘텐츠': ['update-cosmetics', 'update-entertainment', 'update-hybe-labels', 'update-games', 'update-movies',
                'update-vrar'],
     '산업재': ['update-shipbuilding-equipment', 'update-drone'],
-    '거시': ['update-ppi', 'update-us-treasury', 'update-national-budget'],
+    '거시': ['update-momentum', 'update-ppi', 'update-us-treasury', 'update-national-budget'],
     '배포·시험': ['publish-updated-data', 'pages-build-deployment', 'ci-tests', 'actions-digest'],
 }
 AREA_ORDER = list(AREAS) + ['수동 점검·보충', '기타']

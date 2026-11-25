@@ -956,6 +956,45 @@
       "sections": []
     },
     {
+      "id": "momentum",
+      "name": "모멘텀 동향",
+      "icon": "",
+      "default_range": "1y",
+      "cadence": "가격 모멘텀은 매일 08:40·18:40(KST) 확인합니다. 미국과 한국의 확정 종가 기준일은 다르며 배당 재투자를 포함하지 않습니다.",
+      "tabs": [
+        {
+          "id": "us",
+          "name": "미국",
+          "description": "미국 상장 ETF와 대표 종목 묶음으로 산업별 가격 흐름을 비교합니다. 일부 ETF는 글로벌 기업을 포함합니다."
+        },
+        {
+          "id": "kr",
+          "name": "한국",
+          "description": "국내 산업 ETF와 대표 종목 묶음의 가격 흐름입니다. 기준시장은 KOSPI 200 ETF이며 코스닥 기업도 같은 시장과 비교합니다."
+        }
+      ],
+      "sections": [
+        {
+          "tab": "us",
+          "title": "산업별 가격 모멘텀",
+          "type": "table",
+          "table_kind": "industry_momentum",
+          "indicators": [
+            "momentum_us"
+          ]
+        },
+        {
+          "tab": "kr",
+          "title": "산업별 가격 모멘텀",
+          "type": "table",
+          "table_kind": "industry_momentum",
+          "indicators": [
+            "momentum_kr"
+          ]
+        }
+      ]
+    },
+    {
       "id": "macro",
       "name": "매크로",
       "icon": "📊",

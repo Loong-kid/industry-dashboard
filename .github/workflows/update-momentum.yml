@@ -1,0 +1,50 @@
+name: update-momentum
+on:
+  schedule:
+    - cron: '40 23 * * *' # KST 08:40, after the completed US session
+    - cron: '40 9 * * *' # KST 18:40, after the Korean closing buffer
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  momentum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests tzdata
+      - name: Validate market calendars, baskets and UI calculations
+        id: precheck
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_momentum.py -v
+          node scripts/test_momentum.cjs
+      - name: Collect completed daily closes and build momentum
+        if: steps.precheck.outcome == 'success'
+        run: python -u scripts/fetch_momentum.py
+      - name: Validate publication
+        id: postcheck
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_momentum.py -v
+      - name: Commit momentum data only
+        if: steps.precheck.outcome == 'success' && steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/momentum/state.json data/momentum/momentum_us.json data/momentum/momentum_kr.json
+          git diff --cached --quiet || git commit -m "chore: refresh industry price momentum"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            if git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+          done
+          exit 1
+      - name: Report validation failure
+        if: steps.precheck.outcome == 'failure' || steps.postcheck.outcome == 'failure'
+        run: exit 1
