@@ -1,0 +1,1024 @@
+{
+ "id": "lam_etch_specs",
+ "name": "Lam Research 식각 장비 · 제품별 사양",
+ "table_family": "etch",
+ "official_only": true,
+ "short_name": "Lam 식각 장비",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "Lam Research 공식 제품 페이지·보도자료",
+ "source_url": "https://www.lamresearch.com/products/our-processes/etch/",
+ "updated": "2026-11-26",
+ "fetched": "2026-11-26",
+ "update_note": "Lam 제품 페이지와 보도자료를 확인한 날짜 기준 스냅샷입니다. 새 장비 발표 시 scripts/build_lam_etch_specs.py를 고칩니다.",
+ "evidence_text": "모든 값은 아래 Lam 공식 제품 페이지와 보도자료에서 확인했습니다. 셀에 마우스를 올리면 그 값이 적힌 페이지가 나옵니다. Lam이 밝히지 않은 항목은 —로 둡니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "제품",
+   "width": 170
+  },
+  {
+   "id": "method",
+   "label": "식각 방식",
+   "width": 160
+  },
+  {
+   "id": "platform",
+   "label": "플랫폼",
+   "width": 150
+  },
+  {
+   "id": "launched",
+   "label": "공식 발표",
+   "width": 110,
+   "date": true
+  },
+  {
+   "id": "figures",
+   "label": "공개 수치",
+   "width": 280
+  },
+  {
+   "id": "apps",
+   "label": "주요 공정·소자",
+   "width": 280
+  },
+  {
+   "id": "lineup",
+   "label": "모델 라인업",
+   "width": 220
+  },
+  {
+   "id": "tech",
+   "label": "핵심 기술",
+   "width": 280
+  },
+  {
+   "id": "features",
+   "label": "특징",
+   "width": 320
+  },
+  {
+   "id": "page",
+   "label": "공식 페이지",
+   "width": 100,
+   "url": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "akara",
+   "sheet_row": null,
+   "name": "Akara",
+   "company": "Lam Research",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 도체 식각",
+     "source": "p_akara",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "platform": {
+     "value": "Sense.i",
+     "source": "p_akara",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2025-02-19",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "플라즈마 응답 기존 소스보다 100배 빠름 · 밀리초 단위 응답 · 옹스트롬 수준 CD 균일도",
+     "source": "p_akara",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "GAA 트랜지스터·6F² DRAM·3D NAND, 4F² DRAM·CFET·3D DRAM으로 확장 가능",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "lineup": {
+     "value": "Akara",
+     "source": "p_akara",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "DirectDrive(업계 첫 고체 플라즈마 소스) · TEMPO 플라즈마 펄싱 · SNAP 이온 에너지 제어 · Equipment Intelligence 자동 유지보수",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "Kiyo를 잇는 차세대 도체 식각기. 앞선 플래너 DRAM·파운드리 GAA 여러 공정에서 양산 기준 장비(POR)로 채택, 재주문 확보",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/akara/",
+     "source": "p_akara",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Akara",
+     "source": "p_akara",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "kiyo",
+   "sheet_row": null,
+   "name": "Kiyo 제품군",
+   "company": "Lam Research",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · 플라즈마 ALE",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2004",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "양산 중인 챔버 3만 개 이상 (2025-02 기준)",
+     "source": "r_akara",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "STI · 소스/드레인 · 고유전율 메탈게이트(HKMG) · FinFET·트라이게이트 · 멀티 패터닝 · 3D NAND",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Versys Kiyo · Kiyo45 · Kiyo C·E·F·G 시리즈",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Hydra(앞 공정 패턴 편차를 보정하는 CD 균일도 제어) · Corvus(가장자리 다이 수율용 플라즈마 시스 조정) · 플라즈마 ALE · 웨이퍼 없는 자동 세정",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "대칭 챔버와 정전척으로 균일도·재현성 확보, 여러 세대에 걸쳐 업그레이드 가능. 일부 모델은 Reliant 재생 장비로도 공급",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/kiyo-product-family/",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Kiyo 제품군",
+     "source": "p_kiyo",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "sense-i",
+   "sheet_row": null,
+   "name": "Sense.i",
+   "company": "Lam Research",
+   "group": "플랫폼",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE (도체·유전체 식각)",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "platform": {
+     "value": "Sense.i (자체 플랫폼)",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020-03-03",
+     "source": "r_sensei",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "식각 출력 밀도(같은 면적당 생산량) 50% 이상 개선",
+     "source": "r_sensei",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "로직·메모리의 핵심·준핵심 도체 식각, 유전체 식각",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Sense.i",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Equipment Intelligence · 자율 캘리브레이션·유지보수 · 스마트 센싱",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "Kiyo·Flex 공정 모듈 기술을 이어받은 고밀도 플랫폼. 머신러닝으로 공정 편차를 스스로 보정. 발표 당시 Lam 식각 장비가 매달 웨이퍼 400만 장 이상 처리",
+     "source": "r_sensei",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/sense-i/",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Sense.i",
+     "source": "p_sensei",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "vantex",
+   "sheet_row": null,
+   "name": "Vantex",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · 극저온(Cryo)",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "platform": {
+     "value": "Sense.i 전용 챔버",
+     "source": "r_vantex",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2021-01-27",
+     "source": "r_vantex",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "3D NAND 고종횡비 홀·트렌치·콘택 · DRAM 커패시터 셀",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Vantex",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "기존보다 높은 RF 출력 · RF 펄싱 · 식각 수직 각도 제어 · Sense.i 센서 데이터 활용",
+     "source": "r_vantex",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "가장 높은 종횡비 식각과 CD·선택비 제어, 가장 빠른 식각 속도, 웨이퍼 간 재현성(Equipment Intelligence)",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/vantex/",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Vantex",
+     "source": "p_vantex",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "flex",
+   "sheet_row": null,
+   "name": "Flex 제품군",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · ALE · 극저온(Cryo)",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "low-k·초저유전 듀얼 다마신 · 자기정렬 콘택 · 커패시터 셀 · 마스크 오픈 · 3D NAND 고종횡비 홀·트렌치·콘택",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Exelan Flex · Flex45 · Flex D·E·F·G·H 시리즈",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "다중 주파수·소용적 confined 플라즈마 · AMMP 펄싱 기반 플라즈마 ALE · 인시투 다단계 식각",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "주요 메모리 업체 모두가 3D NAND 양산에 쓰는 고종횡비 유전체 식각기. Lam Cryo 3.0 적용 가능",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/flex-product-family/",
+     "source": "p_flex",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Flex 제품군",
+     "source": "p_flex",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "cryo-3",
+   "sheet_row": null,
+   "name": "Lam Cryo 3.0",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "극저온 유전체 식각 (장비 위 기술)",
+     "source": "p_cryo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "platform": {
+     "value": "Flex · Vantex(Sense.i)에 적용",
+     "source": "p_cryo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2024-07-31",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "채널 깊이 최대 10 µm, 위아래 CD 편차 0.1% 미만 · 기존 대비 식각 속도 2.5배 · 웨이퍼당 에너지 40%↓ · 배출 최대 90%↓(Lam 추정, 외부 검증 없음)",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "3D NAND 채널 홀 (400단 이상)",
+     "source": "p_cryo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "3세대 극저온 식각 (1세대는 2019년 양산 도입)",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "tech": {
+     "value": "영하 온도 · 고출력 confined 플라즈마 반응기 · 새 식각 화학 · Vantex 펄스 플라즈마와 결합",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "극저온 식각으로 웨이퍼 500만 장 생산. NAND 양산 중인 Lam 고종횡비 유전체 챔버 7,500개 이상 중 약 1,000개가 극저온",
+     "source": "r_cryo3",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/products/our-solutions/cryogenic-etching/",
+     "source": "p_cryo",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Lam Cryo 3.0",
+     "source": "p_cryo",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "versys-metal",
+   "sheet_row": null,
+   "name": "Versys Metal 제품군",
+   "company": "Lam Research",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "TiN 금속 하드마스크 · 고밀도 알루미늄 배선 · 알루미늄 패드",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Versys Metal · Metal45 · Metal L·M·N",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "대칭 챔버·독립 공정 조정 · 독자 챔버 세정 기술",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "BEOL 금속 식각과 금속 하드마스크 패터닝. 여러 세대 업그레이드 가능, 일부 모델은 Reliant 재생 장비로 공급",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/versys-metal-product-family/",
+     "source": "p_versys",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Versys Metal 제품군",
+     "source": "p_versys",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "syndion",
+   "sheet_row": null,
+   "name": "Syndion 제품군",
+   "company": "Lam Research",
+   "group": "실리콘 딥 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "DRIE · RIE",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "platform": {
+     "value": "2300 (200·300 mm 겸용)",
+     "source": "r_syndion2007",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2007-08-20",
+     "source": "r_syndion2007",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "비아 폭 2~100 µm, 깊이 20~400 µm 이상 식각 (2007 첫 300 mm 출하 당시)",
+     "source": "r_syndion2007",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "HBM·첨단 패키징 TSV · CMOS 이미지센서 고종횡비 구조 · 전력 반도체·아날로그·MEMS 트렌치 · 웨이퍼 후면 공정",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Syndion C · F 시리즈 · G 시리즈",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "RAP(식각·증착 빠른 교대)로 깊이 균일도 · TSV 스택(실리콘·유전체·도전막) 인시투 식각",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "2021-12 Syndion GP 발표(전력 반도체·PMIC, 200·300 mm 겸용). 300 mm Syndion GS는 패키징·HBM·CIS용, 200 mm는 DSiE",
+     "source": "r_syndiongp",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/syndion-product-family/",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Syndion 제품군",
+     "source": "p_syndion",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "argos",
+   "sheet_row": null,
+   "name": "Argos",
+   "company": "Lam Research",
+   "group": "선택적 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "라디칼 표면 처리",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Argos",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "MARS(준안정 활성 라디칼 소스)",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "웨이퍼 표면을 선택적으로 개질하고 오염을 제거해 다음 공정에 맞게 처리",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Argos",
+     "source": "p_selective",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "prevos",
+   "sheet_row": null,
+   "name": "Prevos",
+   "company": "Lam Research",
+   "group": "선택적 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "기상(vapor) 선택적 식각",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Prevos",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Lam 독자 화학 · 기상 기술 · 빠른 온도 제어 (화학 추가 가능)",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "원자층 정밀도로 산화막·실리콘·금속을 초고선택비 식각. Selis와 한 장비로 통합 공급 가능",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Prevos",
+     "source": "p_selective",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "selis",
+   "sheet_row": null,
+   "name": "Selis",
+   "company": "Lam Research",
+   "group": "선택적 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "라디칼 + 열 식각",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Selis",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "라디칼 식각과 열 식각 병행",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "구조 손상 없이 위아래 균일한 초고선택비 식각. Prevos와 통합 시 다층 선택적 식각·대기 시간(queue time) 제어",
+     "source": "r_selective",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "p_selective",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Selis",
+     "source": "p_selective",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "coronus",
+   "sheet_row": null,
+   "name": "Coronus · Coronus HP",
+   "company": "Lam Research",
+   "group": "베벨 (웨이퍼 가장자리)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 베벨 식각",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2007",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "식각·증착 단계마다 수율 0.2~0.5%p 추가, 전체 공정 최대 5% 개선 · 설치 챔버 수천 개",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "apps": {
+     "value": "STI·게이트·MOL·BEOL 식각 후 · 증착 전후 · 노광 전 · 금속막 제거 · 습식·건식 식각 중 베벨 보호",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Coronus · Coronus HP",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "독자 플라즈마 confinement로 다이 영역 보호 · α-카본·탄소 잔여물 제거(업계 유일 베벨 세정)",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "웨이퍼 가장자리의 막·잔여물을 걷어내 결함원을 없앰. 모든 주요 반도체 업체가 사용",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/coronus-product-family/",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Coronus · Coronus HP",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "coronus-dx",
+   "sheet_row": null,
+   "name": "Coronus DX",
+   "company": "Lam Research",
+   "group": "베벨 (웨이퍼 가장자리)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "베벨 증착 (식각 아님)",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-06-20",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "3D 패키징 웨이퍼 본딩 · 3D NAND 긴 습식 식각 중 가장자리 보호 · 차세대 로직",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "lineup": {
+     "value": "Coronus DX",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "웨이퍼 가장자리 양면에 보호 유전막을 한 번에 증착 · 정밀 웨이퍼 센터링·통합 계측",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "features": {
+     "value": "업계 첫 베벨 증착 솔루션. 주요 고객 팹에서 양산 사용 중(발표 당시)",
+     "source": "r_coronusdx",
+     "note": "Lam 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/coronus-product-family/",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Coronus DX",
+     "source": "p_coronus",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "reliant",
+   "sheet_row": null,
+   "name": "Reliant 식각 제품",
+   "company": "Lam Research",
+   "group": "재생 장비 (Reliant)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · DRIE",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "도체·유전체·금속 식각 · 특수막(PZT·GaN·AlGaN·SiC) · MEMS·전력 반도체·TSV 실리콘 딥 식각",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Kiyo(~Kiyo45) · Flex(~Flex45) · DSiE · Syndion · TCP 9400 · TCP 9600",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "대칭 챔버·정전척 · 인시투 다단계 식각 · 고종횡비 제어",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "150~300 mm 웨이퍼. MEMS·전력·IoT 같은 특수 공정용과 기존 팹 수명 연장용 장비",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/reliant-etch-products/",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Reliant 식각 제품",
+     "source": "p_reliant",
+     "note": "Lam 공식 제품명"
+    }
+   },
+   "review_note": "Lam 공식 제품 페이지와 보도자료 기준. 수치는 Lam이 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "method",
+    "launched",
+    "figures",
+    "apps",
+    "tech"
+   ]
+  },
+  {
+   "id": "detail",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "method",
+    "platform",
+    "launched",
+    "figures",
+    "apps",
+    "lineup",
+    "tech",
+    "features",
+    "page"
+   ]
+  }
+ ],
+ "sources": {
+  "p_akara": {
+   "title": "Lam · Akara 제품 페이지",
+   "url": "https://www.lamresearch.com/product/akara/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_kiyo": {
+   "title": "Lam · Kiyo 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/kiyo-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_sensei": {
+   "title": "Lam · Sense.i 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/sense-i/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_vantex": {
+   "title": "Lam · Vantex 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/vantex/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_flex": {
+   "title": "Lam · Flex 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/flex-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_cryo": {
+   "title": "Lam · 극저온 식각(Cryogenic Etching) 페이지",
+   "url": "https://www.lamresearch.com/products/our-solutions/cryogenic-etching/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_versys": {
+   "title": "Lam · Versys Metal 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/versys-metal-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_syndion": {
+   "title": "Lam · Syndion 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/syndion-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_selective": {
+   "title": "Lam · 선택적 식각 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/selective-etch-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_coronus": {
+   "title": "Lam · Coronus 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/coronus-product-family/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "p_reliant": {
+   "title": "Lam · Reliant 식각 제품 페이지",
+   "url": "https://www.lamresearch.com/product/reliant-etch-products/",
+   "checked": "2026-11-26",
+   "note": "제품 페이지 본문(식각 방식·주요 공정·라인업·핵심 기술)."
+  },
+  "r_sensei": {
+   "title": "Lam 보도자료 2020-03-03 · Sense.i 발표",
+   "url": "https://newsroom.lamresearch.com/2020-03-03-Lam-Research-Breaks-New-Ground-in-Etch-Technology-and-Productivity-for-Chipmaking-Processes",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_vantex": {
+   "title": "Lam 보도자료 2021-01-27 · Vantex 발표",
+   "url": "https://newsroom.lamresearch.com/2021-01-27-Lam-Research-Advances-Next-Generation-3D-Memory-Manufacturing-with-Revolutionary-New-Etch-Technology",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_syndion2007": {
+   "title": "Lam 보도자료 2007-08-20 · 첫 300 mm Syndion 출하",
+   "url": "https://newsroom.lamresearch.com/2007-08-20-Lam-Research-Corporation-Ships-First-300-mm-2300-R-Syndion-TM-System-for-3-D-IC-Through-Silicon-Via-Etch",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_syndiongp": {
+   "title": "Lam 보도자료 2021-12-07 · Syndion GP 발표",
+   "url": "https://newsroom.lamresearch.com/2021-12-07-Lam-Research-Unveils-Syndion-GP-to-Help-Chipmakers-Meet-Demand-for-Advanced-Power-Devices",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_selective": {
+   "title": "Lam 보도자료 2022-02-09 · 선택적 식각 3종 발표",
+   "url": "https://newsroom.lamresearch.com/2022-02-09-Lam-Research-Introduces-Groundbreaking-Suite-of-Selective-Etch-Tools-to-Accelerate-Chipmakers-3D-Roadmaps",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_coronusdx": {
+   "title": "Lam 보도자료 2023-06-20 · Coronus DX 발표",
+   "url": "https://newsroom.lamresearch.com/2023-06-20-Lam-Research-Introduces-Worlds-First-Bevel-Deposition-Solution-to-Increase-Yield-in-Chip-Production",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_cryo3": {
+   "title": "Lam 보도자료 2024-07-31 · Lam Cryo 3.0 발표",
+   "url": "https://newsroom.lamresearch.com/2024-07-31-Lam-Research-Introduces-Lam-Cryo-TM-3-0-Cryogenic-Etch-Technology-to-Accelerate-Scaling-of-3D-NAND-for-the-AI-Era",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  },
+  "r_akara": {
+   "title": "Lam 보도자료 2025-02-19 · Akara 발표",
+   "url": "https://newsroom.lamresearch.com/2025-02-19-Lam-Research-Unveils-Industrys-Most-Advanced-Conductor-Etch-Technology-to-Date",
+   "checked": "2026-11-26",
+   "note": "보도자료 원문의 Lam 발표 내용."
+  }
+ },
+ "company_order": [
+  "Lam Research"
+ ],
+ "group_label": "분류",
+ "item_label": "제품",
+ "search_placeholder": "제품명·공정·기술 검색",
+ "caption": "Lam 공식 발표 기준 · 공식 발표는 보도자료 날짜(연도만 있으면 최초 도입 연도)",
+ "evidence_summary": "현재 식각 제품 페이지 11곳 · 14개 제품 · 모든 값 공식 페이지·보도자료 확인",
+ "scroll_hint": "셀에 마우스를 올리면 근거 · 맨 오른쪽 상세",
+ "note": "Lam 식각 제품 페이지에 올라 있는 제품만 담았습니다. Lam은 ASML과 달리 처리량·해상도 같은 장비 사양을 공개하지 않아, 식각 방식·주요 공정·라인업·핵심 기술은 제품 페이지에서, 발표일과 수치는 해당 제품의 발표 보도자료에서 옮겼습니다. \"공개 수치\"는 Lam이 발표한 대표값이라 측정 조건이 제각각이니 제품끼리 단순 비교하지 마세요. Lam Cryo 3.0은 독립 장비가 아니라 Flex·Vantex에 얹는 극저온 식각 기술이고, Coronus DX는 제품군 안의 베벨 증착 장비입니다. 가격·출하 대수는 공개되지 않아 넣지 않았습니다."
+}
