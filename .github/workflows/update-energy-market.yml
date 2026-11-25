@@ -1,0 +1,67 @@
+name: update-energy-market
+
+on:
+  schedule:
+    - cron: '0 23 * * 2' # 수요일 KST 08:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  energy-market:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 openpyxl pyarrow
+      - name: Validate source mapping and current dashboard data
+        id: precheck
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_energy_market.py -v
+      - name: Refresh NLR Electricity ATB costs
+        id: atb
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/fetch_energy_market.py atb
+      - name: Refresh Berkeley Lab solar project data
+        id: berkeley
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/fetch_energy_market.py berkeley
+      - name: Refresh EIA monthly small-scale solar capacity
+        id: eia
+        if: steps.precheck.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/fetch_energy_market.py eia
+      - name: Validate refreshed dashboard data
+        id: postcheck
+        if: steps.atb.outcome == 'success' || steps.berkeley.outcome == 'success' || steps.eia.outcome == 'success'
+        continue-on-error: true
+        run: python -m unittest discover -s scripts -p test_energy_market.py -v
+      - name: Commit refreshed energy market data
+        if: steps.postcheck.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/energy-market/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore: refresh U.S. energy market KPIs'
+          for attempt in 1 2 3; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push origin HEAD:"$GITHUB_REF_NAME"; then exit 0; fi
+            sleep $((attempt * 5))
+          done
+          exit 1
+      - name: Report missing or invalid updates
+        if: steps.postcheck.outcome != 'success'
+        run: exit 1
+      - name: Report partial source failures
+        if: steps.postcheck.outcome == 'success' && (steps.atb.outcome == 'failure' || steps.berkeley.outcome == 'failure' || steps.eia.outcome == 'failure')
+        run: echo '::warning::A source failed to refresh. Its previous published data was retained.'

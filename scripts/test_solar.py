@@ -78,8 +78,9 @@ class SolarTests(unittest.TestCase):
     def test_catalog_has_24_charts_across_four_value_chain_groups(self):
         catalog=json.loads((ROOT/'data/catalog.json').read_text(encoding='utf8'))
         sector=next(i for i in catalog['industries'] if i['id']=='solar')
-        self.assertEqual([t['id'] for t in sector['tabs']],['modules','inverters','trackers','materials'])
-        ids=[i for s in sector['sections'] for i in s['indicators']]
+        company_sections=[s for s in sector['sections'] if s.get('data_industry','solar')=='solar']
+        self.assertEqual([t['id'] for t in sector['tabs'] if t['id']!='market'],['modules','inverters','trackers','materials'])
+        ids=[i for s in company_sections for i in s['indicators']]
         self.assertEqual(len(ids),24);self.assertEqual(len(set(ids)),24)
         for identifier in ids:self.assertTrue((ROOT/f'data/solar/{identifier}.json').exists())
         self.assertEqual(len(self.meta),8)

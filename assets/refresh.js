@@ -34,6 +34,7 @@ const DEFAULT_TARGET = { file: "data/shipbuilding/korea_orders.json", label: "�
 function currentTarget() {
   const id = window.dashboard && window.dashboard.state && window.dashboard.state.industry && window.dashboard.state.industry.id;
   const subtab = window.dashboard?.state?.subtab;
+  if (id === "solar" && subtab === "market") return {file: "data/energy-market/eia_solar_small_scale_capacity.json", label: "태양광 시장 갱신", workflow: "update-energy-market.yml"};
   if (id === "semicon" && subtab === "materials_overview") return {file: "data/semicon/valuation/valuation_index.json", label: "기업 주가 확인", workflow: "update-semicon-valuation.yml"};
   if (id === "macro" && subtab === "us_treasury") return {file: "data/us-treasury/state.json", label: "미국 국채 갱신", workflow: "update-us-treasury.yml"};
   if (id === "datacenter" && subtab === "us") return window.dashboard?.state?.datacenterView === "neocloud"

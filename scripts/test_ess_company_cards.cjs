@@ -27,7 +27,7 @@ assert(ess.sections.every(s=>Array.isArray(s.indicators)));
 assert.equal(companies.length,3);
 assert(companies.every(c=>c.description && !c.description.includes('??')));
 assert.equal(companies.flatMap(c=>c.indicators).length,6);
-const productIds=ess.sections.filter(s=>s.type!=='table' && s.data_industry!=='power').flatMap(s=>s.indicators||[]);
+const productIds=ess.sections.filter(s=>s.type!=='table' && (!s.data_industry || s.data_industry==='ess')).flatMap(s=>s.indicators||[]);
 const allIds=[...productIds,...companies.flatMap(c=>c.indicators)];
 assert.equal(allIds.length,18);
 assert.equal(new Set(allIds).size,18);

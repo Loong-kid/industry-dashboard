@@ -263,7 +263,7 @@
       "name": "전력",
       "icon": "⚡",
       "default_range": "all",
-      "cadence": "EIA-860M 발전설비는 월 1회 공개이고 약 2개월 지연된다(예: 9월 중순에 7월분이 최신). EIA-930 수요·발전은 매일 자동. 전세계 가스발전 파이프라인은 GEM 발전소 트래커(폼 수동 다운로드, manual/gem/gogpt.xlsx).",
+      "cadence": "EIA-860M 발전설비는 월 1회 공개이고 약 2개월 지연된다(예: 9월 중순에 7월분이 최신). EIA-930 수요·발전은 매일 자동. 전세계 가스발전 파이프라인은 GEM 발전소 트래커(폼 수동 다운로드, manual/gem/gogpt.xlsx). NLR ATB는 연간 발간하며 매주 수요일에 신규 판본과 수정을 확인합니다.",
       "sections": [
         {
           "title": "파이프라인 현황 (미국 유틸리티 규모 전 발전원)",
@@ -288,6 +288,17 @@
           "title": "현재 설비 구성 (가동중 전 발전기)",
           "indicators": [
             "fleet_by_tech"
+          ]
+        },
+        {
+          "title": "미국 발전원별 비용·성능 전망",
+          "data_industry": "energy-market",
+          "indicators": [
+            "atb_power_capex",
+            "atb_power_lcoe",
+            "atb_power_fixed_om",
+            "atb_power_capacity_factor",
+            "atb_gas_heat_rate"
           ]
         },
         {
@@ -397,6 +408,15 @@
             "battery_duration_mix",
             "battery_duration_mix_cum",
             "battery_duration_share"
+          ],
+          "tab": "market"
+        },
+        {
+          "title": "미국 4시간 배터리 ESS 비용 전망",
+          "data_industry": "energy-market",
+          "indicators": [
+            "atb_ess_4h_capex",
+            "atb_ess_4h_fixed_om"
           ],
           "tab": "market"
         },
@@ -513,7 +533,7 @@
           "id": "market",
           "name": "시장 현황",
           "default_range": "all",
-          "description": "미국 유틸리티 규모 배터리 ESS의 준공 용량과 지속시간을 확인합니다. 기업 지표는 배터리와 ESS 완제품 탭에서 구분해 볼 수 있습니다."
+          "description": "미국 배터리 ESS의 준공 용량·지속시간과 4시간 LFP 시스템의 설치비·운영비 전망을 확인합니다. NLR ATB 신규 판본과 수정은 매주 수요일에 확인합니다."
         },
         {
           "id": "batteries",
@@ -6925,6 +6945,13 @@
       "cadence": "매일 KST 09:35에 SEC 연결 공시와 외국 발행사 6-K 실적 첨부를 확인합니다. 매출·영업이익·귀속 순이익은 실제 분기·회계연도 기준이며 발표 후 반영됩니다. JinkoSolar 위안화 원자료와 보고기간 평균환율 USD를 함께 보존합니다. 2014년 이후 가용 공시를 수집하며 상장 전 이력·사업 재편·회계 전환기는 집계 기준에서 확인합니다.",
       "tabs": [
         {
+          "id": "market",
+          "name": "시장 현황",
+          "auto_collect_schedule": "매주 수요일 08:00",
+          "cadence": "매주 수요일 KST 08:00에 신규 발표를 확인합니다. Berkeley Lab은 대형 태양광 프로젝트를 연간 집계하며 EIA는 소규모 태양광 용량을 월간 추정합니다.",
+          "description": "미국 대형 태양광의 준공량·설치비·전력구매계약 가격·이용률과 소규모 설비용량을 확인합니다."
+        },
+        {
           "id": "modules",
           "name": "모듈·통합 제조",
           "description": "First Solar·Canadian Solar·JinkoSolar. 모듈 기술과 ESS·발전 프로젝트의 포함 범위를 함께 확인합니다."
@@ -6946,6 +6973,25 @@
         }
       ],
       "sections": [
+        {
+          "tab": "market",
+          "title": "미국 태양광 준공·설비용량",
+          "data_industry": "energy-market",
+          "indicators": [
+            "berkeley_solar_additions",
+            "eia_solar_small_scale_capacity"
+          ]
+        },
+        {
+          "tab": "market",
+          "title": "미국 대형 태양광 설치비·계약 가격·이용률",
+          "data_industry": "energy-market",
+          "indicators": [
+            "berkeley_solar_capex",
+            "berkeley_solar_ppa",
+            "berkeley_solar_capacity_factor"
+          ]
+        },
         {
           "tab": "modules",
           "title": "First Solar · FSLR",

@@ -863,12 +863,14 @@ function renderFootStatus(latestUpdate, collected, ind) {
   }
   foot.appendChild(fetchLine);
 
-  // 갱신 주기 안내: 워크플로는 매일 돌지만 소스마다 '새 값이 생기는 주기'가 다르다.
+  // 수집 일정과 원자료 발간 주기를 함께 보여준다.
   // (예: 관세청은 월 1회 확정) — 이걸 모르면 정상 동작을 수집 실패로 오해하게 된다.
   // 탭별 문구는 catalog.json의 industry.cadence에 둔다(데이터·설명을 한곳에서 관리).
   const cadenceTab = ind?.tabs?.find(tab => tab.id === state.subtab) || ind?.groups?.find(group => group.id === state.subtab);
   const cadenceView = ind?.id === "datacenter" && state.subtab === "us" ? cadenceTab?.views?.find(view => view.id === state.datacenterView) : null;
   const cadence = cadenceView?.cadence || cadenceTab?.cadence || ind?.cadence;
+  const collectionSchedule = cadenceTab?.auto_collect_schedule ||
+    `매일 ${cadenceView?.auto_collect_time || cadenceTab?.auto_collect_time || ind?.auto_collect_time || "07:30"}`;
   const cad = document.createElement("details");
   cad.className = "foot-cadence";
   const sum = document.createElement("summary");
@@ -876,7 +878,7 @@ function renderFootStatus(latestUpdate, collected, ind) {
   cad.appendChild(sum);
   const body = document.createElement("div");
   body.innerHTML =
-    `<div>자동 수집: <b>매일 ${escapeHtml(cadenceView?.auto_collect_time || cadenceTab?.auto_collect_time || ind?.auto_collect_time || "07:30")}</b>(KST) · GitHub Actions</div>` +
+    `<div>자동 수집: <b>${escapeHtml(collectionSchedule)}</b>(KST) · GitHub Actions</div>` +
     (cadence ? `<div class="cad-tab">${escapeHtml(ind.name)}: ${escapeHtml(cadence)}</div>` : "");
   cad.appendChild(body);
   foot.appendChild(cad);
@@ -1196,7 +1198,7 @@ function renderCard(doc, indicatorId, options = {}) {
   if (doc.forecast_from) {
     const legend = document.createElement("div");
     legend.className = "forecast-legend";
-    legend.innerHTML = `<span><i class="forecast-key" aria-hidden="true"></i>실적·추정</span>
+    legend.innerHTML = `<span><i class="forecast-key" aria-hidden="true"></i>${escapeHtml(doc.forecast_baseline_label || "실적·추정")}</span>
       <span><i class="forecast-key is-forecast" aria-hidden="true"></i>${escapeHtml(doc.forecast_label || "전망")} · ${escapeHtml(doc.forecast_from.slice(0, 4))}년부터</span>`;
     card.appendChild(legend);
   }
