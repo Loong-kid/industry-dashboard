@@ -1,0 +1,1540 @@
+{
+ "id": "asml_litho_specs",
+ "name": "ASML 노광 장비 · EUV·DUV 장비별 사양",
+ "table_family": "litho",
+ "official_only": true,
+ "short_name": "ASML 노광기",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "ASML 공식 제품 페이지",
+ "source_url": "https://www.asml.com/en/products",
+ "updated": "2026-11-25",
+ "fetched": "2026-11-25",
+ "update_note": "ASML 제품 페이지를 확인한 날짜 기준 스냅샷입니다. 새 장비 발표 시 페이지를 다시 확인해 scripts/build_asml_litho_specs.py를 고칩니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "장비",
+   "width": 170
+  },
+  {
+   "id": "platform",
+   "label": "플랫폼",
+   "width": 130
+  },
+  {
+   "id": "light",
+   "label": "광원·파장",
+   "width": 130
+  },
+  {
+   "id": "na",
+   "label": "NA",
+   "width": 90,
+   "measure": true
+  },
+  {
+   "id": "resolution",
+   "label": "해상도",
+   "width": 110,
+   "measure": true
+  },
+  {
+   "id": "throughput",
+   "label": "처리량 (장/시간)",
+   "width": 120,
+   "measure": true
+  },
+  {
+   "id": "dose",
+   "label": "처리량 조건",
+   "width": 130
+  },
+  {
+   "id": "overlay",
+   "label": "오버레이 (공식 표기)",
+   "width": 230
+  },
+  {
+   "id": "use",
+   "label": "주 용도",
+   "width": 230
+  },
+  {
+   "id": "lineage",
+   "label": "세대 관계",
+   "width": 190
+  },
+  {
+   "id": "wafer",
+   "label": "웨이퍼",
+   "width": 100
+  },
+  {
+   "id": "features",
+   "label": "특징",
+   "width": 300
+  },
+  {
+   "id": "page",
+   "label": "공식 페이지",
+   "width": 100,
+   "url": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "exe-5200b",
+   "sheet_row": null,
+   "name": "EXE:5200B",
+   "company": "ASML",
+   "group": "EUV High-NA (0.55 NA)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "TWINSCAN EXE · High-NA",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "13.5 nm EUV",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.55",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "8 nm",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 175",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "50 mJ/cm²",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재 · EXE:5000 대비 오버레이 개선",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "sub-2 nm 로직·첨단 DRAM 양산",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "EXE:5000 후속 · 두 번째 High-NA",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "광원 출력 향상으로 처리량 증가. NXE 대비 이미징 콘트라스트 40%↑, 한 번 노광으로 1.7배 작은 패턴(트랜지스터 밀도 2.9배)",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-exe-5200b",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "EXE:5200B",
+     "source": "exe-5200b",
+     "note": "ASML 공식 제품명 TWINSCAN EXE:5200B"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "exe-5000",
+   "sheet_row": null,
+   "name": "EXE:5000",
+   "company": "ASML",
+   "group": "EUV High-NA (0.55 NA)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "TWINSCAN EXE · High-NA",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "13.5 nm EUV",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.55",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "8 nm",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 110",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "50 mJ/cm²",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "첨단 로직·메모리 (멀티 패터닝을 단일 노광으로)",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "첫 0.55 NA(High-NA) 장비",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "비대칭(anamorphic) 반사경으로 노광 영역이 NXE의 절반 → 더 빠른 웨이퍼·레티클 스테이지. 첫 High-NA 장비 2023-12 인도(ASML 제품 목록 페이지)",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-exe-5000",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "EXE:5000",
+     "source": "exe-5000",
+     "note": "ASML 공식 제품명 TWINSCAN EXE:5000"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxe-3800e",
+   "sheet_row": null,
+   "name": "NXE:3800E",
+   "company": "ASML",
+   "group": "EUV (0.33 NA)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "TWINSCAN NXE · 0.33 NA",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "13.5 nm EUV",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.33",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "13 nm",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 220",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "30 mJ/cm²",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재 · 3600D 대비 개선",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "2 nm 로직·첨단 DRAM 양산",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXE:3600D 후속",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "EXE와 같은 하부 모듈(웨이퍼 핸들러·스테이지)과 고출력 광원으로 생산성 큰 폭 향상, 반사경 가열 완화",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe-3800e",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXE:3800E",
+     "source": "nxe-3800e",
+     "note": "ASML 공식 제품명 TWINSCAN NXE:3800E"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxe-3600d",
+   "sheet_row": null,
+   "name": "NXE:3600D",
+   "company": "ASML",
+   "group": "EUV (0.33 NA)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "TWINSCAN NXE · 0.33 NA",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "13.5 nm EUV",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.33",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "13 nm",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 160",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "30 mJ/cm²",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재 · 3400C 대비 개선",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "5·3 nm 로직·첨단 DRAM 양산",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXE:3400C 후속",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "30 mJ/cm² 기준 3400C 대비 생산성 15~20%↑. 최대 노광 영역 26×33 mm",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe-3600d",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXE:3600D",
+     "source": "nxe-3600d",
+     "note": "ASML 공식 제품명 TWINSCAN NXE:3600D"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxe-3400c",
+   "sheet_row": null,
+   "name": "NXE:3400C",
+   "company": "ASML",
+   "group": "EUV (0.33 NA)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "TWINSCAN NXE · 0.33 NA",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "13.5 nm EUV",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.33",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "13 nm",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 170 (30 mJ/cm²: ≥ 135)",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "20 mJ/cm²",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "단일 장비(DCO) 1.4 nm · 장비 간(MMO) 1.5 nm",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "7·5 nm 양산",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXE:3400B 후속",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "2019년 하반기부터 공급(페이지 표기). 최대 노광 영역 26×33 mm",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe3400c",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXE:3400C",
+     "source": "nxe-3400c",
+     "note": "ASML 공식 제품명 TWINSCAN NXE:3400C"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-2150i",
+   "sheet_row": null,
+   "name": "NXT:2150i",
+   "company": "ASML",
+   "group": "ArF 액침 (ArFi)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF 액침",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "1.35",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 38 nm",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 310",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재 · 2100i 대비 on-product 오버레이 15% 개선",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "첨단 메모리·로직 핵심(critical) 레이어",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXT:2100i 후속 · 처리량 5%↑",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "다이아몬드 코팅 웨이퍼 테이블로 정기 유지보수 없이 오버레이 유지",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt-2150i",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:2150i",
+     "source": "nxt-2150i",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:2150i"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-2100i",
+   "sheet_row": null,
+   "name": "NXT:2100i",
+   "company": "ASML",
+   "group": "ArF 액침 (ArFi)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF 액침",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "1.35",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 38 nm",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "295",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "단일 장비 최대 10% 개선(0.9 nm) · 장비 간 13% 개선(1.3 nm) — 공식 표기",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "메모리·로직 (DUV-EUV 혼용 레이어)",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXT:2050i 후속",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "렌즈 왜곡 보정기로 DUV-EUV 교차 오버레이 개선, 정렬 측정 4→12색",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2100i",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:2100i",
+     "source": "nxt-2100i",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:2100i"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-2050i",
+   "sheet_row": null,
+   "name": "NXT:2050i",
+   "company": "ASML",
+   "group": "ArF 액침 (ArFi)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT4",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF 액침",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "1.35",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 38 nm (dipole) · 40 nm (C-quad)",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "295",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "교차 매칭 on-product 2.5 nm",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "첨단 로직·DRAM 멀티 패터닝",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXT:2000i 다음 세대",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "오버헤드 감소로 하루 400~500장 추가 생산",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2050i",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:2050i",
+     "source": "nxt-2050i",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:2050i"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-2000i",
+   "sheet_row": null,
+   "name": "NXT:2000i",
+   "company": "ASML",
+   "group": "ArF 액침 (ArFi)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF 액침",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "1.35",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 38 nm (dipole) · 40 nm (C-quad)",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 275",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "교차 매칭 on-product 2.5 nm",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "첨단 로직·DRAM 양산",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "최고 생산성 하루 4,600장(champion). ORION 정렬 센서",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2000i",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:2000i",
+     "source": "nxt-2000i",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:2000i"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-1980fi",
+   "sheet_row": null,
+   "name": "NXT:1980Fi",
+   "company": "ASML",
+   "group": "ArF 액침 (ArFi)",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF 액침",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "1.35",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 38 nm",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 330",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "장비 간 매칭 2.5 nm",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "첨단·성숙 노드의 중간 핵심(mid-critical) 레이어",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "빠른 스테이지·액침 후드 개선으로 결함 감소·처리량 향상",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt1980fi",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:1980Fi",
+     "source": "nxt-1980fi",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:1980Fi"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-1470",
+   "sheet_row": null,
+   "name": "NXT:1470",
+   "company": "ASML",
+   "group": "ArF 건식",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.93 (가변 0.70–0.93)",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 57 nm",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 300",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "on-product 4.5 nm 미만",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXT 플랫폼 첫 건식 장비",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "이전 최고속 ArF 장비 대비 처리량 최대 50%↑",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt1470",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:1470",
+     "source": "nxt-1470",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:1470"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-1460k",
+   "sheet_row": null,
+   "name": "XT:1460K",
+   "company": "ASML",
+   "group": "ArF 건식",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "193 nm ArF",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.93 (가변 0.65–0.93)",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 65 nm (편광 조명 시 57 nm)",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 205",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "단일 장비(DCO) ≤ 3.5 nm · 장비 간(MMO) ≤ 5 nm (TOP 패키지)",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "65 nm 양산",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "45 W ArF 레이저, 오프라인 레벨링으로 가장자리 다이까지 초점 제어",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt1460k",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:1460K",
+     "source": "xt-1460k",
+     "note": "ASML 공식 제품명 TWINSCAN XT:1460K"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-870b",
+   "sheet_row": null,
+   "name": "NXT:870B",
+   "company": "ASML",
+   "group": "KrF",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "248 nm KrF",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.80",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 110 nm",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 400",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재 · NXT:870 수준 유지",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "NXT:870 후속 · 처리량 20%↑",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "업계 최초 시간당 400장. 빠른 스테이지와 레티클 미끄럼 방지 장치",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt-870b",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:870B",
+     "source": "nxt-870b",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:870B"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "nxt-870",
+   "sheet_row": null,
+   "name": "NXT:870",
+   "company": "ASML",
+   "group": "KrF",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "NXT",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "248 nm KrF",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.80 (가변 0.55–0.80)",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 110 nm",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 330",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "장비 간(MMO) ≤ 7.5 nm (웨이퍼 전체)",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "110 nm 이하 양산",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "ArF 건식·액침과 같은 NXT 플랫폼의 KrF 장비",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt870",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "NXT:870",
+     "source": "nxt-870",
+     "note": "ASML 공식 제품명 TWINSCAN NXT:870"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-1060k",
+   "sheet_row": null,
+   "name": "XT:1060K",
+   "company": "ASML",
+   "group": "KrF",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "248 nm KrF",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.93",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 80 nm",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 205",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "단일 장비(DCO) ≤ 3.5 nm · 장비 간(MMO) ≤ 5 nm (웨이퍼 전체)",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "2X nm 이하 메모리·로직의 금속·비아·이온주입 레이어",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "업계 최고 NA·생산성의 KrF 장비(페이지 표기), 반사굴절 렌즈",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-1060k",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:1060K",
+     "source": "xt-1060k",
+     "note": "ASML 공식 제품명 TWINSCAN XT:1060K"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-860n",
+   "sheet_row": null,
+   "name": "XT:860N",
+   "company": "ASML",
+   "group": "KrF",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "248 nm KrF",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.80 (가변 0.55–0.80)",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 110 nm",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 260 (200 mm: 275)",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "장비 간(MMO) ≤ 7.5 nm (웨이퍼 전체)",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "110 nm 이하 양산",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "200·300 mm",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "40·50·60 W KrF 레이저",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt860n",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:860N",
+     "source": "xt-860n",
+     "note": "ASML 공식 제품명 TWINSCAN XT:860N"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-860m",
+   "sheet_row": null,
+   "name": "XT:860M",
+   "company": "ASML",
+   "group": "KrF",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "248 nm KrF",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.80",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 110 nm",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 240",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "단일 장비(DCO) ≤ 12 nm · 장비 간(MMO) ≤ 14 nm",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "110 nm 미만 양산",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "300 mm",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "40 W KrF 레이저",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-860m",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:860M",
+     "source": "xt-860m",
+     "note": "ASML 공식 제품명 TWINSCAN XT:860M"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-400m",
+   "sheet_row": null,
+   "name": "XT:400M",
+   "company": "ASML",
+   "group": "i-line",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "365 nm i-line",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.65",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 350 nm (옵션 시 220 nm)",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 245",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "웨이퍼 전체 ≤ 20 nm",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "성숙 공정",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "lineage": {
+     "value": "XT:400L 후속",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "wafer": {
+     "value": "200·300 mm",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "광학계 투과율 개선으로 생산성 향상, 기존 공정 변경 없이 교체",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-400m",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:400M",
+     "source": "xt-400m",
+     "note": "ASML 공식 제품명 TWINSCAN XT:400M"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  },
+  {
+   "id": "xt-260",
+   "sheet_row": null,
+   "name": "XT:260",
+   "company": "ASML",
+   "group": "i-line",
+   "original": {},
+   "reviews": {
+    "platform": {
+     "value": "XT",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "light": {
+     "value": "365 nm i-line",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "na": {
+     "value": "0.35 (가변 0.25–0.35, 2배 축소)",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "resolution": {
+     "value": "≤ 400 nm (옵션)",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "throughput": {
+     "value": "≥ 270",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "dose": {
+     "value": "340 mJ/cm²",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "overlay": {
+     "value": "수치 미기재",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "use": {
+     "value": "3D 집적·첨단 패키징",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "features": {
+     "value": "스테퍼 대신 스캐너, 기존 장비 대비 생산성 최대 4배. 두께 1.7 mm 웨이퍼·휜 웨이퍼 지원",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "page": {
+     "value": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-260",
+     "source": "xt-260",
+     "note": "ASML 공식 제품 페이지 기재값"
+    },
+    "name": {
+     "value": "XT:260",
+     "source": "xt-260",
+     "note": "ASML 공식 제품명 TWINSCAN XT:260"
+    }
+   },
+   "review_note": "ASML 공식 제품 페이지 기준. 처리량은 ASML이 밝힌 조건(노광량)의 사양값이며 실제 팹 가동률과 다릅니다."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "light",
+    "na",
+    "resolution",
+    "throughput",
+    "dose",
+    "overlay",
+    "use"
+   ]
+  },
+  {
+   "id": "detail",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "platform",
+    "light",
+    "na",
+    "resolution",
+    "throughput",
+    "dose",
+    "overlay",
+    "wafer",
+    "lineage",
+    "use",
+    "features",
+    "page"
+   ]
+  }
+ ],
+ "sources": {
+  "exe-5200b": {
+   "title": "ASML · TWINSCAN EXE:5200B",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-exe-5200b",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "exe-5000": {
+   "title": "ASML · TWINSCAN EXE:5000",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-exe-5000",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxe-3800e": {
+   "title": "ASML · TWINSCAN NXE:3800E",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe-3800e",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxe-3600d": {
+   "title": "ASML · TWINSCAN NXE:3600D",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe-3600d",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxe-3400c": {
+   "title": "ASML · TWINSCAN NXE:3400C",
+   "url": "https://www.asml.com/en/products/euv-lithography-systems/twinscan-nxe3400c",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-2150i": {
+   "title": "ASML · TWINSCAN NXT:2150i",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt-2150i",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-2100i": {
+   "title": "ASML · TWINSCAN NXT:2100i",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2100i",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-2050i": {
+   "title": "ASML · TWINSCAN NXT:2050i",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2050i",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-2000i": {
+   "title": "ASML · TWINSCAN NXT:2000i",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt2000i",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-1980fi": {
+   "title": "ASML · TWINSCAN NXT:1980Fi",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt1980fi",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-1470": {
+   "title": "ASML · TWINSCAN NXT:1470",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt1470",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-1460k": {
+   "title": "ASML · TWINSCAN XT:1460K",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt1460k",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-870b": {
+   "title": "ASML · TWINSCAN NXT:870B",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt-870b",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "nxt-870": {
+   "title": "ASML · TWINSCAN NXT:870",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-nxt870",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-1060k": {
+   "title": "ASML · TWINSCAN XT:1060K",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-1060k",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-860n": {
+   "title": "ASML · TWINSCAN XT:860N",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt860n",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-860m": {
+   "title": "ASML · TWINSCAN XT:860M",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-860m",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-400m": {
+   "title": "ASML · TWINSCAN XT:400M",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-400m",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  },
+  "xt-260": {
+   "title": "ASML · TWINSCAN XT:260",
+   "url": "https://www.asml.com/en/products/duv-lithography-systems/twinscan-xt-260",
+   "checked": "2026-11-25",
+   "note": "제품 페이지의 수치 카드(해상도·NA·처리량)와 본문. 페이지에 없는 항목은 비워 둠."
+  }
+ },
+ "company_order": [
+  "ASML"
+ ],
+ "group_label": "분류",
+ "item_label": "장비",
+ "search_placeholder": "장비명·광원·용도 검색",
+ "caption": "ASML 공식 사양 · 해상도는 최소 선폭 · 처리량은 300 mm 웨이퍼 시간당 장수",
+ "evidence_summary": "현재 판매 장비 19종 · EUV 5 · DUV 14 · 모든 값 공식 페이지 확인",
+ "scroll_hint": "셀에 마우스를 올리면 근거 · 맨 오른쪽 상세",
+ "note": "ASML이 현재 제품으로 공개한 노광 장비만 담았습니다(단종 장비 제외). 해상도·NA·처리량은 제품 페이지의 대표 사양이며, 처리량은 표기된 노광량 조건 기준이라 장비 간 단순 비교에 주의하세요. 오버레이는 회사마다 단일 장비(DCO), 장비 간(MMO), 실제 웨이퍼(on-product) 등 기준이 달라 공식 표기를 그대로 적었고, 신형 EUV처럼 수치를 밝히지 않은 장비는 비워 두었습니다. 가격·출하 대수는 페이지에 없어 넣지 않았습니다(판매 대수는 위 \"ASML · 노광기 판매 대수\" 카드)."
+}
