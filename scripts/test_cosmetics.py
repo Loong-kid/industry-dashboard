@@ -135,7 +135,9 @@ class CosmeticsFinancials(unittest.TestCase):
         self.assertEqual(row['profit'],-51434)
         refs=row['refs']['profit']['components']
         self.assertLessEqual(refs[1]['filed'],refs[0]['filed'])
-        self.assertEqual(refs[1]['filed'],'2025-08-06')
+        # The H1 component may come from the original 2025 report or a later report's restated
+        # comparative (e.g. the 2026 H1 filing); it must never predate the original filing.
+        self.assertGreaterEqual(refs[1]['filed'],'2025-08-06')
 
     def test_global_official_fixtures_and_no_forecast_or_quarterly_allocation(self):
         fixture=cosmetics.read(ROOT/'manual/cosmetics/global-fixtures.json')

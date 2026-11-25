@@ -26,7 +26,7 @@
 4. **main 통합 = 배포 순서**: `git fetch` → 작업 브랜치에 `origin/main` merge(충돌 시 양쪽 기능 보존) → `python scripts/run_ci_tests.py` 전부 통과 → `git push origin HEAD:main`(fast-forward만). 거부되면 다시 fetch부터. force push 금지. 봇이 하루 여러 번 main에 커밋하므로 거부는 정상이다.
 5. **시험을 같이 고친다**: `app.js`·`catalog.json`처럼 다른 기능의 시험이 읽는 파일을 바꾸면 `run_ci_tests.py`로 다른 기능의 시험까지 돌리고, 깨진 시험은 같은 커밋에서 고친다. push 뒤 `ci-tests` 워크플로 결과를 확인한다. (2026-10-09 기업 순서 변경 때 시험을 안 고쳐 일일 수집이 19일간 멈췄다.)
 6. **data/ 충돌**: 봇이 갱신하는 JSON 충돌은 손으로 합치지 말고 origin/main 기준으로 해당 스크립트를 다시 돌려 만든다.
-7. **수집 워크플로**: 새 `update-*.yml`은 `concurrency.group: ${{ github.workflow }}`를 쓴다(그룹을 같이 쓰면 GitHub가 대기 run을 하나만 남기고 나머지를 취소한다). push는 `git pull --rebase && git push` 재시도 루프로 하고, 자기 data 경로만 `git add`한다. 새 워크플로는 `publish-data.yml`의 `workflow_run` 목록에도 추가한다. 검증 단계가 실패해도 무관한 수집이 멈추지 않게 `id` + `continue-on-error`를 붙이고, 그 검증이 지키는 수집 단계만 `if: steps.<id>.outcome == 'success'`로 막는다(`update-data.yml` 참고).
+7. **수집 워크플로**: 새 `update-*.yml`은 `concurrency.group: ${{ github.workflow }}`를 쓴다(그룹을 같이 쓰면 GitHub가 대기 run을 하나만 남기고 나머지를 취소한다). push는 `git pull --rebase && git push` 재시도 루프로 하고, 자기 data 경로만 `git add`한다. 새 워크플로는 `publish-data.yml`의 `workflow_run` 목록과 `scripts/actions_digest.py`의 `AREAS`(일일 수집 상태 이슈 분류)에도 추가한다. 검증 단계가 실패해도 무관한 수집이 멈추지 않게 `id` + `continue-on-error`를 붙이고, 그 검증이 지키는 수집 단계만 `if: steps.<id>.outcome == 'success'`로 막는다(`update-data.yml` 참고).
 8. **끝낼 때**: 사용자에게 바뀐 탭과 커밋을 짧게 남긴다. 사용자는 두 에이전트의 결과를 나중에 사이트에서 한꺼번에 확인한다.
 
 ## 디자인 규칙 (2026-11-18 사용자 확정: 포트폴리오 웹과 같은 디자인 유지)

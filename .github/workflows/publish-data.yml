@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       # The collector commits a new head, so use main instead of its starting SHA.
       - uses: actions/checkout@v4
@@ -45,6 +45,25 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+      # deploy-pages sometimes cannot see the artifact this run just uploaded ("No artifacts named
+      # github-pages"), mostly when many collectors finish together. Retry once with a fresh artifact
+      # instead of failing the run and emailing the owner (2026-11-24: 16 such failures in one day).
       - name: Deploy updated data
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 45
+      - name: Upload the site again for the retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+          name: github-pages-retry
+      - name: Deploy updated data (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-retry

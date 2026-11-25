@@ -1,0 +1,34 @@
+name: actions-digest
+
+# One status issue per day instead of one email per failed run (see scripts/actions_digest.py).
+# 13:00 UTC = 22:00 KST, after the morning collectors (often delayed by hours on GitHub's side).
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  issues: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test digest
+        run: python -m unittest discover -s scripts -p test_actions_digest.py -v
+      - name: Update status issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/actions_digest.py
