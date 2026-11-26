@@ -1,0 +1,1170 @@
+{
+ "id": "amat_dep_specs",
+ "name": "Applied Materials 증착 장비 · 제품별 사양",
+ "table_family": "deposition",
+ "official_only": true,
+ "short_name": "AMAT 증착 장비",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "Applied Materials 보도자료",
+ "source_url": "https://www.appliedmaterials.com/us/en/newsroom/press-releases.html",
+ "source_label": "AMAT 보도자료 목록 ↗",
+ "basis_label": "AMAT 보도자료 기준",
+ "updated": "2026-11-27",
+ "fetched": "2026-11-27",
+ "update_note": "AMAT 보도자료를 확인한 날짜 기준 스냅샷입니다. 새 증착 장비 발표 시 scripts/build_amat_dep_specs.py를 고칩니다.",
+ "evidence_text": "모든 값은 아래 AMAT 보도자료 원문에서 확인했습니다. AMAT 홈페이지가 자동 접근을 막아, GlobeNewswire로 배포된 원문을 그대로 실은 Nasdaq·Yahoo Finance·Globe and Mail 게재본으로 읽었습니다. 셀에 마우스를 올리면 그 값이 적힌 보도자료가 나옵니다. 보도자료에 없는 항목은 —로 둡니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "제품",
+   "width": 190
+  },
+  {
+   "id": "method",
+   "label": "증착 방식",
+   "width": 150
+  },
+  {
+   "id": "platform",
+   "label": "플랫폼",
+   "width": 110
+  },
+  {
+   "id": "launched",
+   "label": "발표",
+   "width": 110,
+   "date": true
+  },
+  {
+   "id": "figures",
+   "label": "공개 수치",
+   "width": 280
+  },
+  {
+   "id": "apps",
+   "label": "주요 공정·소자",
+   "width": 280
+  },
+  {
+   "id": "tech",
+   "label": "핵심 기술",
+   "width": 300
+  },
+  {
+   "id": "features",
+   "label": "특징·채택",
+   "width": 300
+  },
+  {
+   "id": "page",
+   "label": "보도자료",
+   "width": 100,
+   "url": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "xtera-epi",
+   "sheet_row": null,
+   "name": "Centura Xtera Epi",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "에피택시 (증착-식각 반복)",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Centura",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2025-10-07",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "기존 에피 대비 가스 사용 50% 절감 · 셀 간 균일도 40% 이상 개선",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "2nm 이하 GAA 트랜지스터 소스/드레인 (고종횡비 트렌치 채움)",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "저용적 챔버 · 사전 세정·식각 통합 · 트렌치 입구를 계속 넓히며 쌓는 증착-식각 공정",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "보이드 없는 균일한 소스/드레인. 주요 로직·메모리 업체가 채택 중",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-unveils-next-gen-chipmaking-products-supercharge-ai-performance",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Centura Xtera Epi",
+     "source": "r2025_next",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "prime-epi",
+   "sheet_row": null,
+   "name": "Centura Prime Epi (개선판)",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "선택적 에피택시",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Centura",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-06-25",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "설치 면적 20% 축소",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "DRAM 주변회로 트랜지스터 소스/드레인 (HBM·차세대 DDR)",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "도핑된 SiGe·SiP 선택 성장 · 변형(strain) 공학 + 정밀 도핑 제어",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "로직용 에피 기술을 DRAM으로 옮긴 장비. 구동 전류·효율 향상. 원조 Prime Epi는 10여 년 전 채널 SiGe 에피를 처음 도입",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-introduces-new-systems-accelerate-dram-and-advanced-packaging-ai",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Centura Prime Epi (개선판)",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "trillium-ald",
+   "sheet_row": null,
+   "name": "Endura Trillium ALD",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "금속 ALD (IMS 통합 장비)",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Endura",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-04-08",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재 (옹스트롬 단위 두께 제어)",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "GAA 메탈 게이트 스택 (트랜지스터별 문턱전압 조정)",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "여러 금속 증착 단계를 고진공 한 플랫폼에 통합 · 더 얇은 일함수 금속 · 부피 없는(volume-less) 다이폴 소재",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "FinFET 여러 세대에서 메탈 게이트 증착 표준이던 장비를 GAA용으로 개량. 2nm 이하 GAA 공정에서 주요 로직 업체가 채택 중",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-introduces-deposition-systems-angstrom-era-logic-chips-2026-04-08",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Endura Trillium ALD",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "selective-nitride",
+   "sheet_row": null,
+   "name": "Producer Precision Selective Nitride PECVD",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "선택적 PECVD (바텀업)",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-04-08",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "GAA 얕은 트렌치 소자분리(STI) 보호",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "업계 첫 선택적 바텀업 증착 · 트렌치 산화막 위에만 치밀한 질화막(SiN) · 저온 공정",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "후속 공정에서 STI가 깎이지 않게 해 기생 용량·누설을 줄임. 2nm 이하 GAA 공정에서 주요 로직 업체가 채택 중",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-introduces-deposition-systems-angstrom-era-logic-chips-2026-04-08",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer Precision Selective Nitride PECVD",
+     "source": "r2026_apr",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "spectral-sin",
+   "sheet_row": null,
+   "name": "Centris Spectral SiN ALD",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 ALD (질화막)",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Centris · Spectral",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-06-15",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "GAA 콘택 라이너 · DRAM·로직의 표면 보호·절연·패터닝 스페이서용 SiN",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "고밀도 마이크로파 플라즈마(이온 손상 없이 고밀도) · 저온 증착 · 쿼드 리액터 Spectral 플랫폼",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "깊고 좁은 3D 구조 안까지 균일한 SiN. 주요 업체가 채택 중",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-unveils-deposition-and-selective-etch-systems-advance-3d-chip",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Centris Spectral SiN ALD",
+     "source": "r2026_jun15",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "gaa-oxide-ims",
+   "sheet_row": null,
+   "name": "GAA 게이트 산화막 IMS (제품명 미공개)",
+   "company": "Applied Materials",
+   "group": "트랜지스터",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ALD + 열·플라즈마 처리 (IMS 통합 장비)",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-04-21",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "등가 산화막 두께(EOT) 1.5 Å 감소 · 같은 성능에서 게이트 누설 10배 이상 감소",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "GAA 트랜지스터 게이트 산화막 스택",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "ALD·열처리·플라즈마 처리·계측을 고진공 한 장비에 통합",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "같은 발표에서 GAA 메탈 게이트용 IMS도 공개 (금속 ALD를 고진공에서 수행)",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-technologies-enable-2d-scaling-with-euv-and-3d-gate-all-around",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "GAA 게이트 산화막 IMS (제품명 미공개)",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "spectral-mo",
+   "sheet_row": null,
+   "name": "Centris Spectral Molybdenum ALD",
+   "company": "Applied Materials",
+   "group": "콘택·배선",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "선택적 금속 ALD (몰리브덴)",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Centris · Spectral",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-02-10",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "콘택 저항 최대 15% 감소 (현 업계 기준 Endura Volta Selective Tungsten 대비)",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "트랜지스터-배선 콘택 금속을 텅스텐에서 몰리브덴으로 전환 (2nm 이하)",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "단결정 몰리브덴 선택 증착 · 쿼드 리액터 · 플라즈마·열 공정 · 시간·공간 분할 ALD 겸용",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "새 ALD 제품군 Spectral로 발표. 2nm 이하 GAA 공정에서 주요 로직 업체가 채택 중",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.theglobeandmail.com/investing/markets/stocks/AMAT/pressreleases/36491210/applied-materials-unveils-transistor-and-wiring-innovations-for-faster-ai-chips/",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Centris Spectral Molybdenum ALD",
+     "source": "r2026_feb",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "cubs-ims",
+   "sheet_row": null,
+   "name": "Endura Copper Barrier Seed IMS",
+   "company": "Applied Materials",
+   "group": "콘택·배선",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ALD·PVD·CVD 통합 (IMS)",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Endura",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2021-06-16",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "비아 접촉 저항 최대 50% 감소",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "3nm 이하 로직 구리 배선 배리어·시드",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "ALD·PVD·CVD·구리 리플로·표면 처리·계면 공학·계측 7개 공정을 고진공 한 장비에 통합 · 선택적 ALD로 비아 계면의 고저항 배리어 제거",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "구리 리플로로 좁은 배선도 보이드 없이 채움. 발표 당시 주요 파운드리·로직 업체가 사용 중",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://finance.yahoo.com/news/applied-materials-breakthrough-chip-wiring-113000579.html",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Endura Copper Barrier Seed IMS",
+     "source": "r2021_cubs",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "volta-ru",
+   "sheet_row": null,
+   "name": "Endura CuBS IMS with Volta Ruthenium CVD",
+   "company": "Applied Materials",
+   "group": "콘택·배선",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CVD·PVD 등 통합 (IMS)",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Endura",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2024-07-08",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "라이너 두께 33% 줄여 2nm · 배선 저항 최대 25% 감소",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "2nm 이하 구리 배선 라이너",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "루테늄·코발트(RuCo) 이원 금속 라이너(업계 첫 조합) · 6개 기술을 고진공 한 장비에 통합",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "모든 주요 로직 업체가 채택 중, 3nm 공정부터 출하",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-unveils-chip-wiring-innovations-more-energy-efficient-computing",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Endura CuBS IMS with Volta Ruthenium CVD",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "black-diamond",
+   "sheet_row": null,
+   "name": "Producer Black Diamond PECVD (개선판)",
+   "company": "Applied Materials",
+   "group": "콘택·배선",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "PECVD (저유전율 막)",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2024-07-08",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재 (최저 k값을 더 낮추고 기계 강도 향상)",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "구리 배선 층간 저유전(low-k) 절연막 · 2nm 이하 · 3D 적층",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "낮은 k값과 높은 기계 강도를 함께 확보한 Black Diamond 신소재",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "수십 년간 low-k 막을 이끈 제품군의 최신판. 모든 주요 로직·DRAM 업체가 채택 중",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-unveils-chip-wiring-innovations-more-energy-efficient-computing",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer Black Diamond PECVD (개선판)",
+     "source": "r2024_wiring",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "pioneer",
+   "sheet_row": null,
+   "name": "Producer XP Pioneer CVD",
+   "company": "Applied Materials",
+   "group": "패터닝 막",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CVD (탄소 패터닝 막)",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer XP",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2024-02-26",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "EUV·High-NA EUV 패턴 전사막 (포토레지스트 공정 전 증착) · DRAM 패터닝",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "식각에 강한 고밀도 탄소 조성 · 더 얇은 막 스택 · Sculpta·Sym3 Y Magnum과 공동 최적화",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "주요 메모리 업체가 DRAM 패터닝에 채택",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-expands-patterning-solutions-portfolio-for-angstrom-era-chipmaking",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer XP Pioneer CVD",
+     "source": "r2024_pattern",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "stensar",
+   "sheet_row": null,
+   "name": "Stensar Advanced Patterning Film",
+   "company": "Applied Materials",
+   "group": "패터닝 막",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CVD (EUV 하드마스크)",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Precision CVD",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-04-21",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "EUV 전사층·하드마스크 (기존 스핀온 방식 대체)",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "CVD로 하드마스크 두께·식각 내성을 공정별로 조정",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "웨이퍼 전체에서 균일한 EUV 패턴 전사",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-technologies-enable-2d-scaling-with-euv-and-3d-gate-all-around",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Stensar Advanced Patterning Film",
+     "source": "r2022_gaa",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "insepra",
+   "sheet_row": null,
+   "name": "Insepra SiCN",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "유전막 증착 (방식 미기재)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-07-10",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재 (업계 최고 유전체 접합 강도)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "하이브리드 본딩 접합면 유전막",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "새 실리콘 탄소 질화막(SiCN) 소재 · 구리 확산 방지",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "접합이 단단해져 같은 면적에 더 많은 구리-구리 연결 가능",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://finance.yahoo.com/news/applied-materials-advances-heterogeneous-chip-113000121.html",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Insepra SiCN",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "invia2",
+   "sheet_row": null,
+   "name": "Producer InVia 2 CVD",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CVD (유전체 라이너)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-07-10",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재 (ALD보다 높은 처리량)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "TSV 절연 라이너 (로직·메모리)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "독자 인시투 증착으로 고종횡비 TSV에서도 균일한 막",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "웨이퍼당 TSV 비용을 낮춤. Ventura 2 PVD와 공동 최적화",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://finance.yahoo.com/news/applied-materials-advances-heterogeneous-chip-113000121.html",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer InVia 2 CVD",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "ventura2",
+   "sheet_row": null,
+   "name": "Endura Ventura 2 PVD",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "PVD (금속)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Endura",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-07-10",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "종횡비 최대 20:1 TSV",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "TSV 금속 배선 증착",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "금속 TSV 증착 제어 강화로 완전 채움 · InVia 2 CVD와 공동 최적화",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "모든 첨단 파운드리·로직 업체와 주요 DRAM 업체 전부가 도입 중",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://finance.yahoo.com/news/applied-materials-advances-heterogeneous-chip-113000121.html",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Endura Ventura 2 PVD",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "avila",
+   "sheet_row": null,
+   "name": "Producer Avila PECVD (2023년판)",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "초저온 PECVD",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-07-10",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "임시 접착제가 상하는 약 200°C보다 낮은 온도에서 증착",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "TSV 리빌(reveal) 후 절연막",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "초저온·고속 고품질 유전막",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "임시 캐리어에 붙인 얇은 웨이퍼의 수율 손실을 막음",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://finance.yahoo.com/news/applied-materials-advances-heterogeneous-chip-113000121.html",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer Avila PECVD (2023년판)",
+     "source": "r2023_hi",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "avila2",
+   "sheet_row": null,
+   "name": "Producer Avila 2 PECVD",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "PECVD (응력 균형 유전막)",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Producer",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-06-25",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "12단·16단 및 그 이상 HBM 적층 지원 (HBM 다이는 표준 웨이퍼 두께의 약 1/25)",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "HBM TSV 주변 유전막 · 메모리·로직 3D 집적",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "응력 균형 유전막으로 초박형 DRAM 다이의 휨·변형 억제",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "적층이 늘수록 커지는 본딩 실패·수율 손실을 줄임",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-introduces-new-systems-accelerate-dram-and-advanced-packaging-ai",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer Avila 2 PECVD",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "nokota-vmax2",
+   "sheet_row": null,
+   "name": "Nokota VMax 2 ECD",
+   "company": "Applied Materials",
+   "group": "첨단 패키징·HBM",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "전기도금 (ECD, 구리)",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "platform": {
+     "value": "Nokota",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-06-25",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "apps": {
+     "value": "TSV 채움 · 마이크로범프 등 미세 피치 연결",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "tech": {
+     "value": "APT(Adaptive Pattern Tuning): 전기장을 동적으로 조정해 레이아웃에 따른 편차 보정",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "features": {
+     "value": "웨이퍼 전체에서 TSV·범프 높이를 고르게 맞춰 적층 수율 향상",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-introduces-new-systems-accelerate-dram-and-advanced-packaging-ai",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료 기재"
+    },
+    "name": {
+     "value": "Nokota VMax 2 ECD",
+     "source": "r2026_jun25",
+     "note": "AMAT 보도자료의 제품명"
+    }
+   },
+   "review_note": "AMAT 보도자료 기준. 수치는 AMAT가 발표한 값이며 실제 팹 조건에 따라 다릅니다."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "method",
+    "launched",
+    "figures",
+    "apps",
+    "tech"
+   ]
+  },
+  {
+   "id": "detail",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "method",
+    "platform",
+    "launched",
+    "figures",
+    "apps",
+    "tech",
+    "features",
+    "page"
+   ]
+  }
+ ],
+ "sources": {
+  "r2021_cubs": {
+   "title": "AMAT 보도자료 2021-06-16 · 3nm 배선 (Endura Copper Barrier Seed IMS)",
+   "url": "https://finance.yahoo.com/news/applied-materials-breakthrough-chip-wiring-113000579.html",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2022_gaa": {
+   "title": "AMAT 보도자료 2022-04-21 · EUV 2D 스케일링과 GAA",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-technologies-enable-2d-scaling-with-euv-and-3d-gate-all-around",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2023_hi": {
+   "title": "AMAT 보도자료 2023-07-10 · 하이브리드 본딩·TSV",
+   "url": "https://finance.yahoo.com/news/applied-materials-advances-heterogeneous-chip-113000121.html",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2024_pattern": {
+   "title": "AMAT 보도자료 2024-02-26 · 옹스트롬 시대 패터닝",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-expands-patterning-solutions-portfolio-for-angstrom-era-chipmaking",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2024_wiring": {
+   "title": "AMAT 보도자료 2024-07-08 · 배선 (Black Diamond · Volta Ru)",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-unveils-chip-wiring-innovations-more-energy-efficient-computing",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2025_next": {
+   "title": "AMAT 보도자료 2025-10-07 · Kinex · Xtera · PROVision 10",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-unveils-next-gen-chipmaking-products-supercharge-ai-performance",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2026_feb": {
+   "title": "AMAT 보도자료 2026-02-10 · GAA 트랜지스터·배선 (Spectral Mo ALD)",
+   "url": "https://www.theglobeandmail.com/investing/markets/stocks/AMAT/pressreleases/36491210/applied-materials-unveils-transistor-and-wiring-innovations-for-faster-ai-chips/",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2026_apr": {
+   "title": "AMAT 보도자료 2026-04-08 · 옹스트롬 로직 증착 (Selective Nitride · Trillium)",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-introduces-deposition-systems-angstrom-era-logic-chips-2026-04-08",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2026_jun15": {
+   "title": "AMAT 보도자료 2026-06-15 · 3D 구조 증착·선택 식각 (Spectral SiN ALD)",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-unveils-deposition-and-selective-etch-systems-advance-3d-chip",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  },
+  "r2026_jun25": {
+   "title": "AMAT 보도자료 2026-06-25 · DRAM·첨단 패키징",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-introduces-new-systems-accelerate-dram-and-advanced-packaging-ai",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (GlobeNewswire 배포본을 그대로 실은 게재본으로 확인. AMAT 사이트는 자동 접근 차단)."
+  }
+ },
+ "company_order": [
+  "Applied Materials"
+ ],
+ "group_label": "용도",
+ "item_label": "제품",
+ "search_placeholder": "제품명·공정·기술 검색",
+ "caption": "AMAT 보도자료 기준 · 발표는 해당 보도자료 날짜(제품군 첫 출시일이 아닐 수 있음)",
+ "evidence_summary": "보도자료 10건(2021~2026) · 18개 제품 · 모든 값 원문 확인",
+ "scroll_hint": "셀에 마우스를 올리면 근거 · 맨 오른쪽 상세",
+ "note": "2021~2026년 AMAT 보도자료에서 새로 발표되거나 개량된 증착 장비(CVD·PVD·ALD·에피택시·전기도금)만 담았습니다. AMAT도 Lam처럼 처리량 같은 장비 사양을 공개하지 않아, 방식·용도·핵심 기술·공개 수치를 보도자료에서 옮겼습니다. \"공개 수치\"는 AMAT가 발표한 대표값이라 비교 기준이 제각각이니 제품끼리 단순 비교하지 마세요. \"발표\"는 그 보도자료 날짜라, Prime Epi·Trillium·Black Diamond·Avila처럼 오래된 제품군은 개량판 발표일입니다. 2019년 MRAM·PCRAM용 Endura Clover·Impulse PVD는 원문 보도자료를 읽을 수 없어 넣지 않았습니다. 가격·출하 대수는 공개되지 않아 넣지 않았습니다."
+}

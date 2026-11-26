@@ -172,8 +172,9 @@ Purchases of property, plant and equipment (5,649) (9,852)
         tabs={t['id']:t for t in industry['tabs']}
         self.assertEqual(tabs['mocvd']['parent_tab'],'equipment_frontend')
         # equipment_frontend includes the ASML system spec table (asml_litho_specs, 2026-11-25)
-        # and the Lam etch product table (lam_etch_specs, 2026-11-26).
-        counts={'equipment_summary':39,'equipment_frontend':23,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
+        # and the Lam etch product table (lam_etch_specs, 2026-11-26)
+        # and the AMAT deposition product table (amat_dep_specs, 2026-11-27).
+        counts={'equipment_summary':39,'equipment_frontend':24,'equipment_packaging':11,'equipment_inspection':6,'equipment_testing':6}
         korean=equipment.load(ROOT/'manual/korea-equipment/companies.json',{})['companies']
         suppliers=equipment.load(ROOT/'manual/semicon-supplychain/companies.json',{})['companies']
         for tab,count in counts.items():
