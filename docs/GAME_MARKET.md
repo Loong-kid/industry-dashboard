@@ -78,6 +78,12 @@ node scripts/test_games.cjs
 - **상점 상세:** `store/api/appdetails?cc=us` — 출시일, 할인 전 미국 정가(USD가 아니면 비움), 무료, 장르, 협동/멀티 분류. 30일마다 갱신.
 - **추적 대상:** 출시 2년 이내 게임(순위에 든 게임 + 선정 시드 20개). 상위 100 밖으로 나가도 `ISteamUserStats/GetNumberOfCurrentPlayers`로 매일 같은 시각 현재 접속자를 쌓는다(최근 400일). 2026-11-27 이전 일별 값은 없다.
 - **출시 후 흐름:** 2023년 이후 출시작의 SteamCharts 완료 월 평균·최고 동접. 달이 바뀔 때만 다시 받는다. SteamCharts에 없는 최신작(404)은 `untracked`로 두고 7일마다 재시도한다. 비율은 최고 달 월평균 대비이며 출시 달은 부분 월이다.
-- **쓰지 않는 자료:** SteamSpy(2025년 이후 출시작의 보유자 수·태그가 비어 있음), SteamDB(자동 수집 금지), 리뷰 수 API(이 환경에서 응답 없음, 판매 추정 배수도 20~60배로 불확실).
+- **판매 대리 지표 (2026-11-27 추가):** 동접은 싱글·짧은 플레이 게임에서 판매보다 훨씬 빨리 식으므로 판매 쪽을 따로 본다.
+  - 리뷰 총수·긍정 %: `IStoreBrowseService/GetItems`(`include_reviews`, `summary_filtered` = 전 언어·주제 이탈 제외), 출시된 모든 추적 게임을 50개씩 묶어 매일 조회하고 `reviews_daily`로 쌓는다. 화면의 하루 리뷰 증가 = 최근 7일 평균.
+  - 월별 리뷰 이력: `store/appreviewhistogram/<appid>`(상점 리뷰 그래프 원본). 출시 2년 이내는 주 단위, 그 밖은 월 단위로 오며 주 시작일이 속한 달에 합산(`review_months`). 2023년 이후 출시작만 주 1회 갱신. `review_lifecycle`은 이번 달을 뺀다. 합계는 GetItems 총수와 약간 다르다(주제 이탈 리뷰 포함 여부).
+  - 주간 최고 판매: `IStoreTopSellersService/GetWeeklyTopSellers`(`input_json`, 미국, 100위, 앱만). 매출 기준 순위·지난주 순위·연속 주만 있고 금액은 없다. 주마다 누적.
+  - 추정 판매 = 리뷰 × 20~60(경험칙). 화면에서 범위로만 표시하고 합산·순위 매기기에 쓰지 않는다. 무료 게임은 판매가 아니다.
+- **출시 전 대리 지표:** 찜 많은 출시 예정작 50개(`search/results?filter=popularwishlist&json=1`, 앱 번호는 캡슐 이미지 주소에서 읽음, 순서만 공개), 팔로워 = 커뮤니티 허브 회원 수(`steamcommunity.com/games/<appid>/memberslistxml/?xml=1`의 memberCount, SteamDB 팔로워와 같은 출처, 출시 180일 이내 게임도 함께), 데모 = 본편 appdetails `demos`의 앱 번호로 현재 접속자. 추정 찜 = 팔로워 × 7~12(경험칙).
+- **쓰지 않는 자료:** SteamSpy(2025년 이후 출시작의 보유자 수·태그가 비어 있음), SteamDB(자동 수집 금지), `store/appreviews/<appid>?json=1`(이 환경에서 상점 첫 화면으로 넘어감 — 리뷰 총수는 GetItems로 대체).
 - **해석 범위:** 동시접속은 판매량·매출·고유 이용자 수가 아니다. 선정 시드는 화제작 위주라 생존 편향이 있다. 상위 100 밖은 0이 아닌 미관측이다.
 

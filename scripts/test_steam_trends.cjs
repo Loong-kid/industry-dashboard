@@ -18,6 +18,19 @@ const fs = require('node:fs');
   assert.equal(fade.after[3],25);
   assert.equal(fade.after[1],null); // 관측 없는 달은 0이 아니라 비움
   assert.equal(m.median([3,null,1,2]),2);
+  assert.deepEqual(m.salesRange(1000),[20000,60000]);
+  assert.equal(m.salesRange(null),null);
+  assert.equal(m.perDay([['2026-11-20',100]]),null); // 하루치만 있으면 증가를 만들지 않음
+  assert.equal(m.perDay([['2026-11-10',0],['2026-11-20',100],['2026-11-27',170]]),10);
+  assert.equal(m.perDay([['2026-11-26',100],['2026-11-27',130]]),30);
+  assert.equal(m.frontShare([[0,'a',60],[1,'b',20],[2,'c',10],[3,'d',10]]),90);
+  assert.equal(m.frontShare([[0,'a',60],[1,'b',20]]),null); // 3개월이 지나지 않으면 비움
+  const sd={...data,topsellers:[{week:'2026-11-17',ranks:[[1,1,null,1],[2,2,3,40],[3,3,1,9]]}]};
+  const sellers=m.sellerRows(sd,365);
+  assert.deepEqual(sellers.map(r=>[r.id,r.ccuRank]),[[1,5]]); // 옛 게임·게임 아닌 앱 제외
+  assert.equal(m.sellerRows(sd).length,2);
+  const wd={apps:{7:{name:'Soon',followers_daily:[['2026-11-20',1000,3],['2026-11-27',1700,2]],demo:8,demo_daily:[['2026-11-27',55]]}},wishlist:{date:'2026-11-27',ranks:[[7,2]]}};
+  assert.deepEqual(m.wishlistRows(wd).map(r=>[r.id,r.rank,r.followers,r.growth,r.demo]),[[7,2,1700,100,55]]);
   assert.equal(m.median([]),null);
   assert.equal(m.shareOf([],()=>true),null);
   const catalog = JSON.parse(fs.readFileSync('data/catalog.json'));
