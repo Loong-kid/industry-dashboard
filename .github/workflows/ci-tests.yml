@@ -40,4 +40,5 @@ jobs:
           python -m unittest discover -s scripts -p test_asml_litho_specs.py -v
           python -m unittest discover -s scripts -p test_lam_etch_specs.py -v
           python -m unittest discover -s scripts -p test_amat_dep_specs.py -v
+          python -m unittest discover -s scripts -p test_kla_metrology_specs.py -v
           python scripts/run_ci_tests.py

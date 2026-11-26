@@ -1,0 +1,1336 @@
+{
+ "id": "kla_metrology_specs",
+ "name": "KLA 계측 장비 · 제품별 사양",
+ "table_family": "metrology",
+ "official_only": true,
+ "short_name": "KLA 계측 장비",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "KLA 공식 제품 페이지·소개서·보도자료",
+ "source_url": "https://www.kla.com/products/chip-manufacturing/metrology",
+ "updated": "2026-11-27",
+ "fetched": "2026-11-27",
+ "update_note": "KLA 제품 페이지·소개서·보도자료를 확인한 날짜 기준 스냅샷입니다. 새 장비 발표 시 scripts/build_kla_metrology_specs.py를 고칩니다.",
+ "evidence_text": "모든 값은 아래 KLA 공식 제품 페이지, 제품 소개서(PDF), 보도자료에서 확인했습니다. 셀에 마우스를 올리면 그 값이 적힌 자료가 나옵니다. 라인업 칸 괄호 안 날짜는 아래 보도자료의 발표일입니다. KLA가 밝히지 않은 항목은 —로 둡니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "제품",
+   "width": 170
+  },
+  {
+   "id": "measures",
+   "label": "측정 대상",
+   "width": 220
+  },
+  {
+   "id": "method",
+   "label": "측정 원리",
+   "width": 190
+  },
+  {
+   "id": "launched",
+   "label": "최근 공식 발표",
+   "width": 120,
+   "date": true
+  },
+  {
+   "id": "figures",
+   "label": "공개 수치",
+   "width": 280
+  },
+  {
+   "id": "nodes",
+   "label": "대상 소자·노드",
+   "width": 230
+  },
+  {
+   "id": "lineup",
+   "label": "모델 라인업 (발표)",
+   "width": 280
+  },
+  {
+   "id": "tech",
+   "label": "핵심 기술",
+   "width": 300
+  },
+  {
+   "id": "apps",
+   "label": "용도",
+   "width": 240
+  },
+  {
+   "id": "features",
+   "label": "특징",
+   "width": 320
+  },
+  {
+   "id": "page",
+   "label": "공식 페이지",
+   "width": 100,
+   "url": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "archer",
+   "sheet_row": null,
+   "name": "Archer (최신 Archer 800)",
+   "company": "KLA",
+   "group": "오버레이",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "층간 패턴 정렬 오차(오버레이) · 명시야 CD",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "이미징 기반 오버레이",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020-02-24",
+     "source": "r2020_feb",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "Archer 600: 오버레이 오차 3 nm 미만 달성 지원 (2017 발표)",
+     "source": "r2017_feb",
+     "note": "KLA 보도자료 기재"
+    },
+    "nodes": {
+     "value": "Archer 800: 첨단 메모리·로직 (EUV 포함) · 750: 7 nm 이하 로직 · 600: 10 nm 이하",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Archer 800 · 750(2020-02) · 600(2017-02) · 500LCM(2015-02) · 500(2012-09)",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "층별 최적 조건(PCPL 색상·FPL 초점) · 딥러닝·ML 보정(mTIS·mFocus) · rAIM 타깃 · 다중 신호 측정",
+     "source": "b_archer800",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "apps": {
+     "value": "제품 웨이퍼 오버레이 관리 · 인라인 모니터링 · 스캐너 검증 · 패터닝 관리",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "층마다 파장을 바꿔 nm 단위로 맞춤. 고차 스캐너 보정을 위한 샘플링 확대와 인라인용 높은 처리량",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#archer",
+     "source": "p_archer",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Archer (최신 Archer 800)",
+     "source": "p_archer",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "atl",
+   "sheet_row": null,
+   "name": "ATL (ATL100)",
+   "company": "KLA",
+   "group": "오버레이",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "오버레이 (다이 내·미세 피치 타깃 포함)",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "스캐터로메트리 기반 오버레이 (파장 가변 레이저)",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2017-09-11",
+     "source": "r2017_sep",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "파장 가변 레이저 해상도 1 nm",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "7 nm 이하 개발·양산",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "ATL100 (2017-09 발표)",
+     "source": "r2017_sep",
+     "note": "KLA 보도자료 기재"
+    },
+    "tech": {
+     "value": "Accurate Tunable Laser · 실시간 Homing으로 공정 편차 속 정확도 유지",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "제품 웨이퍼 오버레이 관리 · 인라인 모니터링 · 스캐너 검증 · 다이 내 측정",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "층·소자·노드·패터닝 기법마다 다른 스캐터로메트리 타깃 지원",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#atl",
+     "source": "p_atl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "ATL (ATL100)",
+     "source": "p_atl",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "archer-power",
+   "sheet_row": null,
+   "name": "Archer Power",
+   "company": "KLA",
+   "group": "오버레이",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "오버레이 · CD",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "오버레이·CD 계측",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "웨이퍼 150·200·300 mm 및 150/200·200/300 mm 겸용 구성",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "전력 반도체 · 로직·메모리 · LED · 포토닉스 · RF · MEMS 등 특수 소자",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Archer Power · Archer Power XT",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "양산 검증된 Archer 오버레이 플랫폼 기반 · 낮은 총 측정 불확도(TMU)",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "R&D·양산 오버레이·CD 모니터링 · 스캐너 검증",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "Si·SiC·GaN·GaAs·유리·사파이어 등 기판과 두께가 다른 웨이퍼를 한 라인에서 처리",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#archer-power",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Archer Power",
+     "source": "p_archer_power",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "irarcher",
+   "sheet_row": null,
+   "name": "irArcher 007",
+   "company": "KLA",
+   "group": "오버레이",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "웨이퍼-웨이퍼(W2W) 본딩 정렬 오버레이",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "단파장 적외선(SWIR) 투과 오버레이",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "3D 이종 집적 · W2W 하이브리드 본딩",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "irArcher 007",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "SWIR 조명으로 기판을 투과해 타깃 측정 · 고속 초점 시스템 · 공장 자동화·APC 연동",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "W2W 오버레이 관리 · 인라인 모니터링 · 패터닝 관리",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "연삭 전 본딩 웨이퍼와 휨이 큰 본딩 웨이퍼를 측정, 여러 본더 지원",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/packaging-manufacturing/wafer-inspection-and-metrology-for-advanced-packaging#irarcher",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "irArcher 007",
+     "source": "p_irarcher",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "spectrashape",
+   "sheet_row": null,
+   "name": "SpectraShape (최신 12k)",
+   "company": "KLA",
+   "group": "CD·3D 형상",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "CD · 3D 형상 (HKMG 리세스·측벽 각도·레지스트·하드마스크 높이·피치 워킹·소자 위 오버레이)",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "광학 CD(OCD)·형상 계측",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020-02-24",
+     "source": "r2020_feb",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "나노시트(GAA) · finFET · DRAM · 3D NAND",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "SpectraShape 12k · 11k(2020-02) · 10K(2017-02) · 9010 · 9000(2013-02)",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "개선된 스테이지·새 측정 모듈 · AcuShape 모델링 · TurboShape ML 모델링 · ICON 레시피 자동 갱신",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "인라인 공정 모니터 · 패터닝 관리 · 공정 윈도 확장·관리 · APC",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "10K는 다중 입사각·편광 엘립소미터와 고휘도 반사계를 썼고 파운드리 finFET·3D NAND 주요 메모리 업체에 채택 (2017 발표)",
+     "source": "r2017_feb",
+     "note": "KLA 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#spectrashape",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "SpectraShape (최신 12k)",
+     "source": "p_spectrashape",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "axion",
+   "sheet_row": null,
+   "name": "Axion T2000",
+   "company": "KLA",
+   "group": "CD·3D 형상",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "고종횡비 구조 3D 형상 (휨·보잉·CD 프로파일·식각 깊이·타원도·기울기)",
+     "source": "p_axion",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "X선 CD-SAXS (투과 소각 산란)",
+     "source": "r2022_axion",
+     "note": "KLA 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-12-06",
+     "source": "r2022_axion",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "종횡비 100:1 이상 구조를 위에서 바닥까지 3D로 측정",
+     "source": "r2022_axion",
+     "note": "KLA 보도자료 기재"
+    },
+    "nodes": {
+     "value": "3D NAND · DRAM (300 mm)",
+     "source": "p_axion",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Axion T2000 (2022-12 발표)",
+     "source": "r2022_axion",
+     "note": "KLA 보도자료 기재"
+    },
+    "tech": {
+     "value": "고선속 X선 원 · 회절 차수 분리 최대 · 고해상 검출기 · 넓은 입사각 스테이지 · AcuShape 모델링",
+     "source": "b_axion",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "apps": {
+     "value": "공정 특성화·최적화 · 인라인 모니터 · 식각 장비 모니터 · 정비 후 식각 장비 검증",
+     "source": "p_axion",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "FIB-SEM·TEM·단면 SEM 같은 파괴 분석을 인라인 비파괴 측정으로 대체",
+     "source": "p_axion",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#axion",
+     "source": "p_axion",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Axion T2000",
+     "source": "p_axion",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "spectrafilm",
+   "sheet_row": null,
+   "name": "SpectraFilm (최신 F10·F20)",
+   "company": "KLA",
+   "group": "박막",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "막 두께 · 굴절률 · 응력 · 밴드갭",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "광대역 분광 엘립소메트리(BBSE, 파장 확장)",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2017-09-11",
+     "source": "r2017_sep",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "F10: 옹스트롬 이하 정밀도",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "F10: 2 nm 이하 GAA·최신 DRAM · F20: 수백 쌍 적층 3D NAND · F1: 7 nm 이하 · LD10: 16 nm 이하",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "SpectraFilm F10 · F20 · F1(2017-09) · LD10(2015-02)",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고휘도 광원 · 파장 범위를 넓힌 BBSE",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "밴드갭 모니터링 · 인라인 공정 모니터 · 장비 모니터 · 장비 간 매칭",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "F10은 초격자 HKMG 층을 제어해 문턱전압 분포를 좁힘, F20은 3D NAND 얇은 막·두꺼운 막 모두",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#spectrafilm",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "SpectraFilm (최신 F10·F20)",
+     "source": "p_spectrafilm",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "aleris",
+   "sheet_row": null,
+   "name": "Aleris (최신 9350)",
+   "company": "KLA",
+   "group": "박막",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "막 두께 · 굴절률 · 응력 · 조성 (범용 막)",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "광대역 분광 엘립소메트리(BBSE)",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2010-08-04",
+     "source": "r2010_aleris",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "9350: 첨단 로직·DRAM·3D NAND · 8510: 28 nm 이하 HKMG · 8350: 32 nm 이하 핵심 막 · 8330: 32 nm 이하 비핵심 막",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Aleris 9350 · 8510 · 8350(2008-01) · 8330(2010-08) · 8500(2007-12, 첫 모델)",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고휘도 광원·새 광학계 · 레시피 이식·플랫폼 간 매칭",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "공정 엔지니어링 분석 · 인라인 공정 모니터 · 장비 모니터 · 장비 간 매칭",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "Aleris 8500은 양산용으로 조성과 다층 막 두께를 함께 재는 업계 첫 장비였음 (2007 발표)",
+     "source": "r2007_aleris",
+     "note": "KLA 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#aleris",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Aleris (최신 9350)",
+     "source": "p_aleris",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "pwg",
+   "sheet_row": null,
+   "name": "PWG (최신 PWG5)",
+   "company": "KLA",
+   "group": "웨이퍼 형상",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "패턴 웨이퍼 휨·보우 · 면내 변위 · 응력 곡률 · 두께·평탄도 · 앞뒷면 나노토포그래피 · 가장자리 롤오프",
+     "source": "b_pwg5",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "method": {
+     "value": "수직 웨이퍼 고정 · 앞뒷면 동시 측정",
+     "source": "b_pwg5",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "launched": {
+     "value": "2020-12-10",
+     "source": "r2020_dec",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "휨 측정 범위 최대 1000 µm · 공간 해상도 40 µm",
+     "source": "b_pwg5",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "nodes": {
+     "value": "96단 이상 3D NAND · 1X nm 이하 로직·DRAM",
+     "source": "b_pwg5",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "lineup": {
+     "value": "PWG5 · PWG5 XT(본딩 웨이퍼) · PWG3 · WaferSight PWG2(2017-02) · WaferSight PWG(2014-08)",
+     "source": "p_pwg",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "5D Analyzer로 형상 기인 오버레이 보정값을 스캐너에 전달 · WaferSight 플랫폼 기반",
+     "source": "b_pwg5",
+     "note": "KLA 제품 소개서 기재"
+    },
+    "apps": {
+     "value": "공정 모니터링 · 인라인 모니터링 · 노광 오버레이 관리",
+     "source": "p_pwg",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "첫 WaferSight PWG는 웨이퍼당 350만 점 측정 (2014 발표)",
+     "source": "r2014_pwg",
+     "note": "KLA 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#pwg",
+     "source": "p_pwg",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "PWG (최신 PWG5)",
+     "source": "p_pwg",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "therma-probe",
+   "sheet_row": null,
+   "name": "Therma-Probe",
+   "company": "KLA",
+   "group": "이온주입·면저항",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "이온주입 선량·프로파일 · 주입·어닐 균일도 · 주입 끝단(EOR) 손상",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "이온주입·어닐 계측",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "680XP: 2X/1X nm 실리콘 소자 · 화합물 반도체",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Therma-Probe 680XP · 780",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고해상 마이크로 균일도 맵으로 주입·어닐 공정 지문 확인",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "공정 엔지니어링 분석 · 인라인 공정 모니터 · 장비 모니터 · 장비 간 매칭",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "2007년 KLA-Tencor가 인수한 Therma-Wave의 제품군",
+     "source": "r2007_therma",
+     "note": "KLA 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#therma-probe",
+     "source": "p_therma",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Therma-Probe",
+     "source": "p_therma",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "microrsp",
+   "sheet_row": null,
+   "name": "CAPRES microRSP",
+   "company": "KLA",
+   "group": "이온주입·면저항",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "면저항 (홀 이동도·캐리어 밀도는 microHALL 구성)",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "마이크로 4탐침 접촉 측정",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "캔틸레버 폭 최소 500 nm 미세 전극 배열",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "300 mm 블랭킷·제품 웨이퍼 스크라이브 라인 (200 mm 제품도 있음)",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "CAPRES A301 microRSP · A301 microHALL · M300 · M201",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "기존 거시 4탐침법을 미세 전극으로 축소",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "제품 웨이퍼 면저항 관리 · 증착·CMP·식각 인라인 모니터 · 장비 간 매칭",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "300 mm 제품 웨이퍼 스크라이브 라인 크기에서 작동하는 첫 비파괴 저항 계측 장비",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#capres-microrsp",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "CAPRES microRSP",
+     "source": "p_microrsp",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "omnimap",
+   "sheet_row": null,
+   "name": "OmniMap RS-200P",
+   "company": "KLA",
+   "group": "이온주입·면저항",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "면저항 맵",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "저항률 매핑 (업계 표준 방식)",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "칩 생산 · 첨단 패키징",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "OmniMap RS-200P",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고급 자동화 · 가장자리 측정 성능 개선",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "공정 모니터 · 장비 모니터",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "첨단 패키징 공정에도 사용",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#omnimap-rs-200p",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "OmniMap RS-200P",
+     "source": "p_omnimap",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "ciptech",
+   "sheet_row": null,
+   "name": "CAPRES CIPTech",
+   "company": "KLA",
+   "group": "자성 (MRAM)",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "MTJ 자기저항(MR) · 터널 저항(RA)",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "면내 전류 터널링(CIPTech) 다점 탐침",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "탐침 전극 12개 · 수직 자석 600 mT(A301 ROW) · 수평 자석 150 mT(A201)",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "MRAM·STT-RAM · 자기 기록 헤드 · 자기 센서",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "CAPRES A301 CIPTech · M300 · M201 · A301 ROW · A201 Horizontal",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "IBM에서 라이선스한 CIPTech · CAPRES 나노 MEMS 탐침",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "MRAM 전기 특성 직접 측정 · 공정 관리 · 장비 간 매칭",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "블랭킷 MTJ 스택을 비파괴로 300 mm 전체 웨이퍼 또는 조각 시편에서 측정",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#capres-ciptech",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "CAPRES CIPTech",
+     "source": "p_ciptech",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "pkmram",
+   "sheet_row": null,
+   "name": "MicroSense PKMRAM",
+   "company": "KLA",
+   "group": "자성 (MRAM)",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "자성 다층막 특성 (자유층·고정층)",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "극성 자기광학 커 효과(polar MOKE), 비접촉",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "웨이퍼 최대 300 mm 전체 맵",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "수직 자화 MRAM",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "MicroSense PKMRAM (수동·자동 투입)",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "독자 직접 자기장 제어 · 높은 자기장과 저자기장 분해능을 한 장비에",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "MRAM 자성막 공정 개발·특성화·최적화",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "R&D와 양산 모두에 맞춘 수동·완전 자동 구성",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#pkmram",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "MicroSense PKMRAM",
+     "source": "p_pkmram",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "kerrmapper",
+   "sheet_row": null,
+   "name": "MicroSense KerrMapper",
+   "company": "KLA",
+   "group": "자성 (MRAM)",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "자성 다층막 특성",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "종방향 자기광학 커 효과(longitudinal MOKE), 비접촉",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "데이터 저장 · MRAM · 자기 센서",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "MicroSense KerrMapper S300 · V300",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "독자 직접 자기장 제어 · 전체 웨이퍼 자성 특성 맵",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "자성막 공정 개발·특성화 · 연·경자성 다층막 특성 분석",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "수동·완전 자동 구성",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#kerrmapper",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "MicroSense KerrMapper",
+     "source": "p_kerr",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  },
+  {
+   "id": "circl",
+   "sheet_row": null,
+   "name": "CIRCL (최신 CIRCL9)",
+   "company": "KLA",
+   "group": "복합 (검사·계측·리뷰)",
+   "original": {},
+   "reviews": {
+    "measures": {
+     "value": "앞면·가장자리·뒷면 결함 · 가장자리 프로파일 계측 · 광학 리뷰",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "method": {
+     "value": "4모듈 클러스터 (검사·계측·리뷰 병렬)",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2012-04-23",
+     "source": "r2012_circl",
+     "note": "KLA 보도자료 기재"
+    },
+    "figures": {
+     "value": "모듈 4개 병렬 데이터 수집",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "nodes": {
+     "value": "첨단 로직·메모리 (패키징용 CIRCL-AP 별도)",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "CIRCL9 · CIRCL(2012-04) · CIRCL-AP · 모듈: 8 시리즈·CV350·BDR300·Micro-SR",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "DirectedSampling: 한 측정 결과로 다른 측정을 자동 촉발",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "공정 모니터 · 출하 품질 검사(OQC) · 장비 모니터 · 뒷면·가장자리 수율 모니터",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "features": {
+     "value": "팹 공간 절약·웨이퍼 대기 시간 단축, 모듈 단위 업그레이드 가능",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/metrology#circl",
+     "source": "p_circl",
+     "note": "KLA 공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "CIRCL (최신 CIRCL9)",
+     "source": "p_circl",
+     "note": "KLA 공식 제품명"
+    }
+   },
+   "review_note": "KLA 공식 제품 페이지·소개서·보도자료 기준. 수치는 KLA가 밝힌 값이며 실제 팹 조건에 따라 다릅니다."
+  }
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "measures",
+    "method",
+    "launched",
+    "figures",
+    "nodes"
+   ]
+  },
+  {
+   "id": "detail",
+   "label": "전체 사양",
+   "keys": [
+    "name",
+    "measures",
+    "method",
+    "launched",
+    "figures",
+    "nodes",
+    "lineup",
+    "tech",
+    "apps",
+    "features",
+    "page"
+   ]
+  }
+ ],
+ "sources": {
+  "p_archer": {
+   "title": "KLA · Archer 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#archer",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_atl": {
+   "title": "KLA · ATL 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#atl",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_archer_power": {
+   "title": "KLA · Archer Power 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#archer-power",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_irarcher": {
+   "title": "KLA · irArcher 제품 페이지 (첨단 패키징)",
+   "url": "https://www.kla.com/products/packaging-manufacturing/wafer-inspection-and-metrology-for-advanced-packaging#irarcher",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_spectrashape": {
+   "title": "KLA · SpectraShape 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#spectrashape",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_axion": {
+   "title": "KLA · Axion 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#axion",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_spectrafilm": {
+   "title": "KLA · SpectraFilm 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#spectrafilm",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_aleris": {
+   "title": "KLA · Aleris 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#aleris",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_pwg": {
+   "title": "KLA · PWG 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#pwg",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_therma": {
+   "title": "KLA · Therma-Probe 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#therma-probe",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_microrsp": {
+   "title": "KLA · CAPRES microRSP 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#capres-microrsp",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_ciptech": {
+   "title": "KLA · CAPRES CIPTech 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#capres-ciptech",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_pkmram": {
+   "title": "KLA · MicroSense PKMRAM 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#pkmram",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_kerr": {
+   "title": "KLA · MicroSense KerrMapper 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#kerrmapper",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_omnimap": {
+   "title": "KLA · OmniMap RS-200P 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#omnimap-rs-200p",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "p_circl": {
+   "title": "KLA · CIRCL 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/metrology#circl",
+   "checked": "2026-11-27",
+   "note": "제품 페이지 본문."
+  },
+  "b_archer800": {
+   "title": "KLA · Archer 800 제품 소개서 (Rev 1.4, 2025-05)",
+   "url": "https://www.kla.com/wp-content/uploads/Archer_800_Rev1.4_May_16_2025_DIGITAL.pdf",
+   "checked": "2026-11-27",
+   "note": "제품 소개서·브로셔 PDF."
+  },
+  "b_pwg5": {
+   "title": "KLA · PWG5 브로셔 (Rev 1.1, 2021-09)",
+   "url": "https://www.kla.com/documents/products/brochures/PWG5_Rev1.1_Sep_20_21_PRINT.pdf",
+   "checked": "2026-11-27",
+   "note": "제품 소개서·브로셔 PDF."
+  },
+  "b_axion": {
+   "title": "KLA · Axion T2000 팩트시트 (2022)",
+   "url": "https://www.kla.com/wp-content/uploads/KLA_Axion_T2000_ProductFactSheet.pdf",
+   "checked": "2026-11-27",
+   "note": "제품 소개서·브로셔 PDF."
+  },
+  "r2007_aleris": {
+   "title": "KLA-Tencor 보도자료 2007-12-02 · Aleris 8500 (Aleris 제품군 시작)",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/351/kla-tencors-new-aleris-8500-film-metrology-system-is",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2007_therma": {
+   "title": "KLA-Tencor 보도자료 2007-05-25 · Therma-Wave 인수 완료",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/369/kla-tencor-completes-acquisition-of-therma-wave",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2008_aleris": {
+   "title": "KLA-Tencor 보도자료 2008-01-29 · Aleris 8310·8350",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/345/kla-tencor-extends-the-aleristm-film-metrology-family",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2010_aleris": {
+   "title": "KLA-Tencor 보도자료 2010-08-04 · Aleris 8330",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/261/kla-tencor-introduces-the-new-aleris-8330-film-metrology",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2012_archer500": {
+   "title": "KLA-Tencor 보도자료 2012-09-05 · Archer 500",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/204/kla-tencor-announces-new-archer-500-overlay-metrology",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2012_circl": {
+   "title": "KLA-Tencor 보도자료 2012-04-23 · CIRCL",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/216/kla-tencor-announces-new-circl-suite",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2013_ss9000": {
+   "title": "KLA-Tencor 보도자료 2013-02-25 · SpectraShape 9000",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/197/kla-tencor-announces-two-additions-to-lithoetch-process",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2014_pwg": {
+   "title": "KLA-Tencor 보도자료 2014-08-26 · WaferSight PWG",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/157/kla-tencor-introduces-key-systems-for-5d-patterning",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2015": {
+   "title": "KLA-Tencor 보도자료 2015-02-19 · Archer 500LCM · SpectraFilm LD10",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/144/kla-tencor-extends-its-5d-patterning-control-solution",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2017_feb": {
+   "title": "KLA-Tencor 보도자료 2017-02-22 · Archer 600 · WaferSight PWG2 · SpectraShape 10K",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/106/kla-tencor-introduces-new-metrology-systems-for",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2017_sep": {
+   "title": "KLA-Tencor 보도자료 2017-09-11 · ATL · SpectraFilm F1",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/95/kla-tencor-introduces-five-patterning-control-systems-for",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2020_feb": {
+   "title": "KLA 보도자료 2020-02-24 · Archer 750 · SpectraShape 11k",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/24/kla-introduces-new-ic-metrology-systems",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2020_dec": {
+   "title": "KLA 보도자료 2020-12-10 · PWG5",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/390/kla-introduces-two-new-systems-that-take-on-semiconductor",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  },
+  "r2022_axion": {
+   "title": "KLA 보도자료 2022-12-06 · Axion T2000",
+   "url": "https://ir.kla.com/news-events/press-releases/detail/447/kla-launches-revolutionary-x-ray-metrology-system",
+   "checked": "2026-11-27",
+   "note": "보도자료 원문 (ir.kla.com)."
+  }
+ },
+ "company_order": [
+  "KLA"
+ ],
+ "group_label": "측정 분야",
+ "item_label": "제품",
+ "search_placeholder": "제품명·측정 대상·기술 검색",
+ "caption": "KLA 공식 자료 기준 · 최근 공식 발표는 그 제품군에서 날짜가 확인되는 가장 최근 보도자료",
+ "evidence_summary": "KLA 계측 제품 페이지 16곳 · 소개서 3건 · 보도자료 14건 · 16개 제품군",
+ "scroll_hint": "셀에 마우스를 올리면 근거 · 맨 오른쪽 상세",
+ "note": "KLA 칩 제조용 계측 제품 페이지에 올라 있는 제품군(첨단 패키징 페이지의 irArcher 포함)을 한 줄씩 담았습니다. \"최근 공식 발표\"는 그 제품군에서 보도자료로 날짜가 확인되는 가장 최근 모델 기준입니다. Archer 800·SpectraShape 12k·SpectraFilm F10/F20·Aleris 9350 같은 최신 모델은 KLA가 별도 보도자료를 내지 않아 날짜가 없습니다. KLA도 처리량 같은 장비 사양은 거의 공개하지 않아, 공개 수치는 제품 페이지·소개서·보도자료에 적힌 값만 옮겼고 조건이 제각각이니 제품끼리 단순 비교하지 마세요. 결함 검사 장비(광대역 플라즈마·e-beam 검사 등)는 별도 분야라 넣지 않았습니다. 가격·출하 대수는 공개되지 않아 넣지 않았습니다."
+}
