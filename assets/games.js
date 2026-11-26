@@ -185,11 +185,11 @@ export function mount(root,{view="overview",companyCountry="all",tabsRoot,create
   const on=(selector,event,fn)=>root.querySelector(selector)?.addEventListener(event,fn,{signal:renderEvents.signal});
   const select=(selector,key)=>on(selector,"change",e=>{prefs[key]=e.target.value;prefs.page=0;render();});
   const status=document.createElement("p");status.className="page-loading";status.textContent="게임 공개 데이터 불러오는 중…";root.append(status);
-  if(tabsRoot){tabsRoot.innerHTML=`<nav class="commodity-tabs gm-tabs" aria-label="게임 화면">${[["overview","시장 규모"],["steam","Steam 장르"],["mobile","Google Play"],["apple","App Store 차트"],["revenue","게임별 매출"],["companies","게임사 실적"],["platforms","게임 플랫폼"],["sources","출처·범위"]].map(([id,name])=>`<a href="#/games/${id}" class="${view===id?"active":""}" ${view===id?'aria-current="page"':""}>${name}</a>`).join("")}</nav>`;}
-  const names=({overview:["market"],steam:["steam"],mobile:["mobile","download-estimates"],apple:["apple"],revenue:["revenue","fx"],companies:["companies","fx"],platforms:["companies","platforms","fx"]})[view]||["market","steam","mobile","apple","download-estimates","revenue","companies","platforms","fx"];
+  if(tabsRoot){tabsRoot.innerHTML=`<nav class="commodity-tabs gm-tabs" aria-label="게임 화면">${[["overview","시장 규모"],["steam","Steam 장르"],["steamhits","Steam 신작 흥행"],["mobile","Google Play"],["apple","App Store 차트"],["revenue","게임별 매출"],["companies","게임사 실적"],["platforms","게임 플랫폼"],["sources","출처·범위"]].map(([id,name])=>`<a href="#/games/${id}" class="${view===id?"active":""}" ${view===id?'aria-current="page"':""}>${name}</a>`).join("")}</nav>`;}
+  const names=({overview:["market"],steam:["steam"],steamhits:["steam_trends"],mobile:["mobile","download-estimates"],apple:["apple"],revenue:["revenue","fx"],companies:["companies","fx"],platforms:["companies","platforms","fx"]})[view]||["market","steam","mobile","apple","download-estimates","revenue","companies","platforms","fx","steam_trends"];
   Promise.all(names.map(async name=>{try{const r=await fetch(`data/games/${name}.json`,{signal:abort.signal});if(!r.ok)throw Error(`HTTP ${r.status}`);return [name,await r.json()];}catch(e){if(e.name==="AbortError")throw e;return[name,null];}})).then(entries=>{
     if(!alive)return;data=Object.fromEntries(entries);render();
-    const dates=[data.steam?.fetched,data.mobile?.fetched,data.apple?.fetched,data.companies?.checked,data.platforms?.steam?.fetched?.slice(0,10)].filter(Boolean);
+    const dates=[data.steam?.fetched,data.steam_trends?.fetched?.slice(0,10),data.mobile?.fetched,data.apple?.fetched,data.companies?.checked,data.platforms?.steam?.fetched?.slice(0,10)].filter(Boolean);
     document.getElementById("last-updated").textContent=dates.length?`게임 자료 조회 ${dates.sort().at(-1)} · 실적 기간은 각 행 표시`:data.revenue?`매출 표 원문 대조 ${data.revenue.reviewed} · 실적 기간은 각 행 표시`:data.market?`시장 규모 발표 ${data.market.latest.published} · 추정 범위는 본문 표시`:"게임 자료 기준일은 각 표·출처에 표시";
   }).catch(e=>{if(alive)status.textContent=`데이터를 불러오지 못했습니다: ${e.message}`;});
   function chart(id,type,labels,datasets,{percentAxis=false,stacked=false,horizontal=false,signed=false,decimals=0}={}){
@@ -207,7 +207,7 @@ export function mount(root,{view="overview",companyCountry="all",tabsRoot,create
   function missing(name){return header("데이터 확인 필요",`${name} 자료를 불러오지 못했습니다. 새로고침 후 출처·범위에서 수집 상태를 확인해 주세요.`);}
   function render(){
     if(!alive)return;renderEvents.abort();renderEvents=new AbortController();destroy();root.classList.add("gm-root");
-    if(view==="overview")renderMarket();else if(view==="steam")renderSteam();else if(view==="mobile")renderMobile();else if(view==="apple")renderApple();else if(view==="revenue")renderRevenue();else if(view==="companies")renderCompanies();else if(view==="platforms")renderPlatforms();else renderSources();
+    if(view==="overview")renderMarket();else if(view==="steam")renderSteam();else if(view==="steamhits")renderSteamHits();else if(view==="mobile")renderMobile();else if(view==="apple")renderApple();else if(view==="revenue")renderRevenue();else if(view==="companies")renderCompanies();else if(view==="platforms")renderPlatforms();else renderSources();
     bindMoneyMemos();
   }
   function bindMoneyMemos(){
@@ -258,6 +258,10 @@ export function mount(root,{view="overview",companyCountry="all",tabsRoot,create
     select("#gm-grain","grain");select("#gm-from","from");select("#gm-to","to");select("#gm-metric","metric");select("#gm-steam-genre","steamGenre");
     on("#gm-export","click",()=>download("steam-genre-trends.csv",["period","genre","average_ccu_sum","sample_share_pct","observed_months","first_month","last_month"],periods.flatMap(p=>genres.map(g=>[p.date,g,p.genres[g],percent(p.genres[g],p.total),p.months,p.first,p.last]))));
     chart("gm-steam-trend","line",periods.map(yearLabel),order.map((g,i)=>({label:g,data:periods.map(p=>prefs.metric==="share"?percent(p.genres[g],p.total):p.genres[g]??null),borderColor:palette[i%palette.length],backgroundColor:palette[i%palette.length]+"66",fill:prefs.metric==="share"?(i?"-1":"origin"):false,pointRadius:0,borderWidth:1.5,spanGaps:false})),{percentAxis:prefs.metric==="share",stacked:prefs.metric==="share"});
+  }
+  function renderSteamHits(){
+    const trends=data.steam_trends;if(!trends){root.innerHTML=missing("Steam 신작 흥행");return;}
+    import("./steam-trends.js").then(m=>{if(!alive)return;m.renderSteamTrends(root,trends,{header,panel,table,stats,note,link,esc,num,compact,options,chart,on,palette,rerender:render});}).catch(()=>{if(alive)root.innerHTML=missing("Steam 신작 흥행 화면");});
   }
   function renderMobile(){
     if(!data.mobile||!data["download-estimates"]){root.innerHTML=missing("Google Play");return;}
@@ -424,6 +428,7 @@ export function mount(root,{view="overview",companyCountry="all",tabsRoot,create
       panel("현재 연결한 자료",table(["자료","범위·단위","갱신","한계"],[
         [link("https://newzoo.com/articles/global-games-market-2025","Newzoo 공개 발표"),"세계 시장 · 연간 십억 달러","공개 발표 확인 시 수기 반영","시장 규모 추정치. 과거 공시 인용판과 분리"],
         [link("https://steamcharts.com/","SteamCharts"),`${data.steam?.games.length||0}개 고정 표본 · 월평균/월 최고 동접`,esc(data.steam?.fetched||"미수집"),"전체 Steam 시장이 아닌 선택 표본. 평균 동접 ≠ MAU"],
+        [link("https://store.steampowered.com/charts/mostplayed","Steam 공식 순위·상점 상세"),`동시접속·주간 최다 플레이 상위 100 · 출시 2년 이내 ${Object.keys(data.steam_trends?.apps||{}).length}개 추적`,esc(data.steam_trends?.fetched?.slice(0,10)||"미수집"),"동접 순위 ≠ 판매 순위. 상위 100 밖은 0이 아닌 미관측. SteamSpy는 신작 값이 비어 사용하지 않음"],
         [link("https://play.google.com/store/games","Google Play 공개 목록"),`${data.mobile?.games.length||0}개 표본 · 누적 다운로드 하한·평점`,esc(data.mobile?.fetched||"미수집"),"장르별 공개 목록에서 발견한 표본. 누적 하한 차이 ≠ 월 다운로드"],
         [link("https://www.appbrain.com/","AppBrain 공개 프로필"),`${data["download-estimates"]?.observations.length||0}개 표본 · 최근 30일·누적 추정`,`${esc(data["download-estimates"]?.observed_at||"미확인")} 공개 화면 확인 · 수기`,"반올림 추정. 기준일이 다름. 자동 조회 제한으로 수기 확인 유지"],
         [link("https://rss.marketingtools.apple.com/","Apple 공식 게임 RSS"),"4개국 무료·유료 게임 Top 100",esc(data.apple?.fetched||"미수집"),"다운로드·매출액 없음. 순위와 장르 구성만 관측"],

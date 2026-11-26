@@ -11,7 +11,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -36,6 +36,17 @@ jobs:
           python -u scripts/fetch_game_platforms.py
           python -u scripts/fetch_game_fx.py
           node scripts/test_games.cjs
+      - name: Validate Steam new-release rules
+        id: steam_trends_tests
+        continue-on-error: true
+        run: |
+          python -m unittest discover -s scripts -p test_steam_trends.py
+          node scripts/test_steam_trends.cjs
+      - name: Collect Steam new-release rankings and lifecycle
+        id: steam_trends
+        if: steps.steam_trends_tests.outcome == 'success'
+        continue-on-error: true
+        run: python -u scripts/fetch_steam_trends.py
       - name: Commit public snapshots
         run: |
           git config user.name "github-actions[bot]"
@@ -47,3 +58,8 @@ jobs:
             [ "$attempt" = 3 ] && exit 1
             sleep $((attempt * 15))
           done
+      - name: Report Steam new-release failures
+        if: steps.steam_trends_tests.outcome == 'failure' || steps.steam_trends.outcome == 'failure'
+        run: |
+          echo "Steam 신작 흥행 시험 또는 수집 실패 — 다른 게임 자료는 커밋됨, 기존 steam_trends.json 유지"
+          exit 1
