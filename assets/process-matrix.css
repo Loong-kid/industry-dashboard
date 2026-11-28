@@ -1,0 +1,22 @@
+/* 전공정 세부 · 업체별 대결표 (assets/process-matrix.js). Tokens only (theme-mercury.css). */
+.process-matrix { padding: 18px 20px; }
+.process-matrix-head p { margin: 6px 0 12px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.process-matrix-scroll { overflow-x: auto; max-width: 100%; border-radius: 8px; }
+.process-matrix table { border-collapse: separate; border-spacing: 0; min-width: 100%; font-size: 12.5px; }
+.process-matrix th, .process-matrix td { padding: 8px 10px; vertical-align: top; text-align: left; border-bottom: 1px solid var(--grid); }
+.process-matrix thead th { position: sticky; top: 0; background: var(--surface-2); color: var(--ink); font-weight: 480; white-space: nowrap; }
+.process-matrix thead th small { display: block; color: var(--muted); font-weight: 400; font-size: 11px; margin-top: 2px; }
+.process-matrix tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface); color: var(--ink); font-weight: 480; min-width: 120px; max-width: 150px; }
+.process-matrix td { min-width: 140px; color: var(--ink-2); }
+.process-matrix ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.process-matrix li { display: flex; justify-content: space-between; gap: 8px; line-height: 1.35; }
+.process-matrix li span { color: var(--ink); }
+.process-matrix li small { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.process-matrix li small.process-matrix-tag { color: var(--accent-text); }
+.process-matrix li small.process-matrix-none { color: var(--muted); opacity: .75; }
+.process-matrix-empty { color: var(--muted); opacity: .6; }
+@media (max-width: 640px) {
+  .process-matrix { padding: 14px 12px; }
+  .process-matrix tbody th { min-width: 96px; max-width: 110px; }
+  .process-matrix td { min-width: 128px; }
+}

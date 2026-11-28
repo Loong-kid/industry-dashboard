@@ -45,13 +45,13 @@ class LamEtchSpecsTests(unittest.TestCase):
         self.assertEqual(len(self.rows), 14)
         self.assertEqual({r['group'] for r in self.doc['rows']}, set(GROUPS))
 
-    def test_catalog_places_table_under_lam_in_frontend_equipment(self):
+    def test_lam_rows_live_in_the_cross_maker_etch_table(self):
+        # 2026-11-28: the Lam-only card was folded into 전공정 세부 > 식각 (build_process_etch_specs reuses these rows).
         catalog = json.loads((ROOT / 'data/catalog.json').read_text(encoding='utf-8'))
         semicon = next(i for i in catalog['industries'] if i['id'] == 'semicon')
-        section = next(s for s in semicon['sections'] if s['indicators'] == ['lam_etch_specs'])
-        self.assertEqual((section['tab'], section['table_kind'], section['type']), ('equipment_frontend', 'gpu_specs', 'table'))
-        titles = [s['title'] for s in semicon['sections'] if s['tab'] == 'equipment_frontend']
-        self.assertEqual(titles.index(section['title']), titles.index('Lam Research · LRCX · 실적') + 1)
+        self.assertFalse([s for s in semicon['sections'] if s['indicators'] == ['lam_etch_specs']])
+        process = json.loads((ROOT / 'data/semicon/process_etch_specs.json').read_text(encoding='utf-8'))
+        self.assertEqual({r['id'] for r in process['rows'] if r['company'] == 'Lam Research'}, {'lam-' + r['id'] for r in self.doc['rows']})
 
 
 if __name__ == '__main__':

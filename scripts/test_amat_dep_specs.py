@@ -48,13 +48,12 @@ class AmatDepSpecsTests(unittest.TestCase):
         self.assertEqual(len(self.rows), 18)
         self.assertEqual({r['group'] for r in self.doc['rows']}, set(GROUPS))
 
-    def test_catalog_places_table_under_amat_in_frontend_equipment(self):
+    def test_catalog_places_table_in_deposition_process_tab(self):
+        # 2026-11-28: moved from 전공정 (financials) to 전공정 세부 > 증착.
         catalog = json.loads((ROOT / 'data/catalog.json').read_text(encoding='utf-8'))
         semicon = next(i for i in catalog['industries'] if i['id'] == 'semicon')
         section = next(s for s in semicon['sections'] if s['indicators'] == ['amat_dep_specs'])
-        self.assertEqual((section['tab'], section['table_kind'], section['type']), ('equipment_frontend', 'gpu_specs', 'table'))
-        titles = [s['title'] for s in semicon['sections'] if s['tab'] == 'equipment_frontend']
-        self.assertEqual(titles.index(section['title']), titles.index('Applied Materials · AMAT · 실적') + 1)
+        self.assertEqual((section['tab'], section['table_kind'], section['type']), ('process_deposition', 'gpu_specs', 'table'))
 
 
 if __name__ == '__main__':

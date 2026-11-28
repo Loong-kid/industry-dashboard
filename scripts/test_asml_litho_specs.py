@@ -38,13 +38,14 @@ class ASMLLithoSpecsTests(unittest.TestCase):
         self.assertEqual(len(rows), 19)
         self.assertEqual(sum(r['group'].startswith('EUV') for r in self.doc['rows']), 5)
 
-    def test_catalog_places_table_under_frontend_equipment(self):
+    def test_catalog_places_table_in_photo_process_tab(self):
+        # 2026-11-28: spec tables moved from 전공정 (financials) to 전공정 세부 > 포토 (technical comparison).
         catalog = json.loads((ROOT / 'data/catalog.json').read_text(encoding='utf-8'))
         semicon = next(i for i in catalog['industries'] if i['id'] == 'semicon')
         section = next(s for s in semicon['sections'] if s['indicators'] == ['asml_litho_specs'])
-        self.assertEqual((section['tab'], section['table_kind'], section['type']), ('equipment_frontend', 'gpu_specs', 'table'))
-        titles = [s['title'] for s in semicon['sections'] if s['tab'] == 'equipment_frontend']
-        self.assertEqual(titles.index(section['title']), titles.index('ASML · 노광기 판매 대수') + 1)
+        self.assertEqual((section['tab'], section['table_kind'], section['type']), ('process_photo', 'gpu_specs', 'table'))
+        tab = next(t for t in semicon['tabs'] if t['id'] == 'process_photo')
+        self.assertEqual(tab['parent_tab'], 'process_detail')
 
 
 if __name__ == '__main__':

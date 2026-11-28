@@ -1,0 +1,4509 @@
+{
+ "id": "process_etch_specs",
+ "name": "식각 장비 · 업체별 비교",
+ "table_family": "process",
+ "official_only": true,
+ "short_name": "식각 장비",
+ "manual": true,
+ "frequency": "irregular",
+ "source": "각 제조사 공식 제품 페이지·보도자료·연혁",
+ "source_url": "",
+ "source_label": "출처는 아래 목록",
+ "basis_label": "제조사 공식 자료 기준",
+ "updated": "2026-11-28",
+ "fetched": "2026-11-28",
+ "update_note": "제조사 자료를 확인한 날짜 기준 스냅샷입니다. 새 장비·처리량·가격 자료가 생기면 scripts/build_process_etch_specs.py에 출처와 함께 추가합니다.",
+ "evidence_text": "모든 값은 각 제조사의 공식 제품 페이지, 보도자료, 회사 연혁에서 확인했습니다. 셀에 마우스를 올리면 그 값이 적힌 자료가 나옵니다. 처리량(WPH)과 가격은 제조사가 공개하지 않아 비워 뒀고, 확인된 자료를 받으면 출처와 함께 채웁니다.",
+ "columns": [
+  {
+   "id": "name",
+   "label": "장비",
+   "width": 190
+  },
+  {
+   "id": "country",
+   "label": "국가",
+   "width": 70
+  },
+  {
+   "id": "method",
+   "label": "식각 방식",
+   "width": 170
+  },
+  {
+   "id": "status",
+   "label": "단계",
+   "width": 90
+  },
+  {
+   "id": "launched",
+   "label": "출시",
+   "width": 100,
+   "date": true
+  },
+  {
+   "id": "config",
+   "label": "웨이퍼·챔버 구성",
+   "width": 200
+  },
+  {
+   "id": "throughput",
+   "label": "처리량 (WPH)",
+   "width": 110
+  },
+  {
+   "id": "price",
+   "label": "가격",
+   "width": 110
+  },
+  {
+   "id": "adoption",
+   "label": "채택·설치 기반",
+   "width": 280
+  },
+  {
+   "id": "figures",
+   "label": "공개 수치·비용 주장",
+   "width": 300
+  },
+  {
+   "id": "apps",
+   "label": "주요 공정·소자",
+   "width": 280
+  },
+  {
+   "id": "lineup",
+   "label": "모델 라인업",
+   "width": 220
+  },
+  {
+   "id": "tech",
+   "label": "핵심 기술",
+   "width": 300
+  },
+  {
+   "id": "page",
+   "label": "공식 자료",
+   "width": 90,
+   "url": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "lam-akara",
+   "sheet_row": null,
+   "name": "Akara",
+   "company": "Lam Research",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 도체 식각",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Sense.i",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2025-02-19",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "플라즈마 응답 기존 소스보다 100배 빠름 · 밀리초 단위 응답 · 옹스트롬 수준 CD 균일도",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "GAA 트랜지스터·6F² DRAM·3D NAND, 4F² DRAM·CFET·3D DRAM으로 확장 가능",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "lineup": {
+     "value": "Akara",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "DirectDrive(업계 첫 고체 플라즈마 소스) · TEMPO 플라즈마 펄싱 · SNAP 이온 에너지 제어 · Equipment Intelligence 자동 유지보수",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "Kiyo를 잇는 차세대 도체 식각기. 앞선 플래너 DRAM·파운드리 GAA 여러 공정에서 양산 기준 장비(POR)로 채택, 재주문 확보",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/akara/",
+     "source": "lam_p_akara",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Akara",
+     "source": "lam_p_akara",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_akara",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-kiyo",
+   "sheet_row": null,
+   "name": "Kiyo 제품군",
+   "company": "Lam Research",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · 플라즈마 ALE",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2004",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "양산 중인 챔버 3만 개 이상 (2025-02 기준)",
+     "source": "lam_r_akara",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "STI · 소스/드레인 · 고유전율 메탈게이트(HKMG) · FinFET·트라이게이트 · 멀티 패터닝 · 3D NAND",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Versys Kiyo · Kiyo45 · Kiyo C·E·F·G 시리즈",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Hydra(앞 공정 패턴 편차를 보정하는 CD 균일도 제어) · Corvus(가장자리 다이 수율용 플라즈마 시스 조정) · 플라즈마 ALE · 웨이퍼 없는 자동 세정",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "대칭 챔버와 정전척으로 균일도·재현성 확보, 여러 세대에 걸쳐 업그레이드 가능. 일부 모델은 Reliant 재생 장비로도 공급",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/kiyo-product-family/",
+     "source": "lam_p_kiyo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Kiyo 제품군",
+     "source": "lam_p_kiyo",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_kiyo",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-sense-i",
+   "sheet_row": null,
+   "name": "Sense.i",
+   "company": "Lam Research",
+   "group": "범용 플랫폼 (도체·유전체)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE (도체·유전체 식각)",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Sense.i (자체 플랫폼)",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020-03-03",
+     "source": "lam_r_sensei",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "식각 출력 밀도(같은 면적당 생산량) 50% 이상 개선",
+     "source": "lam_r_sensei",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "로직·메모리의 핵심·준핵심 도체 식각, 유전체 식각",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Sense.i",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Equipment Intelligence · 자율 캘리브레이션·유지보수 · 스마트 센싱",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "Kiyo·Flex 공정 모듈 기술을 이어받은 고밀도 플랫폼. 머신러닝으로 공정 편차를 스스로 보정. 발표 당시 Lam 식각 장비가 매달 웨이퍼 400만 장 이상 처리",
+     "source": "lam_r_sensei",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/sense-i/",
+     "source": "lam_p_sensei",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Sense.i",
+     "source": "lam_p_sensei",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_sensei",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-vantex",
+   "sheet_row": null,
+   "name": "Vantex",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · 극저온(Cryo)",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Sense.i 전용 챔버",
+     "source": "lam_r_vantex",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2021-01-27",
+     "source": "lam_r_vantex",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "3D NAND 고종횡비 홀·트렌치·콘택 · DRAM 커패시터 셀",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Vantex",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "기존보다 높은 RF 출력 · RF 펄싱 · 식각 수직 각도 제어 · Sense.i 센서 데이터 활용",
+     "source": "lam_r_vantex",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "가장 높은 종횡비 식각과 CD·선택비 제어, 가장 빠른 식각 속도, 웨이퍼 간 재현성(Equipment Intelligence)",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/vantex/",
+     "source": "lam_p_vantex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Vantex",
+     "source": "lam_p_vantex",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_vantex",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-flex",
+   "sheet_row": null,
+   "name": "Flex 제품군",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · ALE · 극저온(Cryo)",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "low-k·초저유전 듀얼 다마신 · 자기정렬 콘택 · 커패시터 셀 · 마스크 오픈 · 3D NAND 고종횡비 홀·트렌치·콘택",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Exelan Flex · Flex45 · Flex D·E·F·G·H 시리즈",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "다중 주파수·소용적 confined 플라즈마 · AMMP 펄싱 기반 플라즈마 ALE · 인시투 다단계 식각",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "주요 메모리 업체 모두가 3D NAND 양산에 쓰는 고종횡비 유전체 식각기. Lam Cryo 3.0 적용 가능",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/flex-product-family/",
+     "source": "lam_p_flex",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Flex 제품군",
+     "source": "lam_p_flex",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_flex",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-cryo-3",
+   "sheet_row": null,
+   "name": "Lam Cryo 3.0",
+   "company": "Lam Research",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "극저온 유전체 식각 (장비 위 기술)",
+     "source": "lam_p_cryo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Flex · Vantex(Sense.i)에 적용",
+     "source": "lam_p_cryo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2024-07-31",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "채널 깊이 최대 10 µm, 위아래 CD 편차 0.1% 미만 · 기존 대비 식각 속도 2.5배 · 웨이퍼당 에너지 40%↓ · 배출 최대 90%↓(Lam 추정, 외부 검증 없음)",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "3D NAND 채널 홀 (400단 이상)",
+     "source": "lam_p_cryo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "3세대 극저온 식각 (1세대는 2019년 양산 도입)",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "영하 온도 · 고출력 confined 플라즈마 반응기 · 새 식각 화학 · Vantex 펄스 플라즈마와 결합",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "극저온 식각으로 웨이퍼 500만 장 생산. NAND 양산 중인 Lam 고종횡비 유전체 챔버 7,500개 이상 중 약 1,000개가 극저온",
+     "source": "lam_r_cryo3",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "기술 (Flex·Vantex에 적용)",
+     "source": "lam_p_cryo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/products/our-solutions/cryogenic-etching/",
+     "source": "lam_p_cryo",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Lam Cryo 3.0",
+     "source": "lam_p_cryo",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_cryo",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-versys-metal",
+   "sheet_row": null,
+   "name": "Versys Metal 제품군",
+   "company": "Lam Research",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "TiN 금속 하드마스크 · 고밀도 알루미늄 배선 · 알루미늄 패드",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Versys Metal · Metal45 · Metal L·M·N",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "대칭 챔버·독립 공정 조정 · 독자 챔버 세정 기술",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "BEOL 금속 식각과 금속 하드마스크 패터닝. 여러 세대 업그레이드 가능, 일부 모델은 Reliant 재생 장비로 공급",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/versys-metal-product-family/",
+     "source": "lam_p_versys",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Versys Metal 제품군",
+     "source": "lam_p_versys",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_versys",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-syndion",
+   "sheet_row": null,
+   "name": "Syndion 제품군",
+   "company": "Lam Research",
+   "group": "실리콘 딥 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "DRIE · RIE",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "2300 (200·300 mm 겸용)",
+     "source": "lam_r_syndion2007",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2007-08-20",
+     "source": "lam_r_syndion2007",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "비아 폭 2~100 µm, 깊이 20~400 µm 이상 식각 (2007 첫 300 mm 출하 당시)",
+     "source": "lam_r_syndion2007",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "HBM·첨단 패키징 TSV · CMOS 이미지센서 고종횡비 구조 · 전력 반도체·아날로그·MEMS 트렌치 · 웨이퍼 후면 공정",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Syndion C · F 시리즈 · G 시리즈",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "RAP(식각·증착 빠른 교대)로 깊이 균일도 · TSV 스택(실리콘·유전체·도전막) 인시투 식각",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2021-12 Syndion GP 발표(전력 반도체·PMIC, 200·300 mm 겸용). 300 mm Syndion GS는 패키징·HBM·CIS용, 200 mm는 DSiE",
+     "source": "lam_r_syndiongp",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/syndion-product-family/",
+     "source": "lam_p_syndion",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Syndion 제품군",
+     "source": "lam_p_syndion",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_syndion",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-argos",
+   "sheet_row": null,
+   "name": "Argos",
+   "company": "Lam Research",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "라디칼 표면 처리",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Argos",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "MARS(준안정 활성 라디칼 소스)",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "웨이퍼 표면을 선택적으로 개질하고 오염을 제거해 다음 공정에 맞게 처리",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Argos",
+     "source": "lam_p_selective",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_selective",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-prevos",
+   "sheet_row": null,
+   "name": "Prevos",
+   "company": "Lam Research",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "기상(vapor) 선택적 식각",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Prevos",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "Lam 독자 화학 · 기상 기술 · 빠른 온도 제어 (화학 추가 가능)",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "원자층 정밀도로 산화막·실리콘·금속을 초고선택비 식각. Selis와 한 장비로 통합 공급 가능",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Prevos",
+     "source": "lam_p_selective",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_selective",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-selis",
+   "sheet_row": null,
+   "name": "Selis",
+   "company": "Lam Research",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "라디칼 + 열 식각",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2022-02-09",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "삼성전자 첨단 로직 핵심 공정 10여 곳에 사용 (2022 발표 당시, 3종 공통)",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "더미 폴리 제거 · GAA SiGe 제거 · 산화막 리세스 · Si 트리밍 · 소스/드레인 증착 전 세정 · low-k 제거 · 표면 오염 제거·개질 (제품군 공통)",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Selis",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "라디칼 식각과 열 식각 병행",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "구조 손상 없이 위아래 균일한 초고선택비 식각. Prevos와 통합 시 다층 선택적 식각·대기 시간(queue time) 제어",
+     "source": "lam_r_selective",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/selective-etch-product-family/",
+     "source": "lam_p_selective",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Selis",
+     "source": "lam_p_selective",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_selective",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-coronus",
+   "sheet_row": null,
+   "name": "Coronus · Coronus HP",
+   "company": "Lam Research",
+   "group": "베벨·가장자리",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 베벨 식각",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2007",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "식각·증착 단계마다 수율 0.2~0.5%p 추가, 전체 공정 최대 5% 개선 · 설치 챔버 수천 개",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "STI·게이트·MOL·BEOL 식각 후 · 증착 전후 · 노광 전 · 금속막 제거 · 습식·건식 식각 중 베벨 보호",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Coronus · Coronus HP",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "독자 플라즈마 confinement로 다이 영역 보호 · α-카본·탄소 잔여물 제거(업계 유일 베벨 세정)",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "웨이퍼 가장자리의 막·잔여물을 걷어내 결함원을 없앰. 모든 주요 반도체 업체가 사용",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/coronus-product-family/",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Coronus · Coronus HP",
+     "source": "lam_p_coronus",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_coronus",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-coronus-dx",
+   "sheet_row": null,
+   "name": "Coronus DX",
+   "company": "Lam Research",
+   "group": "베벨·가장자리",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "베벨 증착 (식각 아님)",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-06-20",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "3D 패키징 웨이퍼 본딩 · 3D NAND 긴 습식 식각 중 가장자리 보호 · 차세대 로직",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "lineup": {
+     "value": "Coronus DX",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "웨이퍼 가장자리 양면에 보호 유전막을 한 번에 증착 · 정밀 웨이퍼 센터링·통합 계측",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "업계 첫 베벨 증착 솔루션. 주요 고객 팹에서 양산 사용 중(발표 당시)",
+     "source": "lam_r_coronusdx",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/coronus-product-family/",
+     "source": "lam_p_coronus",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Coronus DX",
+     "source": "lam_p_coronus",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_coronus",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "lam-reliant",
+   "sheet_row": null,
+   "name": "Reliant 식각 제품",
+   "company": "Lam Research",
+   "group": "전력·특수 소자 (200 mm 이하 포함)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "RIE · DRIE",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "도체·유전체·금속 식각 · 특수막(PZT·GaN·AlGaN·SiC) · MEMS·전력 반도체·TSV 실리콘 딥 식각",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Kiyo(~Kiyo45) · Flex(~Flex45) · DSiE · Syndion · TCP 9400 · TCP 9600",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "대칭 챔버·정전척 · 인시투 다단계 식각 · 고종횡비 제어",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "150~300 mm 웨이퍼. MEMS·전력·IoT 같은 특수 공정용과 기존 팹 수명 연장용 장비",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.lamresearch.com/product/reliant-etch-products/",
+     "source": "lam_p_reliant",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Reliant 식각 제품",
+     "source": "lam_p_reliant",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "lam_p_reliant",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-episode-ul",
+   "sheet_row": null,
+   "name": "Episode UL",
+   "company": "TEL",
+   "group": "범용 플랫폼 (도체·유전체)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "반응성 이온 식각(RIE) · 도체·유전체",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 챔버 4~12개 (두 줄 마주 보는 직사각형 클러스터)",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "챔버당 설치 면적 대폭 축소 (수치 미기재)",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "최신 로직·메모리",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Episode UL",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "스마트 툴: 센서·고속 제어로 빅데이터 기반 자율 공정 제어 · 정비 공간 확대",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/product/episode_ul.html",
+     "source": "tel_p_episode",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Episode UL",
+     "source": "tel_p_episode",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_p_episode",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-tactras",
+   "sheet_row": null,
+   "name": "Tactras",
+   "company": "TEL",
+   "group": "범용 플랫폼 (도체·유전체)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "반응성 이온 식각(RIE) · 도체·유전체",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2006",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 챔버 1~6개 (챔버마다 다른 식각 가능)",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "웨이퍼 이송 속도·설치 면적 세계 최고 수준 (TEL 주장, 수치 미기재)",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "많은 고객이 계속 사용 (수치 미기재)",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "고종횡비 홀·트렌치 · 마스크·유전체 · BEOL 유전체",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Tactras · Tactras-UDEMAE(300 mm 전력 소자)",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "공통 기본 설계에 용도별 챔버 · 장비·챔버 간 편차 최소화 · 파티클 저감",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/product/tactras.html",
+     "source": "tel_p_tactras",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Tactras",
+     "source": "tel_p_tactras",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_p_tactras",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-cryo",
+   "sheet_row": null,
+   "name": "극저온 채널홀 식각 기술",
+   "company": "TEL",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "극저온 유전체 식각 (유전체를 극저온 영역으로 처음 확장)",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "기술 발표",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023-06-09",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "종횡비가 큰 깊이 10 µm 식각을 33분에 · 지구온난화지수 84% 절감",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "400단 이상 3D NAND 메모리 채널홀",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "기술 개발 발표 (2023 VLSI 심포지엄 발표)",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "극저온 유전체 식각 · 높은 식각 속도",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/news/product/2023/20230609_001.html",
+     "source": "tel_r_cryo",
+     "note": "공식 보도자료 기재"
+    },
+    "name": {
+     "value": "극저온 채널홀 식각 기술",
+     "source": "tel_r_cryo",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_r_cryo",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-certas",
+   "sheet_row": null,
+   "name": "Certas LEAGA",
+   "company": "TEL",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "가스 화학 식각 (플라즈마 없음, 등방성)",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 2매 동시 처리 챔버 최대 6개",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "글로벌 반도체 업체가 양산부터 차세대 개발까지 널리 채택",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "Si 콘택 형성 전 표면 세정 · 산화막 제거·에치백 · 고종횡비 3D 선택 식각 · 정밀 리세스",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "액체 없는 건식 공정(워터마크 없음) · 여러 SiO2 막 사이 고유 선택비 · TEL 세정 장비와 결합",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/product/certas_leaga.html",
+     "source": "tel_p_certas",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Certas LEAGA",
+     "source": "tel_p_certas",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_p_certas",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-unity",
+   "sheet_row": null,
+   "name": "UNITY Me+",
+   "company": "TEL",
+   "group": "전력·특수 소자 (200 mm 이하 포함)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 식각 (SCCM·DRM·UD 챔버)",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2021",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "100·150·200 mm · 챔버 1~4개 · 신품·인증 중고",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "200 mm 이하에서 오래 팔린 장비, SiC 전력 소자 시장에서 주목",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "SiO2·SiN 식각 · Si·SiC 트렌치 · TSV",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "UNITY Me+ Ox · Me+ Si · Me+ SiC",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "2021년 UNITY Me를 개편해 지원 수명 연장 · LT·LN 등 화합물 웨이퍼 처리 실적",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/product/unity.html",
+     "source": "tel_p_unity",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "UNITY Me+",
+     "source": "tel_p_unity",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_p_unity",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tel-udemae",
+   "sheet_row": null,
+   "name": "Tactras-UDEMAE",
+   "company": "TEL",
+   "group": "전력·특수 소자 (200 mm 이하 포함)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 식각 (전력 소자용 반응기)",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2021-12-14",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "config": {
+     "value": "300 mm (Tactras 플랫폼)",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "200 mm 전력 소자 시장 설치 기반 1위 반응기를 300 mm로 확장",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "300 mm 전력·개별 소자",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "200 mm 공정 라이브러리를 300 mm에 그대로 적용 · 웨이퍼 가장자리 파티클 억제",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.tel.com/news/product/2021/20211214_001.html",
+     "source": "tel_r_udemae",
+     "note": "공식 보도자료 기재"
+    },
+    "name": {
+     "value": "Tactras-UDEMAE",
+     "source": "tel_r_udemae",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "tel_r_udemae",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-sym3z",
+   "sheet_row": null,
+   "name": "Centris Sym3 Z Magnum",
+   "company": "Applied Materials",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "도체 플라즈마 식각 (펄스 전압 PVT2)",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2026-02-10",
+     "source": "amat_r2026_feb",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "Sym3 Z 계열: 2 nm 로직 양산 기준 장비, 현장 설치 챔버 250개 이상 · 여러 선두 업체 채택",
+     "source": "amat_r2026_feb",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "GAA 소스/드레인 캐비티 · 3D 트렌치 · DRAM·HBM 고밀도 배열",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Sym3 Z Magnum · Sym3 Z · (Sym3 Y Magnum은 별도 행)",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "2세대 펄스 전압 기술(PVT2) · 이온 각도·에너지 독립 조절 · 웨이퍼 가까이 플라즈마 생성 · Si/SiGe 선택비",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/sym3z-etch.html",
+     "source": "amat_p_sym3z",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Centris Sym3 Z Magnum",
+     "source": "amat_p_sym3z",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_p_sym3z",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-sym3y",
+   "sheet_row": null,
+   "name": "Sym3 Y Magnum",
+   "company": "Applied Materials",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "식각 + 증착을 한 챔버에서 (EUV 라인 거칠기 보정)",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2024-02-26",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "파운드리·로직 핵심 식각 채택 · DRAM EUV 패터닝에서 가장 많이 채택된 식각 기술",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "EUV·High-NA EUV 패터닝 (옹스트롬 노드) · DRAM",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "거친 패턴 가장자리에 재료를 증착해 다듬은 뒤 식각",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-expands-patterning-solutions-portfolio-for-angstrom-era-chipmaking",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "name": {
+     "value": "Sym3 Y Magnum",
+     "source": "amat_r2024",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_r2024",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-selectra",
+   "sheet_row": null,
+   "name": "Producer Selectra",
+   "company": "Applied Materials",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "라디칼 기반 선택적 식각 (건식)",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2016",
+     "source": "amat_r2022",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "선택적 재료 제거 시장 1위, 고객사 사용 챔버 1,000개 이상 (2022 기준)",
+     "source": "amat_r2022",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "FinFET 원자층 수준 식각 · 3D NAND 텅스텐 리세스 · 고종횡비 DRAM 무손상 세정 · GAA",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "라디칼 화학으로 유전체·금속·반도체 막 선택비 조정 · 완전 건식이라 패턴 붕괴 방지",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/producer-selectra-etch.html",
+     "source": "amat_p_selectra",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Producer Selectra",
+     "source": "amat_p_selectra",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_p_selectra",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-selectra-mo",
+   "sheet_row": null,
+   "name": "Producer Selectra Mo Etch",
+   "company": "Applied Materials",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "선택적 금속(몰리브덴) 제거",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2026-06-15",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "양산 검증 완료",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "3D NAND 몰리브덴 워드라인 분리 (습식 식각 대체)",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "공정 제어·가스 공급으로 깊은 구조에서도 위아래 균일한 선택적 금속 제거",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-unveils-deposition-and-selective-etch-systems-advance-3d-chip",
+     "source": "amat_r2026_jun",
+     "note": "공식 보도자료 기재"
+    },
+    "name": {
+     "value": "Producer Selectra Mo Etch",
+     "source": "amat_r2026_jun",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_r2026_jun",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-sculpta",
+   "sheet_row": null,
+   "name": "Centura Sculpta",
+   "company": "Applied Materials",
+   "group": "패턴 형상",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "패턴 형상 가공 (패턴 늘이기)",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "launched": {
+     "value": "2023",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "모든 선두 로직 업체와 적용 확대 중 · Intel 옹스트롬 노드에 배치 · 삼성 4 nm 평가 (2024 발표)",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "EUV 이중 패터닝 단계 축소 · 팁 간격 축소 · 브리지 결함 제거",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "tech": {
+     "value": "패턴을 한 방향으로 늘여 팁을 더 가깝게 (단일 노광 한계 이하)",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "page": {
+     "value": "https://www.nasdaq.com/press-release/applied-materials-expands-patterning-solutions-portfolio-for-angstrom-era-chipmaking",
+     "source": "amat_r2024",
+     "note": "공식 보도자료 기재"
+    },
+    "name": {
+     "value": "Centura Sculpta",
+     "source": "amat_r2024",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_r2024",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amat-producer-etch",
+   "sheet_row": null,
+   "name": "Producer Etch",
+   "company": "Applied Materials",
+   "group": "범용 플랫폼 (도체·유전체)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 식각 (Twin Chamber)",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Twin Chamber 최대 3개 (챔버당 1~2매) · 2 FOUP·듀얼 로봇",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "습식 세정 간격 500 RF시간 이상 (양산 환경)",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "90 nm 이하 고생산성 식각",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "전극 간격 조절로 식각 속도·균일도·선택비 조정 · 플라즈마 가둠·인시투 세정",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/producer-etch.html",
+     "source": "amat_p_producer",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Producer Etch",
+     "source": "amat_p_producer",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "amat_p_producer",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "hht-9000",
+   "sheet_row": null,
+   "name": "9000 시리즈",
+   "company": "Hitachi High-Tech",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "마이크로파 ECR 플라즈마 (0.1 Pa 미만 저압 고밀도)",
+     "source": "hht_p_ecr",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 챔버 최대 9개",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "ECR 챔버는 양산 검증 (수치 미기재)",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "20 nm 이하 · 이중 패터닝 · 3D 구조 · STI·게이트·SAC·배선 식각",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "9000 시리즈",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "저오염 고속 이송 · 모듈형 챔버 확장 · 플라즈마 분포·높이 제어",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.hitachi-hightech.com/us/en/products/semiconductor-manufacturing/dry-etch-systems/conductor/9000.html",
+     "source": "hht_p_9000",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "9000 시리즈",
+     "source": "hht_p_9000",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "hht_p_9000",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "hht-m8000",
+   "sheet_row": null,
+   "name": "M-8000 시리즈",
+   "company": "Hitachi High-Tech",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "마이크로파 ECR 플라즈마",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "32 nm 이하 하드마스크·실리콘 식각 · 이중 패터닝 · HKMG",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "M-8000 · (구형) M-600/6000",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "소자·재료·장비 업체와 공동개발(JDP)로 공정 개발",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.hitachi-hightech.com/global/en/products/semiconductor-manufacturing/dry-etch-systems/conductor/",
+     "source": "hht_p_conductor",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "M-8000 시리즈",
+     "source": "hht_p_conductor",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "일본",
+     "source": "hht_p_conductor",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "kla-spts-rapier",
+   "sheet_row": null,
+   "name": "SPTS Omega (Rapier·DSi-v)",
+   "company": "KLA (SPTS)",
+   "group": "실리콘 딥 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "딥 반응성 이온 식각(DRIE, Bosch 공정)",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "DRIE 공정 모듈 1,500개 이상 설치",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "Omega LPX·c2L·fxP 이송 플랫폼 또는 Versalis 클러스터",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "첨단 패키징 · RF · 전력 소자 · MEMS",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Rapier · DSi-v (그 밖에 플라즈마 다이싱·HF·XeF2 증기 식각)",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "독립 제어되는 1·2차 플라즈마 이중 소스 · 이중 가스 주입으로 높은 식각 속도·CD·기울기 제어",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.kla.com/products/chip-manufacturing/etch",
+     "source": "kla_p_etch",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "SPTS Omega (Rapier·DSi-v)",
+     "source": "kla_p_etch",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "미국",
+     "source": "kla_p_etch",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-drie",
+   "sheet_row": null,
+   "name": "Primo D-RIE",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 유전체 식각 (VHF·LF 분리)",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2007",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 2스테이션 공정 모듈 최대 3개 (모듈당 2매 동시)",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "CCP 식각 제품군 누적 1,500번째 스테이션 출하 (2021-11) · 중국 내 반복 주문",
+     "source": "amec_r2021_ccp",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "65~16 nm 산화막·질화막·low-k 유전체",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Primo D-RIE (1세대)",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "VHF·LF 분리 RF 소스 · FEIS 링 플라즈마 가둠",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/82.html",
+     "source": "amec_p_drie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo D-RIE",
+     "source": "amec_p_drie",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_drie",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-adrie",
+   "sheet_row": null,
+   "name": "Primo AD-RIE",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 유전체 식각 (2세대)",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2011-07",
+     "source": "amec_r2011",
+     "note": "공식 보도자료 기재"
+    },
+    "config": {
+     "value": "300 mm · 2스테이션 공정 모듈 최대 3개 (6스테이션)",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "업계 표준 대비 자본 생산성 35~50%↑ · 소유비용(CoO) 20~40%↓ · 가장 큰 경쟁 장비보다 면적 30% 이상 작음 (2011 발표)",
+     "source": "amec_r2011",
+     "note": "공식 보도자료 기재"
+    },
+    "adoption": {
+     "value": "HD-RIE와 AD-RIE-e(7 nm 이하 로직)가 2021년 출하의 절반, 대부분 중국 본토·대만",
+     "source": "amec_r2021_ccp",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "40~7 nm BEOL · 10 nm FEOL",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "AD-RIE · AD-RIE-e(동적 ESC) · AD-RIE-cr(내부식)",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "전환형 이중 저주파 RF · 다구역 가스 분배 · 이중 칠러 온도 제어",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/513.html",
+     "source": "amec_p_adrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo AD-RIE",
+     "source": "amec_p_adrie",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_adrie",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-ssc",
+   "sheet_row": null,
+   "name": "Primo SSC AD-RIE",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 유전체 식각 (단일 반응기 6개)",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2013",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 단일 반응기 6개",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "26~10 nm · 콘택홀 식각",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "동기 펄스 RF · 냉각 포커스 링 · 초저압 배기",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/514.html",
+     "source": "amec_p_ssc",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo SSC AD-RIE",
+     "source": "amec_p_ssc",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_ssc",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-hdrie",
+   "sheet_row": null,
+   "name": "Primo HD-RIE",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 고종횡비 유전체 식각",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2015",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 공정 스테이션 6개",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2021년 출하의 절반(AD-RIE-e와 합산), 3D NAND용",
+     "source": "amec_r2021_ccp",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "3D NAND·DRAM 중·고종횡비 구조",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고출력 동기 RF 펄싱 · 고출력·고온 ESC · 가스 펄싱 · 다구역 가스",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/517.html",
+     "source": "amec_p_hdrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo HD-RIE",
+     "source": "amec_p_hdrie",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_hdrie",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-udrie",
+   "sheet_row": null,
+   "name": "Primo UD-RIE",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 고종횡비 유전체 식각 (초저주파 고출력)",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "단일 웨이퍼 반응 챔버 최대 6개 + 스트립 챔버 2개",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "메모리 가장 까다로운 고종횡비(HAR) 유전체 식각",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "초저주파 고출력 다단 펄싱 RF · 실시간 온도 전환 하부 전극 · 고전압 ESC",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/605.html",
+     "source": "amec_p_udrie",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo UD-RIE",
+     "source": "amec_p_udrie",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_udrie",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-idea",
+   "sheet_row": null,
+   "name": "Primo iDEA",
+   "company": "AMEC",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 유전체 식각 + 다운스트림 애셔 통합",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "D-RIE 또는 AD-RIE 모듈 1~2개 + 애셔(DsA) 챔버",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "식각 후 포토레지스트 제거까지 한 장비 (표면 전하 민감 소자)",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "원격 플라즈마 소스 애셔로 웨이퍼 직접 노출 최소화",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/515.html",
+     "source": "amec_p_idea",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo iDEA",
+     "source": "amec_p_idea",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_idea",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-nanova",
+   "sheet_row": null,
+   "name": "Primo Nanova",
+   "company": "AMEC",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ICP 도체 식각 (단일 스테이션)",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2018-03",
+     "source": "amec_r2018",
+     "note": "공식 보도자료 기재"
+    },
+    "config": {
+     "value": "300 mm · 챔버 최대 6개 + 스트립 챔버 2개",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "여러 고객 주문·출하, 첫 장비 양산 투입 (2018 발표)",
+     "source": "amec_r2018",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "로직·DRAM 1x nm 이하 · STI·폴리 게이트·스페이서·마스크·에치백",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Primo Nanova (AMEC 첫 ICP)",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "저용량 결합 3D 코일 · 대칭 챔버·고속 배기 · 다구역 온도 제어 ESC",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/269.html",
+     "source": "amec_p_nanova",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo Nanova",
+     "source": "amec_p_nanova",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_nanova",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-twinstar",
+   "sheet_row": null,
+   "name": "Primo Twin-Star",
+   "company": "AMEC",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ICP 식각 (2스테이션)",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2021-03-16",
+     "source": "amec_r2021_tw",
+     "note": "공식 보도자료 기재"
+    },
+    "config": {
+     "value": "300 mm · 2스테이션 챔버 최대 3개 + 스트립 챔버 2개",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "중국 선두 고객 주문·출하, 첫 장비 양산 투입 (2021 발표)",
+     "source": "amec_r2021_tw",
+     "note": "공식 보도자료 기재"
+    },
+    "apps": {
+     "value": "FEOL·BEOL 도체·유전체 · 폴리 · 전력·CIS DTI·BSI",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "2스테이션 챔버(배기구 영향 최소) · 저용량 결합 3D 코일 · 다구역 ESC",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/516.html",
+     "source": "amec_p_twinstar",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo Twin-Star",
+     "source": "amec_p_twinstar",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_twinstar",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "amec-tsv",
+   "sheet_row": null,
+   "name": "Primo TSV",
+   "company": "AMEC",
+   "group": "실리콘 딥 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "고밀도 플라즈마 TSV 식각 (Bosch·정상상태 겸용)",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "200·300 mm · 2스테이션 공정 모듈 최대 3개",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "CMOS 이미지센서 · 2.5D·3D IC · 플라즈마 다이싱",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "한 챔버에서 Bosch·정상상태 공정",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/289.html",
+     "source": "amec_p_tsv",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Primo TSV",
+     "source": "amec_p_tsv",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "amec_p_tsv",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-612e",
+   "sheet_row": null,
+   "name": "NMC 612E",
+   "company": "NAURA",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ICP 식각 (펄스 플라즈마)",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "양산 경험 풍부 (수치 미기재)",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "STI · 게이트 · 스페이서 · SAMP · 텅스텐 · 금속 하드마스크 · high-k (로직·DRAM·3D NAND)",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "유연한 펄스 플라즈마 · 다구역 온도 ESC · 가스 고속 전환 준원자층 식각",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2461.html",
+     "source": "naura_612e",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 612E",
+     "source": "naura_612e",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_612e",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-612d",
+   "sheet_row": null,
+   "name": "NMC 612D",
+   "company": "NAURA",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "실리콘 식각 (펄스 플라즈마)",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "로직·3D NAND·DRAM·CIS·전력·실리콘 포토닉스 안정 양산",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "STI · 폴리/금속 게이트 · 산화막/질화막 스페이서",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "저손상 펄스 플라즈마 · 다구역 온도 ESC",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2462.html",
+     "source": "naura_612d",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 612D",
+     "source": "naura_612d",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_612d",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-612c",
+   "sheet_row": null,
+   "name": "NMC 612C",
+   "company": "NAURA",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "실리콘 식각",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "성숙 로직·전력 양산 경험",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "폴리 게이트 · STI · 스페이서",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "다층 막 인시투 식각 · 현지 서비스·맞춤 소프트웨어",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2463.html",
+     "source": "naura_612c",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 612C",
+     "source": "naura_612c",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_612c",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-nz",
+   "sheet_row": null,
+   "name": "Accura NZ",
+   "company": "NAURA",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "고종횡비 유전체 식각 (고출력 고·저주파 RF)",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "3D NAND G5 이상 채널홀 (산화막·질화막 적층)",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "가장자리 플라즈마 조절(PEA) · 4구역 자기장 코일 · ESC 고·저온 빠른 전환",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2455.html",
+     "source": "naura_nz",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Accura NZ",
+     "source": "naura_nz",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_nz",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-lx",
+   "sheet_row": null,
+   "name": "Accura LX",
+   "company": "NAURA",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "유전체 식각 (이중 주파수 펄스 + Top DC)",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "로직 G0 노드 이상 BEOL 일체형(AIO) 비아·트렌치 · 듀얼 다마신 · 콘택",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "TiN 선택비 향상 · ESC 4구역 정밀 온도 · 고온 챔버로 부산물 감소",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2456.html",
+     "source": "naura_lx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Accura LX",
+     "source": "naura_lx",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_lx",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-612g",
+   "sheet_row": null,
+   "name": "NMC 612G",
+   "company": "NAURA",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "금속 플라즈마 식각",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · Si·SiC·유리 웨이퍼",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "로직·DRAM·3D NAND·전력·CIS 등 양산 경험 풍부",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "알루미늄 배선·패드 · 몰리브덴·텅스텐·ITO",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고성능 ESC · 다양한 균일도 조절 (UPH·WPH 경쟁력 주장, 수치 미기재)",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2459.html",
+     "source": "naura_612g",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 612G",
+     "source": "naura_612g",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_612g",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-612m",
+   "sheet_row": null,
+   "name": "NMC 612M",
+   "company": "NAURA",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "금속 하드마스크 식각 (펄스 플라즈마)",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "양산 경험 풍부",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "TiN 금속 하드마스크 · high-k · 금속 저항 · W·Ti·Ta 화합물",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "저손상 펄스 플라즈마 · 다구역 온도 ESC",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2460.html",
+     "source": "naura_612m",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 612M",
+     "source": "naura_612m",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_612m",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-rx",
+   "sheet_row": null,
+   "name": "Accura RX",
+   "company": "NAURA",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "화학 기상 식각 (고선택비 산화막)",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 대형 이송 플랫폼·공정 챔버·어닐 챔버",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "로직·메모리 첨단 공정 폭넓게 적용",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "산화막 선택적 식각",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고균일도·저손상 · 미세 로딩 조정",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2454.html",
+     "source": "naura_rx",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Accura RX",
+     "source": "naura_rx",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_rx",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-ace",
+   "sheet_row": null,
+   "name": "ACE E300 · E300Ge",
+   "company": "NAURA",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "이온 필터 고선택비 식각",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "E300: 로직·3D 구조 Si·폴리·STI·low-k · E300Ge: 첨단 메모리 횡방향 식각·TiN·표면 손상층 처리",
+     "source": "naura_acege",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "초고효율 이온 필터로 입자 에너지 정밀 제어 · 하부층 무손상 · OES Plus 모니터링",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2469.html",
+     "source": "naura_ace",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "ACE E300 · E300Ge",
+     "source": "naura_ace",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_ace",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-pse",
+   "sheet_row": null,
+   "name": "PSE V300",
+   "company": "NAURA",
+   "group": "실리콘 딥 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "딥 실리콘 식각 (Bosch·비Bosch 겸용)",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 독립 반응 챔버 최대 6개",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "현지 전문가 현장 대응 (수치 미기재)",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "TSV · 딥 트렌치 분리·커패시터 · 전력 실리콘 트렌치 · MEMS",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "PSE V300 · HSE P300(첨단 패키징 딥 실리콘)",
+     "source": "naura_hse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "구역별 가스·고속 전환 · 저스캘럽·고식각 속도",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2475.html",
+     "source": "naura_pse",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "PSE V300",
+     "source": "naura_pse",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_pse",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-be",
+   "sheet_row": null,
+   "name": "Accura BE",
+   "company": "NAURA",
+   "group": "베벨·가장자리",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "플라즈마 베벨 식각",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm · 공정 압력 1~5 Torr",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "윗면 식각 거리 0~3 mm · 뒷면 0~5 mm 조절",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "로직·3D NAND·DRAM 웨이퍼 가장자리 폴리머·막 제거 (결함 감소)",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "가시화 동축 조정 · 실시간 갭 감지 · 고정밀 이송",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2457.html",
+     "source": "naura_be",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "Accura BE",
+     "source": "naura_be",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_be",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "naura-508",
+   "sheet_row": null,
+   "name": "NMC 508 (ICP·CCP)",
+   "company": "NAURA",
+   "group": "전력·특수 소자 (200 mm 이하 포함)",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "ICP·CCP 식각",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "config": {
+     "value": "150·200 mm · 다챔버 클러스터",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "IC·패키징·화합물 반도체 금속·실리콘·딥실리콘·유전체",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "NMC 508 ICP · NMC 508 CCP · GDE C200(화합물 반도체)",
+     "source": "naura_gde",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고유 플라즈마 소스 · 직하 배기 챔버 · 낮은 CoO (수치 미기재)",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.naura.com/product/details_15_2468.html",
+     "source": "naura_508i",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "NMC 508 (ICP·CCP)",
+     "source": "naura_508i",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "중국",
+     "source": "naura_508i",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "semes-etch",
+   "sheet_row": null,
+   "name": "세메스 식각 장비 (Oxide·Poly)",
+   "company": "세메스",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "산화막·폴리 건식 식각",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "공식 사이트에 장비명·사양 미공개",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "산화막 · 폴리",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.semes.com/ko/product/product/view",
+     "source": "semes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "세메스 식각 장비 (Oxide·Poly)",
+     "source": "semes_p",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "semes_p",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-leo-nk",
+   "sheet_row": null,
+   "name": "Leo NK I · NK I-C",
+   "company": "브이엠",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "폴리(도체) 식각",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2016-01",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "NK I: 2016-01 SK하이닉스 양산 판매 · NK I-C: 2017-12 SK하이닉스 양산, 2018-04 SK하이닉스 우시 수출",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "폴리 식각 (메모리)",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "lineup": {
+     "value": "Leo NK I(2015-05 개발) · NK I-C(2016-06 개발)",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/PolyEtcherbrSystem",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "Leo NK I · NK I-C",
+     "source": "vm_poly",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_poly",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-leo-wh",
+   "sheet_row": null,
+   "name": "Leo WH",
+   "company": "브이엠",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "폴리(도체) 식각",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2021-01",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2021-01 SK하이닉스 양산 판매 성공",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "폴리 식각 (메모리)",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/PolyEtcherbrSystem",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "Leo WH",
+     "source": "vm_poly",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_poly",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-leo-ws",
+   "sheet_row": null,
+   "name": "Leo WS",
+   "company": "브이엠",
+   "group": "도체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "폴리(도체) 식각",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "개발 완료 (2027 양산 판매 예정)",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2025년 개발 완료, 2027년 양산 판매 예정",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "폴리 식각",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/PolyEtcherbrSystem",
+     "source": "vm_poly",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "Leo WS",
+     "source": "vm_poly",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_poly",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-nardo-m",
+   "sheet_row": null,
+   "name": "Nardo-M",
+   "company": "브이엠",
+   "group": "금속 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "금속 식각",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "launched": {
+     "value": "2020-10",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "config": {
+     "value": "300 mm",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2020-10 SK하이닉스 우시 수출 · 2021-01 SK하이닉스 양산 판매 (2009년 국내 첫 300 mm 금속 식각 양산 판매)",
+     "source": "vm_h",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "금속 배선 식각",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/MetalEtcherSystem",
+     "source": "vm_metal",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "Nardo-M",
+     "source": "vm_metal",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_metal",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-oxide",
+   "sheet_row": null,
+   "name": "Oxide Etcher (개발 중)",
+   "company": "브이엠",
+   "group": "유전체 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "산화막(유전체) 식각",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "개발 중",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2026년 개발 완료 예정, 2028년 양산 판매 예정",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "유전체 식각",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/OxideEtcherSystem",
+     "source": "vm_oxide",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "Oxide Etcher (개발 중)",
+     "source": "vm_oxide",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_oxide",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "vm-apes",
+   "sheet_row": null,
+   "name": "APES A (원자층 식각, 개발 중)",
+   "company": "브이엠",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "원자층 식각(ALE)",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "status": {
+     "value": "개발 중",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "2027년 개발 완료 예정, 2029년 양산 판매 예정",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "apps": {
+     "value": "원자층 식각",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.vmsemi.com/kor/UnderDevelopment",
+     "source": "vm_dev",
+     "note": "회사 연혁·제품 페이지 기재"
+    },
+    "name": {
+     "value": "APES A (원자층 식각, 개발 중)",
+     "source": "vm_dev",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "vm_dev",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tes-cumax",
+   "sheet_row": null,
+   "name": "CUMAX",
+   "company": "테스",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "가스·라디칼 기반 등방성 식각 (CCP 라디칼 + 가스)",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "SiGe 선택비 200 이상",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "자연 산화막 제거 · 산화막 측면 리세스 · 에어갭 · 3D 구조 산화막 패터닝 · 3D DRAM·로직 SiGe 적층 식각 · 폴리 하드마스크 제거",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "램프 가열 인시투 건식 세정 · 고속 반복 식각 · 질화막 대비 선택비 가변 (회사 분류는 건식 세정)",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.hites.co.kr/bbs/board.php?bo_table=b1",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "CUMAX",
+     "source": "tes_p",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "tes_p",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "tes-spica",
+   "sheet_row": null,
+   "name": "SPICA",
+   "company": "테스",
+   "group": "선택적·등방성 식각",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "CCP 플라즈마 라디칼 식각 (플라즈마 손상 없음)",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "수치 미기재",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "등방성 질화막 리세스 · 폴리 세정 · 3D 구조 질화막 패터닝 · SiGe 적층 고선택 패터닝 · 뒷면 제거",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "고속 반복 식각 · 인시투 챔버 세정 · 높은 식각 속도·선택비",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.hites.co.kr/bbs/board.php?bo_table=b1",
+     "source": "tes_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "SPICA",
+     "source": "tes_p",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "tes_p",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  },
+  {
+   "id": "psk-precia",
+   "sheet_row": null,
+   "name": "PRECIA (Edge clean)",
+   "company": "피에스케이",
+   "group": "베벨·가장자리",
+   "original": {},
+   "reviews": {
+    "method": {
+     "value": "이중 플라즈마 소스 베벨 식각",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "status": {
+     "value": "판매 중",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "figures": {
+     "value": "높은 생산성·낮은 CoO (수치 미기재)",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "adoption": {
+     "value": "수치 미기재",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "apps": {
+     "value": "웨이퍼 가장자리(베벨) 막·잔여물 제거",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "tech": {
+     "value": "이중 플라즈마 소스 · 자동 웨이퍼 센터링 · 비전 시스템으로 베벨 식각 모니터링",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "page": {
+     "value": "https://www.pskinc.com/producttech/edge_clean.php",
+     "source": "psk_p",
+     "note": "공식 제품 페이지 기재"
+    },
+    "name": {
+     "value": "PRECIA (Edge clean)",
+     "source": "psk_p",
+     "note": "제조사 공식 제품명"
+    },
+    "country": {
+     "value": "한국",
+     "source": "psk_p",
+     "note": "제조사 본사 국가"
+    }
+   },
+   "review_note": "제조사 공식 자료 기준. 처리량·가격은 제조사가 공개하지 않아 비워 두고, 확인된 자료가 생기면 출처와 함께 채웁니다."
+  }
+ ],
+ "groups": [
+  "범용 플랫폼 (도체·유전체)",
+  "도체 식각",
+  "유전체 식각",
+  "금속 식각",
+  "선택적·등방성 식각",
+  "실리콘 딥 식각",
+  "베벨·가장자리",
+  "패턴 형상",
+  "전력·특수 소자 (200 mm 이하 포함)"
+ ],
+ "name_key": "name",
+ "default_group": "all",
+ "default_view": "overview",
+ "views": [
+  {
+   "id": "overview",
+   "label": "한눈에 보기",
+   "keys": [
+    "name",
+    "country",
+    "method",
+    "launched",
+    "figures",
+    "adoption",
+    "apps"
+   ]
+  },
+  {
+   "id": "cost",
+   "label": "비용·생산성",
+   "keys": [
+    "name",
+    "country",
+    "launched",
+    "config",
+    "throughput",
+    "price",
+    "figures",
+    "adoption"
+   ]
+  },
+  {
+   "id": "detail",
+   "label": "전체",
+   "keys": [
+    "name",
+    "country",
+    "method",
+    "status",
+    "launched",
+    "config",
+    "throughput",
+    "price",
+    "adoption",
+    "figures",
+    "apps",
+    "lineup",
+    "tech",
+    "page"
+   ]
+  }
+ ],
+ "sources": {
+  "tel_p_episode": {
+   "title": "TEL · Episode UL 제품 페이지",
+   "url": "https://www.tel.com/product/episode_ul.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "tel_p_tactras": {
+   "title": "TEL · Tactras 제품 페이지",
+   "url": "https://www.tel.com/product/tactras.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "tel_p_certas": {
+   "title": "TEL · Certas 제품 페이지",
+   "url": "https://www.tel.com/product/certas_leaga.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "tel_p_unity": {
+   "title": "TEL · UNITY 제품 페이지",
+   "url": "https://www.tel.com/product/unity.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "tel_r_episode": {
+   "title": "TEL 뉴스 2021-01-14 · Episode UL 발표",
+   "url": "https://www.tel.com/news/product/2021/20210114_001.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "tel_r_udemae": {
+   "title": "TEL 뉴스 2021-12-14 · Tactras-UDEMAE (300 mm 전력 소자)",
+   "url": "https://www.tel.com/news/product/2021/20211214_001.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "tel_r_cryo": {
+   "title": "TEL 뉴스 2023-06-09 · 400단 이상 3D NAND 채널홀 극저온 식각 기술",
+   "url": "https://www.tel.com/news/product/2023/20230609_001.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amat_p_sym3z": {
+   "title": "AMAT · Sym3 Z Magnum 제품 페이지",
+   "url": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/sym3z-etch.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amat_p_selectra": {
+   "title": "AMAT · Producer Selectra Etch 제품 페이지",
+   "url": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/producer-selectra-etch.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amat_p_producer": {
+   "title": "AMAT · Producer Etch 제품 페이지",
+   "url": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/etch/producer-etch.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amat_r2022": {
+   "title": "AMAT 보도자료 2022-04-21 · EUV·GAA (Selectra 2016 출시·챔버 1000개)",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-technologies-enable-2d-scaling-with-euv-and-3d-gate-all-around",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amat_r2024": {
+   "title": "AMAT 보도자료 2024-02-26 · Sym3 Y Magnum · Sculpta",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-expands-patterning-solutions-portfolio-for-angstrom-era-chipmaking",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amat_r2026_feb": {
+   "title": "AMAT 보도자료 2026-02-10 · Sym3 Z Magnum",
+   "url": "https://www.theglobeandmail.com/investing/markets/stocks/AMAT/pressreleases/36491210/applied-materials-unveils-transistor-and-wiring-innovations-for-faster-ai-chips/",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amat_r2026_jun": {
+   "title": "AMAT 보도자료 2026-06-15 · Selectra Mo Etch",
+   "url": "https://www.nasdaq.com/press-release/applied-materials-unveils-deposition-and-selective-etch-systems-advance-3d-chip",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "hht_p_9000": {
+   "title": "Hitachi High-Tech · 9000 시리즈 제품 페이지",
+   "url": "https://www.hitachi-hightech.com/us/en/products/semiconductor-manufacturing/dry-etch-systems/conductor/9000.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "hht_p_conductor": {
+   "title": "Hitachi High-Tech · 도체 식각 제품군 페이지",
+   "url": "https://www.hitachi-hightech.com/global/en/products/semiconductor-manufacturing/dry-etch-systems/conductor/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "hht_p_ecr": {
+   "title": "Hitachi High-Tech · 마이크로파 ECR 챔버 페이지",
+   "url": "https://www.hitachi-hightech.com/us/en/products/semiconductor-manufacturing/dry-etch-systems/microwave-ecr.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "kla_p_etch": {
+   "title": "KLA · SPTS 식각 제품 페이지",
+   "url": "https://www.kla.com/products/chip-manufacturing/etch",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_drie": {
+   "title": "AMEC · Primo D-RIE 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/82.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_adrie": {
+   "title": "AMEC · Primo AD-RIE 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/513.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_ssc": {
+   "title": "AMEC · Primo SSC AD-RIE 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/514.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_idea": {
+   "title": "AMEC · Primo iDEA 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/515.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_twinstar": {
+   "title": "AMEC · Primo Twin-Star 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/516.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_hdrie": {
+   "title": "AMEC · Primo HD-RIE 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/517.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_udrie": {
+   "title": "AMEC · Primo UD-RIE 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/605.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_nanova": {
+   "title": "AMEC · Primo Nanova 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/269.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_p_tsv": {
+   "title": "AMEC · Primo TSV 제품 페이지",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/29/id/289.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "amec_r2011": {
+   "title": "AMEC 보도자료 2011-07 · Primo AD-RIE 출시",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/97/id/540.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amec_r2018": {
+   "title": "AMEC 보도자료 2018-03 · Primo Nanova 출시 (첫 ICP)",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/97/id/547.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amec_r2021_tw": {
+   "title": "AMEC 보도자료 2021-03-16 · Primo Twin-Star 출시",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/97/id/172.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "amec_r2021_ccp": {
+   "title": "AMEC 보도자료 2021-11 · CCP 식각 1,500번째 스테이션 출하",
+   "url": "https://www.amec-inc.com/en/index/Lists/show/catid/97/id/175.html",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "naura_rx": {
+   "title": "NAURA · Accura RX 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2454.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_nz": {
+   "title": "NAURA · Accura NZ 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2455.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_lx": {
+   "title": "NAURA · Accura LX 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2456.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_be": {
+   "title": "NAURA · Accura BE 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2457.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_612g": {
+   "title": "NAURA · NMC 612G 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2459.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_612m": {
+   "title": "NAURA · NMC 612M 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2460.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_612e": {
+   "title": "NAURA · NMC 612E 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2461.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_612d": {
+   "title": "NAURA · NMC 612D 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2462.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_612c": {
+   "title": "NAURA · NMC 612C 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2463.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_gde": {
+   "title": "NAURA · GDE C200 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2466.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_508c": {
+   "title": "NAURA · NMC 508 CCP 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2467.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_508i": {
+   "title": "NAURA · NMC 508 ICP 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2468.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_ace": {
+   "title": "NAURA · ACE E300 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2469.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_acege": {
+   "title": "NAURA · ACE E300Ge 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2470.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_hse": {
+   "title": "NAURA · HSE P300 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2473.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "naura_pse": {
+   "title": "NAURA · PSE V300 제품 페이지",
+   "url": "https://www.naura.com/product/details_15_2475.html",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "semes_p": {
+   "title": "세메스 · 제품 페이지 (식각: Oxide·Poly)",
+   "url": "https://www.semes.com/ko/product/product/view",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "vm_h": {
+   "title": "브이엠 · 회사 연혁",
+   "url": "https://www.vmsemi.com/kor/History",
+   "checked": "2026-11-28",
+   "kind": "history",
+   "note": "회사 홈페이지 연혁·제품 소개."
+  },
+  "vm_poly": {
+   "title": "브이엠 · Poly Etcher 제품 페이지",
+   "url": "https://www.vmsemi.com/kor/PolyEtcherbrSystem",
+   "checked": "2026-11-28",
+   "kind": "history",
+   "note": "회사 홈페이지 연혁·제품 소개."
+  },
+  "vm_metal": {
+   "title": "브이엠 · Metal Etcher 제품 페이지",
+   "url": "https://www.vmsemi.com/kor/MetalEtcherSystem",
+   "checked": "2026-11-28",
+   "kind": "history",
+   "note": "회사 홈페이지 연혁·제품 소개."
+  },
+  "vm_oxide": {
+   "title": "브이엠 · Oxide Etcher 제품 페이지",
+   "url": "https://www.vmsemi.com/kor/OxideEtcherSystem",
+   "checked": "2026-11-28",
+   "kind": "history",
+   "note": "회사 홈페이지 연혁·제품 소개."
+  },
+  "vm_dev": {
+   "title": "브이엠 · 개발 계획 장비 페이지",
+   "url": "https://www.vmsemi.com/kor/UnderDevelopment",
+   "checked": "2026-11-28",
+   "kind": "history",
+   "note": "회사 홈페이지 연혁·제품 소개."
+  },
+  "tes_p": {
+   "title": "테스 · 반도체 장비 제품 페이지",
+   "url": "https://www.hites.co.kr/bbs/board.php?bo_table=b1",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "psk_p": {
+   "title": "피에스케이 · Edge clean 제품 페이지",
+   "url": "https://www.pskinc.com/producttech/edge_clean.php",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_akara": {
+   "title": "Lam · Akara 제품 페이지",
+   "url": "https://www.lamresearch.com/product/akara/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_kiyo": {
+   "title": "Lam · Kiyo 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/kiyo-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_sensei": {
+   "title": "Lam · Sense.i 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/sense-i/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_vantex": {
+   "title": "Lam · Vantex 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/vantex/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_flex": {
+   "title": "Lam · Flex 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/flex-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_cryo": {
+   "title": "Lam · 극저온 식각(Cryogenic Etching) 페이지",
+   "url": "https://www.lamresearch.com/products/our-solutions/cryogenic-etching/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_versys": {
+   "title": "Lam · Versys Metal 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/versys-metal-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_syndion": {
+   "title": "Lam · Syndion 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/syndion-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_selective": {
+   "title": "Lam · 선택적 식각 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/selective-etch-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_coronus": {
+   "title": "Lam · Coronus 제품군 페이지",
+   "url": "https://www.lamresearch.com/product/coronus-product-family/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_p_reliant": {
+   "title": "Lam · Reliant 식각 제품 페이지",
+   "url": "https://www.lamresearch.com/product/reliant-etch-products/",
+   "checked": "2026-11-28",
+   "kind": "page",
+   "note": "제품 페이지 본문."
+  },
+  "lam_r_sensei": {
+   "title": "Lam 보도자료 2020-03-03 · Sense.i 발표",
+   "url": "https://newsroom.lamresearch.com/2020-03-03-Lam-Research-Breaks-New-Ground-in-Etch-Technology-and-Productivity-for-Chipmaking-Processes",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_vantex": {
+   "title": "Lam 보도자료 2021-01-27 · Vantex 발표",
+   "url": "https://newsroom.lamresearch.com/2021-01-27-Lam-Research-Advances-Next-Generation-3D-Memory-Manufacturing-with-Revolutionary-New-Etch-Technology",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_syndion2007": {
+   "title": "Lam 보도자료 2007-08-20 · 첫 300 mm Syndion 출하",
+   "url": "https://newsroom.lamresearch.com/2007-08-20-Lam-Research-Corporation-Ships-First-300-mm-2300-R-Syndion-TM-System-for-3-D-IC-Through-Silicon-Via-Etch",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_syndiongp": {
+   "title": "Lam 보도자료 2021-12-07 · Syndion GP 발표",
+   "url": "https://newsroom.lamresearch.com/2021-12-07-Lam-Research-Unveils-Syndion-GP-to-Help-Chipmakers-Meet-Demand-for-Advanced-Power-Devices",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_selective": {
+   "title": "Lam 보도자료 2022-02-09 · 선택적 식각 3종 발표",
+   "url": "https://newsroom.lamresearch.com/2022-02-09-Lam-Research-Introduces-Groundbreaking-Suite-of-Selective-Etch-Tools-to-Accelerate-Chipmakers-3D-Roadmaps",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_coronusdx": {
+   "title": "Lam 보도자료 2023-06-20 · Coronus DX 발표",
+   "url": "https://newsroom.lamresearch.com/2023-06-20-Lam-Research-Introduces-Worlds-First-Bevel-Deposition-Solution-to-Increase-Yield-in-Chip-Production",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_cryo3": {
+   "title": "Lam 보도자료 2024-07-31 · Lam Cryo 3.0 발표",
+   "url": "https://newsroom.lamresearch.com/2024-07-31-Lam-Research-Introduces-Lam-Cryo-TM-3-0-Cryogenic-Etch-Technology-to-Accelerate-Scaling-of-3D-NAND-for-the-AI-Era",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  },
+  "lam_r_akara": {
+   "title": "Lam 보도자료 2025-02-19 · Akara 발표",
+   "url": "https://newsroom.lamresearch.com/2025-02-19-Lam-Research-Unveils-Industrys-Most-Advanced-Conductor-Etch-Technology-to-Date",
+   "checked": "2026-11-28",
+   "kind": "release",
+   "note": "보도자료·뉴스 원문."
+  }
+ },
+ "company_order": [
+  "Lam Research",
+  "TEL",
+  "Applied Materials",
+  "Hitachi High-Tech",
+  "KLA (SPTS)",
+  "AMEC",
+  "NAURA",
+  "세메스",
+  "브이엠",
+  "테스",
+  "피에스케이"
+ ],
+ "countries": {
+  "Lam Research": "미국",
+  "TEL": "일본",
+  "Applied Materials": "미국",
+  "Hitachi High-Tech": "일본",
+  "KLA (SPTS)": "미국",
+  "AMEC": "중국",
+  "NAURA": "중국",
+  "세메스": "한국",
+  "브이엠": "한국",
+  "테스": "한국",
+  "피에스케이": "한국"
+ },
+ "group_label": "식각 분야",
+ "item_label": "장비",
+ "search_placeholder": "장비명·공정·기술 검색",
+ "caption": "제조사 공식 자료 기준 · 출시는 제조사가 밝힌 출시·발표·양산 판매 시점 (연도만 있으면 연도)",
+ "evidence_summary": "11개 업체 · 60개 장비 · 모든 값 제조사 공식 자료 확인",
+ "scroll_hint": "셀에 마우스를 올리면 근거 · 맨 오른쪽 상세",
+ "note": "같은 식각 분야(도체·유전체·선택적 식각 등)에서 업체별 장비를 비교합니다. 위 대결표는 분야별로 각 업체가 내놓은 장비와 출시 연도를, 아래 표는 장비별 세부 내용을 보여 줍니다. 제조사는 처리량·가격을 공개하지 않아 빈칸이며, 비용 우위는 제조사가 밝힌 주장(면적·소유비용 등)만 옮겼습니다. \"출시\"는 제조사가 밝힌 시점이고 기준이 제각각(출시·발표·첫 양산 판매)이라 셀에 마우스를 올려 근거를 확인하세요. 세메스는 공식 사이트에 장비명·사양이 없어 분류만 적었습니다. 테스 CUMAX·SPICA는 회사가 건식 세정으로 분류하지만 선택적·등방성 식각 경쟁 장비라 여기 넣었습니다. 드라이 스트립·애싱 장비는 세정·스트립 분야에서 따로 다룹니다."
+}

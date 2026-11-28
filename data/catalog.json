@@ -3011,7 +3011,44 @@
           "route": "frontend",
           "category": "equipment",
           "default_range": "all",
-          "description": "노광·식각·증착·세정 장비사의 연결 실적입니다. 같은 회사가 여러 공정에 참여하므로 전사 매출을 특정 공정의 매출로 해석하지 않습니다. MOCVD 지표는 아래 연결에서 확인합니다."
+          "description": "노광·식각·증착·세정 장비사의 연결 실적입니다. 같은 회사가 여러 공정에 참여하므로 전사 매출을 특정 공정의 매출로 해석하지 않습니다. MOCVD 지표는 아래 연결에서, 장비 기술 비교는 전공정 세부 탭에서 확인합니다.",
+          "child_nav_label": "장비사 실적"
+        },
+        {
+          "id": "process_detail",
+          "name": "전공정 세부",
+          "route": "process",
+          "category": "equipment",
+          "default_range": "all",
+          "child_nav_label": "공정 개요",
+          "description": "전공정 장비를 공정별로 나눠 업체끼리 기술을 비교합니다(재무 비교는 전공정 탭). 공정 개요에는 공정별 업체 대결표를, 아래 공정 탭에는 장비별 세부 표를 둡니다. 지금은 포토·식각·증착이 있고 금속·세정·CMP·이온주입·열처리는 차례로 추가합니다."
+        },
+        {
+          "id": "process_photo",
+          "name": "포토",
+          "route": "photo",
+          "category": "equipment",
+          "parent_tab": "process_detail",
+          "default_range": "all",
+          "description": "노광 장비입니다. EUV는 ASML이 유일한 공급사이고 DUV는 Nikon·Canon과 경쟁합니다. 지금은 ASML 공식 사양표를 보여 줍니다."
+        },
+        {
+          "id": "process_etch",
+          "name": "식각",
+          "route": "etch",
+          "category": "equipment",
+          "parent_tab": "process_detail",
+          "default_range": "all",
+          "description": "식각 장비를 분야별(도체·유전체·선택적 식각 등)로 나눠 미국·일본·중국·한국 업체를 비교합니다. 위 대결표로 경쟁 구도를, 아래 표로 장비별 방식·출시·채택·공개 수치를 봅니다. 처리량·가격은 제조사가 공개하지 않아 빈칸이며 확인된 자료를 받는 대로 출처와 함께 채웁니다."
+        },
+        {
+          "id": "process_deposition",
+          "name": "증착",
+          "route": "deposition",
+          "category": "equipment",
+          "parent_tab": "process_detail",
+          "default_range": "all",
+          "description": "증착 장비입니다. 지금은 Applied Materials 장비표만 있고, Lam·TEL·ASM·Kokusai·원익IPS·주성·유진테크 등과의 업체 비교는 다음 단계에서 추가합니다."
         },
         {
           "id": "equipment_packaging",
@@ -3299,15 +3336,6 @@
           "valuation_company": "lam"
         },
         {
-          "title": "Lam Research · 식각 장비 제품별 사양",
-          "tab": "equipment_frontend",
-          "type": "table",
-          "table_kind": "gpu_specs",
-          "indicators": [
-            "lam_etch_specs"
-          ]
-        },
-        {
           "title": "Applied Materials · AMAT · 실적",
           "tab": "equipment_summary",
           "layout": "financial",
@@ -3330,8 +3358,35 @@
           "valuation_company": "amat"
         },
         {
+          "title": "식각 · 업체별 대결표",
+          "tab": "process_detail",
+          "type": "table",
+          "table_kind": "process_matrix",
+          "indicators": [
+            "process_etch_specs"
+          ]
+        },
+        {
+          "title": "식각 · 업체별 대결표",
+          "tab": "process_etch",
+          "type": "table",
+          "table_kind": "process_matrix",
+          "indicators": [
+            "process_etch_specs"
+          ]
+        },
+        {
+          "title": "식각 · 장비별 비교",
+          "tab": "process_etch",
+          "type": "table",
+          "table_kind": "gpu_specs",
+          "indicators": [
+            "process_etch_specs"
+          ]
+        },
+        {
           "title": "Applied Materials · 증착 장비 제품별 사양",
-          "tab": "equipment_frontend",
+          "tab": "process_deposition",
           "type": "table",
           "table_kind": "gpu_specs",
           "indicators": [
@@ -3820,7 +3875,7 @@
         },
         {
           "title": "ASML · EUV·DUV 노광 장비별 사양",
-          "tab": "equipment_frontend",
+          "tab": "process_photo",
           "type": "table",
           "table_kind": "gpu_specs",
           "indicators": [

@@ -464,13 +464,17 @@ async function renderIndustry(options = {}) {
     }
   }
 
-  if (selectedCategory?.id === "equipment" && ["equipment_frontend", "mocvd"].includes(state.subtab)) {
+  // Third row under an equipment tab that has child tabs (parent_tab): 전공정 → MOCVD, 전공정 세부 → 포토·식각·증착…
+  const parentTab = selectedCategory?.id === "equipment" ? (selectedTab?.parent_tab ? ind.tabs.find(tab => tab.id === selectedTab.parent_tab) : selectedTab) : null;
+  const childTabs = parentTab ? ind.tabs.filter(tab => tab.parent_tab === parentTab.id) : [];
+  if (childTabs.length) {
     const views = document.createElement("nav");
     views.className = "commodity-tabs semicon-equipment-views";
-    views.setAttribute("aria-label", "전공정 보기");
-    for (const [id, label, slug] of [["equipment_frontend", "장비사 실적", "frontend"], ["mocvd", "MOCVD", "mocvd"]]) {
-      const link = document.createElement("a"); link.href = `#/semicon/materials/equipment/${slug}`; link.textContent = label;
-      if (state.subtab === id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
+    views.setAttribute("aria-label", `${parentTab.name} 보기`);
+    for (const tab of [parentTab, ...childTabs]) {
+      const link = document.createElement("a"); link.href = `#/semicon/materials/equipment/${tab.route || tab.id}`;
+      link.textContent = tab === parentTab ? tab.child_nav_label || tab.name : tab.name;
+      if (state.subtab === tab.id) { link.className = "active"; link.setAttribute("aria-current", "page"); }
       views.appendChild(link);
     }
     pageTabs.appendChild(views);
@@ -673,6 +677,7 @@ async function renderIndustry(options = {}) {
         : section.table_kind === "industry_momentum" ? doc => momentumRenderer(doc, {market: state.subtab, state, colors: SERIES_COLORS[isDark() ? "dark" : "light"], rangeBounds: {from: rangeCutoff(), to: state.range === "custom" ? state.rangeTo : null}})
         : section.table_kind === "cpu_specs" ? renderCPUSpecs
         : section.table_kind === "gpu_specs" ? renderGPUSpecs
+        : section.table_kind === "process_matrix" ? (await import("./process-matrix.js")).renderProcessMatrix
         : section.table_kind === "memory_specs" ? renderGPUSpecs
         : section.table_kind === "asic_specs" ? renderGPUSpecs
         : section.table_kind === "ai_overview" ? (await import("./ai-overview.js")).renderAIOverview
